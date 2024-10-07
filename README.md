@@ -1,2 +1,1 @@
-#sae lekip
 # sae lekip
