@@ -1,0 +1,138 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: ICS Calendar\n"
+"POT-Creation-Date: 2018-10-23 15:18-0500\n"
+"PO-Revision-Date: 2018-11-19 10:33-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ics-calendar.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: ics-calendar.php:67
+msgid "Su"
+msgstr ""
+
+#: ics-calendar.php:68
+msgid "M"
+msgstr ""
+
+#: ics-calendar.php:69
+msgid "Tu"
+msgstr ""
+
+#: ics-calendar.php:70
+msgid "W"
+msgstr ""
+
+#: ics-calendar.php:71
+msgid "Th"
+msgstr ""
+
+#: ics-calendar.php:72
+msgid "F"
+msgstr ""
+
+#: ics-calendar.php:73
+msgid "Sa"
+msgstr ""
+
+#: ics-calendar.php:78
+msgid "Sun"
+msgstr ""
+
+#: ics-calendar.php:79
+msgid "Mon"
+msgstr ""
+
+#: ics-calendar.php:80
+msgid "Tue"
+msgstr ""
+
+#: ics-calendar.php:81
+msgid "Wed"
+msgstr ""
+
+#: ics-calendar.php:82
+msgid "Thu"
+msgstr ""
+
+#: ics-calendar.php:83
+msgid "Fri"
+msgstr ""
+
+#: ics-calendar.php:84
+msgid "Sat"
+msgstr ""
+
+#: ics-calendar.php:89
+msgid "Sunday"
+msgstr ""
+
+#: ics-calendar.php:90
+msgid "Monday"
+msgstr ""
+
+#: ics-calendar.php:91
+msgid "Tuesday"
+msgstr ""
+
+#: ics-calendar.php:92
+msgid "Wednesday"
+msgstr ""
+
+#: ics-calendar.php:93
+msgid "Thursday"
+msgstr ""
+
+#: ics-calendar.php:94
+msgid "Friday"
+msgstr ""
+
+#: ics-calendar.php:95
+msgid "Saturday"
+msgstr ""
+
+#: ics-calendar.php:180
+msgid "Starts"
+msgstr ""
+
+#: ics-calendar.php:194
+msgid "Ends"
+msgstr ""
+
+#: templates/calendar-month.php:21
+msgid "No events found."
+msgstr ""
+
+#: templates/calendar-month.php:121
+msgid "All Day"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "ICS Calendar"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Embed a live updating iCal (ICS) feed in any page using a shortcode."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Room 34 Creative Services, LLC"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://room34.com"
+msgstr ""

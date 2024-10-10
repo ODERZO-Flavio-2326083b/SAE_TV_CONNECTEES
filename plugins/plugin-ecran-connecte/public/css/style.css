@@ -1,0 +1,24 @@
+.button_ecran, .delete_button_ecran, .button_ecran:hover, .delete_button_ecran:hover, .active_ecran .page-link {
+    color: white;
+}
+
+.button_ecran {
+    background-color: #00558b;
+}
+
+.delete_button_ecran {
+    background-color: #8e2525;
+}
+
+.active_ecran .page-link {
+    background-color: #00558b;
+}
+
+thead {
+    background-color: #00558b;
+    color: white;
+}
+
+.select_ecran {
+    width: 80%;
+}

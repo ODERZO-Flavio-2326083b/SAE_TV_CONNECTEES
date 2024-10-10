@@ -1,0 +1,46 @@
+/**
+CSS de l'emploi du temps
+ */
+
+.shedule_tech{
+    width: 50%;
+}
+
+.tv-schedule {
+    width: 100%;
+}
+
+/* TABLE */
+.errorNotRegister {
+    font-weight: bold;
+    color: white;
+    background-color: red;
+}
+
+/* SLIDESHOW */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: block;
+}
+
+.tabSchedule {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.headerTab {
+    background-color: #00558a;
+}
+
+@media (max-width: 1200px) {
+    .shedule_tech{
+        width: 100%;
+    }
+}
+
+.firstSelect {
+    max-width: 70%;
+}

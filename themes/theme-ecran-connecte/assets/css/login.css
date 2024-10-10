@@ -1,0 +1,84 @@
+body.login {
+    background-color: #f2eff2;
+}
+
+body.login div#login {
+    width: 35%;
+}
+
+@media only screen and (max-device-width: 1000px) {
+    body.login div#login {
+        width: 100%;
+    }
+}
+
+body.login div#login h1 {
+
+}
+
+body.login div#login h1 a {
+    background-image: url("../media/logo.png");
+    height: 65px;
+    width: 320px;
+    background-size: 120px 120px;
+    background-repeat: no-repeat;
+    padding-bottom: 60px;
+}
+
+body.login div#login form#loginform {
+    background-color: white;
+    border-radius: 3%;
+    border: 2px solid darkgrey;
+    display: flex;
+    flex-direction: column;
+}
+
+body.login div#login form#loginform p label {
+}
+
+body.login div#login form#loginform input {
+}
+
+body.login div#login form#loginform input#user_login {
+}
+
+body.login div#login form#loginform input#user_pass {
+}
+
+body.login div#login form#loginform p.forgetmenot {
+}
+
+body.login div#login form#loginform p.forgetmenot input#rememberme {
+}
+
+body.login div#login form#loginform p.submit {
+}
+
+body.login div#login form#loginform p.submit input#wp-submit {
+    background-color: #00558b;
+    color: white;
+}
+
+body.login div#login p#nav {
+
+}
+
+body.login div#login p#nav a {
+}
+
+body.login div#login p#backtoblog {
+}
+
+body.login div#login p#backtoblog a {
+    display: none;
+}
+
+body.login div#login p#message {
+    background-color: #E6E6E6;
+}
+
+body.login div#login form#lostpasswordform {
+    background-color: #E6E6E6;
+    border-radius: 3%;
+    border: 2px solid darkgrey;
+}

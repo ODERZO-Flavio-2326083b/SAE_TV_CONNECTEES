@@ -1,0 +1,23 @@
+{
+  "name": "nicochoco/mvc",
+  "description": "Composer de l'écran connecté",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Nicolas Rohrbach",
+      "email": "rohrbach.nicolas@outlook.fr"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*",
+    "phpoffice/phpspreadsheet": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Components\\": "src/components/",
+      "Controllers\\": "src/controllers/",
+      "Models\\": "src/models/",
+      "Views\\": "src/views/"
+    }
+  }
+}

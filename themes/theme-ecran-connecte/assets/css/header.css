@@ -1,0 +1,20 @@
+/* HEADER */
+.nav_ecran {
+    position: sticky;
+    top: 0;
+    background-color: #00558b;
+    margin-bottom: 10px;
+    min-height: 5vh;
+    width: 100%;
+	padding: 10px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.logo_ecran {
+    width: auto;
+    height: 8vh;
+}

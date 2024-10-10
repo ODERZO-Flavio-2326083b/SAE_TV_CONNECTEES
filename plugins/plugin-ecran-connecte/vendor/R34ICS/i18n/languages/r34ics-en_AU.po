@@ -1,0 +1,192 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ICS Calendar\n"
+"POT-Creation-Date: 2019-02-21 11:04-0600\n"
+"PO-Revision-Date: 2019-02-21 11:05-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_AU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ics-calendar.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: ics-calendar.php:93
+msgid "Su"
+msgstr "Su"
+
+#: ics-calendar.php:94
+#, fuzzy
+msgid "M"
+msgstr "M"
+
+#: ics-calendar.php:95
+#, fuzzy
+msgid "Tu"
+msgstr "Tu"
+
+#: ics-calendar.php:96
+#, fuzzy
+msgid "W"
+msgstr "W"
+
+#: ics-calendar.php:97
+#, fuzzy
+msgid "Th"
+msgstr "Th"
+
+#: ics-calendar.php:98
+#, fuzzy
+msgid "F"
+msgstr "F"
+
+#: ics-calendar.php:99
+#, fuzzy
+msgid "Sa"
+msgstr "Sa"
+
+#: ics-calendar.php:104
+#, fuzzy
+msgid "Sun"
+msgstr "Sun"
+
+#: ics-calendar.php:105
+#, fuzzy
+msgid "Mon"
+msgstr "Mon"
+
+#: ics-calendar.php:106
+#, fuzzy
+msgid "Tue"
+msgstr "Tue"
+
+#: ics-calendar.php:107
+#, fuzzy
+msgid "Wed"
+msgstr "Wed"
+
+#: ics-calendar.php:108
+#, fuzzy
+msgid "Thu"
+msgstr "Thu"
+
+#: ics-calendar.php:109
+#, fuzzy
+msgid "Fri"
+msgstr "Fri"
+
+#: ics-calendar.php:110
+#, fuzzy
+msgid "Sat"
+msgstr "Sat"
+
+#: ics-calendar.php:115
+#, fuzzy
+msgid "Sunday"
+msgstr "Sunday"
+
+#: ics-calendar.php:116
+#, fuzzy
+msgid "Monday"
+msgstr "Monday"
+
+#: ics-calendar.php:117
+#, fuzzy
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: ics-calendar.php:118
+#, fuzzy
+msgid "Wednesday"
+msgstr "Wednesday"
+
+#: ics-calendar.php:119
+#, fuzzy
+msgid "Thursday"
+msgstr "Thursday"
+
+#: ics-calendar.php:120
+#, fuzzy
+msgid "Friday"
+msgstr "Friday"
+
+#: ics-calendar.php:121
+#, fuzzy
+msgid "Saturday"
+msgstr "Saturday"
+
+#: ics-calendar.php:271
+#, fuzzy
+msgid "Ends"
+msgstr "Ends"
+
+#: templates/admin-add-calendar-button.php:21
+#, fuzzy
+msgid "Add ICS Calendar"
+msgstr "ICS Calendar"
+
+#: templates/admin-add-calendar.php:186
+#, fuzzy
+msgid "Please select a form"
+msgstr "Please select a form"
+
+#: templates/calendar-currentweek.php:38 templates/calendar-list.php:35
+#: templates/calendar-month.php:37 templates/calendar-month.php:90
+#, fuzzy
+msgid "No events found."
+msgstr "No events found."
+
+#: templates/calendar-currentweek.php:63
+#, fuzzy
+msgid "Last week"
+msgstr "Last week"
+
+#: templates/calendar-currentweek.php:64
+#, fuzzy
+msgid "This week"
+msgstr "This week"
+
+#: templates/calendar-currentweek.php:65
+#, fuzzy
+msgid "Next week"
+msgstr "Next week"
+
+#: templates/calendar-currentweek.php:151 templates/calendar-list.php:73
+#: templates/calendar-month.php:165
+#, fuzzy
+msgid "All Day"
+msgstr "All Day"
+
+#. Plugin Name of the plugin/theme
+#, fuzzy
+msgid "ICS Calendar"
+msgstr "ICS Calendar"
+
+#. Description of the plugin/theme
+#, fuzzy
+msgid "Embed a live updating iCal (ICS) feed in any page using a shortcode."
+msgstr "Embed a live updating iCal (ICS) feed in any page using a shortcode."
+
+#. Author of the plugin/theme
+#, fuzzy
+msgid "Room 34 Creative Services, LLC"
+msgstr "Room 34 Creative Services, LLC"
+
+#. Author URI of the plugin/theme
+#, fuzzy
+msgid "http://room34.com"
+msgstr "http://room34.com"
+
+#, fuzzy
+#~ msgid "Starts"
+#~ msgstr "Starts"

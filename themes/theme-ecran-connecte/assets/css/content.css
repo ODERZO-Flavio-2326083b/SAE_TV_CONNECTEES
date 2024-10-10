@@ -1,0 +1,44 @@
+body {
+    background-color: #f2eff2;
+}
+
+.container {
+	max-width:65%;
+    background-color: white;
+    border-radius: 5px;
+    min-height: 85vh;
+    margin-bottom: 10px;
+}
+
+.body_television_ecran {
+    overflow: hidden;
+}
+
+.row {
+    margin: 0;
+}
+
+h1, h2, h3 ,h4, h5, h6 {
+    color: #00558b;
+}
+
+a, a:hover, a:link, a:active {
+    color: #00558b;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.button_presentation_ecran {
+    border-color: #00558b;
+    color: #00558b;
+}
+
+td {
+	font-weight:bold;
+}
+
+h1 {
+	font-size:2rem;
+}
