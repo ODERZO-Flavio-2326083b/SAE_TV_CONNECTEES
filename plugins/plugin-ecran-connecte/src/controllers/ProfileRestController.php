@@ -2,8 +2,6 @@
 
 namespace Controllers;
 
-use Models\Alert;
-use Models\CodeAde;
 use Models\User;
 use WP_Error;
 use WP_REST_Controller;
