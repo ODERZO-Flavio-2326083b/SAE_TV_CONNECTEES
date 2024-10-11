@@ -77,7 +77,8 @@ class TelevisionController extends UserController implements Schedule
                 $this->model->setRole('television');
                 $this->model->setCodes($codesAde);
 
-                if (!$this->checkDuplicateUser($this->model) && $this->model->insert() && $this->model->insertCoords($latitude, $longitude)) {
+                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+                    $this->model->insertCoords($latitude, $longitude);
                     $this->view->displayInsertValidate();
                 } else {
                     $this->view->displayErrorLogin();
