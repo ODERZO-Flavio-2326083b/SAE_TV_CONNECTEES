@@ -34,7 +34,7 @@ if(in_array('television', $current_user->roles)) : ?>
         </a>
     <?php else: ?>
     <nav class="navbar navbar-expand-lg navbar-dark nav_ecran">
-        <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
+        <a class="navbar-brand" href="https://saetest.alwaysdata.net/accueil/">
             <?php if (get_header_image()) : ?>
                 <img src="<?php header_image(); ?>" class="d-inline-block align-top logo" alt="Logo du site">
             <?php endif; ?>
