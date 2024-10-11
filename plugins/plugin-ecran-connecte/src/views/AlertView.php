@@ -134,7 +134,7 @@ class AlertView extends View
 			<div class="col-6 mx-auto col-md-6 order-md-2">
 				<img src="' . TV_PLUG_PATH . 'public/img/alert.png" alt="Logo alerte" class="img-fluid mb-3 mb-md-0">
 			</div>
-			<div class="order-md-1 text-center text-md-left pr-md-5">
+			<div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
 				<p class="lead">Vous pouvez retrouver ici toutes les alertes qui ont été créées sur ce site.</p>
 				<p class="lead mb-4">Les alertes sont triées de la plus vieille à la plus récente.</p>
 				<p class="lead mb-4">Vous pouvez modifier une alerte en cliquant sur "Modifier" à la ligne correspondante à l\'alerte.</p>
