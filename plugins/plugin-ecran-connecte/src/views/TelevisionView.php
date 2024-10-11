@@ -2,27 +2,29 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
 /**
  * Class TelevisionView
  *
- * Contain all view for television (Forms, tables)
+ * Contient toutes les vues pour la télévision (formulaires, tableaux).
  *
  * @package Views
  */
 class TelevisionView extends UserView
 {
     /**
-     * Display a form to create a television
+     * Affiche un formulaire pour créer une télévision.
      *
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param CodeAde[] $years     Liste des années.
+     * @param CodeAde[] $groups    Liste des groupes.
+     * @param CodeAde[] $halfGroups Liste des demi-groupes.
+     * @return string Renvoie le formulaire HTML pour créer une télévision.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new TelevisionView();
+     * echo $view->displayFormTelevision($years, $groups, $halfGroups);
      */
     public function displayFormTelevision($years, $groups, $halfGroups) {
         $form = '
@@ -33,13 +35,13 @@ class TelevisionView extends UserView
             <div class="form-group">
             	<label for="loginTv">Login</label>
             	<input type="text" class="form-control" name="loginTv" placeholder="Nom de compte" required="">
-            	<small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractère</small>
+            	<small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractères</small>
             </div>
             <div class="form-group">
             	<label for="pwdTv">Mot de passe</label>
             	<input type="password" class="form-control" id="pwdTv" name="pwdTv" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("Tv")>
             	<input type="password" class="form-control" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("Tv")>
-            	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
+            	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractères</small>
             </div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
@@ -53,22 +55,26 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display all televisions in a table
+     * Affiche tous les utilisateurs de type télévision dans un tableau.
      *
-     * @param $users    User[]
+     * @param User[] $users Liste des utilisateurs.
+     * @return string Renvoie le tableau HTML avec les informations des télévisions.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new TelevisionView();
+     * echo $view->displayAllTv($tvUsers);
      */
     public function displayAllTv($users) {
         $page = get_page_by_title('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
-        $title = 'Televisions';
+        $title = 'Télévisions';
         $name = 'Tele';
-        $header = ['Login', 'Nombre d\'emplois du temps ', 'Modifier'];
+        $header = ['Login', 'Nombre d\'emplois du temps', 'Modifier'];
 
         $row = array();
         $count = 0;
+
         foreach ($users as $user) {
             ++$count;
             $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
@@ -78,14 +84,17 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display a form to modify a television
+     * Affiche un formulaire pour modifier une télévision.
      *
-     * @param $user         User
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param User     $user         L'utilisateur à modifier.
+     * @param CodeAde[] $years       Liste des années.
+     * @param CodeAde[] $groups      Liste des groupes.
+     * @param CodeAde[] $halfGroups  Liste des demi-groupes.
+     * @return string Renvoie le formulaire HTML pour modifier une télévision.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new TelevisionView();
+     * echo $view->modifyForm($tvUser, $years, $groups, $halfGroups);
      */
     public function modifyForm($user, $years, $groups, $halfGroups) {
         $count = 0;
@@ -96,7 +105,7 @@ class TelevisionView extends UserView
             <label id="selectId1"> Emploi du temps</label>';
 
         foreach ($user->getCodes() as $code) {
-            $count = $count + 1;
+            $count++;
             if ($count == 1) {
                 $string .= $this->buildSelectCode($years, $groups, $halfGroups, $code, $count);
             } else {
@@ -123,15 +132,17 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Build a select with all codes Ade
+     * Construit un élément select avec tous les codes Ade.
      *
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
-     * @param $code         CodeAde
-     * @param $count        int
+     * @param CodeAde[] $years      Liste des années.
+     * @param CodeAde[] $groups     Liste des groupes.
+     * @param CodeAde[] $halfGroups Liste des demi-groupes.
+     * @param CodeAde|null $code    Le code actuel à sélectionner (optionnel).
+     * @param int $count             Le numéro de séquence pour l'élément select.
+     * @return string Renvoie le code HTML de l'élément select.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $selectHtml = $view->buildSelectCode($years, $groups, $halfGroups);
      */
     public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
@@ -163,33 +174,42 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display form to modify the password of a television
+     * Affiche un formulaire pour modifier le mot de passe d'une télévision.
      *
-     * @return string
+     * @return string Renvoie le formulaire HTML pour changer le mot de passe.
+     *
+     * Exemple d'utilisation :
+     * $view = new TelevisionView();
+     * echo $view->modifyPassword();
      */
     public function modifyPassword() {
         return '
 		<form method="post">
 		<label>Nouveau mot de passe </label>
-            <input  minlength="4" type="password" class="form-control text-center modal-sm" id="pwdTv" name="pwdTv" placeholder="Nouveau mot de passe" onkeyup=checkPwd("Tv")>
-            <input  minlength="4" type="password" class="form-control text-center modal-sm" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le nouveau mot de passe" onkeyup=checkPwd("Tv")>
+            <input minlength="4" type="password" class="form-control text-center modal-sm" id="pwdTv" name="pwdTv" placeholder="Nouveau mot de passe" onkeyup=checkPwd("Tv")>
+            <input minlength="4" type="password" class="form-control text-center modal-sm" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le nouveau mot de passe" onkeyup=checkPwd("Tv")>
 		</form>';
-
     }
 
     /**
-     * Start a slideshow
+     * Démarre un diaporama.
      *
-     * @return string
+     * @return string Renvoie le conteneur HTML pour le diaporama.
+     *
+     * Exemple d'utilisation :
+     * echo $view->displayStartSlide();
      */
     public function displayStartSlide() {
         return '<div id="slideshow-container" class="slideshow-container">';
     }
 
     /**
-     * Separate all slide by this
+     * Sépare chaque diapositive avec ce conteneur.
      *
-     * @return string
+     * @return string Renvoie le conteneur HTML pour une diapositive.
+     *
+     * Exemple d'utilisation :
+     * echo $view->displayMidSlide();
      */
     public function displayMidSlide() {
         return '<div class="mySlides">';

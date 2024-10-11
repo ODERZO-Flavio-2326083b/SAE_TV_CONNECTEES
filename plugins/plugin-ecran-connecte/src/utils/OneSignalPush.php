@@ -6,21 +6,43 @@ include __DIR__ . '/../../config-notifs.php';
 
 use Models\CodeAde;
 
+/**
+ * Class OneSignalPush
+ *
+ * Représente un service de notification push utilisant l'API OneSignal.
+ * Cette classe permet d'envoyer des notifications à des utilisateurs en ciblant
+ * des codes ADE spécifiques ou en envoyant à tous les utilisateurs.
+ *
+ * @package Utils
+ */
 class OneSignalPush
 {
     /**
      * OneSignalPush constructor.
+     *
+     * Initialise une nouvelle instance de la classe OneSignalPush.
      */
     function __construct() {
-
+        // Initialisation, si nécessaire
     }
 
     /**
-     * Sends a push notification using OneSignal
+     * Envoie une notification push à l'aide de OneSignal.
      *
-     * @param CodeAde[]|null $targets ADE codes to target the users with, pass null to target everyone
-     * @param string $message Notification message
-     * @return string Response from the request to OneSignal
+     * @param CodeAde[]|null $targets Les codes ADE à cibler pour l'envoi de notifications,
+     *                                 ou null pour cibler tous les utilisateurs.
+     * @param string $message Le message de notification à envoyer.
+     * @return string La réponse de la requête à OneSignal.
+     *
+     * @throws Exception Si l'envoi échoue pour une raison quelconque.
+     *
+     * @example
+     * ```php
+     * $push = new OneSignalPush();
+     * $codeA = new CodeAde();
+     * $codeA->setCode('CODE123');
+     * $response = $push->sendNotification([$codeA], 'Ceci est un message de test.');
+     * ```
      */
     function sendNotification($targets, $message) {
         $contents = array(
@@ -41,7 +63,7 @@ class OneSignalPush
                 'headings' => $headings
             );
         } else {
-            // Generate the filters from the ADE codes
+            // Générer les filtres à partir des codes ADE
             $filters = array();
             $targets_length = count($targets);
 
@@ -96,6 +118,6 @@ class OneSignalPush
         $response = curl_exec($ch);
         curl_close($ch);
 
-        return $response;
+        return $response; // Retourne la réponse de l'API OneSignal
     }
 }

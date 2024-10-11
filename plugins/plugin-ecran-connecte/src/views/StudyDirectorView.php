@@ -7,28 +7,32 @@ use Models\User;
 /**
  * Class StudyDirectorView
  *
- * Contain all view for study director (Forms, tables)
+ * Classe dédiée à l'affichage des vues pour les directeurs d'études, y compris les formulaires
+ * et les tableaux de gestion des utilisateurs.
  *
  * @package Views
  */
 class StudyDirectorView extends UserView
 {
-
     /**
-     * Display a form for create a study director
+     * Affiche un formulaire pour créer un directeur d'études.
      *
-     * @return string
+     * @return string Renvoie le formulaire HTML à afficher à l'utilisateur.
+     *
+     * Exemple d'utilisation :
+     * $view = new StudyDirectorView();
+     * echo $view->displayCreateDirector();
      */
     public function displayCreateDirector() {
         return '
-        <h2> Compte directeur d\'études</h2>
+        <h2>Compte directeur d\'études</h2>
         <p class="lead">Pour créer des directeurs d\'études, remplissez ce formulaire avec les valeurs demandées.</p>
         <p class="lead">Le code ADE demandé est son code provenant de l\'ADE, pour avoir ce code, suivez le ce trouvant dans la partie pour créer un enseignant.</p>
         <form class="cadre" method="post">
             <div class="form-group">
                 <label for="loginDirec">Login</label>
                 <input minlength="4" type="text" class="form-control" name="loginDirec" placeholder="Login" required="">
-                <small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractère</small>
+                <small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractères</small>
             </div>
             <div class="form-group">
                 <label for="emailDirec">Email</label>
@@ -38,10 +42,10 @@ class StudyDirectorView extends UserView
                 <label for="pwdDirec">Mot de passe</label>
                 <input type="password" class="form-control" id="pwdDirec" name="pwdDirec" minlength="8" maxlength="25" placeholder="Mot de passe" required="" onkeyup=checkPwd("Direc")>
                 <input type="password" class="form-control" id="pwdConfDirec" name="pwdConfirmDirec" minlength="8" maxlength="25" placeholder="Confirmer le Mot de passe" required="" onkeyup=checkPwd("Direc")>
-                <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
+                <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractères</small>
             </div>
             <div class="form-group">
-                <label for="codeADEDirec"> Code ADE</label>
+                <label for="codeADEDirec">Code ADE</label>
                 <input type="text" class="form-control" placeholder="Code ADE" name="codeDirec" required="">
             </div>
             <button type="submit" class="btn button_ecran" id="validDirec" name="createDirec" value="Créer">Créer</button>
@@ -49,13 +53,23 @@ class StudyDirectorView extends UserView
     }
 
     /**
-     * Display all study directors in a table
+     * Affiche tous les directeurs d'études dans un tableau.
      *
-     * @param $users    User[]
+     * @param User[] $users Un tableau d'objets User représentant les directeurs d'études.
+     * @return string Renvoie le tableau HTML avec les informations des directeurs d'études.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new StudyDirectorView();
+     * echo $view->displayAllStudyDirector($userList);
+     *
+     * Gestion des exceptions :
+     * Lance une exception si la liste des utilisateurs est vide ou non valide.
      */
     public function displayAllStudyDirector($users) {
+        if (empty($users) || !is_array($users)) {
+            throw new \InvalidArgumentException('La liste des utilisateurs doit être un tableau non vide.');
+        }
+
         $page = get_page_by_title('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
@@ -63,38 +77,40 @@ class StudyDirectorView extends UserView
         $name = 'Direc';
         $header = ['Numéro Ent', 'Code ADE', 'Modifier'];
 
-        $row = array();
+        $row = [];
         $count = 0;
-        foreach ($users as $user) {
 
-            if (sizeof($user->getCodes()) == 0) {
-                $code = 'Aucun code';
-            } else {
-                $code = $user->getCodes()[0]->getCode();
-            }
+        foreach ($users as $user) {
+            $code = (sizeof($user->getCodes()) == 0) ? 'Aucun code' : $user->getCodes()[0]->getCode();
 
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), $code, $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [
+                $count,
+                $this->buildCheckbox($name, $user->getId()),
+                $user->getLogin(),
+                $code,
+                $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())
+            ];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'director');
     }
 
     /**
-     * Display a form to modify the study director
+     * Affiche un formulaire pour modifier un directeur d'études.
      *
-     * @param $user   User
+     * @param User $user L'objet User représentant le directeur d'études à modifier.
+     * @return string Renvoie le formulaire HTML pour modifier les informations du directeur d'études.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new StudyDirectorView();
+     * echo $view->displayModifyStudyDirector($user);
      */
     public function displayModifyStudyDirector($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
-        $code = 'Aucun code';
-        if (sizeof($user->getCodes()) > 0) {
-            $code = $user->getCodes()[0]->getCode();
-        }
+        $code = (sizeof($user->getCodes()) > 0) ? $user->getCodes()[0]->getCode() : 'Aucun code';
 
         return '
         <a href="' . esc_url(get_permalink(get_page_by_title('Gestion des utilisateurs'))) . '">< Retour</a>

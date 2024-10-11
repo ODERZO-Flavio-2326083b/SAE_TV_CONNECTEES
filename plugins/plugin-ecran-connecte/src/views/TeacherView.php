@@ -2,21 +2,26 @@
 
 namespace Views;
 
-
 use Models\User;
 
 /**
  * Class TeacherView
  *
- * Contain all view for teacher (Forms, tables)
+ * Classe dédiée à l'affichage des vues pour les enseignants, y compris les formulaires
+ * et les tableaux de gestion des utilisateurs.
  *
  * @package Views
  */
 class TeacherView extends UserView
 {
-
     /**
-     * Display a creation form
+     * Affiche un formulaire pour télécharger un fichier Excel contenant les informations des enseignants.
+     *
+     * @return string Renvoie le formulaire HTML à afficher à l'utilisateur.
+     *
+     * Exemple d'utilisation :
+     * $view = new TeacherView();
+     * echo $view->displayInsertImportFileTeacher();
      */
     public function displayInsertImportFileTeacher() {
         return '
@@ -25,11 +30,11 @@ class TeacherView extends UserView
         <p class="lead">Remplissez les colonnes par les valeurs demandées, une ligne est égale à un utilisateur.</p>
         <p class="lead">Le code demandé est son code provenant de l\'ADE, pour avoir ce code, suivez ce petit tutoriel :</p>
         <ul>
-            <li><p class="lead">Connectez vous sur l\'ADE</p></li>
+            <li><p class="lead">Connectez-vous sur l\'ADE</p></li>
             <li><p class="lead">...</p></li>
         </ul>
-        <p class="lead">Lorsque vous avez remplis le fichier Excel, enregistrez le et cliquez sur "Parcourir" et sélectionnez votre fichier.</p>
-        <p class="lead">Pour finir, validez l\'envoie du formulaire en cliquant sur "Importer le fichier"</p>
+        <p class="lead">Lorsque vous avez rempli le fichier Excel, enregistrez-le et cliquez sur "Parcourir" et sélectionnez votre fichier.</p>
+        <p class="lead">Pour finir, validez l\'envoi du formulaire en cliquant sur "Importer le fichier"</p>
         <p class="lead">Lorsqu\'un enseignant est inscrit, un email lui est envoyé contenant son login et son mot de passe avec un lien du site.</p>
         <a href="' . TV_PLUG_PATH . 'public/files/Ajout Profs.xlsx" download="Ajout Prof.xlsx">Télécharger le fichier excel ! </a>
         <form id="Prof" method="post" enctype="multipart/form-data">
@@ -39,11 +44,14 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display form to modify a teacher
+     * Affiche un formulaire pour modifier un enseignant.
      *
-     * @param $user   User
+     * @param User $user L'objet User représentant l'enseignant à modifier.
+     * @return string Renvoie le formulaire HTML pour modifier les informations de l'enseignant.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new TeacherView();
+     * echo $view->modifyForm($user);
      */
     public function modifyForm($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -61,13 +69,23 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display all teachers in a table
+     * Affiche tous les enseignants dans un tableau.
      *
-     * @param $teachers    User[]
+     * @param User[] $teachers Un tableau d'objets User représentant les enseignants.
+     * @return string Renvoie le tableau HTML avec les informations des enseignants.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new TeacherView();
+     * echo $view->displayAllTeachers($teacherList);
+     *
+     * Gestion des exceptions :
+     * Lance une exception si la liste des enseignants est vide ou non valide.
      */
     public function displayAllTeachers($teachers) {
+        if (empty($teachers) || !is_array($teachers)) {
+            throw new \InvalidArgumentException('La liste des enseignants doit être un tableau non vide.');
+        }
+
         $page = get_page_by_title('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
@@ -75,11 +93,18 @@ class TeacherView extends UserView
         $name = 'Teacher';
         $header = ['Numéro Ent', 'Code ADE', 'Modifier'];
 
-        $row = array();
+        $row = [];
         $count = 0;
+
         foreach ($teachers as $teacher) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $teacher->getId()), $teacher->getLogin(), $teacher->getCodes()[0]->getCode(), $this->buildLinkForModify($linkManageUser . '?id=' . $teacher->getId())];
+            $row[] = [
+                $count,
+                $this->buildCheckbox($name, $teacher->getId()),
+                $teacher->getLogin(),
+                $teacher->getCodes()[0]->getCode(),
+                $this->buildLinkForModify($linkManageUser . '?id=' . $teacher->getId())
+            ];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'teacher');
