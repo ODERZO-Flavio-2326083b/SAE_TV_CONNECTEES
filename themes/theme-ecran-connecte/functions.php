@@ -120,10 +120,6 @@ $args = array(
 );
 add_theme_support('custom-header', $args);
 
-//Met la bonne heure
-global $wpdb;
-date_default_timezone_set('Europe/Paris');
-$wpdb->time_zone = 'Europe/Paris';
 
 // All sidebars
 if (function_exists('register_sidebar')) {

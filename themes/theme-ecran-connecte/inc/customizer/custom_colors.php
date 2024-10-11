@@ -40,7 +40,7 @@ function my_customize_color_register($wp_customize)
 
     //Background color header
     $wp_customize->add_setting('background_color_header', array(
-        'default' => '#00558b',
+        'default' => '#1F63DE',
         'transport' => 'refresh',
     ));
 
@@ -237,7 +237,7 @@ function my_customize_color_register($wp_customize)
 
     //Background weather
     $wp_customize->add_setting('background_color_weather', array(
-        'default' => '#00558b',
+        'default' => '#1F63DE',
         'transport' => 'refresh',
     ));
 

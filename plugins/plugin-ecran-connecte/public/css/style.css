@@ -3,7 +3,7 @@
 }
 
 .button_ecran {
-    background-color: #00558b;
+    background-color: #1F63DE;
 }
 
 .delete_button_ecran {
@@ -11,11 +11,11 @@
 }
 
 .active_ecran .page-link {
-    background-color: #00558b;
+    background-color: #1F63DE;
 }
 
 thead {
-    background-color: #00558b;
+    background-color: #1F63DE;
     color: white;
 }
 

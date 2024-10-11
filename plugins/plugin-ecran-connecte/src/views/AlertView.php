@@ -57,7 +57,7 @@ class AlertView extends View
 		<hr class="half-rule">
 		<div>
 			<h2>Les alertes</h2>
-			<p class="lead">Lors de la création de votre alerte, celle-ci sera posté directement sur tous les téléviseurs qui utilisent  ce site.</p>
+			<p class="lead">Lors de la création de votre alerte, celle-ci sera postée directement sur tous les téléviseurs qui utilisent ce site.</p>
 			<p class="lead">Les alertes que vous créez seront affichées avec les alertes déjà présentes.</p>
 			<p class="lead">Les alertes sont affichées les une après les autres défilant à la chaîne en bas des téléviseurs.</p>
 			<div class="text-center">

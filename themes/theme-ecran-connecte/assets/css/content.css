@@ -19,11 +19,11 @@ body {
 }
 
 h1, h2, h3 ,h4, h5, h6 {
-    color: #00558b;
+    color: #1F63DE;
 }
 
 a, a:hover, a:link, a:active {
-    color: #00558b;
+    color: #1F63DE;
 }
 
 a:hover {
@@ -31,8 +31,8 @@ a:hover {
 }
 
 .button_presentation_ecran {
-    border-color: #00558b;
-    color: #00558b;
+    border-color: #1F63DE;
+    color: #1F63DE;
 }
 
 td {
