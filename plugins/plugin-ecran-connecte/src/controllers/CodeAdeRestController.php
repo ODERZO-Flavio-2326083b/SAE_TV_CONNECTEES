@@ -9,10 +9,34 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Class CodeAdeRestController
+ *
+ * Contrôleur REST pour gérer les opérations CRUD des codes ADE.
+ *
+ * Ce contrôleur gère les routes RESTful pour la création, la récupération,
+ * la mise à jour et la suppression des codes ADE dans WordPress.
+ *
+ * @package Controllers
+ */
 class CodeAdeRestController extends WP_REST_Controller
 {
     /**
-     * Constructor for the REST controller
+     * Namespace pour les routes REST.
+     * @var string
+     */
+    protected $namespace;
+
+    /**
+     * Base des routes REST.
+     * @var string
+     */
+    protected $rest_base;
+
+    /**
+     * Constructeur pour le contrôleur REST.
+     *
+     * Initialise le namespace et la base des routes.
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -20,7 +44,10 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Register the routes for the objects of the controller.
+     * Enregistre les routes pour les objets du contrôleur.
+     *
+     * Cette méthode doit être appelée pour ajouter les routes aux API REST
+     * et définir les méthodes HTTP correspondantes pour chaque opération.
      */
     public function register_routes() {
         register_rest_route(
@@ -41,18 +68,18 @@ class CodeAdeRestController extends WP_REST_Controller
                         'title' => array(
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('ADE code title'),
+                            'description' => __('Titre du code ADE'),
                         ),
                         'code' => array(
                             'type' => 'number',
                             'required' => true,
-                            'description' => __('ADE code'),
+                            'description' => __('Code ADE'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'required' => true,
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('ADE code type'),
+                            'description' => __('Type de code ADE'),
                         ),
                     ),
                 ),
@@ -66,7 +93,7 @@ class CodeAdeRestController extends WP_REST_Controller
             array(
                 'args' => array(
                     'id' => array(
-                        'description' => __('Unique identifier for the ADE code'),
+                        'description' => __('Identifiant unique pour le code ADE'),
                         'type' => 'integer',
                     ),
                 ),
@@ -83,16 +110,16 @@ class CodeAdeRestController extends WP_REST_Controller
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
-                            'description' => __('ADE code title'),
+                            'description' => __('Titre du code ADE'),
                         ),
                         'code' => array(
                             'type' => 'number',
-                            'description' => __('ADE code'),
+                            'description' => __('Code ADE'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('ADE code type'),
+                            'description' => __('Type de code ADE'),
                         ),
                     ),
                 ),
@@ -108,74 +135,74 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Get a collection of items
+     * Obtient une collection d'éléments.
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
+     * @param WP_REST_Request $request Données complètes concernant la requête.
+     * @return WP_Error|WP_REST_Response Réponse contenant la liste des codes ADE ou une erreur.
      */
     public function get_items($request) {
-        // Get an instance of the ADE code manager
+        // Récupération de l'instance du gestionnaire de codes ADE
         $ade_code = new CodeAde();
 
         return new WP_REST_Response($ade_code->getList(), 200);
     }
 
     /**
-     * Creates a single ADE code.
+     * Crée un code ADE unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return WP_REST_Response|WP_Error Objet réponse en cas de succès ou objet WP_Error en cas d'échec.
      */
     public function create_item($request) {
-        // Get an instance of the ADE code manager
+        // Récupération de l'instance du gestionnaire de codes ADE
         $ade_code = new CodeAde();
 
-        // Set ADE code data
+        // Définition des données du code ADE
         $ade_code->setTitle($request->get_param('title'));
         $ade_code->setCode($request->get_param('code'));
         $ade_code->setType($request->get_param('type'));
 
-        // Try to insert the ADE code
+        // Tentative d'insertion du code ADE
         if (($insert_id = $ade_code->insert()))
             return new WP_REST_Response(array('id' => $insert_id), 200);
 
-        return new WP_REST_Response(array('message' => 'Could not insert the ADE code'), 400);
+        return new WP_REST_Response(array('message' => 'Impossible d\'insérer le code ADE'), 400);
     }
 
     /**
-     * Retrieves a single ADE code.
+     * Récupère un code ADE unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return WP_REST_Response|WP_Error Objet réponse en cas de succès ou objet WP_Error en cas d'échec.
      */
     public function get_item($request) {
-        // Get an instance of the ADE code manager
+        // Récupération de l'instance du gestionnaire de codes ADE
         $ade_code = new CodeAde();
 
-        // Grab the information from the database
+        // Récupération des informations depuis la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
+            return new WP_REST_Response(array('message' => 'Code ADE non trouvé'), 404);
 
         return new WP_REST_Response($requested_ade_code, 200);
     }
 
     /**
-     * Updates a single ADE code.
+     * Met à jour un code ADE unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return WP_REST_Response|WP_Error Objet réponse en cas de succès ou objet WP_Error en cas d'échec.
      */
     public function update_item($request) {
-        // Get an instance of the ADE code manager
+        // Récupération de l'instance du gestionnaire de codes ADE
         $ade_code = new CodeAde();
 
-        // Grab the information from the database
+        // Récupération des informations depuis la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
+            return new WP_REST_Response(array('message' => 'Code ADE non trouvé'), 404);
 
-        // Update the information data
+        // Mise à jour des données
         if (is_string($request->get_json_params()['title']))
             $requested_ade_code->setTitle($request->get_json_params()['title']);
 
@@ -185,35 +212,35 @@ class CodeAdeRestController extends WP_REST_Controller
         if (is_string($request->get_json_params()['type']))
             $requested_ade_code->setType($request->get_json_params()['type']);
 
-        // Try to update the information
+        // Tentative de mise à jour des informations
         if ($requested_ade_code->update() > 0)
             return new WP_REST_Response(null, 200);
 
-        return new WP_REST_Response(array('message' => 'Could not update the ADE code'), 400);
+        return new WP_REST_Response(array('message' => 'Impossible de mettre à jour le code ADE'), 400);
     }
 
     /**
-     * Deletes a single ADE code.
+     * Supprime un code ADE unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return WP_REST_Response|WP_Error Objet réponse en cas de succès ou objet WP_Error en cas d'échec.
      */
     public function delete_item($request) {
-        // Get an instance of the ADE code manager
+        // Récupération de l'instance du gestionnaire de codes ADE
         $codeAde = new CodeAde();
 
-        // Grab the information from the database
+        // Récupération des informations depuis la base de données
         $requested_ade_code = $codeAde->get($request->get_param('id'));
         if ($requested_ade_code && $requested_ade_code->delete())
             return new WP_REST_Response(null, 200);
 
-        return new WP_REST_Response(array('message' => 'Could not delete the ADE code'), 400);
+        return new WP_REST_Response(array('message' => 'Impossible de supprimer le code ADE'), 400);
     }
 
     /**
-     * Check if a given request has access to get items
+     * Vérifie si une requête donnée a accès pour obtenir des éléments.
      *
-     * @param WP_REST_Request $request Full data about the request.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
      * @return WP_Error|bool
      */
     public function get_items_permissions_check($request) {
@@ -222,40 +249,40 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Checks if a given request has access to create an information.
+     * Vérifie si une requête donnée a accès pour créer un élément.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return true|WP_Error True si la requête a accès pour créer des éléments, sinon objet WP_Error.
      */
     public function create_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access to read an information.
+     * Vérifie si une requête donnée a accès pour lire un élément.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return true|WP_Error True si la requête a accès pour lire l'élément, sinon objet WP_Error.
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access to update a single information.
+     * Vérifie si une requête donnée a accès pour mettre à jour un élément.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return true|WP_Error True si la requête a accès pour mettre à jour l'élément, sinon objet WP_Error.
      */
     public function update_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access delete an information.
+     * Vérifie si une requête donnée a accès pour supprimer un élément.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @return true|WP_Error True si la requête a accès pour supprimer l'élément, sinon objet WP_Error.
      */
     public function delete_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);

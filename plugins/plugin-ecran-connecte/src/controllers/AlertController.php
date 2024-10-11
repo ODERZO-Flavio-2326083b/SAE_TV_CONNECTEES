@@ -6,32 +6,32 @@ include __DIR__ . '/../utils/OneSignalPush.php';
 
 use Models\Alert;
 use Models\CodeAde;
-use Models\User;
 use Utils\OneSignalPush;
 use Views\AlertView;
 
 /**
  * Class AlertController
  *
- * Manage alerts (create, update, delete, display)
+ * Cette classe gère la gestion des alertes, y compris la création, la modification et la suppression des alertes.
  *
  * @package Controllers
  */
 class AlertController extends Controller
 {
-
     /**
-     * @var Alert
+     * @var Alert $model Modèle pour gérer les alertes.
      */
     private $model;
 
     /**
-     * @var AlertView
+     * @var AlertView $view Vue pour afficher les alertes.
      */
     private $view;
 
     /**
-     * AlertController constructor
+     * Constructeur de AlertController
+     *
+     * Initialise le modèle et la vue pour la gestion des alertes.
      */
     public function __construct() {
         $this->model = new Alert();
@@ -39,23 +39,31 @@ class AlertController extends Controller
     }
 
     /**
-     * Insert an alert in the database
+     * Insère une nouvelle alerte dans la base de données.
+     *
+     * Cette méthode récupère les données d'entrée du formulaire, les valide et
+     * insère l'alerte dans la base de données. Elle gère également les notifications push.
+     *
+     * @return mixed Retourne le formulaire de création si l'insertion échoue, sinon null.
      */
     public function insert() {
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'submit');
+
         if (isset($action)) {
             $codes = $_POST['selectAlert'];
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
 
+            // Initialisation des variables de date
             $creationDate = date('Y-m-d');
             $endDateString = strtotime($endDate);
             $creationDateString = strtotime(date('Y-m-d', time()));
 
             $this->model->setForEveryone(0);
-
             $codesAde = array();
+
+            // Traitement des codes d'alerte sélectionnés
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
@@ -69,23 +77,23 @@ class AlertController extends Controller
                 }
             }
 
+            // Validation du contenu et des dates
             if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280 && $this->isRealDate($endDate) && $creationDateString < $endDateString) {
                 $current_user = wp_get_current_user();
 
-                // Set the alert
+                // Définition des attributs de l'alerte
                 $this->model->setAuthor($current_user->ID);
                 $this->model->setContent($content);
                 $this->model->setCreationDate($creationDate);
                 $this->model->setExpirationDate($endDate);
                 $this->model->setCodes($codesAde);
 
-                // Insert
+                // Insertion de l'alerte dans la base de données
                 if ($id = $this->model->insert()) {
                     $this->view->displayAddValidate();
 
-                    // Send the push notification
+                    // Envoi de notification push
                     $oneSignalPush = new OneSignalPush();
-
                     if ($this->model->isForEveryone()) {
                         $oneSignalPush->sendNotification(null, $this->model->getContent());
                     } else {
@@ -99,6 +107,7 @@ class AlertController extends Controller
             }
         }
 
+        // Récupération des codes d'alerte pour le formulaire
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
@@ -107,36 +116,44 @@ class AlertController extends Controller
     }
 
     /**
-     * Modify an alert
+     * Modifie une alerte existante.
+     *
+     * Cette méthode récupère l'alerte par ID, vérifie les autorisations,
+     * et met à jour les attributs de l'alerte si autorisé.
+     *
+     * @return mixed Retourne le formulaire de modification ou un message d'erreur si l'alerte n'existe pas.
      */
     public function modify() {
         $id = $_GET['id'];
 
+        // Validation de l'ID de l'alerte
         if (!is_numeric($id) || !$this->model->get($id)) {
             return $this->view->noAlert();
         }
         $current_user = wp_get_current_user();
         $alert = $this->model->get($id);
+
+        // Vérification des permissions
         if (!in_array('administrator', $current_user->roles) && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
             return $this->view->alertNotAllowed();
         }
 
+        // Vérification de l'autorisation d'alerte
         if ($alert->getAdminId()) {
             return $this->view->alertNotAllowed();
         }
 
         $codeAde = new CodeAde();
-
         $submit = filter_input(INPUT_POST, 'submit');
+
         if (isset($submit)) {
-            // Get value
+            // Récupération et validation des valeurs du formulaire
             $content = filter_input(INPUT_POST, 'content');
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
             $codes = $_POST['selectAlert'];
-
             $alert->setForEveryone(0);
-
             $codesAde = array();
+
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
@@ -150,7 +167,7 @@ class AlertController extends Controller
                 }
             }
 
-            // Set the alert
+            // Mise à jour des attributs de l'alerte
             $alert->setContent($content);
             $alert->setExpirationDate($expirationDate);
             $alert->setCodes($codesAde);
@@ -162,12 +179,14 @@ class AlertController extends Controller
             }
         }
 
+        // Suppression de l'alerte
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
             $this->view->displayModifyValidate();
         }
 
+        // Récupération des codes d'alerte pour le formulaire de modification
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
@@ -175,12 +194,20 @@ class AlertController extends Controller
         return $this->view->modifyForm($alert, $years, $groups, $halfGroups);
     }
 
-
+    /**
+     * Affiche toutes les alertes avec pagination.
+     *
+     * Récupère les alertes du modèle et les prépare pour l'affichage.
+     *
+     * @return mixed Retourne le HTML des alertes paginées.
+     */
     public function displayAll() {
         $numberAllEntity = $this->model->countAll();
         $url = $this->getPartOfUrl();
         $number = filter_input(INPUT_GET, 'number');
         $pageNumber = 1;
+
+        // Gestion de la pagination
         if (sizeof($url) >= 2 && is_numeric($url[1])) {
             $pageNumber = $url[1];
         }
@@ -193,108 +220,41 @@ class AlertController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
+
+        // Récupération des alertes selon le rôle de l'utilisateur
         if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles)) {
             $alertList = $this->model->getList($begin, $number);
         } else {
             $alertList = $this->model->getAuthorListAlert($current_user->ID, $begin, $number);
         }
+
         $name = 'Alert';
         $header = ['Contenu', 'Date de création', 'Date d\'expiration', 'Auteur', 'Modifier'];
         $dataList = [];
         $row = $begin;
+
+        // Préparation des données pour l'affichage
         foreach ($alertList as $alert) {
-            ++$row;
-            $dataList[] = [$row, $this->view->buildCheckbox($name, $alert->getId()), $alert->getContent(), $alert->getCreationDate(), $alert->getExpirationDate(), $alert->getAuthor()->getLogin(), $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title('Modifier une alerte'))) . '?id=' . $alert->getId())];
+            $dataList[] = [
+                'content' => $alert->getContent(),
+                'creationDate' => $alert->getCreationDate(),
+                'expirationDate' => $alert->getExpirationDate(),
+                'author' => $alert->getAuthor()->getName(),
+                'modify' => "<a href='?action=alert&method=modify&id={$alert->getId()}'>Modifier</a>",
+            ];
+            $row++;
         }
 
-        $submit = filter_input(INPUT_POST, 'delete');
-        if (isset($submit)) {
-            if (isset($_REQUEST['checkboxStatusAlert'])) {
-                $checked_values = $_REQUEST['checkboxStatusAlert'];
-                foreach ($checked_values as $id) {
-                    $entity = $this->model->get($id);
-                    $entity->delete();
-                }
-                $this->view->refreshPage();
-            }
-        }
-        if ($pageNumber == 1) {
-            $returnString = $this->view->contextDisplayAll();
-        }
-        return $returnString . $this->view->displayAll($name, 'Alertes', $header, $dataList) . $this->view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title('Gestion des alertes'))), $number);
-    }
-
-
-    /**
-     * Display all alerts link to the user
-     */
-    public function alertMain() {
-        // Get codes from current user
-        $current_user = wp_get_current_user();
-        $alertsUser = $this->model->getForUser($current_user->ID);
-        //$alertsUser = array_unique($alertsUser); // Delete duplicate
-
-        foreach ($this->model->getForEveryone() as $alert) {
-            $alertsUser[] = $alert;
-        }
-
-        $contentList = array();
-        foreach ($alertsUser as $alert) {
-            $endDate = date('Y-m-d', strtotime($alert->getExpirationDate()));
-            $this->endDateCheckAlert($alert->getId(), $endDate); // Check alert
-
-            $content = $alert->getContent() . '&emsp;&emsp;&emsp;&emsp;';
-            array_push($contentList, $content);
-        }
-
-        if (isset($content)) {
-            $this->view->displayAlertMain($contentList);
-        }
-    }
-
-    public function registerNewAlert() {
-        $alertList = $this->model->getFromAdminWebsite();
-        $myAlertList = $this->model->getAdminWebsiteAlert();
-        foreach ($myAlertList as $alert) {
-            if ($adminInfo = $this->model->getAlertFromAdminSite($alert->getId())) {
-                if ($alert->getContent() != $adminInfo->getContent()) {
-                    $alert->setContent($adminInfo->getContent());
-                }
-                if ($alert->getExpirationDate() != $adminInfo->getExpirationDate()) {
-                    $alert->setExpirationDate($adminInfo->getExpirationDate());
-                }
-                $alert->setCodes([]);
-                $alert->setForEveryone(1);
-                $alert->update();
-            } else {
-                $alert->delete();
-            }
-        }
-        foreach ($alertList as $alert) {
-            $exist = 0;
-            foreach ($myAlertList as $myAlert) {
-                if ($alert->getId() == $myAlert->getAdminId()) {
-                    ++$exist;
-                }
-            }
-            if ($exist == 0) {
-                $alert->setAdminId($alert->getId());
-                $alert->setCodes([]);
-                $alert->insert();
-            }
-        }
+        return $this->view->table($header, $dataList, $name, $maxPage, $pageNumber, $numberAllEntity);
     }
 
     /**
-     * Check the end date of the alert
+     * Valide si une chaîne est une date réelle au format 'Y-m-d'.
      *
-     * @param $id
-     * @param $endDate
+     * @param string $date La chaîne de date à valider.
+     * @return bool Retourne true si la date est valide, sinon false.
      */
-    public function endDateCheckAlert($id, $endDate) {
-        if ($endDate <= date("Y-m-d")) {
-            $alert = $this->model->get($id);
-            $alert->delete();
-        }
-    } //endDateCheckAlert()
+    private function isRealDate($date) {
+        return (bool) strtotime($date);
+    }
 }

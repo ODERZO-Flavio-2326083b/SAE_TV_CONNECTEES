@@ -8,25 +8,24 @@ use Views\SecretaryView;
 /**
  * Class SecretaryController
  *
- * All actions for secretary (Create, update, display)
+ * Contrôle toutes les actions pour le secrétaire (Créer, mettre à jour, afficher).
  *
  * @package Controllers
  */
 class SecretaryController extends UserController
 {
-
     /**
-     * @var User
+     * @var User Modèle utilisateur pour la gestion des secrétaires.
      */
     private $model;
 
     /**
-     * @var SecretaryView
+     * @var SecretaryView Vue pour l'affichage des informations du secrétaire.
      */
     private $view;
 
     /**
-     * Constructor of SecretaryController.
+     * Constructeur de SecretaryController.
      */
     public function __construct() {
         parent::__construct();
@@ -34,36 +33,41 @@ class SecretaryController extends UserController
         $this->view = new SecretaryView();
     }
 
-
     /**
-     * Display the magic button to dl schedule
+     * Affiche le bouton magique pour télécharger l'horaire.
+     *
+     * @return string Contenu HTML affichant le message de bienvenue pour l'administrateur.
      */
     public function displayMySchedule() {
         return $this->view->displayWelcomeAdmin();
     }
 
     /**
-     * Insert a secretary in the database
+     * Insère un secrétaire dans la base de données.
+     *
+     * @return string Contenu HTML pour le formulaire de création de secrétaire.
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createSecre');
 
         if (isset($action)) {
-
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
 
+            // Validation des données
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
 
+                // Affectation des valeurs au modèle
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('secretaire');
 
+                // Vérification de l'unicité et insertion dans la base de données
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
                     $this->view->displayInsertValidate();
                 } else {
@@ -77,20 +81,21 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Display all secretary
-     * @return string
+     * Affiche tous les secrétaires.
+     *
+     * @return string Contenu HTML affichant tous les secrétaires.
      */
     public function displayAllSecretary() {
         $users = $this->model->getUsersByRole('secretaire');
         return $this->view->displayAllSecretary($users);
     }
 
-    /*** MANAGE USER ***/
+    /*** GESTION DES UTILISATEURS ***/
 
     /**
-     * Create an user
+     * Crée un utilisateur.
      *
-     * @return string
+     * @return string Contenu HTML pour le formulaire de création d'utilisateurs.
      */
     public function createUsers() {
         $student = new StudentController();
@@ -119,7 +124,9 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Display users by roles
+     * Affiche les utilisateurs par rôles.
+     *
+     * @return string Contenu HTML affichant les utilisateurs triés par rôle.
      */
     public function displayUsers() {
         $student = new StudentController();
@@ -147,15 +154,17 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Modify an user
+     * Modifie un utilisateur.
+     *
+     * @return string Contenu HTML pour le formulaire de modification d'un utilisateur.
      */
     public function modifyUser() {
         $id = $_GET['id'];
         if (is_numeric($id) && $this->model->get($id)) {
             $user = $this->model->get($id);
-
             $wordpressUser = get_user_by('id', $id);
 
+            // Détermination du rôle et appel du contrôleur approprié
             if (in_array("etudiant", $wordpressUser->roles)) {
                 $controller = new StudentController();
                 return $controller->modify($user);
@@ -177,7 +186,7 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Delete users
+     * Supprime des utilisateurs.
      */
     public function deleteUsers() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -195,9 +204,9 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Delete an user
+     * Supprime un utilisateur.
      *
-     * @param $id
+     * @param int $id L'ID de l'utilisateur à supprimer.
      */
     private function deleteUser($id) {
         $user = $this->model->get($id);

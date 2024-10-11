@@ -11,10 +11,18 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Classe ProfileRestController
+ *
+ * Cette classe gère les opérations REST pour le profil de l'utilisateur.
+ * Elle permet de récupérer les informations sur l'utilisateur actuellement connecté.
+ */
 class ProfileRestController extends WP_REST_Controller
 {
     /**
-     * Constructor for the REST controller
+     * Constructeur du contrôleur REST
+     *
+     * Initialise l'espace de noms et la base REST.
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -22,7 +30,9 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Register the routes for the objects of the controller.
+     * Enregistre les routes pour les objets du contrôleur.
+     *
+     * Cette méthode définit les routes disponibles pour l'API REST.
      */
     public function register_routes() {
         register_rest_route(
@@ -41,21 +51,26 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Retrieves the currently logged in user.
+     * Récupère l'utilisateur actuellement connecté.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Détails complets sur la requête.
+     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     *
+     * Exemple d'utilisation :
+     * GET /amu-ecran-connectee/v1/profile
      */
     public function get_item($request) {
-        // Get an instance of the user manager
+        // Obtient une instance du gestionnaire d'utilisateur
         $user = new User();
         $current_user = wp_get_current_user();
 
-        // Grab the information from the database
+        // Récupère les informations de l'utilisateur dans la base de données
         $requested_user = $user->get($current_user->ID);
-        if (!$requested_user)
+        if (!$requested_user) {
             return new WP_REST_Response(array('message' => 'User not found'), 404);
+        }
 
+        // Prépare les données utilisateur à retourner
         $user_data = array(
             'id' => $requested_user->getId(),
             'name' => $requested_user->getLogin(),
@@ -68,10 +83,10 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Checks if a given request has access to read an information.
+     * Vérifie si une requête donnée a accès à lire les informations.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     * @param WP_REST_Request $request Détails complets sur la requête.
+     * @return true|WP_Error Vrai si la requête a accès pour lire l'item, sinon un objet WP_Error.
      */
     public function get_item_permissions_check($request) {
         $current_user = wp_get_current_user();

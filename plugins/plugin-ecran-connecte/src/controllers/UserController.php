@@ -12,25 +12,25 @@ use Views\UserView;
 /**
  * Class UserController
  *
- * Manage all users (Create, update, delete)
+ * Gère toutes les opérations liées aux utilisateurs (création, mise à jour, suppression).
  *
  * @package Controllers
  */
 class UserController extends Controller
 {
-
     /**
-     * @var User
+     * @var User Modèle représentant un utilisateur.
      */
     private $model;
 
     /**
-     * @var UserView
+     * @var UserView Vue associée à l'affichage des utilisateurs.
      */
     private $view;
 
     /**
-     * UserController constructor.
+     * Constructeur de UserController.
+     * Initialise le modèle et la vue pour l'utilisateur.
      */
     public function __construct() {
         $this->model = new User();
@@ -38,16 +38,31 @@ class UserController extends Controller
     }
 
     /**
-     * Delete an user
+     * Supprime un utilisateur.
      *
-     * @param $id   int
+     * @param int $id L'identifiant de l'utilisateur à supprimer.
+     *
+     * @throws Exception Si l'utilisateur n'existe pas.
+     *
+     * Cette méthode supprime l'utilisateur et, si cet utilisateur a des alertes ou des informations
+     * associées, elle les supprime également. Les utilisateurs avec des rôles spécifiques
+     * (enseignant, secrétaire, administrateur, directeur d'étude) déclenchent la suppression de leurs alertes
+     * et informations.
      */
     public function delete($id) {
+        // Récupérer les données de l'utilisateur à supprimer
         $user = $this->model->get($id);
+        if (!$user) {
+            throw new Exception("Utilisateur non trouvé.");
+        }
         $userData = get_userdata($id);
-        $user->delete();
-        if (in_array("enseignant", $userData->roles) || in_array("secretaire", $userData->roles) ||
-            in_array("administrator", $userData->roles) || in_array("directeuretude", $userData->roles)) {
+        $user->delete(); // Supprimer l'utilisateur
+
+        // Supprimer les alertes si l'utilisateur a un rôle spécifique
+        if (in_array("enseignant", $userData->roles) ||
+            in_array("secretaire", $userData->roles) ||
+            in_array("administrator", $userData->roles) ||
+            in_array("directeuretude", $userData->roles)) {
             $modelAlert = new Alert();
             $alerts = $modelAlert->getAuthorListAlert($user->getLogin());
             foreach ($alerts as $alert) {
@@ -55,7 +70,9 @@ class UserController extends Controller
             }
         }
 
-        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles) ||
+        // Supprimer les informations si l'utilisateur a un rôle spécifique
+        if (in_array("secretaire", $userData->roles) ||
+            in_array("administrator", $userData->roles) ||
             in_array("directeuretude", $userData->roles)) {
             $modelInfo = new Information();
             $infos = $modelInfo->getAuthorListInformation($user->getId());
@@ -71,7 +88,12 @@ class UserController extends Controller
     }
 
     /**
-     * Delete the account of the user
+     * Supprime le compte de l'utilisateur.
+     *
+     * @return string L'affichage des options de suppression de compte.
+     *
+     * Cette méthode gère la suppression de compte en vérifiant d'abord le mot de passe de l'utilisateur
+     * puis en envoyant un code de désinscription par e-mail. Si le code est validé, le compte est supprimé.
      */
     public function deleteAccount() {
         $action = filter_input(INPUT_POST, 'deleteMyAccount');
@@ -81,7 +103,7 @@ class UserController extends Controller
         if (isset($action)) {
             $password = filter_input(INPUT_POST, 'verifPwd');
             if (wp_check_password($password, $current_user->user_pass)) {
-
+                // Génération d'un code de désinscription
                 $code = wp_generate_password();
                 if (!empty($user->getCodeDeleteAccount())) {
                     $user->updateCode($code);
@@ -89,7 +111,7 @@ class UserController extends Controller
                     $user->createCode($code);
                 }
 
-                //Build Mail
+                // Construction de l'e-mail de désinscription
                 $to = $current_user->user_email;
                 $subject = "Désinscription à la télé-connecté";
                 $message = ' <!DOCTYPE html>
@@ -100,16 +122,17 @@ class UserController extends Controller
                               	<body>
                                		<p>Bonjour, vous avez décidé de vous désinscrire sur le site de la Télé Connecté</p>
                                		<p> Votre code de désinscription est : ' . $code . '.</p>
-                               		<p> Pour vous désinscrire, rendez-vous sur le site : <a href="' . home_url() . '/mon-compte/"> Tv Connectée.</p>
+                               		<p> Pour vous désinscrire, rendez-vous sur le site : <a href="' . home_url() . '/mon-compte/">Tv Connectée.</p>
                               	</body>
                              </html>';
 
                 $headers = array('Content-Type: text/html; charset=UTF-8');
 
+                // Envoi de l'e-mail
                 wp_mail($to, $subject, $message, $headers);
-                $this->view->displayMailSend();
+                return $this->view->displayMailSend();
             } else {
-                $this->view->displayWrongPassword();
+                return $this->view->displayWrongPassword();
             }
         } elseif (isset($actionDelete)) {
             $code = filter_input(INPUT_POST, 'codeDelete');
@@ -117,25 +140,27 @@ class UserController extends Controller
             if ($code == $userCode) {
                 $user->deleteCode();
                 $user->delete();
-                $this->view->displayModificationValidate();
+                return $this->view->displayModificationValidate();
             } else {
                 echo 'Code ' . $code;
                 echo 'User code ' . $userCode;
-                $this->view->displayWrongPassword();
+                return $this->view->displayWrongPassword();
             }
         }
         return $this->view->displayDeleteAccount() . $this->view->displayEnterCode();
     }
 
     /**
-     * Modify his password, delete his account or modify his groups
+     * Permet à l'utilisateur de choisir de modifier son mot de passe,
+     * de supprimer son compte ou de modifier ses groupes.
      *
-     * @return string
+     * @return string Le contenu des options de modification.
      */
     public function chooseModif() {
         $current_user = wp_get_current_user();
         $string = $this->view->displayStartMultiSelect();
 
+        // Vérifier les rôles de l'utilisateur pour afficher les options appropriées
         if (in_array('etudiant', $current_user->roles)) {
             $string .= $this->view->displayTitleSelect('code', 'Modifier mes codes', true) .
                 $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe');
@@ -153,13 +178,19 @@ class UserController extends Controller
             $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
         }
 
-        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . $this->view->displayEndDiv();
+        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) .
+            $this->view->displayEndDiv();
 
         return $string;
     }
 
     /**
-     * Modify the password of the user
+     * Modifie le mot de passe de l'utilisateur.
+     *
+     * @return string Le contenu de la vue pour modifier le mot de passe.
+     *
+     * Cette méthode gère le changement de mot de passe après validation du mot de passe actuel
+     * de l'utilisateur.
      */
     public function modifyPwd() {
         $action = filter_input(INPUT_POST, 'modifyMyPwd');
@@ -169,21 +200,24 @@ class UserController extends Controller
             if (wp_check_password($pwd, $current_user->user_pass)) {
                 $newPwd = filter_input(INPUT_POST, 'newPwd');
                 wp_set_password($newPwd, $current_user->ID);
-                $this->view->displayModificationPassValidate();
+                return $this->view->displayModificationPassValidate();
             } else {
-                $this->view->displayWrongPassword();
+                return $this->view->displayWrongPassword();
             }
         }
         return $this->view->displayModifyPassword();
     }
 
     /**
-     * Display schedule
+     * Affiche l'emploi du temps.
      *
-     * @param $code     int Code ADE of the schedule
-     * @param $allDay   bool
+     * @param int $code Code ADE de l'emploi du temps.
+     * @param bool $allDay Indique si l'emploi du temps est sur toute la journée.
      *
-     * @return string|bool
+     * @return string|bool Le calendrier affiché ou false en cas d'erreur.
+     *
+     * Cette méthode utilise R34ICS pour afficher le calendrier à partir d'un URL
+     * généré à partir du code ADE.
      */
     public function displaySchedule($code, $allDay = false) {
         global $R34ICS;
@@ -204,9 +238,12 @@ class UserController extends Controller
     }
 
     /**
-     * Display the schedule link to the code in the url
+     * Affiche le lien vers l'emploi du temps de l'année à partir du code dans l'URL.
      *
-     * @return string
+     * @return string Le contenu de l'emploi du temps ou une option de sélection.
+     *
+     * Cette méthode récupère l'identifiant à partir de l'URL et affiche l'emploi du temps
+     * correspondant à l'année si le code est valide.
      */
     function displayYearSchedule() {
         $id = $this->getMyIdUrl();
@@ -224,26 +261,25 @@ class UserController extends Controller
     }
 
     /**
-     * Check if a code Ade already exists with the same title or code
+     * Vérifie si un utilisateur avec le même titre ou code existe déjà.
      *
-     * @param User $newUser
+     * @param User $newUser L'utilisateur à vérifier.
      *
-     * @return bool
+     * @return bool true si un utilisateur dupliqué existe, false sinon.
      */
     public function checkDuplicateUser(User $newUser) {
         $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
 
-        if (sizeof($codesAde) > 0) {
-            return true;
-        }
-
-        return false;
+        return sizeof($codesAde) > 0;
     }
 
     /**
-     * Modify codes ade for the student
+     * Modifie les codes ADE pour l'étudiant.
      *
-     * @return string
+     * @return string Le contenu des modifications de code.
+     *
+     * Cette méthode gère la mise à jour des codes ADE de l'étudiant après validation
+     * des entrées.
      */
     public function modifyCodes() {
         $current_user = wp_get_current_user();
@@ -257,9 +293,7 @@ class UserController extends Controller
             $group = filter_input(INPUT_POST, 'modifGroup');
             $halfGroup = filter_input(INPUT_POST, 'modifHalfgroup');
 
-
             if (is_numeric($year) && is_numeric($group) && is_numeric($halfGroup)) {
-
                 $codes = [$year, $group, $halfGroup];
                 $codesAde = [];
                 foreach ($codes as $code) {
@@ -269,6 +303,7 @@ class UserController extends Controller
                     $codesAde[] = $code;
                 }
 
+                // Validation des types de codes
                 if ($codesAde[0]->getType() !== 'year') {
                     $codesAde[0] = 0;
                 }
@@ -284,9 +319,9 @@ class UserController extends Controller
                 $this->model->setCodes($codesAde);
 
                 if ($this->model->update()) {
-                    $this->view->successMesageChangeCode();
+                    return $this->view->successMesageChangeCode();
                 } else {
-                    $this->view->errorMesageChangeCode();
+                    return $this->view->errorMesageChangeCode();
                 }
             }
         }

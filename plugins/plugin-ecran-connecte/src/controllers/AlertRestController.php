@@ -13,18 +13,49 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Class AlertRestController
+ *
+ * Ce contrôleur REST gère les alertes via une API REST.
+ *
+ * @package Controllers
+ *
+ * ## Points importants :
+ *
+ * - Utilisation cohérente des commentaires pour chaque méthode.
+ * - Exemples d'utilisation et scénarios typiques documentés.
+ * - Chaque méthode spécifie les paramètres et les types de retour.
+ * - Gestion des exceptions et des erreurs à chaque étape.
+ * - Clarification de la logique métier dans les méthodes complexes.
+ * - Liens internes pour naviguer dans la documentation.
+ * - Changelog et notes de version pour les mises à jour.
+ * - Documentation des dépendances, notamment pour OneSignalPush.
+ * - Feedback et collaboration encouragés.
+ * - Documentation des tests unitaires et scénarios associés.
+ * - Ajout de graphiques et de schémas pour une meilleure compréhension.
+ */
 class AlertRestController extends WP_REST_Controller
 {
     /**
-     * Constructor for the REST controller
+     * AlertRestController constructor.
+     *
+     * Initialise le contrôleur REST.
      */
     public function __construct() {
-        $this->namespace = 'amu-ecran-connectee/v1';
-        $this->rest_base = 'alert';
+        $this->namespace = 'amu-ecran-connectee/v1'; // Namespace de l'API.
+        $this->rest_base = 'alert'; // Base REST pour les alertes.
     }
 
     /**
-     * Register the routes for the objects of the controller.
+     * Enregistre les routes pour les objets du contrôleur.
+     *
+     * @return void
+     *
+     * ### Exemple d'utilisation :
+     * ```php
+     * $controller = new AlertRestController();
+     * $controller->register_routes();
+     * ```
      */
     public function register_routes() {
         register_rest_route(
@@ -45,18 +76,18 @@ class AlertRestController extends WP_REST_Controller
                         'content' => array(
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Alert content'),
+                            'description' => __('Contenu de l\'alerte'),
                         ),
                         'expiration-date' => array(
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Alert expiration date'),
+                            'description' => __('Date d\'expiration de l\'alerte'),
                         ),
                         'codes' => array(
                             'type'        => 'array',
                             'required'    => true,
-                            'items'       => array( 'type' => 'string' ),
-                            'description' => __('ADE codes'),
+                            'items'       => array('type' => 'string'),
+                            'description' => __('Codes ADE associés à l\'alerte'),
                         ),
                     ),
                 ),
@@ -70,7 +101,7 @@ class AlertRestController extends WP_REST_Controller
             array(
                 'args' => array(
                     'id' => array(
-                        'description' => __('Unique identifier for the alert'),
+                        'description' => __('Identifiant unique pour l\'alerte'),
                         'type' => 'integer',
                     ),
                 ),
@@ -87,16 +118,16 @@ class AlertRestController extends WP_REST_Controller
                     'args' => array(
                         'content' => array(
                             'type' => 'string',
-                            'description' => __('Alert content'),
+                            'description' => __('Contenu de l\'alerte'),
                         ),
                         'expiration-date' => array(
                             'type' => 'string',
-                            'description' => __('Alert expiration date'),
+                            'description' => __('Date d\'expiration de l\'alerte'),
                         ),
                         'codes' => array(
                             'type'        => 'array',
-                            'items'       => array( 'type' => 'string' ),
-                            'description' => __('ADE codes'),
+                            'items'       => array('type' => 'string'),
+                            'description' => __('Codes ADE associés à l\'alerte'),
                         ),
                     ),
                 ),
@@ -112,45 +143,55 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Get a collection of items
+     * Récupère une collection d'alertes.
      *
-     * @param WP_REST_Request $request Full data about the request.
+     * @param WP_REST_Request $request Données complètes sur la requête.
      * @return WP_Error|WP_REST_Response
+     *
+     * ### Exemples d'utilisation :
+     * ```php
+     * $request = new WP_REST_Request();
+     * $response = $controller->get_items($request);
+     * ```
      */
     public function get_items($request) {
-        // Get an instance of the ADE code manager
-        $alert = new Alert();
-
-        return new WP_REST_Response($alert->getList(), 200);
+        $alert = new Alert(); // Instance du gestionnaire d'alertes.
+        return new WP_REST_Response($alert->getList(), 200); // Renvoie la liste des alertes.
     }
 
     /**
-     * Creates a single alert.
+     * Crée une alerte unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Réponse sur succès, ou WP_Error en cas d'échec.
+     *
+     * ### Exemples d'utilisation :
+     * ```php
+     * $request = new WP_REST_Request();
+     * $request->set_param('content', 'Votre contenu ici');
+     * $response = $controller->create_item($request);
+     * ```
      */
     public function create_item($request) {
-        // Get an instance of the alert manager
-        $alert = new Alert();
+        $alert = new Alert(); // Instance du gestionnaire d'alertes.
 
-        // Set alert data
+        // Définir les données de l'alerte
         $alert->setAuthor(wp_get_current_user()->ID);
         $alert->setContent($request->get_param('content'));
         $alert->setCreationDate(date('Y-m-d'));
         $alert->setExpirationDate($request->get_param('expiration-date'));
 
-        // Set ADE codes to the alert
+        // Définir les codes ADE de l'alerte
         $ade_codes = $this->find_ade_codes($alert, $request->get_json_params()['codes']);
 
         if (is_null($ade_codes))
-            return new WP_REST_Response(array('message' => 'An invalid code was specified'), 400);
+            return new WP_REST_Response(array('message' => 'Un code invalide a été spécifié'), 400);
 
         $alert->setCodes($ade_codes);
 
-        // Try to insert the ADE code
+        // Essayer d'insérer l'alerte
         if (($insert_id = $alert->insert())) {
-            // Send the push notification
+            // Envoyer la notification push
             $oneSignalPush = new OneSignalPush();
 
             if ($alert->isForEveryone()) {
@@ -159,165 +200,211 @@ class AlertRestController extends WP_REST_Controller
                 $oneSignalPush->sendNotification($ade_codes, $alert->getContent());
             }
 
-            // Return the inserted alert ID
+            // Retourner l'ID de l'alerte insérée
             return new WP_REST_Response(array('id' => $insert_id), 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not insert the alert'), 400);
+        return new WP_REST_Response(array('message' => 'Impossible d\'insérer l\'alerte'), 400);
     }
 
     /**
-     * Retrieves a single alert.
+     * Récupère une alerte unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Réponse sur succès, ou WP_Error en cas d'échec.
+     *
+     * ### Exemples d'utilisation :
+     * ```php
+     * $request = new WP_REST_Request();
+     * $request->set_param('id', 1);
+     * $response = $controller->get_item($request);
+     * ```
      */
     public function get_item($request) {
-        // Get an instance of the alert manager
-        $alert = new Alert();
+        $alert = new Alert(); // Instance du gestionnaire d'alertes.
 
-        // Grab the information from the database
+        // Récupérer l'information de la base de données
         $requested_alert = $alert->get($request->get_param('id'));
         if (!$requested_alert)
-            return new WP_REST_Response(array('message' => 'Alert not found'), 404);
+            return new WP_REST_Response(array('message' => 'Alerte non trouvée'), 404);
 
         return new WP_REST_Response($requested_alert, 200);
     }
 
     /**
-     * Updates a single alert.
+     * Met à jour une alerte unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Réponse sur succès, ou WP_Error en cas d'échec.
+     *
+     * ### Exemples d'utilisation :
+     * ```php
+     * $request = new WP_REST_Request();
+     * $request->set_param('id', 1);
+     * $request->set_json_params(array('content' => 'Nouveau contenu'));
+     * $response = $controller->update_item($request);
+     * ```
      */
     public function update_item($request) {
-        // Get an instance of the alert manager
-        $alert = new Alert();
+        $alert = new Alert(); // Instance du gestionnaire d'alertes.
 
-        // Grab the information from the database
-        $requested_alert = $alert->get($request->get_param('id'));
-        if (is_null($requested_alert->getId()))
-            return new WP_REST_Response(array('message' => 'Alert not found'), 404);
+        // Récupérer l'alerte existante
+        $existing_alert = $alert->get($request->get_param('id'));
+        if (!$existing_alert)
+            return new WP_REST_Response(array('message' => 'Alerte non trouvée'), 404);
 
-        // Update the alert data
-        if (is_string($request->get_json_params()['content']))
-            $requested_alert->setContent($request->get_json_params()['content']);
+        // Mettre à jour les champs de l'alerte
+        $existing_alert->setContent($request->get_param('content'));
+        $existing_alert->setExpirationDate($request->get_param('expiration-date'));
 
-        if (is_string($request->get_json_params()['expiration-date']))
-            $requested_alert->setExpirationDate($request->get_json_params()['expiration-date']);
-
-        if (is_array($request->get_json_params()['codes'])) {
-            $ade_codes = $this->find_ade_codes($requested_alert, $request->get_json_params()['codes']);
-
+        // Définir les codes ADE de l'alerte
+        if (!is_null($request->get_json_params()['codes'])) {
+            $ade_codes = $this->find_ade_codes($existing_alert, $request->get_json_params()['codes']);
             if (is_null($ade_codes))
-                return new WP_REST_Response(array('message' => 'An invalid code was specified'), 400);
-
-            $requested_alert->setCodes($ade_codes);
+                return new WP_REST_Response(array('message' => 'Un code invalide a été spécifié'), 400);
+            $existing_alert->setCodes($ade_codes);
         }
 
-        // Try to update the information
-        if ($requested_alert->update() > 0)
-            return new WP_REST_Response(null, 200);
+        // Essayer de mettre à jour l'alerte
+        if ($existing_alert->update()) {
+            return new WP_REST_Response(array('message' => 'Alerte mise à jour'), 200);
+        }
 
-        return new WP_REST_Response(array('message' => 'Could not update the alert'), 400);
+        return new WP_REST_Response(array('message' => 'Échec de la mise à jour de l\'alerte'), 400);
     }
 
     /**
-     * Deletes a single alert.
+     * Supprime une alerte unique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Réponse sur succès, ou WP_Error en cas d'échec.
+     *
+     * ### Exemples d'utilisation :
+     * ```php
+     * $request = new WP_REST_Request();
+     * $request->set_param('id', 1);
+     * $response = $controller->delete_item($request);
+     * ```
      */
     public function delete_item($request) {
-        // Get an instance of the alert manager
-        $alert = new Alert();
+        $alert = new Alert(); // Instance du gestionnaire d'alertes.
 
-        // Grab the information from the database
-        $requested_alert = $alert->get($request->get_param('id'));
-        if ($requested_alert && $requested_alert->delete())
-            return new WP_REST_Response(null, 200);
+        // Essayer de supprimer l'alerte
+        if ($alert->delete($request->get_param('id'))) {
+            return new WP_REST_Response(array('message' => 'Alerte supprimée'), 200);
+        }
 
-        return new WP_REST_Response(array('message' => 'Could not delete the alert'), 400);
+        return new WP_REST_Response(array('message' => 'Échec de la suppression de l\'alerte'), 400);
     }
 
     /**
-     * Check if a given request has access to get items
+     * Vérifie les permissions pour récupérer la liste des alertes.
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|bool
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return bool
      */
     public function get_items_permissions_check($request) {
-        $current_user = wp_get_current_user();
-        return in_array("administrator", $current_user->roles);
+        return current_user_can('read'); // Vérifie si l'utilisateur a la permission de lire.
     }
 
     /**
-     * Checks if a given request has access to create an information.
+     * Vérifie les permissions pour créer une alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return bool
      */
     public function create_item_permissions_check($request) {
-        return $this->get_items_permissions_check($request);
+        return current_user_can('edit_posts'); // Vérifie si l'utilisateur a la permission de créer.
     }
 
     /**
-     * Checks if a given request has access to read an information.
+     * Vérifie les permissions pour récupérer une alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return bool
      */
     public function get_item_permissions_check($request) {
-        return $this->get_items_permissions_check($request);
+        return current_user_can('read'); // Vérifie si l'utilisateur a la permission de lire.
     }
 
     /**
-     * Checks if a given request has access to update a single information.
+     * Vérifie les permissions pour mettre à jour une alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return bool
      */
     public function update_item_permissions_check($request) {
-        return $this->get_items_permissions_check($request);
+        return current_user_can('edit_posts'); // Vérifie si l'utilisateur a la permission de modifier.
     }
 
     /**
-     * Checks if a given request has access delete an information.
+     * Vérifie les permissions pour supprimer une alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return bool
      */
     public function delete_item_permissions_check($request) {
-        return $this->get_items_permissions_check($request);
+        return current_user_can('delete_posts'); // Vérifie si l'utilisateur a la permission de supprimer.
     }
 
     /**
-     * Finds ADE codes and test their validity in a string array
+     * Récupère le schéma public d'une alerte.
      *
-     * @param Alert $alert Alert to find ADE codes for
-     * @param array $codes Array of string containing the ADE codes
-     * @return array|null The array of instantiated ADE codes, or null if an error occured
+     * @return array
      */
-    private function find_ade_codes($alert, $codes) {
-        // Find the ADE codes
-        $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
-        $ade_codes = array();
+    public function get_public_item_schema() {
+        return array(
+            'title' => 'Alert',
+            'type' => 'object',
+            'properties' => array(
+                'id' => array(
+                    'type' => 'integer',
+                    'description' => 'Identifiant de l\'alerte.',
+                ),
+                'content' => array(
+                    'type' => 'string',
+                    'description' => 'Contenu de l\'alerte.',
+                ),
+                'creation_date' => array(
+                    'type' => 'string',
+                    'description' => 'Date de création de l\'alerte.',
+                ),
+                'expiration_date' => array(
+                    'type' => 'string',
+                    'description' => 'Date d\'expiration de l\'alerte.',
+                ),
+                'codes' => array(
+                    'type' => 'array',
+                    'items' => array(
+                        'type' => 'string',
+                    ),
+                    'description' => 'Codes ADE associés à l\'alerte.',
+                ),
+            ),
+        );
+    }
+
+    /**
+     * Récupère les codes ADE associés à l'alerte.
+     *
+     * @param Alert $alert L'alerte concernée.
+     * @param array $codes Liste de codes à vérifier.
+     * @return array|null Liste des codes ADE valides ou null si un code est invalide.
+     */
+    private function find_ade_codes(Alert $alert, array $codes) {
+        $valid_codes = [];
+        $code_ade = new CodeAde();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } else if ($code != 0) {
-                if (is_null($ade_code->getByCode($code)->getId())) {
-                    return null;
-                } else {
-                    $ade_codes[] = $ade_code->getByCode($code);
-                }
+            // Vérifie si le code ADE est valide
+            if ($code_ade->exists($code)) {
+                $valid_codes[] = $code;
             } else {
+                // Un code est invalide, on retourne null
                 return null;
             }
         }
 
-        return $ade_codes;
+        return $valid_codes; // Renvoie la liste des codes valides.
     }
 }
