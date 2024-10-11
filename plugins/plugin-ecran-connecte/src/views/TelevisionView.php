@@ -28,7 +28,7 @@ class TelevisionView extends UserView
         $form = '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
-        <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps</p>
+        <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps"</p>
         <form method="post" id="registerTvForm">
             <div class="form-group">
             	<label for="loginTv">Login</label>
@@ -41,6 +41,13 @@ class TelevisionView extends UserView
             	<input type="password" class="form-control" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("Tv")>
             	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
             </div>
+            <div class="form-group">
+                	<label for="latitude'. $name . '">Latitude du bâtiment</label>
+                	<input class="form-control" minlength="3" maxlength="8" type="text" name="latitudeTv' . $name . '" placeholder="Latitude" required="">
+                	<label for="longitude'. $name . '">Longitude du bâtiment</label>
+                	<input class="form-control" minlength="3" maxlength="8" type="text" name="longitudeTv' . $name . '" placeholder="Longitude" required="">
+					<small id="passwordHelpBlock" class="form-text text-muted">Votre latitude et longitude doivent contenir entre 3 et 8 caractères</small>
+			</div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
             $this->buildSelectCode($years, $groups, $halfGroups) . '

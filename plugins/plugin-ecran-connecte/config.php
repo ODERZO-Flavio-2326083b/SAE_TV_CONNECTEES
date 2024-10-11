@@ -7,9 +7,6 @@ use Controllers\ProfileRestController;
 
 include __DIR__ . '/config-notifs.php';
 include_once 'vendor/R34ICS/R34ICS.php';
-include 'widgets/WidgetAlert.php';
-include 'widgets/WidgetWeather.php';
-include 'widgets/WidgetInformation.php';
 
 // Login for viewer
 define('DB_USER_VIEWER', 'viewer');
@@ -189,6 +186,19 @@ function installDatabaseEcran()
 		) $charset_collate;";
 
     dbDelta($sql);
+
+	$table_name = 'ecran_coords_television';
+
+	$sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    		id INT(10) NOT NULL AUTO_INCREMENT,
+    		user_id BIGINT(20) UNSIGNED NOT NULL,
+    		latitude INT(8) NOT NULL,
+    		longitude INT(8) NOT NULL,
+    		PRIMARY KEY (id, user_id),
+    		FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
+    ) $charset_collate;";
+
+	dbDelta($sql);
 }
 
 add_action('plugins_loaded', 'installDatabaseEcran');

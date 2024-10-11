@@ -38,7 +38,7 @@ class Model
         self::$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
 
-    /**
+    /**id
      * Return the connection
      *
      * @return PDO

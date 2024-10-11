@@ -358,6 +358,21 @@ class User extends Model implements Entity, JsonSerializable
         return $result['code'];
     }
 
+	/**
+	 *
+	 */
+	public function insertCoords($latitude, $longitude) {
+		$request = $this->getDatabase()->prepare('INSERT INTO ecran_coords_television (user_id, latitude, longitude) VALUES (:user_id, :latitude, :longitude)');
+
+		$request->bindParam(':userId', $id, PDO::PARAM_INT);
+		$request->bindParam(':latitude', $latitude, PDO::PARAM_INT);
+		$request->bindParam(':longitude', $longitude, PDO::PARAM_INT);
+
+		$request->execute();
+
+		return $id;
+	}
+
     /**
      * @inheritDoc
      */

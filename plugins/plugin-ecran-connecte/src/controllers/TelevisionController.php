@@ -52,6 +52,10 @@ class TelevisionController extends UserController implements Schedule
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
             $codes = $_POST['selectTv'];
 
+			$latitude = filter_input(INPUT_POST, 'latitudeTv');
+			$longitude = filter_input(INPUT_POST, 'longitudeTv');
+
+
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm) {
@@ -73,7 +77,7 @@ class TelevisionController extends UserController implements Schedule
                 $this->model->setRole('television');
                 $this->model->setCodes($codesAde);
 
-                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+                if (!$this->checkDuplicateUser($this->model) && $this->model->insert() && $this->model->insertCoords($latitude, $longitude)) {
                     $this->view->displayInsertValidate();
                 } else {
                     $this->view->displayErrorLogin();
