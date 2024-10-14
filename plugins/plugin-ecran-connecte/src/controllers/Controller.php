@@ -7,7 +7,7 @@ use Exception;
 /**
  * Class Controller
  *
- * Main Controller contain all basics functions
+ * Contrôleur principal contenant toutes les fonctions de base.
  *
  * @package Controllers
  */
@@ -15,9 +15,9 @@ class Controller
 {
 
     /**
-     * Explode the url by /
+     * Explose l'URL par /
      *
-     * @return array
+     * @return array Retourne un tableau contenant les différentes parties de l'URL.
      */
     public function getPartOfUrl() {
         $url = $_SERVER['REQUEST_URI'];
@@ -32,9 +32,9 @@ class Controller
     }
 
     /**
-     * Write errors in a log file
+     * Écrit des erreurs dans un fichier journal.
      *
-     * @param $event    string
+     * @param $event    string Événement à enregistrer dans le journal.
      */
     public function addLogEvent($event) {
         $time = date("D, d M Y H:i:s");
@@ -44,11 +44,11 @@ class Controller
     }
 
     /**
-     * Get the url to upload a ics file
+     * Obtient l'URL pour télécharger un fichier ICS.
      *
-     * @param $code     int
+     * @param $code     int Code ADE à utiliser dans l'URL.
      *
-     * @return string
+     * @return string Retourne l'URL pour le fichier ICS.
      */
     public function getUrl($code) {
         $str = strtotime("now");
@@ -60,32 +60,32 @@ class Controller
     }
 
     /**
-     * Get the path of a code
+     * Obtient le chemin d'un fichier pour un code donné.
      *
-     * @param $code     int
+     * @param $code     int Code ADE pour lequel le chemin doit être obtenu.
      *
-     * @return string
+     * @return string Retourne le chemin du fichier ICS correspondant au code.
      */
     public function getFilePath($code) {
         $base_path = ABSPATH . TV_ICSFILE_PATH;
 
-        // Check if local file exists
+        // Vérifie si le fichier local existe
         for ($i = 0; $i <= 3; ++$i) {
             $file_path = $base_path . 'file' . $i . '/' . $code . '.ics';
-            // TODO: Demander a propos du filesize
+            // TODO: Demander à propos de la taille du fichier
             if (file_exists($file_path) && filesize($file_path) > 100)
                 return $file_path;
         }
 
-        // No local version, let's download one
+        // Pas de version locale, téléchargeons-en une
         $this->addFile($code);
         return $base_path . "file0/" . $code . '.ics';
     }
 
     /**
-     * Upload a ics file
+     * Télécharge un fichier ICS.
      *
-     * @param $code     int Code ADE
+     * @param $code     int Code ADE à télécharger.
      */
     public function addFile($code) {
         try {
@@ -99,13 +99,13 @@ class Controller
                 }
                 fclose($handler);
             } else {
-                throw new Exception('File open failed.');
+                throw new Exception('Échec de l\'ouverture du fichier.');
             }
             if ($handle = fopen($path, "w")) {
                 fwrite($handle, $contents);
                 fclose($handle);
             } else {
-                throw new Exception('File open failed.');
+                throw new Exception('Échec de l\'ouverture du fichier.');
             }
         } catch (Exception $e) {
             $this->addLogEvent($e);
@@ -113,11 +113,11 @@ class Controller
     }
 
     /**
-     * Check if the input is a date
+     * Vérifie si l'entrée est une date valide.
      *
-     * @param $date
+     * @param $date string La date à vérifier.
      *
-     * @return bool
+     * @return bool Retourne vrai si la date est valide, faux sinon.
      */
     public function isRealDate($date) {
         if (false === strtotime($date)) {
