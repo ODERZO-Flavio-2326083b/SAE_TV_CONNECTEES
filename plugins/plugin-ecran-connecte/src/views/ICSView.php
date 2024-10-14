@@ -2,37 +2,39 @@
 
 namespace Views;
 
-
 use WP_User;
 
 /**
  * Class ICSView
  *
- * Display the schedule
+ * Affiche l'emploi du temps.
  *
  * @package Views
  */
 class ICSView extends View
 {
     /**
-     * ADisplay the schedule
+     * Affiche l'emploi du temps.
      *
-     * @param $ics_data     array
-     * @param $title        string
+     * @param array $ics_data Données de l'emploi du temps.
+     * @param string $title Titre de l'emploi du temps.
+     * @param bool $allDay Indique si l'événement est d'une journée entière.
      *
-     * @return bool
+     * @return string|bool Retourne le HTML de l'emploi du temps ou un message si aucun cours n'est disponible.
      */
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
+
         if (isset($ics_data['events'])) {
             $string = '<h1>' . $title . '</h1>';
             $current_study = 0;
+
             foreach (array_keys((array)$ics_data['events']) as $year) {
                 for ($m = 1; $m <= 12; $m++) {
                     $month = $m < 10 ? '0' . $m : '' . $m;
                     if (array_key_exists($month, (array)$ics_data['events'][$year])) {
                         foreach ((array)$ics_data['events'][$year][$month] as $day => $day_events) {
-                            // HEADER
+                            // EN-TÊTE
                             if ($current_study > 9) {
                                 break;
                             }
@@ -48,9 +50,10 @@ class ICSView extends View
                                 $string .= $this->giveDate($day, $month, $year);
                                 $string .= $this->displayStartSchedule($current_user);
                             }
+
                             foreach ($day_events as $day_event => $events) {
                                 foreach ($events as $event) {
-                                    // CONTENT
+                                    // CONTENU
                                     if ($allDay) {
                                         if ($day == date('j')) {
                                             if ($current_study > 9) {
@@ -86,9 +89,6 @@ class ICSView extends View
                                                 break;
                                             }
                                             if ($day == date('j')) {
-                                                if ($current_study > 9) {
-                                                    break;
-                                                }
                                                 if ($this->getContent($event)) {
                                                     ++$current_study;
                                                     $string .= $this->getContent($event);
@@ -98,7 +98,7 @@ class ICSView extends View
                                     }
                                 }
                             }
-                            // FOOTER
+                            // PIÉCE DE FIN
                             if (in_array('television', $current_user->roles) || in_array('technicien', $current_user->roles)) {
                                 if ($day == date('j')) {
                                     $string .= $this->displayEndSchedule();
@@ -108,10 +108,9 @@ class ICSView extends View
                             }
                         }
                     }
-
                 }
             }
-            // IF NO SCHEDULE
+            // AUCUN EMPLOI DU TEMPS
             if ($current_study < 1) {
                 return $this->displayNoSchedule($title, $current_user);
             }
@@ -123,20 +122,20 @@ class ICSView extends View
     }
 
     /**
-     * Display the header
+     * Affiche l'en-tête de l'emploi du temps.
      *
-     * @param $current_user     WP_User
+     * @param WP_User $current_user L'utilisateur actuel.
      *
-     * @return string
+     * @return string Le code HTML de l'en-tête.
      */
     public function displayStartSchedule($current_user) {
         $string = '<div class="table-responsive">
-                   	<table class="table tabSchedule">
-                    	<thead class="headerTab">
-                        	<tr>
-                            	<th scope="col" class="text-center">Horaire</th>';
+                    <table class="table tabSchedule">
+                        <thead class="headerTab">
+                            <tr>
+                                <th scope="col" class="text-center">Horaire</th>';
         if (!in_array("technicien", $current_user->roles)) {
-            $string .= '<th scope="col" class="text-center" >Cours</th>
+            $string .= '<th scope="col" class="text-center">Cours</th>
                         <th scope="col" class="text-center">Groupe/Enseignant</th>';
         }
         $string .= '<th scope="col" class="text-center">Salle</th>
@@ -148,13 +147,13 @@ class ICSView extends View
     }
 
     /**
-     * Give the date of the schedule
+     * Donne la date de l'emploi du temps.
      *
-     * @param $day
-     * @param $month
-     * @param $year
+     * @param int $day Jour.
+     * @param int $month Mois.
+     * @param int $year Année.
      *
-     * @return string
+     * @return string HTML de la date formatée.
      */
     public function giveDate($day, $month, $year) {
         $day_of_week = $day + 1;
@@ -163,12 +162,12 @@ class ICSView extends View
     }
 
     /**
-     * Give the content of an event
+     * Donne le contenu d'un événement.
      *
-     * @param $event
-     * @param int $day
+     * @param array $event Détails de l'événement.
+     * @param int $day (optionnel) Jour, par défaut aujourd'hui.
      *
-     * @return bool|string
+     * @return bool|string Retourne le HTML de la ligne d'emploi du temps ou false si l'événement n'est pas actif.
      */
     public function getContent($event, $day = 0) {
         if ($day == 0) {
@@ -178,19 +177,12 @@ class ICSView extends View
         $time = date("H:i");
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb']))) . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
-            if (date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin']))) {
-                $active = true;
-            } else {
-                $active = false;
-            }
+            $active = date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin']));
         }
 
-        if (substr($event['label'], -3) == "alt") {
-            $label = substr($event['label'], 0, -3);
-        } else {
-            $label = $event['label'];
-        }
+        $label = (substr($event['label'], -3) == "alt") ? substr($event['label'], 0, -3) : $event['label'];
         $description = substr($event['description'], 0, -30);
+
         if (!(date("H:i", strtotime($event['fin'])) <= $time) || $day != date('j')) {
             $current_user = wp_get_current_user();
             if (in_array("technicien", $current_user->roles)) {
@@ -204,19 +196,16 @@ class ICSView extends View
     }
 
     /**
-     * Create a line for the schedule
+     * Crée une ligne pour l'emploi du temps.
      *
-     * @param $datas
-     * @param bool $active
+     * @param array $datas Données à afficher dans la ligne.
+     * @param bool $active Indique si l'événement est actif.
      *
-     * @return string
+     * @return string HTML de la ligne.
      */
     public function displayLineSchedule($datas, $active = false) {
-        if ($active) {
-            $string = '<tr class="table-success" scope="row">';
-        } else {
-            $string = '<tr scope="row">';
-        }
+        $string = $active ? '<tr class="table-success" scope="row">' : '<tr scope="row">';
+
         foreach ($datas as $data) {
             $string .= '<td class="text-center">' . $data . '</td>';
         }
@@ -225,25 +214,23 @@ class ICSView extends View
     }
 
     /**
-     * Display the footer of the schedule
+     * Affiche le pied de page de l'emploi du temps.
      *
-     * @return string
+     * @return string HTML du pied de page.
      */
-    public
-    function displayEndSchedule() {
+    public function displayEndSchedule() {
         return '</tbody>
              </table>
           </div>';
     }
 
-
     /**
-     * Display an message if there is no lesson
+     * Affiche un message s'il n'y a pas de cours.
      *
-     * @param $title            string
-     * @param $current_user     WP_User
+     * @param string $title Titre de l'emploi du temps.
+     * @param WP_User $current_user L'utilisateur actuel.
      *
-     * @return bool|string
+     * @return string|bool Retourne le message ou false.
      */
     public function displayNoSchedule($title, $current_user) {
         if (get_theme_mod('ecran_connecte_schedule_msg', 'show') == 'show' && in_array('television', $current_user->roles)) {
