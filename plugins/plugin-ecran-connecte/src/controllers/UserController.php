@@ -12,7 +12,7 @@ use Views\UserView;
 /**
  * Class UserController
  *
- * Manage all users (Create, update, delete)
+ * Gère tous les utilisateurs (Création, mise à jour, suppression)
  *
  * @package Controllers
  */
@@ -20,17 +20,22 @@ class UserController extends Controller
 {
 
     /**
+     * Modèle d'utilisateur.
+     *
      * @var User
      */
     private $model;
 
     /**
+     * Vue d'utilisateur.
+     *
      * @var UserView
      */
     private $view;
 
     /**
-     * UserController constructor.
+     * Constructeur de UserController.
+     * Initialise le modèle et la vue.
      */
     public function __construct() {
         $this->model = new User();
@@ -38,9 +43,9 @@ class UserController extends Controller
     }
 
     /**
-     * Delete an user
+     * Supprime un utilisateur.
      *
-     * @param $id   int
+     * @param int $id L'ID de l'utilisateur à supprimer.
      */
     public function delete($id) {
         $user = $this->model->get($id);
@@ -71,7 +76,7 @@ class UserController extends Controller
     }
 
     /**
-     * Delete the account of the user
+     * Supprime le compte de l'utilisateur.
      */
     public function deleteAccount() {
         $action = filter_input(INPUT_POST, 'deleteMyAccount');
@@ -89,7 +94,7 @@ class UserController extends Controller
                     $user->createCode($code);
                 }
 
-                //Build Mail
+                // Construction de l'e-mail
                 $to = $current_user->user_email;
                 $subject = "Désinscription à la télé-connecté";
                 $message = ' <!DOCTYPE html>
@@ -128,9 +133,9 @@ class UserController extends Controller
     }
 
     /**
-     * Modify his password, delete his account or modify his groups
+     * Permet à l'utilisateur de choisir une action de modification.
      *
-     * @return string
+     * @return string Retourne le HTML du formulaire de sélection de modification.
      */
     public function chooseModif() {
         $current_user = wp_get_current_user();
@@ -159,7 +164,9 @@ class UserController extends Controller
     }
 
     /**
-     * Modify the password of the user
+     * Modifie le mot de passe de l'utilisateur.
+     *
+     * @return string Retourne le HTML du formulaire de modification du mot de passe.
      */
     public function modifyPwd() {
         $action = filter_input(INPUT_POST, 'modifyMyPwd');
@@ -178,12 +185,12 @@ class UserController extends Controller
     }
 
     /**
-     * Display schedule
+     * Affiche l'emploi du temps.
      *
-     * @param $code     int Code ADE of the schedule
-     * @param $allDay   bool
+     * @param int $code Le code ADE de l'emploi du temps.
+     * @param bool $allDay Indique si l'emploi du temps est pour toute la journée.
      *
-     * @return string|bool
+     * @return string|bool Retourne l'affichage de l'emploi du temps ou false en cas d'erreur.
      */
     public function displaySchedule($code, $allDay = false) {
         global $R34ICS;
@@ -204,9 +211,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the schedule link to the code in the url
+     * Affiche le lien vers l'emploi du temps correspondant au code dans l'URL.
      *
-     * @return string
+     * @return string Retourne le HTML de sélection de l'emploi du temps.
      */
     function displayYearSchedule() {
         $id = $this->getMyIdUrl();
@@ -224,11 +231,11 @@ class UserController extends Controller
     }
 
     /**
-     * Check if a code Ade already exists with the same title or code
+     * Vérifie si un utilisateur avec le même titre ou code existe déjà.
      *
-     * @param User $newUser
+     * @param User $newUser L'utilisateur à vérifier.
      *
-     * @return bool
+     * @return bool Retourne true si l'utilisateur existe déjà, false sinon.
      */
     public function checkDuplicateUser(User $newUser) {
         $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
@@ -241,9 +248,9 @@ class UserController extends Controller
     }
 
     /**
-     * Modify codes ade for the student
+     * Modifie les codes ADE de l'étudiant.
      *
-     * @return string
+     * @return string Retourne le HTML du formulaire de modification des codes.
      */
     public function modifyCodes() {
         $current_user = wp_get_current_user();
@@ -256,7 +263,6 @@ class UserController extends Controller
             $year = filter_input(INPUT_POST, 'modifYear');
             $group = filter_input(INPUT_POST, 'modifGroup');
             $halfGroup = filter_input(INPUT_POST, 'modifHalfgroup');
-
 
             if (is_numeric($year) && is_numeric($group) && is_numeric($halfGroup)) {
 
