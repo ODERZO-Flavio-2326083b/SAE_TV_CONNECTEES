@@ -177,11 +177,17 @@ class ICSView extends View
         $time = date("H:i");
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb']))) . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
-            $active = date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin']));
-        }
+            if (date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin']))) {
+                $active = true;
+            } else {
+                $active = false;
+            }        }
 
-        $label = (substr($event['label'], -3) == "alt") ? substr($event['label'], 0, -3) : $event['label'];
-        $description = substr($event['description'], 0, -30);
+        if (substr($event['label'], -3) == "alt") {
+            $label = substr($event['label'], 0, -3);
+        } else {
+            $label = $event['label'];
+        }        $description = substr($event['description'], 0, -30);
 
         if (!(date("H:i", strtotime($event['fin'])) <= $time) || $day != date('j')) {
             $current_user = wp_get_current_user();
@@ -204,8 +210,11 @@ class ICSView extends View
      * @return string HTML de la ligne.
      */
     public function displayLineSchedule($datas, $active = false) {
-        $string = $active ? '<tr class="table-success" scope="row">' : '<tr scope="row">';
-
+        if ($active) {
+            $string = '<tr class="table-success" scope="row">';
+        } else {
+            $string = '<tr scope="row">';
+        }
         foreach ($datas as $data) {
             $string .= '<td class="text-center">' . $data . '</td>';
         }
