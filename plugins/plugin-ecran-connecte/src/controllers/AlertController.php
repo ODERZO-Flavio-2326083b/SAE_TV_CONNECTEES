@@ -13,7 +13,7 @@ use Views\AlertView;
 /**
  * Class AlertController
  *
- * Manage alerts (create, update, delete, display)
+ * Gère les alertes (création, modification, suppression, affichage)
  *
  * @package Controllers
  */
@@ -21,17 +21,18 @@ class AlertController extends Controller
 {
 
     /**
-     * @var Alert
+     * @var Alert Modèle pour gérer les alertes
      */
     private $model;
 
     /**
-     * @var AlertView
+     * @var AlertView Vue pour afficher les alertes
      */
     private $view;
 
     /**
-     * AlertController constructor
+     * Constructeur de la classe AlertController
+     * Initialise le modèle et la vue des alertes.
      */
     public function __construct() {
         $this->model = new Alert();
@@ -39,7 +40,12 @@ class AlertController extends Controller
     }
 
     /**
-     * Insert an alert in the database
+     * Insère une alerte dans la base de données
+     *
+     * Cette méthode récupère les informations nécessaires pour créer une alerte,
+     * les valide, et les insère dans la base de données.
+     *
+     * @return string Affiche le formulaire de création d'alerte
      */
     public function insert() {
         $codeAde = new CodeAde();
@@ -72,18 +78,18 @@ class AlertController extends Controller
             if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280 && $this->isRealDate($endDate) && $creationDateString < $endDateString) {
                 $current_user = wp_get_current_user();
 
-                // Set the alert
+                // Définir l'alerte
                 $this->model->setAuthor($current_user->ID);
                 $this->model->setContent($content);
                 $this->model->setCreationDate($creationDate);
                 $this->model->setExpirationDate($endDate);
                 $this->model->setCodes($codesAde);
 
-                // Insert
+                // Insérer l'alerte
                 if ($id = $this->model->insert()) {
                     $this->view->displayAddValidate();
 
-                    // Send the push notification
+                    // Envoyer la notification push
                     $oneSignalPush = new OneSignalPush();
 
                     if ($this->model->isForEveryone()) {
@@ -99,6 +105,7 @@ class AlertController extends Controller
             }
         }
 
+        // Récupération des types de codes pour le formulaire
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
@@ -107,7 +114,12 @@ class AlertController extends Controller
     }
 
     /**
-     * Modify an alert
+     * Modifie une alerte existante
+     *
+     * Cette méthode permet de modifier une alerte en fonction de son ID.
+     * Elle valide également les permissions de l'utilisateur avant de procéder.
+     *
+     * @return string Affiche le formulaire de modification d'alerte
      */
     public function modify() {
         $id = $_GET['id'];
@@ -129,7 +141,7 @@ class AlertController extends Controller
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
-            // Get value
+            // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
             $codes = $_POST['selectAlert'];
@@ -150,7 +162,7 @@ class AlertController extends Controller
                 }
             }
 
-            // Set the alert
+            // Définir l'alerte
             $alert->setContent($content);
             $alert->setExpirationDate($expirationDate);
             $alert->setCodes($codesAde);
@@ -162,12 +174,14 @@ class AlertController extends Controller
             }
         }
 
+        // Supprimer l'alerte si demandé
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
             $this->view->displayModifyValidate();
         }
 
+        // Récupération des types de codes pour le formulaire
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
@@ -176,6 +190,13 @@ class AlertController extends Controller
     }
 
 
+    /**
+     * Affiche toutes les alertes
+     *
+     * Cette méthode récupère toutes les alertes en fonction des permissions de l'utilisateur et les affiche.
+     *
+     * @return string Affiche la liste des alertes
+     */
     public function displayAll() {
         $numberAllEntity = $this->model->countAll();
         $url = $this->getPartOfUrl();
@@ -207,6 +228,7 @@ class AlertController extends Controller
             $dataList[] = [$row, $this->view->buildCheckbox($name, $alert->getId()), $alert->getContent(), $alert->getCreationDate(), $alert->getExpirationDate(), $alert->getAuthor()->getLogin(), $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title('Modifier une alerte'))) . '?id=' . $alert->getId())];
         }
 
+        // Suppression d'alertes sélectionnées
         $submit = filter_input(INPUT_POST, 'delete');
         if (isset($submit)) {
             if (isset($_REQUEST['checkboxStatusAlert'])) {
@@ -226,13 +248,16 @@ class AlertController extends Controller
 
 
     /**
-     * Display all alerts link to the user
+     * Affiche toutes les alertes pour l'utilisateur
+     *
+     * Cette méthode récupère et affiche toutes les alertes pour l'utilisateur courant,
+     * y compris celles destinées à tout le monde.
      */
     public function alertMain() {
-        // Get codes from current user
+        // Récupérer les codes de l'utilisateur actuel
         $current_user = wp_get_current_user();
         $alertsUser = $this->model->getForUser($current_user->ID);
-        //$alertsUser = array_unique($alertsUser); // Delete duplicate
+        //$alertsUser = array_unique($alertsUser); // Supprimer les doublons
 
         foreach ($this->model->getForEveryone() as $alert) {
             $alertsUser[] = $alert;
@@ -241,7 +266,7 @@ class AlertController extends Controller
         $contentList = array();
         foreach ($alertsUser as $alert) {
             $endDate = date('Y-m-d', strtotime($alert->getExpirationDate()));
-            $this->endDateCheckAlert($alert->getId(), $endDate); // Check alert
+            $this->endDateCheckAlert($alert->getId(), $endDate); // Vérifier l'alerte
 
             $content = $alert->getContent() . '&emsp;&emsp;&emsp;&emsp;';
             array_push($contentList, $content);
@@ -252,6 +277,12 @@ class AlertController extends Controller
         }
     }
 
+    /**
+     * Enregistre une nouvelle alerte à partir du site administrateur
+     *
+     * Cette méthode synchronise les alertes de l'administration avec celles de l'utilisateur,
+     * en mettant à jour ou en supprimant les alertes existantes.
+     */
     public function registerNewAlert() {
         $alertList = $this->model->getFromAdminWebsite();
         $myAlertList = $this->model->getAdminWebsiteAlert();
@@ -286,15 +317,17 @@ class AlertController extends Controller
     }
 
     /**
-     * Check the end date of the alert
+     * Vérifie la date de fin d'une alerte
      *
-     * @param $id
-     * @param $endDate
+     * Si la date de fin est dépassée, l'alerte est supprimée.
+     *
+     * @param int $id Identifiant de l'alerte à vérifier
+     * @param string $endDate Date de fin de l'alerte
      */
     public function endDateCheckAlert($id, $endDate) {
         if ($endDate <= date("Y-m-d")) {
             $alert = $this->model->get($id);
             $alert->delete();
         }
-    } //endDateCheckAlert()
+    } // endDateCheckAlert()
 }
