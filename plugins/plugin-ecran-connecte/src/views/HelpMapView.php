@@ -5,16 +5,24 @@ namespace Views;
 /**
  * Class HelpMapView
  *
- * View for the map showing interesting locations nearby
+ * Classe responsable de l'affichage de la carte
+ * montrant les lieux d'intérêt à proximité.
  *
  * @package Views
  */
 class HelpMapView extends View
 {
     /**
-     * Displays the help map
+     * Affiche la carte d'aide.
      *
-     * @return string
+     * Cette méthode génère le code HTML pour afficher une carte d'aide.
+     * Actuellement, elle affiche simplement un message de test.
+     *
+     * @return string Le code HTML à afficher pour la carte d'aide.
+     *
+     * @example
+     * $view = new HelpMapView();
+     * echo $view->displayHelpMap();
      */
     public function displayHelpMap() {
         return '<p>Hello, World!</p>';

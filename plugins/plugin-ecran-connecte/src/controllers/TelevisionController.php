@@ -9,25 +9,27 @@ use Views\TelevisionView;
 /**
  * Class TelevisionController
  *
- * Manage televisions (Create, update, delete, display, display schedules)
+ * Gère les télévisions (création, mise à jour, suppression, affichage, affichage des emplois du temps).
  *
  * @package Controllers
  */
 class TelevisionController extends UserController implements Schedule
 {
-
     /**
+     * Modèle de TelevisionController.
      * @var User
      */
     private $model;
 
     /**
+     * Vue de TelevisionController.
      * @var TelevisionView
      */
     private $view;
 
     /**
-     * Constructor of TelevisionController
+     * Constructeur de la classe TelevisionController.
+     * Initialise le modèle et la vue.
      */
     public function __construct() {
         parent::__construct();
@@ -36,115 +38,117 @@ class TelevisionController extends UserController implements Schedule
     }
 
     /**
-     * Insert a television in the database
+     * Insère une télévision dans la base de données.
      *
-     * @return string
+     * @return string Renvoie la vue du formulaire de télévision ou un message de validation.
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createTv');
-
         $codeAde = new CodeAde();
 
         if (isset($action)) {
-
             $login = filter_input(INPUT_POST, 'loginTv');
             $password = filter_input(INPUT_POST, 'pwdTv');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
             $codes = $_POST['selectTv'];
 
+            // Validation des données
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm) {
 
-                $codesAde = array();
+                $codesAde = [];
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {
+                        // Vérification si le code existe
                         if (is_null($codeAde->getByCode($code)->getId())) {
-                            return 'error';
+                            return 'error'; // Retourne une erreur si le code est invalide
                         } else {
                             $codesAde[] = $codeAde->getByCode($code);
                         }
                     }
                 }
 
+                // Configuration des données du modèle
                 $this->model->setLogin($login);
-                $this->model->setEmail($login . '@' . $login . '.fr');
+                $this->model->setEmail($login . '@' . $login . '.fr'); // Création de l'email basé sur le login
                 $this->model->setPassword($password);
                 $this->model->setRole('television');
                 $this->model->setCodes($codesAde);
 
+                // Insertion du modèle
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                    return $this->view->displayInsertValidate(); // Affiche un message de validation
                 } else {
-                    $this->view->displayErrorLogin();
+                    return $this->view->displayErrorLogin(); // Affiche un message d'erreur de connexion
                 }
             } else {
-                $this->view->displayErrorCreation();
+                return $this->view->displayErrorCreation(); // Affiche un message d'erreur de création
             }
         }
 
+        // Récupération des années, groupes et demi-groupes pour le formulaire
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->displayFormTelevision($years, $groups, $halfGroups);
+        return $this->view->displayFormTelevision($years, $groups, $halfGroups); // Affiche le formulaire
     }
 
     /**
-     * Modify a television
+     * Modifie une télévision.
      *
-     * @param $user User
-     *
-     * @return string
+     * @param User $user L'utilisateur représentant la télévision à modifier.
+     * @return string Renvoie le formulaire de modification ou un message de validation.
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
-
         $codeAde = new CodeAde();
-
         $action = filter_input(INPUT_POST, 'modifValidate');
 
         if (isset($action)) {
             $codes = $_POST['selectTv'];
+            $codesAde = [];
 
-            $codesAde = array();
             foreach ($codes as $code) {
+                // Vérification de l'existence du code
                 if (is_null($codeAde->getByCode($code)->getId())) {
-                    return 'error';
+                    return 'error'; // Retourne une erreur si le code est invalide
                 } else {
                     $codesAde[] = $codeAde->getByCode($code);
                 }
             }
 
-            $user->setCodes($codesAde);
+            $user->setCodes($codesAde); // Mise à jour des codes de l'utilisateur
 
             if ($user->update()) {
-                $this->view->displayModificationValidate($linkManageUser);
+                return $this->view->displayModificationValidate($linkManageUser); // Affiche un message de validation
             }
         }
 
+        // Récupération des données pour le formulaire de modification
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups); // Affiche le formulaire de modification
     }
 
     /**
-     * Display all televisions in a table
+     * Affiche toutes les télévisions dans un tableau.
      *
-     * @return string
+     * @return string Renvoie la vue contenant tous les utilisateurs de type télévision.
      */
     public function displayAllTv() {
         $users = $this->model->getUsersByRole('television');
-        return $this->view->displayAllTv($users);
+        return $this->view->displayAllTv($users); // Affiche la vue des télévisions
     }
 
     /**
-     * Display a list a schedule
+     * Affiche une liste d'emplois du temps.
      *
-     * @return mixed|string
+     * @return mixed|string Renvoie une chaîne contenant les emplois du temps ou un message d'erreur.
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -153,9 +157,10 @@ class TelevisionController extends UserController implements Schedule
 
         $string = "";
         if (sizeof($user->getCodes()) > 1) {
+            // Vérification du style d'affichage
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">
-						<div class="innerWrap tv-schedule">';
+                        <div class="innerWrap tv-schedule">';
                 foreach ($user->getCodes() as $code) {
                     $path = $this->getFilePath($code->getCode());
                     if (file_exists($path)) {
@@ -185,9 +190,9 @@ class TelevisionController extends UserController implements Schedule
             if (!empty($user->getCodes()[0])) {
                 $string .= $this->displaySchedule($user->getCodes()[0]->getCode());
             } else {
-                $string .= '<p>Vous n\'avez pas cours </p>';
+                $string .= '<p>Vous n\'avez pas cours</p>'; // Message si aucun cours n'est disponible
             }
         }
-        return $string;
+        return $string; // Retourne l'ensemble des emplois du temps
     }
 }

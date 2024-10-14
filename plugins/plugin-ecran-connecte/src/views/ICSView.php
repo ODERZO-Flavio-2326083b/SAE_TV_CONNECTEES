@@ -2,25 +2,33 @@
 
 namespace Views;
 
-
 use WP_User;
 
 /**
  * Class ICSView
  *
- * Display the schedule
+ * Classe responsable de l'affichage du calendrier.
  *
  * @package Views
  */
 class ICSView extends View
 {
     /**
-     * ADisplay the schedule
+     * Affiche le calendrier à partir des données ICS.
      *
-     * @param $ics_data     array
-     * @param $title        string
+     * Cette méthode génère un tableau HTML pour afficher
+     * les événements programmés en fonction des données ICS fournies.
      *
-     * @return bool
+     * @param array $ics_data Données ICS contenant les événements.
+     * @param string $title Titre à afficher en haut du calendrier.
+     * @param bool $allDay Indique si l'affichage concerne des événements sur toute la journée.
+     *
+     * @return string|bool Code HTML du calendrier ou false si aucun événement n'est trouvé.
+     *
+     * @example
+     * $icsView = new ICSView();
+     * $html = $icsView->displaySchedule($ics_data, 'Mon Calendrier', false);
+     * echo $html;
      */
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
@@ -108,7 +116,6 @@ class ICSView extends View
                             }
                         }
                     }
-
                 }
             }
             // IF NO SCHEDULE
@@ -123,20 +130,23 @@ class ICSView extends View
     }
 
     /**
-     * Display the header
+     * Affiche l'en-tête du calendrier.
      *
-     * @param $current_user     WP_User
+     * @param WP_User $current_user L'utilisateur actuel.
      *
-     * @return string
+     * @return string Le code HTML de l'en-tête du calendrier.
+     *
+     * @example
+     * $header = $this->displayStartSchedule($current_user);
      */
     public function displayStartSchedule($current_user) {
         $string = '<div class="table-responsive">
-                   	<table class="table tabSchedule">
-                    	<thead class="headerTab">
-                        	<tr>
-                            	<th scope="col" class="text-center">Horaire</th>';
+                    <table class="table tabSchedule">
+                        <thead class="headerTab">
+                            <tr>
+                                <th scope="col" class="text-center">Horaire</th>';
         if (!in_array("technicien", $current_user->roles)) {
-            $string .= '<th scope="col" class="text-center" >Cours</th>
+            $string .= '<th scope="col" class="text-center">Cours</th>
                         <th scope="col" class="text-center">Groupe/Enseignant</th>';
         }
         $string .= '<th scope="col" class="text-center">Salle</th>
@@ -148,13 +158,16 @@ class ICSView extends View
     }
 
     /**
-     * Give the date of the schedule
+     * Donne la date du calendrier.
      *
-     * @param $day
-     * @param $month
-     * @param $year
+     * @param int $day Le jour du mois.
+     * @param string $month Le mois en cours.
+     * @param int $year L'année en cours.
      *
-     * @return string
+     * @return string La date formatée en HTML.
+     *
+     * @example
+     * $dateHtml = $this->giveDate(15, '03', 2024);
      */
     public function giveDate($day, $month, $year) {
         $day_of_week = $day + 1;
@@ -163,12 +176,15 @@ class ICSView extends View
     }
 
     /**
-     * Give the content of an event
+     * Donne le contenu d'un événement.
      *
-     * @param $event
-     * @param int $day
+     * @param array $event L'événement à afficher.
+     * @param int $day Le jour pour lequel l'événement est affiché (0 par défaut).
      *
-     * @return bool|string
+     * @return bool|string Le code HTML de l'événement ou false si l'événement est passé.
+     *
+     * @example
+     * $contentHtml = $this->getContent($event);
      */
     public function getContent($event, $day = 0) {
         if ($day == 0) {
@@ -178,18 +194,12 @@ class ICSView extends View
         $time = date("H:i");
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb']))) . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
-            if (date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin']))) {
-                $active = true;
-            } else {
-                $active = false;
-            }
+            $active = (date("H:i", strtotime($event['deb'])) <= $time && $time < date("H:i", strtotime($event['fin'])));
+        } else {
+            $active = false;
         }
 
-        if (substr($event['label'], -3) == "alt") {
-            $label = substr($event['label'], 0, -3);
-        } else {
-            $label = $event['label'];
-        }
+        $label = substr($event['label'], -3) == "alt" ? substr($event['label'], 0, -3) : $event['label'];
         $description = substr($event['description'], 0, -30);
         if (!(date("H:i", strtotime($event['fin'])) <= $time) || $day != date('j')) {
             $current_user = wp_get_current_user();
@@ -204,19 +214,18 @@ class ICSView extends View
     }
 
     /**
-     * Create a line for the schedule
+     * Crée une ligne pour le calendrier.
      *
-     * @param $datas
-     * @param bool $active
+     * @param array $datas Données à afficher dans la ligne.
+     * @param bool $active Indique si la ligne est active (true si l'événement est en cours).
      *
-     * @return string
+     * @return string Le code HTML de la ligne du calendrier.
+     *
+     * @example
+     * $lineHtml = $this->displayLineSchedule(['10h-12h', 'Mathématiques', 'M. Dupont', 'Salle 101'], true);
      */
     public function displayLineSchedule($datas, $active = false) {
-        if ($active) {
-            $string = '<tr class="table-success" scope="row">';
-        } else {
-            $string = '<tr scope="row">';
-        }
+        $string = $active ? '<tr class="table-success" scope="row">' : '<tr scope="row">';
         foreach ($datas as $data) {
             $string .= '<td class="text-center">' . $data . '</td>';
         }
@@ -225,25 +234,29 @@ class ICSView extends View
     }
 
     /**
-     * Display the footer of the schedule
+     * Affiche le pied de page du calendrier.
      *
-     * @return string
+     * @return string Le code HTML de la fin du tableau.
+     *
+     * @example
+     * $footerHtml = $this->displayEndSchedule();
      */
-    public
-    function displayEndSchedule() {
+    public function displayEndSchedule() {
         return '</tbody>
              </table>
           </div>';
     }
 
-
     /**
-     * Display an message if there is no lesson
+     * Affiche un message si aucun événement n'est prévu.
      *
-     * @param $title            string
-     * @param $current_user     WP_User
+     * @param string $title Titre du calendrier.
+     * @param WP_User $current_user L'utilisateur actuel.
      *
-     * @return bool|string
+     * @return bool|string Le message HTML ou false si aucune condition n'est remplie.
+     *
+     * @example
+     * $noScheduleMessage = $this->displayNoSchedule('Mon Calendrier', $current_user);
      */
     public function displayNoSchedule($title, $current_user) {
         if (get_theme_mod('ecran_connecte_schedule_msg', 'show') == 'show' && in_array('television', $current_user->roles)) {

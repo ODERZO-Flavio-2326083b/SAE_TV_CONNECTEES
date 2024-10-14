@@ -2,24 +2,30 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
 /**
  * Class StudentView
  *
- * All view for student (Forms, tables, messages)
+ * Classe dédiée à l'affichage des vues pour les étudiants, y compris les formulaires,
+ * les tableaux et les messages.
+ *
+ * Cette classe hérite de UserView et est utilisée pour gérer l'affichage des
+ * fonctionnalités liées aux étudiants dans l'application.
  *
  * @package Views
  */
 class StudentView extends UserView
 {
-
     /**
-     * Form to create users with an Excel file
+     * Affiche le formulaire pour créer des utilisateurs à partir d'un fichier Excel.
      *
-     * @return string   Renvoie le formulaire
+     * @return string Renvoie le formulaire HTML à afficher à l'utilisateur.
+     *
+     * Exemple d'utilisation :
+     * $view = new StudentView();
+     * echo $view->displayInsertImportFileStudent();
      */
     public function displayInsertImportFileStudent() {
         return '
@@ -29,7 +35,7 @@ class StudentView extends UserView
         <p class="lead">Lorsque vous avez remplis le fichier Excel, enregistrez le et cliquez sur "Parcourir" et sélectionnez votre fichier.</p>
         <p class="lead">Pour finir, validez l\'envoie du formulaire en cliquant sur "Importer le fichier"</p>
         <p class="lead">Lorsqu\'un élève est inscrit, un email lui est envoyé contenant son login et son mot de passe avec un lien du site.</p>
-        <p class="lead">Lors de sa première connection, l\'étudiant devraz choisir son groupe pour avoir son emploi du temps.</p>
+        <p class="lead">Lors de sa première connection, l\'étudiant devras choisir son groupe pour avoir son emploi du temps.</p>
         <a href="' . TV_PLUG_PATH . 'public/files/Ajout Etus.xlsx" download="Ajout Etus.xlsx">Télécharger le fichier excel !</a>
         <form id="etu" method="post" enctype="multipart/form-data">
             <input type="file" name="excelEtu" class="inpFil" required=""/>
@@ -38,13 +44,23 @@ class StudentView extends UserView
     }
 
     /**
-     * Display all students in a table
+     * Affiche tous les étudiants dans un tableau.
      *
-     * @param $users    User[]
+     * @param User[] $users Un tableau d'objets User représentant les étudiants.
+     * @return string Renvoie le tableau HTML avec les informations des étudiants.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new StudentView();
+     * echo $view->displayAllStudent($userList);
+     *
+     * Gestion des exceptions :
+     * Lance une exception si la liste des utilisateurs est vide ou non valide.
      */
     public function displayAllStudent($users) {
+        if (empty($users) || !is_array($users)) {
+            throw new \InvalidArgumentException('La liste des utilisateurs doit être un tableau non vide.');
+        }
+
         $page = get_page_by_title('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
@@ -52,13 +68,12 @@ class StudentView extends UserView
         $name = 'Etu';
         $header = ['Numéro étudiant', 'Année', 'Groupe', 'Demi groupe', 'Modifier'];
 
-        $row = array();
+        $row = [];
         $count = 0;
 
         foreach ($users as $user) {
-
             $codes = $user->getCodes();
-            $codesTitle = array();
+            $codesTitle = [];
             foreach ($codes as $code) {
                 if ($code instanceof CodeAde) {
                     $codesTitle[] = $code->getTitle();
@@ -68,21 +83,32 @@ class StudentView extends UserView
             }
 
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), $codesTitle[0], $codesTitle[1], $codesTitle[2], $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [
+                $count,
+                $this->buildCheckbox($name, $user->getId()),
+                $user->getLogin(),
+                $codesTitle[0] ?? 'N/A',
+                $codesTitle[1] ?? 'N/A',
+                $codesTitle[2] ?? 'N/A',
+                $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())
+            ];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'student');
     }
 
     /**
-     * Display the form to modify the student
+     * Affiche le formulaire pour modifier les informations d'un étudiant.
      *
-     * @param $user         User
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param User      $user         L'objet User représentant l'étudiant à modifier.
+     * @param CodeAde[] $years        Liste des années disponibles.
+     * @param CodeAde[] $groups       Liste des groupes disponibles.
+     * @param CodeAde[] $halfGroups   Liste des demi-groupes disponibles.
+     * @return string Renvoie le formulaire HTML pour modifier les informations de l'étudiant.
      *
-     * @return string
+     * Exemple d'utilisation :
+     * $view = new StudentView();
+     * echo $view->displayModifyStudent($user, $yearsList, $groupsList, $halfGroupsList);
      */
     public function displayModifyStudent($user, $years, $groups, $halfGroups) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -152,11 +178,15 @@ class StudentView extends UserView
     }
 
     /**
-     * Display a list of groups for the inscription of the student
+     * Affiche une liste des groupes pour l'inscription de l'étudiant.
      *
-     * @param $years            CodeAde[]
-     * @param $groups           CodeAde[]
-     * @param $halfGroups       CodeAde[]
+     * @param CodeAde[] $years       Liste des années disponibles.
+     * @param CodeAde[] $groups      Liste des groupes disponibles.
+     * @param CodeAde[] $halfGroups  Liste des demi-groupes disponibles.
+     *
+     * Exemple d'utilisation :
+     * $view = new StudentView();
+     * $view->selectSchedules($yearsList, $groupsList, $halfGroupsList);
      */
     public function selectSchedules($years, $groups, $halfGroups) {
         echo '
