@@ -213,7 +213,7 @@ class CodeAdeRestController extends WP_REST_Controller
         if (is_string($request->get_json_params()['title']))
             $requested_ade_code->setTitle($request->get_json_params()['title']);
 
-        if (is_numeric($request->get_json_params()['code']))
+        if (is_string($request->get_json_params()['code']))
             $requested_ade_code->setCode($request->get_json_params()['code']);
 
         if (is_string($request->get_json_params()['type']))
