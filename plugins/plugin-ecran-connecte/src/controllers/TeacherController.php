@@ -8,7 +8,7 @@ use Views\TeacherView;
 /**
  * Class TeacherController
  *
- * Manage teacher (Create, update, delete, display)
+ * Gère les enseignants (Création, mise à jour, suppression, affichage)
  *
  * @package Controllers
  */
@@ -16,19 +16,22 @@ class TeacherController extends UserController implements Schedule
 {
 
     /**
-     * Modèle de TeacherController
+     * Modèle de TeacherController.
+     *
      * @var User
      */
     private $model;
 
     /**
-     * Vue de TeacherController
+     * Vue de TeacherController.
+     *
      * @var TeacherView
      */
     private $view;
 
     /**
-     * Constructor of TeacherController
+     * Constructeur de TeacherController.
+     * Initialise le modèle et la vue.
      */
     public function __construct() {
         parent::__construct();
@@ -37,7 +40,9 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Display the schedule of the teacher
+     * Affiche l'emploi du temps de l'enseignant.
+     *
+     * @return string Retourne l'emploi du temps ou un message indiquant qu'aucun emploi du temps n'est disponible.
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -52,7 +57,9 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Insert all teachers from an excel's file
+     * Insère tous les enseignants à partir d'un fichier Excel.
+     *
+     * @return string Retourne le HTML de l'interface d'importation de fichier.
      */
     public function insert() {
         $actionTeacher = filter_input(INPUT_POST, 'importProf');
@@ -60,7 +67,7 @@ class TeacherController extends UserController implements Schedule
             $allowed_extension = array("Xls", "Xlsx", "Csv");
             $extension = ucfirst(strtolower(end(explode(".", $_FILES["excelProf"]["name"]))));
 
-            //On vérifie l'extension est valide
+            // Vérifie si l'extension est valide
             if (in_array($extension, $allowed_extension)) {
                 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($extension);
                 $reader->setReadDataOnly(TRUE);
@@ -69,10 +76,10 @@ class TeacherController extends UserController implements Schedule
                 $worksheet = $spreadsheet->getActiveSheet();
                 $highestRow = $worksheet->getHighestRow();
 
+                // Lit la première ligne
                 $row = $worksheet->getRowIterator(1, 1);
                 $cells = [];
 
-                //On lit la première ligne
                 if (!empty($row)) {
                     foreach ($row as $value) {
                         $cellIterator = $value->getCellIterator();
@@ -83,7 +90,7 @@ class TeacherController extends UserController implements Schedule
                     }
                 }
 
-                // Check if it's a good file
+                // Vérifie si c'est un bon fichier
                 if ($cells[0] == "Identifiant Ent" && $cells[1] == "Adresse mail" && $cells[2] == "Code") {
                     $doubles = array();
                     for ($i = 2; $i < $highestRow + 1; ++$i) {
@@ -107,7 +114,6 @@ class TeacherController extends UserController implements Schedule
                             $this->model->setPassword($password);
                             $this->model->setEmail($email);
                             $this->model->setRole('enseignant');
-
                             $this->model->setCodes($code);
 
                             if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
@@ -116,7 +122,7 @@ class TeacherController extends UserController implements Schedule
                                     $this->addFile($code);
                                 }
 
-                                //Send mail to the new user
+                                // Envoie un email au nouvel utilisateur
                                 $to = $email;
                                 $subject = "Inscription à la télé-connecté";
                                 $message = '
@@ -125,12 +131,12 @@ class TeacherController extends UserController implements Schedule
 	                               		<title>Inscription à la télé-connecté</title>
 	                              	</head>
 	                              	<body>
-	                               		<p>Bonjour, vous avez été inscrit sur le site de la Télé Connecté de votre département en tant qu\'enseignant</p>
-	                               		<p> Sur ce site, vous aurez accès à votre emploie du temps, aux informations concernant votre scolarité et vous pourrez poster des alertes.</p>
-	                               		<p> Votre identifiant est ' . $login . ' et votre mot de passe est ' . $password . '.</p>
-	                               		<p> Veuillez changer votre mot de passe lors de votre première connexion pour plus de sécurité !</p>
-	                               		<p> Pour vous connecter, rendez-vous sur le site : <a href="' . home_url() . '"> ' . home_url() . ' </a>.</p>
-	                               		<p> Nous vous souhaitons une bonne expérience sur notre site.</p>
+	                               		<p>Bonjour, vous avez été inscrit sur le site de la Télé Connecté de votre département en tant qu\'enseignant.</p>
+	                               		<p>Sur ce site, vous aurez accès à votre emploi du temps, aux informations concernant votre scolarité et vous pourrez poster des alertes.</p>
+	                               		<p>Votre identifiant est ' . $login . ' et votre mot de passe est ' . $password . '.</p>
+	                               		<p>Veuillez changer votre mot de passe lors de votre première connexion pour plus de sécurité !</p>
+	                               		<p>Pour vous connecter, rendez-vous sur le site : <a href="' . home_url() . '"> ' . home_url() . ' </a>.</p>
+	                               		<p>Nous vous souhaitons une bonne expérience sur notre site.</p>
 	                              	</body>
 	                            </html>';
 
@@ -158,11 +164,11 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Modify the teacher
+     * Modifie un enseignant.
      *
-     * @param $user   User
+     * @param User $user L'utilisateur à modifier.
      *
-     * @return string
+     * @return string Retourne le HTML du formulaire de modification de l'enseignant.
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -186,7 +192,9 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Display all teachers in a table
+     * Affiche tous les enseignants dans un tableau.
+     *
+     * @return string Retourne le HTML affichant tous les enseignants.
      */
     public function displayAllTeachers() {
         $users = $this->model->getUsersByRole('enseignant');
