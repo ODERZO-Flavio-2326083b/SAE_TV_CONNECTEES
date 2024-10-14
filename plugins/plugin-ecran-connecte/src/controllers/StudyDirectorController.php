@@ -8,7 +8,7 @@ use Views\StudyDirectorView;
 /**
  * Class StudyDirectorController
  *
- * Manage study director (Create, update, delete, display)
+ * Gère les directeurs d'études (Création, mise à jour, suppression, affichage)
  *
  * @package Controllers
  */
@@ -16,17 +16,18 @@ class StudyDirectorController extends UserController implements Schedule
 {
 
     /**
-     * @var User
+     * @var User Modèle représentant un utilisateur.
      */
     private $model;
 
     /**
-     * @var StudyDirectorView
+     * @var StudyDirectorView Vue associée au contrôleur des directeurs d'études.
      */
     private $view;
 
     /**
-     * Constructor of StudyDirectorController
+     * Constructeur de StudyDirectorController.
+     * Initialise le modèle et la vue.
      */
     public function __construct() {
         parent::__construct();
@@ -35,9 +36,9 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Display the schedule of the study director
+     * Affiche l'emploi du temps du directeur d'études.
      *
-     * @return bool|mixed|string
+     * @return bool|mixed|string Retourne l'emploi du temps ou un message d'erreur si aucun code n'est enregistré.
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -50,7 +51,9 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Insert a study director in the database
+     * Insère un directeur d'études dans la base de données.
+     *
+     * @return string Retourne le HTML du formulaire de création du directeur d'études.
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createDirec');
@@ -63,6 +66,7 @@ class StudyDirectorController extends UserController implements Schedule
             $email = filter_input(INPUT_POST, 'emailDirec');
             $code = filter_input(INPUT_POST, 'codeDirec');
 
+            // Vérifie les conditions de validation des entrées.
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
@@ -73,6 +77,7 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->model->setRole('directeuretude');
                 $this->model->setCodes($code);
 
+                // Insère l'utilisateur et gère les fichiers associés.
                 if ($this->model->insert()) {
                     $path = $this->getFilePath($code);
                     if (!file_exists($path)) {
@@ -90,11 +95,11 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Modify the study director
+     * Modifie le directeur d'études.
      *
-     * @param $user   User
+     * @param User $user L'utilisateur à modifier.
      *
-     * @return string
+     * @return string Retourne le HTML du formulaire de modification du directeur d'études.
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -117,7 +122,9 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Display all study directors
+     * Affiche tous les directeurs d'études.
+     *
+     * @return string Retourne le HTML affichant tous les directeurs d'études.
      */
     public function displayAllStudyDirector() {
         $users = $this->model->getUsersByRole('directeuretude');
