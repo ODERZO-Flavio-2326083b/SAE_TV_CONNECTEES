@@ -13,6 +13,7 @@ class CodeAdeRestController extends WP_REST_Controller
 {
     /**
      * Constructeur du contrôleur REST
+     * Initialise l'espace de noms et la base REST.
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -21,6 +22,17 @@ class CodeAdeRestController extends WP_REST_Controller
 
     /**
      * Enregistre les routes pour les objets du contrôleur.
+     *
+     * Cette méthode définit les routes de l'API REST,
+     * y compris les méthodes pour obtenir, créer, mettre à jour
+     * et supprimer des codes ADE.
+     *
+     * Exemple d'utilisation :
+     * GET /amu-ecran-connectee/v1/ade
+     * POST /amu-ecran-connectee/v1/ade
+     * GET /amu-ecran-connectee/v1/ade/{id}
+     * PUT /amu-ecran-connectee/v1/ade/{id}
+     * DELETE /amu-ecran-connectee/v1/ade/{id}
      */
     public function register_routes() {
         register_rest_route(
@@ -41,18 +53,18 @@ class CodeAdeRestController extends WP_REST_Controller
                         'title' => array(
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Titre du code ADE'),
+                            'description' => __('ADE code title'),
                         ),
                         'code' => array(
                             'type' => 'number',
                             'required' => true,
-                            'description' => __('Code ADE'),
+                            'description' => __('ADE code'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'required' => true,
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('Type de code ADE'),
+                            'description' => __('ADE code type'),
                         ),
                     ),
                 ),
@@ -66,7 +78,7 @@ class CodeAdeRestController extends WP_REST_Controller
             array(
                 'args' => array(
                     'id' => array(
-                        'description' => __('Identifiant unique pour le code ADE'),
+                        'description' => __('Unique identifier for the ADE code'),
                         'type' => 'integer',
                     ),
                 ),
@@ -83,16 +95,16 @@ class CodeAdeRestController extends WP_REST_Controller
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
-                            'description' => __('Titre du code ADE'),
+                            'description' => __('ADE code title'),
                         ),
                         'code' => array(
                             'type' => 'number',
-                            'description' => __('Code ADE'),
+                            'description' => __('ADE code'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('Type de code ADE'),
+                            'description' => __('ADE code type'),
                         ),
                     ),
                 ),
@@ -112,6 +124,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_Error|WP_REST_Response
+     *
+     * Exemple d'utilisation :
+     * GET /amu-ecran-connectee/v1/ade
      */
     public function get_items($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -125,6 +140,14 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     *
+     * Exemple d'utilisation :
+     * POST /amu-ecran-connectee/v1/ade avec le corps suivant :
+     * {
+     *   "title": "Titre du code",
+     *   "code": 12345,
+     *   "type": "year"
+     * }
      */
     public function create_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -139,7 +162,7 @@ class CodeAdeRestController extends WP_REST_Controller
         if (($insert_id = $ade_code->insert()))
             return new WP_REST_Response(array('id' => $insert_id), 200);
 
-        return new WP_REST_Response(array('message' => 'Impossible d\'insérer le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not insert the ADE code'), 400);
     }
 
     /**
@@ -147,6 +170,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     *
+     * Exemple d'utilisation :
+     * GET /amu-ecran-connectee/v1/ade/{id}
      */
     public function get_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -155,7 +181,7 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'Code ADE introuvable'), 404);
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         return new WP_REST_Response($requested_ade_code, 200);
     }
@@ -165,6 +191,14 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     *
+     * Exemple d'utilisation :
+     * PUT /amu-ecran-connectee/v1/ade/{id} avec le corps suivant :
+     * {
+     *   "title": "Nouveau titre",
+     *   "code": 54321,
+     *   "type": "group"
+     * }
      */
     public function update_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -173,7 +207,7 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'Code ADE introuvable'), 404);
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         // Mettre à jour les données
         if (is_string($request->get_json_params()['title']))
@@ -189,7 +223,7 @@ class CodeAdeRestController extends WP_REST_Controller
         if ($requested_ade_code->update() > 0)
             return new WP_REST_Response(null, 200);
 
-        return new WP_REST_Response(array('message' => 'Impossible de mettre à jour le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not update the ADE code'), 400);
     }
 
     /**
@@ -197,6 +231,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     *
+     * Exemple d'utilisation :
+     * DELETE /amu-ecran-connectee/v1/ade/{id}
      */
     public function delete_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -207,14 +244,16 @@ class CodeAdeRestController extends WP_REST_Controller
         if ($requested_ade_code && $requested_ade_code->delete())
             return new WP_REST_Response(null, 200);
 
-        return new WP_REST_Response(array('message' => 'Impossible de supprimer le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not delete the ADE code'), 400);
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour obtenir des éléments
+     * Vérifie si une requête donnée a accès pour obtenir des éléments.
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
      * @return WP_Error|bool
+     *
+     * Vérifie si l'utilisateur actuel a le rôle d'administrateur.
      */
     public function get_items_permissions_check($request) {
         $current_user = wp_get_current_user();
@@ -235,7 +274,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * Vérifie si une requête donnée a accès pour lire une information.
      *
      * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès pour lire l'élément, sinon objet WP_Error.
+     * @return true|WP_Error Vrai si la requête a accès en lecture pour l'élément, sinon objet WP_Error.
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
