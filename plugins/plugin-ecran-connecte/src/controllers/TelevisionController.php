@@ -44,6 +44,10 @@ class TelevisionController extends UserController implements Schedule
      * Insère une télévision dans la base de données.
      *
      * @return string Retourne le HTML du formulaire d'insertion de télévision.
+     *
+     * Exemple d'utilisation :
+     * $controller = new TelevisionController();
+     * echo $controller->insert();
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createTv');
@@ -103,6 +107,10 @@ class TelevisionController extends UserController implements Schedule
      * @param User $user L'utilisateur à modifier.
      *
      * @return string Retourne le HTML du formulaire de modification.
+     *
+     * Exemple d'utilisation :
+     * $controller = new TelevisionController();
+     * echo $controller->modify($user);
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -143,6 +151,10 @@ class TelevisionController extends UserController implements Schedule
      * Affiche toutes les télévisions dans un tableau.
      *
      * @return string Retourne le HTML affichant toutes les télévisions.
+     *
+     * Exemple d'utilisation :
+     * $controller = new TelevisionController();
+     * echo $controller->displayAllTv();
      */
     public function displayAllTv() {
         $users = $this->model->getUsersByRole('television');
@@ -153,6 +165,10 @@ class TelevisionController extends UserController implements Schedule
      * Affiche une liste d'emplois du temps.
      *
      * @return mixed|string Retourne les emplois du temps sous forme de chaîne de caractères.
+     *
+     * Exemple d'utilisation :
+     * $controller = new TelevisionController();
+     * echo $controller->displayMySchedule();
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
