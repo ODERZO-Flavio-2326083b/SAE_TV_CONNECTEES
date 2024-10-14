@@ -8,7 +8,7 @@ use Views\CodeAdeView;
 /**
  * Class CodeAdeController
  *
- * Manage codes ade (create, update, delete, display)
+ * Cette classe gère les codes ADE : création, modification, suppression et affichage.
  *
  * @package Controllers
  */
@@ -16,19 +16,20 @@ class CodeAdeController extends Controller
 {
 
     /**
-     * Model of CodeAdeController
+     * Modèle associé au contrôleur CodeAde.
      * @var CodeAde
      */
     private $model;
 
     /**
-     * View of CodeAdeController
+     * Vue associée au contrôleur CodeAde.
      * @var CodeAdeView
      */
     private $view;
 
     /**
-     * Constructor of CodeAdeController.
+     * Constructeur du contrôleur CodeAdeController.
+     * Initialise le modèle et la vue associés.
      */
     public function __construct() {
         $this->model = new CodeAde();
@@ -36,9 +37,15 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Insert a code Ade in the database and upload the schedule of this code
+     * Insère un code ADE dans la base de données et charge l'emploi du temps associé.
      *
-     * @return string
+     * @return string Retourne le formulaire de création du code ADE.
+     *
+     * Exemple d'utilisation :
+     * ```php
+     * $controller = new CodeAdeController();
+     * echo $controller->insert();
+     * ```
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'submit');
@@ -74,9 +81,10 @@ class CodeAdeController extends Controller
         return $this->view->createForm();
     }
 
-
     /**
-     * Modify code Ade
+     * Modifie un code ADE existant.
+     *
+     * @return string Retourne le formulaire de modification ou un message d'erreur si le code est introuvable.
      */
     public function modify() {
         $id = $_GET['id'];
@@ -118,9 +126,9 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Display all codes Ade in a table
+     * Affiche tous les codes ADE dans un tableau.
      *
-     * @return string
+     * @return string Retourne la vue avec tous les codes ADE classés par type (année, groupe, demi-groupe).
      */
     public function displayAllCodes() {
         $years = $this->model->getAllFromType('year');
@@ -131,7 +139,9 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Delete codes
+     * Supprime des codes ADE sélectionnés.
+     *
+     * Cette fonction supprime les codes ADE cochés dans une interface de gestion, puis rafraîchit la page.
      */
     public function deleteCodes() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -148,11 +158,17 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Check if a code Ade already exists with the same title or code
+     * Vérifie si un code ADE existe déjà avec le même titre ou code.
      *
-     * @param CodeAde $newCodeAde
+     * @param CodeAde $newCodeAde Le nouveau code ADE à vérifier.
      *
-     * @return bool
+     * @return bool Retourne true si un doublon est trouvé, sinon false.
+     *
+     * Exemple d'utilisation :
+     * ```php
+     * $controller = new CodeAdeController();
+     * $isDuplicate = $controller->checkDuplicateCode($codeAde);
+     * ```
      */
     private function checkDuplicateCode(CodeAde $newCodeAde) {
         $codesAde = $this->model->checkCode($newCodeAde->getTitle(), $newCodeAde->getCode());
