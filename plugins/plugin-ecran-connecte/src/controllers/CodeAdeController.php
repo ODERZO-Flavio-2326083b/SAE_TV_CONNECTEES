@@ -8,7 +8,7 @@ use Views\CodeAdeView;
 /**
  * Class CodeAdeController
  *
- * Manage codes ade (create, update, delete, display)
+ * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
  * @package Controllers
  */
@@ -16,19 +16,19 @@ class CodeAdeController extends Controller
 {
 
     /**
-     * Model of CodeAdeController
+     * Modèle de CodeAdeController
      * @var CodeAde
      */
     private $model;
 
     /**
-     * View of CodeAdeController
+     * Vue de CodeAdeController
      * @var CodeAdeView
      */
     private $view;
 
     /**
-     * Constructor of CodeAdeController.
+     * Constructeur de CodeAdeController.
      */
     public function __construct() {
         $this->model = new CodeAde();
@@ -36,21 +36,21 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Insert a code Ade in the database and upload the schedule of this code
+     * Insère un code ADE dans la base de données et télécharge le planning de ce code.
      *
-     * @return string
+     * @return string Le formulaire de création.
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
-
             $validType = ['year', 'group', 'halfGroup'];
 
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
 
+            // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
                 is_numeric($code) && is_string($code) && strlen($code) < 20 &&
                 in_array($type, $validType)) {
@@ -59,8 +59,8 @@ class CodeAdeController extends Controller
                 $this->model->setCode($code);
                 $this->model->setType($type);
 
+                // Vérifie les doublons et insère le code
                 if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
-
                     $this->view->successCreation();
                     $this->addFile($code);
                     $this->view->refreshPage();
@@ -74,9 +74,10 @@ class CodeAdeController extends Controller
         return $this->view->createForm();
     }
 
-
     /**
-     * Modify code Ade
+     * Modifie un code ADE existant.
+     *
+     * @return string La vue du formulaire de modification.
      */
     public function modify() {
         $id = $_GET['id'];
@@ -94,6 +95,7 @@ class CodeAdeController extends Controller
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
 
+            // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
                 is_numeric($code) && is_string($code) && strlen($code) < 20 &&
                 in_array($type, $validType)) {
@@ -102,6 +104,7 @@ class CodeAdeController extends Controller
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
 
+                // Vérifie les doublons et met à jour le code
                 if (!$this->checkDuplicateCode($codeAde) && $codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
@@ -118,9 +121,9 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Display all codes Ade in a table
+     * Affiche tous les codes ADE dans un tableau.
      *
-     * @return string
+     * @return string Le tableau contenant tous les codes.
      */
     public function displayAllCodes() {
         $years = $this->model->getAllFromType('year');
@@ -131,7 +134,9 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Delete codes
+     * Supprime des codes ADE sélectionnés.
+     *
+     * @return void
      */
     public function deleteCodes() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -148,11 +153,10 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Check if a code Ade already exists with the same title or code
+     * Vérifie si un code ADE existe déjà avec le même titre ou code.
      *
-     * @param CodeAde $newCodeAde
-     *
-     * @return bool
+     * @param CodeAde $newCodeAde L'instance du nouveau code ADE à vérifier.
+     * @return bool Vrai si un doublon existe, faux sinon.
      */
     private function checkDuplicateCode(CodeAde $newCodeAde) {
         $codesAde = $this->model->checkCode($newCodeAde->getTitle(), $newCodeAde->getCode());
@@ -165,10 +169,6 @@ class CodeAdeController extends Controller
             ++$count;
         }
 
-        if (sizeof($codesAde) > 0) {
-            return true;
-        }
-
-        return false;
+        return sizeof($codesAde) > 0; // Renvoie vrai s'il y a des doublons
     }
 }
