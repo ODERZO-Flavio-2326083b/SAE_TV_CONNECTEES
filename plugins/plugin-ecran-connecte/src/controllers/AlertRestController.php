@@ -13,10 +13,16 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Classe AlertRestController
+ *
+ * Gère les routes REST pour les alertes.
+ */
 class AlertRestController extends WP_REST_Controller
 {
     /**
      * Constructeur du contrôleur REST.
+     * Initialise le namespace et la base des routes.
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';

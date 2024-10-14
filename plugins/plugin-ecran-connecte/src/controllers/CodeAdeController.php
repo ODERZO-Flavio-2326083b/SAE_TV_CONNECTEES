@@ -10,26 +10,34 @@ use Views\CodeAdeView;
  *
  * Cette classe gère les codes ADE : création, modification, suppression et affichage.
  *
+ * Gestion des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
+ * pour les codes ADE.
+ *
+ * Cette classe interagit avec le modèle CodeAde et la vue CodeAdeView
+ * pour effectuer les opérations sur les codes ADE.
+ *
  * @package Controllers
  */
 class CodeAdeController extends Controller
 {
-
     /**
      * Modèle associé au contrôleur CodeAde.
+     *
      * @var CodeAde
      */
     private $model;
 
     /**
      * Vue associée au contrôleur CodeAde.
+     *
      * @var CodeAdeView
      */
     private $view;
 
     /**
-     * Constructeur du contrôleur CodeAdeController.
-     * Initialise le modèle et la vue associés.
+     * Constructeur de la classe CodeAdeController.
+     *
+     * Initialise les objets modèle et vue.
      */
     public function __construct() {
         $this->model = new CodeAde();
@@ -38,6 +46,11 @@ class CodeAdeController extends Controller
 
     /**
      * Insère un code ADE dans la base de données et charge l'emploi du temps associé.
+     *
+     * Cette méthode traite les données soumises via un formulaire
+     * pour ajouter un nouveau code ADE. Elle vérifie les données
+     * entrées, s'assure qu'elles sont valides et les insère dans
+     * la base de données.
      *
      * @return string Retourne le formulaire de création du code ADE.
      *
@@ -51,23 +64,26 @@ class CodeAdeController extends Controller
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
-
+            // Types de codes valides
             $validType = ['year', 'group', 'halfGroup'];
 
+            // Récupération et validation des données soumises
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
 
+            // Vérification des valeurs
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
                 is_numeric($code) && is_string($code) && strlen($code) < 20 &&
                 in_array($type, $validType)) {
 
+                // Mise à jour du modèle avec les données valides
                 $this->model->setTitle($title);
                 $this->model->setCode($code);
                 $this->model->setType($type);
 
+                // Vérification des doublons et insertion dans la base de données
                 if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
-
                     $this->view->successCreation();
                     $this->addFile($code);
                     $this->view->refreshPage();
@@ -84,10 +100,17 @@ class CodeAdeController extends Controller
     /**
      * Modifie un code ADE existant.
      *
+     * Cette méthode gère la modification des données d'un code ADE.
+     * Elle récupère l'identifiant du code à modifier, vérifie
+     * son existence et traite les données soumises pour la mise à jour.
+     *
      * @return string Retourne le formulaire de modification ou un message d'erreur si le code est introuvable.
+     *
+     * @throws \Exception En cas d'erreur lors de la modification.
      */
     public function modify() {
         $id = $_GET['id'];
+        // Vérification de la validité de l'ID
         if (is_numeric($id) && !$this->model->get($id)) {
             return $this->view->errorNobody();
         }
@@ -96,20 +119,25 @@ class CodeAdeController extends Controller
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
+            // Types de codes valides
             $validType = ['year', 'group', 'halfGroup'];
 
+            // Récupération et validation des données
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
 
+            // Vérification des valeurs
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
                 is_numeric($code) && is_string($code) && strlen($code) < 20 &&
                 in_array($type, $validType)) {
 
+                // Mise à jour du modèle
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
 
+                // Vérification des doublons et mise à jour dans la base de données
                 if (!$this->checkDuplicateCode($codeAde) && $codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
@@ -128,6 +156,9 @@ class CodeAdeController extends Controller
     /**
      * Affiche tous les codes ADE dans un tableau.
      *
+     * Récupère tous les codes par type et les passe à la vue pour
+     * affichage. Utilisé pour présenter la liste complète des codes.
+     *
      * @return string Retourne la vue avec tous les codes ADE classés par type (année, groupe, demi-groupe).
      */
     public function displayAllCodes() {
@@ -141,7 +172,10 @@ class CodeAdeController extends Controller
     /**
      * Supprime des codes ADE sélectionnés.
      *
-     * Cette fonction supprime les codes ADE cochés dans une interface de gestion, puis rafraîchit la page.
+     * Cette méthode gère la suppression de codes ADE en fonction
+     * des cases à cocher sélectionnées par l'utilisateur.
+     *
+     * @throws \Exception En cas d'erreur lors de la suppression.
      */
     public function deleteCodes() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -160,6 +194,9 @@ class CodeAdeController extends Controller
     /**
      * Vérifie si un code ADE existe déjà avec le même titre ou code.
      *
+     * Cette méthode vérifie l'existence de doublons en comparant
+     * le nouveau code ADE avec ceux déjà enregistrés.
+     *
      * @param CodeAde $newCodeAde Le nouveau code ADE à vérifier.
      *
      * @return bool Retourne true si un doublon est trouvé, sinon false.
@@ -175,16 +212,13 @@ class CodeAdeController extends Controller
 
         $count = 0;
         foreach ($codesAde as $codeAde) {
+            // Ignore le code actuel lors de la vérification des doublons
             if ($newCodeAde->getId() === $codeAde->getId()) {
                 unset($codesAde[$count]);
             }
             ++$count;
         }
 
-        if (sizeof($codesAde) > 0) {
-            return true;
-        }
-
-        return false;
+        return sizeof($codesAde) > 0;
     }
 }

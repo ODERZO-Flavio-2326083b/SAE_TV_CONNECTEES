@@ -17,7 +17,7 @@ use WP_REST_Server;
 class CodeAdeRestController extends WP_REST_Controller
 {
     /**
-     * Constructeur du contrôleur REST
+     * Constructeur du contrôleur REST.
      * Initialise le namespace et la base des routes.
      */
     public function __construct() {
@@ -50,18 +50,18 @@ class CodeAdeRestController extends WP_REST_Controller
                         'title' => array(
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Titre du code ADE'),
+                            'description' => __('ADE code title'),
                         ),
                         'code' => array(
                             'type' => 'number',
                             'required' => true,
-                            'description' => __('Code ADE'),
+                            'description' => __('ADE code'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'required' => true,
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('Type de code ADE'),
+                            'description' => __('ADE code type'),
                         ),
                     ),
                 ),
@@ -75,7 +75,7 @@ class CodeAdeRestController extends WP_REST_Controller
             array(
                 'args' => array(
                     'id' => array(
-                        'description' => __('Identifiant unique du code ADE'),
+                        'description' => __('Unique identifier for the ADE code'),
                         'type' => 'integer',
                     ),
                 ),
@@ -92,16 +92,16 @@ class CodeAdeRestController extends WP_REST_Controller
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
-                            'description' => __('Titre du code ADE'),
+                            'description' => __('ADE code title'),
                         ),
                         'code' => array(
                             'type' => 'number',
-                            'description' => __('Code ADE'),
+                            'description' => __('ADE code'),
                         ),
                         'type' => array(
                             'type' => 'string',
                             'enum' => array('year', 'group', 'halfGroup'),
-                            'description' => __('Type de code ADE'),
+                            'description' => __('ADE code type'),
                         ),
                     ),
                 ),
@@ -121,6 +121,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return WP_Error|WP_REST_Response Réponse contenant la liste des codes ADE.
+     *
+     * @example
+     * Exemple de requête pour récupérer tous les codes ADE :
+     * GET /amu-ecran-connectee/v1/ade
      */
     public function get_items($request) {
         // Obtient une instance du gestionnaire de codes ADE
@@ -157,7 +161,7 @@ class CodeAdeRestController extends WP_REST_Controller
         if (($insert_id = $ade_code->insert()))
             return new WP_REST_Response(array('id' => $insert_id), 200);
 
-        return new WP_REST_Response(array('message' => 'Impossible d\'insérer le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not insert the ADE code'), 400);
     }
 
     /**
@@ -177,7 +181,7 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupère les informations depuis la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'Code ADE non trouvé'), 404);
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         return new WP_REST_Response($requested_ade_code, 200);
     }
@@ -204,7 +208,7 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupère les informations depuis la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code)
-            return new WP_REST_Response(array('message' => 'Code ADE non trouvé'), 404);
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         // Met à jour les informations
         if (is_string($request->get_json_params()['title']))
@@ -220,7 +224,7 @@ class CodeAdeRestController extends WP_REST_Controller
         if ($requested_ade_code->update() > 0)
             return new WP_REST_Response(null, 200);
 
-        return new WP_REST_Response(array('message' => 'Impossible de mettre à jour le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not update the ADE code'), 400);
     }
 
     /**
@@ -239,10 +243,11 @@ class CodeAdeRestController extends WP_REST_Controller
 
         // Récupère les informations depuis la base de données
         $requested_ade_code = $codeAde->get($request->get_param('id'));
-        if ($requested_ade_code && $requested_ade_code->delete())
-            return new WP_REST_Response(null, 200);
+        if ($requested_ade_code && $requested_ade_code->delete()) {
+            return new WP_REST_Response(null, 204);
+        }
 
-        return new WP_REST_Response(array('message' => 'Impossible de supprimer le code ADE'), 400);
+        return new WP_REST_Response(array('message' => 'Could not delete the ADE code'), 400);
     }
 
     /**
@@ -250,6 +255,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return WP_Error|bool Retourne true si l'accès est autorisé, WP_Error sinon.
+     *
+     * @example
+     * Cette méthode est utilisée pour vérifier si l'utilisateur courant a
+     * les droits d'accès pour récupérer des codes ADE.
      */
     public function get_items_permissions_check($request) {
         $current_user = wp_get_current_user();
@@ -261,6 +270,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return true|WP_Error Retourne true si l'accès est autorisé, WP_Error sinon.
+     *
+     * @example
+     * Cette méthode vérifie si l'utilisateur a les droits nécessaires
+     * pour créer un code ADE.
      */
     public function create_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -271,6 +284,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return true|WP_Error Retourne true si l'accès est autorisé, WP_Error sinon.
+     *
+     * @example
+     * Cette méthode est utilisée pour vérifier les droits d'accès
+     * lors de la lecture d'un code ADE.
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -281,6 +298,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return true|WP_Error Retourne true si l'accès est autorisé, WP_Error sinon.
+     *
+     * @example
+     * Cette méthode vérifie si l'utilisateur a les droits nécessaires
+     * pour mettre à jour un code ADE.
      */
     public function update_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -291,6 +312,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Données complètes concernant la requête.
      * @return true|WP_Error Retourne true si l'accès est autorisé, WP_Error sinon.
+     *
+     * @example
+     * Cette méthode est utilisée pour vérifier les droits d'accès
+     * lors de la suppression d'un code ADE.
      */
     public function delete_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
