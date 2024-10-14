@@ -159,7 +159,7 @@ class UserRestController extends WP_REST_Controller
     /**
      * Récupère une seule alerte.
      *
-     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @param WP_REST_Request $request Détails complètes concernant la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function get_item($request) {
@@ -178,7 +178,7 @@ class UserRestController extends WP_REST_Controller
     /**
      * Met à jour une seule alerte.
      *
-     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @param WP_REST_Request $request Détails complètes concernant la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function update_item($request) {
@@ -221,7 +221,7 @@ class UserRestController extends WP_REST_Controller
     /**
      * Supprime une seule alerte.
      *
-     * @param WP_REST_Request $request Détails complets concernant la requête.
+     * @param WP_REST_Request $request Détails complètes concernant la requête.
      * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function delete_item($request) {
@@ -251,8 +251,8 @@ class UserRestController extends WP_REST_Controller
     /**
      * Vérifie si une requête donnée a accès pour créer une alerte.
      *
-     * @param WP_REST_Request $request Détails complets concernant la requête.
-     * @return true|WP_Error Vrai si la requête a accès pour créer des éléments, objet WP_Error sinon.
+     * @param WP_REST_Request $request Détails complètes concernant la requête.
+     * @return true|WP_Error Vrai si la requête a accès pour créer une alerte, objet WP_Error sinon.
      */
     public function create_item_permissions_check($request) {
         return current_user_can('edit_posts');
