@@ -15,115 +15,115 @@ class Controller
 {
 
     /**
-     * Explose l'URL par /
+     * Extrait les parties de l'URL en fonction du caractère /
      *
-     * @return array Retourne un tableau contenant les différentes parties de l'URL.
+     * @return array Retourne un tableau contenant les segments de l'URL.
      */
     public function getPartOfUrl() {
-        $url = $_SERVER['REQUEST_URI'];
-        $urlExplode = explode('/', $url);
-        $cleanUrl = array();
+        $url = $_SERVER['REQUEST_URI']; // Récupère l'URL de la requête
+        $urlExplode = explode('/', $url); // Sépare l'URL par le caractère /
+        $cleanUrl = array(); // Tableau pour stocker les segments nettoyés
         for ($i = 0; $i < sizeof($urlExplode); ++$i) {
             if ($urlExplode[$i] != '/' && $urlExplode[$i] != '') {
-                $cleanUrl[] = $urlExplode[$i];
+                $cleanUrl[] = $urlExplode[$i]; // Ajoute les segments non vides au tableau
             }
         }
-        return $cleanUrl;
+        return $cleanUrl; // Retourne le tableau des segments nettoyés
     }
 
     /**
-     * Écrit des erreurs dans un fichier journal.
+     * Écrit les erreurs dans un fichier de log.
      *
-     * @param $event    string Événement à enregistrer dans le journal.
+     * @param string $event Événement ou message d'erreur à enregistrer.
      */
     public function addLogEvent($event) {
-        $time = date("D, d M Y H:i:s");
-        $time = "[" . $time . "] ";
-        $event = $time . $event . "\n";
-        file_put_contents(ABSPATH . TV_PLUG_PATH . "fichier.log", $event, FILE_APPEND);
+        $time = date("D, d M Y H:i:s"); // Obtient l'heure actuelle
+        $time = "[" . $time . "] "; // Formate l'heure pour le log
+        $event = $time . $event . "\n"; // Prépare le message d'erreur
+        file_put_contents(ABSPATH . TV_PLUG_PATH . "fichier.log", $event, FILE_APPEND); // Écrit dans le fichier log
     }
 
     /**
      * Obtient l'URL pour télécharger un fichier ICS.
      *
-     * @param $code     int Code ADE à utiliser dans l'URL.
+     * @param int $code Code pour lequel l'URL est générée.
      *
      * @return string Retourne l'URL pour le fichier ICS.
      */
     public function getUrl($code) {
-        $str = strtotime("now");
-        $str2 = strtotime(date("Y-m-d", strtotime('now')) . " +6 day");
-        $start = date('Y-m-d', $str);
-        $end = date('Y-m-d', $str2);
-        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=' . $code . '&calType=ical&firstDate=' . $start . '&lastDate=' . $end;
-        return $url;
+        $str = strtotime("now"); // Récupère le timestamp actuel
+        $str2 = strtotime(date("Y-m-d", strtotime('now')) . " +6 day"); // Timestamp pour 6 jours dans le futur
+        $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
+        $end = date('Y-m-d', $str2); // Date de fin (dans 6 jours)
+        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=' . $code . '&calType=ical&firstDate=' . $start . '&lastDate=' . $end; // Génère l'URL
+        return $url; // Retourne l'URL
     }
 
     /**
-     * Obtient le chemin d'un fichier pour un code donné.
+     * Obtient le chemin d'un fichier à partir d'un code.
      *
-     * @param $code     int Code ADE pour lequel le chemin doit être obtenu.
+     * @param int $code Code pour lequel le chemin du fichier est recherché.
      *
-     * @return string Retourne le chemin du fichier ICS correspondant au code.
+     * @return string Retourne le chemin du fichier ICS.
      */
     public function getFilePath($code) {
-        $base_path = ABSPATH . TV_ICSFILE_PATH;
+        $base_path = ABSPATH . TV_ICSFILE_PATH; // Définit le chemin de base
 
         // Vérifie si le fichier local existe
         for ($i = 0; $i <= 3; ++$i) {
-            $file_path = $base_path . 'file' . $i . '/' . $code . '.ics';
-            // TODO: Demander à propos de la taille du fichier
-            if (file_exists($file_path) && filesize($file_path) > 100)
-                return $file_path;
+            $file_path = $base_path . 'file' . $i . '/' . $code . '.ics'; // Crée le chemin du fichier
+            // TODO: Demander a propos du filesize
+            if (file_exists($file_path) && filesize($file_path) > 100) // Vérifie si le fichier existe et a une taille suffisante
+                return $file_path; // Retourne le chemin du fichier
         }
 
         // Pas de version locale, téléchargeons-en une
-        $this->addFile($code);
-        return $base_path . "file0/" . $code . '.ics';
+        $this->addFile($code); // Appelle la méthode pour ajouter le fichier
+        return $base_path . "file0/" . $code . '.ics'; // Retourne le chemin du fichier téléchargé
     }
 
     /**
      * Télécharge un fichier ICS.
      *
-     * @param $code     int Code ADE à télécharger.
+     * @param int $code Code ADE pour le fichier à télécharger.
      */
     public function addFile($code) {
         try {
-            $path = ABSPATH . TV_ICSFILE_PATH . "file0/" . $code . '.ics';
-            $url = $this->getUrl($code);
+            $path = ABSPATH . TV_ICSFILE_PATH . "file0/" . $code . '.ics'; // Définit le chemin du fichier à créer
+            $url = $this->getUrl($code); // Obtient l'URL du fichier à télécharger
             //file_put_contents($path, fopen($url, 'r'));
-            $contents = '';
-            if (($handler = @fopen($url, "r")) !== FALSE) {
+            $contents = ''; // Initialise une variable pour stocker le contenu
+            if (($handler = @fopen($url, "r")) !== FALSE) { // Ouvre l'URL
                 while (!feof($handler)) {
-                    $contents .= fread($handler, 8192);
+                    $contents .= fread($handler, 8192); // Lit le contenu en morceaux
                 }
-                fclose($handler);
+                fclose($handler); // Ferme le gestionnaire de fichier
             } else {
-                throw new Exception('Échec de l\'ouverture du fichier.');
+                throw new Exception('File open failed.'); // Lève une exception si l'ouverture échoue
             }
-            if ($handle = fopen($path, "w")) {
-                fwrite($handle, $contents);
-                fclose($handle);
+            if ($handle = fopen($path, "w")) { // Ouvre le fichier pour écrire
+                fwrite($handle, $contents); // Écrit le contenu dans le fichier
+                fclose($handle); // Ferme le gestionnaire de fichier
             } else {
-                throw new Exception('Échec de l\'ouverture du fichier.');
+                throw new Exception('File open failed.'); // Lève une exception si l'ouverture échoue
             }
         } catch (Exception $e) {
-            $this->addLogEvent($e);
+            $this->addLogEvent($e); // Enregistre l'exception dans le log
         }
     }
 
     /**
      * Vérifie si l'entrée est une date valide.
      *
-     * @param $date string La date à vérifier.
+     * @param string $date La date à vérifier.
      *
      * @return bool Retourne vrai si la date est valide, faux sinon.
      */
     public function isRealDate($date) {
-        if (false === strtotime($date)) {
-            return false;
+        if (false === strtotime($date)) { // Vérifie si la date peut être convertie en timestamp
+            return false; // Retourne faux si la date n'est pas valide
         }
-        list($year, $month, $day) = explode('-', $date);
-        return checkdate($month, $day, $year);
+        list($year, $month, $day) = explode('-', $date); // Sépare la date en année, mois et jour
+        return checkdate($month, $day, $year); // Vérifie si la date est valide
     }
 }
