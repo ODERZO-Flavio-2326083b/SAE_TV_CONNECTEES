@@ -7,7 +7,7 @@ use Models\CodeAde;
 /**
  * Class CodeAdeView
  *
- * All view for code ade (Forms, table, messages)
+ * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
  *
  * @package Views
  */
@@ -15,9 +15,10 @@ class CodeAdeView extends View
 {
 
     /**
-     * Display form for create code ade
+     * Affiche le formulaire pour créer un code ADE.
      *
      * @return string
+     * Retourne le code HTML du formulaire de création de code ADE.
      */
     public function createForm() {
         return '
@@ -49,13 +50,14 @@ class CodeAdeView extends View
     }
 
     /**
-     * Display a form for modify a code ade
+     * Affiche un formulaire pour modifier un code ADE.
      *
-     * @param $title    string
-     * @param $type     string
-     * @param $code     int
+     * @param string $title  Titre du code ADE à modifier.
+     * @param string $type   Type du code ADE à modifier.
+     * @param int    $code   Code ADE à modifier.
      *
      * @return string
+     * Retourne le code HTML du formulaire de modification de code ADE.
      */
     public function displayModifyCode($title, $type, $code) {
         $page = get_page_by_title('Gestion des codes ADE');
@@ -73,7 +75,7 @@ class CodeAdeView extends View
             	<input type="text" class="form-control" id="code" name="code" placeholder="Code" value="' . $code . '">
             </div>
             <div class="form-group">
-            	<label for="type">Selectionner un type</label>
+            	<label for="type">Sélectionner un type</label>
              	<select class="form-control" id="type" name="type">
                     ' . $this->createTypeOption($type) . '
                 </select>
@@ -84,16 +86,17 @@ class CodeAdeView extends View
     }
 
     /**
-     * Display options for selecting a code type
+     * Affiche les options pour sélectionner un type de code.
      *
-     * @param string $selectedType Currently selected type of the code
+     * @param string $selectedType Type actuellement sélectionné.
      *
      * @return string
+     * Retourne le code HTML des options de sélection de type de code.
      */
     private function createTypeOption($selectedType) {
         $result = '';
 
-        // Declare available code types
+        // Déclare les types de code disponibles
         $types = array(
             array(
                 'value' => 'year',
@@ -109,7 +112,7 @@ class CodeAdeView extends View
             ),
         );
 
-        // Build option list
+        // Construit la liste des options
         foreach ($types as $type) {
             $result .= '<option value="' . $type['value'] . '"';
 
@@ -123,13 +126,14 @@ class CodeAdeView extends View
     }
 
     /**
-     * Display all informations of a code ade
+     * Affiche toutes les informations des codes ADE.
      *
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param CodeAde[] $years        Liste des codes ADE de type année.
+     * @param CodeAde[] $groups       Liste des codes ADE de type groupe.
+     * @param CodeAde[] $halfGroups   Liste des codes ADE de type demi-groupe.
      *
-     * @return          string
+     * @return string
+     * Retourne le code HTML affichant tous les codes ADE.
      */
     public function displayAllCode($years, $groups, $halfGroups) {
         $page = get_page_by_title('Modifier un code ADE');
@@ -162,14 +166,14 @@ class CodeAdeView extends View
     }
 
     /**
-     * Display a success message for the creation of a new code ADE
+     * Affiche un message de succès pour la création d'un nouveau code ADE.
      */
     public function successCreation() {
         $this->buildModal('Ajout du code ADE', '<p>Le code ADE a bien été ajouté</p>');
     }
 
     /**
-     * Display a success message for the modification of a code ADE
+     * Affiche un message de succès pour la modification d'un code ADE.
      */
     public function successModification() {
         $page = get_page_by_title('Gestion des codes ADE');
@@ -178,28 +182,28 @@ class CodeAdeView extends View
     }
 
     /**
-     * Display an error message for the creation of a code ADE
+     * Affiche un message d'erreur lors de la création d'un code ADE.
      */
     public function errorCreation() {
         $this->buildModal('Erreur lors de l\'ajout du code ADE', '<p>Le code ADE a rencontré une erreur lors de son ajout</p>');
     }
 
     /**
-     * Display an error message for the modification of a code ADE
+     * Affiche un message d'erreur lors de la modification d'un code ADE.
      */
     public function errorModification() {
         $this->buildModal('Erreur lors de la modification du code ADE', '<p>Le code ADE a rencontré une erreur lors de sa modification</p>');
     }
 
     /**
-     * Error message if title or code exist
+     * Affiche un message d'erreur si le titre ou le code existe déjà.
      */
     public function displayErrorDoubleCode() {
         echo '<p class="alert alert-danger"> Ce code ou ce titre existe déjà</p>';
     }
 
     /**
-     * Display an message if there is nothing
+     * Affiche un message si aucun code n'est disponible.
      */
     public function errorNobody() {
         $page = get_page_by_title('Gestion des codes ADE');
