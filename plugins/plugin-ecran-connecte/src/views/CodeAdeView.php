@@ -75,7 +75,7 @@ class CodeAdeView extends View
             	<input type="text" class="form-control" id="code" name="code" placeholder="Code" value="' . $code . '">
             </div>
             <div class="form-group">
-            	<label for="type">Sélectionner un type</label>
+            	<label for="type">Selectionner un type</label>
              	<select class="form-control" id="type" name="type">
                     ' . $this->createTypeOption($type) . '
                 </select>
