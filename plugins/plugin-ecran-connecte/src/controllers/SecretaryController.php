@@ -8,13 +8,12 @@ use Views\SecretaryView;
 /**
  * Class SecretaryController
  *
- * All actions for secretary (Create, update, display)
+ * Gère toutes les actions relatives aux secrétaires (Création, mise à jour, affichage).
  *
  * @package Controllers
  */
 class SecretaryController extends UserController
 {
-
     /**
      * @var User
      */
@@ -27,6 +26,8 @@ class SecretaryController extends UserController
 
     /**
      * Constructor of SecretaryController.
+     *
+     * Initialise le modèle et la vue pour le contrôleur des secrétaires.
      */
     public function __construct() {
         parent::__construct();
@@ -34,22 +35,24 @@ class SecretaryController extends UserController
         $this->view = new SecretaryView();
     }
 
-
     /**
-     * Display the magic button to dl schedule
+     * Affiche le bouton magique pour télécharger le calendrier.
+     *
+     * @return string
      */
     public function displayMySchedule() {
         return $this->view->displayWelcomeAdmin();
     }
 
     /**
-     * Insert a secretary in the database
+     * Insère un secrétaire dans la base de données.
+     *
+     * @return string
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createSecre');
 
         if (isset($action)) {
-
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
@@ -77,7 +80,8 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Display all secretary
+     * Affiche tous les secrétaires.
+     *
      * @return string
      */
     public function displayAllSecretary() {
@@ -85,10 +89,10 @@ class SecretaryController extends UserController
         return $this->view->displayAllSecretary($users);
     }
 
-    /*** MANAGE USER ***/
+    /*** GESTION DES UTILISATEURS ***/
 
     /**
-     * Create an user
+     * Crée un utilisateur.
      *
      * @return string
      */
@@ -99,6 +103,7 @@ class SecretaryController extends UserController
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
+
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('student', 'Étudiants', true) .
@@ -119,7 +124,9 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Display users by roles
+     * Affiche les utilisateurs par rôle.
+     *
+     * @return string
      */
     public function displayUsers() {
         $student = new StudentController();
@@ -128,6 +135,7 @@ class SecretaryController extends UserController
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
+
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('student', 'Étudiants', true) .
@@ -147,13 +155,14 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Modify an user
+     * Modifie un utilisateur.
+     *
+     * @return string
      */
     public function modifyUser() {
         $id = $_GET['id'];
         if (is_numeric($id) && $this->model->get($id)) {
             $user = $this->model->get($id);
-
             $wordpressUser = get_user_by('id', $id);
 
             if (in_array("etudiant", $wordpressUser->roles)) {
@@ -177,11 +186,12 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Delete users
+     * Supprime des utilisateurs.
      */
     public function deleteUsers() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         $roles = ['Etu', 'Teacher', 'Direc', 'Tech', 'Secre', 'Tele'];
+
         if (isset($actionDelete)) {
             foreach ($roles as $role) {
                 if (isset($_REQUEST['checkboxStatus' . $role])) {
@@ -195,9 +205,9 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Delete an user
+     * Supprime un utilisateur.
      *
-     * @param $id
+     * @param int $id L'identifiant de l'utilisateur à supprimer.
      */
     private function deleteUser($id) {
         $user = $this->model->get($id);
