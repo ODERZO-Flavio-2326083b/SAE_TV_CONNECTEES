@@ -9,10 +9,20 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * @class InformationRestController
+ * @brief Classe pour gérer le contrôleur REST des informations.
+ *
+ * Cette classe permet de gérer les requêtes REST concernant les
+ * informations dans l'application, notamment la création,
+ * la récupération, la mise à jour et la suppression d'informations.
+ */
 class InformationRestController extends WP_REST_Controller
 {
     /**
      * Constructor for the REST controller
+     *
+     * Initialise le contrôleur avec le namespace et la base REST.
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -21,6 +31,8 @@ class InformationRestController extends WP_REST_Controller
 
     /**
      * Register the routes for the objects of the controller.
+     *
+     * Enregistre les routes pour accéder aux méthodes du contrôleur REST.
      */
     public function register_routes() {
         register_rest_route(
@@ -108,7 +120,9 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Get a collection of items
      *
-     * @param WP_REST_Request $request Full data about the request.
+     * Récupère une collection d'objets d'information.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
      * @return WP_Error|WP_REST_Response
      */
     public function get_items($request) {
@@ -125,8 +139,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Creates a single information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Crée une nouvelle entrée d'information.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function create_item($request) {
         // Get an instance of the information manager
@@ -151,8 +167,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Retrieves a single information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Récupère une seule entrée d'information à partir de son identifiant.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function get_item($request) {
         // Get an instance of the information manager
@@ -169,8 +187,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Updates a single information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Met à jour une entrée d'information existante.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function update_item($request) {
         // Get an instance of the information manager
@@ -201,8 +221,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Deletes a single information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Supprime une entrée d'information existante.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
      */
     public function delete_item($request) {
         // Get an instance of the information manager
@@ -219,7 +241,9 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Check if a given request has access to get items
      *
-     * @param WP_REST_Request $request Full data about the request.
+     * Vérifie si la requête actuelle a les permissions pour obtenir les informations.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
      * @return WP_Error|bool
      */
     public function get_items_permissions_check($request) {
@@ -230,8 +254,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Checks if a given request has access to create an information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
+     * Vérifie si la requête actuelle a les permissions pour créer des informations.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return true|WP_Error Vrai si la requête a accès à la création d'items, objet WP_Error sinon.
      */
     public function create_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -240,8 +266,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Checks if a given request has access to read an information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     * Vérifie si la requête actuelle a les permissions pour lire une information.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return true|WP_Error Vrai si la requête a accès à lire l'item, objet WP_Error sinon.
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -250,8 +278,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Checks if a given request has access to update a single information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
+     * Vérifie si la requête actuelle a les permissions pour mettre à jour une information.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return true|WP_Error Vrai si la requête a accès à mettre à jour l'item, objet WP_Error sinon.
      */
     public function update_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -260,8 +290,10 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Checks if a given request has access delete an information.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+     * Vérifie si la requête actuelle a les permissions pour supprimer une information.
+     *
+     * @param WP_REST_Request $request Données complètes sur la requête.
+     * @return true|WP_Error Vrai si la requête a accès à supprimer l'item, objet WP_Error sinon.
      */
     public function delete_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
@@ -270,7 +302,9 @@ class InformationRestController extends WP_REST_Controller
     /**
      * Retrieves the query params for collections.
      *
-     * @return array Collection parameters.
+     * Récupère les paramètres de requête pour les collections.
+     *
+     * @return array Paramètres de collection.
      */
     public function get_collection_params() {
         $query_params = [];
