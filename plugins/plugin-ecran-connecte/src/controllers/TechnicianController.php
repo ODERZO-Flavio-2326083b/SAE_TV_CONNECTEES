@@ -9,7 +9,7 @@ use Views\TechnicianView;
 /**
  * Class TechnicianController
  *
- * Manage Technician (Create, update, delete, display, display schedule)
+ * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de l'emploi du temps)
  *
  * @package Controllers
  */
@@ -17,17 +17,22 @@ class TechnicianController extends UserController implements Schedule
 {
 
     /**
+     * Modèle de TechnicianController.
+     *
      * @var User
      */
     private $model;
 
     /**
+     * Vue de TechnicianController.
+     *
      * @var TechnicianView
      */
     private $view;
 
     /**
-     * Constructor of SecretaryController.
+     * Constructeur de TechnicianController.
+     * Initialise le modèle et la vue.
      */
     public function __construct() {
         parent::__construct();
@@ -36,7 +41,9 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Insert a technician in the database
+     * Insère un technicien dans la base de données.
+     *
+     * @return string Retourne le HTML du formulaire d'insertion de technicien.
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createTech');
@@ -48,16 +55,17 @@ class TechnicianController extends UserController implements Schedule
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTech');
             $email = filter_input(INPUT_POST, 'emailTech');
 
+            // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm
-                && is_email($email)) {
+                $password === $passwordConfirm && is_email($email)) {
 
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('technicien');
 
+                // Insertion dans la base de données
                 if ($this->model->insert()) {
                     $this->view->displayInsertValidate();
                 } else {
@@ -71,9 +79,9 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Display all technicians in a table
+     * Affiche tous les techniciens dans un tableau.
      *
-     * @return string
+     * @return string Retourne le HTML affichant tous les techniciens.
      */
     public function displayAllTechnician() {
         $users = $this->model->getUsersByRole('technicien');
@@ -81,9 +89,9 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Display the schedule of all students
+     * Affiche l'emploi du temps de tous les étudiants.
      *
-     * @return mixed|string
+     * @return mixed|string Retourne les horaires des étudiants sous forme de chaîne de caractères.
      */
     public function displayMySchedule() {
         $codeAde = new CodeAde();
