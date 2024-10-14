@@ -32,34 +32,34 @@ class UserRestController extends WP_REST_Controller
             [
                 [
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => [$this, 'get_items'],
-                    'permission_callback' => [$this, 'get_items_permissions_check'],
+                    'callback' => array($this, 'get_items'), // Récupère la liste des alertes
+                    'permission_callback' => array($this, 'get_items_permissions_check'), // Vérifie les permissions pour récupérer les alertes
                     'args' => [],
                 ],
                 [
                     'methods' => WP_REST_Server::CREATABLE,
-                    'callback' => [$this, 'create_item'],
-                    'permission_callback' => [$this, 'create_item_permissions_check'],
+                    'callback' => array($this, 'create_item'), // Crée une nouvelle alerte
+                    'permission_callback' => array($this, 'create_item_permissions_check'), // Vérifie les permissions pour créer une alerte
                     'args' => [
                         'content' => [
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Alert content'),
+                            'description' => __('Alert content'), // Contenu de l'alerte
                         ],
                         'expiration-date' => [
                             'type' => 'string',
                             'required' => true,
-                            'description' => __('Alert expiration date'),
+                            'description' => __('Alert expiration date'), // Date d'expiration de l'alerte
                         ],
                         'codes' => [
                             'type' => 'array',
                             'required' => true,
-                            'items' => ['type' => 'string'],
-                            'description' => __('ADE codes'),
+                            'items' => ['type' => 'string'], // Tableau de codes ADE
+                            'description' => __('ADE codes'), // Codes ADE associés à l'alerte
                         ],
                     ],
                 ],
-                'schema' => [$this, 'get_public_item_schema'],
+                'schema' => array($this, 'get_public_item_schema'), // Schéma de l'alerte
             ]
         );
 
@@ -69,43 +69,43 @@ class UserRestController extends WP_REST_Controller
             [
                 'args' => [
                     'id' => [
-                        'description' => __('Unique identifier for the alert'),
+                        'description' => __('Unique identifier for the alert'), // Identifiant unique pour l'alerte
                         'type' => 'integer',
                     ],
                 ],
                 [
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => [$this, 'get_item'],
-                    'permission_callback' => [$this, 'get_item_permissions_check'],
+                    'callback' => array($this, 'get_item'), // Récupère une alerte spécifique
+                    'permission_callback' => array($this, 'get_item_permissions_check'), // Vérifie les permissions pour récupérer l'alerte
                     'args' => null,
                 ],
                 [
                     'methods' => WP_REST_Server::EDITABLE,
-                    'callback' => [$this, 'update_item'],
-                    'permission_callback' => [$this, 'update_item_permissions_check'],
+                    'callback' => array($this, 'update_item'), // Met à jour une alerte existante
+                    'permission_callback' => array($this, 'update_item_permissions_check'), // Vérifie les permissions pour mettre à jour l'alerte
                     'args' => [
                         'content' => [
                             'type' => 'string',
-                            'description' => __('Alert content'),
+                            'description' => __('Alert content'), // Contenu de l'alerte à mettre à jour
                         ],
                         'expiration-date' => [
                             'type' => 'string',
-                            'description' => __('Alert expiration date'),
+                            'description' => __('Alert expiration date'), // Date d'expiration de l'alerte à mettre à jour
                         ],
                         'codes' => [
                             'type' => 'array',
-                            'items' => ['type' => 'string'],
-                            'description' => __('ADE codes'),
+                            'items' => ['type' => 'string'], // Tableau de nouveaux codes ADE
+                            'description' => __('ADE codes'), // Codes ADE associés à l'alerte
                         ],
                     ],
                 ],
                 [
                     'methods' => WP_REST_Server::DELETABLE,
-                    'callback' => [$this, 'delete_item'],
-                    'permission_callback' => [$this, 'delete_item_permissions_check'],
+                    'callback' => array($this, 'delete_item'), // Supprime une alerte existante
+                    'permission_callback' => array($this, 'delete_item_permissions_check'), // Vérifie les permissions pour supprimer l'alerte
                     'args' => [],
                 ],
-                'schema' => [$this, 'get_public_item_schema'],
+                'schema' => array($this, 'get_public_item_schema'), // Schéma de l'alerte
             ]
         );
     }
@@ -228,30 +228,18 @@ class UserRestController extends WP_REST_Controller
         // Obtenir une instance du gestionnaire d'alertes
         $alert = new Alert();
 
-        // Récupérer les informations depuis la base de données
-        $requested_alert = $alert->get($request->get_param('id'));
-        if ($requested_alert && $requested_alert->delete()) {
-            return new WP_REST_Response(null, 200);
+        // Essayer de supprimer l'alerte
+        if ($alert->delete($request->get_param('id'))) {
+            return new WP_REST_Response(null, 204);
         }
 
         return new WP_REST_Response(['message' => 'Could not delete the alert'], 400);
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour récupérer des éléments.
-     *
-     * @param WP_REST_Request $request Données complètes concernant la requête.
-     * @return WP_Error|bool
-     */
-    public function get_items_permissions_check($request) {
-        $current_user = wp_get_current_user();
-        return in_array("administrator", $current_user->roles);
-    }
-
-    /**
      * Vérifie si une requête donnée a accès pour créer une alerte.
      *
-     * @param WP_REST_Request $request Détails complètes concernant la requête.
+     * @param WP_REST_Request $request Détails complets concernant la requête.
      * @return true|WP_Error Vrai si la requête a accès pour créer une alerte, objet WP_Error sinon.
      */
     public function create_item_permissions_check($request) {
@@ -301,31 +289,31 @@ class UserRestController extends WP_REST_Controller
             'properties' => [
                 'id' => [
                     'type' => 'integer',
-                    'description' => __('ID of the alert'),
+                    'description' => __('ID of the alert'), // ID de l'alerte
                 ],
                 'author' => [
                     'type' => 'integer',
-                    'description' => __('Author ID of the alert'),
+                    'description' => __('Author ID of the alert'), // ID de l'auteur de l'alerte
                 ],
                 'content' => [
                     'type' => 'string',
-                    'description' => __('Content of the alert'),
+                    'description' => __('Content of the alert'), // Contenu de l'alerte
                 ],
                 'creation_date' => [
                     'type' => 'string',
-                    'description' => __('Creation date of the alert'),
+                    'description' => __('Creation date of the alert'), // Date de création de l'alerte
                 ],
                 'expiration_date' => [
                     'type' => 'string',
-                    'description' => __('Expiration date of the alert'),
+                    'description' => __('Expiration date of the alert'), // Date d'expiration de l'alerte
                 ],
                 'codes' => [
                     'type' => 'array',
-                    'items' => ['type' => 'string'],
-                    'description' => __('List of ADE codes associated with the alert'),
+                    'items' => ['type' => 'string'], // Liste des codes ADE
+                    'description' => __('List of ADE codes associated with the alert'), // Liste des codes ADE associés à l'alerte
                 ],
             ],
-            'required' => ['content', 'creation_date', 'expiration_date'],
+            'required' => ['content', 'creation_date', 'expiration_date'], // Champs requis pour l'alerte
         ];
     }
 }
