@@ -64,7 +64,7 @@ class TelevisionController extends UserController implements Schedule
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm) {
 
-                $codesAde = [];
+                $codesAde = array();
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {
                         if (is_null($codeAde->getByCode($code)->getId())) {
@@ -122,7 +122,7 @@ class TelevisionController extends UserController implements Schedule
         if (isset($action)) {
             $codes = $_POST['selectTv'];
 
-            $codesAde = [];
+            $codesAde = array();
             foreach ($codes as $code) {
                 if (is_null($codeAde->getByCode($code)->getId())) {
                     return 'error'; // Code invalide
