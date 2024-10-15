@@ -26,8 +26,22 @@ class StudyDirectorController extends UserController implements Schedule
     private $view;
 
     /**
-     * Constructeur de StudyDirectorController.
-     * Initialise le modèle et la vue.
+     * Initialise une instance de la classe.
+     *
+     * Cette méthode est le constructeur de la classe, elle appelle le constructeur
+     * de la classe parente et initialise les propriétés de modèle et de vue.
+     * Le modèle est instancié en tant qu'objet `User` et la vue est instanciée
+     * en tant qu'objet `StudyDirectorView`. Cela permet de gérer les opérations
+     * liées aux utilisateurs et d'afficher les vues correspondantes.
+     *
+     * @return void Ce constructeur n'a pas de valeur de retour.
+     *
+     * @example
+     * // Créer une instance de la classe avec les dépendances appropriées :
+     * $instance = new NomDeLaClasse();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         parent::__construct();
@@ -36,9 +50,23 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Affiche l'emploi du temps du directeur d'études.
+     * Affiche l'emploi du temps de l'utilisateur courant.
      *
-     * @return bool|mixed|string Retourne l'emploi du temps ou un message d'erreur si aucun code n'est enregistré.
+     * Cette méthode récupère l'utilisateur actuellement connecté et vérifie
+     * s'il possède des codes associés. Si des codes sont trouvés, elle affiche
+     * l'emploi du temps correspondant au premier code de l'utilisateur.
+     * Si aucun code n'est enregistré, elle renvoie un message d'erreur
+     * indiquant que l'utilisateur n'a pas de code associé.
+     *
+     * @return string Retourne l'affichage de l'emploi du temps si un code
+     *                est disponible, sinon un message d'erreur.
+     *
+     * @example
+     * // Afficher l'emploi du temps de l'utilisateur courant :
+     * $this->displayMySchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -51,9 +79,23 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Insère un directeur d'études dans la base de données.
+     * Insère un nouvel utilisateur de type directeur d'études dans la base de données.
      *
-     * @return string Retourne le HTML du formulaire de création du directeur d'études.
+     * Cette méthode traite les informations fournies par le formulaire d'inscription
+     * d'un directeur d'études, effectue des validations sur les données saisies
+     * (login, mot de passe, e-mail, et code) et, si tout est valide, insère
+     * le nouvel utilisateur dans la base de données. Elle gère également
+     * la création de fichiers associés pour le code fourni.
+     *
+     * @return string Retourne l'affichage du formulaire de création de directeur
+     *                d'études, ou un message d'erreur si les validations échouent.
+     *
+     * @example
+     * // Insérer un nouveau directeur d'études :
+     * $this->insert();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createDirec');
@@ -95,11 +137,26 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Modifie le directeur d'études.
+     * Modifie les informations d'un directeur d'études existant.
      *
-     * @param User $user L'utilisateur à modifier.
+     * Cette méthode gère la mise à jour des données d'un directeur d'études, y compris
+     * le code associé à son compte. Elle récupère les informations du formulaire de
+     * modification, vérifie que le code est numérique et met à jour les informations
+     * de l'utilisateur dans la base de données. Si la mise à jour réussit, un message
+     * de validation est affiché.
      *
-     * @return string Retourne le HTML du formulaire de modification du directeur d'études.
+     * @param User $user L'objet utilisateur à modifier, représentant le directeur
+     *                   d'études dont les informations doivent être mises à jour.
+     *
+     * @return string Retourne l'affichage du formulaire de modification de directeur
+     *                d'études, ou un message de validation si la modification est réussie.
+     *
+     * @example
+     * // Modifier un directeur d'études :
+     * $this->modify($user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -122,9 +179,21 @@ class StudyDirectorController extends UserController implements Schedule
     }
 
     /**
-     * Affiche tous les directeurs d'études.
+     * Affiche tous les directeurs d'études avec leurs codes associés.
      *
-     * @return string Retourne le HTML affichant tous les directeurs d'études.
+     * Cette méthode récupère tous les utilisateurs ayant le rôle de directeur d'études
+     * et récupère leurs codes associés. Ensuite, elle affiche la liste des directeurs
+     * d'études avec les informations pertinentes, y compris les codes.
+     *
+     * @return string Retourne l'affichage de tous les directeurs d'études, incluant
+     *                leurs codes associés.
+     *
+     * @example
+     * // Afficher tous les directeurs d'études :
+     * $this->displayAllStudyDirector();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllStudyDirector() {
         $users = $this->model->getUsersByRole('directeuretude');
