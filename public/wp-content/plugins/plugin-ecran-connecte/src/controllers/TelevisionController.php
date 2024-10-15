@@ -31,8 +31,16 @@ class TelevisionController extends UserController implements Schedule
     private $view;
 
     /**
-     * Constructeur de TelevisionController.
-     * Initialise le modèle et la vue.
+     * Initialise une nouvelle instance de la classe.
+     *
+     * Ce constructeur appelle le constructeur parent pour s'assurer que
+     * toutes les initialisations nécessaires sont effectuées. Il crée
+     * également une instance de la classe User pour la gestion des utilisateurs
+     * et une instance de la classe TelevisionView pour l'affichage des vues
+     * liées à la télévision.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         parent::__construct();
@@ -41,13 +49,25 @@ class TelevisionController extends UserController implements Schedule
     }
 
     /**
-     * Insère une télévision dans la base de données.
+     * Insère un nouvel utilisateur de télévision dans la base de données.
      *
-     * @return string Retourne le HTML du formulaire d'insertion de télévision.
+     * Cette méthode traite les données du formulaire d'inscription de
+     * l'utilisateur de télévision. Elle valide les entrées, s'assure que
+     * les codes associés sont valides, et crée un nouvel enregistrement
+     * dans la base de données pour l'utilisateur. Si l'insertion est réussie,
+     * un message de validation est affiché. En cas d'erreur, des messages
+     * d'erreur appropriés sont retournés.
      *
-     * Exemple d'utilisation :
-     * $controller = new TelevisionController();
-     * echo $controller->insert();
+     * @return string Retourne l'affichage du formulaire d'inscription à la télévision
+     *                si les données sont invalides, sinon renvoie un message de validation
+     *                ou d'erreur selon le résultat de l'insertion.
+     *
+     * @example
+     * // Insérer un nouvel utilisateur de télévision :
+     * $this->insert();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createTv');
@@ -102,15 +122,27 @@ class TelevisionController extends UserController implements Schedule
     }
 
     /**
-     * Modifie une télévision.
+     * Modifie les informations d'un utilisateur de télévision existant.
      *
-     * @param User $user L'utilisateur à modifier.
+     * Cette méthode traite la demande de modification des données d'un
+     * utilisateur de télévision. Elle vérifie les codes sélectionnés,
+     * s'assure qu'ils sont valides, et met à jour les codes associés
+     * de l'utilisateur. Si la mise à jour est réussie, un message de
+     * validation est affiché. Sinon, la méthode affiche le formulaire
+     * de modification avec les données actuelles de l'utilisateur.
      *
-     * @return string Retourne le HTML du formulaire de modification.
+     * @param User $user L'utilisateur de télévision dont les informations doivent être modifiées.
      *
-     * Exemple d'utilisation :
-     * $controller = new TelevisionController();
-     * echo $controller->modify($user);
+     * @return string Retourne le formulaire de modification avec les données actuelles de l'utilisateur
+     *                et les options disponibles pour les années, groupes et demi-groupes,
+     *                ou un message d'erreur si la mise à jour échoue.
+     *
+     * @example
+     * // Modifier les informations d'un utilisateur de télévision :
+     * $this->modify($existingUser);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -148,13 +180,23 @@ class TelevisionController extends UserController implements Schedule
     }
 
     /**
-     * Affiche toutes les télévisions dans un tableau.
+     * Affiche tous les utilisateurs ayant le rôle de télévision.
      *
-     * @return string Retourne le HTML affichant toutes les télévisions.
+     * Cette méthode récupère tous les utilisateurs qui ont été attribués
+     * au rôle de télévision. Les utilisateurs récupérés sont ensuite
+     * passés à la vue pour affichage. Cela permet à l'administrateur ou
+     * à un utilisateur autorisé de visualiser la liste complète des
+     * utilisateurs ayant ce rôle spécifique.
      *
-     * Exemple d'utilisation :
-     * $controller = new TelevisionController();
-     * echo $controller->displayAllTv();
+     * @return string Retourne le contenu HTML généré pour afficher la liste
+     *                de tous les utilisateurs de télévision.
+     *
+     * @example
+     * // Afficher tous les utilisateurs de télévision :
+     * $this->displayAllTv();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTv() {
         $users = $this->model->getUsersByRole('television');
@@ -162,13 +204,28 @@ class TelevisionController extends UserController implements Schedule
     }
 
     /**
-     * Affiche une liste d'emplois du temps.
+     * Affiche l'emploi du temps de l'utilisateur courant.
      *
-     * @return mixed|string Retourne les emplois du temps sous forme de chaîne de caractères.
+     * Cette méthode récupère l'utilisateur actuellement connecté et
+     * ses codes associés pour afficher leur emploi du temps. Si l'utilisateur
+     * a plusieurs codes, elle vérifie la configuration de l'affichage (défilement
+     * ou diaporama) et génère le contenu HTML approprié pour l'affichage.
      *
-     * Exemple d'utilisation :
-     * $controller = new TelevisionController();
-     * echo $controller->displayMySchedule();
+     * - Si l'utilisateur a plusieurs codes, il affiche les emplois du temps
+     *   dans un défilement ou un diaporama selon la configuration du thème.
+     * - Si l'utilisateur a un seul code, il affiche simplement l'emploi
+     *   du temps correspondant. Si aucun emploi du temps n'est trouvé,
+     *   un message indiquant l'absence de cours est affiché.
+     *
+     * @return string Retourne le contenu HTML de l'emploi du temps de l'utilisateur,
+     *                ou un message indiquant qu'il n'a pas de cours.
+     *
+     * @example
+     * // Afficher l'emploi du temps de l'utilisateur courant :
+     * $this->displayMySchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
