@@ -36,14 +36,26 @@ class CodeAde extends Model implements Entity, JsonSerializable
     private $code;
 
     /**
-     * Insère un nouvel enregistrement dans la table `ecran_code_ade`.
+     * Envoie une notification aux cibles spécifiées via l'API OneSignal.
      *
-     * Cette méthode prépare et exécute une requête d'insertion pour ajouter
-     * un nouveau code ADE dans la base de données. Les valeurs des attributs
-     * de l'objet sont utilisées pour remplir les colonnes correspondantes.
-     * La méthode retourne l'identifiant de la nouvelle entrée insérée.
+     * Si aucune cible spécifique n'est définie, la notification est envoyée à tous les utilisateurs.
+     * Si des cibles sont spécifiées, elles sont converties en filtres basés sur leurs codes ADE et
+     * la notification est envoyée uniquement à ces utilisateurs.
      *
-     * @return int L'identifiant de l'enregistrement nouvellement inséré.
+     * @param array|null $targets  Un tableau d'objets cibles (avec des codes ADE), ou null pour inclure tous les utilisateurs.
+     * @param string $message      Le message de notification à envoyer.
+     *
+     * @return string Réponse de l'API OneSignal après l'envoi de la notification.
+     *
+     * @throws Exception Si une erreur survient lors de l'envoi de la notification.
+     *
+     * @example
+     * // Envoyer une notification à tous les utilisateurs :
+     * $this->sendNotification(null, 'Message pour tous les utilisateurs');
+     *
+     * // Envoyer une notification à des utilisateurs spécifiques :
+     * $targets = [new CodeAde('code1'), new CodeAde('code2')];
+     * $this->sendNotification($targets, 'Message pour des utilisateurs spécifiques');
      *
      * @version 1.0
      * @date 2024-10-15
