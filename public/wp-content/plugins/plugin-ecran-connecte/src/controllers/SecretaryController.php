@@ -45,9 +45,23 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Insère un secrétaire dans la base de données.
+     * Insère un nouveau compte de secrétaire dans la base de données.
      *
-     * @return string
+     * Cette méthode gère l'insertion d'un utilisateur avec le rôle "secrétaire" à partir
+     * des données soumises via un formulaire. Elle vérifie d'abord la validité des
+     * informations fournies, telles que le login, le mot de passe, et l'email, puis
+     * s'assure qu'il n'existe pas déjà un utilisateur avec ces informations. En cas de
+     * succès, l'utilisateur est inséré dans la base de données et un message de validation
+     * est affiché. En cas d'échec, un message d'erreur est affiché.
+     *
+     * @return string Retourne le formulaire de création de secrétaire.
+     *
+     * @example
+     * // Appel de la méthode lors de la soumission du formulaire :
+     * $this->insert();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createSecre');
@@ -80,21 +94,42 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Affiche tous les secrétaires.
+     * Affiche la liste de tous les secrétaires enregistrés.
      *
-     * @return string
+     * Cette méthode récupère tous les utilisateurs ayant le rôle de "secrétaire" à partir
+     * du modèle, puis renvoie l'affichage de cette liste via la vue associée. Elle permet
+     * ainsi de lister et gérer les comptes des secrétaires enregistrés dans le système.
+     *
+     * @return string Retourne l'affichage HTML de la liste des secrétaires.
+     *
+     * @example
+     * // Affiche la liste des secrétaires :
+     * echo $this->displayAllSecretary();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllSecretary() {
         $users = $this->model->getUsersByRole('secretaire');
         return $this->view->displayAllSecretary($users);
     }
 
-    /*** GESTION DES UTILISATEURS ***/
-
     /**
-     * Crée un utilisateur.
+     * Génère et affiche les formulaires de création d'utilisateurs pour différents rôles.
      *
-     * @return string
+     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs (étudiants, enseignants,
+     * directeurs d'études, secrétaires, techniciens, télévisions) et affiche un ensemble d'onglets de sélection
+     * avec un formulaire d'insertion pour chaque rôle. L'utilisateur peut ainsi créer des comptes pour chaque
+     * catégorie d'utilisateurs via une interface intuitive de multi-sélection.
+     *
+     * @return string Retourne l'affichage HTML des formulaires de création d'utilisateurs.
+     *
+     * @example
+     * // Affiche l'interface de création d'utilisateurs :
+     * echo $this->createUsers();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function createUsers() {
         $student = new StudentController();
@@ -124,9 +159,21 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Affiche les utilisateurs par rôle.
+     * Affiche les listes des utilisateurs par rôles.
      *
-     * @return string
+     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs (étudiants, enseignants,
+     * directeurs d'études, secrétaires, techniciens, télévisions) et affiche une interface avec des onglets de
+     * multi-sélection permettant de consulter les utilisateurs enregistrés pour chaque catégorie. Chaque onglet
+     * affiche la liste des utilisateurs correspondants, organisée par rôle.
+     *
+     * @return string Retourne l'affichage HTML des listes d'utilisateurs par rôles.
+     *
+     * @example
+     * // Affiche l'interface de gestion des utilisateurs :
+     * echo $this->displayUsers();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayUsers() {
         $student = new StudentController();
@@ -155,9 +202,22 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Modifie un utilisateur.
+     * Modifie les informations d'un utilisateur spécifié par son identifiant.
      *
-     * @return string
+     * Cette méthode vérifie si l'identifiant de l'utilisateur est valide et existe dans la base de données.
+     * Si l'utilisateur est trouvé, elle détermine le rôle de l'utilisateur dans WordPress et appelle le
+     * contrôleur approprié (étudiant, enseignant, directeur d'études ou télévision) pour procéder à la
+     * modification des informations. Si l'utilisateur n'est pas trouvé ou si l'identifiant n'est pas valide,
+     * un message indiquant qu'aucun utilisateur n'a été trouvé est affiché.
+     *
+     * @return string Retourne le contenu HTML pour modifier l'utilisateur, ou un message d'erreur si l'utilisateur n'est pas trouvé.
+     *
+     * @example
+     * // Modifie les informations d'un utilisateur avec l'identifiant spécifié :
+     * echo $this->modifyUser();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modifyUser() {
         $id = $_GET['id'];
@@ -186,7 +246,21 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Supprime des utilisateurs.
+     * Supprime les utilisateurs sélectionnés à partir des cases à cocher dans le formulaire.
+     *
+     * Cette méthode vérifie si une action de suppression a été demandée. Si c'est le cas,
+     * elle parcourt les rôles spécifiés (étudiant, enseignant, directeur, technicien, secrétaire, télévision)
+     * et vérifie si des utilisateurs correspondant à ces rôles ont été sélectionnés. Pour chaque utilisateur
+     * sélectionné, la méthode appelle `deleteUser` pour effectuer la suppression de l'utilisateur correspondant.
+     *
+     * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression des utilisateurs.
+     *
+     * @example
+     * // Supprime les utilisateurs sélectionnés :
+     * $this->deleteUsers();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function deleteUsers() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -205,9 +279,22 @@ class SecretaryController extends UserController
     }
 
     /**
-     * Supprime un utilisateur.
+     * Supprime un utilisateur spécifié par son identifiant.
+     *
+     * Cette méthode récupère l'utilisateur à partir de la base de données à l'aide de l'identifiant
+     * fourni, puis appelle la méthode `delete` sur l'instance de l'utilisateur pour le supprimer
+     * de la base de données.
      *
      * @param int $id L'identifiant de l'utilisateur à supprimer.
+     * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression
+     *               de l'utilisateur.
+     *
+     * @example
+     * // Supprime l'utilisateur avec l'identifiant 5 :
+     * $this->deleteUser(5);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     private function deleteUser($id) {
         $user = $this->model->get($id);
