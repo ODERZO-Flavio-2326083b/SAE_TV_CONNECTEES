@@ -6,7 +6,6 @@ include __DIR__ . '/../utils/OneSignalPush.php';
 
 use Models\Alert;
 use Models\CodeAde;
-use Models\User;
 use Utils\OneSignalPush;
 use Views\AlertView;
 

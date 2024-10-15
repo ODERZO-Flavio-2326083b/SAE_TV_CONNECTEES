@@ -319,7 +319,6 @@ add_action( 'init', 'block_information_modify' );
  */
 function schedule_render_callback()
 {
-    if (is_page()) {
         $current_user = wp_get_current_user();
         if(in_array('directeuretude', $current_user->roles)) {
             $controller = new StudyDirectorController();
@@ -343,7 +342,6 @@ function schedule_render_callback()
             $user = new UserView();
             return $user->displayHome();
         }
-    }
 }
 
 /**

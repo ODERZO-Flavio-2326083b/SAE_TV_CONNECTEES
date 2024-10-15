@@ -114,7 +114,7 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Récupère une collection d'éléments
+     * Récupère une collection d'alertes.
      *
      * @param WP_REST_Request $request Données complètes sur la demande.
      * @return WP_Error|WP_REST_Response
