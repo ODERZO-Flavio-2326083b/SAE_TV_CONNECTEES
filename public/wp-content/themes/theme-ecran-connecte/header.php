@@ -85,6 +85,16 @@ if(in_array('television', $current_user->roles)) : ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des codes ADE'))); ?>">Code ADE</a>
                 </li>
+            <?php endif;
+            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles) || in_array('directeuretude', $user_info->roles)|| in_array('enseignant', $user_info->roles)): ?>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Départements</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des départements'))); ?>">Créer un département</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des informations'))); ?>">Voir les départements</a>
+                </div>
+            </li>
             <?php endif; ?>
             </ul>
             <?php $current_user = wp_get_current_user();
