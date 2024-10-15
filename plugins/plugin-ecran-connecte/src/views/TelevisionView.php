@@ -2,33 +2,32 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
 /**
  * Class TelevisionView
  *
- * Contain all view for television (Forms, tables)
+ * Contient toutes les vues liées à la télévision (Formulaires, tableaux)
  *
  * @package Views
  */
 class TelevisionView extends UserView
 {
     /**
-     * Display a form to create a television
+     * Affiche un formulaire pour créer une télévision
      *
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param CodeAde[] $years      Tableau des années
+     * @param CodeAde[] $groups     Tableau des groupes
+     * @param CodeAde[] $halfGroups Tableau des demi-groupes
      *
-     * @return string
+     * @return string Le code HTML du formulaire de création d'une télévision
      */
     public function displayFormTelevision($years, $groups, $halfGroups) {
         $form = '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
-        <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps</p>
+        <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps"</p>
         <form method="post" id="registerTvForm">
             <div class="form-group">
             	<label for="loginTv">Login</label>
@@ -53,11 +52,11 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display all televisions in a table
+     * Affiche toutes les télévisions dans un tableau
      *
-     * @param $users    User[]
+     * @param User[] $users Tableau d'utilisateurs de type télévision
      *
-     * @return string
+     * @return string Le code HTML du tableau affichant toutes les télévisions
      */
     public function displayAllTv($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -78,14 +77,14 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display a form to modify a television
+     * Affiche un formulaire pour modifier une télévision
      *
-     * @param $user         User
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param User $user        Utilisateur de type télévision
+     * @param CodeAde[] $years  Tableau des années
+     * @param CodeAde[] $groups Tableau des groupes
+     * @param CodeAde[] $halfGroups Tableau des demi-groupes
      *
-     * @return string
+     * @return string Le code HTML du formulaire de modification d'une télévision
      */
     public function modifyForm($user, $years, $groups, $halfGroups) {
         $count = 0;
@@ -123,15 +122,15 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Build a select with all codes Ade
+     * Construit un select avec tous les codes ADE
      *
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
-     * @param $code         CodeAde
-     * @param $count        int
+     * @param CodeAde[] $years      Tableau des années
+     * @param CodeAde[] $groups     Tableau des groupes
+     * @param CodeAde[] $halfGroups Tableau des demi-groupes
+     * @param CodeAde|null $code    Code ADE à pré-sélectionner (null si aucune sélection)
+     * @param int $count            Compteur d'éléments pour identifier les selects
      *
-     * @return string
+     * @return string Le code HTML du select avec les options
      */
     public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
@@ -163,9 +162,9 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Display form to modify the password of a television
+     * Affiche un formulaire pour modifier le mot de passe d'une télévision
      *
-     * @return string
+     * @return string Le code HTML du formulaire de modification du mot de passe
      */
     public function modifyPassword() {
         return '
@@ -174,22 +173,21 @@ class TelevisionView extends UserView
             <input  minlength="4" type="password" class="form-control text-center modal-sm" id="pwdTv" name="pwdTv" placeholder="Nouveau mot de passe" onkeyup=checkPwd("Tv")>
             <input  minlength="4" type="password" class="form-control text-center modal-sm" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le nouveau mot de passe" onkeyup=checkPwd("Tv")>
 		</form>';
-
     }
 
     /**
-     * Start a slideshow
+     * Démarre un diaporama
      *
-     * @return string
+     * @return string Le code HTML du conteneur du diaporama
      */
     public function displayStartSlide() {
         return '<div id="slideshow-container" class="slideshow-container">';
     }
 
     /**
-     * Separate all slide by this
+     * Sépare chaque diapositive par ceci
      *
-     * @return string
+     * @return string Le code HTML pour une diapositive
      */
     public function displayMidSlide() {
         return '<div class="mySlides">';
