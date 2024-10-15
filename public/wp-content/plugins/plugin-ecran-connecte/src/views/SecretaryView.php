@@ -15,9 +15,20 @@ class SecretaryView extends UserView
 {
 
     /**
-     * Display the creation form
+     * Affiche le formulaire pour créer un compte secrétaire.
      *
-     * @return string
+     * Cette méthode génère un formulaire HTML permettant de créer des comptes pour
+     * des secrétaires. Elle fournit une brève description et appelle une méthode
+     * auxiliaire pour afficher le formulaire de base.
+     *
+     * @return string Retourne le code HTML du formulaire de création de compte secrétaire.
+     *
+     * @example
+     * // Afficher le formulaire de création de compte secrétaire :
+     * echo $this->displayFormSecretary();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormSecretary() {
         return '
@@ -27,7 +38,23 @@ class SecretaryView extends UserView
     }
 
     /**
-     * Display a button for download all schedules
+     * Affiche la page d'accueil de l'administrateur.
+     *
+     * Cette méthode génère un contenu HTML d'accueil pour les administrateurs,
+     * fournissant des informations sur les actions qu'ils peuvent effectuer
+     * sur le site. Elle inclut des sections pour créer des informations et des
+     * alertes, gérer les informations et alertes existantes, ajouter des utilisateurs,
+     * et mettre à jour le système. Les boutons de navigation permettent de
+     * rediriger vers les pages appropriées.
+     *
+     * @return string Retourne le code HTML de la page d'accueil de l'administrateur.
+     *
+     * @example
+     * // Afficher la page d'accueil de l'administrateur :
+     * echo $this->displayWelcomeAdmin();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayWelcomeAdmin() {
         return '
@@ -103,11 +130,22 @@ class SecretaryView extends UserView
     }
 
     /**
-     * Display all secretary
+     * Affiche une liste de tous les secrétaires.
      *
-     * @param $users    User[]
+     * Cette méthode génère un tableau affichant tous les secrétaires
+     * enregistrés sur le système. Pour chaque secrétaire, un numéro de
+     * ligne, une case à cocher pour sélectionner l'utilisateur et
+     * leur identifiant de connexion (login) sont affichés.
      *
-     * @return string
+     * @param array $users Tableau d'objets utilisateur contenant les informations des secrétaires.
+     * @return string Retourne le code HTML du tableau listant les secrétaires.
+     *
+     * @example
+     * // Récupérer la liste des secrétaires et l'afficher :
+     * $secretaireList = $this->displayAllSecretary($secretaireUsers);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllSecretary($users) {
         $title = 'Secrétaires';
@@ -125,7 +163,20 @@ class SecretaryView extends UserView
     }
 
     /**
-     * Ask to the user to choose an user
+     * Affiche un message d'erreur lorsque aucun utilisateur n'est sélectionné.
+     *
+     * Cette méthode génère un message d'alerte indiquant à l'utilisateur
+     * qu'il doit choisir un utilisateur avant de poursuivre.
+     * Le message est stylisé pour être affiché comme une alerte rouge.
+     *
+     * @return string Retourne le code HTML du message d'alerte.
+     *
+     * @example
+     * // Afficher un message d'erreur si aucun utilisateur n'est sélectionné :
+     * echo $this->displayNoUser();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayNoUser() {
         return '<p class="alert alert-danger">Veuillez choisir un utilisateur </p>';
