@@ -16,10 +16,22 @@ class StudentView extends UserView
 {
 
     /**
-     * Formulaire pour créer des utilisateurs à partir d'un fichier Excel.
+     * Affiche le formulaire pour l'importation d'un fichier Excel d'étudiants.
      *
-     * @return string Renvoie le formulaire HTML pour l'importation des étudiants.
-     * @example Affiche un formulaire pour télécharger un fichier Excel et importer des étudiants.
+     * Cette méthode génère un code HTML qui fournit des instructions à l'utilisateur
+     * pour télécharger un modèle de fichier Excel contenant des informations sur
+     * les étudiants, ainsi qu'un formulaire pour télécharger ce fichier une fois
+     * rempli. Lors de l'importation, un email est envoyé à chaque étudiant avec
+     * ses informations de connexion.
+     *
+     * @return string Retourne le code HTML du formulaire d'importation.
+     *
+     * @example
+     * // Afficher le formulaire pour importer des fichiers d'étudiants :
+     * echo $this->displayInsertImportFileStudent();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayInsertImportFileStudent() {
         return '
@@ -38,11 +50,26 @@ class StudentView extends UserView
     }
 
     /**
-     * Affiche tous les étudiants dans un tableau.
+     * Affiche la liste de tous les étudiants avec leurs détails.
      *
-     * @param User[] $users Liste des utilisateurs de type étudiant.
-     * @return string Renvoie un tableau HTML affichant tous les étudiants.
-     * @example Affiche un tableau avec les numéros d'étudiant, années, groupes et un bouton pour modifier chaque étudiant.
+     * Cette méthode génère un tableau HTML affichant les informations des étudiants,
+     * y compris leur numéro, année, groupe, demi-groupe et un lien pour modifier leurs
+     * informations. Les étudiants sont extraits d'un tableau d'utilisateurs fourni
+     * en paramètre. Chaque étudiant est associé à un ensemble de codes, dont seuls les
+     * titres sont affichés dans le tableau.
+     *
+     * @param array $users Un tableau d'objets représentant les étudiants à afficher.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son ID,
+     *                     son login et ses codes.
+     *
+     * @return string Retourne le code HTML du tableau des étudiants.
+     *
+     * @example
+     * // Afficher la liste des étudiants :
+     * echo $this->displayAllStudent($users);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllStudent($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -75,14 +102,34 @@ class StudentView extends UserView
     }
 
     /**
-     * Affiche le formulaire pour modifier un étudiant.
+     * Affiche le formulaire de modification des informations d'un étudiant.
      *
-     * @param User $user Utilisateur à modifier.
-     * @param CodeAde[] $years Liste des années disponibles.
-     * @param CodeAde[] $groups Liste des groupes disponibles.
-     * @param CodeAde[] $halfGroups Liste des demi-groupes disponibles.
-     * @return string Renvoie le formulaire HTML pour modifier un étudiant.
-     * @example Affiche un formulaire permettant de changer l'année, le groupe et le demi-groupe d'un étudiant.
+     * Cette méthode génère un formulaire HTML pour modifier les informations d'un étudiant
+     * spécifié, y compris son année, groupe et demi-groupe. Les options de sélection sont
+     * remplies à partir des paramètres fournis pour les années, groupes et demi-groupes.
+     * Le formulaire inclut également des options pour valider ou annuler les modifications.
+     *
+     * @param object $user L'objet représentant l'étudiant dont les informations sont
+     *                     modifiées. Doit avoir des méthodes pour récupérer son login
+     *                     et ses codes associés.
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son code
+     *                     et son titre.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     *                      Chaque objet doit avoir des méthodes pour récupérer son code
+     *                      et son titre.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes
+     *                          disponibles. Chaque objet doit avoir des méthodes pour
+     *                          récupérer son code et son titre.
+     *
+     * @return string Retourne le code HTML du formulaire de modification d'étudiant.
+     *
+     * @example
+     * // Afficher le formulaire de modification pour un étudiant spécifique :
+     * echo $this->displayModifyStudent($user, $years, $groups, $halfGroups);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyStudent($user, $years, $groups, $halfGroups) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -150,15 +197,32 @@ class StudentView extends UserView
 
         return $form;
     }
-
     /**
-     * Affiche une liste de groupes pour l'inscription de l'étudiant.
+     * Affiche un modal pour la sélection des emplois du temps.
      *
-     * @param CodeAde[] $years Liste des années disponibles.
-     * @param CodeAde[] $groups Liste des groupes disponibles.
-     * @param CodeAde[] $halfGroups Liste des demi-groupes disponibles.
-     * @return void
-     * @example Affiche une modale pour permettre à un étudiant de sélectionner son année, groupe et demi-groupe.
+     * Cette méthode génère un modal HTML qui permet à l'utilisateur de sélectionner
+     * son année, groupe et demi-groupe. Les options de sélection sont remplies à partir
+     * des paramètres fournis. Un formulaire est inclus pour soumettre les choix de
+     * l'utilisateur.
+     *
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son code
+     *                     et son titre.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     *                      Chaque objet doit avoir des méthodes pour récupérer son code
+     *                      et son titre.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes
+     *                          disponibles. Chaque objet doit avoir des méthodes pour
+     *                          récupérer son code et son titre.
+     *
+     * @return void Affiche directement le modal pour la sélection des emplois du temps.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le modal de sélection des emplois du temps :
+     * $this->selectSchedules($years, $groups, $halfGroups);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function selectSchedules($years, $groups, $halfGroups) {
         echo '
