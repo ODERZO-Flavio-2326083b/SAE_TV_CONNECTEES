@@ -31,8 +31,14 @@ class TechnicianController extends UserController implements Schedule
     private $view;
 
     /**
-     * Constructeur de TechnicianController.
-     * Initialise le modèle et la vue.
+     * Constructeur de la classe TechnicianController.
+     *
+     * Ce constructeur initialise le modèle et la vue pour le contrôleur des
+     * techniciens. Il appelle le constructeur parent pour s'assurer que toutes
+     * les propriétés héritées sont correctement initialisées.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         parent::__construct();
@@ -41,9 +47,28 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Insère un technicien dans la base de données.
+     * Insère un nouvel utilisateur de type technicien dans la base de données.
      *
-     * @return string Retourne le HTML du formulaire d'insertion de technicien.
+     * Cette méthode traite les données soumises via un formulaire pour créer un
+     * nouvel utilisateur technicien. Elle effectue les validations nécessaires sur
+     * les entrées, telles que la longueur des chaînes et la confirmation du mot de
+     * passe, avant de les insérer dans la base de données. Si l'insertion réussit,
+     * un message de validation est affiché, sinon un message d'erreur est présenté.
+     *
+     * @return string Retourne l'affichage du formulaire de création de technicien
+     *                ou un message de validation ou d'erreur selon le résultat
+     *                de l'insertion.
+     *
+     * @example
+     * // Insérer un nouveau technicien :
+     * $this->insert();
+     *
+     * @throws Exception Si une erreur se produit lors de l'insertion dans la base
+     *                   de données (facultatif, selon l'implémentation de `insert`
+     *                   dans le modèle).
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createTech');
@@ -79,9 +104,21 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Affiche tous les techniciens dans un tableau.
+     * Affiche la liste de tous les techniciens.
      *
-     * @return string Retourne le HTML affichant tous les techniciens.
+     * Cette méthode récupère tous les utilisateurs ayant le rôle de technicien
+     * depuis le modèle et les passe à la vue pour affichage. Elle permet à
+     * l'administrateur ou à un responsable de visualiser la liste complète
+     * des techniciens inscrits dans le système.
+     *
+     * @return string Retourne le rendu de l'affichage de tous les techniciens.
+     *
+     * @example
+     * // Afficher tous les techniciens :
+     * $this->displayAllTechnician();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTechnician() {
         $users = $this->model->getUsersByRole('technicien');
@@ -89,9 +126,22 @@ class TechnicianController extends UserController implements Schedule
     }
 
     /**
-     * Affiche l'emploi du temps de tous les étudiants.
+     * Affiche l'emploi du temps de l'utilisateur pour chaque année.
      *
-     * @return mixed|string Retourne les horaires des étudiants sous forme de chaîne de caractères.
+     * Cette méthode récupère tous les codes d'années à partir de l'objet CodeAde,
+     * puis génère et concatène les affichages de l'emploi du temps pour chaque année
+     * en utilisant ces codes. Elle retourne finalement une chaîne contenant
+     * tous les emplois du temps pour l'utilisateur.
+     *
+     * @return string Retourne une chaîne contenant tous les emplois du temps pour
+     *                chaque année associée à l'utilisateur.
+     *
+     * @example
+     * // Afficher l'emploi du temps pour toutes les années :
+     * $schedule = $this->displayMySchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMySchedule() {
         $codeAde = new CodeAde();
