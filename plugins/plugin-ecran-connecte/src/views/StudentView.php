@@ -2,14 +2,13 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
 /**
  * Class StudentView
  *
- * All view for student (Forms, tables, messages)
+ * Toutes les vues pour les étudiants (Formulaires, tableaux, messages)
  *
  * @package Views
  */
@@ -17,9 +16,10 @@ class StudentView extends UserView
 {
 
     /**
-     * Form to create users with an Excel file
+     * Formulaire pour créer des utilisateurs à partir d'un fichier Excel.
      *
-     * @return string   Renvoie le formulaire
+     * @return string Renvoie le formulaire HTML pour l'importation des étudiants.
+     * @example Affiche un formulaire pour télécharger un fichier Excel et importer des étudiants.
      */
     public function displayInsertImportFileStudent() {
         return '
@@ -38,11 +38,11 @@ class StudentView extends UserView
     }
 
     /**
-     * Display all students in a table
+     * Affiche tous les étudiants dans un tableau.
      *
-     * @param $users    User[]
-     *
-     * @return string
+     * @param User[] $users Liste des utilisateurs de type étudiant.
+     * @return string Renvoie un tableau HTML affichant tous les étudiants.
+     * @example Affiche un tableau avec les numéros d'étudiant, années, groupes et un bouton pour modifier chaque étudiant.
      */
     public function displayAllStudent($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -75,14 +75,14 @@ class StudentView extends UserView
     }
 
     /**
-     * Display the form to modify the student
+     * Affiche le formulaire pour modifier un étudiant.
      *
-     * @param $user         User
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
-     *
-     * @return string
+     * @param User $user Utilisateur à modifier.
+     * @param CodeAde[] $years Liste des années disponibles.
+     * @param CodeAde[] $groups Liste des groupes disponibles.
+     * @param CodeAde[] $halfGroups Liste des demi-groupes disponibles.
+     * @return string Renvoie le formulaire HTML pour modifier un étudiant.
+     * @example Affiche un formulaire permettant de changer l'année, le groupe et le demi-groupe d'un étudiant.
      */
     public function displayModifyStudent($user, $years, $groups, $halfGroups) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -152,11 +152,13 @@ class StudentView extends UserView
     }
 
     /**
-     * Display a list of groups for the inscription of the student
+     * Affiche une liste de groupes pour l'inscription de l'étudiant.
      *
-     * @param $years            CodeAde[]
-     * @param $groups           CodeAde[]
-     * @param $halfGroups       CodeAde[]
+     * @param CodeAde[] $years Liste des années disponibles.
+     * @param CodeAde[] $groups Liste des groupes disponibles.
+     * @param CodeAde[] $halfGroups Liste des demi-groupes disponibles.
+     * @return void
+     * @example Affiche une modale pour permettre à un étudiant de sélectionner son année, groupe et demi-groupe.
      */
     public function selectSchedules($years, $groups, $halfGroups) {
         echo '
