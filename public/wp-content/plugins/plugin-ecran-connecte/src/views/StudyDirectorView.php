@@ -15,9 +15,21 @@ class StudyDirectorView extends UserView
 {
 
     /**
-     * Affiche un formulaire pour créer un directeur d'études
+     * Affiche le formulaire de création d'un compte directeur d'études.
      *
-     * @return string HTML du formulaire de création d'un directeur d'études
+     * Cette méthode génère un formulaire HTML pour la création d'un directeur d'études.
+     * Le formulaire inclut des champs pour le login, l'email, le mot de passe,
+     * la confirmation du mot de passe et le code ADE. Des instructions sont fournies
+     * pour aider l'utilisateur à remplir correctement les champs requis.
+     *
+     * @return string Le code HTML du formulaire de création d'un directeur d'études.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de création :
+     * echo $this->displayCreateDirector();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayCreateDirector() {
         return '
@@ -49,11 +61,24 @@ class StudyDirectorView extends UserView
     }
 
     /**
-     * Affiche un tableau listant tous les directeurs d'études
+     * Affiche la liste de tous les directeurs d'études.
      *
-     * @param $users    User[] Tableau d'objets utilisateur
+     * Cette méthode génère un tableau HTML affichant tous les directeurs d'études
+     * avec leurs informations, y compris leur numéro d'établissement, leur code ADE,
+     * et un lien pour modifier leurs informations. Elle utilise une pagination
+     * pour une navigation facile lorsque la liste est longue.
      *
-     * @return string HTML du tableau des directeurs d'études
+     * @param array $users Liste des directeurs d'études à afficher.
+     *                     Chaque élément doit être un objet représentant un directeur d'études.
+     *
+     * @return string Le code HTML du tableau des directeurs d'études.
+     *
+     * @example
+     * // Appel de la méthode pour afficher la liste des directeurs d'études :
+     * echo $this->displayAllStudyDirector($directors);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllStudyDirector($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -81,11 +106,26 @@ class StudyDirectorView extends UserView
     }
 
     /**
-     * Affiche un formulaire pour modifier un directeur d'études
+     * Affiche le formulaire de modification pour un directeur d'études.
      *
-     * @param $user   User Objet utilisateur représentant le directeur d'études
+     * Cette méthode génère un formulaire pré-rempli permettant de modifier
+     * les informations d'un directeur d'études spécifique. Les informations
+     * incluent le login, l'email, le mot de passe, le code ADE et d'autres
+     * détails pertinents. Le formulaire est prérempli avec les valeurs actuelles
+     * du directeur d'études.
      *
-     * @return string HTML du formulaire de modification
+     * @param object $user L'objet représentant le directeur d'études à modifier.
+     *                     Cet objet doit contenir les propriétés et méthodes
+     *                     nécessaires pour récupérer les informations du directeur.
+     *
+     * @return string Le code HTML du formulaire de modification.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de modification :
+     * echo $this->displayModifyStudyDirector($director);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyStudyDirector($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
