@@ -15,9 +15,21 @@ class TeacherView extends UserView
 {
 
     /**
-     * Affiche un formulaire de création pour un enseignant
+     * Affiche le formulaire pour l'importation d'un fichier d'enseignants.
      *
-     * @return string Le code HTML du formulaire de création d'un compte enseignant
+     * Cette méthode génère une interface utilisateur pour télécharger un
+     * fichier Excel contenant les informations des enseignants à créer.
+     * Les utilisateurs sont guidés à travers les étapes nécessaires pour
+     * remplir le fichier Excel et l'importer dans le système.
+     *
+     * @return string Le code HTML du formulaire d'importation de fichier.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire d'importation :
+     * echo $this->displayInsertImportFileTeacher();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayInsertImportFileTeacher() {
         return '
@@ -40,11 +52,23 @@ class TeacherView extends UserView
     }
 
     /**
-     * Affiche un formulaire pour modifier un enseignant
+     * Génère un formulaire de modification pour un utilisateur.
      *
-     * @param User $user L'utilisateur à modifier
+     * Cette méthode crée un formulaire HTML permettant de modifier
+     * le code ADE d'un utilisateur spécifique. Elle inclut un lien
+     * pour retourner à la page de gestion des utilisateurs et
+     * un bouton pour soumettre les modifications.
      *
-     * @return string Le code HTML du formulaire de modification d'un enseignant
+     * @param User $user L'utilisateur dont les informations doivent être modifiées.
+     *
+     * @return string Le code HTML du formulaire de modification de l'utilisateur.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de modification :
+     * echo $this->modifyForm($user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modifyForm($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -62,11 +86,24 @@ class TeacherView extends UserView
     }
 
     /**
-     * Affiche tous les enseignants dans un tableau
+     * Affiche tous les enseignants dans un tableau.
      *
-     * @param User[] $teachers Tableau d'utilisateurs enseignants
+     * Cette méthode génère un tableau HTML affichant tous les enseignants
+     * avec leurs informations pertinentes. Chaque ligne du tableau contient
+     * le numéro de l'enseignant, son code ADE, et un lien pour modifier
+     * ses informations. Les enseignants sont récupérés à partir d'un tableau
+     * d'objets contenant leurs détails.
      *
-     * @return string Le code HTML du tableau affichant tous les enseignants
+     * @param Teacher[] $teachers Tableau d'objets Teacher à afficher.
+     *
+     * @return string Le code HTML du tableau affichant tous les enseignants.
+     *
+     * @example
+     * // Appel de la méthode pour afficher tous les enseignants :
+     * echo $this->displayAllTeachers($teachers);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTeachers($teachers) {
         $page = get_page_by_title('Modifier un utilisateur');
