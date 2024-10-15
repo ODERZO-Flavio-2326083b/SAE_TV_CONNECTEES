@@ -2,13 +2,12 @@
 
 namespace Views;
 
-
 use Models\User;
 
 /**
  * Class TeacherView
  *
- * Contain all view for teacher (Forms, tables)
+ * Contient toutes les vues liées aux enseignants (Formulaires, tableaux)
  *
  * @package Views
  */
@@ -16,7 +15,9 @@ class TeacherView extends UserView
 {
 
     /**
-     * Display a creation form
+     * Affiche un formulaire de création pour un enseignant
+     *
+     * @return string Le code HTML du formulaire de création d'un compte enseignant
      */
     public function displayInsertImportFileTeacher() {
         return '
@@ -39,11 +40,11 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display form to modify a teacher
+     * Affiche un formulaire pour modifier un enseignant
      *
-     * @param $user   User
+     * @param User $user L'utilisateur à modifier
      *
-     * @return string
+     * @return string Le code HTML du formulaire de modification d'un enseignant
      */
     public function modifyForm($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -61,11 +62,11 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display all teachers in a table
+     * Affiche tous les enseignants dans un tableau
      *
-     * @param $teachers    User[]
+     * @param User[] $teachers Tableau d'utilisateurs enseignants
      *
-     * @return string
+     * @return string Le code HTML du tableau affichant tous les enseignants
      */
     public function displayAllTeachers($teachers) {
         $page = get_page_by_title('Modifier un utilisateur');
