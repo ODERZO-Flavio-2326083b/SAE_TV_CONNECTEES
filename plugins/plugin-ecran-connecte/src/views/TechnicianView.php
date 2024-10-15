@@ -2,13 +2,12 @@
 
 namespace Views;
 
-
 use Models\User;
 
 /**
  * Class TechnicianView
  *
- * Contain all view for technician (Forms, tables)
+ * Contient toutes les vues liées aux techniciens (Formulaires, tableaux)
  *
  * @package Views
  */
@@ -16,9 +15,9 @@ class TechnicianView extends UserView
 {
 
     /**
-     * Display a creation form
+     * Affiche un formulaire de création pour un technicien
      *
-     * @return string
+     * @return string Le code HTML du formulaire de création d'un compte technicien
      */
     public function displayFormTechnician() {
         return '
@@ -28,11 +27,11 @@ class TechnicianView extends UserView
     }
 
     /**
-     * Display all technicians in a table
+     * Affiche tous les techniciens dans un tableau
      *
-     * @param $users    User[]
+     * @param User[] $users Tableau d'utilisateurs techniciens
      *
-     * @return string
+     * @return string Le code HTML du tableau affichant tous les techniciens
      */
     public function displayAllTechnicians($users) {
         $title = 'Techniciens';
