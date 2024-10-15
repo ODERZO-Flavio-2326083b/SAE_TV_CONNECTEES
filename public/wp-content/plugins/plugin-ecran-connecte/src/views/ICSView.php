@@ -14,13 +14,28 @@ use WP_User;
 class ICSView extends View
 {
     /**
-     * Affiche l'emploi du temps.
+     * Affiche l'emploi du temps basé sur les données ICS, les rôles des utilisateurs et les événements.
      *
-     * @param array $ics_data Données de l'emploi du temps.
-     * @param string $title Titre de l'emploi du temps.
-     * @param bool $allDay Indique si l'événement est d'une journée entière.
+     * Cette méthode génère et affiche l'emploi du temps en fonction des événements fournis dans les
+     * données ICS. Elle ajuste également l'affichage en fonction du rôle de l'utilisateur connecté et
+     * prend en compte si l'affichage doit se faire pour toute la journée ou non.
      *
-     * @return string|bool Retourne le HTML de l'emploi du temps ou un message si aucun cours n'est disponible.
+     * @param array $ics_data    Les données ICS contenant les événements organisés par année et mois.
+     * @param string $title      Le titre à afficher en haut de l'emploi du temps.
+     * @param bool $allDay       Si true, seuls les événements couvrant toute la journée seront affichés.
+     *
+     * @return string Renvoie une chaîne HTML contenant l'emploi du temps ou un message s'il n'y a pas d'emploi du temps.
+     *
+     * @example
+     * // Affiche l'emploi du temps complet pour la journée :
+     * $ics_data = $this->getIcsData();
+     * $this->displaySchedule($ics_data, 'Mon Emploi du Temps', true);
+     *
+     * // Affiche l'emploi du temps détaillé (non toute la journée) :
+     * $this->displaySchedule($ics_data, 'Mon Emploi du Temps', false);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
@@ -122,11 +137,22 @@ class ICSView extends View
     }
 
     /**
-     * Affiche l'en-tête de l'emploi du temps.
+     * Génère le début de l'affichage de l'emploi du temps en tant que tableau HTML.
      *
-     * @param WP_User $current_user L'utilisateur actuel.
+     * Cette méthode crée le tableau HTML pour afficher l'emploi du temps, avec des colonnes
+     * différentes en fonction des rôles de l'utilisateur. Si l'utilisateur n'est pas un technicien,
+     * des colonnes supplémentaires sont ajoutées pour le cours et le groupe/enseignant.
      *
-     * @return string Le code HTML de l'en-tête.
+     * @param WP_User $current_user  L'utilisateur actuel, utilisé pour déterminer les colonnes à afficher.
+     *
+     * @return string  Chaîne HTML représentant le début de l'emploi du temps en tableau.
+     *
+     * @example
+     * // Crée le tableau de début pour afficher l'emploi du temps :
+     * $html = $this->displayStartSchedule(wp_get_current_user());
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayStartSchedule($current_user) {
         $string = '<div class="table-responsive">
@@ -147,13 +173,24 @@ class ICSView extends View
     }
 
     /**
-     * Donne la date de l'emploi du temps.
+     * Génère une chaîne HTML représentant la date dans un format localisé.
      *
-     * @param int $day Jour.
-     * @param int $month Mois.
-     * @param int $year Année.
+     * Cette méthode retourne un titre HTML (`<h2>`) contenant la date complète (jour de la semaine, jour, mois)
+     * formatée en fonction de la localisation de WordPress. La méthode ajoute un jour au jour fourni
+     * pour calculer le jour de la semaine.
      *
-     * @return string HTML de la date formatée.
+     * @param int $day    Le jour du mois.
+     * @param int $month  Le mois de l'année.
+     * @param int $year   L'année.
+     *
+     * @return string  Chaîne HTML représentant la date formatée.
+     *
+     * @example
+     * // Affiche la date du 14 octobre 2024 :
+     * echo $this->giveDate(14, 10, 2024);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function giveDate($day, $month, $year) {
         $day_of_week = $day + 1;
@@ -162,12 +199,28 @@ class ICSView extends View
     }
 
     /**
-     * Donne le contenu d'un événement.
+     * Récupère le contenu d'un événement et génère une ligne de programme.
      *
-     * @param array $event Détails de l'événement.
-     * @param int $day (optionnel) Jour, par défaut aujourd'hui.
+     * Cette méthode vérifie si l'événement est actif pour le jour donné
+     * et construit une représentation formatée de l'événement, incluant
+     * sa durée, son emplacement et sa description. Si l'événement est en
+     * cours, elle retourne les détails formatés. Sinon, elle retourne
+     * `false`.
      *
-     * @return bool|string Retourne le HTML de la ligne d'emploi du temps ou false si l'événement n'est pas actif.
+     * @param array $event  Un tableau associatif représentant l'événement,
+     *                      contenant les clés 'deb', 'fin', 'label', et 'description'.
+     * @param int $day      Le jour du mois (optionnel). Par défaut, il s'agit du jour actuel.
+     *
+     * @return string|false  Une chaîne formatée représentant l'événement actif
+     *                       ou `false` si l'événement n'est pas actif.
+     *
+     * @example
+     * // Récupérer le contenu d'un événement pour le jour actuel :
+     * $event = ['deb' => '14:00', 'fin' => '15:00', 'label' => 'Cours de math', 'description' => 'Introduction aux mathématiques'];
+     * echo $this->getContent($event);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function getContent($event, $day = 0) {
         if ($day == 0) {
@@ -202,12 +255,24 @@ class ICSView extends View
     }
 
     /**
-     * Crée une ligne pour l'emploi du temps.
+     * Génère une ligne de tableau pour l'affichage d'un emploi du temps.
      *
-     * @param array $datas Données à afficher dans la ligne.
-     * @param bool $active Indique si l'événement est actif.
+     * Cette méthode crée une ligne dans un tableau HTML en fonction des données fournies.
+     * Si l'événement est actif, elle applique une classe CSS spéciale pour le mettre en évidence.
      *
-     * @return string HTML de la ligne.
+     * @param array $datas   Un tableau contenant les données à afficher dans les cellules du tableau.
+     * @param bool $active   Un indicateur optionnel pour déterminer si la ligne doit être
+     *                       marquée comme active (par défaut, `false`).
+     *
+     * @return string       Une chaîne HTML représentant la ligne du tableau.
+     *
+     * @example
+     * // Afficher une ligne de programme avec des données spécifiques :
+     * $datas = ['09:00h - 10:00h', 'Mathématiques', 'Groupe A', 'Salle 101'];
+     * echo $this->displayLineSchedule($datas, true);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayLineSchedule($datas, $active = false) {
         if ($active) {
@@ -223,9 +288,18 @@ class ICSView extends View
     }
 
     /**
-     * Affiche le pied de page de l'emploi du temps.
+     * Génère le code HTML de fin pour l'affichage d'un emploi du temps.
      *
-     * @return string HTML du pied de page.
+     * Cette méthode clôt le tableau HTML en fermant les balises `<tbody>` et `<table>`.
+     *
+     * @return string       Une chaîne HTML représentant la fin du tableau de l'emploi du temps.
+     *
+     * @example
+     * // Afficher la fin d'un tableau d'emploi du temps :
+     * echo $this->displayEndSchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayEndSchedule() {
         return '</tbody>
@@ -234,12 +308,24 @@ class ICSView extends View
     }
 
     /**
-     * Affiche un message s'il n'y a pas de cours.
+     * Affiche un message lorsque aucun emploi du temps n'est disponible pour l'utilisateur courant.
      *
-     * @param string $title Titre de l'emploi du temps.
-     * @param WP_User $current_user L'utilisateur actuel.
+     * Cette méthode vérifie les paramètres du thème pour déterminer si le message doit être affiché
+     * pour les utilisateurs ayant le rôle 'television'. Si l'utilisateur ne possède pas de cours,
+     * un message approprié est retourné.
      *
-     * @return string|bool Retourne le message ou false.
+     * @param string $title        Le titre à afficher dans le message.
+     * @param WP_User $current_user L'objet utilisateur courant.
+     *
+     * @return string|false       Une chaîne HTML contenant le message d'absence de cours,
+     *                            ou false si aucun message ne doit être affiché.
+     *
+     * @example
+     * // Afficher un message si l'utilisateur n'a pas de cours :
+     * echo $this->displayNoSchedule('Emploi du Temps', $current_user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayNoSchedule($title, $current_user) {
         if (get_theme_mod('ecran_connecte_schedule_msg', 'show') == 'show' && in_array('television', $current_user->roles)) {
