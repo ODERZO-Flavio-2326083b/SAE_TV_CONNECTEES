@@ -37,9 +37,23 @@ class StudentController extends UserController implements Schedule
     }
 
     /**
-     * Insère tous les utilisateurs à partir d'un fichier Excel.
+     * Insère des étudiants à partir d'un fichier Excel ou CSV.
      *
-     * @return string Retourne le HTML pour afficher le formulaire d'importation d'étudiants.
+     * Cette méthode vérifie si un fichier a été téléchargé, valide l'extension du fichier,
+     * lit les données du fichier à l'aide de PhpSpreadsheet, et insère chaque étudiant dans la
+     * base de données. Elle envoie également un e-mail de confirmation contenant les informations
+     * de connexion à chaque étudiant inscrit.
+     *
+     * @return string Renvoie la vue d'importation de fichier étudiant si aucune action n'a été
+     *                effectuée, ou affiche des messages d'erreur ou de succès selon les résultats
+     *                de l'importation.
+     *
+     * @example
+     * // Insérer des étudiants à partir d'un fichier téléchargé :
+     * $this->insert();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $actionStudent = filter_input(INPUT_POST, 'importEtu');
@@ -138,11 +152,24 @@ class StudentController extends UserController implements Schedule
     }
 
     /**
-     * Modifie un étudiant.
+     * Modifie les informations d'un utilisateur spécifié.
      *
-     * @param User $user L'utilisateur à modifier.
+     * Cette méthode gère la modification des informations d'un utilisateur, notamment l'année,
+     * le groupe et le demi-groupe. Elle vérifie si les valeurs saisies sont numériques, valide les
+     * codes associés à l'utilisateur et met à jour les informations dans la base de données.
+     * Si la modification est réussie, elle affiche un message de validation.
      *
-     * @return string Retourne le HTML du formulaire de modification de l'étudiant.
+     * @param User $user L'objet utilisateur dont les informations doivent être modifiées.
+     *
+     * @return string Renvoie la vue pour modifier l'étudiant, contenant des formulaires pour
+     *                saisir les nouvelles informations et éventuellement des messages d'erreur.
+     *
+     * @example
+     * // Modifier les informations d'un utilisateur :
+     * $this->modify($user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -198,9 +225,24 @@ class StudentController extends UserController implements Schedule
     }
 
     /**
-     * Affiche l'emploi du temps de l'étudiant.
+     * Affiche l'emploi du temps de l'utilisateur courant.
      *
-     * @return bool|mixed|string Retourne l'emploi du temps ou redirige vers la gestion de l'étudiant.
+     * Cette méthode récupère l'utilisateur actuellement connecté et vérifie s'il possède
+     * des codes associés. Si des codes sont trouvés, elle tente de localiser un fichier d'emploi
+     * du temps correspondant à chacun de ces codes, en commençant par le plus récent.
+     * Si un fichier d'emploi du temps est trouvé, il est affiché à l'utilisateur.
+     * Si aucun emploi du temps n'est trouvé pour les codes de l'utilisateur, la méthode appelle
+     * la fonction pour gérer les informations de l'étudiant.
+     *
+     * @return string|null Retourne l'affichage de l'emploi du temps si trouvé, sinon gère
+     *                    l'affichage des informations de l'étudiant.
+     *
+     * @example
+     * // Afficher l'emploi du temps de l'utilisateur courant :
+     * $this->displayMySchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -221,10 +263,24 @@ class StudentController extends UserController implements Schedule
     }
 
     /**
-     * Vérifie si l'étudiant a un groupe.
-     * Si ce n'est pas le cas, demande de sélectionner des groupes.
+     * Gère les horaires de l'étudiant.
      *
-     * @param User $user L'utilisateur à gérer.
+     * Cette méthode récupère les codes associés à l'étudiant et permet à l'utilisateur
+     * de sélectionner un année, un groupe, et un demi-groupe pour ajouter des horaires.
+     * Elle vérifie que les valeurs sélectionnées sont valides et met à jour les codes de
+     * l'utilisateur si les sélections sont correctes. Enfin, elle rafraîchit la page pour
+     * refléter les changements.
+     *
+     * @param User $user L'utilisateur dont les horaires sont gérés.
+     *
+     * @return string Affiche le formulaire de sélection des horaires pour l'étudiant.
+     *
+     * @example
+     * // Gérer les horaires d'un étudiant :
+     * $this->manageStudent($user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function manageStudent($user) {
         $codeAde = new CodeAde();
@@ -275,7 +331,20 @@ class StudentController extends UserController implements Schedule
     }
 
     /**
-     * Affiche tous les étudiants dans un tableau.
+     * Affiche tous les étudiants enregistrés.
+     *
+     * Cette méthode récupère tous les utilisateurs ayant le rôle d'étudiant dans le
+     * système et les affiche à l'aide de la vue appropriée. Elle permet ainsi de
+     * visualiser la liste des étudiants disponibles dans l'application.
+     *
+     * @return string Affiche la liste de tous les étudiants.
+     *
+     * @example
+     * // Afficher tous les étudiants enregistrés :
+     * $this->displayAllStudents();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     function displayAllStudents() {
         $users = $this->model->getUsersByRole('etudiant');
