@@ -20,9 +20,14 @@ use WP_REST_Server;
 class ProfileRestController extends WP_REST_Controller
 {
     /**
-     * Constructor for the REST controller
+     * Constructeur de la classe pour l'API REST "Profile".
      *
-     * Initialise le contrôleur avec le namespace et la base REST.
+     * Cette méthode initialise les propriétés nécessaires pour définir
+     * le namespace et le point de terminaison de base de l'API REST qui
+     * permet de gérer les profils utilisateurs.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -30,9 +35,18 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Register the routes for the objects of the controller.
+     * Enregistre les routes pour l'API REST "Profile".
      *
-     * Enregistre les routes pour accéder aux méthodes du contrôleur REST.
+     * Cette méthode utilise `register_rest_route()` pour définir les routes
+     * disponibles dans l'API REST sous le namespace spécifié. Elle enregistre
+     * une route accessible en méthode "GET" pour récupérer des informations
+     * de profil d'utilisateur, avec une vérification des permissions et un
+     * schéma public.
+     *
+     * @return void Cette méthode n'a pas de valeur de retour.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function register_routes() {
         register_rest_route(
@@ -51,12 +65,23 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Retrieves the currently logged in user.
+     * Récupère les informations de l'utilisateur courant via l'API REST.
      *
-     * Récupère les informations de l'utilisateur actuellement connecté.
+     * Cette méthode récupère les informations du profil de l'utilisateur actuellement
+     * connecté en interrogeant la base de données. Elle renvoie les données de l'utilisateur,
+     * telles que l'ID, le login, l'email, le rôle et les codes associés. Si l'utilisateur
+     * n'est pas trouvé, une réponse HTTP 404 avec un message d'erreur est retournée.
      *
-     * @param WP_REST_Request $request Données complètes sur la requête.
-     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     * @param WP_REST_Request $request Requête envoyée à l'API REST.
+     *
+     * @return WP_REST_Response Réponse REST contenant les données utilisateur ou un message d'erreur.
+     *
+     * @example
+     * // Appel de la méthode via une requête REST :
+     * $response = $this->get_item($request);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function get_item($request) {
         // Get an instance of the user manager
@@ -80,12 +105,22 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Checks if a given request has access to read an information.
+     * Vérifie les permissions de l'utilisateur pour récupérer ses informations via l'API REST.
      *
-     * Vérifie si la requête actuelle a les permissions pour lire les informations de l'utilisateur.
+     * Cette méthode s'assure que l'utilisateur est actuellement connecté avant de permettre
+     * l'accès à ses données. Si l'utilisateur est connecté, l'accès est accordé, sinon,
+     * la requête est refusée.
      *
-     * @param WP_REST_Request $request Données complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès à lire l'item, objet WP_Error sinon.
+     * @param WP_REST_Request $request Requête envoyée à l'API REST.
+     *
+     * @return bool Renvoie true si l'utilisateur est connecté, false sinon.
+     *
+     * @example
+     * // Vérification des permissions avant d'accéder à l'API :
+     * $has_permission = $this->get_item_permissions_check($request);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function get_item_permissions_check($request) {
         $current_user = wp_get_current_user();
