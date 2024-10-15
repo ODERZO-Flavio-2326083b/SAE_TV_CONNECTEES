@@ -30,8 +30,15 @@ class TeacherController extends UserController implements Schedule
     private $view;
 
     /**
-     * Constructeur de TeacherController.
-     * Initialise le modèle et la vue.
+     * Initialise le contrôleur des enseignants.
+     *
+     * Ce constructeur appelle le constructeur parent pour initialiser la classe de base
+     * et crée une instance du modèle d'utilisateur ainsi qu'une vue dédiée aux enseignants.
+     * Il prépare ainsi le contrôleur à gérer les requêtes liées aux enseignants,
+     * y compris la création, la modification et l'affichage des informations des enseignants.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         parent::__construct();
@@ -40,9 +47,20 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Affiche l'emploi du temps de l'enseignant.
+     * Affiche l'emploi du temps de l'utilisateur actuel.
      *
-     * @return string Retourne l'emploi du temps ou un message indiquant qu'aucun emploi du temps n'est disponible.
+     * Cette méthode récupère l'utilisateur actuellement connecté et obtient son emploi du temps
+     * à partir du premier code associé. Si l'emploi du temps est trouvé, il est affiché à l'utilisateur.
+     * Sinon, un message d'erreur indiquant qu'aucune étude n'est disponible est affiché.
+     *
+     * @return string Retourne l'affichage de l'emploi du temps si trouvé, sinon un message d'erreur.
+     *
+     * @example
+     * // Afficher l'emploi du temps de l'utilisateur :
+     * $this->displayMySchedule();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMySchedule() {
         $current_user = wp_get_current_user();
@@ -57,9 +75,23 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Insère tous les enseignants à partir d'un fichier Excel.
+     * Insère des enseignants à partir d'un fichier Excel ou CSV.
      *
-     * @return string Retourne le HTML de l'interface d'importation de fichier.
+     * Cette méthode traite un fichier importé contenant des informations sur les enseignants.
+     * Elle vérifie que le fichier a la bonne extension et le bon format, lit les données
+     * de chaque enseignant et les insère dans la base de données. Si un enseignant est ajouté
+     * avec succès, un e-mail de confirmation est envoyé. La méthode gère également les doublons
+     * d'enseignants déjà existants.
+     *
+     * @return string Retourne l'affichage d'une vue pour insérer des enseignants,
+     *                ou un message d'erreur en cas de doublons ou de format de fichier incorrect.
+     *
+     * @example
+     * // Insérer des enseignants à partir d'un fichier :
+     * $this->insert();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function insert() {
         $actionTeacher = filter_input(INPUT_POST, 'importProf');
@@ -164,11 +196,25 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Modifie un enseignant.
+     * Modifie les informations d'un utilisateur enseignant.
      *
-     * @param User $user L'utilisateur à modifier.
+     * Cette méthode permet de modifier le rôle et le code d'un utilisateur enseignant.
+     * Elle récupère les données du formulaire envoyé, vérifie si le code est numérique
+     * et met à jour les informations de l'utilisateur en conséquence. Si la mise à jour
+     * réussit, un message de validation est affiché. Sinon, le formulaire de modification
+     * est renvoyé à l'utilisateur.
      *
-     * @return string Retourne le HTML du formulaire de modification de l'enseignant.
+     * @param User $user L'utilisateur dont les informations doivent être modifiées.
+     *
+     * @return string Retourne l'affichage d'un formulaire de modification de l'utilisateur
+     *                ou un message de validation après une mise à jour réussie.
+     *
+     * @example
+     * // Modifier les informations d'un utilisateur enseignant :
+     * $this->modify($user);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modify($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -192,9 +238,22 @@ class TeacherController extends UserController implements Schedule
     }
 
     /**
-     * Affiche tous les enseignants dans un tableau.
+     * Affiche tous les enseignants enregistrés dans le système.
      *
-     * @return string Retourne le HTML affichant tous les enseignants.
+     * Cette méthode récupère tous les utilisateurs ayant le rôle d'enseignant.
+     * Elle appelle également une méthode pour obtenir les codes associés à chaque
+     * enseignant, puis renvoie l'affichage de tous les enseignants à l'interface
+     * utilisateur.
+     *
+     * @return string Retourne l'affichage des enseignants, y compris leurs informations
+     *                et les codes associés.
+     *
+     * @example
+     * // Afficher tous les enseignants :
+     * $this->displayAllTeachers();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTeachers() {
         $users = $this->model->getUsersByRole('enseignant');
