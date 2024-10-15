@@ -15,9 +15,20 @@ class TechnicianView extends UserView
 {
 
     /**
-     * Affiche un formulaire de création pour un technicien
+     * Affiche le formulaire de création de compte pour techniciens.
      *
-     * @return string Le code HTML du formulaire de création d'un compte technicien
+     * Cette méthode génère un formulaire HTML pour la création de nouveaux
+     * comptes techniciens. Le formulaire inclut des champs nécessaires pour
+     * fournir les informations requises pour un compte technicien.
+     *
+     * @return string Le code HTML du formulaire pour créer un compte technicien.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de technicien :
+     * echo $this->displayFormTechnician();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormTechnician() {
         return '
@@ -27,11 +38,24 @@ class TechnicianView extends UserView
     }
 
     /**
-     * Affiche tous les techniciens dans un tableau
+     * Affiche la liste de tous les techniciens.
      *
-     * @param User[] $users Tableau d'utilisateurs techniciens
+     * Cette méthode génère un tableau HTML affichant tous les techniciens
+     * présents dans le système. Chaque ligne du tableau inclut un numéro,
+     * une case à cocher pour sélectionner le technicien, et le login du technicien.
      *
-     * @return string Le code HTML du tableau affichant tous les techniciens
+     * @param array $users Un tableau d'objets représentant les techniciens à afficher.
+     *                     Chaque objet doit implémenter la méthode `getId()` pour
+     *                     obtenir l'identifiant et `getLogin()` pour obtenir le login.
+     *
+     * @return string Le code HTML du tableau contenant la liste des techniciens.
+     *
+     * @example
+     * // Appel de la méthode pour afficher tous les techniciens :
+     * echo $this->displayAllTechnicians($technicians);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTechnicians($users) {
         $title = 'Techniciens';
