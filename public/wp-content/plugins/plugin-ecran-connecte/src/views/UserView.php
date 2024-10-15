@@ -15,11 +15,24 @@ use Models\User;
 class UserView extends View
 {
     /**
-     * Affiche un formulaire de création
+     * Génère un formulaire de base pour la création d'un compte utilisateur.
      *
-     * @param string $name Le nom de l'utilisateur
+     * Cette méthode crée un formulaire HTML standard contenant des champs pour
+     * le login, l'email, le mot de passe et la confirmation du mot de passe.
+     * Le formulaire utilise des classes Bootstrap pour le style et inclut
+     * également des messages d'aide pour informer l'utilisateur des exigences
+     * concernant les valeurs saisies.
      *
-     * @return string Le code HTML du formulaire de création
+     * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+     *
+     * @return string Le code HTML du formulaire.
+     *
+     * @example
+     * // Affiche un formulaire pour un professeur :
+     * echo $this->displayBaseForm('Prof');
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     protected function displayBaseForm($name) {
         return '
@@ -43,9 +56,21 @@ class UserView extends View
     }
 
     /**
-     * Formulaire pour modifier le mot de passe
+     * Affiche le formulaire de modification du mot de passe.
      *
-     * @return string Le code HTML du formulaire de modification du mot de passe
+     * Cette méthode génère un formulaire HTML permettant à l'utilisateur
+     * de modifier son mot de passe. Le formulaire comprend des champs pour
+     * entrer le mot de passe actuel et le nouveau mot de passe.
+     * Les classes Bootstrap sont utilisées pour le style.
+     *
+     * @return string Le code HTML du formulaire de modification du mot de passe.
+     *
+     * @example
+     * // Affiche le formulaire pour modifier le mot de passe :
+     * echo $this->displayModifyPassword();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyPassword() {
         return '
@@ -60,9 +85,21 @@ class UserView extends View
     }
 
     /**
-     * Formulaire pour générer un code pour supprimer le compte
+     * Affiche le formulaire de suppression de compte.
      *
-     * @return string Le code HTML du formulaire de suppression de compte
+     * Cette méthode génère un formulaire HTML permettant à l'utilisateur
+     * de supprimer son compte. Le formulaire comprend un champ pour
+     * entrer le mot de passe actuel afin de confirmer l'action de suppression.
+     * Les classes Bootstrap sont utilisées pour le style.
+     *
+     * @return string Le code HTML du formulaire de suppression de compte.
+     *
+     * @example
+     * // Affiche le formulaire pour supprimer le compte :
+     * echo $this->displayDeleteAccount();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayDeleteAccount() {
         return '
@@ -75,9 +112,24 @@ class UserView extends View
     }
 
     /**
-     * Affiche le contexte pour créer un utilisateur
+     * Affiche le contexte pour la création d'utilisateurs.
      *
-     * @return string Le code HTML du contexte de création d'utilisateur
+     * Cette méthode génère une section HTML contenant une description
+     * des différents types d'utilisateurs qui peuvent être créés dans
+     * le système. Chaque type d'utilisateur est brièvement décrit
+     * en termes de ses fonctionnalités et accès.
+     *
+     * Le contenu est organisé en deux colonnes : une pour le texte
+     * explicatif et l'autre pour une image d'illustration.
+     *
+     * @return string Le code HTML du contexte de création d'utilisateurs.
+     *
+     * @example
+     * // Affiche le contexte pour la création d'utilisateurs :
+     * echo $this->contextCreateUser();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function contextCreateUser() {
         return '
@@ -102,9 +154,22 @@ class UserView extends View
     }
 
     /**
-     * Formulaire pour entrer le code de suppression de compte
+     * Affiche un formulaire pour entrer le code de suppression de compte.
      *
-     * @return string Le code HTML du formulaire d'entrée du code
+     * Cette méthode génère un formulaire HTML qui permet à l'utilisateur
+     * d'entrer un code de suppression de compte. Ce code est nécessaire
+     * pour confirmer la suppression de leur compte. Le formulaire
+     * inclut un champ pour entrer le code et un bouton pour soumettre
+     * la demande de suppression.
+     *
+     * @return string Le code HTML du formulaire d'entrée du code de suppression.
+     *
+     * @example
+     * // Affiche le formulaire pour entrer le code de suppression de compte :
+     * echo $this->displayEnterCode();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayEnterCode() {
         return '
@@ -116,9 +181,22 @@ class UserView extends View
     }
 
     /**
-     * Affiche le bouton de souscription
+     * Affiche un bouton de souscription aux notifications.
      *
-     * @return string Le code HTML du bouton de souscription
+     * Cette méthode génère un bouton HTML qui permet à l'utilisateur de
+     * s'abonner à des notifications. Le bouton est stylisé avec Bootstrap
+     * et contient un nonce de sécurité pour protéger les requêtes REST.
+     * Le nonce est utilisé pour vérifier la validité de la requête lorsque
+     * l'utilisateur clique sur le bouton.
+     *
+     * @return string Le code HTML du bouton de souscription.
+     *
+     * @example
+     * // Affiche le bouton de souscription aux notifications :
+     * echo $this->displayButtonSubscription();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayButtonSubscription() {
         $wpnonce = wp_create_nonce('wp_rest');
@@ -129,14 +207,28 @@ class UserView extends View
     }
 
     /**
-     * Affiche un formulaire pour modifier ses propres codes
+     * Affiche un formulaire pour modifier les emplois du temps de l'utilisateur.
      *
-     * @param CodeAde[] $codes        Les codes à modifier
-     * @param CodeAde[] $years        Les années disponibles
-     * @param CodeAde[] $groups       Les groupes disponibles
-     * @param CodeAde[] $halfGroups   Les demi-groupes disponibles
+     * Cette méthode génère un formulaire HTML contenant des sélecteurs pour
+     * modifier l'année, le groupe et le demi-groupe associés à l'utilisateur.
+     * Les options des sélecteurs sont remplies avec des valeurs provenant
+     * des paramètres fournis. Les codes existants de l'utilisateur, s'ils
+     * sont disponibles, seront pré-remplis dans les sélecteurs correspondants.
      *
-     * @return string Le code HTML du formulaire de modification des codes
+     * @param array $codes Un tableau contenant les codes existants de l'utilisateur
+     *                     pour l'année, le groupe et le demi-groupe.
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     *
+     * @return string Le code HTML du formulaire de modification des emplois du temps.
+     *
+     * @example
+     * // Affiche le formulaire pour modifier les emplois du temps d'un utilisateur :
+     * echo $this->displayModifyMyCodes($userCodes, $availableYears, $availableGroups, $availableHalfGroups);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyMyCodes($codes, $years, $groups, $halfGroups) {
         $form = '
@@ -203,9 +295,21 @@ class UserView extends View
     }
 
     /**
-     * Affiche la page d'accueil
+     * Affiche la page d'accueil du site.
      *
-     * @return string Le code HTML de la page d'accueil
+     * Cette méthode génère le code HTML pour la section d'accueil de l'application,
+     * incluant un logo et un message de bienvenue. Elle utilise Bootstrap pour le
+     * style et s'assure que le contenu est bien aligné et réactif sur différentes
+     * tailles d'écran.
+     *
+     * @return string Le code HTML de la page d'accueil.
+     *
+     * @example
+     * // Affiche la page d'accueil dans la vue principale :
+     * echo $this->displayHome();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayHome() {
         return '
@@ -266,9 +370,21 @@ class UserView extends View
     }
 
     /**
-     * Affiche un message d'erreur lorsque l'utilisateur n'a pas de code enregistré
+     * Affiche un message d'erreur si l'utilisateur n'a pas de code d'enregistrement.
      *
-     * @return string Le message d'erreur à afficher
+     * Cette méthode génère un message informatif pour l'utilisateur courant,
+     * l'informant qu'il est enregistré sans aucun emploi du temps. Elle
+     * l'invite à se rendre sur son compte pour attribuer un code d'accès
+     * à son emploi du temps.
+     *
+     * @return string Le code HTML du message d'erreur.
+     *
+     * @example
+     * // Affiche un message d'erreur pour l'utilisateur courant :
+     * echo $this->errorMessageNoCodeRegister();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function errorMessageNoCodeRegister() {
         $current_user = wp_get_current_user();
