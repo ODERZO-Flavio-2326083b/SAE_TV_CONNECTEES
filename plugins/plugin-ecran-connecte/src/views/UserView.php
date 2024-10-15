@@ -2,46 +2,51 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
+/**
+ * Class UserView
+ *
+ * Contient les méthodes pour afficher les vues liées aux utilisateurs.
+ *
+ * @package Views
+ */
 class UserView extends View
 {
-
     /**
-     * Display a creation form
+     * Affiche un formulaire de création
      *
-     * @param $name     string
+     * @param string $name Le nom de l'utilisateur
      *
-     * @return string
+     * @return string Le code HTML du formulaire de création
      */
     protected function displayBaseForm($name) {
         return '
             <form method="post" class="cadre">
-            	<div class="form-group">
-                	<label for="login' . $name . '">Login</label>
-                	<input class="form-control" minlength="4" type="text" name="login' . $name . '" placeholder="Login" required="">
-                	<small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractère</small>
+                <div class="form-group">
+                    <label for="login' . $name . '">Login</label>
+                    <input class="form-control" minlength="4" type="text" name="login' . $name . '" placeholder="Login" required="">
+                    <small id="passwordHelpBlock" class="form-text text-muted">Votre login doit contenir entre 4 et 25 caractère</small>
                 </div>
                 <div class="form-group">
-                	<label for="email' . $name . '">Email</label>
-                	<input class="form-control" type="email" name="email' . $name . '" placeholder="Email" required="">
+                    <label for="email' . $name . '">Email</label>
+                    <input class="form-control" type="email" name="email' . $name . '" placeholder="Email" required="">
                 </div>
                 <div class="form-group">
-                	<label for="pwd' . $name . '">Mot de passe</label>
-                	<input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
-                    <input class="form-control" minlength="8" maxlength="25" type="password" id="pwdConf' . $name . '" name="pwdConfirm' . $name . '" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
-                	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
+                    <label for="pwd' . $name . '">Mot de passe</label>
+                    <input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" required="" onkeyup=checkPwd("' . $name . '")>
+                    <input class="form-control" minlength="8" maxlength="25" type="password" id="pwdConf' . $name . '" name="pwdConfirm' . $name . '" placeholder="Confirmer le Mot de passe" required="" onkeyup=checkPwd("' . $name . '")>
+                    <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
                 </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name . '" name="create' . $name . '">Créer</button>
             </form>';
     }
 
     /**
-     * Form for modify the password
+     * Formulaire pour modifier le mot de passe
      *
-     * @return string
+     * @return string Le code HTML du formulaire de modification du mot de passe
      */
     public function displayModifyPassword() {
         return '
@@ -56,9 +61,9 @@ class UserView extends View
     }
 
     /**
-     * Form to generate a code to delete the account
+     * Formulaire pour générer un code pour supprimer le compte
      *
-     * @return string
+     * @return string Le code HTML du formulaire de suppression de compte
      */
     public function displayDeleteAccount() {
         return '
@@ -70,32 +75,37 @@ class UserView extends View
             </form>';
     }
 
+    /**
+     * Affiche le contexte pour créer un utilisateur
+     *
+     * @return string Le code HTML du contexte de création d'utilisateur
+     */
     public function contextCreateUser() {
         return '
         <hr class="half-rule">
         <div class="row">
             <div class="col-6 mx-auto col-md-6 order-md-2">
-            <img src="' . TV_PLUG_PATH . '/public/img/user.png" alt="Logo utilisateur" class="img-fluid mb-3 mb-md-0">
+                <img src="' . TV_PLUG_PATH . '/public/img/user.png" alt="Logo utilisateur" class="img-fluid mb-3 mb-md-0">
             </div>
             <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
                 <h2 class="mb-3 bd-text-purple-bright">Les utilisateurs</h2>
                 <p class="lead">Vous pouvez créer ici les utilisateurs</p>
-                <p class="lead">Il y a plusieurs types d\'utilisateur : Les étudiants, enseignants, directeurs d\'études, scrétaires, techniciens, télévisions.</p>
-                <p class="lead">Les étudiants ont accès à leur emploi du temps et reçoivent les alertes les concernants et les informations.</p>
+                <p class="lead">Il y a plusieurs types d\'utilisateur : Les étudiants, enseignants, directeurs d\'études, secrétaires, techniciens, télévisions.</p>
+                <p class="lead">Les étudiants ont accès à leur emploi du temps et reçoivent les alertes les concernant et les informations.</p>
                 <p class="lead">Les enseignants ont accès à leur emploi du temps et peuvent poster des alertes.</p>
                 <p class="lead">Les directeurs d\'études ont accès à leur emploi du temps et peuvent poster des alertes et des informations.</p>
                 <p class="lead">Les secrétaires peuvent poster des alertes et des informations. Ils peuvent aussi créer des utilisateurs.</p>
                 <p class="lead">Les techniciens ont accès aux emplois du temps des promotions.</p>
-                <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emploi du temps que souhaité.</p>
+                <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emplois du temps que souhaité.</p>
             </div>
         </div>
         <a href="' . esc_url(get_permalink(get_page_by_title('Gestion des utilisateurs'))) . '">Voir les utilisateurs</a>';
     }
 
     /**
-     * Form to delete the account
+     * Formulaire pour entrer le code de suppression de compte
      *
-     * @return string
+     * @return string Le code HTML du formulaire d'entrée du code
      */
     public function displayEnterCode() {
         return '
@@ -107,7 +117,9 @@ class UserView extends View
     }
 
     /**
-     * Display the subscription button
+     * Affiche le bouton de souscription
+     *
+     * @return string Le code HTML du bouton de souscription
      */
     public function displayButtonSubscription() {
         $wpnonce = wp_create_nonce('wp_rest');
@@ -118,14 +130,14 @@ class UserView extends View
     }
 
     /**
-     * Display a form to change our own codes
+     * Affiche un formulaire pour modifier ses propres codes
      *
-     * @param $codes        CodeAde[]
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * @param CodeAde[] $codes        Les codes à modifier
+     * @param CodeAde[] $years        Les années disponibles
+     * @param CodeAde[] $groups       Les groupes disponibles
+     * @param CodeAde[] $halfGroups   Les demi-groupes disponibles
      *
-     * @return string
+     * @return string Le code HTML du formulaire de modification des codes
      */
     public function displayModifyMyCodes($codes, $years, $groups, $halfGroups) {
         $form = '
@@ -138,7 +150,7 @@ class UserView extends View
         }
 
         $form .= '<option value="0">Aucun</option>
-				  <optgroup label="Année">';
+                  <optgroup label="Année">';
 
         foreach ($years as $year) {
             $form .= '<option value="' . $year->getCode() . '">' . $year->getTitle() . '</option >';
@@ -183,16 +195,18 @@ class UserView extends View
     }
 
     /**
-     * Display a message to select a schedule
+     * Affiche un message pour sélectionner un emploi du temps
+     *
+     * @return string Le message à afficher
      */
     public function displaySelectSchedule() {
         return '<p>Veuillez choisir un emploi du temps.</p>';
     }
 
     /**
-     * Display the welcome page
+     * Affiche la page d'accueil
      *
-     * @return string
+     * @return string Le code HTML de la page d'accueil
      */
     public function displayHome() {
         return '
@@ -209,60 +223,71 @@ class UserView extends View
     }
 
     /**
-     * Display a message for the modification of the password
+     * Affiche un message pour la modification réussie du mot de passe
      */
     public function displayModificationPassValidate() {
         $this->buildModal('Modification du mot de passe', '<div class="alert alert-success" role="alert">La modification à été réussie !</div>', home_url());
     }
 
     /**
-     * Display a message if the password is wrong
+     * Affiche un message si le mot de passe est incorrect
      */
     public function displayWrongPassword() {
         $this->buildModal('Mot de passe incorrect', '<div class="alert alert-danger">Mauvais mot de passe</div>');
     }
 
     /**
-     * Display a message if the
+     * Affiche un message si le mail a été envoyé
      */
     public function displayMailSend() {
         $this->buildModal('Mail envoyé', '<div class="alert alert-success"> Un mail a été envoyé à votre adresse mail, merci de bien vouloir entrer le code reçu</div>');
     }
 
     /**
-     * Message to prevent a login already exist
+     * Message pour prévenir qu'une inscription a échoué
      */
     public function displayErrorCreation() {
-        $this->buildModal('Inscription échouée', '<div class="alert alert-danger">Il y a eu une erreur dans le formulaire, veuillez vérifier vos information et réessayer</div>');
+        $this->buildModal('Inscription échouée', '<div class="alert alert-danger">Il y a eu une erreur dans le formulaire, veuillez vérifier vos informations et réessayer</div>');
     }
 
     /**
-     * Message to prevent a login already exist
+     * Message pour prévenir qu'un login existe déjà
      */
     public function displayErrorLogin() {
         $this->buildModal('Inscription échouée', '<div class="alert alert-danger"> Le login est déjà utilisé ! </div>');
     }
 
     /**
-     * Display to user, no lesson today
+     * Affiche un message pour indiquer qu'il n'y a pas de cours aujourd'hui
      *
-     * @return string
+     * @return string Le message à afficher
      */
     public function displayNoStudy() {
         return '<p>Vous n\'avez pas cours!</p>';
     }
 
+    /**
+     * Affiche un message d'erreur lorsque l'utilisateur n'a pas de code enregistré
+     *
+     * @return string Le message d'erreur à afficher
+     */
     public function errorMessageNoCodeRegister() {
         $current_user = wp_get_current_user();
         return '
         <h2>' . $current_user->user_login . '</h2>
-        <p>Vous êtes enregistré sans aucun emploi du temps, rendez-vous sur votre compte pour pouvoir vous attribuez un code afin d\'accèder à votre emploi du temps</p>';
+        <p>Vous êtes enregistré sans aucun emploi du temps, rendez-vous sur votre compte pour pouvoir vous attribuer un code afin d\'accéder à votre emploi du temps</p>';
     }
 
+    /**
+     * Affiche un message de succès lors du changement de code
+     */
     public function successMesageChangeCode() {
         $this->buildModal('Modification validée', '<div class="alert alert-success"> Le changement de groupe a été pris en compte</div>');
     }
 
+    /**
+     * Affiche un message d'erreur lors du changement de code
+     */
     public function errorMesageChangeCode() {
         $this->buildModal('Modification échouée', '<div class="alert alert-danger"> Le changement de groupe n\'a pas été pris en compte</div>');
     }
