@@ -15,13 +15,31 @@ use Models\User;
 class TelevisionView extends UserView
 {
     /**
-     * Affiche un formulaire pour créer une télévision
+     * Affiche le formulaire de création d'un compte télévision.
      *
-     * @param CodeAde[] $years      Tableau des années
-     * @param CodeAde[] $groups     Tableau des groupes
-     * @param CodeAde[] $halfGroups Tableau des demi-groupes
+     * Cette méthode génère un formulaire HTML permettant de créer un compte télévision.
+     * Les utilisateurs peuvent entrer un login, un mot de passe, et sélectionner
+     * des emplois du temps. Un bouton permet d'ajouter plusieurs emplois du temps
+     * si nécessaire.
      *
-     * @return string Le code HTML du formulaire de création d'une télévision
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     *                     Chaque objet doit implémenter les méthodes nécessaires
+     *                     pour l'affichage des informations.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     *                      Chaque objet doit implémenter les méthodes nécessaires
+     *                      pour l'affichage des informations.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     *                          Chaque objet doit implémenter les méthodes nécessaires
+     *                          pour l'affichage des informations.
+     *
+     * @return string Le code HTML du formulaire de création de compte télévision.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de création de compte télévision :
+     * echo $this->displayFormTelevision($years, $groups, $halfGroups);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormTelevision($years, $groups, $halfGroups) {
         $form = '
@@ -52,11 +70,24 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Affiche toutes les télévisions dans un tableau
+     * Affiche tous les comptes de télévision dans un tableau.
      *
-     * @param User[] $users Tableau d'utilisateurs de type télévision
+     * Cette méthode génère un tableau HTML récapitulatif de tous les utilisateurs de type
+     * télévision. Pour chaque utilisateur, elle affiche le login, le nombre d'emplois du temps
+     * associés, ainsi qu'un lien pour modifier les informations de l'utilisateur.
      *
-     * @return string Le code HTML du tableau affichant toutes les télévisions
+     * @param array $users Un tableau d'objets représentant les utilisateurs de type télévision.
+     *                     Chaque objet doit implémenter les méthodes nécessaires pour récupérer
+     *                     le login et les codes d'emploi du temps associés.
+     *
+     * @return string Le code HTML du tableau affichant les utilisateurs de télévision.
+     *
+     * @example
+     * // Appel de la méthode pour afficher tous les comptes de télévision :
+     * echo $this->displayAllTv($users);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTv($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -77,14 +108,27 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Affiche un formulaire pour modifier une télévision
+     * Affiche le formulaire de modification pour un utilisateur de type télévision.
      *
-     * @param User $user        Utilisateur de type télévision
-     * @param CodeAde[] $years  Tableau des années
-     * @param CodeAde[] $groups Tableau des groupes
-     * @param CodeAde[] $halfGroups Tableau des demi-groupes
+     * Cette méthode génère un formulaire HTML permettant de modifier les emplois du temps
+     * associés à un utilisateur spécifique. Elle remplit les champs de sélection avec les
+     * années, groupes et demi-groupes disponibles, tout en pré-remplissant les informations
+     * existantes de l'utilisateur.
      *
-     * @return string Le code HTML du formulaire de modification d'une télévision
+     * @param object $user L'utilisateur à modifier, qui doit implémenter les méthodes
+     *                     nécessaires pour récupérer le login et les codes d'emploi du temps.
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     *
+     * @return string Le code HTML du formulaire de modification de l'utilisateur.
+     *
+     * @example
+     * // Appel de la méthode pour afficher le formulaire de modification d'un utilisateur :
+     * echo $this->modifyForm($user, $years, $groups, $halfGroups);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modifyForm($user, $years, $groups, $halfGroups) {
         $count = 0;
@@ -122,15 +166,26 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Construit un select avec tous les codes ADE
+     * Génère un élément `<select>` HTML pour sélectionner des emplois du temps.
      *
-     * @param CodeAde[] $years      Tableau des années
-     * @param CodeAde[] $groups     Tableau des groupes
-     * @param CodeAde[] $halfGroups Tableau des demi-groupes
-     * @param CodeAde|null $code    Code ADE à pré-sélectionner (null si aucune sélection)
-     * @param int $count            Compteur d'éléments pour identifier les selects
+     * Cette méthode crée un menu déroulant contenant des options pour les années,
+     * groupes et demi-groupes. Si un code d'emploi du temps est fourni, il sera
+     * pré-sélectionné dans le menu déroulant.
      *
-     * @return string Le code HTML du select avec les options
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     * @param object|null $code Un objet représentant le code d'emploi du temps à pré-sélectionner (facultatif).
+     * @param int $count Un compteur utilisé pour générer un ID unique pour le `<select>` (par défaut à 0).
+     *
+     * @return string Le code HTML du menu déroulant pour sélectionner un emploi du temps.
+     *
+     * @example
+     * // Appel de la méthode pour construire un sélecteur d'emploi du temps :
+     * echo $this->buildSelectCode($years, $groups, $halfGroups, $code, $count);
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
@@ -162,9 +217,20 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Affiche un formulaire pour modifier le mot de passe d'une télévision
+     * Génère un formulaire HTML pour la modification du mot de passe.
      *
-     * @return string Le code HTML du formulaire de modification du mot de passe
+     * Ce formulaire permet à un utilisateur de saisir un nouveau mot de passe
+     * et de le confirmer. Il utilise une validation de longueur minimale pour
+     * assurer la sécurité du mot de passe.
+     *
+     * @return string Le code HTML du formulaire pour la modification du mot de passe.
+     *
+     * @example
+     * // Affiche le formulaire de modification de mot de passe :
+     * echo $this->modifyPassword();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modifyPassword() {
         return '
@@ -176,18 +242,41 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Démarre un diaporama
+     * Génère le conteneur HTML pour le diaporama.
      *
-     * @return string Le code HTML du conteneur du diaporama
+     * Cette méthode crée un div avec l'ID 'slideshow-container' qui sert de
+     * conteneur principal pour le diaporama d'images ou de contenu. Ce conteneur
+     * est stylisé par des classes CSS associées pour gérer l'affichage du diaporama.
+     *
+     * @return string Le code HTML du conteneur du diaporama.
+     *
+     * @example
+     * // Affiche le conteneur du diaporama :
+     * echo $this->displayStartSlide();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayStartSlide() {
         return '<div id="slideshow-container" class="slideshow-container">';
     }
 
     /**
-     * Sépare chaque diapositive par ceci
+     * Génère un conteneur HTML pour une diapositive dans le diaporama.
      *
-     * @return string Le code HTML pour une diapositive
+     * Cette méthode crée un div avec la classe 'mySlides', qui est utilisé pour
+     * encapsuler le contenu d'une diapositive individuelle dans un diaporama.
+     * Chaque diapositive peut contenir des images, du texte ou d'autres éléments
+     * HTML qui sont affichés à l'utilisateur dans une séquence.
+     *
+     * @return string Le code HTML du conteneur de la diapositive.
+     *
+     * @example
+     * // Affiche une diapositive dans le diaporama :
+     * echo $this->displayMidSlide();
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayMidSlide() {
         return '<div class="mySlides">';
