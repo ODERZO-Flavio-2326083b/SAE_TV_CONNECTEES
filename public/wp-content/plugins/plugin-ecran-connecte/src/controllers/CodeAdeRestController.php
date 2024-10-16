@@ -12,8 +12,14 @@ use WP_REST_Server;
 class CodeAdeRestController extends WP_REST_Controller
 {
     /**
-     * Constructeur du contrôleur REST
-     * Initialise l'espace de noms et la base REST.
+     * Initialise une nouvelle instance de la classe.
+     *
+     * Ce constructeur configure le namespace et la base REST pour les
+     * opérations de l'API. Il définit le namespace comme 'amu-ecran-connectee/v1'
+     * et le chemin de base REST comme 'ade'.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -21,18 +27,23 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Enregistre les routes pour les objets du contrôleur.
+     * Enregistre les routes REST pour les opérations sur les codes ADE.
      *
-     * Cette méthode définit les routes de l'API REST,
-     * y compris les méthodes pour obtenir, créer, mettre à jour
-     * et supprimer des codes ADE.
+     * Cette méthode définit les routes de l'API REST sous le namespace
+     * 'amu-ecran-connectee/v1' et le chemin de base 'ade'. Elle configure les
+     * méthodes disponibles pour récupérer, créer, mettre à jour et supprimer
+     * les codes ADE. Les permissions nécessaires pour chaque opération sont
+     * également vérifiées.
      *
-     * Exemple d'utilisation :
-     * GET /amu-ecran-connectee/v1/ade
-     * POST /amu-ecran-connectee/v1/ade
-     * GET /amu-ecran-connectee/v1/ade/{id}
-     * PUT /amu-ecran-connectee/v1/ade/{id}
-     * DELETE /amu-ecran-connectee/v1/ade/{id}
+     * Routes définies :
+     * - GET /amu-ecran-connectee/v1/ade : Récupère tous les codes ADE.
+     * - POST /amu-ecran-connectee/v1/ade : Crée un nouveau code ADE.
+     * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE spécifique par ID.
+     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code ADE spécifique par ID.
+     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code ADE spécifique par ID.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function register_routes() {
         register_rest_route(
@@ -120,13 +131,19 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Récupère une collection d'éléments.
+     * Récupère tous les codes ADE.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_Error|WP_REST_Response
+     * Cette méthode traite la requête pour obtenir la liste des codes ADE
+     * à partir de l'instance du gestionnaire de codes ADE. Elle renvoie
+     * une réponse au format WP_REST_Response contenant la liste des codes
+     * ADE avec un code de statut HTTP 200 (OK).
      *
-     * Exemple d'utilisation :
-     * GET /amu-ecran-connectee/v1/ade
+     * @param WP_REST_Request $request La requête de l'API REST.
+     *
+     * @return WP_REST_Response La réponse contenant la liste des codes ADE.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function get_items($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -136,18 +153,25 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Crée un code ADE unique.
+     * Crée un nouveau code ADE.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     * Cette méthode traite la requête pour créer un nouveau code ADE en
+     * utilisant les données fournies dans la requête. Elle crée une
+     * instance du gestionnaire de code ADE, définit les propriétés du
+     * code ADE à partir des paramètres de la requête, puis essaie
+     * d'insérer le code dans la base de données. Si l'insertion est
+     * réussie, elle retourne l'ID du nouveau code ADE avec un code de
+     * statut HTTP 200 (OK). Sinon, elle retourne un message d'erreur
+     * avec un code de statut HTTP 400 (Bad Request).
      *
-     * Exemple d'utilisation :
-     * POST /amu-ecran-connectee/v1/ade avec le corps suivant :
-     * {
-     *   "title": "Titre du code",
-     *   "code": 12345,
-     *   "type": "year"
-     * }
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les données du code ADE.
+     *
+     * @return WP_REST_Response La réponse contenant l'ID du code ADE
+     *                          créé ou un message d'erreur.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function create_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -166,13 +190,25 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Récupère un code ADE unique.
+     * Récupère un code ADE spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     * Cette méthode traite la requête pour obtenir les détails d'un
+     * code ADE en fonction de son identifiant unique fourni dans la
+     * requête. Elle crée une instance du gestionnaire de code ADE,
+     * puis tente de récupérer les informations correspondantes
+     * depuis la base de données. Si le code ADE est trouvé, la méthode
+     * retourne les informations avec un code de statut HTTP 200 (OK).
+     * Si le code ADE n'est pas trouvé, elle retourne un message
+     * d'erreur avec un code de statut HTTP 404 (Not Found).
      *
-     * Exemple d'utilisation :
-     * GET /amu-ecran-connectee/v1/ade/{id}
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 l'identifiant du code ADE à récupérer.
+     *
+     * @return WP_REST_Response La réponse contenant les détails du code
+     *                          ADE ou un message d'erreur si non trouvé.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function get_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -187,18 +223,29 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Met à jour un code ADE unique.
+     * Met à jour un code ADE spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     * Cette méthode traite la requête pour mettre à jour les détails
+     * d'un code ADE existant en fonction de son identifiant unique
+     * fourni dans la requête. Elle crée une instance du gestionnaire
+     * de code ADE et récupère les informations correspondantes depuis
+     * la base de données. Si le code ADE est trouvé, les données
+     * (titre, code et type) peuvent être mises à jour si elles sont
+     * valides. Si la mise à jour est réussie, la méthode retourne un
+     * code de statut HTTP 200 (OK). En cas d'échec ou si le code ADE
+     * n'est pas trouvé, elle retourne un message d'erreur avec un
+     * code de statut approprié.
      *
-     * Exemple d'utilisation :
-     * PUT /amu-ecran-connectee/v1/ade/{id} avec le corps suivant :
-     * {
-     *   "title": "Nouveau titre",
-     *   "code": 54321,
-     *   "type": "group"
-     * }
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 l'identifiant du code ADE à mettre à jour
+     *                                 ainsi que les nouvelles valeurs.
+     *
+     * @return WP_REST_Response Une réponse indiquant le succès de la mise à jour
+     *                          ou un message d'erreur si le code ADE n'a pas pu
+     *                          être mis à jour.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function update_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -227,13 +274,26 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Supprime un code ADE unique.
+     * Supprime un code ADE spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_REST_Response|WP_Error Objet de réponse en cas de succès, ou objet WP_Error en cas d'échec.
+     * Cette méthode traite la requête pour supprimer un code ADE
+     * existant identifié par son identifiant unique fourni dans la
+     * requête. Elle crée une instance du gestionnaire de code ADE
+     * et récupère les informations correspondantes depuis la base de
+     * données. Si le code ADE est trouvé et qu'il est supprimé avec
+     * succès, la méthode retourne une réponse HTTP avec le code
+     * statut 200 (OK). En cas d'échec, elle retourne un message d'erreur
+     * avec un code de statut approprié.
      *
-     * Exemple d'utilisation :
-     * DELETE /amu-ecran-connectee/v1/ade/{id}
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 l'identifiant du code ADE à supprimer.
+     *
+     * @return WP_REST_Response Une réponse indiquant le succès de la
+     *                          suppression ou un message d'erreur si le
+     *                          code ADE n'a pas pu être supprimé.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function delete_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
@@ -248,12 +308,22 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour obtenir des éléments.
+     * Vérifie les permissions pour accéder aux éléments.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return WP_Error|bool
+     * Cette méthode détermine si l'utilisateur actuel a les droits
+     * nécessaires pour accéder à la liste des codes ADE. Elle vérifie
+     * si l'utilisateur a le rôle d'administrateur. Si l'utilisateur
+     * est un administrateur, la méthode retourne true, permettant
+     * l'accès à la ressource; sinon, elle retourne false.
      *
-     * Vérifie si l'utilisateur actuel a le rôle d'administrateur.
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les informations de la requête actuelle.
+     *
+     * @return bool Retourne true si l'utilisateur a l'autorisation
+     *              d'accéder aux éléments, sinon false.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function get_items_permissions_check($request) {
         $current_user = wp_get_current_user();
@@ -261,40 +331,86 @@ class CodeAdeRestController extends WP_REST_Controller
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour créer une information.
+     * Vérifie les permissions pour créer un nouvel élément.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès pour créer des éléments, sinon objet WP_Error.
+     * Cette méthode appelle la méthode de vérification des permissions
+     * pour obtenir les autorisations d'accès à la liste des codes ADE.
+     * Si l'utilisateur a les droits d'administrateur, il pourra
+     * créer un nouvel élément; sinon, l'accès sera refusé.
+     *
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les informations de la requête actuelle.
+     *
+     * @return bool Retourne true si l'utilisateur a l'autorisation
+     *              de créer un nouvel élément, sinon false.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function create_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour lire une information.
+     * Vérifie les permissions pour récupérer un élément spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès en lecture pour l'élément, sinon objet WP_Error.
+     * Cette méthode appelle la méthode de vérification des permissions
+     * pour s'assurer que l'utilisateur a le droit d'accéder aux
+     * informations sur un code ADE particulier. Seuls les utilisateurs
+     * disposant des droits d'administrateur peuvent récupérer les
+     * informations.
+     *
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les informations de la requête actuelle.
+     *
+     * @return bool Retourne true si l'utilisateur a l'autorisation
+     *              de récupérer l'élément, sinon false.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour mettre à jour une information unique.
+     * Vérifie les permissions pour mettre à jour un élément spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès pour mettre à jour l'élément, sinon objet WP_Error.
+     * Cette méthode appelle la méthode de vérification des permissions
+     * pour s'assurer que l'utilisateur a le droit de mettre à jour
+     * les informations d'un code ADE particulier. Seuls les utilisateurs
+     * disposant des droits d'administrateur peuvent procéder à la
+     * mise à jour.
+     *
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les informations de la requête actuelle.
+     *
+     * @return bool Retourne true si l'utilisateur a l'autorisation
+     *              de mettre à jour l'élément, sinon false.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function update_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Vérifie si une requête donnée a accès pour supprimer une information.
+     * Vérifie les permissions pour supprimer un élément spécifique.
      *
-     * @param WP_REST_Request $request Informations complètes sur la requête.
-     * @return true|WP_Error Vrai si la requête a accès pour supprimer l'élément, sinon objet WP_Error.
+     * Cette méthode appelle la méthode de vérification des permissions
+     * pour s'assurer que l'utilisateur a le droit de supprimer
+     * un code ADE spécifique. Seuls les utilisateurs disposant des
+     * droits d'administrateur peuvent procéder à la suppression.
+     *
+     * @param WP_REST_Request $request La requête de l'API REST contenant
+     *                                 les informations de la requête actuelle.
+     *
+     * @return bool Retourne true si l'utilisateur a l'autorisation
+     *              de supprimer l'élément, sinon false.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function delete_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
