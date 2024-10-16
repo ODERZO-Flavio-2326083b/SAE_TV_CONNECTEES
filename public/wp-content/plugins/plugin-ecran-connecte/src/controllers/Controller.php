@@ -15,9 +15,17 @@ class Controller
 {
 
     /**
-     * Extrait les parties de l'URL en fonction du caractère /
+     * Récupère les segments de l'URL de la requête actuelle.
      *
-     * @return array Retourne un tableau contenant les segments de l'URL.
+     * Cette méthode extrait l'URL de la requête en cours, la divise
+     * en segments basés sur le caractère '/' et nettoie les segments
+     * vides ou non valides. Elle retourne un tableau contenant les
+     * segments pertinents de l'URL.
+     *
+     * @return array Tableau des segments nettoyés de l'URL.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function getPartOfUrl() {
         $url = $_SERVER['REQUEST_URI']; // Récupère l'URL de la requête
@@ -32,9 +40,19 @@ class Controller
     }
 
     /**
-     * Écrit les erreurs dans un fichier de log.
+     * Ajoute un événement au fichier de log.
      *
-     * @param string $event Événement ou message d'erreur à enregistrer.
+     * Cette méthode enregistre un événement dans un fichier de log,
+     * en préfixant le message avec la date et l'heure actuelles.
+     * Le message est écrit à la fin du fichier spécifié, permettant
+     * de conserver un historique des événements enregistrés.
+     *
+     * @param string $event Le message de l'événement à enregistrer.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function addLogEvent($event) {
         $time = date("D, d M Y H:i:s"); // Obtient l'heure actuelle
@@ -44,11 +62,18 @@ class Controller
     }
 
     /**
-     * Obtient l'URL pour télécharger un fichier ICS.
+     * Génère une URL pour accéder à un calendrier iCalendar.
      *
-     * @param int $code Code pour lequel l'URL est générée.
+     * Cette méthode crée une URL basée sur le code fourni,
+     * pour accéder à un calendrier qui affiche les événements
+     * pour une période de 7 jours à partir d'aujourd'hui.
      *
-     * @return string Retourne l'URL pour le fichier ICS.
+     * @param string $code Le code des ressources à inclure dans l'URL.
+     *
+     * @return string L'URL générée pour le calendrier iCalendar.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function getUrl($code) {
         $str = strtotime("now"); // Récupère le timestamp actuel
@@ -60,11 +85,23 @@ class Controller
     }
 
     /**
-     * Obtient le chemin d'un fichier à partir d'un code.
+     * Récupère le chemin d'accès d'un fichier iCalendar local.
      *
-     * @param int $code Code pour lequel le chemin du fichier est recherché.
+     * Cette méthode vérifie l'existence d'un fichier iCalendar
+     * correspondant au code donné, dans plusieurs répertoires.
+     * Si un fichier valide est trouvé, son chemin est retourné.
+     * Sinon, un nouveau fichier est téléchargé et son chemin
+     * est également retourné.
      *
-     * @return string Retourne le chemin du fichier ICS.
+     * @param string $code Le code des ressources utilisé pour
+     *                     identifier le fichier iCalendar.
+     *
+     * @return string Le chemin du fichier iCalendar, qu'il
+     *                soit localement existant ou nouvellement
+     *                téléchargé.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function getFilePath($code) {
         $base_path = ABSPATH . TV_ICSFILE_PATH; // Définit le chemin de base
@@ -83,9 +120,24 @@ class Controller
     }
 
     /**
-     * Télécharge un fichier ICS.
+     * Télécharge et enregistre un fichier iCalendar à partir d'une URL.
      *
-     * @param int $code Code ADE pour le fichier à télécharger.
+     * Cette méthode construit l'URL du fichier iCalendar en utilisant le code
+     * fourni, puis tente de télécharger le fichier. Si le téléchargement est
+     * réussi, le contenu est enregistré localement dans un fichier avec
+     * le nom correspondant. En cas d'échec à ouvrir le fichier ou à
+     * télécharger le contenu, une exception est levée et enregistrée dans le log.
+     *
+     * @param string $code Le code des ressources utilisé pour générer
+     *                     l'URL du fichier iCalendar à télécharger.
+     *
+     * @return void
+     *
+     * @throws Exception Si l'ouverture du fichier échoue lors du téléchargement
+     *                   ou de l'enregistrement.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function addFile($code) {
         try {
@@ -113,11 +165,20 @@ class Controller
     }
 
     /**
-     * Vérifie si l'entrée est une date valide.
+     * Vérifie si une chaîne de caractères représente une date valide.
      *
-     * @param string $date La date à vérifier.
+     * Cette méthode tente de convertir la chaîne de caractères donnée
+     * en timestamp. Si la conversion échoue, elle retourne faux.
+     * Sinon, elle décompose la date en année, mois et jour, et utilise
+     * la fonction `checkdate` pour valider la date.
+     *
+     * @param string $date La chaîne de caractères représentant la date à vérifier
+     *                     au format 'YYYY-MM-DD'.
      *
      * @return bool Retourne vrai si la date est valide, faux sinon.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function isRealDate($date) {
         if (false === strtotime($date)) { // Vérifie si la date peut être convertie en timestamp
