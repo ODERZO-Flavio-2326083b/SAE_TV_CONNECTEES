@@ -1,0 +1,67 @@
+\doxysection{Référence de l\textquotesingle{}interface Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}Extractor\+Interface}
+\hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface}{}\label{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}Extractor\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_adb1695e36f9a922af19c0cd25b9bc381}{extract}} (\$resource, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}} \$catalogue)
+\item 
+\mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_aea98c116bdd5fe7069141f1a7280f049}{set\+Prefix}} (\$prefix)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Extracts translation messages from a directory or files to the catalogue. New found messages are injected to the catalogue using the prefix.
+
+\begin{DoxyAuthor}{Auteur}
+Michel Salib \href{mailto:michelsalib@hotmail.com}{\texttt{ michelsalib@hotmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_adb1695e36f9a922af19c0cd25b9bc381}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface}!extract@{extract}}
+\index{extract@{extract}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface}}
+\doxysubsubsection{\texorpdfstring{extract()}{extract()}}
+{\footnotesize\ttfamily \label{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_adb1695e36f9a922af19c0cd25b9bc381} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Extractor\textbackslash{}\+Extractor\+Interface\+::extract (\begin{DoxyParamCaption}\item[{}]{\$resource}{, }\item[{\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}}}]{\$catalogue}{}\end{DoxyParamCaption})}
+
+Extracts translation messages from files, a file or a directory to the catalogue.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | array & {\em \$resource} & Files, a file or a directory \\
+\hline
+Message\+Catalogue & {\em \$catalogue} & The catalogue \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_chain_extractor_aca65ea6ab9e1f5e2336c5366f89b43da}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Extractor\textbackslash{}\+Chain\+Extractor}}.
+
+\Hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_aea98c116bdd5fe7069141f1a7280f049}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface}!setPrefix@{setPrefix}}
+\index{setPrefix@{setPrefix}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Extractor\textbackslash{}ExtractorInterface}}
+\doxysubsubsection{\texorpdfstring{setPrefix()}{setPrefix()}}
+{\footnotesize\ttfamily \label{interface_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_extractor_interface_aea98c116bdd5fe7069141f1a7280f049} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Extractor\textbackslash{}\+Extractor\+Interface\+::set\+Prefix (\begin{DoxyParamCaption}\item[{}]{\$prefix}{}\end{DoxyParamCaption})}
+
+Sets the prefix that should be used for new found messages.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_extractor_1_1_chain_extractor_a7e9d55cd0860b235f4bc819c4779bf4a}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Extractor\textbackslash{}\+Chain\+Extractor}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Extractor/\mbox{\hyperlink{_extractor_interface_8php}{Extractor\+Interface.\+php}}\end{DoxyCompactItemize}

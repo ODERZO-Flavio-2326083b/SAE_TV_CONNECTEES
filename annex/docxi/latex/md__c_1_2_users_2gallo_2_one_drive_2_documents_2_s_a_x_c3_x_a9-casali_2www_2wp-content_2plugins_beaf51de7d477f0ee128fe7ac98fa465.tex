@@ -1,0 +1,1581 @@
+\chapter{Recipes}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465}\index{Recipes@{Recipes}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md669}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md669}%
+
+
+The following pages offer you some widely-\/used Php\+Spreadsheet recipes. Please note that these do NOT offer complete documentation on specific Php\+Spreadsheet API functions, but just a bump to get you started. If you need specific API functions, please refer to the \href{https://phpoffice.github.io/PhpSpreadsheet/master}{\texttt{ API documentation}}.
+
+For example, setting a worksheet\textquotesingle{}s page orientation and size covers setting a page orientation to A4. Other paper formats, like US Letter, are not covered in this document, but in the Php\+Spreadsheet \href{https://phpoffice.github.io/PhpSpreadsheet/master}{\texttt{ API documentation}}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md670}{}\doxysection{\texorpdfstring{Setting a spreadsheet\textquotesingle{}s metadata}{Setting a spreadsheet\textquotesingle{}s metadata}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md670}
+Php\+Spreadsheet allows an easy way to set a spreadsheet\textquotesingle{}s metadata, using document property accessors. Spreadsheet metadata can be useful for finding a specific document in a file repository or a document management system. For example Microsoft Sharepoint uses document metadata to search for a specific document in its document lists.
+
+Setting spreadsheet metadata is done as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()}
+\DoxyCodeLine{\ \ \ \ -\/>setCreator("{}Maarten\ Balliauw"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setLastModifiedBy("{}Maarten\ Balliauw"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setTitle("{}Office\ 2007\ XLSX\ Test\ Document"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setSubject("{}Office\ 2007\ XLSX\ Test\ Document"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setDescription(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}Test\ document\ for\ Office\ 2007\ XLSX,\ generated\ using\ PHP\ classes."{}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ -\/>setKeywords("{}office\ 2007\ openxml\ php"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setCategory("{}Test\ result\ file"{});}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md671}{}\doxysection{\texorpdfstring{Setting a spreadsheet\textquotesingle{}s active sheet}{Setting a spreadsheet\textquotesingle{}s active sheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md671}
+The following line of code sets the active sheet index to the first sheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>setActiveSheetIndex(0);}
+
+\end{DoxyCode}
+
+
+You can also set the active sheet by its name/title
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>setActiveSheetIndexByName('DataSheet')}
+
+\end{DoxyCode}
+
+
+will change the currently active sheet to the worksheet called "{}\+Data\+Sheet"{}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md672}{}\doxysection{\texorpdfstring{Write a date or time into a cell}{Write a date or time into a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md672}
+In Excel, dates and Times are stored as numeric values counting the number of days elapsed since 1900-\/01-\/01. For example, the date \textquotesingle{}2008-\/12-\/31\textquotesingle{} is represented as 39813. You can verify this in Microsoft Office Excel by entering that date in a cell and afterwards changing the number format to \textquotesingle{}General\textquotesingle{} so the true numeric value is revealed. Likewise, \textquotesingle{}3\+:15 AM\textquotesingle{} is represented as 0.\+135417.
+
+Php\+Spreadsheet works with UST (Universal Standard Time) date and Time values, but does no internal conversions; so it is up to the developer to ensure that values passed to the date/time conversion functions are UST.
+
+Writing a date value in a cell consists of 2 lines of code. Select the method that suits you the best. Here are some examples\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ MySQL-\/like\ timestamp\ '2008-\/12-\/31'\ or\ date\ string}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)Cell::setValueBinder(\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)AdvancedValueBinder()\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D1',\ '2008-\/12-\/31');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('D1')}
+\DoxyCodeLine{\ \ \ \ -\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)NumberFormat::FORMAT\_DATE\_YYYYMMDDSLASH);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ PHP-\/time\ (Unix\ time)}
+\DoxyCodeLine{\$time\ =\ gmmktime(0,0,0,12,31,2008);\ //\ int(1230681600)}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D1',\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Shared\(\backslash\)Date::PHPToExcel(\$time));}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('D1')}
+\DoxyCodeLine{\ \ \ \ -\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)NumberFormat::FORMAT\_DATE\_YYYYMMDDSLASH);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Excel-\/date/time}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('D1',\ 39813)}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('D1')}
+\DoxyCodeLine{\ \ \ \ -\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)NumberFormat::FORMAT\_DATE\_YYYYMMDDSLASH);}
+
+\end{DoxyCode}
+
+
+The above methods for entering a date all yield the same result. {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Style\textbackslash{}Number\+Format} provides a lot of pre-\/defined date formats.
+
+The {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date\+::\+PHPTo\+Excel()} method will also work with a PHP Date\+Time object.
+
+Similarly, times (or date and time values) can be entered in the same fashion\+: just remember to use an appropriate format code.
+
+{\bfseries{Note\+:}}
+
+See section "{}\+Using value binders to facilitate data entry"{} to learn more about the Advanced\+Value\+Binder used in the first example. Excel can also operate in a 1904-\/based calendar (default for workbooks saved on Mac). Normally, you do not have to worry about this when using Php\+Spreadsheet.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md673}{}\doxysection{\texorpdfstring{Write a formula into a cell}{Write a formula into a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md673}
+Inside the Excel file, formulas are always stored as they would appear in an English version of Microsoft Office Excel, and Php\+Spreadsheet handles all formulae internally in this format. This means that the following rules hold\+:
+
+
+\begin{DoxyItemize}
+\item Decimal separator is {\ttfamily .} (period)
+\item Function argument separator is {\ttfamily ,} (comma)
+\item \doxylink{namespace_matrix}{Matrix} row separator is {\ttfamily ;} (semicolon)
+\item English function names must be used
+\end{DoxyItemize}
+
+This is regardless of which language version of Microsoft Office Excel may have been used to create the Excel file.
+
+When the final workbook is opened by the user, Microsoft Office Excel will take care of displaying the formula according the applications language. Translation is taken care of by the application!
+
+The following line of code writes the formula {\ttfamily =IF(C4\texorpdfstring{$>$}{>}500,"{}profit"{},"{}loss"{})} into the cell B8. Note that the formula must start with {\ttfamily =} to make Php\+Spreadsheet recognise this as a formula.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('B8','=IF(C4>500,"{}profit"{},"{}loss"{})');}
+
+\end{DoxyCode}
+
+
+If you want to write a string beginning with an {\ttfamily =} character to a cell, then you should use the {\ttfamily set\+Cell\+Value\+Explicit()} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValueExplicit(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'B8',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ '=IF(C4>500,"{}profit"{},"{}loss"{})',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataType::TYPE\_STRING}
+\DoxyCodeLine{\ \ \ \ );}
+
+\end{DoxyCode}
+
+
+A cell\textquotesingle{}s formula can be read again using the following line of code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$formula\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getCell('B8')-\/>getValue();}
+
+\end{DoxyCode}
+
+
+If you need the calculated value of a cell, use the following code. This is further explained in \doxysectlink{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26}{the calculation engine}{0}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$value\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getCell('B8')-\/>getCalculatedValue();}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md674}{}\doxysection{\texorpdfstring{Locale Settings for Formulae}{Locale Settings for Formulae}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md674}
+Some localisation elements have been included in Php\+Spreadsheet. You can set a locale by changing the settings. To set the locale to Russian you would use\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$locale\ =\ 'ru';}
+\DoxyCodeLine{\$validLocale\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Settings::setLocale(\$locale);}
+\DoxyCodeLine{if\ (!\$validLocale)\ \{}
+\DoxyCodeLine{\ \ \ \ echo\ 'Unable\ to\ set\ locale\ to\ '.\$locale."{}\ -\/\ reverting\ to\ en\_us<br\ />\(\backslash\)n"{};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+If Russian language files aren\textquotesingle{}t available, the {\ttfamily set\+Locale()} method will return an error, and English settings will be used throughout.
+
+Once you have set a locale, you can translate a formula from its internal English coding.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$formula\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getCell('B8')-\/>getValue();}
+\DoxyCodeLine{\$translatedFormula\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Calculation::getInstance()-\/>\_translateFormulaToLocale(\$formula);}
+
+\end{DoxyCode}
+
+
+You can also create a formula using the function names and argument separators appropriate to the defined locale; then translate it to English before setting the cell value\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$formula\ =\ '=ДНЕЙ360(ДАТА(2010;2;5);ДАТА(2010;12;31);ИСТИНА)';}
+\DoxyCodeLine{\$internalFormula\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Calculation::getInstance()-\/>translateFormulaToEnglish(\$formula);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('B8',\$internalFormula);}
+
+\end{DoxyCode}
+
+
+Currently, formula translation only translates the function names, the constants TRUE and FALSE, and the function argument separators.
+
+At present, the following locale settings are supported\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Language   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Locale Code    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Language   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Locale Code    }\\\cline{1-3}
+\endhead
+Czech   &Ceština   &cs    \\\cline{1-3}
+Danish   &Dansk   &da    \\\cline{1-3}
+German   &Deutsch   &de    \\\cline{1-3}
+Spanish   &Español   &es    \\\cline{1-3}
+Finnish   &Suomi   &fi    \\\cline{1-3}
+French   &Français   &fr    \\\cline{1-3}
+Hungarian   &Magyar   &hu    \\\cline{1-3}
+Italian   &Italiano   &it    \\\cline{1-3}
+Dutch   &Nederlands   &nl    \\\cline{1-3}
+Norwegian   &Norsk   &no    \\\cline{1-3}
+Polish   &Jezyk polski   &pl    \\\cline{1-3}
+Portuguese   &Português   &pt    \\\cline{1-3}
+Brazilian Portuguese   &Português Brasileiro   &pt\+\_\+br    \\\cline{1-3}
+Russian   &русский язык   &ru    \\\cline{1-3}
+Swedish   &Svenska   &sv    \\\cline{1-3}
+Turkish   &Türkçe   &tr   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md675}{}\doxysection{\texorpdfstring{Write a newline character "{}\textbackslash{}n"{} in a cell (ALT+"{}\+Enter"{})}{Write a newline character "{}\textbackslash{}n"{} in a cell (ALT+"{}\+Enter"{})}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md675}
+In Microsoft Office Excel you get a line break in a cell by hitting ALT+"{}\+Enter"{}. When you do that, it automatically turns on "{}wrap text"{} for the cell.
+
+Here is how to achieve this in Php\+Spreadsheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('A1')-\/>setValue("{}hello\(\backslash\)nworld"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getAlignment()-\/>setWrapText(true);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Tip}}
+
+Read more about formatting cells using {\ttfamily get\+Style()} elsewhere.
+
+{\bfseries{Tip}}
+
+\doxylink{_advanced_value_binder_8php}{Advanced\+Valuebinder.\+php} automatically turns on "{}wrap text"{} for the cell when it sees a newline character in a string that you are inserting in a cell. Just like Microsoft Office Excel. Try this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)Cell::setValueBinder(\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)AdvancedValueBinder()\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('A1')-\/>setValue("{}hello\(\backslash\)nworld"{});}
+
+\end{DoxyCode}
+
+
+Read more about \doxylink{_advanced_value_binder_8php}{Advanced\+Value\+Binder.\+php} elsewhere.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md676}{}\doxysection{\texorpdfstring{Explicitly set a cell\textquotesingle{}s datatype}{Explicitly set a cell\textquotesingle{}s datatype}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md676}
+You can set a cell\textquotesingle{}s datatype explicitly by using the cell\textquotesingle{}s set\+Value\+Explicit method, or the set\+Cell\+Value\+Explicit method of a worksheet. Here\textquotesingle{}s an example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('A1')}
+\DoxyCodeLine{\ \ \ \ -\/>setValueExplicit(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ '25',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataType::TYPE\_NUMERIC}
+\DoxyCodeLine{\ \ \ \ );}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md677}{}\doxysection{\texorpdfstring{Change a cell into a clickable URL}{Change a cell into a clickable URL}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md677}
+You can make a cell a clickable URL by setting its hyperlink property\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('E26',\ 'www.phpexcel.net');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('E26')-\/>getHyperlink()-\/>setUrl('https://www.example.com');}
+
+\end{DoxyCode}
+
+
+If you want to make a hyperlink to another worksheet/cell, use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('E26',\ 'www.phpexcel.net');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('E26')-\/>getHyperlink()-\/>setUrl("{}sheet://'Sheetname'!A1"{});}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md678}{}\doxysection{\texorpdfstring{Setting Printer Options for Excel files}{Setting Printer Options for Excel files}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md678}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md679}{}\doxysubsection{\texorpdfstring{Setting a worksheet\textquotesingle{}s page orientation and size}{Setting a worksheet\textquotesingle{}s page orientation and size}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md679}
+Setting a worksheet\textquotesingle{}s page orientation and size can be done using the following lines of code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()}
+\DoxyCodeLine{\ \ \ \ -\/>setOrientation(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)PageSetup::ORIENTATION\_LANDSCAPE);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()}
+\DoxyCodeLine{\ \ \ \ -\/>setPaperSize(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)PageSetup::PAPERSIZE\_A4);}
+
+\end{DoxyCode}
+
+
+Note that there are additional page settings available. Please refer to the \href{https://phpoffice.github.io/PhpSpreadsheet/master}{\texttt{ API documentation}} for all possible options.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md680}{}\doxysubsection{\texorpdfstring{Page Setup\+: Scaling options}{Page Setup\+: Scaling options}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md680}
+The page setup scaling options in Php\+Spreadsheet relate directly to the scaling options in the "{}\+Page Setup"{} dialog as shown in the illustration.
+
+Default values in Php\+Spreadsheet correspond to default values in MS Office Excel as shown in illustration
+
+
+
+method \texorpdfstring{$\vert$}{|} initial value \texorpdfstring{$\vert$}{|} calling method will trigger \texorpdfstring{$\vert$}{|} Note -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\texorpdfstring{$\vert$}{|}\+:-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\+:\texorpdfstring{$\vert$}{|}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\texorpdfstring{$\vert$}{|}-\/-\/-\/--- set\+Fit\+To\+Page(...) \texorpdfstring{$\vert$}{|} FALSE \texorpdfstring{$\vert$}{|} -\/ \texorpdfstring{$\vert$}{|} set\+Scale(...) \texorpdfstring{$\vert$}{|} 100 \texorpdfstring{$\vert$}{|} set\+Fit\+To\+Page(\+FALSE) \texorpdfstring{$\vert$}{|} set\+Fit\+To\+Width(...) \texorpdfstring{$\vert$}{|} 1 \texorpdfstring{$\vert$}{|} set\+Fit\+To\+Page(\+TRUE) \texorpdfstring{$\vert$}{|} value 0 means do-\/not-\/fit-\/to-\/width set\+Fit\+To\+Height(...) \texorpdfstring{$\vert$}{|} 1 \texorpdfstring{$\vert$}{|} set\+Fit\+To\+Page(\+TRUE) \texorpdfstring{$\vert$}{|} value 0 means do-\/not-\/fit-\/to-\/height\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md681}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md681}
+Here is how to fit to 1 page wide by infinite pages tall\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setFitToWidth(1);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setFitToHeight(0);}
+
+\end{DoxyCode}
+
+
+As you can see, it is not necessary to call set\+Fit\+To\+Page(\+TRUE) since set\+Fit\+To\+Width(...) and set\+Fit\+To\+Height(...) triggers this.
+
+If you use {\ttfamily set\+Fit\+To\+Width()} you should in general also specify {\ttfamily set\+Fit\+To\+Height()} explicitly like in the example. Be careful relying on the initial values.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md682}{}\doxysubsection{\texorpdfstring{Page margins}{Page margins}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md682}
+To set page margins for a worksheet, use this code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageMargins()-\/>setTop(1);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageMargins()-\/>setRight(0.75);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageMargins()-\/>setLeft(0.75);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageMargins()-\/>setBottom(1);}
+
+\end{DoxyCode}
+
+
+Note that the margin values are specified in inches.
+
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md683}{}\doxysubsection{\texorpdfstring{Center a page horizontally/vertically}{Center a page horizontally/vertically}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md683}
+To center a page horizontally/vertically, you can use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setHorizontalCentered(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setVerticalCentered(false);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md684}{}\doxysubsection{\texorpdfstring{Setting the print header and footer of a worksheet}{Setting the print header and footer of a worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md684}
+Setting a worksheet\textquotesingle{}s print header and footer can be done using the following lines of code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getHeaderFooter()}
+\DoxyCodeLine{\ \ \ \ -\/>setOddHeader('\&C\&HPlease\ treat\ this\ document\ as\ confidential!');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getHeaderFooter()}
+\DoxyCodeLine{\ \ \ \ -\/>setOddFooter('\&L\&B'\ .\ \$spreadsheet-\/>getProperties()-\/>getTitle()\ .\ '\&RPage\ \&P\ of\ \&N');}
+
+\end{DoxyCode}
+
+
+Substitution and formatting codes (starting with \&) can be used inside headers and footers. There is no required order in which these codes must appear.
+
+The first occurrence of the following codes turns the formatting ON, the second occurrence turns it OFF again\+:
+
+
+\begin{DoxyItemize}
+\item Strikethrough
+\item Superscript
+\item Subscript
+\end{DoxyItemize}
+
+Superscript and subscript cannot both be ON at same time. Whichever comes first wins and the other is ignored, while the first is ON.
+
+The following codes are supported by Xlsx\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Code   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Meaning    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Code   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Meaning    }\\\cline{1-2}
+\endhead
+{\ttfamily \&L}   &Code for "{}left section"{} (there are three header / footer locations, "{}left"{}, "{}center"{}, and "{}right"{}). When two or more occurrences of this section marker exist, the contents from all markers are concatenated, in the order of appearance, and placed into the left section.    \\\cline{1-2}
+{\ttfamily \&P}   &Code for "{}current page \#"{}    \\\cline{1-2}
+{\ttfamily \&N}   &Code for "{}total pages"{}    \\\cline{1-2}
+{\ttfamily \&font size}   &Code for "{}text font size"{}, where font size is a font size in points.    \\\cline{1-2}
+{\ttfamily \&K}   &Code for "{}text font color"{} -\/ RGB Color is specified as RRGGBB Theme Color is specifed as TTSNN where TT is the theme color Id, S is either "{}+"{} or "{}-\/"{} of the tint/shade value, NN is the tint/shade value.    \\\cline{1-2}
+{\ttfamily \&S}   &Code for "{}text strikethrough"{} on / off    \\\cline{1-2}
+{\ttfamily \&X}   &Code for "{}text super script"{} on / off    \\\cline{1-2}
+{\ttfamily \&Y}   &Code for "{}text subscript"{} on / off    \\\cline{1-2}
+{\ttfamily \&C}   &Code for "{}center section"{}. When two or more occurrences of this section marker exist, the contents from all markers are concatenated, in the order of appearance, and placed into the center section.    \\\cline{1-2}
+{\ttfamily \&D}   &Code for "{}date"{}    \\\cline{1-2}
+{\ttfamily \&T}   &Code for "{}time"{}    \\\cline{1-2}
+{\ttfamily \&G}   &Code for "{}picture as background"{} -\/ Please make sure to add the image to the header/footer (see Tip for picture)    \\\cline{1-2}
+{\ttfamily \&U}   &Code for "{}text single underline"{}    \\\cline{1-2}
+{\ttfamily \&E}   &Code for "{}double underline"{}    \\\cline{1-2}
+{\ttfamily \&R}   &Code for "{}right section"{}. When two or more occurrences of this section marker exist, the contents from all markers are concatenated, in the order of appearance, and placed into the right section.    \\\cline{1-2}
+{\ttfamily \&Z}   &Code for "{}this workbook\textquotesingle{}s file path"{}    \\\cline{1-2}
+{\ttfamily \&F}   &Code for "{}this workbook\textquotesingle{}s file name"{}    \\\cline{1-2}
+{\ttfamily \&A}   &Code for "{}sheet tab name"{}    \\\cline{1-2}
+{\ttfamily \&+}   &Code for add to page \#    \\\cline{1-2}
+{\ttfamily \&-\/}   &Code for subtract from page \#    \\\cline{1-2}
+{\ttfamily \&"{}font name,font type"{}}   &Code for "{}text font name"{} and "{}text font type"{}, where font name and font type are strings specifying the name and type of the font, separated by a comma. When a hyphen appears in font name, it means "{}none specified"{}. Both of font name and font type can be localized values.    \\\cline{1-2}
+{\ttfamily \&"{}-\/,\+Bold"{}}   &Code for "{}bold font style"{}    \\\cline{1-2}
+{\ttfamily \&B}   &Code for "{}bold font style"{}    \\\cline{1-2}
+{\ttfamily \&"{}-\/,\+Regular"{}}   &Code for "{}regular font style"{}    \\\cline{1-2}
+{\ttfamily \&"{}-\/,\+Italic"{}}   &Code for "{}italic font style"{}    \\\cline{1-2}
+{\ttfamily \&I}   &Code for "{}italic font style"{}    \\\cline{1-2}
+{\ttfamily \&"{}-\/,\+Bold Italic"{}}   &Code for "{}bold italic font style"{}    \\\cline{1-2}
+{\ttfamily \&O}   &Code for "{}outline style"{}    \\\cline{1-2}
+{\ttfamily \&H}   &Code for "{}shadow style"{}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{Tip}}
+
+The above table of codes may seem overwhelming first time you are trying to figure out how to write some header or footer. Luckily, there is an easier way. Let Microsoft Office Excel do the work for you.\+For example, create in Microsoft Office Excel an xlsx file where you insert the header and footer as desired using the programs own interface. Save file as test.\+xlsx. Now, take that file and read off the values using Php\+Spreadsheet as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{10___autofilter_8php_a6a6ab914c86f9e232184680d0888969e}{\$spreadsheet}}\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)IOFactory::load(\textcolor{stringliteral}{'test.xlsx'});}
+\DoxyCodeLine{\mbox{\hyperlink{26___utf8_8php_aa83fbc59a101fda8ad4a20b5a082a3b7}{\$worksheet}}\ =\ \mbox{\hyperlink{10___autofilter_8php_a6a6ab914c86f9e232184680d0888969e}{\$spreadsheet}}-\/>getActiveSheet();}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\_dump(\mbox{\hyperlink{26___utf8_8php_aa83fbc59a101fda8ad4a20b5a082a3b7}{\$worksheet}}-\/>getHeaderFooter()-\/>getOddFooter());}
+\DoxyCodeLine{var\_dump(\mbox{\hyperlink{26___utf8_8php_aa83fbc59a101fda8ad4a20b5a082a3b7}{\$worksheet}}-\/>getHeaderFooter()-\/>getEvenFooter());}
+\DoxyCodeLine{var\_dump(\mbox{\hyperlink{26___utf8_8php_aa83fbc59a101fda8ad4a20b5a082a3b7}{\$worksheet}}-\/>getHeaderFooter()-\/>getOddHeader());}
+\DoxyCodeLine{var\_dump(\mbox{\hyperlink{26___utf8_8php_aa83fbc59a101fda8ad4a20b5a082a3b7}{\$worksheet}}-\/>getHeaderFooter()-\/>getEvenHeader());}
+
+\end{DoxyCode}
+
+
+That reveals the codes for the even/odd header and footer. Experienced users may find it easier to rename test.\+xlsx to test.\+zip, unzip it, and inspect directly the contents of the relevant xl/worksheets/sheet\+X.\+xml to find the codes for header/footer.
+
+{\bfseries{Tip for picture}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{04___printing_8php_a7fa52cc682cac58b8bf059d5d5b37c95}{\$drawing}}\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)HeaderFooterDrawing();}
+\DoxyCodeLine{\mbox{\hyperlink{04___printing_8php_a7fa52cc682cac58b8bf059d5d5b37c95}{\$drawing}}-\/>setName(\textcolor{stringliteral}{'PhpSpreadsheet\ logo'});}
+\DoxyCodeLine{\mbox{\hyperlink{04___printing_8php_a7fa52cc682cac58b8bf059d5d5b37c95}{\$drawing}}-\/>setPath(\textcolor{stringliteral}{'./media/PhpSpreadsheet\_logo.png'});}
+\DoxyCodeLine{\mbox{\hyperlink{04___printing_8php_a7fa52cc682cac58b8bf059d5d5b37c95}{\$drawing}}-\/>setHeight(36);}
+\DoxyCodeLine{\mbox{\hyperlink{10___autofilter_8php_a6a6ab914c86f9e232184680d0888969e}{\$spreadsheet}}-\/>getActiveSheet()-\/>getHeaderFooter()-\/>addImage(\mbox{\hyperlink{04___printing_8php_a7fa52cc682cac58b8bf059d5d5b37c95}{\$drawing}},\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)HeaderFooter::IMAGE\_HEADER\_LEFT);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md685}{}\doxysubsection{\texorpdfstring{Setting printing breaks on a row or column}{Setting printing breaks on a row or column}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md685}
+To set a print break, use the following code, which sets a row break on row 10.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setBreak('A10',\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)Worksheet::BREAK\_ROW);}
+
+\end{DoxyCode}
+
+
+The following line of code sets a print break on column D\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setBreak('D10',\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)Worksheet::BREAK\_COLUMN);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md686}{}\doxysubsection{\texorpdfstring{Show/hide gridlines when printing}{Show/hide gridlines when printing}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md686}
+To show/hide gridlines when printing, use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{10___autofilter_8php_a6a6ab914c86f9e232184680d0888969e}{\$spreadsheet}}-\/>getActiveSheet()-\/>setShowGridlines(\textcolor{keyword}{true});}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md687}{}\doxysubsection{\texorpdfstring{Setting rows/columns to repeat at top/left}{Setting rows/columns to repeat at top/left}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md687}
+Php\+Spreadsheet can repeat specific rows/cells at top/left of a page. The following code is an example of how to repeat row 1 to 5 on each printed page of a specific worksheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setRowsToRepeatAtTopByStartAndEnd(1,\ 5);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md688}{}\doxysubsection{\texorpdfstring{Specify printing area}{Specify printing area}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md688}
+To specify a worksheet\textquotesingle{}s printing area, use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setPrintArea('A1:E5');}
+
+\end{DoxyCode}
+
+
+There can also be multiple printing areas in a single worksheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getPageSetup()-\/>setPrintArea('A1:E5,G4:M20');}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md689}{}\doxysection{\texorpdfstring{Styles}{Styles}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md689}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md690}{}\doxysubsection{\texorpdfstring{Formatting cells}{Formatting cells}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md690}
+A cell can be formatted with font, border, fill, ... style information. For example, one can set the foreground colour of a cell to red, aligned to the right, and the border to black and thick border style. Let\textquotesingle{}s do that on cell B2\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getFont()-\/>getColor()-\/>setARGB(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Color::COLOR\_RED);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getAlignment()-\/>setHorizontal(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Alignment::HORIZONTAL\_RIGHT);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getBorders()-\/>getTop()-\/>setBorderStyle(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THICK);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getBorders()-\/>getBottom()-\/>setBorderStyle(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THICK);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getBorders()-\/>getLeft()-\/>setBorderStyle(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THICK);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getBorders()-\/>getRight()-\/>setBorderStyle(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THICK);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getFill()-\/>setFillType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Fill::FILL\_SOLID);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')}
+\DoxyCodeLine{\ \ \ \ -\/>getFill()-\/>getStartColor()-\/>setARGB('FFFF0000');}
+
+\end{DoxyCode}
+
+
+{\ttfamily get\+Style()} also accepts a cell range as a parameter. For example, you can set a red background color on a range of cells\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B3:B7')-\/>getFill()}
+\DoxyCodeLine{\ \ \ \ -\/>setFillType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Fill::FILL\_SOLID)}
+\DoxyCodeLine{\ \ \ \ -\/>getStartColor()-\/>setARGB('FFFF0000');}
+
+\end{DoxyCode}
+
+
+{\bfseries{Tip}} It is recommended to style many cells at once, using e.\+g. get\+Style(\textquotesingle{}A1\+:M500\textquotesingle{}), rather than styling the cells individually in a loop. This is much faster compared to looping through cells and styling them individually.
+
+There is also an alternative manner to set styles. The following code sets a cell\textquotesingle{}s style to font bold, alignment right, top border thin and a gradient fill\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$styleArray\ =\ [}
+\DoxyCodeLine{\ \ \ \ 'font'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'bold'\ =>\ true,}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ 'alignment'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'horizontal'\ =>\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Alignment::HORIZONTAL\_RIGHT,}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ 'borders'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'top'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 'borderStyle'\ =>\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THIN,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ 'fill'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'fillType'\ =>\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Fill::FILL\_GRADIENT\_LINEAR,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'rotation'\ =>\ 90,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'startColor'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 'argb'\ =>\ 'FFA0A0A0',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'endColor'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 'argb'\ =>\ 'FFFFFFFF',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A3')-\/>applyFromArray(\$styleArray);}
+
+\end{DoxyCode}
+
+
+Or with a range of cells\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B3:B7')-\/>applyFromArray(\$styleArray);}
+
+\end{DoxyCode}
+
+
+This alternative method using arrays should be faster in terms of execution whenever you are setting more than one style property. But the difference may barely be measurable unless you have many different styles in your workbook.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md691}{}\doxysubsection{\texorpdfstring{Number formats}{Number formats}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md691}
+You often want to format numbers in Excel. For example you may want a thousands separator plus a fixed number of decimals after the decimal separator. Or perhaps you want some numbers to be zero-\/padded.
+
+In Microsoft Office Excel you may be familiar with selecting a number format from the "{}\+Format Cells"{} dialog. Here there are some predefined number formats available including some for dates. The dialog is designed in a way so you don\textquotesingle{}t have to interact with the underlying raw number format code unless you need a custom number format.
+
+In Php\+Spreadsheet, you can also apply various predefined number formats. Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)NumberFormat::FORMAT\_NUMBER\_COMMA\_SEPARATED1);}
+
+\end{DoxyCode}
+
+
+This will format a number e.\+g. 1587.\+2 so it shows up as 1,587.\+20 when you open the workbook in MS Office Excel. (Depending on settings for decimal and thousands separators in Microsoft Office Excel it may show up as 1.\+587,20)
+
+You can achieve exactly the same as the above by using this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode('\#,\#\#0.00');}
+
+\end{DoxyCode}
+
+
+In Microsoft Office Excel, as well as in Php\+Spreadsheet, you will have to interact with raw number format codes whenever you need some special custom number format. Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode('[Blue][>=3000]\$\#,\#\#0;[Red][<0]\$\#,\#\#0;\$\#,\#\#0');}
+
+\end{DoxyCode}
+
+
+Another example is when you want numbers zero-\/padded with leading zeros to a fixed length\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('A1')-\/>setValue(19);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getNumberFormat()}
+\DoxyCodeLine{\ \ \ \ -\/>setFormatCode('0000');\ //\ will\ show\ as\ 0019\ in\ Excel}
+
+\end{DoxyCode}
+
+
+{\bfseries{Tip}} The rules for composing a number format code in Excel can be rather complicated. Sometimes you know how to create some number format in Microsoft Office Excel, but don\textquotesingle{}t know what the underlying number format code looks like. How do you find it?
+
+The readers shipped with Php\+Spreadsheet come to the rescue. Load your template workbook using e.\+g. Xlsx reader to reveal the number format code. Example how read a number format code for cell A1\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$reader\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)IOFactory::createReader('Xlsx');}
+\DoxyCodeLine{\$spreadsheet\ =\ \$reader-\/>load('template.xlsx');}
+\DoxyCodeLine{var\_dump(\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1')-\/>getNumberFormat()-\/>getFormatCode());}
+
+\end{DoxyCode}
+
+
+Advanced users may find it faster to inspect the number format code directly by renaming template.\+xlsx to template.\+zip, unzipping, and looking for the relevant piece of XML code holding the number format code in {\itshape xl/styles.\+xml}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md692}{}\doxysubsection{\texorpdfstring{Alignment and wrap text}{Alignment and wrap text}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md692}
+Let\textquotesingle{}s set vertical alignment to the top for cells A1\+:D4
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1:D4')}
+\DoxyCodeLine{\ \ \ \ -\/>getAlignment()-\/>setVertical(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Alignment::VERTICAL\_TOP);}
+
+\end{DoxyCode}
+
+
+Here is how to achieve wrap text\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('A1:D4')}
+\DoxyCodeLine{\ \ \ \ -\/>getAlignment()-\/>setWrapText(true);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md693}{}\doxysubsection{\texorpdfstring{Setting the default style of a workbook}{Setting the default style of a workbook}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md693}
+It is possible to set the default style of a workbook. Let\textquotesingle{}s set the default font to Arial size 8\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getDefaultStyle()-\/>getFont()-\/>setName('Arial');}
+\DoxyCodeLine{\$spreadsheet-\/>getDefaultStyle()-\/>getFont()-\/>setSize(8);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md694}{}\doxysubsection{\texorpdfstring{Styling cell borders}{Styling cell borders}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md694}
+In Php\+Spreadsheet it is easy to apply various borders on a rectangular selection. Here is how to apply a thick red border outline around cells B2\+:G8.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$styleArray\ =\ [}
+\DoxyCodeLine{\ \ \ \ 'borders'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'outline'\ =>\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 'borderStyle'\ =>\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Border::BORDER\_THICK,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 'color'\ =>\ ['argb'\ =>\ 'FFFF0000'],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>getStyle('B2:G8')-\/>applyFromArray(\$styleArray);}
+
+\end{DoxyCode}
+
+
+In Microsoft Office Excel, the above operation would correspond to selecting the cells B2\+:G8, launching the style dialog, choosing a thick red border, and clicking on the "{}\+Outline"{} border component.
+
+Note that the border outline is applied to the rectangular selection B2\+:G8 as a whole, not on each cell individually.
+
+You can achieve any border effect by using just the 5 basic borders and operating on a single cell at a time\+:
+
+
+\begin{DoxyItemize}
+\item left
+\item right
+\item top
+\item bottom
+\item diagonal
+\end{DoxyItemize}
+
+Additional shortcut borders come in handy like in the example above. These are the shortcut borders available\+:
+
+
+\begin{DoxyItemize}
+\item all\+Borders
+\item outline
+\item inside
+\item vertical
+\item horizontal
+\end{DoxyItemize}
+
+An overview of all border shortcuts can be seen in the following image\+:
+
+
+
+If you simultaneously set e.\+g. all\+Borders and vertical, then we have "{}overlapping"{} borders, and one of the components has to win over the other where there is border overlap. In Php\+Spreadsheet, from weakest to strongest borders, the list is as follows\+: all\+Borders, outline/inside, vertical/horizontal, left/right/top/bottom/diagonal.
+
+This border hierarchy can be utilized to achieve various effects in an easy manner.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md695}{}\doxysubsection{\texorpdfstring{Valid array keys for style {\ttfamily apply\+From\+Array()}}{Valid array keys for style {\ttfamily apply\+From\+Array()}}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md695}
+The following table lists the valid array keys for {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Style\textbackslash{}Style\+::apply\+From\+Array()} classes. If the "{}\+Maps to property"{} column maps a key to a setter, the value provided for that key will be applied directly. If the "{}\+Maps to property"{} column maps a key to a getter, the value provided for that key will be applied as another style array.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Style\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+fill   &get\+Fill()    \\\cline{1-2}
+font   &get\+Font()    \\\cline{1-2}
+borders   &get\+Borders()    \\\cline{1-2}
+alignment   &get\+Alignment()    \\\cline{1-2}
+number\+Format   &get\+Number\+Format()    \\\cline{1-2}
+protection   &get\+Protection()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Fill\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+fill\+Type   &set\+Fill\+Type()    \\\cline{1-2}
+rotation   &set\+Rotation()    \\\cline{1-2}
+start\+Color   &get\+Start\+Color()    \\\cline{1-2}
+end\+Color   &get\+End\+Color()    \\\cline{1-2}
+color   &get\+Start\+Color()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Font\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+name   &set\+Name()    \\\cline{1-2}
+bold   &set\+Bold()    \\\cline{1-2}
+italic   &set\+Italic()    \\\cline{1-2}
+underline   &set\+Underline()    \\\cline{1-2}
+strikethrough   &set\+Strikethrough()    \\\cline{1-2}
+color   &get\+Color()    \\\cline{1-2}
+size   &set\+Size()    \\\cline{1-2}
+superscript   &set\+Superscript()    \\\cline{1-2}
+subscript   &set\+Subscript()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Borders\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+all\+Borders   &get\+Left(); get\+Right(); get\+Top(); get\+Bottom()    \\\cline{1-2}
+left   &get\+Left()    \\\cline{1-2}
+right   &get\+Right()    \\\cline{1-2}
+top   &get\+Top()    \\\cline{1-2}
+bottom   &get\+Bottom()    \\\cline{1-2}
+diagonal   &get\+Diagonal()    \\\cline{1-2}
+vertical   &get\+Vertical()    \\\cline{1-2}
+horizontal   &get\+Horizontal()    \\\cline{1-2}
+diagonal\+Direction   &set\+Diagonal\+Direction()    \\\cline{1-2}
+outline   &set\+Outline()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Border\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+border\+Style   &set\+Border\+Style()    \\\cline{1-2}
+color   &get\+Color()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Alignment\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+horizontal   &set\+Horizontal()    \\\cline{1-2}
+vertical   &set\+Vertical()    \\\cline{1-2}
+text\+Rotation   &set\+Text\+Rotation()    \\\cline{1-2}
+wrap\+Text   &set\+Wrap\+Text()    \\\cline{1-2}
+shrink\+To\+Fit   &set\+Shrink\+To\+Fit()    \\\cline{1-2}
+indent   &set\+Indent()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Number\+Format\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+format\+Code   &set\+Format\+Code()   \\\cline{1-2}
+\end{longtabu}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Style\textbackslash{}\+Protection\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array key   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Maps to property    }\\\cline{1-2}
+\endhead
+locked   &set\+Locked()    \\\cline{1-2}
+hidden   &set\+Hidden()   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md696}{}\doxysection{\texorpdfstring{Conditional formatting a cell}{Conditional formatting a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md696}
+A cell can be formatted conditionally, based on a specific rule. For example, one can set the foreground colour of a cell to red if its value is below zero, and to green if its value is zero or more.
+
+One can set a conditional style ruleset to a cell using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$conditional1\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional();}
+\DoxyCodeLine{\$conditional1-\/>setConditionType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional::CONDITION\_CELLIS);}
+\DoxyCodeLine{\$conditional1-\/>setOperatorType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional::OPERATOR\_LESSTHAN);}
+\DoxyCodeLine{\$conditional1-\/>addCondition('0');}
+\DoxyCodeLine{\$conditional1-\/>getStyle()-\/>getFont()-\/>getColor()-\/>setARGB(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Color::COLOR\_RED);}
+\DoxyCodeLine{\$conditional1-\/>getStyle()-\/>getFont()-\/>setBold(true);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$conditional2\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional();}
+\DoxyCodeLine{\$conditional2-\/>setConditionType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional::CONDITION\_CELLIS);}
+\DoxyCodeLine{\$conditional2-\/>setOperatorType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Conditional::OPERATOR\_GREATERTHANOREQUAL);}
+\DoxyCodeLine{\$conditional2-\/>addCondition('0');}
+\DoxyCodeLine{\$conditional2-\/>getStyle()-\/>getFont()-\/>getColor()-\/>setARGB(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Color::COLOR\_GREEN);}
+\DoxyCodeLine{\$conditional2-\/>getStyle()-\/>getFont()-\/>setBold(true);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$conditionalStyles\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')-\/>getConditionalStyles();}
+\DoxyCodeLine{\$conditionalStyles[]\ =\ \$conditional1;}
+\DoxyCodeLine{\$conditionalStyles[]\ =\ \$conditional2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2')-\/>setConditionalStyles(\$conditionalStyles);}
+
+\end{DoxyCode}
+
+
+If you want to copy the ruleset to other cells, you can duplicate the style object\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>duplicateStyle(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>getStyle('B2'),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'B3:B7'}
+\DoxyCodeLine{\ \ \ \ );}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md697}{}\doxysection{\texorpdfstring{Add a comment to a cell}{Add a comment to a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md697}
+To add a comment to a cell, use the following code. The example below adds a comment to cell E11\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getComment('E11')}
+\DoxyCodeLine{\ \ \ \ -\/>setAuthor('Mark\ Baker');}
+\DoxyCodeLine{\$commentRichText\ =\ \$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getComment('E11')}
+\DoxyCodeLine{\ \ \ \ -\/>getText()-\/>createTextRun('PhpSpreadsheet:');}
+\DoxyCodeLine{\$commentRichText-\/>getFont()-\/>setBold(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getComment('E11')}
+\DoxyCodeLine{\ \ \ \ -\/>getText()-\/>createTextRun("{}\(\backslash\)r\(\backslash\)n"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getComment('E11')}
+\DoxyCodeLine{\ \ \ \ -\/>getText()-\/>createTextRun('Total\ amount\ on\ the\ current\ invoice,\ excluding\ VAT.');}
+
+\end{DoxyCode}
+
+
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md698}{}\doxysection{\texorpdfstring{Apply autofilter to a range of cells}{Apply autofilter to a range of cells}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md698}
+To apply an autofilter to a range of cells, use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setAutoFilter('A1:C9');}
+
+\end{DoxyCode}
+
+
+{\bfseries{Make sure that you always include the complete filter range!}} Excel does support setting only the captionrow, but that\textquotesingle{}s {\bfseries{not}} a best practice...\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md699}{}\doxysection{\texorpdfstring{Setting security on a spreadsheet}{Setting security on a spreadsheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md699}
+Excel offers 3 levels of "{}protection"{}\+:
+
+
+\begin{DoxyItemize}
+\item Document\+: allows you to set a password on a complete spreadsheet, allowing changes to be made only when that password is entered.
+\item Worksheet\+: offers other security options\+: you can disallow inserting rows on a specific sheet, disallow sorting, ...
+\item Cell\+: offers the option to lock/unlock a cell as well as show/hide the internal formula.
+\end{DoxyItemize}
+
+An example on setting document security\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getSecurity()-\/>setLockWindows(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getSecurity()-\/>setLockStructure(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getSecurity()-\/>setWorkbookPassword("{}PhpSpreadsheet"{});}
+
+\end{DoxyCode}
+
+
+An example on setting worksheet security\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()-\/>setPassword('PhpSpreadsheet');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()-\/>setSheet(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()-\/>setSort(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()-\/>setInsertRows(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()-\/>setFormatCells(true);}
+
+\end{DoxyCode}
+
+
+An example on setting cell security\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getStyle('B1')}
+\DoxyCodeLine{\ \ \ \ -\/>getProtection()}
+\DoxyCodeLine{\ \ \ \ -\/>setLocked(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Protection::PROTECTION\_UNPROTECTED);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Make sure you enable worksheet protection if you need any of the worksheet protection features!}} This can be done using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getProtection()-\/>setSheet(true);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md700}{}\doxysection{\texorpdfstring{Setting data validation on a cell}{Setting data validation on a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md700}
+Data validation is a powerful feature of Xlsx. It allows to specify an input filter on the data that can be inserted in a specific cell. This filter can be a range (i.\+e. value must be between 0 and 10), a list (i.\+e. value must be picked from a list), ...
+
+The following piece of code only allows numbers between 10 and 20 to be entered in cell B3\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$validation\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getCell('B3')}
+\DoxyCodeLine{\ \ \ \ -\/>getDataValidation();}
+\DoxyCodeLine{\$validation-\/>setType(\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataValidation::TYPE\_WHOLE\ );}
+\DoxyCodeLine{\$validation-\/>setErrorStyle(\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataValidation::STYLE\_STOP\ );}
+\DoxyCodeLine{\$validation-\/>setAllowBlank(true);}
+\DoxyCodeLine{\$validation-\/>setShowInputMessage(true);}
+\DoxyCodeLine{\$validation-\/>setShowErrorMessage(true);}
+\DoxyCodeLine{\$validation-\/>setErrorTitle('Input\ error');}
+\DoxyCodeLine{\$validation-\/>setError('Number\ is\ not\ allowed!');}
+\DoxyCodeLine{\$validation-\/>setPromptTitle('Allowed\ input');}
+\DoxyCodeLine{\$validation-\/>setPrompt('Only\ numbers\ between\ 10\ and\ 20\ are\ allowed.');}
+\DoxyCodeLine{\$validation-\/>setFormula1(10);}
+\DoxyCodeLine{\$validation-\/>setFormula2(20);}
+
+\end{DoxyCode}
+
+
+The following piece of code only allows an item picked from a list of data to be entered in cell B5\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$validation\ =\ \$spreadsheet-\/>getActiveSheet()-\/>getCell('B5')}
+\DoxyCodeLine{\ \ \ \ -\/>getDataValidation();}
+\DoxyCodeLine{\$validation-\/>setType(\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataValidation::TYPE\_LIST\ );}
+\DoxyCodeLine{\$validation-\/>setErrorStyle(\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Cell\(\backslash\)DataValidation::STYLE\_INFORMATION\ );}
+\DoxyCodeLine{\$validation-\/>setAllowBlank(false);}
+\DoxyCodeLine{\$validation-\/>setShowInputMessage(true);}
+\DoxyCodeLine{\$validation-\/>setShowErrorMessage(true);}
+\DoxyCodeLine{\$validation-\/>setShowDropDown(true);}
+\DoxyCodeLine{\$validation-\/>setErrorTitle('Input\ error');}
+\DoxyCodeLine{\$validation-\/>setError('Value\ is\ not\ in\ list.');}
+\DoxyCodeLine{\$validation-\/>setPromptTitle('Pick\ from\ list');}
+\DoxyCodeLine{\$validation-\/>setPrompt('Please\ pick\ a\ value\ from\ the\ drop-\/down\ list.');}
+\DoxyCodeLine{\$validation-\/>setFormula1('"{}Item\ A,Item\ B,Item\ C"{}');}
+
+\end{DoxyCode}
+
+
+When using a data validation list like above, make sure you put the list between {\ttfamily "{}$<$/tt$>$ and $<$tt$>$"{}} and that you split the items with a comma ({\ttfamily ,}).
+
+It is important to remember that any string participating in an Excel formula is allowed to be maximum 255 characters (not bytes). This sets a limit on how many items you can have in the string "{}\+Item A,\+Item B,\+Item \+C"{}. Therefore it is normally a better idea to type the item values directly in some cell range, say A1\+:A3, and instead use, say, `\$validation-\/\texorpdfstring{$>$}{>}set\+Formula1(\textquotesingle{}Sheet!\$\+A\$1\+:\$\+A\$3'){\ttfamily . Another benefit is that the item values themselves can contain the comma},\`{} character itself.
+
+If you need data validation on multiple cells, one can clone the ruleset\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('B8')-\/>setDataValidation(clone\ \$validation);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md701}{}\doxysection{\texorpdfstring{Setting a column\textquotesingle{}s width}{Setting a column\textquotesingle{}s width}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md701}
+A column\textquotesingle{}s width can be set using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('D')-\/>setWidth(12);}
+
+\end{DoxyCode}
+
+
+If you want Php\+Spreadsheet to perform an automatic width calculation, use the following code. Php\+Spreadsheet will approximate the column with to the width of the widest column value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('B')-\/>setAutoSize(true);}
+
+\end{DoxyCode}
+
+
+
+
+The measure for column width in Php\+Spreadsheet does {\bfseries{not}} correspond exactly to the measure you may be used to in Microsoft Office Excel. Column widths are difficult to deal with in Excel, and there are several measures for the column width.
+
+
+\begin{DoxyEnumerate}
+\item Inner width in character units (e.\+g. 8.\+43 this is probably what you are familiar with in Excel)
+\item Full width in pixels (e.\+g. 64 pixels)
+\item Full width in character units (e.\+g. 9.\+140625, value -\/1 indicates unset width)
+\end{DoxyEnumerate}
+
+{\bfseries{Php\+Spreadsheet always operates with "{}3. Full width in character units"{}}} which is in fact the only value that is stored in any Excel file, hence the most reliable measure. Unfortunately, {\bfseries{Microsoft Office Excel does not present you with this measure}}. Instead measures 1 and 2 are computed by the application when the file is opened and these values are presented in various dialogues and tool tips.
+
+The character width unit is the width of a {\ttfamily 0} (zero) glyph in the workbooks default font. Therefore column widths measured in character units in two different workbooks can only be compared if they have the same default workbook font.\+If you have some Excel file and need to know the column widths in measure 3, you can read the Excel file with Php\+Spreadsheet and echo the retrieved values.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md702}{}\doxysection{\texorpdfstring{Show/hide a column}{Show/hide a column}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md702}
+To set a worksheet\textquotesingle{}s column visibility, you can use the following code. The first line explicitly shows the column C, the second line hides column D.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('C')-\/>setVisible(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('D')-\/>setVisible(false);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md703}{}\doxysection{\texorpdfstring{Group/outline a column}{Group/outline a column}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md703}
+To group/outline a column, you can use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('E')-\/>setOutlineLevel(1);}
+
+\end{DoxyCode}
+
+
+You can also collapse the column. Note that you should also set the column invisible, otherwise the collapse will not be visible in Excel 2007.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('E')-\/>setCollapsed(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getColumnDimension('E')-\/>setVisible(false);}
+
+\end{DoxyCode}
+
+
+Please refer to the section "{}group/outline a row"{} for a complete example on collapsing.
+
+You can instruct Php\+Spreadsheet to add a summary to the right (default), or to the left. The following code adds the summary to the left\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setShowSummaryRight(false);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md704}{}\doxysection{\texorpdfstring{Setting a row\textquotesingle{}s height}{Setting a row\textquotesingle{}s height}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md704}
+A row\textquotesingle{}s height can be set using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension('10')-\/>setRowHeight(100);}
+
+\end{DoxyCode}
+
+
+Excel measures row height in points, where 1 pt is 1/72 of an inch (or about 0.\+35mm). The default value is 12.\+75 pts; and the permitted range of values is between 0 and 409 pts, where 0 pts is a hidden row.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md705}{}\doxysection{\texorpdfstring{Show/hide a row}{Show/hide a row}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md705}
+To set a worksheet\textquotesingle{}\textquotesingle{}s row visibility, you can use the following code. The following example hides row number 10.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension('10')-\/>setVisible(false);}
+
+\end{DoxyCode}
+
+
+Note that if you apply active filters using an Auto\+Filter, then this will override any rows that you hide or unhide manually within that Auto\+Filter range if you save the file.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md706}{}\doxysection{\texorpdfstring{Group/outline a row}{Group/outline a row}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md706}
+To group/outline a row, you can use the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension('5')-\/>setOutlineLevel(1);}
+
+\end{DoxyCode}
+
+
+You can also collapse the row. Note that you should also set the row invisible, otherwise the collapse will not be visible in Excel 2007.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension('5')-\/>setCollapsed(true);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension('5')-\/>setVisible(false);}
+
+\end{DoxyCode}
+
+
+Here\textquotesingle{}s an example which collapses rows 50 to 80\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{for\ (\$i\ =\ 51;\ \$i\ <=\ 80;\ \$i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>setCellValue('A'\ .\ \$i,\ "{}FName\ \$i"{});}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>setCellValue('B'\ .\ \$i,\ "{}LName\ \$i"{});}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>setCellValue('C'\ .\ \$i,\ "{}PhoneNo\ \$i"{});}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>setCellValue('D'\ .\ \$i,\ "{}FaxNo\ \$i"{});}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>setCellValue('E'\ .\ \$i,\ true);}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>getRowDimension(\$i)-\/>setOutlineLevel(1);}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getActiveSheet()-\/>getRowDimension(\$i)-\/>setVisible(false);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getRowDimension(81)-\/>setCollapsed(true);}
+
+\end{DoxyCode}
+
+
+You can instruct Php\+Spreadsheet to add a summary below the collapsible rows (default), or above. The following code adds the summary above\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setShowSummaryBelow(false);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md707}{}\doxysection{\texorpdfstring{Merge/unmerge cells}{Merge/unmerge cells}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md707}
+If you have a big piece of data you want to display in a worksheet, you can merge two or more cells together, to become one cell. This can be done using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>mergeCells('A18:E22');}
+
+\end{DoxyCode}
+
+
+Removing a merge can be done using the unmerge\+Cells method\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>unmergeCells('A18:E22');}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md708}{}\doxysection{\texorpdfstring{Inserting rows/columns}{Inserting rows/columns}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md708}
+You can insert/remove rows/columns at a specific position. The following code inserts 2 new rows, right before row 7\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>insertNewRowBefore(7,\ 2);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md709}{}\doxysection{\texorpdfstring{Add a drawing to a worksheet}{Add a drawing to a worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md709}
+A drawing is always represented as a separate object, which can be added to a worksheet. Therefore, you must first instantiate a new {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Worksheet\textbackslash{}Drawing}, and assign its properties a meaningful value\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$drawing\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)Drawing();}
+\DoxyCodeLine{\$drawing-\/>setName('Logo');}
+\DoxyCodeLine{\$drawing-\/>setDescription('Logo');}
+\DoxyCodeLine{\$drawing-\/>setPath('./images/officelogo.jpg');}
+\DoxyCodeLine{\$drawing-\/>setHeight(36);}
+
+\end{DoxyCode}
+
+
+To add the above drawing to the worksheet, use the following snippet of code. Php\+Spreadsheet creates the link between the drawing and the worksheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$drawing-\/>setWorksheet(\$spreadsheet-\/>getActiveSheet());}
+
+\end{DoxyCode}
+
+
+You can set numerous properties on a drawing, here are some examples\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$drawing-\/>setName('Paid');}
+\DoxyCodeLine{\$drawing-\/>setDescription('Paid');}
+\DoxyCodeLine{\$drawing-\/>setPath('./images/paid.png');}
+\DoxyCodeLine{\$drawing-\/>setCoordinates('B15');}
+\DoxyCodeLine{\$drawing-\/>setOffsetX(110);}
+\DoxyCodeLine{\$drawing-\/>setRotation(25);}
+\DoxyCodeLine{\$drawing-\/>getShadow()-\/>setVisible(true);}
+\DoxyCodeLine{\$drawing-\/>getShadow()-\/>setDirection(45);}
+
+\end{DoxyCode}
+
+
+You can also add images created using GD functions without needing to save them to disk first as In-\/\+Memory drawings.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ \ Use\ GD\ to\ create\ an\ in-\/memory\ image}
+\DoxyCodeLine{\$gdImage\ =\ @imagecreatetruecolor(120,\ 20)\ or\ die('Cannot\ Initialize\ new\ GD\ image\ stream');}
+\DoxyCodeLine{\$textColor\ =\ imagecolorallocate(\$gdImage,\ 255,\ 255,\ 255);}
+\DoxyCodeLine{imagestring(\$gdImage,\ 1,\ 5,\ 5,\ \ 'Created\ with\ PhpSpreadsheet',\ \$textColor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ \ Add\ the\ In-\/Memory\ image\ to\ a\ worksheet}
+\DoxyCodeLine{\$drawing\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing();}
+\DoxyCodeLine{\$drawing-\/>setName('In-\/Memory\ image\ 1');}
+\DoxyCodeLine{\$drawing-\/>setDescription('In-\/Memory\ image\ 1');}
+\DoxyCodeLine{\$drawing-\/>setCoordinates('A1');}
+\DoxyCodeLine{\$drawing-\/>setImageResource(\$gdImage);}
+\DoxyCodeLine{\$drawing-\/>setRenderingFunction(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::RENDERING\_JPEG}
+\DoxyCodeLine{);}
+\DoxyCodeLine{\$drawing-\/>setMimeType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::MIMETYPE\_DEFAULT);}
+\DoxyCodeLine{\$drawing-\/>setHeight(36);}
+\DoxyCodeLine{\$drawing-\/>setWorksheet(\$spreadsheet-\/>getActiveSheet());}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md710}{}\doxysection{\texorpdfstring{Reading Images from a worksheet}{Reading Images from a worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md710}
+A commonly asked question is how to retrieve the images from a workbook that has been loaded, and save them as individual image files to disk.
+
+The following code extracts images from the current active worksheet, and writes each as a separate file.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$i\ =\ 0;}
+\DoxyCodeLine{foreach\ (\$spreadsheet-\/>getActiveSheet()-\/>getDrawingCollection()\ as\ \$drawing)\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (\$drawing\ instanceof\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ob\_start();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ call\_user\_func(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$drawing-\/>getRenderingFunction(),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$drawing-\/>getImageResource()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$imageContents\ =\ ob\_get\_contents();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ob\_end\_clean();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ switch\ (\$drawing-\/>getMimeType())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ case\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::MIMETYPE\_PNG\ :}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$extension\ =\ 'png';}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ case\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::MIMETYPE\_GIF:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$extension\ =\ 'gif';}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ case\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::MIMETYPE\_JPEG\ :}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$extension\ =\ 'jpg';}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$zipReader\ =\ fopen(\$drawing-\/>getPath(),'r');}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$imageContents\ =\ '';}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ while\ (!feof(\$zipReader))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$imageContents\ .=\ fread(\$zipReader,1024);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fclose(\$zipReader);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$extension\ =\ \$drawing-\/>getExtension();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \$myFileName\ =\ '00\_Image\_'.++\$i.'.'.\$extension;}
+\DoxyCodeLine{\ \ \ \ file\_put\_contents(\$myFileName,\$imageContents);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md711}{}\doxysection{\texorpdfstring{Add rich text to a cell}{Add rich text to a cell}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md711}
+Adding rich text to a cell can be done using {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Rich\+Text\textbackslash{}Rich\+Text} instances. Here\textquotesingle{}\textquotesingle{}s an example, which creates the following rich text string\+:
+
+\begin{quote}
+This invoice is {\itshape {\bfseries{payable within thirty days after the end of the month}}} unless specified otherwise on the invoice. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$richText\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)RichText\(\backslash\)RichText();}
+\DoxyCodeLine{\$richText-\/>createText('This\ invoice\ is\ ');}
+\DoxyCodeLine{\$payable\ =\ \$richText-\/>createTextRun('payable\ within\ thirty\ days\ after\ the\ end\ of\ the\ month');}
+\DoxyCodeLine{\$payable-\/>getFont()-\/>setBold(true);}
+\DoxyCodeLine{\$payable-\/>getFont()-\/>setItalic(true);}
+\DoxyCodeLine{\$payable-\/>getFont()-\/>setColor(\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Color(\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Style\(\backslash\)Color::COLOR\_DARKGREEN\ )\ );}
+\DoxyCodeLine{\$richText-\/>createText(',\ unless\ specified\ otherwise\ on\ the\ invoice.');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('A18')-\/>setValue(\$richText);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md712}{}\doxysection{\texorpdfstring{Define a named range}{Define a named range}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md712}
+Php\+Spreadsheet supports the definition of named ranges. These can be defined using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Add\ some\ data}
+\DoxyCodeLine{\$spreadsheet-\/>setActiveSheetIndex(0);}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('A1',\ 'Firstname:');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('A2',\ 'Lastname:');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('B1',\ 'Maarten');}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setCellValue('B2',\ 'Balliauw');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Define\ named\ ranges}
+\DoxyCodeLine{\$spreadsheet-\/>addNamedRange(\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)NamedRange('PersonFN',\ \$spreadsheet-\/>getActiveSheet(),\ 'B1')\ );}
+\DoxyCodeLine{\$spreadsheet-\/>addNamedRange(\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)NamedRange('PersonLN',\ \$spreadsheet-\/>getActiveSheet(),\ 'B2')\ );}
+
+\end{DoxyCode}
+
+
+Optionally, a fourth parameter can be passed defining the named range local (i.\+e. only usable on the current worksheet). Named ranges are global by default.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md713}{}\doxysection{\texorpdfstring{Redirect output to a client\textquotesingle{}s web browser}{Redirect output to a client\textquotesingle{}s web browser}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md713}
+Sometimes, one really wants to output a file to a client\textquotesingle{}\textquotesingle{}s browser, especially when creating spreadsheets on-\/the-\/fly. There are some easy steps that can be followed to do this\+:
+
+
+\begin{DoxyEnumerate}
+\item Create your Php\+Spreadsheet spreadsheet
+\item Output HTTP headers for the type of document you wish to output
+\item Use the {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}\texorpdfstring{$\ast$}{*}} of your choice, and save to `\textquotesingle{}php\+://output'\`{}
+\end{DoxyEnumerate}
+
+{\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}Xlsx} uses temporary storage when writing to {\ttfamily php\+://output}. By default, temporary files are stored in the script\textquotesingle{}s working directory. When there is no access, it falls back to the operating system\textquotesingle{}s temporary files location.
+
+{\bfseries{This may not be safe for unauthorized viewing!}} Depending on the configuration of your operating system, temporary storage can be read by anyone using the same temporary storage folder. When confidentiality of your document is needed, it is recommended not to use {\ttfamily php\+://output}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md714}{}\doxysubsection{\texorpdfstring{HTTP headers}{HTTP headers}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md714}
+Example of a script redirecting an Excel 2007 file to the client\textquotesingle{}s browser\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{/*\ Here\ there\ will\ be\ some\ code\ where\ you\ create\ \$spreadsheet\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ redirect\ output\ to\ client\ browser}
+\DoxyCodeLine{header('Content-\/Type:\ application/vnd.openxmlformats-\/officedocument.spreadsheetml.sheet');}
+\DoxyCodeLine{header('Content-\/Disposition:\ attachment;filename="{}myfile.xlsx"{}');}
+\DoxyCodeLine{header('Cache-\/Control:\ max-\/age=0');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$writer\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)IOFactory::createWriter(\$spreadsheet,\ 'Xlsx');}
+\DoxyCodeLine{\$writer-\/>save('php://output');}
+
+\end{DoxyCode}
+
+
+Example of a script redirecting an Xls file to the client\textquotesingle{}s browser\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{/*\ Here\ there\ will\ be\ some\ code\ where\ you\ create\ \$spreadsheet\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ redirect\ output\ to\ client\ browser}
+\DoxyCodeLine{header('Content-\/Type:\ application/vnd.ms-\/excel');}
+\DoxyCodeLine{header('Content-\/Disposition:\ attachment;filename="{}myfile.xls"{}');}
+\DoxyCodeLine{header('Cache-\/Control:\ max-\/age=0');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$writer\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)IOFactory::createWriter(\$spreadsheet,\ 'Xls');}
+\DoxyCodeLine{\$writer-\/>save('php://output');}
+
+\end{DoxyCode}
+
+
+{\bfseries{Caution\+:}}
+
+Make sure not to include any echo statements or output any other contents than the Excel file. There should be no whitespace before the opening {\ttfamily \texorpdfstring{$<$}{<}?php} tag and at most one line break after the closing {\ttfamily ?\texorpdfstring{$>$}{>}} tag (which can also be omitted to avoid problems). Make sure that your script is saved without a BOM (Byte-\/order mark) because this counts as echoing output. The same things apply to all included files. Failing to follow the above guidelines may result in corrupt Excel files arriving at the client browser, and/or that headers cannot be set by PHP (resulting in warning messages).\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md715}{}\doxysection{\texorpdfstring{Setting the default column width}{Setting the default column width}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md715}
+Default column width can be set using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getDefaultColumnDimension()-\/>setWidth(12);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md716}{}\doxysection{\texorpdfstring{Setting the default row height}{Setting the default row height}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md716}
+Default row height can be set using the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getDefaultRowDimension()-\/>setRowHeight(15);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md717}{}\doxysection{\texorpdfstring{Add a GD drawing to a worksheet}{Add a GD drawing to a worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md717}
+There might be a situation where you want to generate an in-\/memory image using GD and add it to a {\ttfamily Spreadsheet} without first having to save this file to a temporary location.
+
+Here\textquotesingle{}\textquotesingle{}s an example which generates an image in memory and adds it to the active worksheet\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Generate\ an\ image}
+\DoxyCodeLine{\$gdImage\ =\ @imagecreatetruecolor(120,\ 20)\ or\ die('Cannot\ Initialize\ new\ GD\ image\ stream');}
+\DoxyCodeLine{\$textColor\ =\ imagecolorallocate(\$gdImage,\ 255,\ 255,\ 255);}
+\DoxyCodeLine{imagestring(\$gdImage,\ 1,\ 5,\ 5,\ \ 'Created\ with\ PhpSpreadsheet',\ \$textColor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Add\ a\ drawing\ to\ the\ worksheet}
+\DoxyCodeLine{\$drawing\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing();}
+\DoxyCodeLine{\$drawing-\/>setName('Sample\ image');}
+\DoxyCodeLine{\$drawing-\/>setDescription('Sample\ image');}
+\DoxyCodeLine{\$drawing-\/>setImageResource(\$gdImage);}
+\DoxyCodeLine{\$drawing-\/>setRenderingFunction(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::RENDERING\_JPEG);}
+\DoxyCodeLine{\$drawing-\/>setMimeType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)MemoryDrawing::MIMETYPE\_DEFAULT);}
+\DoxyCodeLine{\$drawing-\/>setHeight(36);}
+\DoxyCodeLine{\$drawing-\/>setWorksheet(\$spreadsheet-\/>getActiveSheet());}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md718}{}\doxysection{\texorpdfstring{Setting worksheet zoom level}{Setting worksheet zoom level}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md718}
+To set a worksheet\textquotesingle{}s zoom level, the following code can be used\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getSheetView()-\/>setZoomScale(75);}
+
+\end{DoxyCode}
+
+
+Note that zoom level should be in range 10 -\/ 400.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md719}{}\doxysection{\texorpdfstring{Sheet tab color}{Sheet tab color}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md719}
+Sometimes you want to set a color for sheet tab. For example you can have a red sheet tab\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>getTabColor()-\/>setRGB('FF0000');}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md720}{}\doxysection{\texorpdfstring{Creating worksheets in a workbook}{Creating worksheets in a workbook}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md720}
+If you need to create more worksheets in the workbook, here is how\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet1\ =\ \$spreadsheet-\/>createSheet();}
+\DoxyCodeLine{\$worksheet1-\/>setTitle('Another\ sheet');}
+
+\end{DoxyCode}
+
+
+Think of {\ttfamily create\+Sheet()} as the "{}\+Insert sheet"{} button in Excel. When you hit that button a new sheet is appended to the existing collection of worksheets in the workbook.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md721}{}\doxysection{\texorpdfstring{Hidden worksheets (Sheet states)}{Hidden worksheets (Sheet states)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md721}
+Set a worksheet to be {\bfseries{hidden}} using this code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()}
+\DoxyCodeLine{\ \ \ \ -\/>setSheetState(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)Worksheet::SHEETSTATE\_HIDDEN);}
+
+\end{DoxyCode}
+
+
+Sometimes you may even want the worksheet to be {\bfseries{"{}very hidden"{}}}. The available sheet states are \+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Worksheet\textbackslash{}Worksheet\+::\+SHEETSTATE\+\_\+\+VISIBLE}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Worksheet\textbackslash{}Worksheet\+::\+SHEETSTATE\+\_\+\+HIDDEN}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Worksheet\textbackslash{}Worksheet\+::\+SHEETSTATE\+\_\+\+VERYHIDDEN}
+\end{DoxyItemize}
+
+In Excel the sheet state "{}very hidden"{} can only be set programmatically, e.\+g. with Visual Basic Macro. It is not possible to make such a sheet visible via the user interface.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md722}{}\doxysection{\texorpdfstring{Right-\/to-\/left worksheet}{Right-\/to-\/left worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_beaf51de7d477f0ee128fe7ac98fa465_autotoc_md722}
+Worksheets can be set individually whether column {\ttfamily A} should start at left or right side. Default is left. Here is how to set columns from right-\/to-\/left.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ right-\/to-\/left\ worksheet}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>setRightToLeft(true);}
+
+\end{DoxyCode}
+ 

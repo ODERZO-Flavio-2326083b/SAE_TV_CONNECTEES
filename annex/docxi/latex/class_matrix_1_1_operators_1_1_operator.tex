@@ -1,0 +1,123 @@
+\doxysection{Référence de la classe Matrix\textbackslash{}Operators\textbackslash{}Operator}
+\hypertarget{class_matrix_1_1_operators_1_1_operator}{}\label{class_matrix_1_1_operators_1_1_operator}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+Graphe d\textquotesingle{}héritage de Matrix\textbackslash{}Operators\textbackslash{}Operator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.164948cm]{class_matrix_1_1_operators_1_1_operator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a70b464dd69c19545cd86aabdeb955719}{\+\_\+\+\_\+construct}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a4544c11d646c2fecde0c6e0c983238e7}{result}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a3119ae4494efb39ffcceb8a9b12eefc4}{validate\+Matching\+Dimensions}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a9208fc00068550ec33235df71dd5adc3}{validate\+Reflecting\+Dimensions}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a81cc079fa3434edf7d5899c28a666575}{\$matrix}}
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_a03d1aeffd1c8736b272f44a4e163e463}{\$rows}}
+\item 
+\mbox{\hyperlink{class_matrix_1_1_operators_1_1_operator_aa3b2d2f62769460ac2c9cc8ee264f79d}{\$columns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_a70b464dd69c19545cd86aabdeb955719}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a70b464dd69c19545cd86aabdeb955719} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})}
+
+Create an new handler object for the operation
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The base \doxylink{namespace_matrix}{Matrix} object on which the operation will be performed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_a4544c11d646c2fecde0c6e0c983238e7}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!result@{result}}
+\index{result@{result}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a4544c11d646c2fecde0c6e0c983238e7} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::result (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Return the result of the operation
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_a3119ae4494efb39ffcceb8a9b12eefc4}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!validateMatchingDimensions@{validateMatchingDimensions}}
+\index{validateMatchingDimensions@{validateMatchingDimensions}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{validateMatchingDimensions()}{validateMatchingDimensions()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a3119ae4494efb39ffcceb8a9b12eefc4} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::validate\+Matching\+Dimensions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compare the dimensions of the matrices being operated on to see if they are valid for addition/subtraction
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The second \doxylink{namespace_matrix}{Matrix} object on which the operation will be performed \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_a9208fc00068550ec33235df71dd5adc3}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!validateReflectingDimensions@{validateReflectingDimensions}}
+\index{validateReflectingDimensions@{validateReflectingDimensions}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{validateReflectingDimensions()}{validateReflectingDimensions()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a9208fc00068550ec33235df71dd5adc3} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::validate\+Reflecting\+Dimensions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compare the dimensions of the matrices being operated on to see if they are valid for multiplication/division
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The second \doxylink{namespace_matrix}{Matrix} object on which the operation will be performed \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_aa3b2d2f62769460ac2c9cc8ee264f79d}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!\$columns@{\$columns}}
+\index{\$columns@{\$columns}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{\$columns}{\$columns}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_aa3b2d2f62769460ac2c9cc8ee264f79d} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::\$columns\hspace{0.3cm}{\ttfamily [protected]}}
+
+Number of columns in the matrix \Hypertarget{class_matrix_1_1_operators_1_1_operator_a81cc079fa3434edf7d5899c28a666575}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!\$matrix@{\$matrix}}
+\index{\$matrix@{\$matrix}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{\$matrix}{\$matrix}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a81cc079fa3434edf7d5899c28a666575} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::\$matrix\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_matrix_1_1_operators_1_1_operator_a03d1aeffd1c8736b272f44a4e163e463}\index{Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}!\$rows@{\$rows}}
+\index{\$rows@{\$rows}!Matrix\textbackslash{}Operators\textbackslash{}Operator@{Matrix\textbackslash{}Operators\textbackslash{}Operator}}
+\doxysubsubsection{\texorpdfstring{\$rows}{\$rows}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_operators_1_1_operator_a03d1aeffd1c8736b272f44a4e163e463} 
+Matrix\textbackslash{}\+Operators\textbackslash{}\+Operator\+::\$rows\hspace{0.3cm}{\ttfamily [protected]}}
+
+Number of rows in the matrix 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/markbaker/matrix/classes/src/\+Operators/\mbox{\hyperlink{_operator_8php}{Operator.\+php}}\end{DoxyCompactItemize}

@@ -1,0 +1,152 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Xls}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls}{}\label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a964fe79dfd2f35465c9524a153615d73}{size\+Col}} (\$sheet, \$col=\textquotesingle{}A\textquotesingle{})
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a40ce6449c3b71b4543b19b9849231012}{size\+Row}} (\$sheet, \$row=1)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a10462dd3a860a8e22b73d71452a045a5}{get\+DistanceX}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}} \$sheet, \$start\+Column=\textquotesingle{}A\textquotesingle{}, \$start\+OffsetX=0, \$end\+Column=\textquotesingle{}A\textquotesingle{}, \$end\+OffsetX=0)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_ab13cd51951ab25df5d26a0473d65dd47}{get\+DistanceY}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}} \$sheet, \$start\+Row=1, \$start\+OffsetY=0, \$end\+Row=1, \$end\+OffsetY=0)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a25f9a3b6f1820767e165d4ff64fa36f8}{one\+Anchor2two\+Anchor}} (\$sheet, \$coordinates, \$offsetX, \$offsetY, \$width, \$height)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a10462dd3a860a8e22b73d71452a045a5}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}!getDistanceX@{getDistanceX}}
+\index{getDistanceX@{getDistanceX}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection{\texorpdfstring{getDistanceX()}{getDistanceX()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a10462dd3a860a8e22b73d71452a045a5} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Xls\+::get\+DistanceX (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}}}]{\$sheet}{, }\item[{}]{\$start\+Column}{ = {\ttfamily \textquotesingle{}A\textquotesingle{}}, }\item[{}]{\$start\+OffsetX}{ = {\ttfamily 0}, }\item[{}]{\$end\+Column}{ = {\ttfamily \textquotesingle{}A\textquotesingle{}}, }\item[{}]{\$end\+OffsetX}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get the horizontal distance in pixels between two anchors The distanceX is found as sum of all the spanning columns widths minus correction for the two offsets.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$sheet} & \\
+\hline
+string & {\em \$start\+Column} & \\
+\hline
+int & {\em \$start\+OffsetX} & Offset within start cell measured in 1/1024 of the cell width \\
+\hline
+string & {\em \$end\+Column} & \\
+\hline
+int & {\em \$end\+OffsetX} & Offset within end cell measured in 1/1024 of the cell width\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Horizontal measured in pixels 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_ab13cd51951ab25df5d26a0473d65dd47}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}!getDistanceY@{getDistanceY}}
+\index{getDistanceY@{getDistanceY}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection{\texorpdfstring{getDistanceY()}{getDistanceY()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_ab13cd51951ab25df5d26a0473d65dd47} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Xls\+::get\+DistanceY (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}}}]{\$sheet}{, }\item[{}]{\$start\+Row}{ = {\ttfamily 1}, }\item[{}]{\$start\+OffsetY}{ = {\ttfamily 0}, }\item[{}]{\$end\+Row}{ = {\ttfamily 1}, }\item[{}]{\$end\+OffsetY}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get the vertical distance in pixels between two anchors The distanceY is found as sum of all the spanning rows minus two offsets.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$sheet} & \\
+\hline
+int & {\em \$start\+Row} & (1-\/based) \\
+\hline
+int & {\em \$start\+OffsetY} & Offset within start cell measured in 1/256 of the cell height \\
+\hline
+int & {\em \$end\+Row} & (1-\/based) \\
+\hline
+int & {\em \$end\+OffsetY} & Offset within end cell measured in 1/256 of the cell height\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Vertical distance measured in pixels 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a25f9a3b6f1820767e165d4ff64fa36f8}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}!oneAnchor2twoAnchor@{oneAnchor2twoAnchor}}
+\index{oneAnchor2twoAnchor@{oneAnchor2twoAnchor}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection{\texorpdfstring{oneAnchor2twoAnchor()}{oneAnchor2twoAnchor()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a25f9a3b6f1820767e165d4ff64fa36f8} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Xls\+::one\+Anchor2two\+Anchor (\begin{DoxyParamCaption}\item[{}]{\$sheet}{, }\item[{}]{\$coordinates}{, }\item[{}]{\$offsetX}{, }\item[{}]{\$offsetY}{, }\item[{}]{\$width}{, }\item[{}]{\$height}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert 1-\/cell anchor coordinates to 2-\/cell anchor coordinates This function is ported from PEAR Spreadsheet\+\_\+\+Writer\+\_\+\+Excel with small modifications.
+
+Calculate the vertices that define the position of the image as required by the OBJ record. \begin{DoxyVerb}    +------------+------------+
+    |     A      |      B     |
+\end{DoxyVerb}
+ +-\/-\/---+-\/-\/-\/-\/-\/-\/-\/-\/-\/---+-\/-\/-\/-\/-\/-\/-\/-\/-\/---+ \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}(x1,y1) \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} 1 \texorpdfstring{$\vert$}{|}(A1).\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\texorpdfstring{$\vert$}{|}\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+ \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} +-\/-\/---+-\/---\texorpdfstring{$\vert$}{|} BITMAP \texorpdfstring{$\vert$}{|}-\/-\/---+ \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} 2 \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+. \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} (B2)\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} (x2,y2)\texorpdfstring{$\vert$}{|} +-\/--- +-\/-\/-\/-\/-\/-\/-\/-\/-\/---+-\/-\/-\/-\/-\/-\/-\/-\/-\/---+
+
+Example of a bitmap that covers some of the area from cell A1 to cell B2.
+
+Based on the width and height of the bitmap we need to calculate 8 vars\+: \$col\+\_\+start, \$row\+\_\+start, \$col\+\_\+end, \$row\+\_\+end, \$x1, \$y1, \$x2, \$y2. The width and height of the cells are also variable and have to be taken into account. The values of \$col\+\_\+start and \$row\+\_\+start are passed in from the calling function. The values of \$col\+\_\+end and \$row\+\_\+end are calculated by subtracting the width and height of the bitmap from the width and height of the underlying cells. The vertices are expressed as a percentage of the underlying cell width as follows (rhs values are in pixels)\+: \begin{DoxyVerb}  x1 = X / W *1024
+  y1 = Y / H *256
+  x2 = (X-1) / W *1024
+  y2 = (Y-1) / H *256
+
+  Where:  X is distance from the left side of the underlying cell
+          Y is distance from the top of the underlying cell
+          W is the width of the cell
+          H is the height of the cell
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$sheet} & \\
+\hline
+string & {\em \$coordinates} & E.\+g. \textquotesingle{}A1\textquotesingle{} \\
+\hline
+int & {\em \$offsetX} & Horizontal offset in pixels \\
+\hline
+int & {\em \$offsetY} & Vertical offset in pixels \\
+\hline
+int & {\em \$width} & Width in pixels \\
+\hline
+int & {\em \$height} & Height in pixels\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a964fe79dfd2f35465c9524a153615d73}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}!sizeCol@{sizeCol}}
+\index{sizeCol@{sizeCol}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection{\texorpdfstring{sizeCol()}{sizeCol()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a964fe79dfd2f35465c9524a153615d73} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Xls\+::size\+Col (\begin{DoxyParamCaption}\item[{}]{\$sheet}{, }\item[{}]{\$col}{ = {\ttfamily \textquotesingle{}A\textquotesingle{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get the width of a column in pixels. We use the relationship y = ceil(7x) where x is the width in intrinsic Excel units (measuring width in number of normal characters) This holds for Arial 10.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$sheet} & The sheet \\
+\hline
+string & {\em \$col} & The column\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int The width in pixels 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a40ce6449c3b71b4543b19b9849231012}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}!sizeRow@{sizeRow}}
+\index{sizeRow@{sizeRow}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}Xls}}
+\doxysubsubsection{\texorpdfstring{sizeRow()}{sizeRow()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_xls_a40ce6449c3b71b4543b19b9849231012} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Xls\+::size\+Row (\begin{DoxyParamCaption}\item[{}]{\$sheet}{, }\item[{}]{\$row}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert the height of a cell from user\textquotesingle{}s units to pixels. By interpolation the relationship is\+: y = 4/3x. If the height hasn\textquotesingle{}t been set by the user we use the default value. If the row is hidden we use a value of zero.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$sheet} & The sheet \\
+\hline
+int & {\em \$row} & The row index (1-\/based)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int The width in pixels 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Shared/\mbox{\hyperlink{_shared_2_xls_8php}{Xls.\+php}}\end{DoxyCompactItemize}

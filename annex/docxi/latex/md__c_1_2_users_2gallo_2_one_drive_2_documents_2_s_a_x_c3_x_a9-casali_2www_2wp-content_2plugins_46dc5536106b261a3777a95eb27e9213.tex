@@ -1,0 +1,62 @@
+\chapter{Notifications Push}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213}\index{Notifications Push@{Notifications Push}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md32}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md32}%
+
+
+Voici un guide pour activer les notifications push lors de la création d\textquotesingle{}alertes.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md33}{}\doxysection{\texorpdfstring{Préparatifs}{Préparatifs}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md33}
+Cette fonctionnalité nécessite un site internet servi avec HTTPS. ~\newline
+ Si vous utilisez Always\+Data pour héberger votre site, vous pouvez forcer l\textquotesingle{}utilisation d\textquotesingle{}HTTPS dans les paramètres du site internet (Option {\itshape {\bfseries{"{}\+Force HTTPS Usage"{}}}}).\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md34}{}\doxysection{\texorpdfstring{Créer un compte One\+Signal}{Créer un compte One\+Signal}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md34}
+Ce projet utilise One\+Signal afin de pouvoir délivrer a ses utilisateurs des notifications push. ~\newline
+ Vous allez donc devoir paramétrer un compte One\+Signal afin de pouvoir utiliser cette fonctionnalité.
+
+Tout d\textquotesingle{}abord, rendez-\/vous sur \href{https://onesignal.com}{\texttt{ le site de One\+Signal}} afin de créer un compte.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md35}{}\doxysection{\texorpdfstring{Paramétrer l\textquotesingle{}application}{Paramétrer l\textquotesingle{}application}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md35}
+Une fois le compte créé et confirmé par mail, vous allez arriver sur une page vous demandant d\textquotesingle{}écrire le nom de l\textquotesingle{}application ainsi que les plateformes sur lesquelles les notifications seront utilisées.
+
+Dans le nom de l\textquotesingle{}application ({\itshape {\bfseries{"{}\+Name of your app or website"{}}}}), écrivez le nom de votre établissement/département. ~\newline
+ Dans les plateformes utilisables ({\itshape {\bfseries{"{}\+What platform do you wish to use for this app? You can set up more later."{}}}}), sélectionnez l\textquotesingle{}option {\bfseries{"{}\+Web Push"{}}}.
+
+Vous pouvez maintenant passer à l\textquotesingle{}étape suivante.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md36}{}\doxysection{\texorpdfstring{Paramétrer le Web Push}{Paramétrer le Web Push}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md36}
+Vous allez ensuite arriver sur une page vous demandant de paramétrer les notifications web.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md37}{}\doxysubsection{\texorpdfstring{Section 1. "{}\+Choose Integration"{}}{Section 1. "{}\+Choose Integration"{}}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md37}
+Dans cette section, choisissez l\textquotesingle{}option {\bfseries{"{}\+Custom Code"{}}}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md38}{}\doxysubsection{\texorpdfstring{Section 2. "{}\+Site Setup"{}}{Section 2. "{}\+Site Setup"{}}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md38}
+Vous allez devoir remplir deux champs, {\itshape {\bfseries{"{}\+Site Name"{}}}} et {\itshape {\bfseries{"{}\+Site URL"{}}}}.
+
+Dans le champ {\itshape {\bfseries{"{}\+Site Name"{}}}}, réécrivez le nom de votre établissement/département. ~\newline
+ Dans le champ {\itshape {\bfseries{"{}\+Site URL"{}}}}, écrivez l\textquotesingle{}URL depuis laquelle la TV connectée est accessible. (Exemple \+: \href{https://matvconnectee.alwaysdata.net}{\texttt{ https\+://matvconnectee.\+alwaysdata.\+net}})
+
+Vous pouvez maintenant passer à l\textquotesingle{}étape suivante.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md39}{}\doxysection{\texorpdfstring{Paramétrer le Web Push (suite et fin)}{Paramétrer le Web Push (suite et fin)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md39}
+Finalement, vous allez arriver sur une page intitulée {\itshape {\bfseries{"{}\+Configure Web Push"{}}}}. ~\newline
+ Cette page-\/là ne vous est pas utile, vous pouvez donc directement cliquer sur le bouton pour terminer la configuration en bas de la page.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md40}{}\doxysection{\texorpdfstring{Paramétrer la TV}{Paramétrer la TV}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md40}
+Dans One\+Signal, vous devriez avoir été redirigé vers la page de l\textquotesingle{}application que vous venez de créer (si ce n\textquotesingle{}est pas le cas, rendez-\/vous y). ~\newline
+ Allez dans la section {\itshape {\bfseries{"{}\+Settings"{}}}} puis dans la sous-\/section {\itshape {\bfseries{"{}\+Keys \& IDs"{}}}}.
+
+À côté, ouvrez le fichier {\ttfamily config-\/notifs.\+php} présent dans le même dossier que ce fichier.
+
+Vous allez devoir remplacer la valeur {\ttfamily \texorpdfstring{$<$}{<}ONESIGNAL\+\_\+\+APP\+\_\+\+ID\texorpdfstring{$>$}{>}} présente Ligne 6 par la valeur présente sous {\itshape {\bfseries{"{}\+One\+Signal App ID"{}}}}. ~\newline
+ Vous allez aussi devoir remplacer la valeur {\ttfamily \texorpdfstring{$<$}{<}REST\+\_\+\+API\+\_\+\+KEY\texorpdfstring{$>$}{>}} présente Ligne 11 par la valeur présente sous {\itshape {\bfseries{"{}\+REST API Key"{}}}}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md41}{}\doxysubsection{\texorpdfstring{Exemple}{Exemple}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_46dc5536106b261a3777a95eb27e9213_autotoc_md41}
+Dans One\+Signal, vous trouvez les valeurs suivantes \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ONESIGNAL\ APP\ ID}
+\DoxyCodeLine{5eb5a37e-\/b458-\/11e3-\/ac11-\/000c2940e62c}
+\DoxyCodeLine{}
+\DoxyCodeLine{REST\ API\ KEY}
+\DoxyCodeLine{NGEwMGZmMjItY2NkNy0xMWUzLTk5ZDUtMDAwYzI5NDBlNjJj}
+
+\end{DoxyCode}
+
+
+Dans le fichier {\ttfamily config-\/notifs.\+php}, modifiez les lignes \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{define(\textcolor{stringliteral}{'ONESIGNAL\_APP\_ID'},\ \ \textcolor{stringliteral}{'<ONESIGNAL\_APP\_ID>'});}
+\DoxyCodeLine{define(\textcolor{stringliteral}{'ONESIGNAL\_API\_KEY'},\ \textcolor{stringliteral}{'<REST\_API\_KEY>'});}
+
+\end{DoxyCode}
+
+
+Par \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{define(\textcolor{stringliteral}{'ONESIGNAL\_APP\_ID'},\ \ \textcolor{stringliteral}{'5eb5a37e-\/b458-\/11e3-\/ac11-\/000c2940e62c'});}
+\DoxyCodeLine{define(\textcolor{stringliteral}{'ONESIGNAL\_API\_KEY'},\ \textcolor{stringliteral}{'NGEwMGZmMjItY2NkNy0xMWUzLTk5ZDUtMDAwYzI5NDBlNjJj'});}
+
+\end{DoxyCode}
+ 

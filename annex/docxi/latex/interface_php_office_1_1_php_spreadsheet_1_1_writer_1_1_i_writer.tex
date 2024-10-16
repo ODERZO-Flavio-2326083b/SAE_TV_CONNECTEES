@@ -1,0 +1,206 @@
+\doxysection{Référence de l\textquotesingle{}interface Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}IWriter}
+\hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer}{}\label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+Graphe d\textquotesingle{}héritage de Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}IWriter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.985816cm]{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a53b34cae76642c8abf84c845cfc38c72}{\+\_\+\+\_\+construct}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_spreadsheet}{Spreadsheet}} \$spreadsheet)
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a127892a1e6e0e7fe017a44958349b5eb}{get\+Include\+Charts}} ()
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a5059cd872330a4bd7cbe1b18527864df}{set\+Include\+Charts}} (\$p\+Value)
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_ad0aa44cdbe65b43349e942e4edeb99d2}{get\+Pre\+Calculate\+Formulas}} ()
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_acc2df7889bd7929467f74f9c4572cdf1}{set\+Pre\+Calculate\+Formulas}} (\$p\+Value)
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a62e9e223873ec8263c1a0bf83be9c393}{save}} (\$p\+Filename)
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_aa13730c1eb657e600f28ad3f6cf1e71a}{get\+Use\+Disk\+Caching}} ()
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a786a69b9966086a2b20c5092fb95c382}{set\+Use\+Disk\+Caching}} (\$p\+Value, \$p\+Directory=null)
+\item 
+\mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_af5eedb15dbeca19364e05a2556708680}{get\+Disk\+Caching\+Directory}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a53b34cae76642c8abf84c845cfc38c72}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a53b34cae76642c8abf84c845cfc38c72} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_spreadsheet}{Spreadsheet}}}]{\$spreadsheet}{}\end{DoxyParamCaption})}
+
+IWriter constructor.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Spreadsheet & {\em \$spreadsheet} & \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_csv_a615bf9bc127fc608da7ce43b5bf1a8bc}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Csv}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_html_ae5921bde7b2e154361e1913f50758dea}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Html}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_ods_a685f2607f5b3e4739c6105aeb78df5fd}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Ods}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_pdf_acbca3783a51d8aca1244bd53e553d9d3}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Pdf}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xls_a59b0edc2cc86e11acbd7225b7af1532a}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xls}}, et \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_abfb49de489f57e972f1fe460499b3c02}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx}}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_af5eedb15dbeca19364e05a2556708680}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!getDiskCachingDirectory@{getDiskCachingDirectory}}
+\index{getDiskCachingDirectory@{getDiskCachingDirectory}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{getDiskCachingDirectory()}{getDiskCachingDirectory()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_af5eedb15dbeca19364e05a2556708680} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::get\+Disk\+Caching\+Directory (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get disk caching directory.
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_a68b66228a4185fe6598d005236cdf697}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a127892a1e6e0e7fe017a44958349b5eb}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!getIncludeCharts@{getIncludeCharts}}
+\index{getIncludeCharts@{getIncludeCharts}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{getIncludeCharts()}{getIncludeCharts()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a127892a1e6e0e7fe017a44958349b5eb} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::get\+Include\+Charts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Write charts in workbook? If this is true, then the Writer will write definitions for any charts that exist in the Php\+Spreadsheet object. If false (the default) it will ignore any charts defined in the Php\+Spreadsheet object.
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_a89d0292b3e7363c9c4fe69a97920029c}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_ad0aa44cdbe65b43349e942e4edeb99d2}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!getPreCalculateFormulas@{getPreCalculateFormulas}}
+\index{getPreCalculateFormulas@{getPreCalculateFormulas}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{getPreCalculateFormulas()}{getPreCalculateFormulas()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_ad0aa44cdbe65b43349e942e4edeb99d2} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::get\+Pre\+Calculate\+Formulas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get Pre-\/\+Calculate Formulas flag If this is true (the default), then the writer will recalculate all formulae in a workbook when saving, so that the pre-\/calculated values are immediately available to MS Excel or other office spreadsheet viewer when opening the file If false, then formulae are not calculated on save. This is faster for saving in Php\+Spreadsheet, but slower when opening the resulting file in MS Excel, because Excel has to recalculate the formulae itself.
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_a265057c39f5bf15dca8e7fd67e5d6e56}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_aa13730c1eb657e600f28ad3f6cf1e71a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!getUseDiskCaching@{getUseDiskCaching}}
+\index{getUseDiskCaching@{getUseDiskCaching}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{getUseDiskCaching()}{getUseDiskCaching()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_aa13730c1eb657e600f28ad3f6cf1e71a} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::get\+Use\+Disk\+Caching (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get use disk caching where possible?
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_abf2a887d29238020e68351c79df77371}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a62e9e223873ec8263c1a0bf83be9c393}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!save@{save}}
+\index{save@{save}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a62e9e223873ec8263c1a0bf83be9c393} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::save (\begin{DoxyParamCaption}\item[{}]{\$p\+Filename}{}\end{DoxyParamCaption})}
+
+Save Php\+Spreadsheet to file.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Filename} & Name of the file to save\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Exception 
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_csv_a7c776d97ba56766a3d140752c5db5531}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Csv}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_html_ad6b2bbc757f2949f8df1e9ae0676975d}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Html}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_ods_a7474207b5ceb1a0cb9ab0bc1c0bd4530}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Ods}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_pdf_1_1_dompdf_a5fdf020132295dc448319726883268c5}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Pdf\textbackslash{}\+Dompdf}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_pdf_1_1_mpdf_a5043f6d90ec402613b172cbef56d3659}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Pdf\textbackslash{}\+Mpdf}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_pdf_1_1_tcpdf_aa24abb619c4034feb31f9a0dc0ddd83e}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Pdf\textbackslash{}\+Tcpdf}}, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xls_a6701b5000936d6047b650fcd96eb73d0}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xls}}, et \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_abd61c09f80704ffa5452ee396cb6462d}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a5059cd872330a4bd7cbe1b18527864df}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!setIncludeCharts@{setIncludeCharts}}
+\index{setIncludeCharts@{setIncludeCharts}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{setIncludeCharts()}{setIncludeCharts()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a5059cd872330a4bd7cbe1b18527864df} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::set\+Include\+Charts (\begin{DoxyParamCaption}\item[{}]{\$p\+Value}{}\end{DoxyParamCaption})}
+
+Set write charts in workbook Set to true, to advise the Writer to include any charts that exist in the Php\+Spreadsheet object. Set to false (the default) to ignore charts.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$p\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+IWriter 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_ade9061ac47fba4f711be3f327471ca2d}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_acc2df7889bd7929467f74f9c4572cdf1}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!setPreCalculateFormulas@{setPreCalculateFormulas}}
+\index{setPreCalculateFormulas@{setPreCalculateFormulas}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{setPreCalculateFormulas()}{setPreCalculateFormulas()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_acc2df7889bd7929467f74f9c4572cdf1} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::set\+Pre\+Calculate\+Formulas (\begin{DoxyParamCaption}\item[{}]{\$p\+Value}{}\end{DoxyParamCaption})}
+
+Set Pre-\/\+Calculate Formulas Set to true (the default) to advise the Writer to calculate all formulae on save Set to false to prevent precalculation of formulae on save.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$p\+Value} & Pre-\/\+Calculate Formulas?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+IWriter 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_a9ab3ad6d678c4f391f62b4e0d2c181f6}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+\Hypertarget{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a786a69b9966086a2b20c5092fb95c382}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}!setUseDiskCaching@{setUseDiskCaching}}
+\index{setUseDiskCaching@{setUseDiskCaching}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}IWriter}}
+\doxysubsubsection{\texorpdfstring{setUseDiskCaching()}{setUseDiskCaching()}}
+{\footnotesize\ttfamily \label{interface_php_office_1_1_php_spreadsheet_1_1_writer_1_1_i_writer_a786a69b9966086a2b20c5092fb95c382} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+IWriter\+::set\+Use\+Disk\+Caching (\begin{DoxyParamCaption}\item[{}]{\$p\+Value}{, }\item[{}]{\$p\+Directory}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Set use disk caching where possible?
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$p\+Value} & \\
+\hline
+string & {\em \$p\+Directory} & Disk caching directory\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & when directory does not exist\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+IWriter 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_base_writer_a457e1e9cbc78e4155dee73158deade8a}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Base\+Writer}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Writer/\mbox{\hyperlink{_i_writer_8php}{IWriter.\+php}}\end{DoxyCompactItemize}

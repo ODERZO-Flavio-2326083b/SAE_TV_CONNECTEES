@@ -1,0 +1,166 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/views/\+Television\+View.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e7b246f5ad9e01757d57c943e27e2ff25}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e7b246f5ad9e01757d57c943e27e2ff25}Affiche le formulaire de création d\textquotesingle{}un compte télévision.
+
+Cette méthode génère un formulaire HTML permettant de créer un compte télévision. Les utilisateurs peuvent entrer un login, un mot de passe, et sélectionner des emplois du temps. Un bouton permet d\textquotesingle{}ajouter plusieurs emplois du temps si nécessaire.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$years} & Un tableau d\textquotesingle{}objets représentant les années disponibles. Chaque objet doit implémenter les méthodes nécessaires pour l\textquotesingle{}affichage des informations. \\
+\hline
+array & {\em \$groups} & Un tableau d\textquotesingle{}objets représentant les groupes disponibles. Chaque objet doit implémenter les méthodes nécessaires pour l\textquotesingle{}affichage des informations. \\
+\hline
+array & {\em \$half\+Groups} & Un tableau d\textquotesingle{}objets représentant les demi-\/groupes disponibles. Chaque objet doit implémenter les méthodes nécessaires pour l\textquotesingle{}affichage des informations.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du formulaire de création de compte télévision.
+\end{DoxyReturn}
+// Appel de la méthode pour afficher le formulaire de création de compte télévision \+: echo \$this-\/\texorpdfstring{$>$}{>}display\+Form\+Television(\$years, \$groups, \$half\+Groups);
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_views}{Views}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_code_ade}{Models\(\backslash\)CodeAde}};}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_user}{Models\(\backslash\)User}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TelevisionView\ \textcolor{keyword}{extends}\ UserView}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayFormTelevision(\$years,\ \$groups,\ \$halfGroups)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$form\ =\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>\ Compte\ télévision</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Pour\ créer\ des\ télévisions,\ remplissez\ ce\ formulaire\ avec\ les\ valeurs\ demandées.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Vous\ pouvez\ mettre\ autant\ d\(\backslash\)'emploi\ du\ temps\ que\ vous\ souhaitez,\ cliquez\ sur\ "{}Ajouter\ des\ emplois\ du\ temps"{}</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ method="{}post"{}\ id="{}registerTvForm"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}loginTv"{}>Login</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}text"{}\ class="{}form-\/control"{}\ name="{}loginTv"{}\ placeholder="{}Nom\ de\ compte"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <small\ id="{}passwordHelpBlock"{}\ class="{}form-\/text\ text-\/muted"{}>Votre\ login\ doit\ contenir\ entre\ 4\ et\ 25\ caractère</small>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}pwdTv"{}>Mot\ de\ passe</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}password"{}\ class="{}form-\/control"{}\ id="{}pwdTv"{}\ name="{}pwdTv"{}\ placeholder="{}Mot\ de\ passe"{}\ minlength="{}8"{}\ maxlength="{}25"{}\ required="{}"{}\ onkeyup=checkPwd("{}Tv"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}password"{}\ class="{}form-\/control"{}\ id="{}pwdConfTv"{}\ name="{}pwdConfirmTv"{}\ placeholder="{}Confirmer\ le\ Mot\ de\ passe"{}\ minlength="{}8"{}\ maxlength="{}25"{}\ required="{}"{}\ onkeyup=checkPwd("{}Tv"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <small\ id="{}passwordHelpBlock"{}\ class="{}form-\/text\ text-\/muted"{}>Votre\ mot\ de\ passe\ doit\ contenir\ entre\ 8\ et\ 25\ caractère</small>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label>Premier\ emploi\ du\ temps</label>'}\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>buildSelectCode(\$years,\ \$groups,\ \$halfGroups)\ .\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}button"{}\ class="{}btn\ button\_ecran"{}\ onclick="{}addButtonTv()"{}\ value="{}Ajouter\ des\ emplois\ du\ temps"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ type="{}submit"{}\ class="{}btn\ button\_ecran"{}\ id="{}validTv"{}\ name="{}createTv"{}>Créer</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$form;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayAllTv(\$users)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Modifier\ un\ utilisateur'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$title\ =\ \textcolor{stringliteral}{'Televisions'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$name\ =\ \textcolor{stringliteral}{'Tele'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$header\ =\ [\textcolor{stringliteral}{'Login'},\ \textcolor{stringliteral}{'Nombre\ d\(\backslash\)'emplois\ du\ temps\ '},\ \textcolor{stringliteral}{'Modifier'}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$row\ =\ array();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$count\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$users\ as\ \$user)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++\$count;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$row[]\ =\ [\$count,\ \$this-\/>buildCheckbox(\$name,\ \$user-\/>getId()),\ \$user-\/>getLogin(),\ \textcolor{keyword}{sizeof}(\$user-\/>getCodes()),\ \$this-\/>buildLinkForModify(\$linkManageUser\ .\ \textcolor{stringliteral}{'?id='}\ .\ \$user-\/>getId())];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayAll(\$name,\ \$title,\ \$header,\ \$row,\ \textcolor{stringliteral}{'tele'});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ modifyForm(\$user,\ \$years,\ \$groups,\ \$halfGroups)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$count\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$string\ =\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ esc\_url(get\_permalink(get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'})))\ .\ \textcolor{stringliteral}{'"{}><\ Retour</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>'}\ .\ \$user-\/>getLogin()\ .\ \textcolor{stringliteral}{'</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ <form\ method="{}post"{}\ id="{}registerTvForm"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <label\ id="{}selectId1"{}>\ Emploi\ du\ temps</label>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$user-\/>getCodes()\ as\ \$code)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$count\ =\ \$count\ +\ 1;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$count\ ==\ 1)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$string\ .=\ \$this-\/>buildSelectCode(\$years,\ \$groups,\ \$halfGroups,\ \$code,\ \$count);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$string\ .=\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}row"{}>'}\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>buildSelectCode(\$years,\ \$groups,\ \$halfGroups,\ \$code,\ \$count)\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<input\ type="{}button"{}\ id="{}selectId'}\ .\ \$count\ .\ \textcolor{stringliteral}{'"{}\ onclick="{}deleteRow(this.id)"{}\ class="{}btn\ button\_ecran"{}\ value="{}Supprimer"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$count\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$string\ .=\ \$this-\/>buildSelectCode(\$years,\ \$groups,\ \$halfGroups,\ \textcolor{keyword}{null},\ \$count);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$string\ .=\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}button"{}\ class="{}btn\ button\_ecran"{}\ onclick="{}addButtonTv()"{}\ value="{}Ajouter\ des\ emplois\ du\ temps"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ name="{}modifValidate"{}\ class="{}btn\ button\_ecran"{}\ type="{}submit"{}\ id="{}validTv"{}>Valider</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ \$linkManageUser\ .\ \textcolor{stringliteral}{'"{}>Annuler</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$string;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ buildSelectCode(\$years,\ \$groups,\ \$halfGroups,\ \$code\ =\ \textcolor{keyword}{null},\ \$count\ =\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$select\ =\ \textcolor{stringliteral}{'<select\ class="{}form-\/control\ firstSelect"{}\ id="{}selectId'}\ .\ \$count\ .\ \textcolor{stringliteral}{'"{}\ name="{}selectTv[]"{}\ required="{}"{}>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_null(\$code))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'<option\ value="{}'}\ .\ \$code-\/>getCode()\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ \$code-\/>getTitle()\ .\ \textcolor{stringliteral}{'</option>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'<option\ value="{}0"{}>Aucun</option>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <optgroup\ label="{}Année"{}>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$years\ as\ \$year)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'<option\ value="{}'}\ .\ \$year-\/>getCode()\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ \$year-\/>getTitle()\ .\ \textcolor{stringliteral}{'</option\ >'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'</optgroup><optgroup\ label="{}Groupe"{}>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$groups\ as\ \$group)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'<option\ value="{}'}\ .\ \$group-\/>getCode()\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ \$group-\/>getTitle()\ .\ \textcolor{stringliteral}{'</option>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'</optgroup><optgroup\ label="{}Demi\ groupe"{}>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$halfGroups\ as\ \$halfGroup)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'<option\ value="{}'}\ .\ \$halfGroup-\/>getCode()\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ \$halfGroup-\/>getTitle()\ .\ \textcolor{stringliteral}{'</option>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$select\ .=\ \textcolor{stringliteral}{'</optgroup>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </select>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$select;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ modifyPassword()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ method="{}post"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <label>Nouveau\ mot\ de\ passe\ </label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ \ minlength="{}4"{}\ type="{}password"{}\ class="{}form-\/control\ text-\/center\ modal-\/sm"{}\ id="{}pwdTv"{}\ name="{}pwdTv"{}\ placeholder="{}Nouveau\ mot\ de\ passe"{}\ onkeyup=checkPwd("{}Tv"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ \ minlength="{}4"{}\ type="{}password"{}\ class="{}form-\/control\ text-\/center\ modal-\/sm"{}\ id="{}pwdConfTv"{}\ name="{}pwdConfirmTv"{}\ placeholder="{}Confirmer\ le\ nouveau\ mot\ de\ passe"{}\ onkeyup=checkPwd("{}Tv"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayStartSlide()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'<div\ id="{}slideshow-\/container"{}\ class="{}slideshow-\/container"{}>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayMidSlide()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'<div\ class="{}mySlides"{}>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,85 @@
+\doxysection{Référence de l\textquotesingle{}interface PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report}
+\hypertarget{interface_p_h_p___code_sniffer___report}{}\label{interface_p_h_p___code_sniffer___report}\index{PHP\_CodeSniffer\_Report@{PHP\_CodeSniffer\_Report}}
+Graphe d\textquotesingle{}héritage de PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{interface_p_h_p___code_sniffer___report}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_p_h_p___code_sniffer___report_a453e5203642b1e911d789221ed7ebe2d}{generate\+File\+Report}} ( \$report, \mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}} \$phpcs\+File, \$show\+Sources=false, \$width=80)
+\item 
+\mbox{\hyperlink{interface_p_h_p___code_sniffer___report_a6318f925a0cf91830e8dad4c975c9972}{generate}} ( \$cached\+Data, \$total\+Files, \$total\+Errors, \$total\+Warnings, \$total\+Fixable, \$show\+Sources=false, \$width=80, \$to\+Screen=\mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_p_h_p___code_sniffer___report_a6318f925a0cf91830e8dad4c975c9972}\index{PHP\_CodeSniffer\_Report@{PHP\_CodeSniffer\_Report}!generate@{generate}}
+\index{generate@{generate}!PHP\_CodeSniffer\_Report@{PHP\_CodeSniffer\_Report}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily \label{interface_p_h_p___code_sniffer___report_a6318f925a0cf91830e8dad4c975c9972} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report\+::generate (\begin{DoxyParamCaption}\item[{}]{\$cached\+Data}{, }\item[{}]{\$total\+Files}{, }\item[{}]{\$total\+Errors}{, }\item[{}]{\$total\+Warnings}{, }\item[{}]{\$total\+Fixable}{, }\item[{}]{\$show\+Sources}{ = {\ttfamily false}, }\item[{}]{\$width}{ = {\ttfamily 80}, }\item[{}]{\$to\+Screen}{ = {\ttfamily \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}}}\end{DoxyParamCaption})}
+
+Generate the actual report.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$cached\+Data} & Any partial report data that was returned from generate\+File\+Report during the run. \\
+\hline
+int & {\em \$total\+Files} & Total number of files processed during the run. \\
+\hline
+int & {\em \$total\+Errors} & Total number of errors found during the run. \\
+\hline
+int & {\em \$total\+Warnings} & Total number of warnings found during the run. \\
+\hline
+int & {\em \$total\+Fixable} & Total number of problems that can be fixed. \\
+\hline
+boolean & {\em \$show\+Sources} & Show sources? \\
+\hline
+int & {\em \$width} & Maximum allowed line width. \\
+\hline
+boolean & {\em \$to\+Screen} & Is the report being printed to screen?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___cbf_a60d15144dea4280e74246a3cccd0888f}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___checkstyle_aa97e0c898c4c04afda17e5bbdb2b2545}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Checkstyle}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___csv_a9d68aef652949393b2e5c01f063c1c1b}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Csv}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___diff_acfb49410039f27e9c2e0cc38ec34624c}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Diff}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___emacs_a78aada03bf6d37c90d2e41acd4a78a6a}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Emacs}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___full_af780bd250d17621b92564fdb05c038d3}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Full}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___info_a1efa7d3bde61c0227ab4ac9468d696c4}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Info}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___json_aee369b20df27559134ec669e11b6c075}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Json}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___junit_afe6df9c30c109902c16734c34dcf3d53}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Junit}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___notifysend_a05fec8a4b21567d7e5b5a370013dfa31}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Notifysend}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___source_af57ab68c386494af845cf116efdc4f29}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Source}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___summary_a455a3b9752cc92afc5ef7a100d2fc679}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Summary}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___version_control_a2440a0ff1e08d357f5fb7f47785b15cf}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Version\+Control}}, et \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___xml_a434238680e8860f8da1bd2468dd7f40a}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Xml}}.
+
+\Hypertarget{interface_p_h_p___code_sniffer___report_a453e5203642b1e911d789221ed7ebe2d}\index{PHP\_CodeSniffer\_Report@{PHP\_CodeSniffer\_Report}!generateFileReport@{generateFileReport}}
+\index{generateFileReport@{generateFileReport}!PHP\_CodeSniffer\_Report@{PHP\_CodeSniffer\_Report}}
+\doxysubsubsection{\texorpdfstring{generateFileReport()}{generateFileReport()}}
+{\footnotesize\ttfamily \label{interface_p_h_p___code_sniffer___report_a453e5203642b1e911d789221ed7ebe2d} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report\+::generate\+File\+Report (\begin{DoxyParamCaption}\item[{}]{\$report}{, }\item[{\mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}}}]{\$phpcs\+File}{, }\item[{}]{\$show\+Sources}{ = {\ttfamily false}, }\item[{}]{\$width}{ = {\ttfamily 80}}\end{DoxyParamCaption})}
+
+Generate a partial report for a single processed file.
+
+Function should return TRUE if it printed or stored data about the file and FALSE if it ignored the file. Returning TRUE indicates that the file and its data should be counted in the grand totals.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$report} & Prepared report data. \\
+\hline
+\doxylink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File} & {\em \$phpcs\+File} & The file being reported on. \\
+\hline
+boolean & {\em \$show\+Sources} & Show sources? \\
+\hline
+int & {\em \$width} & Maximum allowed line width.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___cbf_a0512f74897877d1546444210fc8eece3}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___checkstyle_abecebf8fe1af73c6b4d443fadbdc3c1b}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Checkstyle}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___csv_aac5a5e59326b060318dda5f92b286b1d}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Csv}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___diff_acea96f2d7bd51cbe0f1588834afc0425}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Diff}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___emacs_af3dce3d89707749356fc0209bae4b0df}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Emacs}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___full_a9f7c4ba43b446afcf5c9b73b184332b4}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Full}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___info_a6022a4095f30a028a881750b4be9a9f3}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Info}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___json_afce92943f915d129ca9d04f54d4896eb}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Json}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___junit_a32f4f14f1153f83a9c02fe622a1f6065}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Junit}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___notifysend_a0a39927228be74af28df5664451b83ef}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Notifysend}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___source_ad3e37b12e046139d1da702c498483091}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Source}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___summary_a876626c9077e433a794938882d7ce03e}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Summary}}, \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___version_control_a4c6e63d5aa2381fd66ceae421f805b10}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Version\+Control}}, et \mbox{\hyperlink{class_p_h_p___code_sniffer___reports___xml_a57fc1e1be824bae053f47460c3a884a9}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Xml}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/squizlabs/php\+\_\+codesniffer/\+Code\+Sniffer/\mbox{\hyperlink{_report_8php}{Report.\+php}}\end{DoxyCompactItemize}

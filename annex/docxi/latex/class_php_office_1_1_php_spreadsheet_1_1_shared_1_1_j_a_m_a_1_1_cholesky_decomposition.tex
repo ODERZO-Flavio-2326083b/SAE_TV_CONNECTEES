@@ -1,0 +1,126 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}Cholesky\+Decomposition}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition}{}\label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a393aa0f37ead1003a8866720bdb65529}{\+\_\+\+\_\+construct}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_matrix}{Matrix}} \$A)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5b06d74d6dfb8ec46dd0cc7465fa0c63}{is\+SPD}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_ac8bafb1279b80d019a0688b25f786883}{getL}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a04846b10fd3a3ae540d8d1ae55fb6b2b}{solve}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_matrix}{Matrix}} \$B)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a4c76bd3da5644452195951de13e5ad8e}{\$L}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a0801aaa32dd14aeaec8d154dff7ad40d}{\$m}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5ffb6efb89c8f866f87ded883be998b9}{\$isspd}} = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Cholesky decomposition class.
+
+For a symmetric, positive definite matrix A, the Cholesky decomposition is an lower triangular matrix L so that A = L\texorpdfstring{$\ast$}{*}L\textquotesingle{}.
+
+If the matrix is not symmetric or positive definite, the constructor returns a partial decomposition and sets an internal flag that may be queried by the is\+SPD() method.
+
+\begin{DoxyAuthor}{Auteur}
+Paul Meagher 
+
+Michael Bommarito
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2 
+\end{DoxyVersion}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a393aa0f37ead1003a8866720bdb65529}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a393aa0f37ead1003a8866720bdb65529} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_matrix}{Matrix}}}]{\$A}{}\end{DoxyParamCaption})}
+
+Cholesky\+Decomposition.
+
+Class constructor -\/ decomposes symmetric positive definite matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$A} & \doxylink{namespace_matrix}{Matrix} square symmetric positive definite matrix \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_ac8bafb1279b80d019a0688b25f786883}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!getL@{getL}}
+\index{getL@{getL}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{getL()}{getL()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_ac8bafb1279b80d019a0688b25f786883} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::getL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+getL.
+
+Return triangular factor.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} Lower triangular matrix 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5b06d74d6dfb8ec46dd0cc7465fa0c63}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!isSPD@{isSPD}}
+\index{isSPD@{isSPD}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{isSPD()}{isSPD()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5b06d74d6dfb8ec46dd0cc7465fa0c63} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::is\+SPD (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Is the matrix symmetric and positive definite?
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a04846b10fd3a3ae540d8d1ae55fb6b2b}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!solve@{solve}}
+\index{solve@{solve}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a04846b10fd3a3ae540d8d1ae55fb6b2b} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_matrix}{Matrix}}}]{\$B}{}\end{DoxyParamCaption})}
+
+Solve A\texorpdfstring{$\ast$}{*}X = B.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \$B} & Row-\/equal matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} L \texorpdfstring{$\ast$}{*} L\textquotesingle{} \texorpdfstring{$\ast$}{*} X = B 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5ffb6efb89c8f866f87ded883be998b9}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!\$isspd@{\$isspd}}
+\index{\$isspd@{\$isspd}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$isspd}{\$isspd}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a5ffb6efb89c8f866f87ded883be998b9} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::\$isspd = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a4c76bd3da5644452195951de13e5ad8e}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!\$L@{\$L}}
+\index{\$L@{\$L}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$L}{\$L}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a4c76bd3da5644452195951de13e5ad8e} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::\$L = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a0801aaa32dd14aeaec8d154dff7ad40d}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}!\$m@{\$m}}
+\index{\$m@{\$m}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}CholeskyDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$m}{\$m}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_cholesky_decomposition_a0801aaa32dd14aeaec8d154dff7ad40d} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+Cholesky\+Decomposition\+::\$m\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Shared/\+JAMA/\mbox{\hyperlink{_cholesky_decomposition_8php}{Cholesky\+Decomposition.\+php}}\end{DoxyCompactItemize}

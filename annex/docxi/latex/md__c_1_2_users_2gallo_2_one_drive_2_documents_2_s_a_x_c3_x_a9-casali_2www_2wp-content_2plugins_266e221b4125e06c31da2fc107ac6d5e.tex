@@ -1,0 +1,125 @@
+\chapter{Features cross reference}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_266e221b4125e06c31da2fc107ac6d5e}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_266e221b4125e06c31da2fc107ac6d5e}\index{Features cross reference@{Features cross reference}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_266e221b4125e06c31da2fc107ac6d5e_autotoc_md274}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_266e221b4125e06c31da2fc107ac6d5e_autotoc_md274}%
+
+
+
+\begin{DoxyItemize}
+\item ✔ Supported
+\item ● Partially supported
+\item ✖ Not supported
+\item N/A Cannot be supported
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{16}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ }&\multicolumn{7}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Readers }}&\multicolumn{6}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Writers }}&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Methods  }}\\\cline{1-16}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ }&\multicolumn{7}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Readers }}&\multicolumn{6}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Writers }}&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Methods  }}\\\cline{1-16}
+\endhead
+\cellcolor{\tableheadbgcolor}\textbf{ }&\cellcolor{\tableheadbgcolor}\textbf{ XLS }&\cellcolor{\tableheadbgcolor}\textbf{ XLSX }&\cellcolor{\tableheadbgcolor}\textbf{ Excel2003\+XML }&\cellcolor{\tableheadbgcolor}\textbf{ Ods }&\cellcolor{\tableheadbgcolor}\textbf{ Gnumeric }&\cellcolor{\tableheadbgcolor}\textbf{ CSV }&\cellcolor{\tableheadbgcolor}\textbf{ SYLK }&\cellcolor{\tableheadbgcolor}\textbf{ XLS }&\cellcolor{\tableheadbgcolor}\textbf{ XLSX }&\cellcolor{\tableheadbgcolor}\textbf{ Ods }&\cellcolor{\tableheadbgcolor}\textbf{ CSV }&\cellcolor{\tableheadbgcolor}\textbf{ HTML }&\cellcolor{\tableheadbgcolor}\textbf{ PDF }&\cellcolor{\tableheadbgcolor}\textbf{ Getters }&\cellcolor{\tableheadbgcolor}\textbf{ Setters  }\\\cline{1-16}
+{\bfseries{Reader Options}} &✔ &✔ &● &● &✔ &N/A &N/A &N/A &N/A &N/A &N/A &N/A &N/A &&\\\cline{1-16}
+Read Data Only (no formatting) &✔ &✔ &✖ &✖ &✔ &N/A &N/A &N/A &N/A &N/A &N/A &N/A &N/A &\$reader-\/\texorpdfstring{$>$}{>}get\+Read\+Data\+Only() &\$reader-\/\texorpdfstring{$>$}{>}set\+Read\+Data\+Only()  \\\cline{1-16}
+Read Only Specified Worksheets &✔ &✔ &✔ &✔ &✔ &N/A &N/A &N/A &N/A &N/A &N/A &N/A &N/A &\$reader-\/\texorpdfstring{$>$}{>}get\+Load\+Sheets\+Only() &\$reader-\/\texorpdfstring{$>$}{>}set\+Load\+Sheets\+Only()~\newline
+\$reader-\/\texorpdfstring{$>$}{>}set\+Load\+All\+Sheets()  \\\cline{1-16}
+Read Only Specified Cells &✔ &✔ &✔ &✔ &✔ &N/A &N/A &N/A &N/A &N/A &N/A &N/A &N/A &\$reader-\/\texorpdfstring{$>$}{>}get\+Read\+Filter() &\$reader-\/\texorpdfstring{$>$}{>}set\+Read\+Filter()  \\\cline{1-16}
+{\bfseries{Document Properties}} &● &✔ &✔ &✔ &✔ &N/A &N/A &● &✔ &✔ &N/A &N/A &● &&\\\cline{1-16}
+Standard Properties &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &● &N/A &N/A &● &&\\\cline{1-16}
+Creator &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &✔ &✔ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Creator() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Creator()  \\\cline{1-16}
+Creation Date/\+Time &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &N/A &✖ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Created() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Created()  \\\cline{1-16}
+Modifier &✔ &✔ &✔ &N/A &N/A &N/A &N/A &✔ &✔ &✖ &N/A &N/A &✖ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Last\+Modified\+By() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Last\+Modified\+By()  \\\cline{1-16}
+Modified Date/\+Time &✔ &✔ &✔ &✔ &N/A &N/A &N/A &✔ &✔ &✖ &N/A &N/A &✖ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Modified() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Modified()  \\\cline{1-16}
+Title &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &✔ &✔ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Title() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Title()  \\\cline{1-16}
+Description &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &N/A &✖ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Description() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Description()  \\\cline{1-16}
+Subject &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &✔ &✔ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Subject() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Subject()  \\\cline{1-16}
+Keywords &✔ &✔ &✔ &✔ &✔ &N/A &N/A &✔ &✔ &✔ &N/A &✔ &✔ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Keywords() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Keywords()  \\\cline{1-16}
+Extended Properties &✔ &✔ &✔ &N/A &✔ &N/A &N/A &&✔ &● &N/A &N/A &&&\\\cline{1-16}
+Category &✔ &✔ &✔ &N/A &✔ &N/A &N/A &&✔ &✔ &N/A &N/A &&\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Category() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Category()  \\\cline{1-16}
+Company &✔ &✔ &✔ &N/A &✔ &N/A &N/A &&✔ &✔ &N/A &N/A &&\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Company() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Company()  \\\cline{1-16}
+Manager &✔ &✔ &✔ &N/A &✔ &N/A &N/A &&✔ &✖ &N/A &N/A &&\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Manager() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Manager()  \\\cline{1-16}
+User-\/\+Defined (Custom) Properties &✖ &✔ &✔ &✔ &N/A &N/A &N/A &&✔ &✖ &N/A &N/A &&\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Custom\+Properties()~\newline
+\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}is\+Custom\+Property\+Set()~\newline
+\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Custom\+Property\+Value()~\newline
+\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}get\+Custom\+Property\+Type() &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Properties()-\/\texorpdfstring{$>$}{>}set\+Custom\+Property()  \\\cline{1-16}
+Text Properties &✖ &✔ &✔ &✔ &N/A &N/A &N/A &&✔ &✖ &N/A &N/A &&&\\\cline{1-16}
+Number Properties &✖ &✔ &✔ &✔ &N/A &N/A &N/A &&✔ &✖ &N/A &N/A &&&\\\cline{1-16}
+Date Properties &✖ &✔ &✔ &✔ &N/A &N/A &N/A &&✔ &✖ &N/A &N/A &&&\\\cline{1-16}
+Yes/\+No (Boolean) Properties &✖ &✔ &✔ &✔ &N/A &N/A &N/A &&✔ &✖ &N/A &N/A &&&\\\cline{1-16}
+{\bfseries{Cell Data Types}} &&&&&● &&&● &&&&&&&\\\cline{1-16}
+Empty/\+NULL &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Boolean &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Integer &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Floating Point &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+String &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Error &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Formula &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Array &&&&&✖ &&&&&&&&&&\\\cline{1-16}
+Rich Text &✔ &✔ &&&✖ &N/A &&✖ &✔ &&N/A &&&&\\\cline{1-16}
+{\bfseries{Conditional Formatting}} &✖ &✔ &&&&N/A &&✖ &✔ &N/A &&&&&\\\cline{1-16}
+{\bfseries{Rows and Column Properties}} &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Row Height/\+Column Width &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Hidden &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+{\bfseries{Worksheet Properties}} &&&&&✖ &&&&&&&&&&\\\cline{1-16}
+Frozen Panes &&&&&✖ &&&&&&&&&&\\\cline{1-16}
+Coloured Tabs &&&&&N/A &&&&&&&&&&\\\cline{1-16}
+Drawing hyperlink &&✔ &&&&&&&✔ &&&&&\$drawing-\/\texorpdfstring{$>$}{>}get\+Hyperlink()-\/\texorpdfstring{$>$}{>}get\+Url() &\$drawing-\/\texorpdfstring{$>$}{>}set\+Hyperlink()-\/\texorpdfstring{$>$}{>}set\+Url(\$url)  \\\cline{1-16}
+{\bfseries{Cell Formatting}} &&&&&● &&&&&&&&&&\\\cline{1-16}
+Number Format Mask &✔ &✔ &&&✔ &&&&&&&&&&\\\cline{1-16}
+Alignment &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Horizontal &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Vertical &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Wrapping &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Shring-\/to-\/\+Fit &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Indent &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Background Colour &&&&&✔ &&&&&&&● &&&\\\cline{1-16}
+Patterned &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Font Attributes &&&&&✔ &&&&&● &&&&&\\\cline{1-16}
+Font Face &&&&&✔ &&&&&✔ &&&&&\\\cline{1-16}
+Font Size &&&&&✔ &&&&&✔ &&&&&\\\cline{1-16}
+Bold &&&&&✔ &&&&&✔ &&&&&\\\cline{1-16}
+Italic &&&&&✔ &&&&&✔ &&&&&\\\cline{1-16}
+Strikethrough &&&&&✔ &&&&&✖ &&&&&\\\cline{1-16}
+Underline &&&&&✔ &&&&&✔ &&&&&\\\cline{1-16}
+Superscript &&&&&✔ &&&&&✖ &&&&&\\\cline{1-16}
+Subscript &&&&&✔ &&&&&✖ &&&&&\\\cline{1-16}
+Borders &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Line Style &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Position &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Diagonal &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+Hyperlinks &✔ &✔ &✔ &✔ &✖ &✖ &✖ &✔ &✔ &✖ &✖ &✔ &✖ &\$cell-\/\texorpdfstring{$>$}{>}get\+Hyperlink()-\/\texorpdfstring{$>$}{>}get\+Url(\$url) &\$cell-\/\texorpdfstring{$>$}{>}get\+Hyperlink()-\/\texorpdfstring{$>$}{>}set\+Url(\$url)  \\\cline{1-16}
+http &&&&&✖ &&&&&&&&&&\\\cline{1-16}
+Merged Cells &&&&&✔ &&&&&&&&&&\\\cline{1-16}
+{\bfseries{Cell Comments}} &● &● &● &● &✔ &N/A &N/A &✖ &● &● &N/A &● \textsuperscript{1} &N/A &&\\\cline{1-16}
+Rich Text &✖ \textsuperscript{2} &✔ &✖ &✖ &N/A &N/A &N/A &✖ &✔ &✖ &N/A &&N/A &&\\\cline{1-16}
+Alignment &✖ \textsuperscript{3} &✖ &✖ &✖ &N/A &N/A &N/A &✖ &✖ &✖ &N/A &&N/A &&\\\cline{1-16}
+{\bfseries{Cell Validation}} &✔ &✔ &✖ &✖ &✖ &N/A &N/A &✔ &✔ &✖ &N/A &N/A &N/A &\$cell-\/\texorpdfstring{$>$}{>}get\+Data\+Validation() &\$cell-\/\texorpdfstring{$>$}{>}set\+Data\+Validation()  \\\cline{1-16}
+{\bfseries{Auto\+Filters}} &● &● &&&&&&● &● &&&&&\$sheet-\/\texorpdfstring{$>$}{>}get\+Auto\+Filter() &\$sheet-\/\texorpdfstring{$>$}{>}set\+Auto\+Filter()  \\\cline{1-16}
+Auto\+Filter Expressions &✖ &● &&&&&&✖ &● &&&&&&\\\cline{1-16}
+Filter &✖ &✔ &&&&&&✖ &✔ &&&&&&\\\cline{1-16}
+Custom Filter &✖ &✔ &&&&&&✖ &✔ &&&&&&\\\cline{1-16}
+Date\+Group Filter &✖ &✔ &&&&&&✖ &✔ &&&&&&\\\cline{1-16}
+Dynamic Filter &✖ &✔ &&&&&&✖ &✔ &&&&&&\\\cline{1-16}
+Colour Filter &✖ &✖ &&&&&&✖ &✖ &&&&&&\\\cline{1-16}
+Icon Filter &✖ &✖ &&&&&&✖ &✖ &&&&&&\\\cline{1-16}
+Top 10 Filter &✖ &✔ &&&&&&✖ &✔ &&&&&&\\\cline{1-16}
+{\bfseries{Macros}} &✖ &✔ &✖ &✖ &✖ &✖ &✖ &✖ &✔ &✖ &✖ &✖ &✖ &\$spreadsheet-\/\texorpdfstring{$>$}{>}get\+Macros\+Code(); &\$spreadsheet-\/\texorpdfstring{$>$}{>}set\+Macros\+Code();  \\\cline{1-16}
+{\bfseries{Form Controls}} &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖  \\\cline{1-16}
+{\bfseries{Security}} &● &● &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖  \\\cline{1-16}
+Protection (prevent editing) &✔ &✔ &✖ &✖ &✖ &✖ &✖ &✔ &✔ &✖ &✖ &✖ &✖ &\$sheet-\/\texorpdfstring{$>$}{>}get\+Protection() &\$sheet-\/\texorpdfstring{$>$}{>}get\+Protection()-\/\texorpdfstring{$>$}{>}set\+Sheet(true)  \\\cline{1-16}
+Encryption (prevent viewing) &✔ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &✖ &&\\\cline{1-16}
+\cellcolor{\tableheadbgcolor}\textbf{ }&\cellcolor{\tableheadbgcolor}\textbf{ XLS }&\cellcolor{\tableheadbgcolor}\textbf{ XLSX }&\cellcolor{\tableheadbgcolor}\textbf{ Excel2003\+XML }&\cellcolor{\tableheadbgcolor}\textbf{ Ods }&\cellcolor{\tableheadbgcolor}\textbf{ Gnumeric }&\cellcolor{\tableheadbgcolor}\textbf{ CSV }&\cellcolor{\tableheadbgcolor}\textbf{ SYLK }&\cellcolor{\tableheadbgcolor}\textbf{ XLS }&\cellcolor{\tableheadbgcolor}\textbf{ XLSX }&\cellcolor{\tableheadbgcolor}\textbf{ Ods }&\cellcolor{\tableheadbgcolor}\textbf{ CSV }&\cellcolor{\tableheadbgcolor}\textbf{ HTML }&\cellcolor{\tableheadbgcolor}\textbf{ PDF }&\cellcolor{\tableheadbgcolor}\textbf{ Getters }&\cellcolor{\tableheadbgcolor}\textbf{ Setters  }\\\cline{1-16}
+\cellcolor{\tableheadbgcolor}\textbf{ }&\multicolumn{7}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Readers }}&\multicolumn{6}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Writers }}&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Methods  }}\\\cline{1-16}
+\end{longtabu}
+
+
+
+\begin{DoxyEnumerate}
+\item Only text contents
+\item Only BIFF8 files support Rich Text. Prior to that, comments could only be plain text
+\item Only BIFF8 files support alignment and rotation. Prior to that, comments could only be unformatted text 
+\end{DoxyEnumerate}

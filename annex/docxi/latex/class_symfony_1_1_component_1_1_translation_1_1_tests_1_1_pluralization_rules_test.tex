@@ -1,0 +1,113 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}Pluralization\+Rules\+Test}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test}{}\label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}Pluralization\+Rules\+Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a6fbb870365dfa04c84411298e375f0bc}{test\+Failed\+Langcodes}} (\$nplural, \$lang\+Codes)
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a5b1461582ca167170aabcb476982eeed}{test\+Langcodes}} (\$nplural, \$lang\+Codes)
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a4ced3f91fea543b046af65b0e645bc0d}{success\+Langcodes}} ()
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a044876fd64362f991bb9cce917afd553}{failing\+Langcodes}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_af3fd0e1449b37e0ff8caeeee7509527c}{validate\+Matrix}} (\$nplural, \$matrix, \$expect\+Success=\mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}})
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a8ce5d1231eca1d8f40c85afea759145e}{generate\+Test\+Data}} (\$lang\+Codes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Test should cover all languages mentioned on \href{http://translate.sourceforge.net/wiki/l10n/pluralforms}{\texttt{ http\+://translate.\+sourceforge.\+net/wiki/l10n/pluralforms}} and Plural forms mentioned on \href{http://www.gnu.org/software/gettext/manual/gettext.html\#Plural-forms}{\texttt{ http\+://www.\+gnu.\+org/software/gettext/manual/gettext.\+html\#\+Plural-\/forms}}.
+
+See also \href{https://developer.mozilla.org/en/Localization_and_Plurals}{\texttt{ https\+://developer.\+mozilla.\+org/en/\+Localization\+\_\+and\+\_\+\+Plurals}} which mentions 15 rules having a maximum of 6 forms. The mozilla code is also interesting to check for.
+
+As mentioned by chx \href{http://drupal.org/node/1273968}{\texttt{ http\+://drupal.\+org/node/1273968}} we can cover all by testing number from 0 to 199
+
+The goal to cover all languages is to far fetched so this test case is smaller.
+
+\begin{DoxyAuthor}{Auteur}
+Clemens Tolboom \href{mailto:clemens@build2be.nl}{\texttt{ clemens@build2be.\+nl}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a044876fd64362f991bb9cce917afd553}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!failingLangcodes@{failingLangcodes}}
+\index{failingLangcodes@{failingLangcodes}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{failingLangcodes()}{failingLangcodes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a044876fd64362f991bb9cce917afd553} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::failing\+Langcodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+This array should be at least empty within the near future.
+
+This both depends on a complete list trying to add above as understanding the plural rules of the current failing languages.
+
+\begin{DoxyReturn}{Renvoie}
+array with nplural together with langcodes 
+\end{DoxyReturn}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a8ce5d1231eca1d8f40c85afea759145e}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!generateTestData@{generateTestData}}
+\index{generateTestData@{generateTestData}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{generateTestData()}{generateTestData()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a8ce5d1231eca1d8f40c85afea759145e} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::generate\+Test\+Data (\begin{DoxyParamCaption}\item[{}]{\$lang\+Codes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a4ced3f91fea543b046af65b0e645bc0d}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!successLangcodes@{successLangcodes}}
+\index{successLangcodes@{successLangcodes}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{successLangcodes()}{successLangcodes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a4ced3f91fea543b046af65b0e645bc0d} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::success\+Langcodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+This array should contain all currently known langcodes.
+
+As it is impossible to have this ever complete we should try as hard as possible to have it almost complete.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a6fbb870365dfa04c84411298e375f0bc}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!testFailedLangcodes@{testFailedLangcodes}}
+\index{testFailedLangcodes@{testFailedLangcodes}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{testFailedLangcodes()}{testFailedLangcodes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a6fbb870365dfa04c84411298e375f0bc} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::test\+Failed\+Langcodes (\begin{DoxyParamCaption}\item[{}]{\$nplural}{, }\item[{}]{\$lang\+Codes}{}\end{DoxyParamCaption})}
+
+We test failed langcode here.
+
+TODO\+: The languages mentioned in the data provide need to get fixed somehow within Pluralization\+Rules.
+
+@data\+Provider failing\+Langcodes \Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a5b1461582ca167170aabcb476982eeed}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!testLangcodes@{testLangcodes}}
+\index{testLangcodes@{testLangcodes}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{testLangcodes()}{testLangcodes()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_a5b1461582ca167170aabcb476982eeed} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::test\+Langcodes (\begin{DoxyParamCaption}\item[{}]{\$nplural}{, }\item[{}]{\$lang\+Codes}{}\end{DoxyParamCaption})}
+
+@data\+Provider success\+Langcodes \Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_af3fd0e1449b37e0ff8caeeee7509527c}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}!validateMatrix@{validateMatrix}}
+\index{validateMatrix@{validateMatrix}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Tests\textbackslash{}PluralizationRulesTest}}
+\doxysubsubsection{\texorpdfstring{validateMatrix()}{validateMatrix()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_pluralization_rules_test_af3fd0e1449b37e0ff8caeeee7509527c} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Pluralization\+Rules\+Test\+::validate\+Matrix (\begin{DoxyParamCaption}\item[{}]{\$nplural}{, }\item[{}]{\$matrix}{, }\item[{}]{\$expect\+Success}{ = {\ttfamily \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+We validate only on the plural coverage. Thus the real rules is not tested.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$nplural} & Plural expected \\
+\hline
+array & {\em \$matrix} & Containing langcodes and their plural index values \\
+\hline
+bool & {\em \$expect\+Success} & \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Tests/\mbox{\hyperlink{_pluralization_rules_test_8php}{Pluralization\+Rules\+Test.\+php}}\end{DoxyCompactItemize}

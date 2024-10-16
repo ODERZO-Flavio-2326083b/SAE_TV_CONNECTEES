@@ -1,0 +1,141 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart}{}\label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a7b7b276a618a774d62c92bc99b26c718}{read\+Chart}} (Simple\+XMLElement \$chart\+Elements, \$chart\+Name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a6720153d81a9131f5caf3c29412933a4}{get\+Attribute}} (Simple\+XMLElement \$component, \$name, \$format)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a772afe29cba1c9a05865926e2a685450}{read\+Color}} (\$\mbox{\hyperlink{class-twenty-twenty-one-dark-mode_8php_a0560a5f5f8513a9002f87cb30406ddc5}{color}}, \$background=false)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a69e9296d31752288d96fb3371420d0a8}{chart\+Title}} (Simple\+XMLElement \$title\+Details, array \$namespaces\+Chart\+Meta)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a8aa2c6bb04cdf23228a4563c44cfa0c4}{chart\+Layout\+Details}} (\$chart\+Detail, \$namespaces\+Chart\+Meta)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04384ca71e28dc16e6b2542a581bb431}{chart\+Data\+Series}} (\$chart\+Detail, \$namespaces\+Chart\+Meta, \$plot\+Type)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04cb06adcabff67d184c80ccdb296d45}{chart\+Data\+Series\+Value\+Set}} (\$series\+Detail, \$namespaces\+Chart\+Meta, \$marker=null)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a706ef6b4ae83bd8f3d4d0bc714ee7431}{chart\+Data\+Series\+Values}} (\$series\+Value\+Set, \$data\+Type=\textquotesingle{}n\textquotesingle{})
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ab24859a5832b2e833f08811bfebe1c59}{chart\+Data\+Series\+Values\+Multi\+Level}} (\$series\+Value\+Set, \$data\+Type=\textquotesingle{}n\textquotesingle{})
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ac4d53ec1c64d147bdba1a3d152f2fb20}{parse\+Rich\+Text}} (Simple\+XMLElement \$title\+Detail\+Part)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a29469e29b50f58fa7f6ceaaee063797a}{read\+Chart\+Attributes}} (\$chart\+Detail)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a41ca41cc73b5a7b8b7761ba9747b53e3}{set\+Chart\+Attributes}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_chart_1_1_layout}{Layout}} \$plot\+Area, \$plot\+Attributes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04384ca71e28dc16e6b2542a581bb431}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartDataSeries@{chartDataSeries}}
+\index{chartDataSeries@{chartDataSeries}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartDataSeries()}{chartDataSeries()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04384ca71e28dc16e6b2542a581bb431} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Data\+Series (\begin{DoxyParamCaption}\item[{}]{\$chart\+Detail}{, }\item[{}]{\$namespaces\+Chart\+Meta}{, }\item[{}]{\$plot\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a706ef6b4ae83bd8f3d4d0bc714ee7431}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartDataSeriesValues@{chartDataSeriesValues}}
+\index{chartDataSeriesValues@{chartDataSeriesValues}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartDataSeriesValues()}{chartDataSeriesValues()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a706ef6b4ae83bd8f3d4d0bc714ee7431} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Data\+Series\+Values (\begin{DoxyParamCaption}\item[{}]{\$series\+Value\+Set}{, }\item[{}]{\$data\+Type}{ = {\ttfamily \textquotesingle{}n\textquotesingle{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04cb06adcabff67d184c80ccdb296d45}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartDataSeriesValueSet@{chartDataSeriesValueSet}}
+\index{chartDataSeriesValueSet@{chartDataSeriesValueSet}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartDataSeriesValueSet()}{chartDataSeriesValueSet()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a04cb06adcabff67d184c80ccdb296d45} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Data\+Series\+Value\+Set (\begin{DoxyParamCaption}\item[{}]{\$series\+Detail}{, }\item[{}]{\$namespaces\+Chart\+Meta}{, }\item[{}]{\$marker}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ab24859a5832b2e833f08811bfebe1c59}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartDataSeriesValuesMultiLevel@{chartDataSeriesValuesMultiLevel}}
+\index{chartDataSeriesValuesMultiLevel@{chartDataSeriesValuesMultiLevel}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartDataSeriesValuesMultiLevel()}{chartDataSeriesValuesMultiLevel()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ab24859a5832b2e833f08811bfebe1c59} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Data\+Series\+Values\+Multi\+Level (\begin{DoxyParamCaption}\item[{}]{\$series\+Value\+Set}{, }\item[{}]{\$data\+Type}{ = {\ttfamily \textquotesingle{}n\textquotesingle{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a8aa2c6bb04cdf23228a4563c44cfa0c4}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartLayoutDetails@{chartLayoutDetails}}
+\index{chartLayoutDetails@{chartLayoutDetails}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartLayoutDetails()}{chartLayoutDetails()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a8aa2c6bb04cdf23228a4563c44cfa0c4} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Layout\+Details (\begin{DoxyParamCaption}\item[{}]{\$chart\+Detail}{, }\item[{}]{\$namespaces\+Chart\+Meta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a69e9296d31752288d96fb3371420d0a8}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!chartTitle@{chartTitle}}
+\index{chartTitle@{chartTitle}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{chartTitle()}{chartTitle()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a69e9296d31752288d96fb3371420d0a8} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::chart\+Title (\begin{DoxyParamCaption}\item[{Simple\+XMLElement}]{\$title\+Details}{, }\item[{array}]{\$namespaces\+Chart\+Meta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a6720153d81a9131f5caf3c29412933a4}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!getAttribute@{getAttribute}}
+\index{getAttribute@{getAttribute}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{getAttribute()}{getAttribute()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a6720153d81a9131f5caf3c29412933a4} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::get\+Attribute (\begin{DoxyParamCaption}\item[{Simple\+XMLElement}]{\$component}{, }\item[{}]{\$name}{, }\item[{}]{\$format}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Simple\+XMLElement & {\em \$component} & \\
+\hline
+string & {\em \$name} & \\
+\hline
+string & {\em \$format} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+null\texorpdfstring{$\vert$}{|}bool\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ac4d53ec1c64d147bdba1a3d152f2fb20}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!parseRichText@{parseRichText}}
+\index{parseRichText@{parseRichText}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{parseRichText()}{parseRichText()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_ac4d53ec1c64d147bdba1a3d152f2fb20} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::parse\+Rich\+Text (\begin{DoxyParamCaption}\item[{Simple\+XMLElement}]{\$title\+Detail\+Part}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a7b7b276a618a774d62c92bc99b26c718}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!readChart@{readChart}}
+\index{readChart@{readChart}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{readChart()}{readChart()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a7b7b276a618a774d62c92bc99b26c718} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::read\+Chart (\begin{DoxyParamCaption}\item[{Simple\+XMLElement}]{\$chart\+Elements}{, }\item[{}]{\$chart\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Simple\+XMLElement & {\em \$chart\+Elements} & \\
+\hline
+string & {\em \$chart\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Chart\textbackslash{}\+Chart 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a29469e29b50f58fa7f6ceaaee063797a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!readChartAttributes@{readChartAttributes}}
+\index{readChartAttributes@{readChartAttributes}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{readChartAttributes()}{readChartAttributes()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a29469e29b50f58fa7f6ceaaee063797a} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::read\+Chart\+Attributes (\begin{DoxyParamCaption}\item[{}]{\$chart\+Detail}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a772afe29cba1c9a05865926e2a685450}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!readColor@{readColor}}
+\index{readColor@{readColor}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{readColor()}{readColor()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a772afe29cba1c9a05865926e2a685450} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::read\+Color (\begin{DoxyParamCaption}\item[{}]{\$color}{, }\item[{}]{\$background}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a41ca41cc73b5a7b8b7761ba9747b53e3}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}!setChartAttributes@{setChartAttributes}}
+\index{setChartAttributes@{setChartAttributes}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Reader\textbackslash{}Xlsx\textbackslash{}Chart}}
+\doxysubsubsection{\texorpdfstring{setChartAttributes()}{setChartAttributes()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reader_1_1_xlsx_1_1_chart_a41ca41cc73b5a7b8b7761ba9747b53e3} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+Xlsx\textbackslash{}\+Chart\+::set\+Chart\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_chart_1_1_layout}{Layout}}}]{\$plot\+Area}{, }\item[{}]{\$plot\+Attributes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Layout & {\em \$plot\+Area} & \\
+\hline
+mixed & {\em \$plot\+Attributes} & \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Reader/\+Xlsx/\mbox{\hyperlink{_reader_2_xlsx_2_chart_8php}{Chart.\+php}}\end{DoxyCompactItemize}
