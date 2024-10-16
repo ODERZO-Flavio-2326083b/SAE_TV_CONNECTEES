@@ -83,7 +83,7 @@ class PHP_CodeSniffer_DocGenerators_Markdown extends PHP_CodeSniffer_DocGenerato
     {
         // Turn off errors so we don't get timezone warnings if people
         // don't have their timezone set.
-        error_reporting(0);
+        // error_reporting(0);
         echo 'Documentation generated on '.date('r');
         echo ' by [PHP_CodeSniffer '.PHP_CodeSniffer::VERSION.'](https://github.com/squizlabs/PHP_CodeSniffer)';
 
