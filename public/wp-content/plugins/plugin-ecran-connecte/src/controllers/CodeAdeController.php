@@ -28,7 +28,13 @@ class CodeAdeController extends Controller
     private $view;
 
     /**
-     * Constructeur de CodeAdeController.
+     * Constructeur de la classe.
+     *
+     * Ce constructeur initialise les instances du modèle `CodeAde` et de la vue
+     * `CodeAdeView`.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function __construct() {
         $this->model = new CodeAde();
@@ -36,9 +42,17 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Insère un code ADE dans la base de données et télécharge le planning de ce code.
+     * Insère un nouveau code ADE.
      *
-     * @return string Le formulaire de création.
+     * Cette méthode récupère les données soumises via un formulaire, valide les
+     * entrées, et insère un nouveau code ADE dans le modèle si les données sont
+     * valides. Elle gère également l'affichage des messages de succès ou d'erreur
+     * selon le résultat de l'insertion.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'submit');
@@ -77,7 +91,17 @@ class CodeAdeController extends Controller
     /**
      * Modifie un code ADE existant.
      *
-     * @return string La vue du formulaire de modification.
+     * Cette méthode récupère l'ID d'un code ADE à modifier via les paramètres
+     * d'URL, valide l'existence de ce code, puis traite les données soumises
+     * par le formulaire de modification. Les entrées sont validées et, si
+     * elles sont correctes, le code ADE est mis à jour dans le modèle.
+     * Les doublons sont également vérifiés. Des messages de succès ou d'erreur
+     * sont affichés selon le résultat de l'opération.
+     *
+     * @return string Le rendu du formulaire de modification ou un message d'erreur.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function modify() {
         $id = $_GET['id'];
@@ -121,9 +145,16 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Affiche tous les codes ADE dans un tableau.
+     * Affiche tous les codes ADE classés par type.
      *
-     * @return string Le tableau contenant tous les codes.
+     * Cette méthode récupère tous les codes ADE de chaque type (année,
+     * groupe, demi-groupe) via le modèle. Les données sont ensuite passées à
+     * la vue pour être affichées.
+     *
+     * @return string Le rendu HTML des codes ADE classés par type.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function displayAllCodes() {
         $years = $this->model->getAllFromType('year');
@@ -134,9 +165,17 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Supprime des codes ADE sélectionnés.
+     * Supprime les codes ADE sélectionnés.
+     *
+     * Cette méthode vérifie si une demande de suppression a été effectuée.
+     * Si c'est le cas, elle récupère les IDs des codes sélectionnés et
+     * les supprime un par un en appelant la méthode `delete` du modèle.
+     * La page est rafraîchie après la suppression.
      *
      * @return void
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     public function deleteCodes() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
@@ -153,10 +192,17 @@ class CodeAdeController extends Controller
     }
 
     /**
-     * Vérifie si un code ADE existe déjà avec le même titre ou code.
+     * Vérifie si le code ADE à insérer est déjà présent dans la base de données.
      *
-     * @param CodeAde $newCodeAde L'instance du nouveau code ADE à vérifier.
-     * @return bool Vrai si un doublon existe, faux sinon.
+     * Cette méthode compare le code ADE passé en paramètre avec les enregistrements
+     * existants dans la base de données. Elle exclut l'enregistrement actuel si
+     * l'ID correspond et renvoie vrai s'il existe d'autres codes similaires.
+     *
+     * @param CodeAde $newCodeAde L'objet CodeAde à vérifier pour les doublons.
+     * @return bool Retourne vrai si un doublon est trouvé, sinon faux.
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     private function checkDuplicateCode(CodeAde $newCodeAde) {
         $codesAde = $this->model->checkCode($newCodeAde->getTitle(), $newCodeAde->getCode());
