@@ -189,6 +189,18 @@ function installDatabaseEcran()
 		) $charset_collate;";
 
     dbDelta($sql);
+
+	$table_name = "ecran_departement";
+
+	$sql = "CREATE TABLE IF NOT EXISTS $table_name (
+		   dept_id INT(),
+		   dept_nom VARCHAR(60),
+		   dept_latitude DECIMAL(10,6),
+		   dept_longitude DECIMAL(10,6),
+		   PRIMARY KEY(dept_id)
+        ) $charset_collate;";
+
+	dbDelta($sql);
 }
 
 add_action('plugins_loaded', 'installDatabaseEcran');
