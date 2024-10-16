@@ -24,9 +24,6 @@ class TeacherView extends UserView
      *
      * @return string Le code HTML du formulaire d'importation de fichier.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire d'importation :
-     * echo $this->displayInsertImportFileTeacher();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -63,9 +60,6 @@ class TeacherView extends UserView
      *
      * @return string Le code HTML du formulaire de modification de l'utilisateur.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de modification :
-     * echo $this->modifyForm($user);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -98,9 +92,6 @@ class TeacherView extends UserView
      *
      * @return string Le code HTML du tableau affichant tous les enseignants.
      *
-     * @example
-     * // Appel de la méthode pour afficher tous les enseignants :
-     * echo $this->displayAllTeachers($teachers);
      *
      * @version 1.0
      * @date 2024-10-15

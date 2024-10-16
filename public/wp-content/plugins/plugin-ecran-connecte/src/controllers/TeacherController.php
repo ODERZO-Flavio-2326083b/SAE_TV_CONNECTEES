@@ -55,9 +55,6 @@ class TeacherController extends UserController implements Schedule
      *
      * @return string Retourne l'affichage de l'emploi du temps si trouvé, sinon un message d'erreur.
      *
-     * @example
-     * // Afficher l'emploi du temps de l'utilisateur :
-     * $this->displayMySchedule();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -86,9 +83,6 @@ class TeacherController extends UserController implements Schedule
      * @return string Retourne l'affichage d'une vue pour insérer des enseignants,
      *                ou un message d'erreur en cas de doublons ou de format de fichier incorrect.
      *
-     * @example
-     * // Insérer des enseignants à partir d'un fichier :
-     * $this->insert();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -209,9 +203,6 @@ class TeacherController extends UserController implements Schedule
      * @return string Retourne l'affichage d'un formulaire de modification de l'utilisateur
      *                ou un message de validation après une mise à jour réussie.
      *
-     * @example
-     * // Modifier les informations d'un utilisateur enseignant :
-     * $this->modify($user);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -248,9 +239,6 @@ class TeacherController extends UserController implements Schedule
      * @return string Retourne l'affichage des enseignants, y compris leurs informations
      *                et les codes associés.
      *
-     * @example
-     * // Afficher tous les enseignants :
-     * $this->displayAllTeachers();
      *
      * @version 1.0
      * @date 2024-10-15

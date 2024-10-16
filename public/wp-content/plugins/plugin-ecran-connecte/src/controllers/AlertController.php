@@ -49,9 +49,6 @@ class AlertController extends Controller
      *
      * @return string Le formulaire de création d'alerte ou un message de confirmation/erreur.
      *
-     * @example
-     * // Insérer une alerte après la validation du formulaire :
-     * $this->insert();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -134,9 +131,6 @@ class AlertController extends Controller
      *
      * @return string Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
      *
-     * @example
-     * // Modifier une alerte après validation du formulaire :
-     * $this->modify();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -220,9 +214,6 @@ class AlertController extends Controller
      *
      * @return string Le contenu HTML de la liste des alertes, incluant les options de pagination et de suppression.
      *
-     * @example
-     * // Afficher toutes les alertes avec pagination :
-     * $this->displayAll();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -286,9 +277,6 @@ class AlertController extends Controller
      *
      * @return void
      *
-     * @example
-     * // Afficher toutes les alertes pertinentes pour l'utilisateur connecté :
-     * $this->alertMain();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -327,9 +315,6 @@ class AlertController extends Controller
      *
      * @return void
      *
-     * @example
-     * // Synchroniser les alertes avec celles du site administrateur :
-     * $this->registerNewAlert();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -378,9 +363,6 @@ class AlertController extends Controller
      *
      * @return void
      *
-     * @example
-     * // Vérifier et supprimer l'alerte si elle est expirée :
-     * $this->endDateCheckAlert($alertId, '2024-09-16');
      *
      * @version 1.0
      * @date 16-09-2024

@@ -23,9 +23,6 @@ class SecretaryView extends UserView
      *
      * @return string Retourne le code HTML du formulaire de création de compte secrétaire.
      *
-     * @example
-     * // Afficher le formulaire de création de compte secrétaire :
-     * echo $this->displayFormSecretary();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -49,9 +46,6 @@ class SecretaryView extends UserView
      *
      * @return string Retourne le code HTML de la page d'accueil de l'administrateur.
      *
-     * @example
-     * // Afficher la page d'accueil de l'administrateur :
-     * echo $this->displayWelcomeAdmin();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -140,9 +134,6 @@ class SecretaryView extends UserView
      * @param array $users Tableau d'objets utilisateur contenant les informations des secrétaires.
      * @return string Retourne le code HTML du tableau listant les secrétaires.
      *
-     * @example
-     * // Récupérer la liste des secrétaires et l'afficher :
-     * $secretaireList = $this->displayAllSecretary($secretaireUsers);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -171,9 +162,6 @@ class SecretaryView extends UserView
      *
      * @return string Retourne le code HTML du message d'alerte.
      *
-     * @example
-     * // Afficher un message d'erreur si aucun utilisateur n'est sélectionné :
-     * echo $this->displayNoUser();
      *
      * @version 1.0
      * @date 2024-10-15

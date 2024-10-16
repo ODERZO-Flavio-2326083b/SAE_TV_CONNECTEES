@@ -34,9 +34,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du formulaire de création de compte télévision.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de création de compte télévision :
-     * echo $this->displayFormTelevision($years, $groups, $halfGroups);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -82,9 +79,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du tableau affichant les utilisateurs de télévision.
      *
-     * @example
-     * // Appel de la méthode pour afficher tous les comptes de télévision :
-     * echo $this->displayAllTv($users);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -123,9 +117,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du formulaire de modification de l'utilisateur.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de modification d'un utilisateur :
-     * echo $this->modifyForm($user, $years, $groups, $halfGroups);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -180,9 +171,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du menu déroulant pour sélectionner un emploi du temps.
      *
-     * @example
-     * // Appel de la méthode pour construire un sélecteur d'emploi du temps :
-     * echo $this->buildSelectCode($years, $groups, $halfGroups, $code, $count);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -225,9 +213,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du formulaire pour la modification du mot de passe.
      *
-     * @example
-     * // Affiche le formulaire de modification de mot de passe :
-     * echo $this->modifyPassword();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -250,9 +235,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du conteneur du diaporama.
      *
-     * @example
-     * // Affiche le conteneur du diaporama :
-     * echo $this->displayStartSlide();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -271,9 +253,6 @@ class TelevisionView extends UserView
      *
      * @return string Le code HTML du conteneur de la diapositive.
      *
-     * @example
-     * // Affiche une diapositive dans le diaporama :
-     * echo $this->displayMidSlide();
      *
      * @version 1.0
      * @date 2024-10-15

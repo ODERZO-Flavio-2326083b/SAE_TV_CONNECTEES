@@ -59,9 +59,6 @@ class TechnicianController extends UserController implements Schedule
      *                ou un message de validation ou d'erreur selon le résultat
      *                de l'insertion.
      *
-     * @example
-     * // Insérer un nouveau technicien :
-     * $this->insert();
      *
      * @throws Exception Si une erreur se produit lors de l'insertion dans la base
      *                   de données (facultatif, selon l'implémentation de `insert`
@@ -113,9 +110,6 @@ class TechnicianController extends UserController implements Schedule
      *
      * @return string Retourne le rendu de l'affichage de tous les techniciens.
      *
-     * @example
-     * // Afficher tous les techniciens :
-     * $this->displayAllTechnician();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -136,9 +130,6 @@ class TechnicianController extends UserController implements Schedule
      * @return string Retourne une chaîne contenant tous les emplois du temps pour
      *                chaque année associée à l'utilisateur.
      *
-     * @example
-     * // Afficher l'emploi du temps pour toutes les années :
-     * $schedule = $this->displayMySchedule();
      *
      * @version 1.0
      * @date 2024-10-15

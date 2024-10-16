@@ -23,9 +23,6 @@ class TechnicianView extends UserView
      *
      * @return string Le code HTML du formulaire pour créer un compte technicien.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de technicien :
-     * echo $this->displayFormTechnician();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -50,9 +47,6 @@ class TechnicianView extends UserView
      *
      * @return string Le code HTML du tableau contenant la liste des techniciens.
      *
-     * @example
-     * // Appel de la méthode pour afficher tous les techniciens :
-     * echo $this->displayAllTechnicians($technicians);
      *
      * @version 1.0
      * @date 2024-10-15

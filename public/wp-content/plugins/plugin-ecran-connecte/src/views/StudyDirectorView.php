@@ -24,9 +24,6 @@ class StudyDirectorView extends UserView
      *
      * @return string Le code HTML du formulaire de création d'un directeur d'études.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de création :
-     * echo $this->displayCreateDirector();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -73,9 +70,6 @@ class StudyDirectorView extends UserView
      *
      * @return string Le code HTML du tableau des directeurs d'études.
      *
-     * @example
-     * // Appel de la méthode pour afficher la liste des directeurs d'études :
-     * echo $this->displayAllStudyDirector($directors);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -120,9 +114,6 @@ class StudyDirectorView extends UserView
      *
      * @return string Le code HTML du formulaire de modification.
      *
-     * @example
-     * // Appel de la méthode pour afficher le formulaire de modification :
-     * echo $this->displayModifyStudyDirector($director);
      *
      * @version 1.0
      * @date 2024-10-15

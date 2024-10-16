@@ -30,14 +30,6 @@ class View
      *
      * @return string Le code HTML du tableau généré.
      *
-     * @example
-     * // Affiche un tableau avec des données d'utilisateurs :
-     * $users = [
-     *     ['1', '<input type="checkbox" />', 'user1@example.com'],
-     *     ['2', '<input type="checkbox" />', 'user2@example.com'],
-     * ];
-     * $headers = ['ID', 'Sélection', 'Email'];
-     * echo $this->displayAll('User', 'Liste des utilisateurs', $headers, $users, 'UserTable');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -95,9 +87,6 @@ class View
      *
      * @return string Le code HTML de la pagination générée.
      *
-     * @example
-     * // Affiche une pagination pour 10 pages, avec la page actuelle à 4 :
-     * echo $this->pageNumber(10, 4, 'https://example.com/page');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -161,9 +150,6 @@ class View
      *
      * @return string Le code HTML du lien de modification.
      *
-     * @example
-     * // Crée un lien pour modifier un élément avec l'URL spécifiée :
-     * echo $this->buildLinkForModify('https://example.com/modify/1');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -183,9 +169,6 @@ class View
      *
      * @return string Le code HTML de l'élément checkbox.
      *
-     * @example
-     * // Crée une case à cocher avec le nom "option" et l'id 1 :
-     * echo $this->buildCheckbox('option', 1);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -203,9 +186,6 @@ class View
      *
      * @return string Le code HTML d'ouverture pour une navigation par onglets.
      *
-     * @example
-     * // Affiche le début d'un conteneur de sélection multiple :
-     * echo $this->displayStartMultiSelect();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -227,9 +207,6 @@ class View
      *
      * @return string Le code HTML de l'élément de titre de l'onglet.
      *
-     * @example
-     * // Affiche un onglet de navigation intitulé "Paramètres" avec l'identifiant "settings" :
-     * echo $this->displayTitleSelect('settings', 'Paramètres', true);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -251,9 +228,6 @@ class View
      *
      * @return string Le code HTML de la fermeture de la navigation et du début du conteneur de contenu des onglets.
      *
-     * @example
-     * // Utilisation typique après l'affichage des titres d'onglets :
-     * echo $this->displayEndOfTitle();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -282,9 +256,6 @@ class View
      *
      * @return string Le code HTML du contenu de l'onglet.
      *
-     * @example
-     * // Affiche le contenu d'un onglet avec un identifiant et un contenu spécifiques :
-     * echo $this->displayContentSelect('example', '<p>Ceci est le contenu de l\'onglet.</p>', true);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -322,12 +293,6 @@ class View
      * @return void Cette méthode n'a pas de valeur de retour, elle affiche directement
      *               le modal à l'utilisateur.
      *
-     * @example
-     * // Affiche un modal avec un titre et un contenu, sans redirection :
-     * $this->buildModal('Titre du Modal', '<p>Ceci est le contenu du modal.</p>');
-     *
-     * // Affiche un modal avec une redirection vers une autre page :
-     * $this->buildModal('Titre du Modal', '<p>Ceci est le contenu du modal.</p>', 'https://example.com');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -381,9 +346,6 @@ class View
      * @return void Cette méthode n'a pas de valeur de retour, elle affiche directement
      *               le modal à l'utilisateur.
      *
-     * @example
-     * // Affiche un modal indiquant que les mots de passe ne correspondent pas :
-     * $this->displayBadPassword();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -404,9 +366,6 @@ class View
      * @return void Cette méthode n'a pas de valeur de retour, elle affiche directement
      *               le modal d'erreur à l'utilisateur.
      *
-     * @example
-     * // Affiche un modal pour signaler les erreurs d'enregistrement :
-     * $this->displayErrorDouble(['user1', 'user2']);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -428,9 +387,6 @@ class View
      * @return void Cette méthode n'a pas de valeur de retour, elle affiche directement
      *               le modal de confirmation à l'utilisateur.
      *
-     * @example
-     * // Affiche un modal pour confirmer l'inscription de l'utilisateur :
-     * $this->displayInsertValidate();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -477,9 +433,6 @@ class View
      * @return void Cette méthode n'a pas de valeur de retour, elle affiche directement
      *               le modal d'erreur à l'utilisateur.
      *
-     * @example
-     * // Affiche un modal d'erreur lorsque le formulaire est mal rempli :
-     * $this->errorMessageInvalidForm();
      *
      * @version 1.0
      * @date 2024-10-15

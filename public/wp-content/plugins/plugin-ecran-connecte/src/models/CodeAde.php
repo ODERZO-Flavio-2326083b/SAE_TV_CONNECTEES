@@ -49,13 +49,6 @@ class CodeAde extends Model implements Entity, JsonSerializable
      *
      * @throws Exception Si une erreur survient lors de l'envoi de la notification.
      *
-     * @example
-     * // Envoyer une notification à tous les utilisateurs :
-     * $this->sendNotification(null, 'Message pour tous les utilisateurs');
-     *
-     * // Envoyer une notification à des utilisateurs spécifiques :
-     * $targets = [new CodeAde('code1'), new CodeAde('code2')];
-     * $this->sendNotification($targets, 'Message pour des utilisateurs spécifiques');
      *
      * @version 1.0
      * @date 2024-10-15

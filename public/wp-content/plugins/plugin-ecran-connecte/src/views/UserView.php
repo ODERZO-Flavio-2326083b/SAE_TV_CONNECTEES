@@ -27,9 +27,6 @@ class UserView extends View
      *
      * @return string Le code HTML du formulaire.
      *
-     * @example
-     * // Affiche un formulaire pour un professeur :
-     * echo $this->displayBaseForm('Prof');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -65,9 +62,6 @@ class UserView extends View
      *
      * @return string Le code HTML du formulaire de modification du mot de passe.
      *
-     * @example
-     * // Affiche le formulaire pour modifier le mot de passe :
-     * echo $this->displayModifyPassword();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -94,9 +88,6 @@ class UserView extends View
      *
      * @return string Le code HTML du formulaire de suppression de compte.
      *
-     * @example
-     * // Affiche le formulaire pour supprimer le compte :
-     * echo $this->displayDeleteAccount();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -124,9 +115,6 @@ class UserView extends View
      *
      * @return string Le code HTML du contexte de création d'utilisateurs.
      *
-     * @example
-     * // Affiche le contexte pour la création d'utilisateurs :
-     * echo $this->contextCreateUser();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -164,9 +152,6 @@ class UserView extends View
      *
      * @return string Le code HTML du formulaire d'entrée du code de suppression.
      *
-     * @example
-     * // Affiche le formulaire pour entrer le code de suppression de compte :
-     * echo $this->displayEnterCode();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -191,9 +176,6 @@ class UserView extends View
      *
      * @return string Le code HTML du bouton de souscription.
      *
-     * @example
-     * // Affiche le bouton de souscription aux notifications :
-     * echo $this->displayButtonSubscription();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -223,9 +205,6 @@ class UserView extends View
      *
      * @return string Le code HTML du formulaire de modification des emplois du temps.
      *
-     * @example
-     * // Affiche le formulaire pour modifier les emplois du temps d'un utilisateur :
-     * echo $this->displayModifyMyCodes($userCodes, $availableYears, $availableGroups, $availableHalfGroups);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -304,9 +283,6 @@ class UserView extends View
      *
      * @return string Le code HTML de la page d'accueil.
      *
-     * @example
-     * // Affiche la page d'accueil dans la vue principale :
-     * echo $this->displayHome();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -379,9 +355,6 @@ class UserView extends View
      *
      * @return string Le code HTML du message d'erreur.
      *
-     * @example
-     * // Affiche un message d'erreur pour l'utilisateur courant :
-     * echo $this->errorMessageNoCodeRegister();
      *
      * @version 1.0
      * @date 2024-10-15

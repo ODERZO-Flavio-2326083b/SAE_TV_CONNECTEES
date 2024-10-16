@@ -36,9 +36,6 @@ class StudyDirectorController extends UserController implements Schedule
      *
      * @return void Ce constructeur n'a pas de valeur de retour.
      *
-     * @example
-     * // Créer une instance de la classe avec les dépendances appropriées :
-     * $instance = new NomDeLaClasse();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -61,9 +58,6 @@ class StudyDirectorController extends UserController implements Schedule
      * @return string Retourne l'affichage de l'emploi du temps si un code
      *                est disponible, sinon un message d'erreur.
      *
-     * @example
-     * // Afficher l'emploi du temps de l'utilisateur courant :
-     * $this->displayMySchedule();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -90,9 +84,6 @@ class StudyDirectorController extends UserController implements Schedule
      * @return string Retourne l'affichage du formulaire de création de directeur
      *                d'études, ou un message d'erreur si les validations échouent.
      *
-     * @example
-     * // Insérer un nouveau directeur d'études :
-     * $this->insert();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -151,9 +142,6 @@ class StudyDirectorController extends UserController implements Schedule
      * @return string Retourne l'affichage du formulaire de modification de directeur
      *                d'études, ou un message de validation si la modification est réussie.
      *
-     * @example
-     * // Modifier un directeur d'études :
-     * $this->modify($user);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -188,9 +176,6 @@ class StudyDirectorController extends UserController implements Schedule
      * @return string Retourne l'affichage de tous les directeurs d'études, incluant
      *                leurs codes associés.
      *
-     * @example
-     * // Afficher tous les directeurs d'études :
-     * $this->displayAllStudyDirector();
      *
      * @version 1.0
      * @date 2024-10-15

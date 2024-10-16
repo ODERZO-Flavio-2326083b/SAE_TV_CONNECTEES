@@ -26,9 +26,6 @@ class StudentView extends UserView
      *
      * @return string Retourne le code HTML du formulaire d'importation.
      *
-     * @example
-     * // Afficher le formulaire pour importer des fichiers d'étudiants :
-     * echo $this->displayInsertImportFileStudent();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -64,9 +61,6 @@ class StudentView extends UserView
      *
      * @return string Retourne le code HTML du tableau des étudiants.
      *
-     * @example
-     * // Afficher la liste des étudiants :
-     * echo $this->displayAllStudent($users);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -124,9 +118,6 @@ class StudentView extends UserView
      *
      * @return string Retourne le code HTML du formulaire de modification d'étudiant.
      *
-     * @example
-     * // Afficher le formulaire de modification pour un étudiant spécifique :
-     * echo $this->displayModifyStudent($user, $years, $groups, $halfGroups);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -217,9 +208,6 @@ class StudentView extends UserView
      *
      * @return void Affiche directement le modal pour la sélection des emplois du temps.
      *
-     * @example
-     * // Appel de la méthode pour afficher le modal de sélection des emplois du temps :
-     * $this->selectSchedules($years, $groups, $halfGroups);
      *
      * @version 1.0
      * @date 2024-10-15

@@ -62,9 +62,6 @@ class TelevisionController extends UserController implements Schedule
      *                si les données sont invalides, sinon renvoie un message de validation
      *                ou d'erreur selon le résultat de l'insertion.
      *
-     * @example
-     * // Insérer un nouvel utilisateur de télévision :
-     * $this->insert();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -137,9 +134,6 @@ class TelevisionController extends UserController implements Schedule
      *                et les options disponibles pour les années, groupes et demi-groupes,
      *                ou un message d'erreur si la mise à jour échoue.
      *
-     * @example
-     * // Modifier les informations d'un utilisateur de télévision :
-     * $this->modify($existingUser);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -191,9 +185,6 @@ class TelevisionController extends UserController implements Schedule
      * @return string Retourne le contenu HTML généré pour afficher la liste
      *                de tous les utilisateurs de télévision.
      *
-     * @example
-     * // Afficher tous les utilisateurs de télévision :
-     * $this->displayAllTv();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -220,9 +211,6 @@ class TelevisionController extends UserController implements Schedule
      * @return string Retourne le contenu HTML de l'emploi du temps de l'utilisateur,
      *                ou un message indiquant qu'il n'a pas de cours.
      *
-     * @example
-     * // Afficher l'emploi du temps de l'utilisateur courant :
-     * $this->displayMySchedule();
      *
      * @version 1.0
      * @date 2024-10-15

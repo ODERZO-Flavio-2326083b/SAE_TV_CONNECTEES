@@ -26,13 +26,6 @@ class ICSView extends View
      *
      * @return string Renvoie une chaîne HTML contenant l'emploi du temps ou un message s'il n'y a pas d'emploi du temps.
      *
-     * @example
-     * // Affiche l'emploi du temps complet pour la journée :
-     * $ics_data = $this->getIcsData();
-     * $this->displaySchedule($ics_data, 'Mon Emploi du Temps', true);
-     *
-     * // Affiche l'emploi du temps détaillé (non toute la journée) :
-     * $this->displaySchedule($ics_data, 'Mon Emploi du Temps', false);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -147,9 +140,6 @@ class ICSView extends View
      *
      * @return string  Chaîne HTML représentant le début de l'emploi du temps en tableau.
      *
-     * @example
-     * // Crée le tableau de début pour afficher l'emploi du temps :
-     * $html = $this->displayStartSchedule(wp_get_current_user());
      *
      * @version 1.0
      * @date 2024-10-15
@@ -185,9 +175,6 @@ class ICSView extends View
      *
      * @return string  Chaîne HTML représentant la date formatée.
      *
-     * @example
-     * // Affiche la date du 14 octobre 2024 :
-     * echo $this->giveDate(14, 10, 2024);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -214,10 +201,6 @@ class ICSView extends View
      * @return string|false  Une chaîne formatée représentant l'événement actif
      *                       ou `false` si l'événement n'est pas actif.
      *
-     * @example
-     * // Récupérer le contenu d'un événement pour le jour actuel :
-     * $event = ['deb' => '14:00', 'fin' => '15:00', 'label' => 'Cours de math', 'description' => 'Introduction aux mathématiques'];
-     * echo $this->getContent($event);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -266,10 +249,6 @@ class ICSView extends View
      *
      * @return string       Une chaîne HTML représentant la ligne du tableau.
      *
-     * @example
-     * // Afficher une ligne de programme avec des données spécifiques :
-     * $datas = ['09:00h - 10:00h', 'Mathématiques', 'Groupe A', 'Salle 101'];
-     * echo $this->displayLineSchedule($datas, true);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -294,9 +273,6 @@ class ICSView extends View
      *
      * @return string       Une chaîne HTML représentant la fin du tableau de l'emploi du temps.
      *
-     * @example
-     * // Afficher la fin d'un tableau d'emploi du temps :
-     * echo $this->displayEndSchedule();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -320,9 +296,6 @@ class ICSView extends View
      * @return string|false       Une chaîne HTML contenant le message d'absence de cours,
      *                            ou false si aucun message ne doit être affiché.
      *
-     * @example
-     * // Afficher un message si l'utilisateur n'a pas de cours :
-     * echo $this->displayNoSchedule('Emploi du Temps', $current_user);
      *
      * @version 1.0
      * @date 2024-10-15

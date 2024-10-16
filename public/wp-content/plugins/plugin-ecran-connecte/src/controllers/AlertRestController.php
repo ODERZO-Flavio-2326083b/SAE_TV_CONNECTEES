@@ -23,9 +23,6 @@ class AlertRestController extends WP_REST_Controller
      *
      * @return void
      *
-     * @example
-     * // Initialiser l'API REST pour les alertes :
-     * $alertController = new AlertController();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -46,9 +43,6 @@ class AlertRestController extends WP_REST_Controller
      *
      * @return void
      *
-     * @example
-     * // Enregistrer les routes pour l'API REST des alertes :
-     * $this->register_routes();
      *
      * @version 1.0
      * @date 16-09-2024
@@ -149,9 +143,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return WP_REST_Response Une réponse de l'API REST contenant la liste des alertes.
      *
-     * @example
-     * // Récupérer la liste des alertes :
-     * $response = $this->get_items($request);
      *
      * @version 1.0
      * @date 16-09-2024
@@ -176,9 +167,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST contenant les détails de l'alerte.
      * @return WP_REST_Response Une réponse de l'API REST contenant l'ID de l'alerte créée ou un message d'erreur.
      *
-     * @example
-     * // Créer une nouvelle alerte :
-     * $response = $this->create_item($request);
      *
      * @version 1.0
      * @date 16-09-2024
@@ -229,9 +217,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST contenant l'identifiant de l'alerte à récupérer.
      * @return WP_REST_Response Une réponse de l'API REST contenant les détails de l'alerte ou un message d'erreur.
      *
-     * @example
-     * // Récupérer les informations d'une alerte spécifique :
-     * $response = $this->get_item($request);
      *
      * @version 1.0
      * @date 16-09-2024
@@ -260,9 +245,6 @@ class AlertRestController extends WP_REST_Controller
      *                                 ainsi que les nouvelles données (content, expiration-date, codes).
      * @return WP_REST_Response Une réponse de l'API REST indiquant le succès ou l'échec de la mise à jour de l'alerte.
      *
-     * @example
-     * // Mettre à jour une alerte existante avec de nouvelles informations :
-     * $response = $this->update_item($request);
      *
      * @version 1.0
      * @date 16-09-2024
@@ -310,9 +292,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST contenant l'identifiant de l'alerte à supprimer.
      * @return WP_REST_Response Une réponse de l'API REST indiquant le succès ou l'échec de la suppression de l'alerte.
      *
-     * @example
-     * // Supprimer une alerte existante :
-     * $response = $this->delete_item($request);
      *
      * @version 1.0
      * @date 16-09-2024
@@ -340,11 +319,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
      *
-     * @example
-     * // Vérifier les permissions avant de récupérer les alertes :
-     * if ($this->get_items_permissions_check($request)) {
-     *     $alerts = $this->get_items($request);
-     * }
      *
      * @version 1.0
      * @date 16-09-2024
@@ -365,11 +339,7 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
      *
-     * @example
-     * // Vérifier les permissions avant de créer une nouvelle alerte :
-     * if ($this->create_item_permissions_check($request)) {
-     *     $this->create_item($request);
-     * }
+     *
      *
      * @version 1.0
      * @date 16-09-2024
@@ -389,11 +359,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
      *
-     * @example
-     * // Vérifier les permissions avant de récupérer les détails d'une alerte :
-     * if ($this->get_item_permissions_check($request)) {
-     *     $alert = $this->get_item($request);
-     * }
      *
      * @version 1.0
      * @date 16-09-2024
@@ -413,11 +378,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
      *
-     * @example
-     * // Vérifier les permissions avant de mettre à jour une alerte :
-     * if ($this->update_item_permissions_check($request)) {
-     *     $this->update_item($request);
-     * }
      *
      * @version 1.0
      * @date 16-09-2024
@@ -437,11 +397,6 @@ class AlertRestController extends WP_REST_Controller
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
      *
-     * @example
-     * // Vérifier les permissions avant de supprimer une alerte :
-     * if ($this->delete_item_permissions_check($request)) {
-     *     $this->delete_item($request);
-     * }
      *
      * @version 1.0
      * @date 16-09-2024
@@ -461,14 +416,6 @@ class AlertRestController extends WP_REST_Controller
      * @param array $codes Un tableau contenant les codes ADE à vérifier.
      * @return array|null Un tableau de codes ADE valides ou null si un code est invalide.
      *
-     * @example
-     * // Trouver et définir les codes ADE pour une alerte :
-     * $validCodes = $this->find_ade_codes($alert, $inputCodes);
-     * if ($validCodes !== null) {
-     *     // Codes valides trouvés, procéder avec l'alerte
-     * } else {
-     *     // Gérer les codes invalides
-     * }
      *
      * @version 1.0
      * @date 2024-09-16

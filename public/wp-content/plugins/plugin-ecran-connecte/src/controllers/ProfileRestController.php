@@ -76,9 +76,6 @@ class ProfileRestController extends WP_REST_Controller
      *
      * @return WP_REST_Response Réponse REST contenant les données utilisateur ou un message d'erreur.
      *
-     * @example
-     * // Appel de la méthode via une requête REST :
-     * $response = $this->get_item($request);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -115,9 +112,6 @@ class ProfileRestController extends WP_REST_Controller
      *
      * @return bool Renvoie true si l'utilisateur est connecté, false sinon.
      *
-     * @example
-     * // Vérification des permissions avant d'accéder à l'API :
-     * $has_permission = $this->get_item_permissions_check($request);
      *
      * @version 1.0
      * @date 2024-10-15

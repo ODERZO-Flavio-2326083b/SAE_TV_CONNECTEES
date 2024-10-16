@@ -48,9 +48,6 @@ class StudentController extends UserController implements Schedule
      *                effectuée, ou affiche des messages d'erreur ou de succès selon les résultats
      *                de l'importation.
      *
-     * @example
-     * // Insérer des étudiants à partir d'un fichier téléchargé :
-     * $this->insert();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -164,9 +161,6 @@ class StudentController extends UserController implements Schedule
      * @return string Renvoie la vue pour modifier l'étudiant, contenant des formulaires pour
      *                saisir les nouvelles informations et éventuellement des messages d'erreur.
      *
-     * @example
-     * // Modifier les informations d'un utilisateur :
-     * $this->modify($user);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -237,9 +231,6 @@ class StudentController extends UserController implements Schedule
      * @return string|null Retourne l'affichage de l'emploi du temps si trouvé, sinon gère
      *                    l'affichage des informations de l'étudiant.
      *
-     * @example
-     * // Afficher l'emploi du temps de l'utilisateur courant :
-     * $this->displayMySchedule();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -275,9 +266,6 @@ class StudentController extends UserController implements Schedule
      *
      * @return string Affiche le formulaire de sélection des horaires pour l'étudiant.
      *
-     * @example
-     * // Gérer les horaires d'un étudiant :
-     * $this->manageStudent($user);
      *
      * @version 1.0
      * @date 2024-10-15
@@ -339,9 +327,6 @@ class StudentController extends UserController implements Schedule
      *
      * @return string Affiche la liste de tous les étudiants.
      *
-     * @example
-     * // Afficher tous les étudiants enregistrés :
-     * $this->displayAllStudents();
      *
      * @version 1.0
      * @date 2024-10-15

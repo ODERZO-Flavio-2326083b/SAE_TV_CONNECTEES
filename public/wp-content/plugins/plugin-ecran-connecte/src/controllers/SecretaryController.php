@@ -56,9 +56,6 @@ class SecretaryController extends UserController
      *
      * @return string Retourne le formulaire de création de secrétaire.
      *
-     * @example
-     * // Appel de la méthode lors de la soumission du formulaire :
-     * $this->insert();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -102,9 +99,6 @@ class SecretaryController extends UserController
      *
      * @return string Retourne l'affichage HTML de la liste des secrétaires.
      *
-     * @example
-     * // Affiche la liste des secrétaires :
-     * echo $this->displayAllSecretary();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -124,9 +118,6 @@ class SecretaryController extends UserController
      *
      * @return string Retourne l'affichage HTML des formulaires de création d'utilisateurs.
      *
-     * @example
-     * // Affiche l'interface de création d'utilisateurs :
-     * echo $this->createUsers();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -168,9 +159,6 @@ class SecretaryController extends UserController
      *
      * @return string Retourne l'affichage HTML des listes d'utilisateurs par rôles.
      *
-     * @example
-     * // Affiche l'interface de gestion des utilisateurs :
-     * echo $this->displayUsers();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -212,9 +200,6 @@ class SecretaryController extends UserController
      *
      * @return string Retourne le contenu HTML pour modifier l'utilisateur, ou un message d'erreur si l'utilisateur n'est pas trouvé.
      *
-     * @example
-     * // Modifie les informations d'un utilisateur avec l'identifiant spécifié :
-     * echo $this->modifyUser();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -255,9 +240,6 @@ class SecretaryController extends UserController
      *
      * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression des utilisateurs.
      *
-     * @example
-     * // Supprime les utilisateurs sélectionnés :
-     * $this->deleteUsers();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -289,9 +271,6 @@ class SecretaryController extends UserController
      * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression
      *               de l'utilisateur.
      *
-     * @example
-     * // Supprime l'utilisateur avec l'identifiant 5 :
-     * $this->deleteUser(5);
      *
      * @version 1.0
      * @date 2024-10-15

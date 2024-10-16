@@ -32,13 +32,6 @@ class InformationView extends View
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
-     * @example
-     * // Afficher un formulaire pour créer un texte :
-     * echo $this->displayFormText('Mon Titre', 'Ceci est le contenu.', '2024-10-20', 'createText');
-     *
-     * // Afficher un formulaire pour modifier un texte existant :
-     * echo $this->displayFormText('Titre existant', 'Contenu existant.', '2024-10-30', 'submit');
-     *
      * @version 1.0
      * @date 2024-10-15
      */
@@ -83,13 +76,6 @@ class InformationView extends View
      *                                 Peut être "submit" pour soumettre le formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @example
-     * // Afficher un formulaire pour créer une image :
-     * echo $this->displayFormImg('Titre de l\'image', null, '2024-10-20', 'createImg');
-     *
-     * // Afficher un formulaire pour modifier une image existante :
-     * echo $this->displayFormImg('Titre existant', 'nom_image.jpg', '2024-10-30', 'submit');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -143,13 +129,6 @@ class InformationView extends View
      *                                 Peut être "submit" pour soumettre le formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @example
-     * // Afficher un formulaire pour créer un tableau :
-     * echo $this->displayFormTab('Titre du tableau', null, '2024-10-20', 'createTab');
-     *
-     * // Afficher un formulaire pour modifier un tableau existant :
-     * echo $this->displayFormTab('Titre existant', 'nom_tableau.xls', '2024-10-30', 'submit');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -208,12 +187,6 @@ class InformationView extends View
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
-     * @example
-     * // Afficher un formulaire pour créer un document PDF :
-     * echo $this->displayFormPDF('Titre du PDF', null, '2024-10-20', 'createPDF');
-     *
-     * // Afficher un formulaire pour modifier un PDF existant :
-     * echo $this->displayFormPDF('Titre existant', 'document.pdf', '2024-10-30', 'submit');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -266,12 +239,6 @@ class InformationView extends View
      *
      * @return string                Une chaîne HTML contenant le formulaire.
      *
-     * @example
-     * // Afficher un formulaire pour créer un événement :
-     * echo $this->displayFormEvent('2024-10-30', 'createEvent');
-     *
-     * // Afficher un formulaire pour modifier un événement existant :
-     * echo $this->displayFormEvent('2024-10-25', 'submit');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -311,9 +278,6 @@ class InformationView extends View
      * @return string                Une chaîne HTML contenant des informations
      *                               sur le processus de création d'informations.
      *
-     * @example
-     * // Afficher les instructions pour la création d'informations :
-     * echo $this->contextCreateInformation();
      *
      * @version 1.0
      * @date 2024-10-15
@@ -349,9 +313,6 @@ class InformationView extends View
      * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
      *                          approprié pour le type d'information.
      *
-     * @example
-     * // Afficher le formulaire pour modifier une information de type texte :
-     * echo $this->displayModifyInformationForm('Titre Exemple', 'Contenu de l\'information', '2024-12-31', 'text');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -386,9 +347,7 @@ class InformationView extends View
      *
      * @return void
      *
-     * @example
-     * // Commencer un diaporama :
-     * $this->displayStartSlideshow();
+     *
      *
      * @version 1.0
      * @date 2024-10-15
@@ -411,12 +370,6 @@ class InformationView extends View
      *
      * @return void
      *
-     * @example
-     * // Afficher une diapositive avec un titre et un contenu texte :
-     * $this->displaySlide('Titre de la diapositive', 'Ceci est le contenu de la diapositive.', 'text');
-     *
-     * // Afficher une image dans le diaporama :
-     * $this->displaySlide('Titre de l\'image', 'image.jpg', 'img');
      *
      * @version 1.0
      * @date 2024-10-15
@@ -470,9 +423,7 @@ class InformationView extends View
      *
      * @return string Le code HTML généré pour afficher les instructions et le lien vers la page de création d'information.
      *
-     * @example
-     * // Afficher les instructions pour gérer les informations :
-     * echo $this->contextDisplayAll();
+     *
      *
      * @version 1.0
      * @date 2024-10-15
@@ -503,9 +454,7 @@ class InformationView extends View
      *
      * @return string Le code HTML généré pour afficher le message d'absence d'information et les liens associés.
      *
-     * @example
-     * // Afficher un message d'absence d'information :
-     * echo $this->noInformation();
+     *
      *
      * @version 1.0
      * @date 2024-10-15
@@ -545,9 +494,7 @@ class InformationView extends View
      *
      * @return void
      *
-     * @example
-     * // Afficher le modal de confirmation après l'ajout d'une information :
-     * $this->displayCreateValidate();
+     *
      *
      * @version 1.0
      * @date 2024-10-15
@@ -567,9 +514,7 @@ class InformationView extends View
      *
      * @return void
      *
-     * @example
-     * // Afficher le modal de confirmation après la modification d'une information :
-     * $this->displayModifyValidate();
+     *
      *
      * @version 1.0
      * @date 2024-10-15
@@ -597,9 +542,6 @@ class InformationView extends View
      *
      * @return string Retourne le code HTML à afficher pour l'information non modifiable.
      *
-     * @example
-     * // Afficher un message d'erreur lorsque l'utilisateur tente de modifier une information non autorisée :
-     * echo $this->informationNotAllowed();
      *
      * @version 1.0
      * @date 2024-10-15
