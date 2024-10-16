@@ -27,7 +27,15 @@ class InformationController extends Controller
     private $view;
 
     /**
-     * Constructor of InformationController
+     * Constructeur de la classe.
+     *
+     * Ce constructeur initialise les instances des modèles et des vues
+     * nécessaires pour gérer les informations. Il crée une nouvelle
+     * instance de la classe `Information` pour le modèle et une
+     * instance de `InformationView` pour la vue.
+     *
+     * @version 1.0
+     * @date 2024-10-16
      */
     public function __construct() {
         $this->model = new Information();
@@ -35,11 +43,26 @@ class InformationController extends Controller
     }
 
     /**
-     * Create information and add it into the database
+     * Crée de nouvelles informations à partir des entrées utilisateur.
      *
-     * @return string
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * Cette méthode gère la création de différents types d'informations
+     * (texte, image, tableau, PDF, événement) en fonction des actions
+     * des formulaires soumis. Elle effectue les opérations suivantes :
+     *
+     * - Récupère l'utilisateur courant.
+     * - Récupère les données des formulaires pour chaque type d'information.
+     * - Définit les propriétés de l'objet `Information`.
+     * - Insère l'information dans le modèle approprié et gère les fichiers
+     *   téléchargés selon leur type.
+     *
+     * Si le titre est vide, un titre par défaut "Sans titre" est utilisé.
+     * La méthode valide les types de fichiers et affiche des messages
+     * d'erreur si des fichiers non valides sont soumis. Elle construit
+     * également et retourne un formulaire pour permettre à l'utilisateur
+     * de créer plus d'informations.
+     *
+     * @return string HTML du formulaire de création d'informations avec des
+     *                options de sélection.
      */
     public function create() {
         $current_user = wp_get_current_user();
@@ -154,11 +177,34 @@ class InformationController extends Controller
     }
 
     /**
-     * Modify the information
+     * Modifie une information existante en fonction de l'identifiant fourni.
      *
-     * @return string
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * Cette méthode gère la modification des informations en vérifiant
+     * d'abord si l'utilisateur a les droits nécessaires. Elle permet de
+     * mettre à jour le titre, le contenu, la date d'expiration et de
+     * remplacer un fichier (image, PDF, tableau) si un nouveau fichier
+     * est téléchargé. Elle inclut également une option pour supprimer
+     * l'information.
+     *
+     * Le processus suit les étapes suivantes :
+     *
+     * - Vérifie si l'identifiant est fourni et valide.
+     * - Vérifie les droits d'accès de l'utilisateur actuel.
+     * - Charge l'information à modifier.
+     * - Gère la mise à jour des champs de l'information.
+     * - Gère le téléchargement d'un nouveau fichier, avec des validations
+     *   de type de fichier appropriées.
+     * - Affiche un message de validation ou d'erreur selon le résultat
+     *   de la mise à jour ou de la suppression.
+     *
+     * Si l'utilisateur n'a pas les droits requis ou si l'information
+     * n'existe pas, la méthode retourne un message approprié.
+     *
+     * @return string HTML du formulaire de modification de l'information
+     *                avec les valeurs actuelles.
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function modify() {
         $id = $_GET['id'];
@@ -242,10 +288,25 @@ class InformationController extends Controller
 
 
     /**
-     * Upload a file in a directory and in the database
+     * Enregistre un fichier téléchargé et met à jour l'entité associée.
      *
-     * @param $filename     string
-     * @param $tmpName      string
+     * Cette méthode déplace un fichier temporaire vers un emplacement définitif
+     * sur le serveur et met à jour l'entité donnée avec les informations du fichier.
+     * Si l'entité n'a pas encore d'identifiant, elle sera insérée dans la base de données.
+     * Sinon, les informations existantes seront mises à jour.
+     *
+     * Le nom du fichier est ensuite modifié pour inclure un hachage MD5 afin de
+     * garantir l'unicité. Si l'enregistrement ou le téléchargement échoue, un message d'erreur
+     * sera affiché à l'utilisateur.
+     *
+     * @param string $filename Le nom du fichier téléchargé.
+     * @param string $tmpName Le nom temporaire du fichier sur le serveur.
+     * @param object $entity L'entité à laquelle le contenu du fichier est associé.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function registerFile($filename, $tmpName, $entity) {
         $id = 'temporary';
@@ -383,13 +444,19 @@ class InformationController extends Controller
         return $returnString . $this->view->displayAll($name, 'Informations', $header, $dataList) . $this->view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title('Gestion des informations'))), $number);
     }
 
-
     /**
-     * Check if the end date is today or less
-     * And delete the file if the date is past
+     * Vérifie si la date de fin d'une information est dépassée.
      *
-     * @param $id
-     * @param $endDate
+     * Si la date de fin est inférieure ou égale à la date actuelle,
+     * l'information associée est supprimée, ainsi que son fichier.
+     *
+     * @param int $id L'identifiant de l'information à vérifier.
+     * @param string $endDate La date de fin au format 'Y-m-d'.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function endDateCheckInfo($id, $endDate) {
         if ($endDate <= date("Y-m-d")) {
@@ -400,11 +467,16 @@ class InformationController extends Controller
     }
 
     /**
-     * Display a slideshow
-     * The slideshow display all the informations
+     * Affiche les informations principales sous forme de diaporama.
      *
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * Récupère la liste des informations, vérifie si leur date d'expiration est dépassée,
+     * et affiche chaque information en fonction de son type.
+     * Pour les tableaux, le contenu est lu à partir d'un fichier et formaté pour l'affichage.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function informationMain() {
         $informations = $this->model->getList();
@@ -431,6 +503,19 @@ class InformationController extends Controller
         $this->view->displayEndDiv();
     }
 
+    /**
+     * Enregistre les nouvelles informations à partir du site administrateur.
+     *
+     * Récupère la liste des informations du site administrateur et compare
+     * avec les informations existantes dans le modèle. Met à jour les informations
+     * existantes si nécessaire, ou les supprime si elles ne sont plus présentes.
+     * Ajoute également les nouvelles informations qui ne sont pas encore enregistrées.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
+     */
     public function registerNewInformation() {
         $informationList = $this->model->getFromAdminWebsite();
         $myInformationList = $this->model->getAdminWebsiteInformation();
@@ -465,7 +550,17 @@ class InformationController extends Controller
     }
 
     /**
-     *  Display a slideshow of event information in full screen
+     * Affiche les événements à partir de la liste d'informations d'événements.
+     *
+     * Récupère tous les événements enregistrés et les affiche en utilisant
+     * le modèle de vue approprié. Les événements peuvent être des fichiers PDF
+     * ou des images. Si un événement est un PDF, il est affiché dans une
+     * zone spécifiée; sinon, l'image correspondante est affichée.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function displayEvent() {
         $events = $this->model->getListInformationEvent();
@@ -487,13 +582,23 @@ class InformationController extends Controller
     }
 
     /**
-     * Read an excel file
+     * Lit un fichier tableur et retourne son contenu au format HTML.
      *
-     * @param $content
+     * Cette méthode charge un fichier tableur à partir du chemin donné et
+     * génère un tableau HTML contenant les données. Les données sont regroupées
+     * par tableau pour chaque 10 lignes lues. Elle utilise la bibliothèque
+     * PhpSpreadsheet pour gérer différents types de fichiers de tableur.
      *
-     * @return array
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @param string $content Chemin relatif du fichier tableur à lire.
+     *
+     * @return array Un tableau contenant les chaînes de caractères HTML des
+     *               tableaux générés à partir des données du fichier.
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception Si le fichier ne peut pas
+     *               être lu ou si le format est non pris en charge.
+     *
+     * @version 1.0.0
+     * @date    2024-10-16
      */
     public function readSpreadSheet($content) {
         $file = $_SERVER['DOCUMENT_ROOT'] . $content;
