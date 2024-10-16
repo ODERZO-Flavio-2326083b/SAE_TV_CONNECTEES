@@ -189,6 +189,24 @@ function installDatabaseEcran()
 		) $charset_collate;";
 
     dbDelta($sql);
+
+    $table_name = 'departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            dept_id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_nom VARCHAR (60) NOT NULL,
+            dept_latitude DECIMAL(10,6) NOT NULL,
+            dept_longitude DECIMAL(10,6) NOT NULL,
+            PRIMARY KEY (dept_id)) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'wp_users';
+
+    $sql = "ALTER TABLE $table_name ADD COLUMN dept_id INT(10) NOT NULL AUTO_INCREMENT,
+    ADD FOREIGN KEY (dept_id) REFERENCES departement(dept_id) ON DELETE CASCADE;";
+
+    dbDelta($sql);
 }
 
 add_action('plugins_loaded', 'installDatabaseEcran');
