@@ -2,6 +2,7 @@
 
 use Controllers\AlertController;
 use Controllers\CodeAdeController;
+use Controllers\DepartmentController;
 use Controllers\InformationController;
 use Controllers\SecretaryController;
 use Controllers\StudentController;
@@ -684,3 +685,28 @@ function block_help_map()
     ));
 }
 add_action( 'init', 'block_help_map' );
+
+/**
+ *
+ */
+function department_add_render_callback() {
+	if(is_page()) {
+		$dpt = new DepartmentController();
+		return $dpt->insert();
+	}
+}
+
+function block_department_add()
+{
+	wp_register_script(
+		'department_add-script',
+		plugins_url( '/blocks/department/create.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-element', 'wp-data' )
+	);
+
+	register_block_type('tvconnecteeamu/add-department', array(
+		'editor_script' => 'department_add-script',
+		'render_callback' => 'department_add_render_callback'
+	));
+}
+add_action( 'init', 'block_department_add' );
