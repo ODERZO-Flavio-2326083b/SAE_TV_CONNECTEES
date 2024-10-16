@@ -16,11 +16,21 @@ class OneSignalPush
     }
 
     /**
-     * Sends a push notification using OneSignal
+     * Envoie une notification aux cibles spécifiées via l'API OneSignal.
      *
-     * @param CodeAde[]|null $targets ADE codes to target the users with, pass null to target everyone
-     * @param string $message Notification message
-     * @return string Response from the request to OneSignal
+     * Si aucune cible spécifique n'est définie, la notification est envoyée à tous les utilisateurs.
+     * Si des cibles sont spécifiées, elles sont converties en filtres basés sur leurs codes ADE et
+     * la notification est envoyée uniquement à ces utilisateurs.
+     *
+     * @version 1.0
+     * @date 15 Octobre 2024
+     *
+     * @param array|null $targets  Un tableau d'objets cibles (avec des codes ADE), ou null pour inclure tous les utilisateurs.
+     * @param string $message      Le message de notification à envoyer.
+     *
+     * @return string Réponse de l'API OneSignal après l'envoi de la notification.
+     *
+     * @throws Exception Si une erreur survient lors de l'envoi de la notification.
      */
     function sendNotification($targets, $message) {
         $contents = array(

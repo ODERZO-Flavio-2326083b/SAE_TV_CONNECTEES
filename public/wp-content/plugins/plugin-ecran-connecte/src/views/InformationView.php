@@ -17,14 +17,23 @@ class InformationView extends View
 {
 
     /**
-     * Display a form to create an information with text
+     * Affiche un formulaire pour créer ou modifier un texte avec des champs pour le titre, le contenu,
+     * et la date d'expiration.
      *
-     * @param $title    string
-     * @param $content  string
-     * @param $endDate  string
-     * @param $type     string
+     * Le formulaire inclut des validations pour s'assurer que le titre est optionnel (minimum 4 caractères),
+     * que le contenu est requis (maximum 280 caractères), et que la date d'expiration ne peut pas être antérieure
+     * à la date actuelle.
      *
-     * @return string
+     * @param string|null $title      Le titre du texte à afficher dans le champ (optionnel).
+     * @param string|null $content    Le contenu à afficher dans la zone de texte (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createText".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormText($title = null, $content = null, $endDate = null, $type = "createText") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -53,14 +62,23 @@ class InformationView extends View
     }
 
     /**
-     * Display a form to create an information with an image
+     * Affiche un formulaire pour créer ou modifier une image avec des champs pour le titre, le fichier image,
+     * et la date d'expiration.
      *
-     * @param $title    string
-     * @param $content  string
-     * @param $endDate  string
-     * @param $type     string
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger une image. Si une image
+     * existe déjà, elle sera affichée avec une légende. Le champ de date d'expiration est requis et ne peut pas
+     * être antérieur à la date actuelle.
      *
-     * @return string
+     * @param string|null $title      Le titre de l'image à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier image à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createImg".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormImg($title = null, $content = null, $endDate = null, $type = "createImg") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -97,16 +115,23 @@ class InformationView extends View
     }
 
     /**
-     * Display a form to create an information with a table
+     * Affiche un formulaire pour créer ou modifier un tableau à partir d'un fichier XLS/XLSX avec des champs
+     * pour le titre, le fichier à télécharger et la date d'expiration.
      *
-     * @param null $title
-     * @param null $content
-     * @param null $endDate
-     * @param string $type
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un fichier
+     * de type Excel. Si un contenu est déjà présent, le tableau correspondant sera affiché.
+     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la date actuelle.
      *
-     * @return string
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @param string|null $title      Le titre du tableau à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier du tableau à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createTab".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormTab($title = null, $content = null, $endDate = null, $type = "createTab") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -147,14 +172,24 @@ class InformationView extends View
     }
 
     /**
-     * Display a form to create an information with a PDF
+     * Affiche un formulaire pour créer ou modifier un document PDF avec des champs pour le titre,
+     * le fichier à télécharger et la date d'expiration.
      *
-     * @param $title    string
-     * @param $content  string
-     * @param $endDate  string
-     * @param $type     string
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un fichier
+     * PDF. Si un contenu est déjà présent, le PDF correspondant sera affiché dans un iframe.
+     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la date actuelle.
      *
-     * @return string
+     * @param string|null $title      Le titre du document PDF à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier PDF à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createPDF".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormPDF($title = null, $content = null, $endDate = null, $type = "createPDF") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -192,12 +227,21 @@ class InformationView extends View
     }
 
     /**
-     * Display a form to create an event information with media or PDFs
+     * Affiche un formulaire pour créer ou modifier un événement, permettant de télécharger des fichiers
+     * et de spécifier une date d'expiration.
      *
-     * @param $endDate  string
-     * @param $type     string
+     * Le formulaire permet à l'utilisateur de sélectionner plusieurs fichiers (images ou PDF) à
+     * télécharger. La date d'expiration est requise et ne peut pas être antérieure à la date actuelle.
      *
-     * @return string
+     * @param string|null $endDate   La date d'expiration à afficher (optionnel).
+     * @param string $type           Le type d'action à effectuer, par défaut "createEvent".
+     *                               Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                Une chaîne HTML contenant le formulaire.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormEvent($endDate = null, $type = "createEvent") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -224,9 +268,19 @@ class InformationView extends View
     }
 
     /**
-     * Explain how the information's display
+     * Génère le contenu HTML décrivant le processus de création d'informations
+     * à afficher sur les téléviseurs connectés.
      *
-     * @return string
+     * Cette méthode fournit des explications sur la création d'informations,
+     * y compris comment elles sont publiées et affichées. Elle inclut également
+     * une image illustrative représentant un téléviseur.
+     *
+     * @return string                Une chaîne HTML contenant des informations
+     *                               sur le processus de création d'informations.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function contextCreateInformation() {
         return '
@@ -246,16 +300,22 @@ class InformationView extends View
     }
 
     /**
-     * Display a form to modify an information
+     * Affiche un formulaire de modification d'informations en fonction du type d'information.
      *
-     * @param $title
-     * @param $content
-     * @param $endDate
-     * @param $type
+     * Cette méthode génère un lien pour revenir à la page de gestion des informations, puis
+     * affiche le formulaire correspondant au type d'information spécifié (texte, image, tableau, PDF ou événement).
      *
-     * @return string
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @param string $title      Le titre de l'information à modifier.
+     * @param string $content    Le contenu de l'information à modifier (peut être une URL pour les images ou PDF).
+     * @param string $endDate    La date d'expiration de l'information.
+     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'tab', 'pdf', 'event').
+     *
+     * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
+     *                          approprié pour le type d'information.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyInformationForm($title, $content, $endDate, $type) {
         if ($type == "text") {
@@ -280,19 +340,39 @@ class InformationView extends View
     }
 
     /**
-     * Display the begin of the slideshow
+     * Affiche le début d'un conteneur pour un diaporama.
+     *
+     * Cette méthode génère une structure HTML pour le conteneur principal du diaporama,
+     * permettant d'afficher une série d'images ou d'informations de manière interactive.
+     *
+     * @return void
+     *
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayStartSlideshow() {
         echo '<div class="slideshow-container">';
     }
 
     /**
-     * Display a slide for the slideshow
+     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
      *
-     * @param $title
-     * @param $content
-     * @param $type
-     * @param bool $adminSite
+     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
+     * tels que du texte, des images ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * sur le site d'administration et l'affichage normal.
+     *
+     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'pdf', 'event', 'special').
+     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displaySlide($title, $content, $type, $adminSite = false) {
         echo '<div class="myInfoSlides text-center">';
@@ -334,6 +414,20 @@ class InformationView extends View
         echo '</div>';
     }
 
+    /**
+     * Affiche le contexte et les instructions pour visualiser et gérer toutes les informations créées sur le site.
+     *
+     * Cette méthode génère un bloc HTML qui présente un aperçu des fonctionnalités disponibles pour les utilisateurs
+     * concernant la gestion des informations. Elle inclut des détails sur la façon de visualiser, modifier ou supprimer
+     * des informations, ainsi qu'un lien pour créer une nouvelle information.
+     *
+     * @return string Le code HTML généré pour afficher les instructions et le lien vers la page de création d'information.
+     *
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     public function contextDisplayAll() {
         return '
 		<div class="row">
@@ -351,6 +445,20 @@ class InformationView extends View
 		<hr class="half-rule">';
     }
 
+    /**
+     * Affiche un message lorsque l'information demandée n'est pas trouvée.
+     *
+     * Cette méthode génère un bloc HTML qui informe l'utilisateur qu'aucune information n'a été trouvée.
+     * Elle inclut également un lien pour retourner à la gestion des informations et un autre lien pour créer
+     * une nouvelle information.
+     *
+     * @return string Le code HTML généré pour afficher le message d'absence d'information et les liens associés.
+     *
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     public function noInformation() {
         return '
 		<a href="' . esc_url(get_permalink(get_page_by_title('Gestion des informations'))) . '">< Retour</a>
@@ -378,7 +486,18 @@ class InformationView extends View
     }
 
     /**
-     * Display a modal to validate the creation of an information
+     * Affiche un modal de confirmation après l'ajout d'une nouvelle information.
+     *
+     * Cette méthode génère un modal indiquant que l'information a été ajoutée avec succès.
+     * Elle crée également un lien vers la page de gestion des informations pour permettre à l'utilisateur
+     * d'y accéder facilement après l'ajout.
+     *
+     * @return void
+     *
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayCreateValidate() {
         $page = get_page_by_title('Gestion des informations');
@@ -387,8 +506,18 @@ class InformationView extends View
     }
 
     /**
-     * Display a modal to validate the modification of an information
-     * Redirect to manage page
+     * Affiche un modal de confirmation après la modification d'une information.
+     *
+     * Cette méthode génère un modal indiquant que l'information a été modifiée avec succès.
+     * Elle crée également un lien vers la page de gestion des informations pour permettre à l'utilisateur
+     * d'y accéder facilement après la modification.
+     *
+     * @return void
+     *
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyValidate() {
         $page = get_page_by_title('Gestion des informations');
@@ -403,6 +532,20 @@ class InformationView extends View
         echo '<p>Il y a eu une erreur durant l\'insertion de l\'information</p>';
     }
 
+    /**
+     * Affiche un message indiquant que l'utilisateur ne peut pas modifier une alerte.
+     *
+     * Cette méthode génère une réponse HTML qui informe l'utilisateur qu'il ne
+     * peut pas modifier une information, car celle-ci appartient à un autre utilisateur.
+     * Un lien de retour vers la page de gestion des informations et un lien pour
+     * créer une nouvelle information sont également fournis.
+     *
+     * @return string Retourne le code HTML à afficher pour l'information non modifiable.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     public function informationNotAllowed() {
         return '
 		<a href="' . esc_url(get_permalink(get_page_by_title('Gestion des informations'))) . '">< Retour</a>

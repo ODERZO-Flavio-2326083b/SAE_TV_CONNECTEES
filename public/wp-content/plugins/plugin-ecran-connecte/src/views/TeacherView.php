@@ -2,13 +2,12 @@
 
 namespace Views;
 
-
 use Models\User;
 
 /**
  * Class TeacherView
  *
- * Contain all view for teacher (Forms, tables)
+ * Contient toutes les vues liées aux enseignants (Formulaires, tableaux)
  *
  * @package Views
  */
@@ -16,7 +15,18 @@ class TeacherView extends UserView
 {
 
     /**
-     * Display a creation form
+     * Affiche le formulaire pour l'importation d'un fichier d'enseignants.
+     *
+     * Cette méthode génère une interface utilisateur pour télécharger un
+     * fichier Excel contenant les informations des enseignants à créer.
+     * Les utilisateurs sont guidés à travers les étapes nécessaires pour
+     * remplir le fichier Excel et l'importer dans le système.
+     *
+     * @return string Le code HTML du formulaire d'importation de fichier.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayInsertImportFileTeacher() {
         return '
@@ -39,11 +49,20 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display form to modify a teacher
+     * Génère un formulaire de modification pour un utilisateur.
      *
-     * @param $user   User
+     * Cette méthode crée un formulaire HTML permettant de modifier
+     * le code ADE d'un utilisateur spécifique. Elle inclut un lien
+     * pour retourner à la page de gestion des utilisateurs et
+     * un bouton pour soumettre les modifications.
      *
-     * @return string
+     * @param User $user L'utilisateur dont les informations doivent être modifiées.
+     *
+     * @return string Le code HTML du formulaire de modification de l'utilisateur.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function modifyForm($user) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -61,11 +80,21 @@ class TeacherView extends UserView
     }
 
     /**
-     * Display all teachers in a table
+     * Affiche tous les enseignants dans un tableau.
      *
-     * @param $teachers    User[]
+     * Cette méthode génère un tableau HTML affichant tous les enseignants
+     * avec leurs informations pertinentes. Chaque ligne du tableau contient
+     * le numéro de l'enseignant, son code ADE, et un lien pour modifier
+     * ses informations. Les enseignants sont récupérés à partir d'un tableau
+     * d'objets contenant leurs détails.
      *
-     * @return string
+     * @param Teacher[] $teachers Tableau d'objets Teacher à afficher.
+     *
+     * @return string Le code HTML du tableau affichant tous les enseignants.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTeachers($teachers) {
         $page = get_page_by_title('Modifier un utilisateur');

@@ -12,7 +12,7 @@ use Views\UserView;
 /**
  * Class UserController
  *
- * Manage all users (Create, update, delete)
+ * Gère tous les utilisateurs (Création, mise à jour, suppression)
  *
  * @package Controllers
  */
@@ -20,17 +20,34 @@ class UserController extends Controller
 {
 
     /**
+     * Modèle d'utilisateur.
+     *
      * @var User
      */
     private $model;
 
     /**
+     * Vue d'utilisateur.
+     *
      * @var UserView
      */
     private $view;
 
     /**
-     * UserController constructor.
+     * Constructeur de la classe UserController.
+     *
+     * Ce constructeur initialise le modèle d'utilisateur et la vue
+     * associée à l'interface utilisateur. Il est appelé lors de la
+     * création d'une instance de cette classe. Le modèle est utilisé
+     * pour interagir avec la base de données des utilisateurs, tandis
+     * que la vue gère l'affichage des données à l'utilisateur.
+     *
+     * - Le modèle `User` est responsable de la logique métier liée aux utilisateurs.
+     * - La vue `UserView` est utilisée pour rendre le contenu HTML associé
+     *   à l'affichage des utilisateurs.
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function __construct() {
         $this->model = new User();
@@ -38,9 +55,25 @@ class UserController extends Controller
     }
 
     /**
-     * Delete an user
+     * Supprime un utilisateur et toutes les données associées.
      *
-     * @param $id   int
+     * Cette méthode supprime un utilisateur identifié par son ID. En plus de
+     * supprimer l'utilisateur, elle gère la suppression des alertes et des
+     * informations associées si l'utilisateur a certains rôles (enseignant,
+     * secrétaire, administrateur, directeur d'études).
+     *
+     * - Récupère l'utilisateur à supprimer en utilisant l'ID fourni.
+     * - Supprime les alertes associées à l'utilisateur si son rôle est
+     *   "enseignant", "secretaire", "administrator" ou "directeuretude".
+     * - Supprime les informations associées à l'utilisateur si son rôle est
+     *   "secretaire", "administrator" ou "directeuretude".
+     * - Pour chaque information, si son type est "img", "pdf", "tab" ou
+     *   "event", le fichier associé est également supprimé.
+     *
+     * @param int $id L'ID de l'utilisateur à supprimer.
+     * @throws Exception Si la suppression de l'utilisateur échoue.
+     *
+     * @return void
      */
     public function delete($id) {
         $user = $this->model->get($id);
@@ -71,7 +104,21 @@ class UserController extends Controller
     }
 
     /**
-     * Delete the account of the user
+     * Gère la suppression du compte utilisateur.
+     *
+     * Cette méthode permet à l'utilisateur de demander la suppression de son compte
+     * en envoyant une demande de désinscription, puis de valider la suppression
+     * en utilisant un code de désinscription. La méthode suit deux étapes :
+     *
+     * 1. **Demande de désinscription** : Lorsque l'utilisateur soumet son mot de
+     *    passe pour vérifier son identité, un code de désinscription est généré et
+     *    envoyé par e-mail à l'utilisateur.
+     *
+     * 2. **Validation de la désinscription** : L'utilisateur peut ensuite soumettre
+     *    le code reçu pour confirmer la suppression de son compte. Si le code
+     *    correspond, le compte est supprimé.
+     *
+     * @return string La vue pour supprimer le compte et entrer le code de désinscription.
      */
     public function deleteAccount() {
         $action = filter_input(INPUT_POST, 'deleteMyAccount');
@@ -89,7 +136,7 @@ class UserController extends Controller
                     $user->createCode($code);
                 }
 
-                //Build Mail
+                // Construction de l'e-mail
                 $to = $current_user->user_email;
                 $subject = "Désinscription à la télé-connecté";
                 $message = ' <!DOCTYPE html>
@@ -128,9 +175,20 @@ class UserController extends Controller
     }
 
     /**
-     * Modify his password, delete his account or modify his groups
+     * Affiche les options de modification pour le compte utilisateur.
      *
-     * @return string
+     * Cette méthode génère une interface utilisateur permettant aux étudiants et aux autres
+     * types d'utilisateurs de choisir les options de modification disponibles pour leur
+     * compte. Les utilisateurs peuvent modifier leur mot de passe, leurs codes
+     * d'accès ou supprimer leur compte.
+     *
+     * - Pour les étudiants :
+     *   - Options disponibles : Modifier mes codes, Modifier mon mot de passe, Supprimer mon compte.
+     *
+     * - Pour les autres utilisateurs :
+     *   - Options disponibles : Modifier mon mot de passe, Supprimer mon compte.
+     *
+     * @return string La vue affichant les options de modification sélectionnées par l'utilisateur.
      */
     public function chooseModif() {
         $current_user = wp_get_current_user();
@@ -159,7 +217,18 @@ class UserController extends Controller
     }
 
     /**
-     * Modify the password of the user
+     * Modifie le mot de passe de l'utilisateur actuel.
+     *
+     * Cette méthode gère la logique de modification du mot de passe d'un utilisateur connecté.
+     * Elle vérifie d'abord si le mot de passe actuel fourni par l'utilisateur est correct,
+     * puis, si c'est le cas, elle met à jour le mot de passe avec le nouveau mot de passe spécifié.
+     *
+     * - Si l'utilisateur fournit un mot de passe correct, le nouveau mot de passe est enregistré,
+     *   et une confirmation de la modification est affichée.
+     * - Si le mot de passe actuel est incorrect, un message d'erreur est affiché.
+     *
+     * @return string La vue affichant le formulaire pour modifier le mot de passe
+     *                ou un message de confirmation de modification.
      */
     public function modifyPwd() {
         $action = filter_input(INPUT_POST, 'modifyMyPwd');
@@ -178,12 +247,20 @@ class UserController extends Controller
     }
 
     /**
-     * Display schedule
+     * Affiche le calendrier des événements associés à un code donné.
      *
-     * @param $code     int Code ADE of the schedule
-     * @param $allDay   bool
+     * Cette méthode récupère et affiche les événements programmés pour un code spécifique,
+     * en utilisant la classe R34ICS pour traiter et formater les données du calendrier.
      *
-     * @return string|bool
+     * @param string $code Le code associé aux événements à afficher.
+     *                     Ce code est utilisé pour localiser le fichier du calendrier.
+     * @param bool $allDay Indique si les événements à afficher sont des événements
+     *                     toute la journée. Par défaut, cette valeur est false.
+     *
+     * @return string Le contenu HTML généré pour afficher le calendrier des événements
+     *                associés au code spécifié.
+     *
+     * @global R34ICS $R34ICS Instance de la classe R34ICS utilisée pour afficher le calendrier.
      */
     public function displaySchedule($code, $allDay = false) {
         global $R34ICS;
@@ -204,9 +281,19 @@ class UserController extends Controller
     }
 
     /**
-     * Display the schedule link to the code in the url
+     * Affiche le calendrier des événements pour une année spécifique.
      *
-     * @return string
+     * Cette méthode récupère l'identifiant de l'URL de l'année, vérifie sa validité,
+     * puis affiche le calendrier des événements associés à cette année.
+     * Si l'identifiant n'est pas valide ou si aucun calendrier n'est trouvé,
+     * elle renvoie un affichage pour sélectionner un calendrier.
+     *
+     * @return string Le contenu HTML généré pour afficher le calendrier
+     *                de l'année spécifiée, ou un formulaire pour sélectionner
+     *                un calendrier si l'identifiant est invalide ou inexistant.
+     *
+     * @throws Exception Si une erreur se produit lors de la récupération du
+     *                   calendrier ou si l'identifiant n'est pas valide.
      */
     function displayYearSchedule() {
         $id = $this->getMyIdUrl();
@@ -224,11 +311,19 @@ class UserController extends Controller
     }
 
     /**
-     * Check if a code Ade already exists with the same title or code
+     * Vérifie si un utilisateur avec le même login ou email existe déjà dans la base de données.
      *
-     * @param User $newUser
+     * Cette méthode compare les informations du nouvel utilisateur avec les utilisateurs existants
+     * pour déterminer s'il y a des doublons en fonction du login et de l'email.
+     * Si un utilisateur correspondant est trouvé, la méthode renvoie true, sinon false.
      *
-     * @return bool
+     * @param User $newUser L'objet utilisateur à vérifier, contenant les informations
+     *                      de login et d'email à comparer.
+     *
+     * @return bool Retourne true si un utilisateur avec le même login ou email existe,
+     *              sinon false.
+     *
+     * @throws Exception Si une erreur se produit lors de la vérification des utilisateurs.
      */
     public function checkDuplicateUser(User $newUser) {
         $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
@@ -241,9 +336,23 @@ class UserController extends Controller
     }
 
     /**
-     * Modify codes ade for the student
+     * Modifie les codes associés à l'utilisateur actuel.
      *
-     * @return string
+     * Cette méthode permet à l'utilisateur de modifier ses codes d'année, de groupe
+     * et de demi-groupe. Elle récupère les informations soumises via un formulaire,
+     * valide les données, et met à jour les codes de l'utilisateur dans la base de données.
+     *
+     * Les étapes suivantes sont suivies :
+     * 1. Vérification des données soumises (année, groupe, demi-groupe).
+     * 2. Récupération des objets CodeAde correspondants.
+     * 3. Validation des types de code.
+     * 4. Mise à jour des codes de l'utilisateur et notification du succès ou de l'échec de l'opération.
+     *
+     * @return string Retourne le rendu HTML du formulaire de modification des codes,
+     *                y compris les messages de succès ou d'erreur si applicable.
+     *
+     * @throws Exception Si une erreur se produit lors de la récupération des codes
+     *                   ou lors de la mise à jour de l'utilisateur.
      */
     public function modifyCodes() {
         $current_user = wp_get_current_user();
@@ -256,7 +365,6 @@ class UserController extends Controller
             $year = filter_input(INPUT_POST, 'modifYear');
             $group = filter_input(INPUT_POST, 'modifGroup');
             $halfGroup = filter_input(INPUT_POST, 'modifHalfgroup');
-
 
             if (is_numeric($year) && is_numeric($group) && is_numeric($halfGroup)) {
 

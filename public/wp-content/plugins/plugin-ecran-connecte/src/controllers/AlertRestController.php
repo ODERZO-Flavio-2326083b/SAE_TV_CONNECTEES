@@ -16,7 +16,16 @@ use WP_REST_Server;
 class AlertRestController extends WP_REST_Controller
 {
     /**
-     * Constructor for the REST controller
+     * Initialise l'API REST pour la gestion des alertes.
+     *
+     * Ce constructeur définit le namespace et le chemin de base pour les routes REST liées aux alertes.
+     * Ces informations sont utilisées pour enregistrer les routes de l'API dans WordPress.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
@@ -24,7 +33,19 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Register the routes for the objects of the controller.
+     * Enregistre les routes REST pour la gestion des alertes.
+     *
+     * Cette méthode définit les différentes routes pour les opérations CRUD (Créer, Lire, Mettre à jour,
+     * Supprimer) sur les alertes dans l'API REST. Elle enregistre les routes pour obtenir la liste des alertes,
+     * créer une nouvelle alerte, récupérer une alerte spécifique par son identifiant, mettre à jour une alerte
+     * existante et supprimer une alerte. Pour chaque route, les méthodes, les callbacks, les contrôles de
+     * permission et les arguments requis sont spécifiés.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function register_routes() {
         register_rest_route(
@@ -112,35 +133,55 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Get a collection of items
+     * Récupère la liste des alertes.
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
+     * Cette méthode renvoie une réponse de l'API REST contenant une liste de toutes les alertes
+     * enregistrées dans le système. Elle utilise le gestionnaire d'alertes pour récupérer les
+     * informations nécessaires. Si la récupération des alertes est réussie, elle retourne un
+     * code HTTP 200 avec les données des alertes.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return WP_REST_Response Une réponse de l'API REST contenant la liste des alertes.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function get_items($request) {
-        // Get an instance of the ADE code manager
+        // Obtenir une instance du gestionnaire de codes ADE
         $alert = new Alert();
 
         return new WP_REST_Response($alert->getList(), 200);
     }
 
     /**
-     * Creates a single alert.
+     * Crée une nouvelle alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Cette méthode permet à un utilisateur d'ajouter une nouvelle alerte au système. Elle récupère
+     * les données fournies dans la requête, définit les propriétés de l'alerte, y compris l'auteur,
+     * le contenu, la date de création et la date d'expiration. Les codes ADE associés à l'alerte
+     * sont également définis. En cas d'erreur lors de la création de l'alerte, un message d'erreur
+     * approprié est renvoyé. Si l'insertion est réussie, une notification push est envoyée et
+     * l'ID de l'alerte créée est retourné.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST contenant les détails de l'alerte.
+     * @return WP_REST_Response Une réponse de l'API REST contenant l'ID de l'alerte créée ou un message d'erreur.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function create_item($request) {
-        // Get an instance of the alert manager
+        // Obtenir une instance du gestionnaire d'alertes
         $alert = new Alert();
 
-        // Set alert data
+        // Définir les données de l'alerte
         $alert->setAuthor(wp_get_current_user()->ID);
         $alert->setContent($request->get_param('content'));
         $alert->setCreationDate(date('Y-m-d'));
         $alert->setExpirationDate($request->get_param('expiration-date'));
 
-        // Set ADE codes to the alert
+        // Définir les codes ADE pour l'alerte
         $ade_codes = $this->find_ade_codes($alert, $request->get_json_params()['codes']);
 
         if (is_null($ade_codes))
@@ -148,9 +189,9 @@ class AlertRestController extends WP_REST_Controller
 
         $alert->setCodes($ade_codes);
 
-        // Try to insert the ADE code
+        // Essayer d'insérer le code ADE
         if (($insert_id = $alert->insert())) {
-            // Send the push notification
+            // Envoyer la notification push
             $oneSignalPush = new OneSignalPush();
 
             if ($alert->isForEveryone()) {
@@ -159,7 +200,7 @@ class AlertRestController extends WP_REST_Controller
                 $oneSignalPush->sendNotification($ade_codes, $alert->getContent());
             }
 
-            // Return the inserted alert ID
+            // Retourner l'ID de l'alerte insérée
             return new WP_REST_Response(array('id' => $insert_id), 200);
         }
 
@@ -167,16 +208,24 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Retrieves a single alert.
+     * Récupère une alerte spécifique par son identifiant.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Cette méthode permet de récupérer les détails d'une alerte existante en fonction de son identifiant
+     * fourni dans la requête. Si l'alerte est trouvée dans la base de données, ses informations sont renvoyées.
+     * Sinon, un message d'erreur est retourné indiquant que l'alerte n'a pas été trouvée.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST contenant l'identifiant de l'alerte à récupérer.
+     * @return WP_REST_Response Une réponse de l'API REST contenant les détails de l'alerte ou un message d'erreur.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function get_item($request) {
-        // Get an instance of the alert manager
+        // Obtenir une instance du gestionnaire d'alertes
         $alert = new Alert();
 
-        // Grab the information from the database
+        // Récupérer les informations de la base de données
         $requested_alert = $alert->get($request->get_param('id'));
         if (!$requested_alert)
             return new WP_REST_Response(array('message' => 'Alert not found'), 404);
@@ -185,21 +234,31 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Updates a single alert.
+     * Met à jour une alerte existante avec les nouvelles données fournies.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Cette méthode récupère les détails d'une alerte spécifique à l'aide de son identifiant,
+     * puis met à jour son contenu, sa date d'expiration et ses codes ADE si de nouvelles informations
+     * sont fournies dans la requête. Si l'alerte n'est pas trouvée ou si les données sont invalides,
+     * un message d'erreur approprié est retourné.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST contenant l'identifiant de l'alerte à mettre à jour
+     *                                 ainsi que les nouvelles données (content, expiration-date, codes).
+     * @return WP_REST_Response Une réponse de l'API REST indiquant le succès ou l'échec de la mise à jour de l'alerte.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function update_item($request) {
-        // Get an instance of the alert manager
+        // Obtenir une instance du gestionnaire d'alertes
         $alert = new Alert();
 
-        // Grab the information from the database
+        // Récupérer les informations de la base de données
         $requested_alert = $alert->get($request->get_param('id'));
         if (is_null($requested_alert->getId()))
             return new WP_REST_Response(array('message' => 'Alert not found'), 404);
 
-        // Update the alert data
+        // Mettre à jour les données de l'alerte
         if (is_string($request->get_json_params()['content']))
             $requested_alert->setContent($request->get_json_params()['content']);
 
@@ -215,7 +274,7 @@ class AlertRestController extends WP_REST_Controller
             $requested_alert->setCodes($ade_codes);
         }
 
-        // Try to update the information
+        // Essayer de mettre à jour les informations
         if ($requested_alert->update() > 0)
             return new WP_REST_Response(null, 200);
 
@@ -223,16 +282,25 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Deletes a single alert.
+     * Supprime une alerte existante identifiée par son identifiant.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     * Cette méthode récupère une alerte spécifique à partir de la base de données
+     * à l'aide de son identifiant. Si l'alerte est trouvée et supprimée avec succès,
+     * une réponse indiquant le succès est retournée. Si l'alerte n'est pas trouvée
+     * ou si la suppression échoue, un message d'erreur approprié est retourné.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST contenant l'identifiant de l'alerte à supprimer.
+     * @return WP_REST_Response Une réponse de l'API REST indiquant le succès ou l'échec de la suppression de l'alerte.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function delete_item($request) {
-        // Get an instance of the alert manager
+        // Obtenir une instance du gestionnaire d'alertes
         $alert = new Alert();
 
-        // Grab the information from the database
+        // Récupérer les informations de la base de données
         $requested_alert = $alert->get($request->get_param('id'));
         if ($requested_alert && $requested_alert->delete())
             return new WP_REST_Response(null, 200);
@@ -240,11 +308,20 @@ class AlertRestController extends WP_REST_Controller
         return new WP_REST_Response(array('message' => 'Could not delete the alert'), 400);
     }
 
+*
     /**
-     * Check if a given request has access to get items
+     * Vérifie les permissions pour accéder à la liste des alertes.
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|bool
+     * Cette méthode vérifie si l'utilisateur actuel a les permissions nécessaires
+     * pour accéder à la liste des alertes. Seuls les utilisateurs ayant le rôle
+     * d'administrateur sont autorisés à effectuer cette action.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function get_items_permissions_check($request) {
         $current_user = wp_get_current_user();
@@ -252,54 +329,99 @@ class AlertRestController extends WP_REST_Controller
     }
 
     /**
-     * Checks if a given request has access to create an information.
+     * Vérifie les permissions pour créer une nouvelle alerte.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
+     * Cette méthode appelle la méthode de vérification des permissions pour les
+     * éléments afin de déterminer si l'utilisateur a les droits nécessaires
+     * pour créer une nouvelle alerte. Seuls les utilisateurs ayant le rôle
+     * d'administrateur sont autorisés à effectuer cette action.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
+     *
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function create_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access to read an information.
+     * Vérifie les permissions pour récupérer une alerte spécifique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     * Cette méthode appelle la méthode de vérification des permissions pour les
+     * éléments afin de déterminer si l'utilisateur a les droits nécessaires
+     * pour accéder aux détails d'une alerte. Seuls les utilisateurs ayant le rôle
+     * d'administrateur sont autorisés à effectuer cette action.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function get_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access to update a single information.
+     * Vérifie les permissions pour mettre à jour une alerte spécifique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
+     * Cette méthode appelle la méthode de vérification des permissions pour les
+     * éléments afin de déterminer si l'utilisateur a les droits nécessaires
+     * pour mettre à jour les informations d'une alerte. Seuls les utilisateurs
+     * ayant le rôle d'administrateur sont autorisés à effectuer cette action.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function update_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Checks if a given request has access delete an information.
+     * Vérifie les permissions pour supprimer une alerte spécifique.
      *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+     * Cette méthode appelle la méthode de vérification des permissions pour les
+     * éléments afin de déterminer si l'utilisateur a les droits nécessaires
+     * pour supprimer une alerte. Seuls les utilisateurs ayant le rôle d'administrateur
+     * sont autorisés à effectuer cette action.
+     *
+     * @param WP_REST_Request $request Les paramètres de la requête REST.
+     * @return bool True si l'utilisateur a les permissions nécessaires, sinon false.
+     *
+     *
+     * @version 1.0
+     * @date 16-09-2024
      */
     public function delete_item_permissions_check($request) {
         return $this->get_items_permissions_check($request);
     }
 
     /**
-     * Finds ADE codes and test their validity in a string array
+     * Trouve les codes ADE associés à l'alerte.
      *
-     * @param Alert $alert Alert to find ADE codes for
-     * @param array $codes Array of string containing the ADE codes
-     * @return array|null The array of instantiated ADE codes, or null if an error occured
+     * Cette méthode vérifie la validité des codes ADE fournis et met à jour
+     * l'alerte pour indiquer si elle s'applique à tout le monde. Elle retourne
+     * un tableau de codes ADE valides ou null si un code invalide est trouvé.
+     *
+     * @param Alert $alert L'objet alerte à mettre à jour.
+     * @param array $codes Un tableau contenant les codes ADE à vérifier.
+     * @return array|null Un tableau de codes ADE valides ou null si un code est invalide.
+     *
+     *
+     * @version 1.0
+     * @date 2024-09-16
      */
     private function find_ade_codes($alert, $codes) {
-        // Find the ADE codes
+        // Trouver les codes ADE
         $ade_code = new CodeAde();
         $alert->setForEveryone(0);
         $ade_codes = array();

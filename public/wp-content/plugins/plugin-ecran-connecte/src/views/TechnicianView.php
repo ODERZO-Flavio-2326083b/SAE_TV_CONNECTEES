@@ -2,13 +2,12 @@
 
 namespace Views;
 
-
 use Models\User;
 
 /**
  * Class TechnicianView
  *
- * Contain all view for technician (Forms, tables)
+ * Contient toutes les vues liées aux techniciens (Formulaires, tableaux)
  *
  * @package Views
  */
@@ -16,9 +15,17 @@ class TechnicianView extends UserView
 {
 
     /**
-     * Display a creation form
+     * Affiche le formulaire de création de compte pour techniciens.
      *
-     * @return string
+     * Cette méthode génère un formulaire HTML pour la création de nouveaux
+     * comptes techniciens. Le formulaire inclut des champs nécessaires pour
+     * fournir les informations requises pour un compte technicien.
+     *
+     * @return string Le code HTML du formulaire pour créer un compte technicien.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayFormTechnician() {
         return '
@@ -28,11 +35,21 @@ class TechnicianView extends UserView
     }
 
     /**
-     * Display all technicians in a table
+     * Affiche la liste de tous les techniciens.
      *
-     * @param $users    User[]
+     * Cette méthode génère un tableau HTML affichant tous les techniciens
+     * présents dans le système. Chaque ligne du tableau inclut un numéro,
+     * une case à cocher pour sélectionner le technicien, et le login du technicien.
      *
-     * @return string
+     * @param array $users Un tableau d'objets représentant les techniciens à afficher.
+     *                     Chaque objet doit implémenter la méthode `getId()` pour
+     *                     obtenir l'identifiant et `getLogin()` pour obtenir le login.
+     *
+     * @return string Le code HTML du tableau contenant la liste des techniciens.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllTechnicians($users) {
         $title = 'Techniciens';
