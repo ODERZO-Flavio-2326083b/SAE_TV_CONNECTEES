@@ -1,0 +1,163 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition}{}\label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_adb7678c706239510d40f8c975695f8f5}{\+\_\+\+\_\+construct}} (\$A)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ab0bab14056f53c09b0f8d343d58fab12}{is\+Full\+Rank}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ae89370dba30722b18539dacda883ce14}{getH}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a4ef323f2f02d42c0f54c747c1348efb0}{getR}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a47f38b76e1bf3c8e8b6e05f8afd8b8b2}{getQ}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_abed87c278fabf210ff5ee5180f2c2ba6}{solve}} (\$B)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_aeb59d63d03752a2db08179530d821e25}{MATRIX\+\_\+\+RANK\+\_\+\+EXCEPTION}} = \textquotesingle{}Can only perform operation on full-\/rank matrix.\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a5d041bf4387fb19859fbd525e5d9e488}{\$\+QR}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ad165b99c514c5228ec896972f403abb2}{\$m}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a7d4dfe4d217888812d935f231ec6fb87}{\$n}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a97837c486b7b2af66bcd7e4ffdfb0ae3}{\$\+Rdiag}} = \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+For an m-\/by-\/n matrix A with m \texorpdfstring{$>$}{>}= n, the QR decomposition is an m-\/by-\/n orthogonal matrix Q and an n-\/by-\/n upper triangular matrix R so that A = Q\texorpdfstring{$\ast$}{*}R.
+
+The QR decompostion always exists, even if the matrix does not have full rank, so the constructor will never fail. The primary use of the QR decomposition is in the least squares solution of nonsquare systems of simultaneous linear equations. This will fail if is\+Full\+Rank() returns false.
+
+\begin{DoxyAuthor}{Auteur}
+Paul Meagher
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_adb7678c706239510d40f8c975695f8f5}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_adb7678c706239510d40f8c975695f8f5} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$A}{}\end{DoxyParamCaption})}
+
+QR Decomposition computed by Householder reflections.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+matrix & {\em \$A} & Rectangular matrix \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ae89370dba30722b18539dacda883ce14}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!getH@{getH}}
+\index{getH@{getH}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{getH()}{getH()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ae89370dba30722b18539dacda883ce14} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::getH (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Return the Householder vectors.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} Lower trapezoidal matrix whose columns define the reflections 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a47f38b76e1bf3c8e8b6e05f8afd8b8b2}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!getQ@{getQ}}
+\index{getQ@{getQ}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{getQ()}{getQ()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a47f38b76e1bf3c8e8b6e05f8afd8b8b2} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::getQ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Generate and return the (economy-\/sized) orthogonal factor.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} orthogonal factor 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a4ef323f2f02d42c0f54c747c1348efb0}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!getR@{getR}}
+\index{getR@{getR}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{getR()}{getR()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a4ef323f2f02d42c0f54c747c1348efb0} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::getR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Return the upper triangular factor.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} upper triangular factor 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ab0bab14056f53c09b0f8d343d58fab12}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!isFullRank@{isFullRank}}
+\index{isFullRank@{isFullRank}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{isFullRank()}{isFullRank()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ab0bab14056f53c09b0f8d343d58fab12} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::is\+Full\+Rank (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Is the matrix full rank?
+
+\begin{DoxyReturn}{Renvoie}
+bool true if R, and hence A, has full rank, else false 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_abed87c278fabf210ff5ee5180f2c2ba6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!solve@{solve}}
+\index{solve@{solve}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_abed87c278fabf210ff5ee5180f2c2ba6} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::solve (\begin{DoxyParamCaption}\item[{}]{\$B}{}\end{DoxyParamCaption})}
+
+Least squares solution of A\texorpdfstring{$\ast$}{*}X = B.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$B} & a \doxylink{namespace_matrix}{Matrix} with as many rows as A and any number of columns\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} matrix that minimizes the two norm of Q\texorpdfstring{$\ast$}{*}\+R\texorpdfstring{$\ast$}{*}\+X-\/B 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ad165b99c514c5228ec896972f403abb2}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!\$m@{\$m}}
+\index{\$m@{\$m}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$m}{\$m}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_ad165b99c514c5228ec896972f403abb2} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\$m\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a7d4dfe4d217888812d935f231ec6fb87}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!\$n@{\$n}}
+\index{\$n@{\$n}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$n}{\$n}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a7d4dfe4d217888812d935f231ec6fb87} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\$n\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a5d041bf4387fb19859fbd525e5d9e488}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!\$QR@{\$QR}}
+\index{\$QR@{\$QR}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$QR}{\$QR}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a5d041bf4387fb19859fbd525e5d9e488} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\$\+QR = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a97837c486b7b2af66bcd7e4ffdfb0ae3}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!\$Rdiag@{\$Rdiag}}
+\index{\$Rdiag@{\$Rdiag}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$Rdiag}{\$Rdiag}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_a97837c486b7b2af66bcd7e4ffdfb0ae3} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\$\+Rdiag = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_aeb59d63d03752a2db08179530d821e25}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}!MATRIX\_RANK\_EXCEPTION@{MATRIX\_RANK\_EXCEPTION}}
+\index{MATRIX\_RANK\_EXCEPTION@{MATRIX\_RANK\_EXCEPTION}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}QRDecomposition}}
+\doxysubsubsection{\texorpdfstring{MATRIX\_RANK\_EXCEPTION}{MATRIX\_RANK\_EXCEPTION}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_q_r_decomposition_aeb59d63d03752a2db08179530d821e25} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+QRDecomposition\+::\+MATRIX\+\_\+\+RANK\+\_\+\+EXCEPTION = \textquotesingle{}Can only perform operation on full-\/rank matrix.\textquotesingle{}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Shared/\+JAMA/\mbox{\hyperlink{_q_r_decomposition_8php}{QRDecomposition.\+php}}\end{DoxyCompactItemize}

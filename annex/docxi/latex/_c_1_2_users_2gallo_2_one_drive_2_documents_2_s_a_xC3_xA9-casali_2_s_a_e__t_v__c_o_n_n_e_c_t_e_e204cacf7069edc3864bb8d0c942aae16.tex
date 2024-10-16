@@ -1,0 +1,83 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/views/\+Teacher\+View.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e204cacf7069edc3864bb8d0c942aae16}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e204cacf7069edc3864bb8d0c942aae16}Affiche le formulaire pour l\textquotesingle{}importation d\textquotesingle{}un fichier d\textquotesingle{}enseignants.
+
+Cette méthode génère une interface utilisateur pour télécharger un fichier Excel contenant les informations des enseignants à créer. Les utilisateurs sont guidés à travers les étapes nécessaires pour remplir le fichier Excel et l\textquotesingle{}importer dans le système.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du formulaire d\textquotesingle{}importation de fichier.
+\end{DoxyReturn}
+// Appel de la méthode pour afficher le formulaire d\textquotesingle{}importation \+: echo \$this-\/\texorpdfstring{$>$}{>}display\+Insert\+Import\+File\+Teacher();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_views}{Views}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_user}{Models\(\backslash\)User}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TeacherView\ \textcolor{keyword}{extends}\ UserView}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayInsertImportFileTeacher()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>Compte\ enseignant</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Pour\ créer\ des\ enseignants,\ commencer\ par\ télécharger\ le\ fichier\ Excel\ en\ cliquant\ sur\ le\ lien\ ci-\/dessous.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Remplissez\ les\ colonnes\ par\ les\ valeurs\ demandées,\ une\ ligne\ est\ égale\ à\ un\ utilisateur.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Le\ code\ demandé\ est\ son\ code\ provenant\ de\ l\(\backslash\)'ADE,\ pour\ avoir\ ce\ code,\ suivez\ ce\ petit\ tutoriel\ :</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <ul>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <li><p\ class="{}lead"{}>Connectez\ vous\ sur\ l\(\backslash\)'ADE</p></li>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <li><p\ class="{}lead"{}>...</p></li>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Lorsque\ vous\ avez\ remplis\ le\ fichier\ Excel,\ enregistrez\ le\ et\ cliquez\ sur\ "{}Parcourir"{}\ et\ sélectionnez\ votre\ fichier.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Pour\ finir,\ validez\ l\(\backslash\)'envoie\ du\ formulaire\ en\ cliquant\ sur\ "{}Importer\ le\ fichier"{}</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Lorsqu\(\backslash\)'un\ enseignant\ est\ inscrit,\ un\ email\ lui\ est\ envoyé\ contenant\ son\ login\ et\ son\ mot\ de\ passe\ avec\ un\ lien\ du\ site.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ TV\_PLUG\_PATH\ .\ \textcolor{stringliteral}{'public/files/Ajout\ Profs.xlsx"{}\ download="{}Ajout\ Prof.xlsx"{}>Télécharger\ le\ fichier\ excel\ !\ </a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ id="{}Prof"{}\ method="{}post"{}\ enctype="{}multipart/form-\/data"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}file"{}\ name="{}excelProf"{}\ class="{}inpFil"{}\ required="{}"{}/>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ type="{}submit"{}\ class="{}btn\ button\_ecran"{}\ name="{}importProf"{}\ value="{}Importer"{}>Importer\ le\ fichier</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ modifyForm(\$user)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ esc\_url(get\_permalink(get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'})))\ .\ \textcolor{stringliteral}{'"{}><\ Retour</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>'}\ .\ \$user-\/>getLogin()\ .\ \textcolor{stringliteral}{'</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ method="{}post"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}modifCode"{}>Code\ ADE</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}text"{}\ class="{}form-\/control"{}\ id="{}modifCode"{}\ name="{}modifCode"{}\ placeholder="{}Entrer\ le\ Code\ ADE"{}\ value="{}'}\ .\ \$user-\/>getCodes()[0]-\/>getCode()\ .\ \textcolor{stringliteral}{'"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ name="{}modifValidate"{}\ class="{}btn\ button\_ecran"{}\ type="{}submit"{}\ value="{}Valider"{}>Valider</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ \$linkManageUser\ .\ \textcolor{stringliteral}{'"{}>Annuler</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayAllTeachers(\$teachers)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Modifier\ un\ utilisateur'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$title\ =\ \textcolor{stringliteral}{'Enseignants'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$name\ =\ \textcolor{stringliteral}{'Teacher'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$header\ =\ [\textcolor{stringliteral}{'Numéro\ Ent'},\ \textcolor{stringliteral}{'Code\ ADE'},\ \textcolor{stringliteral}{'Modifier'}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$row\ =\ array();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$count\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$teachers\ as\ \$teacher)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++\$count;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$row[]\ =\ [\$count,\ \$this-\/>buildCheckbox(\$name,\ \$teacher-\/>getId()),\ \$teacher-\/>getLogin(),\ \$teacher-\/>getCodes()[0]-\/>getCode(),\ \$this-\/>buildLinkForModify(\$linkManageUser\ .\ \textcolor{stringliteral}{'?id='}\ .\ \$teacher-\/>getId())];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayAll(\$name,\ \$title,\ \$header,\ \$row,\ \textcolor{stringliteral}{'teacher'});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

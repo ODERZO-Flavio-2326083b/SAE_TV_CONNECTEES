@@ -1,0 +1,12 @@
+\chapter{Contributing}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1192fbe41a4dd66d45ef635e70fae919}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1192fbe41a4dd66d45ef635e70fae919}\index{Contributing@{Contributing}}
+Before you contribute code to \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer}, please make sure it conforms to the PHPCS coding standard and that the \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} unit tests still pass. The easiest way to contribute is to work on a checkout of the repository, or your own fork, rather than an installed PEAR version. If you do this, you can run the following commands to check if everything is ready to submit\+: \begin{DoxyVerb}cd PHP_CodeSniffer
+php scripts/phpcs
+\end{DoxyVerb}
+
+
+Which should give you no output, indicating that there are no coding standard errors. And then\+: \begin{DoxyVerb}phpunit
+\end{DoxyVerb}
+
+
+Which should give you no failures or errors. You can ignore any skipped tests as these are for external tools. 

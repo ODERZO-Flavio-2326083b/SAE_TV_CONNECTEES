@@ -1,0 +1,104 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Time\+Zone}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone}{}\label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a5c6082e700a80ccf07ae3808ac08d0e6}{set\+Time\+Zone}} (\$timezone)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a8f6baba3899f0266218c2988e03d0af6}{get\+Time\+Zone}} ()
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_ac3e719092bf5fcfe2a39df8834ecaea7}{get\+Time\+Zone\+Adjustment}} (\$timezone, \$timestamp)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a18fc17d74fc9d875ee149bb2664c33e7}{\$timezone}} = \textquotesingle{}UTC\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a3cbd09d3aa859822fce6a561d278bdcc}{validate\+Time\+Zone}} (\$timezone)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a8f6baba3899f0266218c2988e03d0af6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}!getTimeZone@{getTimeZone}}
+\index{getTimeZone@{getTimeZone}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection{\texorpdfstring{getTimeZone()}{getTimeZone()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a8f6baba3899f0266218c2988e03d0af6} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Time\+Zone\+::get\+Time\+Zone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the Default Timezone used for date/time conversions.
+
+\begin{DoxyReturn}{Renvoie}
+string Timezone (e.\+g. \textquotesingle{}Europe/\+London\textquotesingle{}) 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_ac3e719092bf5fcfe2a39df8834ecaea7}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}!getTimeZoneAdjustment@{getTimeZoneAdjustment}}
+\index{getTimeZoneAdjustment@{getTimeZoneAdjustment}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection{\texorpdfstring{getTimeZoneAdjustment()}{getTimeZoneAdjustment()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_ac3e719092bf5fcfe2a39df8834ecaea7} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Time\+Zone\+::get\+Time\+Zone\+Adjustment (\begin{DoxyParamCaption}\item[{}]{\$timezone}{, }\item[{}]{\$timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the Timezone offset used for date/time conversions to/from UST This requires both the timezone and the calculated date/time to allow for local DST.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$timezone} & The timezone for finding the adjustment to UST \\
+\hline
+int & {\em \$timestamp} & PHP date/time value\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Php\+Spreadsheet\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+int Number of seconds for timezone adjustment 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a5c6082e700a80ccf07ae3808ac08d0e6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}!setTimeZone@{setTimeZone}}
+\index{setTimeZone@{setTimeZone}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection{\texorpdfstring{setTimeZone()}{setTimeZone()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a5c6082e700a80ccf07ae3808ac08d0e6} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Time\+Zone\+::set\+Time\+Zone (\begin{DoxyParamCaption}\item[{}]{\$timezone}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Set the Default Timezone used for date/time conversions.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$timezone} & Time zone (e.\+g. \textquotesingle{}Europe/\+London\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Success or failure 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a3cbd09d3aa859822fce6a561d278bdcc}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}!validateTimeZone@{validateTimeZone}}
+\index{validateTimeZone@{validateTimeZone}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection{\texorpdfstring{validateTimeZone()}{validateTimeZone()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a3cbd09d3aa859822fce6a561d278bdcc} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Time\+Zone\+::validate\+Time\+Zone (\begin{DoxyParamCaption}\item[{}]{\$timezone}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Validate a Timezone name.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$timezone} & Time zone (e.\+g. \textquotesingle{}Europe/\+London\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Success or failure 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a18fc17d74fc9d875ee149bb2664c33e7}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}!\$timezone@{\$timezone}}
+\index{\$timezone@{\$timezone}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}TimeZone}}
+\doxysubsubsection{\texorpdfstring{\$timezone}{\$timezone}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_time_zone_a18fc17d74fc9d875ee149bb2664c33e7} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Time\+Zone\+::\$timezone = \textquotesingle{}UTC\textquotesingle{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Shared/\mbox{\hyperlink{_time_zone_8php}{Time\+Zone.\+php}}\end{DoxyCompactItemize}

@@ -1,0 +1,110 @@
+\chapter{Worksheets}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e}\index{Worksheets@{Worksheets}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md726}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md726}%
+
+
+A worksheet is a collection of cells, formulae, images, graphs, etc. It holds all data necessary to represent a spreadsheet worksheet.
+
+When you load a workbook from a spreadsheet file, it will be loaded with all its existing worksheets (unless you specified that only certain sheets should be loaded). When you load from non-\/spreadsheet files (such as a CSV or HTML file) or from spreadsheet formats that don\textquotesingle{}t identify worksheets by name (such as SYLK), then a single worksheet called "{}\+Work\+Sheet1"{} will be created containing the data from that file.
+
+When you instantiate a new workbook, Php\+Spreadsheet will create it with a single worksheet called "{}\+Work\+Sheet1"{}.
+
+The {\ttfamily get\+Sheet\+Count()} method will tell you the number of worksheets in the workbook; while the {\ttfamily get\+Sheet\+Names()} method will return a list of all worksheets in the workbook, indexed by the order in which their "{}tabs"{} would appear when opened in MS Excel (or other appropriate Spreadsheet program).
+
+Individual worksheets can be accessed by name, or by their index position in the workbook. The index position represents the order that each worksheet "{}tab"{} is shown when the workbook is opened in MS Excel (or other appropriate Spreadsheet program). To access a sheet by its index, use the {\ttfamily get\+Sheet()} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Get\ the\ second\ sheet\ in\ the\ workbook}
+\DoxyCodeLine{//\ Note\ that\ sheets\ are\ indexed\ from\ 0}
+\DoxyCodeLine{\$spreadsheet-\/>getSheet(1);}
+
+\end{DoxyCode}
+
+
+Methods also exist allowing you to reorder the worksheets in the workbook.
+
+To access a sheet by name, use the {\ttfamily get\+Sheet\+By\+Name()} method, specifying the name of the worksheet that you want to access.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Retrieve\ the\ worksheet\ called\ 'Worksheet\ 1'}
+\DoxyCodeLine{\$spreadsheet-\/>getSheetByName('Worksheet\ 1');}
+
+\end{DoxyCode}
+
+
+Alternatively, one worksheet is always the currently active worksheet, and you can access that directly. The currently active worksheet is the one that will be active when the workbook is opened in MS Excel (or other appropriate Spreadsheet program).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Retrieve\ the\ current\ active\ worksheet}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet();}
+
+\end{DoxyCode}
+
+
+You can change the currently active sheet by index or by name using the {\ttfamily set\+Active\+Sheet\+Index()} and {\ttfamily set\+Active\+Sheet\+Index\+By\+Name()} methods.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md727}{}\doxysection{\texorpdfstring{Adding a new Worksheet}{Adding a new Worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md727}
+You can add a new worksheet to the workbook using the {\ttfamily create\+Sheet()} method of the {\ttfamily Spreadsheet} object. By default, this will be created as a new "{}last"{} sheet; but you can also specify an index position as an argument, and the worksheet will be inserted at that position, shuffling all subsequent worksheets in the collection down a place.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>createSheet();}
+
+\end{DoxyCode}
+
+
+A new worksheet created using this method will be called {\ttfamily Worksheet\texorpdfstring{$<$}{<}n\texorpdfstring{$>$}{>}} where {\ttfamily \texorpdfstring{$<$}{<}n\texorpdfstring{$>$}{>}} is the lowest number possible to guarantee that the title is unique.
+
+Alternatively, you can instantiate a new worksheet (setting the title to whatever you choose) and then insert it into your workbook using the {\ttfamily add\+Sheet()} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ Create\ a\ new\ worksheet\ called\ "{}My\ Data"{}}
+\DoxyCodeLine{\$myWorkSheet\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Worksheet\(\backslash\)Worksheet(\$spreadsheet,\ 'My\ Data');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Attach\ the\ "{}My\ Data"{}\ worksheet\ as\ the\ first\ worksheet\ in\ the\ Spreadsheet\ object}
+\DoxyCodeLine{\$spreadsheet-\/>addSheet(\$myWorkSheet,\ 0);}
+
+\end{DoxyCode}
+
+
+If you don\textquotesingle{}t specify an index position as the second argument, then the new worksheet will be added after the last existing worksheet.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md728}{}\doxysection{\texorpdfstring{Copying Worksheets}{Copying Worksheets}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md728}
+Sheets within the same workbook can be copied by creating a clone of the worksheet you wish to copy, and then using the {\ttfamily add\+Sheet()} method to insert the clone into the workbook.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$clonedWorksheet\ =\ clone\ \$spreadsheet-\/>getSheetByName('Worksheet\ 1');}
+\DoxyCodeLine{\$clonedWorksheet-\/>setTitle('Copy\ of\ Worksheet\ 1');}
+\DoxyCodeLine{\$spreadsheet-\/>addSheet(\$clonedWorksheet);}
+
+\end{DoxyCode}
+
+
+You can also copy worksheets from one workbook to another, though this is more complex as Php\+Spreadsheet also has to replicate the styling between the two workbooks. The {\ttfamily add\+External\+Sheet()} method is provided for this purpose. \begin{DoxyVerb}$clonedWorksheet = clone $spreadsheet1->getSheetByName('Worksheet 1');
+$spreadsheet->addExternalSheet($clonedWorksheet);
+\end{DoxyVerb}
+
+
+In both cases, it is the developer\textquotesingle{}s responsibility to ensure that worksheet names are not duplicated. Php\+Spreadsheet will throw an exception if you attempt to copy worksheets that will result in a duplicate name.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md729}{}\doxysection{\texorpdfstring{Removing a Worksheet}{Removing a Worksheet}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_5d4b785184959ea73733d4da3f213e9e_autotoc_md729}
+You can delete a worksheet from a workbook, identified by its index position, using the {\ttfamily remove\+Sheet\+By\+Index()} method
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$sheetIndex\ =\ \$spreadsheet-\/>getIndex(}
+\DoxyCodeLine{\ \ \ \ \$spreadsheet-\/>getSheetByName('Worksheet\ 1')}
+\DoxyCodeLine{);}
+\DoxyCodeLine{\$spreadsheet-\/>removeSheetByIndex(\$sheetIndex);}
+
+\end{DoxyCode}
+
+
+If the currently active worksheet is deleted, then the sheet at the previous index position will become the currently active sheet. 

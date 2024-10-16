@@ -1,0 +1,421 @@
+\doxysection{Référence de la classe Views\textbackslash{}View}
+\hypertarget{class_views_1_1_view}{}\label{class_views_1_1_view}\index{Views\textbackslash{}View@{Views\textbackslash{}View}}
+Graphe d\textquotesingle{}héritage de Views\textbackslash{}View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.138211cm]{class_views_1_1_view}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a5b80a8f260e3f78ba18d4a28aa6424f4}{display\+All}} (\$name, \$title, \$data\+Header, \$data\+List, \$id\+Table=\textquotesingle{}\textquotesingle{})
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a50f48ef33094762ab97ae75fb3e3fdee}{page\+Number}} (\$page\+Number, \$current\+Page, \$url, \$number\+Element=null)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a8568a3786030116ece67a2e2d960bb70}{build\+Link\+For\+Modify}} (\$link)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a1c92fa1b4855cbed32d40c9fb319b59b}{build\+Checkbox}} (\$name, \$id)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a87ff29e5f96e139a53b304b16154d4a4}{display\+Start\+Multi\+Select}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_aee0e595734311f4501a4ae9bf9ca8eba}{display\+Title\+Select}} (\$id, \$title, \$active=false)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a0d6c2dc61dca3a0da5a3aced4e7002b1}{display\+End\+Of\+Title}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_ad14076a1044cd68e7ff840267254d86b}{display\+Content\+Select}} (\$id, \$content, \$active=false)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_aaadab4ebd8efbbf683f32337b8743768}{refresh\+Page}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_ada688e7b98f16383157a4a56624f176e}{build\+Modal}} (\$title, \$content, \$redirect=null)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a9a26fddf8d388038f213939cf039f6fb}{display\+End\+Div}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a2923425427d78db5ff6614d77d708d8b}{display\+Bad\+Password}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_ae9862e9a393ab31643f30ddf9da43f01}{display\+Error\+Double}} (\$doubles)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_ab6f2c7e137a2087e55270fde85c49f0b}{display\+Insert\+Validate}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_ac081098679e30b0bcce8ed583ca2760e}{display\+Wrong\+Extension}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a914f52a765bba0be1c7e11751a2147e6}{display\+Wrong\+File}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a0aa75eb515ce418f30ab536abde99335}{display\+Modification\+Validate}} (\$redirect=null)
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a5576fa43c933e9bbf5d1b549ec221c41}{display\+Error\+Insertion}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_abd2cce32398dfcd3baf7a63cb35564a2}{error\+Message\+Invalid\+Form}} ()
+\item 
+\mbox{\hyperlink{class_views_1_1_view_a87ad60b90e76c71ce48f6dd268b95623}{error\+Message\+Cant\+Add}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_views_1_1_view_a1c92fa1b4855cbed32d40c9fb319b59b}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!buildCheckbox@{buildCheckbox}}
+\index{buildCheckbox@{buildCheckbox}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{buildCheckbox()}{buildCheckbox()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a1c92fa1b4855cbed32d40c9fb319b59b} 
+Views\textbackslash{}\+View\+::build\+Checkbox (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Génère un élément de case à cocher HTML.
+
+Cette méthode crée un input de type checkbox avec un nom et un identifiant spécifiés. La case à cocher est utilisée pour sélectionner un ou plusieurs éléments dans un formulaire.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & Le nom de la case à cocher, utilisé pour regrouper les cases dans le formulaire. \\
+\hline
+string | int & {\em \$id} & L\textquotesingle{}identifiant unique associé à cette case à cocher, utilisé comme valeur lorsqu\textquotesingle{}elle est sélectionnée.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML de l\textquotesingle{}élément checkbox.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a8568a3786030116ece67a2e2d960bb70}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!buildLinkForModify@{buildLinkForModify}}
+\index{buildLinkForModify@{buildLinkForModify}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{buildLinkForModify()}{buildLinkForModify()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a8568a3786030116ece67a2e2d960bb70} 
+Views\textbackslash{}\+View\+::build\+Link\+For\+Modify (\begin{DoxyParamCaption}\item[{}]{\$link}{}\end{DoxyParamCaption})}
+
+Génère un lien HTML pour modifier un élément.
+
+Cette méthode crée un lien qui redirige vers une page de modification spécifiée. Le lien est affiché sous la forme d\textquotesingle{}un élément {\ttfamily \texorpdfstring{$<$}{<}a\texorpdfstring{$>$}{>}} HTML avec le texte "{}\+Modifier"{}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$link} & L\textquotesingle{}URL vers laquelle le lien doit rediriger pour modifier l\textquotesingle{}élément.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du lien de modification.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_ada688e7b98f16383157a4a56624f176e}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!buildModal@{buildModal}}
+\index{buildModal@{buildModal}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{buildModal()}{buildModal()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_ada688e7b98f16383157a4a56624f176e} 
+Views\textbackslash{}\+View\+::build\+Modal (\begin{DoxyParamCaption}\item[{}]{\$title}{, }\item[{}]{\$content}{, }\item[{}]{\$redirect}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Génère un modal Bootstrap avec un titre et un contenu personnalisés.
+
+Cette méthode crée le code HTML nécessaire pour afficher un modal, qui peut être utilisé pour afficher des informations, des alertes ou des options supplémentaires à l\textquotesingle{}utilisateur. Le modal comprend également un bouton de fermeture qui peut rediriger l\textquotesingle{}utilisateur vers une autre page si un lien est fourni.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$title} & Le titre du modal, affiché en haut de la fenêtre modale. \\
+\hline
+string & {\em \$content} & Le contenu à afficher à l\textquotesingle{}intérieur du modal. \\
+\hline
+string | null & {\em \$redirect} & (optionnel) L\textquotesingle{}URL vers laquelle l\textquotesingle{}utilisateur sera redirigé après avoir cliqué sur le bouton de fermeture. Si aucune URL n\textquotesingle{}est fournie, le bouton fermera simplement le modal sans redirection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour, elle affiche directement le modal à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a5b80a8f260e3f78ba18d4a28aa6424f4}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayAll@{displayAll}}
+\index{displayAll@{displayAll}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayAll()}{displayAll()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a5b80a8f260e3f78ba18d4a28aa6424f4} 
+Views\textbackslash{}\+View\+::display\+All (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{}]{\$title}{, }\item[{}]{\$data\+Header}{, }\item[{}]{\$data\+List}{, }\item[{}]{\$id\+Table}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Génère un tableau HTML affichant une liste d\textquotesingle{}éléments avec des options de tri et de recherche.
+
+Cette méthode crée un tableau HTML avec des en-\/têtes dynamiques et des données fournies en entrée. Elle inclut également des fonctionnalités de recherche, de sélection multiple, et de suppression d\textquotesingle{}éléments.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & Le nom du tableau, utilisé pour les fonctionnalités de sélection. \\
+\hline
+string & {\em \$title} & Le titre du tableau à afficher en haut. \\
+\hline
+array & {\em \$data\+Header} & Tableau des en-\/têtes de colonnes. \\
+\hline
+array & {\em \$data\+List} & Liste des données à afficher dans le tableau, chaque élément étant un tableau représentant une ligne. \\
+\hline
+string & {\em \$id\+Table} & (Optionnel) Identifiant unique pour le tableau et les fonctionnalités associées (recherche, tri).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du tableau généré.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a2923425427d78db5ff6614d77d708d8b}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayBadPassword@{displayBadPassword}}
+\index{displayBadPassword@{displayBadPassword}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayBadPassword()}{displayBadPassword()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a2923425427d78db5ff6614d77d708d8b} 
+Views\textbackslash{}\+View\+::display\+Bad\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche un modal d\textquotesingle{}erreur pour indiquer que les mots de passe fournis sont incorrects.
+
+Cette méthode utilise la fonction {\ttfamily build\+Modal} pour générer un modal Bootstrap avec un message d\textquotesingle{}alerte en rouge, signalant à l\textquotesingle{}utilisateur que les deux mots de passe qu\textquotesingle{}il a saisis ne correspondent pas ou ne sont pas corrects.
+
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour, elle affiche directement le modal à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_ad14076a1044cd68e7ff840267254d86b}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayContentSelect@{displayContentSelect}}
+\index{displayContentSelect@{displayContentSelect}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayContentSelect()}{displayContentSelect()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_ad14076a1044cd68e7ff840267254d86b} 
+Views\textbackslash{}\+View\+::display\+Content\+Select (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$content}{, }\item[{}]{\$active}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Génère le contenu d\textquotesingle{}un onglet dans une interface utilisateur.
+
+Cette méthode crée le code HTML nécessaire pour afficher le contenu d\textquotesingle{}un onglet dans un conteneur tabulé. Elle permet de spécifier si l\textquotesingle{}onglet doit être actif lors du rendu, en ajoutant les classes CSS appropriées pour le style et le comportement des onglets.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$id} & L\textquotesingle{}identifiant unique de l\textquotesingle{}onglet, utilisé pour le lien entre l\textquotesingle{}onglet et son contenu. \\
+\hline
+string & {\em \$content} & Le contenu à afficher dans l\textquotesingle{}onglet. \\
+\hline
+bool & {\em \$active} & Indique si cet onglet doit être actif (visible par défaut). Par défaut, il est à false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du contenu de l\textquotesingle{}onglet.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a9a26fddf8d388038f213939cf039f6fb}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayEndDiv@{displayEndDiv}}
+\index{displayEndDiv@{displayEndDiv}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayEndDiv()}{displayEndDiv()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a9a26fddf8d388038f213939cf039f6fb} 
+Views\textbackslash{}\+View\+::display\+End\+Div (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Close a div
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_views_1_1_view_a0d6c2dc61dca3a0da5a3aced4e7002b1}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayEndOfTitle@{displayEndOfTitle}}
+\index{displayEndOfTitle@{displayEndOfTitle}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayEndOfTitle()}{displayEndOfTitle()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a0d6c2dc61dca3a0da5a3aced4e7002b1} 
+Views\textbackslash{}\+View\+::display\+End\+Of\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Génère la fin d\textquotesingle{}un conteneur de navigation pour un ensemble d\textquotesingle{}onglets.
+
+Cette méthode crée le code HTML nécessaire pour fermer les éléments de navigation et ouvrir le conteneur de contenu associé aux onglets. Elle est généralement utilisée après l\textquotesingle{}ajout de tous les titres d\textquotesingle{}onglets pour compléter la structure de l\textquotesingle{}interface utilisateur.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML de la fermeture de la navigation et du début du conteneur de contenu des onglets.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_ae9862e9a393ab31643f30ddf9da43f01}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayErrorDouble@{displayErrorDouble}}
+\index{displayErrorDouble@{displayErrorDouble}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayErrorDouble()}{displayErrorDouble()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_ae9862e9a393ab31643f30ddf9da43f01} 
+Views\textbackslash{}\+View\+::display\+Error\+Double (\begin{DoxyParamCaption}\item[{}]{\$doubles}{}\end{DoxyParamCaption})}
+
+Affiche un modal d\textquotesingle{}erreur indiquant les problèmes d\textquotesingle{}enregistrement des utilisateurs.
+
+Cette méthode génère un message d\textquotesingle{}alerte pour chaque utilisateur dont l\textquotesingle{}enregistrement a échoué en raison d\textquotesingle{}un problème avec le login ou l\textquotesingle{}email. Les messages sont affichés dans un modal Bootstrap avec une alerte rouge pour signaler les erreurs.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$doubles} & Un tableau contenant les identifiants des utilisateurs qui ont rencontré des problèmes d\textquotesingle{}enregistrement.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour, elle affiche directement le modal d\textquotesingle{}erreur à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a5576fa43c933e9bbf5d1b549ec221c41}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayErrorInsertion@{displayErrorInsertion}}
+\index{displayErrorInsertion@{displayErrorInsertion}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayErrorInsertion()}{displayErrorInsertion()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a5576fa43c933e9bbf5d1b549ec221c41} 
+Views\textbackslash{}\+View\+::display\+Error\+Insertion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Display a message if the creation of an user has failed \Hypertarget{class_views_1_1_view_ab6f2c7e137a2087e55270fde85c49f0b}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayInsertValidate@{displayInsertValidate}}
+\index{displayInsertValidate@{displayInsertValidate}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayInsertValidate()}{displayInsertValidate()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_ab6f2c7e137a2087e55270fde85c49f0b} 
+Views\textbackslash{}\+View\+::display\+Insert\+Validate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche un modal de confirmation indiquant que l\textquotesingle{}inscription a été validée.
+
+Cette méthode génère un message de succès dans un modal Bootstrap, confirmant à l\textquotesingle{}utilisateur que son inscription a été correctement enregistrée.
+
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour, elle affiche directement le modal de confirmation à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a0aa75eb515ce418f30ab536abde99335}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayModificationValidate@{displayModificationValidate}}
+\index{displayModificationValidate@{displayModificationValidate}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayModificationValidate()}{displayModificationValidate()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a0aa75eb515ce418f30ab536abde99335} 
+Views\textbackslash{}\+View\+::display\+Modification\+Validate (\begin{DoxyParamCaption}\item[{}]{\$redirect}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Display a message if the modification is a success \Hypertarget{class_views_1_1_view_a87ff29e5f96e139a53b304b16154d4a4}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayStartMultiSelect@{displayStartMultiSelect}}
+\index{displayStartMultiSelect@{displayStartMultiSelect}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayStartMultiSelect()}{displayStartMultiSelect()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a87ff29e5f96e139a53b304b16154d4a4} 
+Views\textbackslash{}\+View\+::display\+Start\+Multi\+Select (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Génère le début d\textquotesingle{}un conteneur de sélection multiple sous forme de navigation par onglets.
+
+Cette méthode crée un élément HTML {\ttfamily \texorpdfstring{$<$}{<}nav\texorpdfstring{$>$}{>}} contenant une structure de navigation par onglets pour les sélections multiples. Cela peut être utilisé pour organiser des options ou des catégories, permettant à l\textquotesingle{}utilisateur de choisir plusieurs éléments de manière intuitive.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML d\textquotesingle{}ouverture pour une navigation par onglets.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_aee0e595734311f4501a4ae9bf9ca8eba}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayTitleSelect@{displayTitleSelect}}
+\index{displayTitleSelect@{displayTitleSelect}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayTitleSelect()}{displayTitleSelect()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_aee0e595734311f4501a4ae9bf9ca8eba} 
+Views\textbackslash{}\+View\+::display\+Title\+Select (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$title}{, }\item[{}]{\$active}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Génère un élément de titre de navigation pour un onglet dans une interface utilisateur.
+
+Cette méthode crée un lien HTML qui sert de titre pour un onglet de navigation. Il peut être marqué comme actif en fonction de l\textquotesingle{}argument fourni.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$id} & L\textquotesingle{}identifiant de l\textquotesingle{}onglet, utilisé pour les attributs {\ttfamily id} et {\ttfamily href}. \\
+\hline
+string & {\em \$title} & Le texte affiché pour le titre de l\textquotesingle{}onglet. \\
+\hline
+bool & {\em \$active} & Indique si l\textquotesingle{}onglet doit être marqué comme actif (true) ou non (false). Par défaut, il est false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML de l\textquotesingle{}élément de titre de l\textquotesingle{}onglet.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_ac081098679e30b0bcce8ed583ca2760e}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayWrongExtension@{displayWrongExtension}}
+\index{displayWrongExtension@{displayWrongExtension}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayWrongExtension()}{displayWrongExtension()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_ac081098679e30b0bcce8ed583ca2760e} 
+Views\textbackslash{}\+View\+::display\+Wrong\+Extension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Display a message if the extension of the file is wrong \Hypertarget{class_views_1_1_view_a914f52a765bba0be1c7e11751a2147e6}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!displayWrongFile@{displayWrongFile}}
+\index{displayWrongFile@{displayWrongFile}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{displayWrongFile()}{displayWrongFile()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a914f52a765bba0be1c7e11751a2147e6} 
+Views\textbackslash{}\+View\+::display\+Wrong\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Display a message if the file isn\textquotesingle{}t a good file \Hypertarget{class_views_1_1_view_a87ad60b90e76c71ce48f6dd268b95623}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!errorMessageCantAdd@{errorMessageCantAdd}}
+\index{errorMessageCantAdd@{errorMessageCantAdd}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{errorMessageCantAdd()}{errorMessageCantAdd()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a87ad60b90e76c71ce48f6dd268b95623} 
+Views\textbackslash{}\+View\+::error\+Message\+Cant\+Add (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_views_1_1_view_abd2cce32398dfcd3baf7a63cb35564a2}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!errorMessageInvalidForm@{errorMessageInvalidForm}}
+\index{errorMessageInvalidForm@{errorMessageInvalidForm}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{errorMessageInvalidForm()}{errorMessageInvalidForm()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_abd2cce32398dfcd3baf7a63cb35564a2} 
+Views\textbackslash{}\+View\+::error\+Message\+Invalid\+Form (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche un modal d\textquotesingle{}erreur indiquant que le formulaire n\textquotesingle{}a pas été correctement rempli.
+
+Cette méthode génère un message d\textquotesingle{}erreur dans un modal Bootstrap, informant l\textquotesingle{}utilisateur que le formulaire contient des données incorrectes et l\textquotesingle{}invite à vérifier et à corriger les informations saisies avant de réessayer.
+
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour, elle affiche directement le modal d\textquotesingle{}erreur à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_a50f48ef33094762ab97ae75fb3e3fdee}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!pageNumber@{pageNumber}}
+\index{pageNumber@{pageNumber}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{pageNumber()}{pageNumber()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_a50f48ef33094762ab97ae75fb3e3fdee} 
+Views\textbackslash{}\+View\+::page\+Number (\begin{DoxyParamCaption}\item[{}]{\$page\+Number}{, }\item[{}]{\$current\+Page}{, }\item[{}]{\$url}{, }\item[{}]{\$number\+Element}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Génère une pagination pour naviguer à travers les pages d\textquotesingle{}une liste d\textquotesingle{}éléments.
+
+Cette méthode crée un ensemble de liens de pagination qui permettent à l\textquotesingle{}utilisateur de naviguer entre différentes pages de résultats. Elle inclut des liens vers la page précédente, les numéros de pages environnantes, et la page suivante, tout en gérant les cas où les pages sont nombreuses.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$page\+Number} & Le nombre total de pages disponibles. \\
+\hline
+int & {\em \$current\+Page} & Le numéro de la page actuelle. \\
+\hline
+string & {\em \$url} & L\textquotesingle{}URL de base pour générer les liens de pagination. \\
+\hline
+int | null & {\em \$number\+Element} & (Optionnel) Le nombre d\textquotesingle{}éléments par page, utilisé pour construire l\textquotesingle{}URL si nécessaire.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML de la pagination générée.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{class_views_1_1_view_aaadab4ebd8efbbf683f32337b8743768}\index{Views\textbackslash{}View@{Views\textbackslash{}View}!refreshPage@{refreshPage}}
+\index{refreshPage@{refreshPage}!Views\textbackslash{}View@{Views\textbackslash{}View}}
+\doxysubsubsection{\texorpdfstring{refreshPage()}{refreshPage()}}
+{\footnotesize\ttfamily \label{class_views_1_1_view_aaadab4ebd8efbbf683f32337b8743768} 
+Views\textbackslash{}\+View\+::refresh\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Refresh the page 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/views/\mbox{\hyperlink{_view_8php}{View.\+php}}\end{DoxyCompactItemize}

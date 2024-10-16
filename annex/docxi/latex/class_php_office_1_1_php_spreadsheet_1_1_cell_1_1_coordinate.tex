@@ -1,0 +1,356 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate}{}\label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a793b0e03371fef3f9f3c4ca515631fcc}{coordinate\+From\+String}} (\$p\+Coordinate\+String)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a8769f67d9b97f16c9f942bbf76a43b0c}{coordinate\+Is\+Range}} (\$coord)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_afd15c5dcdfde9af8b70dfb1e1b321cae}{absolute\+Reference}} (\$p\+Coordinate\+String)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a08f486a8c022a0364dbcc5d053ddf4e9}{absolute\+Coordinate}} (\$p\+Coordinate\+String)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad10dc2de2ae80b3e6ba0d52ac964c85a}{split\+Range}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad39611f761b5f6a81627b0a36fb8359b}{build\+Range}} (array \$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae50408a3a466b37f2cd80137fb5f680b}{range\+Boundaries}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_addafaf8e97ca45a6331e0b070b54586a}{range\+Dimension}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a6aa65dc7013288dcb77a97dab76dc751}{get\+Range\+Boundaries}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ab9463773748a3b7e0aec89244ac305f6}{column\+Index\+From\+String}} (\$p\+String)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac559c2230a2a76afba026bb349d4ab13}{string\+From\+Column\+Index}} (\$column\+Index)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a52bef188a78f47250456d29357bab973}{extract\+All\+Cell\+References\+In\+Range}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac275f937c7da8d072a6d745478360158}{merge\+Ranges\+In\+Collection}} (array \$p\+Coord\+Collection)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a82207a23240a4f763a6fa783438b181c}{DEFAULT\+\_\+\+RANGE}} = \textquotesingle{}A1\+:\+A1\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae4fc10ef402b1b5801996111a9dc0f20}{get\+References\+For\+Cell\+Block}} (\$cell\+Block)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad589a14eb55a10c9918320c620fddc42}{get\+Cell\+Blocks\+From\+Range\+String}} (\$p\+Range)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac60e98864c5514568be1c862172ee30b}{validate\+Range}} (\$cell\+Block, \$start\+Column\+Index, \$end\+Column\+Index, \$current\+Row, \$end\+Row)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Helper class to manipulate cell coordinates.
+
+Columns indexes and rows are always based on 1, {\bfseries{not}} on 0. This match the behavior that Excel users are used to, and also match the Excel functions {\ttfamily COLUMN()} and {\ttfamily ROW()}. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a08f486a8c022a0364dbcc5d053ddf4e9}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!absoluteCoordinate@{absoluteCoordinate}}
+\index{absoluteCoordinate@{absoluteCoordinate}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{absoluteCoordinate()}{absoluteCoordinate()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a08f486a8c022a0364dbcc5d053ddf4e9} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::absolute\+Coordinate (\begin{DoxyParamCaption}\item[{}]{\$p\+Coordinate\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Make string coordinate absolute.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Coordinate\+String} & e.\+g. \textquotesingle{}A1\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Absolute coordinate e.\+g. \textquotesingle{}\$\+A\$1\textquotesingle{} 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_afd15c5dcdfde9af8b70dfb1e1b321cae}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!absoluteReference@{absoluteReference}}
+\index{absoluteReference@{absoluteReference}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{absoluteReference()}{absoluteReference()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_afd15c5dcdfde9af8b70dfb1e1b321cae} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::absolute\+Reference (\begin{DoxyParamCaption}\item[{}]{\$p\+Coordinate\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Make string row, column or cell coordinate absolute.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Coordinate\+String} & e.\+g. \textquotesingle{}A\textquotesingle{} or \textquotesingle{}1\textquotesingle{} or \textquotesingle{}A1\textquotesingle{} Note that this value can be a row or column reference as well as a cell reference\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Absolute coordinate e.\+g. \textquotesingle{}\$A\textquotesingle{} or \textquotesingle{}\$1\textquotesingle{} or \textquotesingle{}\$\+A\$1\textquotesingle{} 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad39611f761b5f6a81627b0a36fb8359b}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!buildRange@{buildRange}}
+\index{buildRange@{buildRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{buildRange()}{buildRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad39611f761b5f6a81627b0a36fb8359b} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::build\+Range (\begin{DoxyParamCaption}\item[{array}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Build range from coordinate strings.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$p\+Range} & Array containg one or more arrays containing one or two coordinate strings\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string String representation of \$p\+Range 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ab9463773748a3b7e0aec89244ac305f6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!columnIndexFromString@{columnIndexFromString}}
+\index{columnIndexFromString@{columnIndexFromString}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{columnIndexFromString()}{columnIndexFromString()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ab9463773748a3b7e0aec89244ac305f6} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::column\+Index\+From\+String (\begin{DoxyParamCaption}\item[{}]{\$p\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Column index from string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+String} & eg \textquotesingle{}A\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Column index (A = 1) 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a793b0e03371fef3f9f3c4ca515631fcc}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!coordinateFromString@{coordinateFromString}}
+\index{coordinateFromString@{coordinateFromString}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{coordinateFromString()}{coordinateFromString()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a793b0e03371fef3f9f3c4ca515631fcc} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::coordinate\+From\+String (\begin{DoxyParamCaption}\item[{}]{\$p\+Coordinate\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Coordinate from string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Coordinate\+String} & eg\+: \textquotesingle{}A1\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string\mbox{[}\mbox{]} Array containing column and row (indexes 0 and 1) 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a8769f67d9b97f16c9f942bbf76a43b0c}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!coordinateIsRange@{coordinateIsRange}}
+\index{coordinateIsRange@{coordinateIsRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{coordinateIsRange()}{coordinateIsRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a8769f67d9b97f16c9f942bbf76a43b0c} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::coordinate\+Is\+Range (\begin{DoxyParamCaption}\item[{}]{\$coord}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Checks if a coordinate represents a range of cells.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$coord} & eg\+: \textquotesingle{}A1\textquotesingle{} or \textquotesingle{}A1\+:A2\textquotesingle{} or \textquotesingle{}A1\+:A2,C1\+:C2\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Whether the coordinate represents a range of cells 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a52bef188a78f47250456d29357bab973}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!extractAllCellReferencesInRange@{extractAllCellReferencesInRange}}
+\index{extractAllCellReferencesInRange@{extractAllCellReferencesInRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{extractAllCellReferencesInRange()}{extractAllCellReferencesInRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a52bef188a78f47250456d29357bab973} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::extract\+All\+Cell\+References\+In\+Range (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Extract all cell references in range, which may be comprised of multiple cell ranges.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & Range (e.\+g. A1 or A1\+:C10 or A1\+:E10 A20\+:E25)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Array containing single cell references 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad589a14eb55a10c9918320c620fddc42}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!getCellBlocksFromRangeString@{getCellBlocksFromRangeString}}
+\index{getCellBlocksFromRangeString@{getCellBlocksFromRangeString}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{getCellBlocksFromRangeString()}{getCellBlocksFromRangeString()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad589a14eb55a10c9918320c620fddc42} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::get\+Cell\+Blocks\+From\+Range\+String (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Get the individual cell blocks from a range string, splitting by space and removing any \$ characters.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a6aa65dc7013288dcb77a97dab76dc751}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!getRangeBoundaries@{getRangeBoundaries}}
+\index{getRangeBoundaries@{getRangeBoundaries}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{getRangeBoundaries()}{getRangeBoundaries()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a6aa65dc7013288dcb77a97dab76dc751} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::get\+Range\+Boundaries (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculate range boundaries.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & Cell range (e.\+g. A1\+:A1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Range coordinates \mbox{[}Start Cell, End Cell\mbox{]} where Start Cell and End Cell are arrays \mbox{[}Column ID, Row Number\mbox{]} 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae4fc10ef402b1b5801996111a9dc0f20}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!getReferencesForCellBlock@{getReferencesForCellBlock}}
+\index{getReferencesForCellBlock@{getReferencesForCellBlock}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{getReferencesForCellBlock()}{getReferencesForCellBlock()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae4fc10ef402b1b5801996111a9dc0f20} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::get\+References\+For\+Cell\+Block (\begin{DoxyParamCaption}\item[{}]{\$cell\+Block}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Get all cell references for an individual cell block.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$cell\+Block} & A cell range e.\+g. A4\+:B5\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array All individual cells in that range 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac275f937c7da8d072a6d745478360158}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!mergeRangesInCollection@{mergeRangesInCollection}}
+\index{mergeRangesInCollection@{mergeRangesInCollection}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{mergeRangesInCollection()}{mergeRangesInCollection()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac275f937c7da8d072a6d745478360158} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::merge\+Ranges\+In\+Collection (\begin{DoxyParamCaption}\item[{array}]{\$p\+Coord\+Collection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert an associative array of single cell coordinates to values to an associative array of cell ranges to values. Only adjacent cell coordinates with the same value will be merged. If the value is an object, it must implement the method get\+Hash\+Code().
+
+For example, this function converts\+:
+
+\mbox{[} \textquotesingle{}A1\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}x\textquotesingle{}, \textquotesingle{}A2\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}x\textquotesingle{}, \textquotesingle{}A3\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}x\textquotesingle{}, \textquotesingle{}A4\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}y\textquotesingle{} \mbox{]}
+
+to\+:
+
+\mbox{[} \textquotesingle{}A1\+:A3\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}x\textquotesingle{}, \textquotesingle{}A4\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}y\textquotesingle{} \mbox{]}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$p\+Coord\+Collection} & associative array mapping coordinates to values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array associative array mapping coordinate ranges to valuea 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae50408a3a466b37f2cd80137fb5f680b}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!rangeBoundaries@{rangeBoundaries}}
+\index{rangeBoundaries@{rangeBoundaries}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{rangeBoundaries()}{rangeBoundaries()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ae50408a3a466b37f2cd80137fb5f680b} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::range\+Boundaries (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculate range boundaries.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & Cell range (e.\+g. A1\+:A1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Range coordinates \mbox{[}Start Cell, End Cell\mbox{]} where Start Cell and End Cell are arrays (Column Number, Row Number) 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_addafaf8e97ca45a6331e0b070b54586a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!rangeDimension@{rangeDimension}}
+\index{rangeDimension@{rangeDimension}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{rangeDimension()}{rangeDimension()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_addafaf8e97ca45a6331e0b070b54586a} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::range\+Dimension (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculate range dimension.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & Cell range (e.\+g. A1\+:A1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Range dimension (width, height) 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad10dc2de2ae80b3e6ba0d52ac964c85a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!splitRange@{splitRange}}
+\index{splitRange@{splitRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{splitRange()}{splitRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ad10dc2de2ae80b3e6ba0d52ac964c85a} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::split\+Range (\begin{DoxyParamCaption}\item[{}]{\$p\+Range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Split range into coordinate strings.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Range} & e.\+g. \textquotesingle{}B4\+:D9\textquotesingle{} or \textquotesingle{}B4\+:D9,H2\+:O11\textquotesingle{} or \textquotesingle{}B4\textquotesingle{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Array containing one or more arrays containing one or two coordinate strings e.\+g. \mbox{[}\textquotesingle{}B4\textquotesingle{},\textquotesingle{}D9\textquotesingle{}\mbox{]} or \mbox{[}\mbox{[}\textquotesingle{}B4\textquotesingle{},\textquotesingle{}D9\textquotesingle{}\mbox{]}, \mbox{[}\textquotesingle{}H2\textquotesingle{},\textquotesingle{}O11\textquotesingle{}\mbox{]}\mbox{]} or \mbox{[}\textquotesingle{}B4\textquotesingle{}\mbox{]} 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac559c2230a2a76afba026bb349d4ab13}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!stringFromColumnIndex@{stringFromColumnIndex}}
+\index{stringFromColumnIndex@{stringFromColumnIndex}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{stringFromColumnIndex()}{stringFromColumnIndex()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac559c2230a2a76afba026bb349d4ab13} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::string\+From\+Column\+Index (\begin{DoxyParamCaption}\item[{}]{\$column\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+String from column index.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$column\+Index} & Column index (A = 1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac60e98864c5514568be1c862172ee30b}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!validateRange@{validateRange}}
+\index{validateRange@{validateRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{validateRange()}{validateRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_ac60e98864c5514568be1c862172ee30b} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::validate\+Range (\begin{DoxyParamCaption}\item[{}]{\$cell\+Block}{, }\item[{}]{\$start\+Column\+Index}{, }\item[{}]{\$end\+Column\+Index}{, }\item[{}]{\$current\+Row}{, }\item[{}]{\$end\+Row}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Check that the given range is valid, i.\+e. that the start column and row are not greater than the end column and row.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$cell\+Block} & The original range, for displaying a meaningful error message \\
+\hline
+int & {\em \$start\+Column\+Index} & \\
+\hline
+int & {\em \$end\+Column\+Index} & \\
+\hline
+int & {\em \$current\+Row} & \\
+\hline
+int & {\em \$end\+Row} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a82207a23240a4f763a6fa783438b181c}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}!DEFAULT\_RANGE@{DEFAULT\_RANGE}}
+\index{DEFAULT\_RANGE@{DEFAULT\_RANGE}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Cell\textbackslash{}Coordinate}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_RANGE}{DEFAULT\_RANGE}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_cell_1_1_coordinate_a82207a23240a4f763a6fa783438b181c} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Cell\textbackslash{}\+Coordinate\+::\+DEFAULT\+\_\+\+RANGE = \textquotesingle{}A1\+:\+A1\textquotesingle{}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Cell/\mbox{\hyperlink{_coordinate_8php}{Coordinate.\+php}}\end{DoxyCompactItemize}

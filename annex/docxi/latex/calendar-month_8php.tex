@@ -1,0 +1,65 @@
+\doxysection{Référence du fichier C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/templates/calendar-\/month.php}
+\hypertarget{calendar-month_8php}{}\label{calendar-month_8php}\index{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/R34ICS/templates/calendar-\/month.php@{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/R34ICS/templates/calendar-\/month.php}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{build_phar_8php_a037839f2243546b3f9ed157b688de656}{if}}(empty(\$ics\+\_\+data)) global \mbox{\hyperlink{calendar-month_8php_ad4f9930eee54c316b667a2e836f947b0}{\$\+R34\+ICS}}
+\item 
+global \mbox{\hyperlink{calendar-month_8php_aaba5e23491b8d38c1923f129c959e3b8}{\$wp\+\_\+locale}}
+\item 
+\mbox{\hyperlink{calendar-month_8php_a7760a2a2d450bb7e60a2a22df57a5dd1}{\$days\+\_\+of\+\_\+week}} = \$\mbox{\hyperlink{class_r34_i_c_s}{R34\+ICS}}-\/$>$get\+\_\+days\+\_\+of\+\_\+week()
+\item 
+\mbox{\hyperlink{calendar-month_8php_ab3734e1a519c6f80e833484d2d660c65}{\$start\+\_\+of\+\_\+week}} = get\+\_\+option(\textquotesingle{}start\+\_\+of\+\_\+week\textquotesingle{}, 0)
+\item 
+\mbox{\hyperlink{calendar-month_8php_af1b7fb9d06cdc6d22c14741fc3cc185a}{\$today}} = date\+\_\+i18n(\textquotesingle{}Ymd\textquotesingle{}, current\+\_\+time(\textquotesingle{}timestamp\textquotesingle{}))
+\item 
+\mbox{\hyperlink{calendar-month_8php_a842195cd239e6e6f51a03d70b2bcbcbc}{\$ics\+\_\+calendar\+\_\+classes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des variables}
+\Hypertarget{calendar-month_8php_a7760a2a2d450bb7e60a2a22df57a5dd1}\index{calendar-\/month.php@{calendar-\/month.php}!\$days\_of\_week@{\$days\_of\_week}}
+\index{\$days\_of\_week@{\$days\_of\_week}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$days\_of\_week}{\$days\_of\_week}}
+{\footnotesize\ttfamily \label{calendar-month_8php_a7760a2a2d450bb7e60a2a22df57a5dd1} 
+\$days\+\_\+of\+\_\+week = \$\mbox{\hyperlink{class_r34_i_c_s}{R34\+ICS}}-\/$>$get\+\_\+days\+\_\+of\+\_\+week()}
+
+\Hypertarget{calendar-month_8php_a842195cd239e6e6f51a03d70b2bcbcbc}\index{calendar-\/month.php@{calendar-\/month.php}!\$ics\_calendar\_classes@{\$ics\_calendar\_classes}}
+\index{\$ics\_calendar\_classes@{\$ics\_calendar\_classes}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$ics\_calendar\_classes}{\$ics\_calendar\_classes}}
+{\footnotesize\ttfamily \label{calendar-month_8php_a842195cd239e6e6f51a03d70b2bcbcbc} 
+\$ics\+\_\+calendar\+\_\+classes}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'ics-\/calendar'},}
+\DoxyCodeLine{\ \ \ \ (!empty(\mbox{\hyperlink{themes_2theme-ecran-connecte_2_functions_8php_a67e94494731d99ed23b123e95175bc10}{\$args}}[\textcolor{stringliteral}{'hidetimes'}])\ ?\ \textcolor{stringliteral}{'\ hide\_times'}\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{\ \ \ \ (!empty(\mbox{\hyperlink{themes_2theme-ecran-connecte_2_functions_8php_a67e94494731d99ed23b123e95175bc10}{\$args}}[\textcolor{stringliteral}{'toggle'}])\ ?\ \textcolor{stringliteral}{'\ toggle'}\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{calendar-month_8php_ad4f9930eee54c316b667a2e836f947b0}\index{calendar-\/month.php@{calendar-\/month.php}!\$R34ICS@{\$R34ICS}}
+\index{\$R34ICS@{\$R34ICS}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$R34ICS}{\$R34ICS}}
+{\footnotesize\ttfamily \label{calendar-month_8php_ad4f9930eee54c316b667a2e836f947b0} 
+\mbox{\hyperlink{build_phar_8php_a037839f2243546b3f9ed157b688de656}{if}} (empty( \$ics\+\_\+data)) global \$\mbox{\hyperlink{class_r34_i_c_s}{R34\+ICS}}}
+
+\Hypertarget{calendar-month_8php_ab3734e1a519c6f80e833484d2d660c65}\index{calendar-\/month.php@{calendar-\/month.php}!\$start\_of\_week@{\$start\_of\_week}}
+\index{\$start\_of\_week@{\$start\_of\_week}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$start\_of\_week}{\$start\_of\_week}}
+{\footnotesize\ttfamily \label{calendar-month_8php_ab3734e1a519c6f80e833484d2d660c65} 
+\$start\+\_\+of\+\_\+week = get\+\_\+option(\textquotesingle{}start\+\_\+of\+\_\+week\textquotesingle{}, 0)}
+
+\Hypertarget{calendar-month_8php_af1b7fb9d06cdc6d22c14741fc3cc185a}\index{calendar-\/month.php@{calendar-\/month.php}!\$today@{\$today}}
+\index{\$today@{\$today}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$today}{\$today}}
+{\footnotesize\ttfamily \label{calendar-month_8php_af1b7fb9d06cdc6d22c14741fc3cc185a} 
+\$today = date\+\_\+i18n(\textquotesingle{}Ymd\textquotesingle{}, current\+\_\+time(\textquotesingle{}timestamp\textquotesingle{}))}
+
+\Hypertarget{calendar-month_8php_aaba5e23491b8d38c1923f129c959e3b8}\index{calendar-\/month.php@{calendar-\/month.php}!\$wp\_locale@{\$wp\_locale}}
+\index{\$wp\_locale@{\$wp\_locale}!calendar-\/month.php@{calendar-\/month.php}}
+\doxysubsubsection{\texorpdfstring{\$wp\_locale}{\$wp\_locale}}
+{\footnotesize\ttfamily \label{calendar-month_8php_aaba5e23491b8d38c1923f129c959e3b8} 
+global \$wp\+\_\+locale}
+

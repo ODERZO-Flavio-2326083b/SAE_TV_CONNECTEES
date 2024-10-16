@@ -1,0 +1,1359 @@
+\doxysection{Référence de la classe PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}
+\hypertarget{class_p_h_p___code_sniffer___file}{}\label{class_p_h_p___code_sniffer___file}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_accab91ce38c51bbb29ae2acd9913ca85}{\+\_\+\+\_\+construct}} ( \$file, array \$listeners, array \$ruleset, \mbox{\hyperlink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer}} \$phpcs)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ae2921ae5fe99cb173722f0cd393926f1}{set\+Active\+Listener}} (\$active\+Listener)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a4a0ba185a24afafc77a31b170981c5e5}{add\+Token\+Listener}} (\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff}} \$listener, array \$tokens)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5f8f1710d9e4bd74bb643597c4fa308e}{remove\+Token\+Listener}} (\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff}} \$listener, array \$tokens)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ac9fd6ae261686c1bad56a14edebd8a31}{refresh\+Token\+Listeners}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a3a76effbc45e1834ce11e60b6ab57b69}{get\+Tokens}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}} (\$contents=null)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a0fe78a322597b96fe8bb5a1e85ecccac}{clean\+Up}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a085a6821fa5abc6e010147871cbd1aa5}{add\+Error}} ( \$error, \$stack\+Ptr, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0, \$fixable=false)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a31e4cf232591bbfc69fc28d700b2170b}{add\+Warning}} ( \$warning, \$stack\+Ptr, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0, \$fixable=false)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a8ff6afc96ef1c50f2f81a8c18e01f036}{add\+Error\+On\+Line}} ( \$error, \$line, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a37eea25aa145b8b9c83256b3b038f616}{add\+Warning\+On\+Line}} ( \$warning, \$line, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a26c6473f74f72b79f030847e6d7527a4}{add\+Fixable\+Error}} ( \$error, \$stack\+Ptr, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5c14c17e1c175061dea12eff8863d79b}{add\+Fixable\+Warning}} ( \$warning, \$stack\+Ptr, \$code=\textquotesingle{}\textquotesingle{}, \$data=array(), \$severity=0)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad4a1c1c500637b13d75c3c3386875de1}{record\+Metric}} (\$stack\+Ptr, \$metric, \$value)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a3baa80754116dd427a64bd85b347649e}{get\+Error\+Count}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a39d0d7059356dba7c722de8fe20c9d79}{get\+Warning\+Count}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad8537752edc7c0ab5df4d08d0573e7df}{get\+Success\+Count}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a1cb3eee0a7834af9ffb9b61faa759069}{get\+Fixable\+Count}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a3fb80c8e0451f6bd218057dd56de76bc}{get\+Ignored\+Lines}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_afb2cbb8c61f6ec9ab099b4dba82d2751}{get\+Errors}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a409f84f7fcc90fc14d4b0f3e5e572826}{get\+Warnings}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a07e47d4cee78427a6da8dbe0cf3767ea}{get\+Metrics}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad5c208894100b73d9f13d7659cb84994}{get\+Filename}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_afba361906f500b19497e51872a6f65af}{get\+Declaration\+Name}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a7423a965b181f28bde966d0aed22ddd3}{is\+Anonymous\+Function}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_adceaf2838f80e2c56221daa9d5dadb48}{get\+Method\+Parameters}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a47f872993bcddd209a364044485de034}{get\+Method\+Properties}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad35b9d25546c071a3b5c87fefcc4017b}{get\+Member\+Properties}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa3c7fbf5658ef9fb9151c452ca6b24f3}{get\+Class\+Properties}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_afd32a1f7f7fb98878b07d1eb12bd7f0b}{is\+Reference}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5475bc897fc191dc3e4334ce4c01f6fd}{get\+Tokens\+As\+String}} (\$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$length)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa2a9c55f670bbf424d4d2e263f004034}{find\+Previous}} ( \$types, \$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$end=null, \$exclude=false, \$value=null, \$local=false)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a73854e076749b641318b4e278f0168da}{find\+Next}} ( \$types, \$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$end=null, \$exclude=false, \$value=null, \$local=false)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a0cbb62c2c1cf47bb2ce5fc523cc60e7b}{find\+Start\+Of\+Statement}} (\$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$ignore=null)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa3b62ef091453bd663ed0790a61409f3}{find\+End\+Of\+Statement}} (\$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$ignore=null)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ac17f0e09d9f574d8e3126e60fcd501c2}{find\+First\+On\+Line}} (\$types, \$\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}{start}}, \$exclude=false, \$value=null)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a25e74d7c134d7532a4cefcbdaaf99713}{has\+Condition}} (\$stack\+Ptr, \$types)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a801f2f11deb1064141e61c0c98db2476}{get\+Condition}} (\$stack\+Ptr, \$type)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aeb6fb54ca27d9e6d3e6493394c1557f5}{find\+Extended\+Class\+Name}} (\$stack\+Ptr)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa6402953033e80d2e772543c399cb54c}{find\+Implemented\+Interface\+Names}} (\$stack\+Ptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_ac340c223c3f999a05ce72a5248878b0b}{detect\+Line\+Endings}} (\$file, \$contents=null)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad3e35123f9035410c5963dafc5fd34a6}{tokenize\+String}} (\$string, \$tokenizer, \$eol\+Char=\textquotesingle{}\textbackslash{}n\textquotesingle{}, \$tab\+Width=null, \$encoding=null)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a59bb4fa8a34b474e608ff02cc7316283}{\$eol\+Char}} = \textquotesingle{}\textquotesingle{}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ad76878fe50e37fccd2164f5ec0b4eae5}{\$phpcs}} = null
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a415de4a9404fae882fa7c9c2c8be131d}{\$fixer}} = null
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ae7728ace5683b96c58d9d2f467a8d660}{\$tokenizer}} = null
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a30c7b5f1e1a905c09ef0fe0e62032077}{\$tokenizer\+Type}} = \textquotesingle{}PHP\textquotesingle{}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_af1fb3100dc21074be37dbf3a0889a598}{\$num\+Tokens}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a6aec482a6b3e5d67136a209bbc04c310}{\$ruleset}} = array()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_afbc3a1e3b7eaf88e1e9dd5316a39d114}{\+\_\+parse}} (\$contents=null)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ace14d2fe5595e6d5bb6d41739a9aa16c}{\+\_\+add\+Error}} (\$error, \$line, \$column, \$code, \$data, \$severity, \$fixable)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a160252db669f36f4a1cd1bc5a1ad021b}{\+\_\+add\+Warning}} (\$warning, \$line, \$column, \$code, \$data, \$severity, \$fixable)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_aeaa4f9311980f7371dd13ee17c767962}{\+\_\+create\+Position\+Map}} (\&\$tokens, \$tokenizer, \$eol\+Char, \$encoding, \$tab\+Width)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_a2c6c87c3af1c626eee44133035c53b3b}{\+\_\+create\+Token\+Map}} (\&\$tokens, \$tokenizer, \$eol\+Char)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_a4aca3490230e83684b36d19121e066fb}{\+\_\+create\+Parenthesis\+Nesting\+Map}} (\&\$tokens, \$tokenizer, \$eol\+Char)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_a4f6f662a1d5ddd442674e6512ae4c799}{\+\_\+create\+Scope\+Map}} (\&\$tokens, \$tokenizer, \$eol\+Char)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_a7e46a344ff57121bd54a71dfbf3478e7}{\+\_\+recurse\+Scope\+Map}} (\&\$tokens, \$num\+Tokens, \$tokenizer, \$eol\+Char, \$stack\+Ptr, \$depth=1, \&\$ignore=0)
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_aac9e3df5595ce7234e4b637479a29c5a}{\+\_\+create\+Level\+Map}} (\&\$tokens, \$tokenizer, \$eol\+Char)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a3f256827906c0b4835a87714ca06f046}{\$\+\_\+file}} = \textquotesingle{}\textquotesingle{}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a017579ba8901df453cb2a42fddd15f0b}{\$\+\_\+tokens}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa18b5c7e562d243a146500b444b5ecdd}{\$\+\_\+errors}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ac17f9ee77f4739d172cee8e24e1a8e34}{\$\+\_\+warnings}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a99825d0c26f37c9c86a57c41184438b7}{\$\+\_\+metrics}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aa80fcaaa7ff351f69444261e732cf10c}{\$\+\_\+record\+Errors}} = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a90e74f8f47f776d5ccfde2c9fbd221b2}{\$\+\_\+ignored\+Listeners}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a7761fa7b46bf14177e94f9bfc35026e1}{\$\+\_\+ignored\+Codes}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a612b3570f1b00cd114e5c93aef68cbcd}{\$\+\_\+error\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_aad8f00391abfc79827d418fc292e4672}{\$\+\_\+warning\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a73c279f5226ceb19eee60221aa7f4b35}{\$\+\_\+fixable\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_ae05df0ad2a924173d9f0479f231b1694}{\$\+\_\+listeners}} = array()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a62fbd9e5a883825c071d1ccd3aed6809}{\$\+\_\+active\+Listener}} = \textquotesingle{}\textquotesingle{}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___file_a33f7ac8c6daeb49777fe289d27502d33}{\$\+\_\+listener\+Times}} = array()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_p_h_p___code_sniffer___file_a2ef4d60d89c6d67581ede74caf4fda82}{\$\+\_\+ignored\+Lines}} = array()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_p_h_p___code_sniffer___file_accab91ce38c51bbb29ae2acd9913ca85}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_accab91ce38c51bbb29ae2acd9913ca85} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$file}{, }\item[{array}]{\$listeners}{, }\item[{array}]{\$ruleset}{, }\item[{\mbox{\hyperlink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer}}}]{\$phpcs}{}\end{DoxyParamCaption})}
+
+Constructs a \doxylink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$file} & The absolute path to the file to process. \\
+\hline
+ & {\em array(string)} & \$listeners The initial listeners listening to processing of this file. to processing of this file. \\
+\hline
+array & {\em \$ruleset} & An array of rules from the ruleset.\+xml file. ruleset.\+xml file. \\
+\hline
+\doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} & {\em \$phpcs} & The \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} object controlling this run. this run.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the register() method does not return an array. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_p_h_p___code_sniffer___file_ace14d2fe5595e6d5bb6d41739a9aa16c}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_addError@{\_addError}}
+\index{\_addError@{\_addError}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_addError()}{\_addError()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ace14d2fe5595e6d5bb6d41739a9aa16c} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+add\+Error (\begin{DoxyParamCaption}\item[{}]{\$error}{, }\item[{}]{\$line}{, }\item[{}]{\$column}{, }\item[{}]{\$code}{, }\item[{}]{\$data}{, }\item[{}]{\$severity}{, }\item[{}]{\$fixable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Adds an error to the error stack.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$error} & The error message. \\
+\hline
+int & {\em \$line} & The line on which the error occurred. \\
+\hline
+int & {\em \$column} & The column at which the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the error message. \\
+\hline
+int & {\em \$severity} & The severity level for this error. A value of 0 will be converted into the default severity level. \\
+\hline
+boolean & {\em \$fixable} & Can the error be fixed by the sniff?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a160252db669f36f4a1cd1bc5a1ad021b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_addWarning@{\_addWarning}}
+\index{\_addWarning@{\_addWarning}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_addWarning()}{\_addWarning()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a160252db669f36f4a1cd1bc5a1ad021b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+add\+Warning (\begin{DoxyParamCaption}\item[{}]{\$warning}{, }\item[{}]{\$line}{, }\item[{}]{\$column}{, }\item[{}]{\$code}{, }\item[{}]{\$data}{, }\item[{}]{\$severity}{, }\item[{}]{\$fixable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Adds an warning to the warning stack.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$warning} & The error message. \\
+\hline
+int & {\em \$line} & The line on which the warning occurred. \\
+\hline
+int & {\em \$column} & The column at which the warning occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the warning message. \\
+\hline
+int & {\em \$severity} & The severity level for this warning. A value of 0 will be converted into the default severity level. \\
+\hline
+boolean & {\em \$fixable} & Can the warning be fixed by the sniff?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_aac9e3df5595ce7234e4b637479a29c5a}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_createLevelMap@{\_createLevelMap}}
+\index{\_createLevelMap@{\_createLevelMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_createLevelMap()}{\_createLevelMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aac9e3df5595ce7234e4b637479a29c5a} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+create\+Level\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Constructs the level map.
+
+The level map adds a \textquotesingle{}level\textquotesingle{} index to each token which indicates the depth that a token within a set of scope blocks. It also adds a \textquotesingle{}condition\textquotesingle{} index which is an array of the scope conditions that opened each of the scopes -\/ position 0 being the first scope opener.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a4aca3490230e83684b36d19121e066fb}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_createParenthesisNestingMap@{\_createParenthesisNestingMap}}
+\index{\_createParenthesisNestingMap@{\_createParenthesisNestingMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_createParenthesisNestingMap()}{\_createParenthesisNestingMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a4aca3490230e83684b36d19121e066fb} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+create\+Parenthesis\+Nesting\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Creates a map for the parenthesis tokens that surround other tokens.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_aeaa4f9311980f7371dd13ee17c767962}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_createPositionMap@{\_createPositionMap}}
+\index{\_createPositionMap@{\_createPositionMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_createPositionMap()}{\_createPositionMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aeaa4f9311980f7371dd13ee17c767962} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+create\+Position\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{, }\item[{}]{\$encoding}{, }\item[{}]{\$tab\+Width}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Sets token position information.
+
+Can also convert tabs into spaces. Each tab can represent between 1 and \$width spaces, so this cannot be a straight string replace.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings. \\
+\hline
+string & {\em \$encoding} & The charset of the sniffed file. \\
+\hline
+int & {\em \$tab\+Width} & The number of spaces that each tab represents. Set to 0 to disable tab replacement.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a4f6f662a1d5ddd442674e6512ae4c799}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_createScopeMap@{\_createScopeMap}}
+\index{\_createScopeMap@{\_createScopeMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_createScopeMap()}{\_createScopeMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a4f6f662a1d5ddd442674e6512ae4c799} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+create\+Scope\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Creates a scope map of tokens that open scopes.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___file_a7e46a344ff57121bd54a71dfbf3478e7}{\+\_\+recurse\+Scope\+Map()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_p_h_p___code_sniffer___file_a2c6c87c3af1c626eee44133035c53b3b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_createTokenMap@{\_createTokenMap}}
+\index{\_createTokenMap@{\_createTokenMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_createTokenMap()}{\_createTokenMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a2c6c87c3af1c626eee44133035c53b3b} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+create\+Token\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Creates a map of brackets positions.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_afbc3a1e3b7eaf88e1e9dd5316a39d114}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_parse@{\_parse}}
+\index{\_parse@{\_parse}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_parse()}{\_parse()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_afbc3a1e3b7eaf88e1e9dd5316a39d114} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+parse (\begin{DoxyParamCaption}\item[{}]{\$contents}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Tokenizes the file and prepares it for the test run.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$contents} & The contents to parse. If NULL, the content is taken from the file system.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a7e46a344ff57121bd54a71dfbf3478e7}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\_recurseScopeMap@{\_recurseScopeMap}}
+\index{\_recurseScopeMap@{\_recurseScopeMap}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\_recurseScopeMap()}{\_recurseScopeMap()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a7e46a344ff57121bd54a71dfbf3478e7} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\+\_\+recurse\+Scope\+Map (\begin{DoxyParamCaption}\item[{\&}]{\$tokens}{, }\item[{}]{\$num\+Tokens}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{, }\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$depth}{ = {\ttfamily 1}, }\item[{\&}]{\$ignore}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Recurses though the scope openers to build a scope map.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tokens} & The array of tokens to process. \\
+\hline
+int & {\em \$num\+Tokens} & The size of the tokens array. \\
+\hline
+object & {\em \$tokenizer} & The tokenizer being used to process this file. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings. \\
+\hline
+int & {\em \$stack\+Ptr} & The position in the stack of the token that opened the scope (eg. an IF token or FOR token). \\
+\hline
+int & {\em \$depth} & How many scope levels down we are. \\
+\hline
+int & {\em \$ignore} & How many curly braces we are ignoring.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int The position in the stack that closed the scope. 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a085a6821fa5abc6e010147871cbd1aa5}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addError@{addError}}
+\index{addError@{addError}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addError()}{addError()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a085a6821fa5abc6e010147871cbd1aa5} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Error (\begin{DoxyParamCaption}\item[{}]{\$error}{, }\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}, }\item[{}]{\$fixable}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Records an error against a specific token in the file.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$error} & The error message. \\
+\hline
+int & {\em \$stack\+Ptr} & The stack position where the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the error message. \\
+\hline
+int & {\em \$severity} & The severity level for this error. A value of 0 will be converted into the default severity level. \\
+\hline
+boolean & {\em \$fixable} & Can the error be fixed by the sniff?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a8ff6afc96ef1c50f2f81a8c18e01f036}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addErrorOnLine@{addErrorOnLine}}
+\index{addErrorOnLine@{addErrorOnLine}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addErrorOnLine()}{addErrorOnLine()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a8ff6afc96ef1c50f2f81a8c18e01f036} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Error\+On\+Line (\begin{DoxyParamCaption}\item[{}]{\$error}{, }\item[{}]{\$line}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Records an error against a specific line in the file.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$error} & The error message. \\
+\hline
+int & {\em \$line} & The line on which the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the error message. \\
+\hline
+int & {\em \$severity} & The severity level for this error. A value of 0 will be converted into the default severity level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a26c6473f74f72b79f030847e6d7527a4}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addFixableError@{addFixableError}}
+\index{addFixableError@{addFixableError}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addFixableError()}{addFixableError()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a26c6473f74f72b79f030847e6d7527a4} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Fixable\+Error (\begin{DoxyParamCaption}\item[{}]{\$error}{, }\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Records a fixable error against a specific token in the file.
+
+Returns true if the error was recorded and should be fixed.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$error} & The error message. \\
+\hline
+int & {\em \$stack\+Ptr} & The stack position where the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the error message. \\
+\hline
+int & {\em \$severity} & The severity level for this error. A value of 0 will be converted into the default severity level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a5c14c17e1c175061dea12eff8863d79b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addFixableWarning@{addFixableWarning}}
+\index{addFixableWarning@{addFixableWarning}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addFixableWarning()}{addFixableWarning()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a5c14c17e1c175061dea12eff8863d79b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Fixable\+Warning (\begin{DoxyParamCaption}\item[{}]{\$warning}{, }\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Records a fixable warning against a specific token in the file.
+
+Returns true if the warning was recorded and should be fixed.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$warning} & The error message. \\
+\hline
+int & {\em \$stack\+Ptr} & The stack position where the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the warning message. \\
+\hline
+int & {\em \$severity} & The severity level for this warning. A value of 0 will be converted into the default severity level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a4a0ba185a24afafc77a31b170981c5e5}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addTokenListener@{addTokenListener}}
+\index{addTokenListener@{addTokenListener}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addTokenListener()}{addTokenListener()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a4a0ba185a24afafc77a31b170981c5e5} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Token\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff}}}]{\$listener}{, }\item[{array}]{\$tokens}{}\end{DoxyParamCaption})}
+
+Adds a listener to the token stack that listens to the specific tokens.
+
+When \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} encounters on the the tokens specified in \$tokens, it invokes the process method of the sniff.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff} & {\em \$listener} & The listener to add to the listener stack. \\
+\hline
+ & {\em array(int)} & \$tokens The token types the listener wishes to listen to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a31e4cf232591bbfc69fc28d700b2170b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addWarning@{addWarning}}
+\index{addWarning@{addWarning}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addWarning()}{addWarning()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a31e4cf232591bbfc69fc28d700b2170b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Warning (\begin{DoxyParamCaption}\item[{}]{\$warning}{, }\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}, }\item[{}]{\$fixable}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Records a warning against a specific token in the file.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$warning} & The error message. \\
+\hline
+int & {\em \$stack\+Ptr} & The stack position where the error occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the warning message. \\
+\hline
+int & {\em \$severity} & The severity level for this warning. A value of 0 will be converted into the default severity level. \\
+\hline
+boolean & {\em \$fixable} & Can the warning be fixed by the sniff?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a37eea25aa145b8b9c83256b3b038f616}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!addWarningOnLine@{addWarningOnLine}}
+\index{addWarningOnLine@{addWarningOnLine}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{addWarningOnLine()}{addWarningOnLine()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a37eea25aa145b8b9c83256b3b038f616} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::add\+Warning\+On\+Line (\begin{DoxyParamCaption}\item[{}]{\$warning}{, }\item[{}]{\$line}{, }\item[{}]{\$code}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$data}{ = {\ttfamily array()}, }\item[{}]{\$severity}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Records a warning against a specific token in the file.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$warning} & The error message. \\
+\hline
+int & {\em \$line} & The line on which the warning occurred. \\
+\hline
+string & {\em \$code} & A violation code unique to the sniff message. \\
+\hline
+array & {\em \$data} & Replacements for the warning message. \\
+\hline
+int & {\em \$severity} & The severity level for this warning. A value of 0 will be converted into the default severity level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a0fe78a322597b96fe8bb5a1e85ecccac}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!cleanUp@{cleanUp}}
+\index{cleanUp@{cleanUp}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{cleanUp()}{cleanUp()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a0fe78a322597b96fe8bb5a1e85ecccac} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::clean\+Up (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Remove vars stored in this file that are no longer required.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ac340c223c3f999a05ce72a5248878b0b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!detectLineEndings@{detectLineEndings}}
+\index{detectLineEndings@{detectLineEndings}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{detectLineEndings()}{detectLineEndings()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ac340c223c3f999a05ce72a5248878b0b} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::detect\+Line\+Endings (\begin{DoxyParamCaption}\item[{}]{\$file}{, }\item[{}]{\$contents}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Opens a file and detects the EOL character being used.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$file} & The full path to the file. \\
+\hline
+string & {\em \$contents} & The contents to parse. If NULL, the content is taken from the file system.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If \$file could not be opened. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_aa3b62ef091453bd663ed0790a61409f3}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findEndOfStatement@{findEndOfStatement}}
+\index{findEndOfStatement@{findEndOfStatement}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findEndOfStatement()}{findEndOfStatement()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa3b62ef091453bd663ed0790a61409f3} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+End\+Of\+Statement (\begin{DoxyParamCaption}\item[{}]{\$start}{, }\item[{}]{\$ignore}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Returns the position of the last non-\/whitespace token in a statement.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$start} & The position to start searching from in the token stack. \\
+\hline
+int | array & {\em \$ignore} & Token types that should not be considered stop points.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_aeb6fb54ca27d9e6d3e6493394c1557f5}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findExtendedClassName@{findExtendedClassName}}
+\index{findExtendedClassName@{findExtendedClassName}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findExtendedClassName()}{findExtendedClassName()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aeb6fb54ca27d9e6d3e6493394c1557f5} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+Extended\+Class\+Name (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the name of the class that the specified class extends.
+
+Returns FALSE on error or if there is no extended class name.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The stack position of the class.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ac17f0e09d9f574d8e3126e60fcd501c2}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findFirstOnLine@{findFirstOnLine}}
+\index{findFirstOnLine@{findFirstOnLine}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findFirstOnLine()}{findFirstOnLine()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ac17f0e09d9f574d8e3126e60fcd501c2} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+First\+On\+Line (\begin{DoxyParamCaption}\item[{}]{\$types}{, }\item[{}]{\$start}{, }\item[{}]{\$exclude}{ = {\ttfamily false}, }\item[{}]{\$value}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Returns the position of the first token on a line, matching given type.
+
+Returns false if no token can be found.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | array & {\em \$types} & The type(s) of tokens to search for. \\
+\hline
+int & {\em \$start} & The position to start searching from in the token stack. The first token matching on this line before this token will be returned. \\
+\hline
+bool & {\em \$exclude} & If true, find the token that is NOT of the types specified in \$types. \\
+\hline
+string & {\em \$value} & The value that the token must be equal to. If value is omitted, tokens with any value will be returned.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int \texorpdfstring{$\vert$}{|} bool 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_aa6402953033e80d2e772543c399cb54c}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findImplementedInterfaceNames@{findImplementedInterfaceNames}}
+\index{findImplementedInterfaceNames@{findImplementedInterfaceNames}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findImplementedInterfaceNames()}{findImplementedInterfaceNames()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa6402953033e80d2e772543c399cb54c} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+Implemented\+Interface\+Names (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the name(s) of the interface(s) that the specified class implements.
+
+Returns FALSE on error or if there are no implemented interface names.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The stack position of the class.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}false 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a73854e076749b641318b4e278f0168da}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findNext@{findNext}}
+\index{findNext@{findNext}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findNext()}{findNext()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a73854e076749b641318b4e278f0168da} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+Next (\begin{DoxyParamCaption}\item[{}]{\$types}{, }\item[{}]{\$start}{, }\item[{}]{\$end}{ = {\ttfamily null}, }\item[{}]{\$exclude}{ = {\ttfamily false}, }\item[{}]{\$value}{ = {\ttfamily null}, }\item[{}]{\$local}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Returns the position of the next specified token(s).
+
+If a value is specified, the next token of the specified type(s) containing the specified value will be returned.
+
+Returns false if no token can be found.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | array & {\em \$types} & The type(s) of tokens to search for. \\
+\hline
+int & {\em \$start} & The position to start searching from in the token stack. \\
+\hline
+int & {\em \$end} & The end position to fail if no token is found. if not specified or null, end will default to the end of the token stack. \\
+\hline
+bool & {\em \$exclude} & If true, find the next token that is NOT of a type specified in \$types. \\
+\hline
+string & {\em \$value} & The value that the token(s) must be equal to. If value is omitted, tokens with any value will be returned. \\
+\hline
+bool & {\em \$local} & If true, tokens outside the current statement will not be checked. i.\+e., checking will stop at the next semi-\/colon found.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int\texorpdfstring{$\vert$}{|}bool 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___file_aa2a9c55f670bbf424d4d2e263f004034}{find\+Previous()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_p_h_p___code_sniffer___file_aa2a9c55f670bbf424d4d2e263f004034}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findPrevious@{findPrevious}}
+\index{findPrevious@{findPrevious}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findPrevious()}{findPrevious()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa2a9c55f670bbf424d4d2e263f004034} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+Previous (\begin{DoxyParamCaption}\item[{}]{\$types}{, }\item[{}]{\$start}{, }\item[{}]{\$end}{ = {\ttfamily null}, }\item[{}]{\$exclude}{ = {\ttfamily false}, }\item[{}]{\$value}{ = {\ttfamily null}, }\item[{}]{\$local}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Returns the position of the previous specified token(s).
+
+If a value is specified, the previous token of the specified type(s) containing the specified value will be returned.
+
+Returns false if no token can be found.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int | array & {\em \$types} & The type(s) of tokens to search for. \\
+\hline
+int & {\em \$start} & The position to start searching from in the token stack. \\
+\hline
+int & {\em \$end} & The end position to fail if no token is found. if not specified or null, end will default to the start of the token stack. \\
+\hline
+bool & {\em \$exclude} & If true, find the previous token that are NOT of the types specified in \$types. \\
+\hline
+string & {\em \$value} & The value that the token(s) must be equal to. If value is omitted, tokens with any value will be returned. \\
+\hline
+bool & {\em \$local} & If true, tokens outside the current statement will not be checked. IE. checking will stop at the previous semi-\/colon found.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int\texorpdfstring{$\vert$}{|}bool 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___file_a73854e076749b641318b4e278f0168da}{find\+Next()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_p_h_p___code_sniffer___file_a0cbb62c2c1cf47bb2ce5fc523cc60e7b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!findStartOfStatement@{findStartOfStatement}}
+\index{findStartOfStatement@{findStartOfStatement}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{findStartOfStatement()}{findStartOfStatement()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a0cbb62c2c1cf47bb2ce5fc523cc60e7b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::find\+Start\+Of\+Statement (\begin{DoxyParamCaption}\item[{}]{\$start}{, }\item[{}]{\$ignore}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Returns the position of the first non-\/whitespace token in a statement.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$start} & The position to start searching from in the token stack. \\
+\hline
+int | array & {\em \$ignore} & Token types that should not be considered stop points.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_aa3c7fbf5658ef9fb9151c452ca6b24f3}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getClassProperties@{getClassProperties}}
+\index{getClassProperties@{getClassProperties}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getClassProperties()}{getClassProperties()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa3c7fbf5658ef9fb9151c452ca6b24f3} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Class\+Properties (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the visibility and implementation properties of a class.
+
+The format of the array is\+: {\ttfamily  array( \textquotesingle{}is\+\_\+abstract\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the abstract keyword was found. \textquotesingle{}is\+\_\+final\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the final keyword was found. ); }
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position in the stack of the T\+\_\+\+CLASS token to acquire the properties for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified position is not a T\+\_\+\+CLASS token. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_a801f2f11deb1064141e61c0c98db2476}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getCondition@{getCondition}}
+\index{getCondition@{getCondition}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getCondition()}{getCondition()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a801f2f11deb1064141e61c0c98db2476} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Condition (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$type}{}\end{DoxyParamCaption})}
+
+Return the position of the condition for the passed token.
+
+Returns FALSE if the token does not have the condition.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position of the token we are checking. \\
+\hline
+int & {\em \$type} & The type of token to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_afba361906f500b19497e51872a6f65af}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getDeclarationName@{getDeclarationName}}
+\index{getDeclarationName@{getDeclarationName}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getDeclarationName()}{getDeclarationName()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_afba361906f500b19497e51872a6f65af} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Declaration\+Name (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the declaration names for classes, interfaces, and functions.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position of the declaration token which declared the class, interface, trait or function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null The name of the class, interface or function. or NULL if the function or class is anonymous. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified token is not of type T\+\_\+\+FUNCTION, T\+\_\+\+CLASS, T\+\_\+\+ANON\+\_\+\+CLASS, T\+\_\+\+TRAIT or T\+\_\+\+INTERFACE. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_a3baa80754116dd427a64bd85b347649e}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getErrorCount@{getErrorCount}}
+\index{getErrorCount@{getErrorCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getErrorCount()}{getErrorCount()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a3baa80754116dd427a64bd85b347649e} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Error\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the number of errors raised.
+
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_afb2cbb8c61f6ec9ab099b4dba82d2751}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getErrors@{getErrors}}
+\index{getErrors@{getErrors}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getErrors()}{getErrors()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_afb2cbb8c61f6ec9ab099b4dba82d2751} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Errors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the errors raised from processing this file.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ad5c208894100b73d9f13d7659cb84994}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getFilename@{getFilename}}
+\index{getFilename@{getFilename}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getFilename()}{getFilename()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad5c208894100b73d9f13d7659cb84994} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Filename (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the absolute filename of this file.
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a1cb3eee0a7834af9ffb9b61faa759069}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getFixableCount@{getFixableCount}}
+\index{getFixableCount@{getFixableCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getFixableCount()}{getFixableCount()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a1cb3eee0a7834af9ffb9b61faa759069} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Fixable\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the number of fixable errors/warnings raised.
+
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a3fb80c8e0451f6bd218057dd56de76bc}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getIgnoredLines@{getIgnoredLines}}
+\index{getIgnoredLines@{getIgnoredLines}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getIgnoredLines()}{getIgnoredLines()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a3fb80c8e0451f6bd218057dd56de76bc} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Ignored\+Lines (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the list of ignored lines.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ad35b9d25546c071a3b5c87fefcc4017b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getMemberProperties@{getMemberProperties}}
+\index{getMemberProperties@{getMemberProperties}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getMemberProperties()}{getMemberProperties()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad35b9d25546c071a3b5c87fefcc4017b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Member\+Properties (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the visibility and implementation properties of the class member variable found at the specified position in the stack.
+
+The format of the array is\+:
+
+{\ttfamily  array( \textquotesingle{}scope\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}public\textquotesingle{}, // public private or protected \textquotesingle{}is\+\_\+static\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the static keyword was found. ); }
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position in the stack of the T\+\_\+\+VARIABLE token to acquire the properties for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified position is not a T\+\_\+\+VARIABLE token, or if the position is not a class member variable. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_adceaf2838f80e2c56221daa9d5dadb48}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getMethodParameters@{getMethodParameters}}
+\index{getMethodParameters@{getMethodParameters}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getMethodParameters()}{getMethodParameters()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_adceaf2838f80e2c56221daa9d5dadb48} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Method\+Parameters (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the method parameters for the specified function token.
+
+Each parameter is in the following format\+:
+
+{\ttfamily  0 =\texorpdfstring{$>$}{>} array( \textquotesingle{}token\textquotesingle{} =\texorpdfstring{$>$}{>} int, // The position of the var in the token stack. \textquotesingle{}name\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}\$var\textquotesingle{}, // The variable name. \textquotesingle{}content\textquotesingle{} =\texorpdfstring{$>$}{>} string, // The full content of the variable definition. \textquotesingle{}pass\+\_\+by\+\_\+reference\textquotesingle{} =\texorpdfstring{$>$}{>} boolean, // Is the variable passed by reference? \textquotesingle{}variable\+\_\+length\textquotesingle{} =\texorpdfstring{$>$}{>} boolean, // Is the param of variable length through use of {\ttfamily ...} ? \textquotesingle{}type\+\_\+hint\textquotesingle{} =\texorpdfstring{$>$}{>} string, // The type hint for the variable. \textquotesingle{}nullable\+\_\+type\textquotesingle{} =\texorpdfstring{$>$}{>} boolean, // Is the variable using a nullable type? ) }
+
+Parameters with default values have an additional array index of \textquotesingle{}default\textquotesingle{} with the value of the default as a string.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position in the stack of the function token to acquire the parameters for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified \$stack\+Ptr is not of type T\+\_\+\+FUNCTION or T\+\_\+\+CLOSURE. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_a47f872993bcddd209a364044485de034}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getMethodProperties@{getMethodProperties}}
+\index{getMethodProperties@{getMethodProperties}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getMethodProperties()}{getMethodProperties()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a47f872993bcddd209a364044485de034} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Method\+Properties (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Returns the visibility and implementation properties of a method.
+
+The format of the array is\+: {\ttfamily  array( \textquotesingle{}scope\textquotesingle{} =\texorpdfstring{$>$}{>} \textquotesingle{}public\textquotesingle{}, // public private or protected \textquotesingle{}scope\+\_\+specified\textquotesingle{} =\texorpdfstring{$>$}{>} true, // true is scope keyword was found. \textquotesingle{}is\+\_\+abstract\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the abstract keyword was found. \textquotesingle{}is\+\_\+final\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the final keyword was found. \textquotesingle{}is\+\_\+static\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if the static keyword was found. \textquotesingle{}is\+\_\+closure\textquotesingle{} =\texorpdfstring{$>$}{>} false, // true if no name is found. ); }
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position in the stack of the T\+\_\+\+FUNCTION token to acquire the properties for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified position is not a T\+\_\+\+FUNCTION token. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_a07e47d4cee78427a6da8dbe0cf3767ea}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getMetrics@{getMetrics}}
+\index{getMetrics@{getMetrics}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getMetrics()}{getMetrics()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a07e47d4cee78427a6da8dbe0cf3767ea} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Metrics (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the metrics found while processing this file.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ad8537752edc7c0ab5df4d08d0573e7df}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getSuccessCount@{getSuccessCount}}
+\index{getSuccessCount@{getSuccessCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getSuccessCount()}{getSuccessCount()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad8537752edc7c0ab5df4d08d0573e7df} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Success\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the number of successes recorded.
+
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a3a76effbc45e1834ce11e60b6ab57b69}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getTokens@{getTokens}}
+\index{getTokens@{getTokens}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getTokens()}{getTokens()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a3a76effbc45e1834ce11e60b6ab57b69} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Tokens (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the token stack for this file.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a5475bc897fc191dc3e4334ce4c01f6fd}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getTokensAsString@{getTokensAsString}}
+\index{getTokensAsString@{getTokensAsString}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getTokensAsString()}{getTokensAsString()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a5475bc897fc191dc3e4334ce4c01f6fd} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Tokens\+As\+String (\begin{DoxyParamCaption}\item[{}]{\$start}{, }\item[{}]{\$length}{}\end{DoxyParamCaption})}
+
+Returns the content of the tokens from the specified start position in the token stack for the specified length.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$start} & The position to start from in the token stack. \\
+\hline
+int & {\em \$length} & The length of tokens to traverse from the start pos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string The token contents. 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a39d0d7059356dba7c722de8fe20c9d79}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getWarningCount@{getWarningCount}}
+\index{getWarningCount@{getWarningCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getWarningCount()}{getWarningCount()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a39d0d7059356dba7c722de8fe20c9d79} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Warning\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the number of warnings raised.
+
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a409f84f7fcc90fc14d4b0f3e5e572826}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!getWarnings@{getWarnings}}
+\index{getWarnings@{getWarnings}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{getWarnings()}{getWarnings()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a409f84f7fcc90fc14d4b0f3e5e572826} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::get\+Warnings (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the warnings raised from processing this file.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a25e74d7c134d7532a4cefcbdaaf99713}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!hasCondition@{hasCondition}}
+\index{hasCondition@{hasCondition}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{hasCondition()}{hasCondition()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a25e74d7c134d7532a4cefcbdaaf99713} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::has\+Condition (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$types}{}\end{DoxyParamCaption})}
+
+Determine if the passed token has a condition of one of the passed types.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position of the token we are checking. \\
+\hline
+int | array & {\em \$types} & The type(s) of tokens to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a7423a965b181f28bde966d0aed22ddd3}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!isAnonymousFunction@{isAnonymousFunction}}
+\index{isAnonymousFunction@{isAnonymousFunction}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{isAnonymousFunction()}{isAnonymousFunction()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a7423a965b181f28bde966d0aed22ddd3} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::is\+Anonymous\+Function (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Check if the token at the specified position is a anonymous function.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position of the declaration token which declared the class, interface or function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the specified token is not of type T\+\_\+\+FUNCTION \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_p_h_p___code_sniffer___file_afd32a1f7f7fb98878b07d1eb12bd7f0b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!isReference@{isReference}}
+\index{isReference@{isReference}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{isReference()}{isReference()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_afd32a1f7f7fb98878b07d1eb12bd7f0b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::is\+Reference (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Determine if the passed token is a reference operator.
+
+Returns true if the specified token position represents a reference. Returns false if the token represents a bitwise operator.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The position of the T\+\_\+\+BITWISE\+\_\+\+AND token.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ad4a1c1c500637b13d75c3c3386875de1}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!recordMetric@{recordMetric}}
+\index{recordMetric@{recordMetric}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{recordMetric()}{recordMetric()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad4a1c1c500637b13d75c3c3386875de1} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::record\+Metric (\begin{DoxyParamCaption}\item[{}]{\$stack\+Ptr}{, }\item[{}]{\$metric}{, }\item[{}]{\$value}{}\end{DoxyParamCaption})}
+
+Adds an warning to the warning stack.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$stack\+Ptr} & The stack position where the metric was recorded. \\
+\hline
+string & {\em \$metric} & The name of the metric being recorded. \\
+\hline
+string & {\em \$value} & The value of the metric being recorded.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ac9fd6ae261686c1bad56a14edebd8a31}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!refreshTokenListeners@{refreshTokenListeners}}
+\index{refreshTokenListeners@{refreshTokenListeners}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{refreshTokenListeners()}{refreshTokenListeners()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ac9fd6ae261686c1bad56a14edebd8a31} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::refresh\+Token\+Listeners (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Rebuilds the list of listeners to ensure their state is cleared.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a5f8f1710d9e4bd74bb643597c4fa308e}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!removeTokenListener@{removeTokenListener}}
+\index{removeTokenListener@{removeTokenListener}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{removeTokenListener()}{removeTokenListener()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a5f8f1710d9e4bd74bb643597c4fa308e} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::remove\+Token\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff}}}]{\$listener}{, }\item[{array}]{\$tokens}{}\end{DoxyParamCaption})}
+
+Removes a listener from listening from the specified tokens.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{interface_p_h_p___code_sniffer___sniff}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff} & {\em \$listener} & The listener to remove from the listener stack. \\
+\hline
+ & {\em array(int)} & \$tokens The token types the listener wishes to stop listen to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ae2921ae5fe99cb173722f0cd393926f1}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!setActiveListener@{setActiveListener}}
+\index{setActiveListener@{setActiveListener}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{setActiveListener()}{setActiveListener()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ae2921ae5fe99cb173722f0cd393926f1} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::set\+Active\+Listener (\begin{DoxyParamCaption}\item[{}]{\$active\+Listener}{}\end{DoxyParamCaption})}
+
+Sets the name of the currently active sniff.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$active\+Listener} & The class name of the current sniff.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!start@{start}}
+\index{start@{start}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a5b42affd1fbd0b0c5fc243186491f8db} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::start (\begin{DoxyParamCaption}\item[{}]{\$contents}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Starts the stack traversal and tells listeners when tokens are found.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$contents} & The contents to parse. If NULL, the content is taken from the file system.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___file_ad3e35123f9035410c5963dafc5fd34a6}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!tokenizeString@{tokenizeString}}
+\index{tokenizeString@{tokenizeString}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{tokenizeString()}{tokenizeString()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad3e35123f9035410c5963dafc5fd34a6} 
+static PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::tokenize\+String (\begin{DoxyParamCaption}\item[{}]{\$string}{, }\item[{}]{\$tokenizer}{, }\item[{}]{\$eol\+Char}{ = {\ttfamily \textquotesingle{}\textbackslash{}n\textquotesingle{}}, }\item[{}]{\$tab\+Width}{ = {\ttfamily null}, }\item[{}]{\$encoding}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Creates an array of tokens when given some PHP code.
+
+Starts by using token\+\_\+get\+\_\+all() but does a lot of extra processing to insert information about the context of the token.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$string} & The string to tokenize. \\
+\hline
+object & {\em \$tokenizer} & A tokenizer class to use to tokenize the string. \\
+\hline
+string & {\em \$eol\+Char} & The EOL character to use for splitting strings. \\
+\hline
+int & {\em \$tab\+Width} & The number of spaces each tab respresents. \\
+\hline
+string & {\em \$encoding} & The charset of the sniffed file.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{class_p_h_p___code_sniffer___exception}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Exception}} & If the file cannot be processed. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_p_h_p___code_sniffer___file_a62fbd9e5a883825c071d1ccd3aed6809}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_activeListener@{\$\_activeListener}}
+\index{\$\_activeListener@{\$\_activeListener}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_activeListener}{\$\_activeListener}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a62fbd9e5a883825c071d1ccd3aed6809} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+active\+Listener = \textquotesingle{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a612b3570f1b00cd114e5c93aef68cbcd}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_errorCount@{\$\_errorCount}}
+\index{\$\_errorCount@{\$\_errorCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_errorCount}{\$\_errorCount}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a612b3570f1b00cd114e5c93aef68cbcd} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+error\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_aa18b5c7e562d243a146500b444b5ecdd}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_errors@{\$\_errors}}
+\index{\$\_errors@{\$\_errors}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_errors}{\$\_errors}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa18b5c7e562d243a146500b444b5ecdd} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+errors = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a3f256827906c0b4835a87714ca06f046}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_file@{\$\_file}}
+\index{\$\_file@{\$\_file}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_file}{\$\_file}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a3f256827906c0b4835a87714ca06f046} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+file = \textquotesingle{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a73c279f5226ceb19eee60221aa7f4b35}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_fixableCount@{\$\_fixableCount}}
+\index{\$\_fixableCount@{\$\_fixableCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_fixableCount}{\$\_fixableCount}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a73c279f5226ceb19eee60221aa7f4b35} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+fixable\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a7761fa7b46bf14177e94f9bfc35026e1}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_ignoredCodes@{\$\_ignoredCodes}}
+\index{\$\_ignoredCodes@{\$\_ignoredCodes}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_ignoredCodes}{\$\_ignoredCodes}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a7761fa7b46bf14177e94f9bfc35026e1} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+ignored\+Codes = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a2ef4d60d89c6d67581ede74caf4fda82}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_ignoredLines@{\$\_ignoredLines}}
+\index{\$\_ignoredLines@{\$\_ignoredLines}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_ignoredLines}{\$\_ignoredLines}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a2ef4d60d89c6d67581ede74caf4fda82} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+ignored\+Lines = array()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a90e74f8f47f776d5ccfde2c9fbd221b2}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_ignoredListeners@{\$\_ignoredListeners}}
+\index{\$\_ignoredListeners@{\$\_ignoredListeners}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_ignoredListeners}{\$\_ignoredListeners}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a90e74f8f47f776d5ccfde2c9fbd221b2} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+ignored\+Listeners = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_ae05df0ad2a924173d9f0479f231b1694}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_listeners@{\$\_listeners}}
+\index{\$\_listeners@{\$\_listeners}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_listeners}{\$\_listeners}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ae05df0ad2a924173d9f0479f231b1694} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+listeners = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a33f7ac8c6daeb49777fe289d27502d33}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_listenerTimes@{\$\_listenerTimes}}
+\index{\$\_listenerTimes@{\$\_listenerTimes}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_listenerTimes}{\$\_listenerTimes}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a33f7ac8c6daeb49777fe289d27502d33} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+listener\+Times = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a99825d0c26f37c9c86a57c41184438b7}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_metrics@{\$\_metrics}}
+\index{\$\_metrics@{\$\_metrics}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_metrics}{\$\_metrics}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a99825d0c26f37c9c86a57c41184438b7} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+metrics = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_aa80fcaaa7ff351f69444261e732cf10c}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_recordErrors@{\$\_recordErrors}}
+\index{\$\_recordErrors@{\$\_recordErrors}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_recordErrors}{\$\_recordErrors}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aa80fcaaa7ff351f69444261e732cf10c} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+record\+Errors = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a017579ba8901df453cb2a42fddd15f0b}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_tokens@{\$\_tokens}}
+\index{\$\_tokens@{\$\_tokens}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_tokens}{\$\_tokens}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a017579ba8901df453cb2a42fddd15f0b} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+tokens = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_aad8f00391abfc79827d418fc292e4672}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_warningCount@{\$\_warningCount}}
+\index{\$\_warningCount@{\$\_warningCount}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_warningCount}{\$\_warningCount}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_aad8f00391abfc79827d418fc292e4672} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+warning\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_ac17f9ee77f4739d172cee8e24e1a8e34}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$\_warnings@{\$\_warnings}}
+\index{\$\_warnings@{\$\_warnings}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$\_warnings}{\$\_warnings}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ac17f9ee77f4739d172cee8e24e1a8e34} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$\+\_\+warnings = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a59bb4fa8a34b474e608ff02cc7316283}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$eolChar@{\$eolChar}}
+\index{\$eolChar@{\$eolChar}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$eolChar}{\$eolChar}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a59bb4fa8a34b474e608ff02cc7316283} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$eol\+Char = \textquotesingle{}\textquotesingle{}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a415de4a9404fae882fa7c9c2c8be131d}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$fixer@{\$fixer}}
+\index{\$fixer@{\$fixer}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$fixer}{\$fixer}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a415de4a9404fae882fa7c9c2c8be131d} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$fixer = null}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_af1fb3100dc21074be37dbf3a0889a598}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$numTokens@{\$numTokens}}
+\index{\$numTokens@{\$numTokens}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$numTokens}{\$numTokens}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_af1fb3100dc21074be37dbf3a0889a598} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$num\+Tokens = 0}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_ad76878fe50e37fccd2164f5ec0b4eae5}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$phpcs@{\$phpcs}}
+\index{\$phpcs@{\$phpcs}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$phpcs}{\$phpcs}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ad76878fe50e37fccd2164f5ec0b4eae5} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$phpcs = null}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a6aec482a6b3e5d67136a209bbc04c310}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$ruleset@{\$ruleset}}
+\index{\$ruleset@{\$ruleset}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$ruleset}{\$ruleset}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a6aec482a6b3e5d67136a209bbc04c310} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$ruleset = array()\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_ae7728ace5683b96c58d9d2f467a8d660}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$tokenizer@{\$tokenizer}}
+\index{\$tokenizer@{\$tokenizer}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$tokenizer}{\$tokenizer}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_ae7728ace5683b96c58d9d2f467a8d660} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$tokenizer = null}
+
+\Hypertarget{class_p_h_p___code_sniffer___file_a30c7b5f1e1a905c09ef0fe0e62032077}\index{PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}!\$tokenizerType@{\$tokenizerType}}
+\index{\$tokenizerType@{\$tokenizerType}!PHP\_CodeSniffer\_File@{PHP\_CodeSniffer\_File}}
+\doxysubsubsection{\texorpdfstring{\$tokenizerType}{\$tokenizerType}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___file_a30c7b5f1e1a905c09ef0fe0e62032077} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+File\+::\$tokenizer\+Type = \textquotesingle{}PHP\textquotesingle{}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/squizlabs/php\+\_\+codesniffer/\+Code\+Sniffer/\mbox{\hyperlink{_r34_i_c_s_2vendors_2ics-parser_2vendor_2squizlabs_2php__codesniffer_2_code_sniffer_2_file_8php}{File.\+php}}\end{DoxyCompactItemize}

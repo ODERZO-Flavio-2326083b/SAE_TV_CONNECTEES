@@ -1,0 +1,58 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Message\+Selector}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_message_selector}{}\label{class_symfony_1_1_component_1_1_translation_1_1_message_selector}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_selector_abbe68995ca8d7b52a4d47996344b7051}{choose}} (\$message, \$number, \$locale)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Message\+Selector.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{ fabien@symfony.\+com}} 
+
+Bernhard Schussek \href{mailto:bschussek@gmail.com}{\texttt{ bschussek@gmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_message_selector_abbe68995ca8d7b52a4d47996344b7051}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector}!choose@{choose}}
+\index{choose@{choose}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MessageSelector}}
+\doxysubsubsection{\texorpdfstring{choose()}{choose()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_message_selector_abbe68995ca8d7b52a4d47996344b7051} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Message\+Selector\+::choose (\begin{DoxyParamCaption}\item[{}]{\$message}{, }\item[{}]{\$number}{, }\item[{}]{\$locale}{}\end{DoxyParamCaption})}
+
+Given a message with different plural translations separated by a pipe (\texorpdfstring{$\vert$}{|}), this method returns the correct portion of the message based on the given number, locale and the pluralization rules in the message itself.
+
+The message supports two different types of pluralization rules\+:
+
+interval\+: \{0\} There are no apples\texorpdfstring{$\vert$}{|}\{1\} There is one apple\texorpdfstring{$\vert$}{|}\mbox{]}1,Inf\mbox{]} There are count\% apples indexed\+: There is one apple\texorpdfstring{$\vert$}{|}\+There are count\% apples
+
+The indexed solution can also contain labels (e.\+g. one\+: There is one apple). This is purely for making the translations more clear -\/ it does not affect the functionality.
+
+The two methods can also be mixed\+: \{0\} There are no apples\texorpdfstring{$\vert$}{|}one\+: There is one apple\texorpdfstring{$\vert$}{|}more\+: There are count\% apples
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$message} & The message being translated \\
+\hline
+int & {\em \$number} & The number of items represented for the message \\
+\hline
+string & {\em \$locale} & The locale to use for choosing\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Invalid\+Argument\+Exception 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\mbox{\hyperlink{_message_selector_8php}{Message\+Selector.\+php}}\end{DoxyCompactItemize}

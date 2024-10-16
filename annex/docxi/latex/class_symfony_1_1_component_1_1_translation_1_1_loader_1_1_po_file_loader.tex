@@ -1,0 +1,102 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}Po\+File\+Loader}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader}{}\label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}Po\+File\+Loader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a9a1a39c7d3e17f42ae8144133da76c07}{load\+Resource}} (\$resource)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres protégées hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a5f336af26970ddbe56ae8e84b940cdbe}{add\+Message}} (array \&\$messages, array \$item)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a64aa5a9a23b01af60ba6266c61569cb9}{load}} (\$resource, \$locale, \$domain=\textquotesingle{}messages\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_array_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Array\+Loader}}}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_loader_1_1_loader_interface}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Loader\+Interface}}}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2010, Union of RAD \href{http://union-of-rad.org}{\texttt{ http\+://union-\/of-\/rad.\+org}} (\href{http://lithify.me/}{\texttt{ http\+://lithify.\+me/}}) 
+
+Copyright (c) 2012, Clemens Tolboom 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a5f336af26970ddbe56ae8e84b940cdbe}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader}!addMessage@{addMessage}}
+\index{addMessage@{addMessage}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader}}
+\doxysubsubsection{\texorpdfstring{addMessage()}{addMessage()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a5f336af26970ddbe56ae8e84b940cdbe} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Po\+File\+Loader\+::add\+Message (\begin{DoxyParamCaption}\item[{array \&}]{\$messages}{, }\item[{array}]{\$item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Save a translation item to the messages.
+
+A .po file could contain by error missing plural indexes. We need to fix these before saving them. \Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a9a1a39c7d3e17f42ae8144133da76c07}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader}!loadResource@{loadResource}}
+\index{loadResource@{loadResource}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}PoFileLoader}}
+\doxysubsubsection{\texorpdfstring{loadResource()}{loadResource()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a9a1a39c7d3e17f42ae8144133da76c07} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Po\+File\+Loader\+::load\+Resource (\begin{DoxyParamCaption}\item[{}]{\$resource}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Parses portable object (PO) format.
+
+From \href{http://www.gnu.org/software/gettext/manual/gettext.html\#PO-Files}{\texttt{ http\+://www.\+gnu.\+org/software/gettext/manual/gettext.\+html\#\+PO-\/\+Files}} we should be able to parse files having\+:
+
+white-\/space \hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_autotoc_md774}{}\doxysubsection{\texorpdfstring{translator-\/comments}{translator-\/comments}}\label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_autotoc_md774}
+\#. extracted-\/comments \#\+: reference... \#, flag... \#\texorpdfstring{$\vert$}{|} msgid previous-\/untranslated-\/string msgid untranslated-\/string msgstr translated-\/string
+
+extra or different lines are\+:
+
+\#\texorpdfstring{$\vert$}{|} msgctxt previous-\/context \#\texorpdfstring{$\vert$}{|} msgid previous-\/untranslated-\/string msgctxt context
+
+\#\texorpdfstring{$\vert$}{|} msgid previous-\/untranslated-\/string-\/singular \#\texorpdfstring{$\vert$}{|} msgid\+\_\+plural previous-\/untranslated-\/string-\/plural msgid untranslated-\/string-\/singular msgid\+\_\+plural untranslated-\/string-\/plural msgstr\mbox{[}0\mbox{]} translated-\/string-\/case-\/0 ... msgstr\mbox{[}N\mbox{]} translated-\/string-\/case-\/n
+
+The definition states\+:
+\begin{DoxyItemize}
+\item white-\/space and comments are optional.
+\item msgid "{}"{} that an empty singleline defines a header.
+\end{DoxyItemize}
+
+This parser sacrifices some features of the reference implementation the differences to that implementation are as follows.
+\begin{DoxyItemize}
+\item No support for comments spanning multiple lines.
+\item Translator and extracted comments are treated as being the same type.
+\item Message IDs are allowed to have other encodings as just US-\/\+ASCII.
+\end{DoxyItemize}
+
+Items with an empty id are ignored.
+
+\{
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$resource} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Resource\+Exception} & if stream content has an invalid format\\
+\hline
+\end{DoxyExceptions}
+\} 
+
+Réimplémentée à partir de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a7d29ed80f15369a24026303fc8deae10}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Loader/\mbox{\hyperlink{_po_file_loader_8php}{Po\+File\+Loader.\+php}}\end{DoxyCompactItemize}

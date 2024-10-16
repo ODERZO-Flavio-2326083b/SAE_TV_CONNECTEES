@@ -1,0 +1,67 @@
+\chapter{j\+Query Easy Ticker plugin}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e}\index{jQuery Easy Ticker plugin@{jQuery Easy Ticker plugin}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md0}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md0}%
+
+
+j\+Query easy ticker is a news ticker like plugin, which scrolls the list infinitely. It is highly customizable, flexible with lot of features and works in all browsers.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md1}{}\doxysection{\texorpdfstring{Demo}{Demo}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md1}
+\href{http://www.aakashweb.com/demos/jquery-easy-ticker/}{\texttt{ Live plugin demo}} \texorpdfstring{$\vert$}{|} \href{http://www.aakashweb.com/jquery-plugins/easy-ticker/}{\texttt{ Plugin Home page}}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md2}{}\doxysection{\texorpdfstring{Features}{Features}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Two directions available (Up and down).
+\item Can be targeted on any template.
+\item Flexible API for extending to various applications.
+\item Supports \textquotesingle{}easing\textquotesingle{} functions.
+\item Mouse pause feature available.
+\item The speed of the transition can be changed.
+\item Controls can be added inorder to Play/pause or move the list Up and down.
+\item Cross browser support.
+\item Light-\/weight (4 Kb -\/ Full source / 2.\+7 Kb -\/ Minified source).
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md3}{}\doxysection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md3}
+Include j\+Query and j\+Query easy ticker in the source and use the
+
+{\bfseries{HTML}}
+
+target -\/-\/\texorpdfstring{$>$}{>} parent -\/-\/\texorpdfstring{$>$}{>} children
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<div\ class="{}myWrapper"{}>}
+\DoxyCodeLine{\ \ \ \ <ul>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <li>List\ element\ 1</li>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <li>List\ element\ 2</li>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <li>List\ element\ 3</li>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <li>List\ element\ 4</li>}
+\DoxyCodeLine{\ \ \ \ </ul>}
+\DoxyCodeLine{</div>}
+\DoxyCodeLine{}
+\DoxyCodeLine{or}
+\DoxyCodeLine{}
+\DoxyCodeLine{<div\ class="{}myWrapper"{}>}
+\DoxyCodeLine{\ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <div>Element\ 1</div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <div>Element\ 2</div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <div>Element\ 3</div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <div>Element\ 4</div>}
+\DoxyCodeLine{\ \ \ \ </div>}
+\DoxyCodeLine{</div>}
+
+\end{DoxyCode}
+ {\bfseries{j\+Query}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$('.myWrapper').easyTicker(\{}
+\DoxyCodeLine{\ \ \ \ //\ list\ of\ properties}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+\href{http://www.aakashweb.com/demos/jquery-easy-ticker/}{\texttt{ Demo}}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md4}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md4}
+Plugin\textquotesingle{}s documentation is written in its official home page. Check it out in \href{http://www.aakashweb.com/jquery-plugins/easy-ticker/}{\texttt{ this link}}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md5}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item j\+Query 1.\+7+
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md6}{}\doxysection{\texorpdfstring{License}{License}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_0211a3d822767087afe1e8b0a7ceec0e_autotoc_md6}
+Copyright (c) 2014 \href{http://www.aakashweb.com/}{\texttt{ Aakash Chakravarthy}}, released under the MIT License. 

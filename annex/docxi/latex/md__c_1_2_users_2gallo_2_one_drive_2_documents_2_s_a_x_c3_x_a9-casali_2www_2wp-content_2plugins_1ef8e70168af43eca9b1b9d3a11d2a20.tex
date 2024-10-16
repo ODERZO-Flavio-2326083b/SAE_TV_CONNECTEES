@@ -1,0 +1,46 @@
+\chapter{Creating a spreadsheet}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20}\index{Creating a spreadsheet@{Creating a spreadsheet}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md539}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md539}%
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md540}{}\doxysection{\texorpdfstring{The {\ttfamily Spreadsheet} class}{The {\ttfamily Spreadsheet} class}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md540}
+The {\ttfamily Spreadsheet} class is the core of Php\+Spreadsheet. It contains references to the contained worksheets, document security settings and document meta data.
+
+To simplify the Php\+Spreadsheet concept\+: the {\ttfamily Spreadsheet} class represents your workbook.
+
+Typically, you will create a workbook in one of two ways, either by loading it from a spreadsheet file, or creating it manually. A third option, though less commonly used, is cloning an existing workbook that has been created using one of the previous two methods.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md541}{}\doxysubsection{\texorpdfstring{Loading a Workbook from a file}{Loading a Workbook from a file}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md541}
+Details of the different spreadsheet formats supported, and the options available to read them into a Spreadsheet object are described fully in the \doxysectlink{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_435f04114bf80d293b60802d71ec916c}{Reading Files}{0} document.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$inputFileName\ =\ './sampleData/example1.xls';}
+\DoxyCodeLine{}
+\DoxyCodeLine{/**\ Load\ \$inputFileName\ to\ a\ Spreadsheet\ object\ **/}
+\DoxyCodeLine{\$spreadsheet\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)IOFactory::load(\$inputFileName);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md542}{}\doxysubsection{\texorpdfstring{Creating a new workbook}{Creating a new workbook}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md542}
+If you want to create a new workbook, rather than load one from file, then you simply need to instantiate it as a new Spreadsheet object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{/**\ Create\ a\ new\ Spreadsheet\ Object\ **/}
+\DoxyCodeLine{\$spreadsheet\ =\ new\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Spreadsheet();}
+
+\end{DoxyCode}
+
+
+A new workbook will always be created with a single worksheet.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md543}{}\doxysection{\texorpdfstring{Clearing a Workbook from memory}{Clearing a Workbook from memory}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1ef8e70168af43eca9b1b9d3a11d2a20_autotoc_md543}
+The Php\+Spreadsheet object contains cyclic references (e.\+g. the workbook is linked to the worksheets, and the worksheets are linked to their parent workbook) which cause problems when PHP tries to clear the objects from memory when they are {\ttfamily unset()}, or at the end of a function when they are in local scope. The result of this is "{}memory leaks"{}, which can easily use a large amount of PHP\textquotesingle{}s limited memory.
+
+This can only be resolved manually\+: if you need to unset a workbook, then you also need to "{}break"{} these cyclic references before doing so. Php\+Spreadsheet provides the {\ttfamily disconnect\+Worksheets()} method for this purpose.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>disconnectWorksheets();}
+\DoxyCodeLine{unset(\$spreadsheet);}
+
+\end{DoxyCode}
+ 
