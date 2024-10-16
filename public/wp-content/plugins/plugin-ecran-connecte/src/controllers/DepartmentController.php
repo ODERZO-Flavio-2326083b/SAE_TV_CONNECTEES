@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Controllers\Controller;
 use Models\Department;
-use views\DepartmentView;
+use Views\DepartmentView;
 
 class DepartmentController extends Controller {
 	/**
@@ -32,7 +32,7 @@ class DepartmentController extends Controller {
 	 *
 	 * @return string
 	 */
-	public function insert() {
+	public function insert(): string {
 		$action = filter_input(INPUT_POST, 'submit');
 
 		if (isset($action)) {
@@ -40,23 +40,25 @@ class DepartmentController extends Controller {
 			$lat = filter_input(INPUT_POST, 'dept_lat');
 			$long = filter_input(INPUT_POST, 'dept_long');
 
-			$this->model->setName($name);
-			$this->model->setLatitude($lat);
-			$this->model->setLongitude($long);
 
-			if (!$this->checkDuplicate($this->model)) {
+			if (is_string($name)) {
+				$this->model->setName($name);
+				$this->model->setLatitude($lat);
+				$this->model->setLongitude($long);
 
-				$this->view->successCreation();
-				$this->model->insert();
-				$this->view->refreshPage();
+				if (!$this->checkDuplicate($this->model)) {
+
+					$this->view->successCreation();
+					$this->model->insert();
+					$this->view->refreshPage();
+				} else {
+					$this->view->errorDuplicate();
+				}
 			} else {
-				$this->view->errorDuplicate();
+				$this->view->errorCreation();
 			}
 
-		} else {
-			$this->view->errorCreation();
 		}
-
 		return $this->view->renderAddForm();
 	}
 

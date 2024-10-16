@@ -1,6 +1,6 @@
 <?php
 
-namespace views;
+namespace Views;
 
 use Views\View;
 
@@ -17,12 +17,20 @@ class DepartmentView extends View {
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
                 <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
+            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
+            </div>
+            <div class="form-group">
+                <label for="dept_id">ID du département</label>
+                <input class="form-control" type="text" id="dept_id" name="dept_id" placeholder="ID du département" required="" minlength="5" maxlength="60">
+            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
             </div>
             <div class="form-group">
             	<label for="dept_lat">Latitude du département</label>
-            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10">
+            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
+            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
             	<label for="dept_long">Longitude du département</label>
-            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10">
+            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
+            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
             </div>
           <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
         </form>';
