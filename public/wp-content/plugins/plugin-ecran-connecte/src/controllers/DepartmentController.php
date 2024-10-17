@@ -66,4 +66,20 @@ class DepartmentController extends Controller {
 
 	}
 
+	public function checkDuplicate(Department $department) {
+		$departments = $this->model->checkExists($department->getName());
+
+		$count = 0;
+
+		foreach ($departments as $d) {
+			if ($department->getName() === $d->getName()) {
+				unset($departments[$count]);
+			}
+
+			$count++;
+
+		}
+
+		return sizeof($departments) > 0;
+	}
 }
