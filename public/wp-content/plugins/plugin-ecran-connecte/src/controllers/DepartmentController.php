@@ -47,10 +47,8 @@ class DepartmentController extends Controller {
 				$this->model->setLongitude($long);
 
 				if (!$this->checkDuplicate($this->model)) {
-
-					$this->view->successCreation();
 					$this->model->insert();
-					$this->view->refreshPage();
+					$this->view->successCreation();
 				} else {
 					$this->view->errorDuplicate();
 				}
@@ -66,20 +64,22 @@ class DepartmentController extends Controller {
 
 	}
 
-	public function checkDuplicate(Department $department) {
-		$departments = $this->model->checkExists($department->getName());
-
-		$count = 0;
+	/**
+	 * Vérifie si le nom du département existe déjà dans la base de données
+	 *
+	 * @param Department $department
+	 *
+	 * @return bool
+	 */
+	public function checkDuplicate(Department $department): bool {
+		$departments = $this->model->getDepartmentByName($department->getName());
 
 		foreach ($departments as $d) {
 			if ($department->getName() === $d->getName()) {
-				unset($departments[$count]);
+				return true;
 			}
 
-			$count++;
-
 		}
-
-		return sizeof($departments) > 0;
+		return false;
 	}
 }
