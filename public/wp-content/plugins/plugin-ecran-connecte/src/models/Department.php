@@ -116,6 +116,16 @@ class Department extends Model implements Entity, JsonSerializable {
 		return [];
 	}
 
+	public function checkExists($name) {
+		$request = $this->getDatabase()->prepare('SELECT id_department, name, longitude, latitude 
+														FROM ecran_departement WHERE name = :name LIMIT 2');
+		$request->bindValue( ':name', $name);
+
+		$request->execute();
+
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+	}
+
 	/**
 	 * @inheritDoc
 	 */

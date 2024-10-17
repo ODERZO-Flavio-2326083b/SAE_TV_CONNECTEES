@@ -193,7 +193,7 @@ function installDatabaseEcran()
 	$table_name = "ecran_departement";
 
 	$sql = "CREATE TABLE IF NOT EXISTS $table_name (
-		   dept_id INT(),
+		   dept_id INT(10) NOT NULL AUTO_INCREMENT,
 		   dept_nom VARCHAR(60),
 		   dept_latitude DECIMAL(10,6),
 		   dept_longitude DECIMAL(10,6),
