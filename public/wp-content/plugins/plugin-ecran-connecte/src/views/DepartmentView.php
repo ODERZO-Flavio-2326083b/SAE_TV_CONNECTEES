@@ -19,15 +19,7 @@ class DepartmentView extends View {
                 <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
             	<small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
             </div>
-            <div class="form-group">
-            	<label for="dept_lat">Latitude du département</label>
-            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
-            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
-            	<label for="dept_long">Longitude du département</label>
-            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
-            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
-            </div>
-          <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+          	<button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
         </form>';
 	}
 
@@ -40,7 +32,7 @@ class DepartmentView extends View {
 	 *
 	 * @return string
 	 */
-	public function renderModifForm(string $name, int $lat, int $long) {
+	public function renderModifForm(string $name) {
 		$returnPage = get_page_by_title('Gestion des départements');
 		$linkManageCode = get_permalink($returnPage->ID);
 
@@ -49,15 +41,10 @@ class DepartmentView extends View {
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
+                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60" value="'. $name .'">
             </div>
-            <div class="form-group">
-            	<label for="dept_lat">Latitude du département</label>
-            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10">
-            	<label for="dept_long">Longitude du département</label>
-            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10">
-            </div>
-          <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+          <button type="submit" class="btn button_ecran" name="submit">Modifier</button>
+          <a href="'. $linkManageCode .'">Annuler</a>
         </form>';
 	}
 
@@ -97,6 +84,6 @@ class DepartmentView extends View {
 	public function errorNothing() {
 		$page = get_page_by_title("Gestion des départements");
 		$returnLink = get_permalink($page->ID);
-		echo '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
+		return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
 	}
 }

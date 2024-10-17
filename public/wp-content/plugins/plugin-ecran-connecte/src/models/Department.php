@@ -22,14 +22,6 @@ class Department extends Model implements Entity, JsonSerializable {
 	 * @var string
 	 */
 	private $name;
-	/**
-	 * @var int
-	 */
-	private $longitude;
-	/**
-	 * @var int
-	 */
-	private $latitude;
 
 	/**
 	 * Insérer un département dans la base de données selon les attributs actuels
@@ -39,13 +31,8 @@ class Department extends Model implements Entity, JsonSerializable {
 	public function insert(): string {
 		$database = $this->getDatabase();
 
-		$request = $database->prepare('INSERT INTO ecran_departement (dept_nom, dept_longitude, dept_latitude) 
-										VALUES (:name, :longitude, :latitude)');
-
+		$request = $database->prepare('INSERT INTO ecran_departement (dept_nom) VALUES (:name)');
 		$request->bindValue(':name', $this->getName());
-		$request->bindValue(':longitude', $this->getLongitude());
-		$request->bindValue(':latitude', $this->getLatitude());
-
 		$request->execute();
 
 		return $database->lastInsertId();
@@ -88,11 +75,7 @@ class Department extends Model implements Entity, JsonSerializable {
 	 * @return bool|null
 	 */
 	public function get( $id ): ?bool {
-		$database = $this->getDatabase();
-
-		$request = $database->prepare(// TODO GET SQL
-
-		);
+		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_id = :id');
 
 		$request->execute();
 
@@ -144,8 +127,6 @@ class Department extends Model implements Entity, JsonSerializable {
 
 		$entity->setIdDepartment( $data['dept_id'] );
 		$entity->setName( $data['dept_nom'] );
-		$entity->setLongitude( $data['dept_longitude'] );
-		$entity->setLatitude( $data['dept_latitude'] );
 
 		return $entity;
 	}

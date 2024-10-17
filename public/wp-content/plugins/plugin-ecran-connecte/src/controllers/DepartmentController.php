@@ -37,14 +37,9 @@ class DepartmentController extends Controller {
 
 		if (isset($action)) {
 			$name = filter_input(INPUT_POST, 'dept_name');
-			$lat = filter_input(INPUT_POST, 'dept_lat');
-			$long = filter_input(INPUT_POST, 'dept_long');
-
 
 			if (is_string($name)) {
 				$this->model->setName($name);
-				$this->model->setLatitude($lat);
-				$this->model->setLongitude($long);
 
 				if (!$this->checkDuplicate($this->model)) {
 					$this->model->insert();
@@ -60,8 +55,23 @@ class DepartmentController extends Controller {
 		return $this->view->renderAddForm();
 	}
 
-	public function update() {
+	public function modify(): string {
+		$id = $_GET['id'];
 
+		$this->model->get($id);
+		echo json_encode($this->model->jsonSerialize());
+
+		if (!is_numeric($id) || !$this->model->get($id)) {
+			return $this->view->errorNothing();
+		}
+
+		$submit = filter_input(INPUT_POST, 'submit');
+
+		if (isset($submit)) {
+			// TODO
+		}
+
+		return $this->view->renderModifForm($id);
 	}
 
 	/**
@@ -82,4 +92,6 @@ class DepartmentController extends Controller {
 		}
 		return false;
 	}
+
+
 }

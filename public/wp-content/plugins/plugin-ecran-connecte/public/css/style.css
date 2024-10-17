@@ -1,5 +1,5 @@
 .button_ecran, .delete_button_ecran, .button_ecran:hover, .delete_button_ecran:hover, .active_ecran .page-link {
-    color: white;
+    color: red;
 }
 
 .button_ecran {
