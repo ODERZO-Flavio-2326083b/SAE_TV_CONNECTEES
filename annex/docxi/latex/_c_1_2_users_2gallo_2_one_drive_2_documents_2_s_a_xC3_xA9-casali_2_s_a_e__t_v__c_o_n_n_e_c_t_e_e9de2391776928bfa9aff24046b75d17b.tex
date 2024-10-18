@@ -1,0 +1,179 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\+Secretary\+Controller.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e9de2391776928bfa9aff24046b75d17b}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e9de2391776928bfa9aff24046b75d17b}Insère un nouveau compte de secrétaire dans la base de données.
+
+Cette méthode gère l\textquotesingle{}insertion d\textquotesingle{}un utilisateur avec le rôle "{}secrétaire"{} à partir des données soumises via un formulaire. Elle vérifie d\textquotesingle{}abord la validité des informations fournies, telles que le login, le mot de passe, et l\textquotesingle{}email, puis s\textquotesingle{}assure qu\textquotesingle{}il n\textquotesingle{}existe pas déjà un utilisateur avec ces informations. En cas de succès, l\textquotesingle{}utilisateur est inséré dans la base de données et un message de validation est affiché. En cas d\textquotesingle{}échec, un message d\textquotesingle{}erreur est affiché.
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le formulaire de création de secrétaire.
+\end{DoxyReturn}
+// Appel de la méthode lors de la soumission du formulaire \+: \$this-\/\texorpdfstring{$>$}{>}insert();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_controllers}{Controllers}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_user}{Models\(\backslash\)User}};}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_views_1_1_secretary_view}{Views\(\backslash\)SecretaryView}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }SecretaryController\ \textcolor{keyword}{extends}\ UserController}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$model;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$view;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ parent::\_\_construct();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>model\ =\ \textcolor{keyword}{new}\ User();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>view\ =\ \textcolor{keyword}{new}\ SecretaryView();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayMySchedule()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>view-\/>displayWelcomeAdmin();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ insert()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$action\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'createSecre'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$action))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$login\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'loginSecre'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$password\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'pwdSecre'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$passwordConfirm\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'pwdConfirmSecre'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$email\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'emailSecre'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_string(\$login)\ \&\&\ strlen(\$login)\ >=\ 4\ \&\&\ strlen(\$login)\ <=\ 25\ \&\&}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_string(\$password)\ \&\&\ strlen(\$password)\ >=\ 8\ \&\&\ strlen(\$password)\ <=\ 25\ \&\&}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$password\ ===\ \$passwordConfirm\ \&\&\ is\_email(\$email))\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>model-\/>setLogin(\$login);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>model-\/>setPassword(\$password);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>model-\/>setEmail(\$email);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>model-\/>setRole(\textcolor{stringliteral}{'secretaire'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>checkDuplicateUser(\$this-\/>model)\ \&\&\ \$this-\/>model-\/>insert())\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayInsertValidate();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayErrorInsertion();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayErrorCreation();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>view-\/>displayFormSecretary();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayAllSecretary()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$users\ =\ \$this-\/>model-\/>getUsersByRole(\textcolor{stringliteral}{'secretaire'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>view-\/>displayAllSecretary(\$users);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ createUsers()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$student\ =\ \textcolor{keyword}{new}\ StudentController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$teacher\ =\ \textcolor{keyword}{new}\ TeacherController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$studyDirector\ =\ \textcolor{keyword}{new}\ StudyDirectorController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$secretary\ =\ \textcolor{keyword}{new}\ SecretaryController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$technician\ =\ \textcolor{keyword}{new}\ TechnicianController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$television\ =\ \textcolor{keyword}{new}\ TelevisionController();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayStartMultiSelect()\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'student'},\ \textcolor{stringliteral}{'Étudiants'},\ \textcolor{keyword}{true})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'teacher'},\ \textcolor{stringliteral}{'Enseignants'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'studyDirector'},\ \textcolor{stringliteral}{'Directeurs\ d\(\backslash\)'études'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'secretary'},\ \textcolor{stringliteral}{'Secrétaires'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'technician'},\ \textcolor{stringliteral}{'Technicien'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'television'},\ \textcolor{stringliteral}{'Télévisions'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayEndOfTitle()\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'student'},\ \$student-\/>insert(),\ \textcolor{keyword}{true})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'teacher'},\ \$teacher-\/>insert())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'studyDirector'},\ \$studyDirector-\/>insert())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'secretary'},\ \$secretary-\/>insert())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'technician'},\ \$technician-\/>insert())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'television'},\ \$television-\/>insert())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayEndDiv()\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>contextCreateUser();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayUsers()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$student\ =\ \textcolor{keyword}{new}\ StudentController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$teacher\ =\ \textcolor{keyword}{new}\ TeacherController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$studyDirector\ =\ \textcolor{keyword}{new}\ StudyDirectorController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$secretary\ =\ \textcolor{keyword}{new}\ SecretaryController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$technician\ =\ \textcolor{keyword}{new}\ TechnicianController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$television\ =\ \textcolor{keyword}{new}\ TelevisionController();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayStartMultiSelect()\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'student'},\ \textcolor{stringliteral}{'Étudiants'},\ \textcolor{keyword}{true})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'teacher'},\ \textcolor{stringliteral}{'Enseignants'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'studyDirector'},\ \textcolor{stringliteral}{'Directeurs\ d\(\backslash\)'études'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'secretary'},\ \textcolor{stringliteral}{'Secrétaires'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'technician'},\ \textcolor{stringliteral}{'Technicien'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayTitleSelect(\textcolor{stringliteral}{'television'},\ \textcolor{stringliteral}{'Télévisions'})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayEndOfTitle()\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'student'},\ \$student-\/>displayAllStudents(),\ \textcolor{keyword}{true})\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'teacher'},\ \$teacher-\/>displayAllTeachers())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'studyDirector'},\ \$studyDirector-\/>displayAllStudyDirector())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'secretary'},\ \$secretary-\/>displayAllSecretary())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'technician'},\ \$technician-\/>displayAllTechnician())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayContentSelect(\textcolor{stringliteral}{'television'},\ \$television-\/>displayAllTv())\ .}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>view-\/>displayEndDiv();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ modifyUser()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$id\ =\ \$\_GET[\textcolor{stringliteral}{'id'}];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_numeric(\$id)\ \&\&\ \$this-\/>model-\/>get(\$id))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$user\ =\ \$this-\/>model-\/>get(\$id);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$wordpressUser\ =\ get\_user\_by(\textcolor{stringliteral}{'id'},\ \$id);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (in\_array(\textcolor{stringliteral}{"{}etudiant"{}},\ \$wordpressUser-\/>roles))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$controller\ =\ \textcolor{keyword}{new}\ StudentController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$controller-\/>modify(\$user);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (in\_array(\textcolor{stringliteral}{"{}enseignant"{}},\ \$wordpressUser-\/>roles))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$controller\ =\ \textcolor{keyword}{new}\ TeacherController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$controller-\/>modify(\$user);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (in\_array(\textcolor{stringliteral}{"{}directeuretude"{}},\ \$wordpressUser-\/>roles))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$controller\ =\ \textcolor{keyword}{new}\ StudyDirectorController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$controller-\/>modify(\$user);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (in\_array(\textcolor{stringliteral}{"{}television"{}},\ \$wordpressUser-\/>roles))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$controller\ =\ \textcolor{keyword}{new}\ TelevisionController();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$controller-\/>modify(\$user);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>view-\/>displayNoUser();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>view-\/>displayNoUser();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ deleteUsers()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$actionDelete\ =\ filter\_input(INPUT\_POST,\ \textcolor{stringliteral}{'delete'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$roles\ =\ [\textcolor{stringliteral}{'Etu'},\ \textcolor{stringliteral}{'Teacher'},\ \textcolor{stringliteral}{'Direc'},\ \textcolor{stringliteral}{'Tech'},\ \textcolor{stringliteral}{'Secre'},\ \textcolor{stringliteral}{'Tele'}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$actionDelete))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$roles\ as\ \$role)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$\_REQUEST[\textcolor{stringliteral}{'checkboxStatus'}\ .\ \$role]))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$checked\_values\ =\ \$\_REQUEST[\textcolor{stringliteral}{'checkboxStatus'}\ .\ \$role];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$checked\_values\ as\ \$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>deleteUser(\$id);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ deleteUser(\$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$user\ =\ \$this-\/>model-\/>get(\$id);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$user-\/>delete();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

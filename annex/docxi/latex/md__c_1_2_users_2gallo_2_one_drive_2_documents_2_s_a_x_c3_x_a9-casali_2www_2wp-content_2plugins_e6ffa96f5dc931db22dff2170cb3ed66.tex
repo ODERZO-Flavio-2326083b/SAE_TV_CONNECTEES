@@ -1,0 +1,54 @@
+\chapter{Ecran connecté code}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66}\index{Ecran connecté code@{Ecran connecté code}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md8}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md8}%
+
+
+Ce guide va expliquer les parties les plus importante du plugin et du thème "{}écran connecté"{}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md9}{}\doxysection{\texorpdfstring{Plugins}{Plugins}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md9}
+Un plugin se créé avec un fichier PHP contenant \+: ~\newline
+
+\begin{DoxyItemize}
+\item Un dossier "{}src"{} contenant le MVC du projet. ~\newline
+
+\item Un dossier "{}blocks"{} avec tous les blocks, les blocks permettent de placer notre code dans une page \doxylink{namespace_word_press}{Word\+Press}. ~\newline
+
+\item Un dossier "{}public"{} contenant tout le contenu multimédia (CSS / JS / Img / Fichier) ~\newline
+
+\item Un dossier "{}vendor"{} du code qu\textquotesingle{}on utilise mais qui nous appartient pas (Contient composer, phpoffice (lecture de fichier excel), \doxylink{class_r34_i_c_s}{R34\+ICS} (permet de lire les fichiers ICS / l\textquotesingle{}emploi du temps)) ~\newline
+
+\item Un dossier "{}widgets"{} contient les widgets générés pour \doxylink{namespace_word_press}{Word\+Press}, devenue obsolète vue notre utilisation actuelle. Peut être utile dans le futur. ~\newline
+
+\end{DoxyItemize}
+
+Toutes les fonctionnalités sont générées via le dossier "{}src"{}. ~\newline
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md10}{}\doxysubsection{\texorpdfstring{Utilisateurs}{Utilisateurs}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md10}
+Il y a 7 classes pour les utilisateurs \+: ~\newline
+
+
+User qui est la classe principale puis les classes qui héritent de cette dernière (Television, Secretary, Student, Teacher, Technician, Study\+Director). ~\newline
+
+
+Ils sont tous liées à la même entité (model) \+: User ~\newline
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md11}{}\doxysubsection{\texorpdfstring{Emploi du temps}{Emploi du temps}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md11}
+Les emplois du temps sont télécharger en format ICS. ~\newline
+
+
+Les classes utilisées sont \+: \doxylink{class_r34_i_c_s}{R34\+ICS} et User\+Controller ~\newline
+
+
+Lorsqu\textquotesingle{}un utilisateur est connecté, il appel \doxylink{class_r34_i_c_s}{R34\+ICS} pour pouvoir afficher son emploi du temps, \doxylink{class_r34_i_c_s}{R34\+ICS} permet de lire les fichiers ICS. ~\newline
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md12}{}\doxysubsection{\texorpdfstring{Informations}{Informations}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md12}
+Les classes utilisées sont \+: Information\+Controller, Information \& Information\+View. ~\newline
+ Les librairies "{}\+Php\+Office"{} et "{}\+PDF.\+js"{} sont aussi utilisées. ~\newline
+ Fichier javascript \+: slideshow.\+js ~\newline
+
+
+Les informations sont affichées comme dan un diaporama les une après les autres. ~\newline
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md13}{}\doxysubsection{\texorpdfstring{Alertes}{Alertes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_e6ffa96f5dc931db22dff2170cb3ed66_autotoc_md13}
+Les classes utilisées sont \+: Alert\+Controller, Alert \& Alert\+View. ~\newline
+ La librairie "{}\+JQuery Ticker"{} est aussi utilisée. ~\newline
+ Fichier javascript \+: alert\+Ticker.\+js ~\newline
+
+
+Lors de la création d\textquotesingle{}une alerte, on appelle One\+Signal pour pouvoir envoyé une notification push (A (re)faire). ~\newline
+ 

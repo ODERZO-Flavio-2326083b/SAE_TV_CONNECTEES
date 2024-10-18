@@ -1,0 +1,88 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}File\+Loader}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}{}\label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}File\+Loader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.941176cm]{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a64aa5a9a23b01af60ba6266c61569cb9}{load}} (\$resource, \$locale, \$domain=\textquotesingle{}messages\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_array_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Array\+Loader}}}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_loader_1_1_loader_interface}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Loader\+Interface}}}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a7d29ed80f15369a24026303fc8deae10}{load\+Resource}} (\$resource)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+Abdellatif Ait boudad \href{mailto:a.aitboudad@gmail.com}{\texttt{ a.\+aitboudad@gmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a64aa5a9a23b01af60ba6266c61569cb9}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader}!load@{load}}
+\index{load@{load}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a64aa5a9a23b01af60ba6266c61569cb9} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader\+::load (\begin{DoxyParamCaption}\item[{}]{\$resource}{, }\item[{}]{\$locale}{, }\item[{}]{\$domain}{ = {\ttfamily \textquotesingle{}messages\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\{\{Loads a locale.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$resource} & A resource \\
+\hline
+string & {\em \$locale} & A locale \\
+\hline
+string & {\em \$domain} & The domain\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue} A \doxylink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue} instance
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Found\+Resource\+Exception} & when the resource cannot be found \\
+\hline
+{\em Invalid\+Resource\+Exception} & when the resource cannot be loaded\\
+\hline
+\end{DoxyExceptions}
+\}\} 
+
+Réimplémentée à partir de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_array_loader_a7cae28a049bcc23b65acb0ab470cf078}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Array\+Loader}}.
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a7d29ed80f15369a24026303fc8deae10}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader}!loadResource@{loadResource}}
+\index{loadResource@{loadResource}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}FileLoader}}
+\doxysubsubsection{\texorpdfstring{loadResource()}{loadResource()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a7d29ed80f15369a24026303fc8deae10} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader\+::load\+Resource (\begin{DoxyParamCaption}\item[{}]{\$resource}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}, {\ttfamily [protected]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$resource} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Resource\+Exception} & if stream content has an invalid format \\
+\hline
+\end{DoxyExceptions}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_csv_file_loader_ac50720d4719e2c8cb218a6648b9c612a}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Csv\+File\+Loader}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_ini_file_loader_a62ac7cdf9dfd0e651eaa1e7cb45e5acf}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Ini\+File\+Loader}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_abb552a12692fba471cdb4627924ca296}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Json\+File\+Loader}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_mo_file_loader_a30c89ddbe0efad9d54a2ce7305c82a34}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Mo\+File\+Loader}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_php_file_loader_a5779951cadd3bc9821bc442aadd839a8}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Php\+File\+Loader}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_po_file_loader_a9a1a39c7d3e17f42ae8144133da76c07}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Po\+File\+Loader}}, et \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_yaml_file_loader_ae49a755e4c66520eb5fe074d2512dd8b}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Yaml\+File\+Loader}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Loader/\mbox{\hyperlink{_file_loader_8php}{File\+Loader.\+php}}\end{DoxyCompactItemize}

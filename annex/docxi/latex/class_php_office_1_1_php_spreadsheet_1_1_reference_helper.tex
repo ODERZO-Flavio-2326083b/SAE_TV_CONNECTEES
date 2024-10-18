@@ -1,0 +1,584 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Reference\+Helper}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper}{}\label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a60da657f0e536fba28ad6812e60a04c2}{insert\+New\+Before}} (\$p\+Before, \$p\+Num\+Cols, \$p\+Num\+Rows, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}} \$p\+Sheet)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aad68ace2d4fb74c069748ea36b4df906}{update\+Formula\+References}} (\$p\+Formula=\textquotesingle{}\textquotesingle{}, \$p\+Before=\textquotesingle{}A1\textquotesingle{}, \$p\+Num\+Cols=0, \$p\+Num\+Rows=0, \$sheet\+Name=\textquotesingle{}\textquotesingle{})
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4c5e4ad92fb6e6a010fe7878c3e5bc95}{update\+Cell\+Reference}} (\$p\+Cell\+Range=\textquotesingle{}A1\textquotesingle{}, \$p\+Before=\textquotesingle{}A1\textquotesingle{}, \$p\+Num\+Cols=0, \$p\+Num\+Rows=0)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa5c126815727ed06e1b925350915d3ad}{update\+Named\+Formulas}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_spreadsheet}{Spreadsheet}} \$spreadsheet, \$old\+Name=\textquotesingle{}\textquotesingle{}, \$new\+Name=\textquotesingle{}\textquotesingle{})
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_acba50552ea7ce23585bca726fc63ab2d}{\+\_\+\+\_\+clone}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9c059663acf21a1942e3798262a39b94}{get\+Instance}} ()
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a68f085fb5bb58d2efd55e0eddf99e406}{column\+Sort}} (\$a, \$b)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9b67a24feaa5853d3e56d14d0a5ef397}{column\+Reverse\+Sort}} (\$a, \$b)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab199033b3f4f6c82a8240f7ceab5561f}{cell\+Sort}} (\$a, \$b)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa32eadfcd6a4411c66e59ecf45fb3743}{cell\+Reverse\+Sort}} (\$a, \$b)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a90947e115cf02c165256c2c2d98485d8}{REFHELPER\+\_\+\+REGEXP\+\_\+\+CELLREF}} = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(?$<$!\mbox{[}\+:a-\/z\textbackslash{}\$\mbox{]})(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)(?=\mbox{[}\texorpdfstring{$^\wedge$}{\string^}\+:!\textbackslash{}d\textbackslash{}\textquotesingle{}\mbox{]})\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4db9fdf8bae032860fc7f217fc066cc7}{REFHELPER\+\_\+\+REGEXP\+\_\+\+CELLRANGE}} = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)\+:(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af81f5ce57cc2b31875f5508695a4b676}{REFHELPER\+\_\+\+REGEXP\+\_\+\+ROWRANGE}} = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\textbackslash{}d+)\+:(\textbackslash{}\$?\textbackslash{}d+)\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af9cfa9197ca4a81fc42af561f2fd86b4}{REFHELPER\+\_\+\+REGEXP\+\_\+\+COLRANGE}} = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\})\+:(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\})\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a831e8414e14d05bfd34ab4206fb005fe}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aee4fdceb08fa21f983e43203f98dfa49}{adjust\+Page\+Breaks}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}} \$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ad4a4a7e935982c5d2137da451f788dad}{adjust\+Comments}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a942059a9c808f6f83b2664eed139e55a}{adjust\+Hyperlinks}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a356e1b3cb3403e13d45fd89fdc02e72e}{adjust\+Data\+Validations}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a6ecf996d4e7c2f0d0ff3b06543680a61}{adjust\+Merge\+Cells}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a958b11d22b9aee1c860d68c736341e29}{adjust\+Protected\+Cells}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a1f3274c6f5600185847d422bd51e2816}{adjust\+Column\+Dimensions}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a836144a5b6cb6bae902cc2552fdfcdf2}{adjust\+Row\+Dimensions}} (\$p\+Sheet, \$p\+Before, \$before\+Column\+Index, \$p\+Num\+Cols, \$before\+Row, \$p\+Num\+Rows)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab6c445d3cbc73773feb2ac13a9ddf038}{update\+Cell\+Range}} (\$p\+Cell\+Range=\textquotesingle{}A1\+:\+A1\textquotesingle{}, \$p\+Before=\textquotesingle{}A1\textquotesingle{}, \$p\+Num\+Cols=0, \$p\+Num\+Rows=0)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_adc69fff8e36324a901f5af4cd1b2e2fc}{update\+Single\+Cell\+Reference}} (\$p\+Cell\+Reference=\textquotesingle{}A1\textquotesingle{}, \$p\+Before=\textquotesingle{}A1\textquotesingle{}, \$p\+Num\+Cols=0, \$p\+Num\+Rows=0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a85e54856590736da1269f357c50e5755}{cell\+Address\+In\+Delete\+Range}} (\$cell\+Address, \$before\+Row, \$p\+Num\+Rows, \$before\+Column\+Index, \$p\+Num\+Cols)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a444a4110d0a8a0a07bfdaaea26850b6f}{\$instance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a831e8414e14d05bfd34ab4206fb005fe}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a831e8414e14d05bfd34ab4206fb005fe} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Create a new Reference\+Helper. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_acba50552ea7ce23585bca726fc63ab2d}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!\_\_clone@{\_\_clone}}
+\index{\_\_clone@{\_\_clone}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{\_\_clone()}{\_\_clone()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_acba50552ea7ce23585bca726fc63ab2d} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+\_\+\+\_\+clone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}}
+
+\+\_\+\+\_\+clone implementation. Cloning should not be allowed in a Singleton!
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a1f3274c6f5600185847d422bd51e2816}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustColumnDimensions@{adjustColumnDimensions}}
+\index{adjustColumnDimensions@{adjustColumnDimensions}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustColumnDimensions()}{adjustColumnDimensions()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a1f3274c6f5600185847d422bd51e2816} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Column\+Dimensions (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update column dimensions when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ad4a4a7e935982c5d2137da451f788dad}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustComments@{adjustComments}}
+\index{adjustComments@{adjustComments}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustComments()}{adjustComments()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ad4a4a7e935982c5d2137da451f788dad} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Comments (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update cell comments when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a356e1b3cb3403e13d45fd89fdc02e72e}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustDataValidations@{adjustDataValidations}}
+\index{adjustDataValidations@{adjustDataValidations}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustDataValidations()}{adjustDataValidations()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a356e1b3cb3403e13d45fd89fdc02e72e} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Data\+Validations (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update data validations when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a942059a9c808f6f83b2664eed139e55a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustHyperlinks@{adjustHyperlinks}}
+\index{adjustHyperlinks@{adjustHyperlinks}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustHyperlinks()}{adjustHyperlinks()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a942059a9c808f6f83b2664eed139e55a} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Hyperlinks (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update hyperlinks when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a6ecf996d4e7c2f0d0ff3b06543680a61}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustMergeCells@{adjustMergeCells}}
+\index{adjustMergeCells@{adjustMergeCells}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustMergeCells()}{adjustMergeCells()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a6ecf996d4e7c2f0d0ff3b06543680a61} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Merge\+Cells (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update merged cells when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aee4fdceb08fa21f983e43203f98dfa49}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustPageBreaks@{adjustPageBreaks}}
+\index{adjustPageBreaks@{adjustPageBreaks}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustPageBreaks()}{adjustPageBreaks()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aee4fdceb08fa21f983e43203f98dfa49} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Page\+Breaks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}}}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update page breaks when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a958b11d22b9aee1c860d68c736341e29}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustProtectedCells@{adjustProtectedCells}}
+\index{adjustProtectedCells@{adjustProtectedCells}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustProtectedCells()}{adjustProtectedCells()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a958b11d22b9aee1c860d68c736341e29} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Protected\+Cells (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update protected cells when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a836144a5b6cb6bae902cc2552fdfcdf2}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!adjustRowDimensions@{adjustRowDimensions}}
+\index{adjustRowDimensions@{adjustRowDimensions}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{adjustRowDimensions()}{adjustRowDimensions()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a836144a5b6cb6bae902cc2552fdfcdf2} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::adjust\+Row\+Dimensions (\begin{DoxyParamCaption}\item[{}]{\$p\+Sheet}{, }\item[{}]{\$p\+Before}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update row dimensions when inserting/deleting rows/columns.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing \\
+\hline
+string & {\em \$p\+Before} & Insert/\+Delete before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a85e54856590736da1269f357c50e5755}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!cellAddressInDeleteRange@{cellAddressInDeleteRange}}
+\index{cellAddressInDeleteRange@{cellAddressInDeleteRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{cellAddressInDeleteRange()}{cellAddressInDeleteRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a85e54856590736da1269f357c50e5755} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::cell\+Address\+In\+Delete\+Range (\begin{DoxyParamCaption}\item[{}]{\$cell\+Address}{, }\item[{}]{\$before\+Row}{, }\item[{}]{\$p\+Num\+Rows}{, }\item[{}]{\$before\+Column\+Index}{, }\item[{}]{\$p\+Num\+Cols}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Test whether a cell address falls within a defined range of cells.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$cell\+Address} & Address of the cell we\textquotesingle{}re testing \\
+\hline
+int & {\em \$before\+Row} & Number of the row we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$before\+Column\+Index} & Index number of the column we\textquotesingle{}re inserting/deleting before \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa32eadfcd6a4411c66e59ecf45fb3743}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!cellReverseSort@{cellReverseSort}}
+\index{cellReverseSort@{cellReverseSort}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{cellReverseSort()}{cellReverseSort()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa32eadfcd6a4411c66e59ecf45fb3743} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::cell\+Reverse\+Sort (\begin{DoxyParamCaption}\item[{}]{\$a}{, }\item[{}]{\$b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Compare two cell addresses Intended for use as a Callback function for sorting cell addresses by column and row.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$a} & First cell to test (e.\+g. \textquotesingle{}AA1\textquotesingle{}) \\
+\hline
+string & {\em \$b} & Second cell to test (e.\+g. \textquotesingle{}Z1\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab199033b3f4f6c82a8240f7ceab5561f}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!cellSort@{cellSort}}
+\index{cellSort@{cellSort}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{cellSort()}{cellSort()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab199033b3f4f6c82a8240f7ceab5561f} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::cell\+Sort (\begin{DoxyParamCaption}\item[{}]{\$a}{, }\item[{}]{\$b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Compare two cell addresses Intended for use as a Callback function for sorting cell addresses by column and row.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$a} & First cell to test (e.\+g. \textquotesingle{}AA1\textquotesingle{}) \\
+\hline
+string & {\em \$b} & Second cell to test (e.\+g. \textquotesingle{}Z1\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9b67a24feaa5853d3e56d14d0a5ef397}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!columnReverseSort@{columnReverseSort}}
+\index{columnReverseSort@{columnReverseSort}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{columnReverseSort()}{columnReverseSort()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9b67a24feaa5853d3e56d14d0a5ef397} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::column\+Reverse\+Sort (\begin{DoxyParamCaption}\item[{}]{\$a}{, }\item[{}]{\$b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Compare two column addresses Intended for use as a Callback function for reverse sorting column addresses by column.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$a} & First column to test (e.\+g. \textquotesingle{}AA\textquotesingle{}) \\
+\hline
+string & {\em \$b} & Second column to test (e.\+g. \textquotesingle{}Z\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a68f085fb5bb58d2efd55e0eddf99e406}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!columnSort@{columnSort}}
+\index{columnSort@{columnSort}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{columnSort()}{columnSort()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a68f085fb5bb58d2efd55e0eddf99e406} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::column\+Sort (\begin{DoxyParamCaption}\item[{}]{\$a}{, }\item[{}]{\$b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Compare two column addresses Intended for use as a Callback function for sorting column addresses by column.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$a} & First column to test (e.\+g. \textquotesingle{}AA\textquotesingle{}) \\
+\hline
+string & {\em \$b} & Second column to test (e.\+g. \textquotesingle{}Z\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9c059663acf21a1942e3798262a39b94}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a9c059663acf21a1942e3798262a39b94} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get an instance of this class.
+
+\begin{DoxyReturn}{Renvoie}
+Reference\+Helper 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a60da657f0e536fba28ad6812e60a04c2}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!insertNewBefore@{insertNewBefore}}
+\index{insertNewBefore@{insertNewBefore}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{insertNewBefore()}{insertNewBefore()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a60da657f0e536fba28ad6812e60a04c2} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::insert\+New\+Before (\begin{DoxyParamCaption}\item[{}]{\$p\+Before}{, }\item[{}]{\$p\+Num\+Cols}{, }\item[{}]{\$p\+Num\+Rows}{, }\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}}}]{\$p\+Sheet}{}\end{DoxyParamCaption})}
+
+Insert a new column or row, updating all possible related data.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Before} & Insert before this cell address (e.\+g. \textquotesingle{}A1\textquotesingle{}) \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert/delete (negative values indicate deletion) \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert/delete (negative values indicate deletion) \\
+\hline
+Worksheet & {\em \$p\+Sheet} & The worksheet that we\textquotesingle{}re editing\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab6c445d3cbc73773feb2ac13a9ddf038}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!updateCellRange@{updateCellRange}}
+\index{updateCellRange@{updateCellRange}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{updateCellRange()}{updateCellRange()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_ab6c445d3cbc73773feb2ac13a9ddf038} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::update\+Cell\+Range (\begin{DoxyParamCaption}\item[{}]{\$p\+Cell\+Range}{ = {\ttfamily \textquotesingle{}A1\+:A1\textquotesingle{}}, }\item[{}]{\$p\+Before}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Num\+Cols}{ = {\ttfamily 0}, }\item[{}]{\$p\+Num\+Rows}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Update cell range.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Cell\+Range} & Cell range (e.\+g. \textquotesingle{}B2\+:D4\textquotesingle{}, \textquotesingle{}B\+:C\textquotesingle{} or \textquotesingle{}2\+:3\textquotesingle{}) \\
+\hline
+string & {\em \$p\+Before} & Insert before this one \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to increment \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to increment\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Updated cell range 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4c5e4ad92fb6e6a010fe7878c3e5bc95}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!updateCellReference@{updateCellReference}}
+\index{updateCellReference@{updateCellReference}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{updateCellReference()}{updateCellReference()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4c5e4ad92fb6e6a010fe7878c3e5bc95} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::update\+Cell\+Reference (\begin{DoxyParamCaption}\item[{}]{\$p\+Cell\+Range}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Before}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Num\+Cols}{ = {\ttfamily 0}, }\item[{}]{\$p\+Num\+Rows}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+Update cell reference.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Cell\+Range} & Cell range \\
+\hline
+string & {\em \$p\+Before} & Insert before this one \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to increment \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to increment\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Updated cell range 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aad68ace2d4fb74c069748ea36b4df906}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!updateFormulaReferences@{updateFormulaReferences}}
+\index{updateFormulaReferences@{updateFormulaReferences}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{updateFormulaReferences()}{updateFormulaReferences()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aad68ace2d4fb74c069748ea36b4df906} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::update\+Formula\+References (\begin{DoxyParamCaption}\item[{}]{\$p\+Formula}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$p\+Before}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Num\+Cols}{ = {\ttfamily 0}, }\item[{}]{\$p\+Num\+Rows}{ = {\ttfamily 0}, }\item[{}]{\$sheet\+Name}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Update references within formulas.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Formula} & Formula to update \\
+\hline
+string & {\em \$p\+Before} & Insert before this one \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to insert \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to insert \\
+\hline
+string & {\em \$sheet\+Name} & Worksheet name/title\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Updated formula 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa5c126815727ed06e1b925350915d3ad}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!updateNamedFormulas@{updateNamedFormulas}}
+\index{updateNamedFormulas@{updateNamedFormulas}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{updateNamedFormulas()}{updateNamedFormulas()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_aa5c126815727ed06e1b925350915d3ad} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::update\+Named\+Formulas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_spreadsheet}{Spreadsheet}}}]{\$spreadsheet}{, }\item[{}]{\$old\+Name}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$new\+Name}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Update named formulas (i.\+e. containing worksheet references / named ranges).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Spreadsheet & {\em \$spreadsheet} & Object to update \\
+\hline
+string & {\em \$old\+Name} & Old name (name to replace) \\
+\hline
+string & {\em \$new\+Name} & New name \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_adc69fff8e36324a901f5af4cd1b2e2fc}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!updateSingleCellReference@{updateSingleCellReference}}
+\index{updateSingleCellReference@{updateSingleCellReference}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{updateSingleCellReference()}{updateSingleCellReference()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_adc69fff8e36324a901f5af4cd1b2e2fc} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::update\+Single\+Cell\+Reference (\begin{DoxyParamCaption}\item[{}]{\$p\+Cell\+Reference}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Before}{ = {\ttfamily \textquotesingle{}A1\textquotesingle{}}, }\item[{}]{\$p\+Num\+Cols}{ = {\ttfamily 0}, }\item[{}]{\$p\+Num\+Rows}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Update single cell reference.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$p\+Cell\+Reference} & Single cell reference \\
+\hline
+string & {\em \$p\+Before} & Insert before this one \\
+\hline
+int & {\em \$p\+Num\+Cols} & Number of columns to increment \\
+\hline
+int & {\em \$p\+Num\+Rows} & Number of rows to increment\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string Updated cell reference 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a444a4110d0a8a0a07bfdaaea26850b6f}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!\$instance@{\$instance}}
+\index{\$instance@{\$instance}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{\$instance}{\$instance}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a444a4110d0a8a0a07bfdaaea26850b6f} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\$instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4db9fdf8bae032860fc7f217fc066cc7}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!REFHELPER\_REGEXP\_CELLRANGE@{REFHELPER\_REGEXP\_CELLRANGE}}
+\index{REFHELPER\_REGEXP\_CELLRANGE@{REFHELPER\_REGEXP\_CELLRANGE}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{REFHELPER\_REGEXP\_CELLRANGE}{REFHELPER\_REGEXP\_CELLRANGE}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a4db9fdf8bae032860fc7f217fc066cc7} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+REFHELPER\+\_\+\+REGEXP\+\_\+\+CELLRANGE = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)\+:(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)\textquotesingle{}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a90947e115cf02c165256c2c2d98485d8}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!REFHELPER\_REGEXP\_CELLREF@{REFHELPER\_REGEXP\_CELLREF}}
+\index{REFHELPER\_REGEXP\_CELLREF@{REFHELPER\_REGEXP\_CELLREF}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{REFHELPER\_REGEXP\_CELLREF}{REFHELPER\_REGEXP\_CELLREF}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_a90947e115cf02c165256c2c2d98485d8} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+REFHELPER\+\_\+\+REGEXP\+\_\+\+CELLREF = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(?$<$!\mbox{[}\+:a-\/z\textbackslash{}\$\mbox{]})(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\}\textbackslash{}\$?\textbackslash{}d+)(?=\mbox{[}\texorpdfstring{$^\wedge$}{\string^}\+:!\textbackslash{}d\textbackslash{}\textquotesingle{}\mbox{]})\textquotesingle{}}
+
+Constants ~\newline
+ Regular Expressions ~\newline
+ \Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af9cfa9197ca4a81fc42af561f2fd86b4}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!REFHELPER\_REGEXP\_COLRANGE@{REFHELPER\_REGEXP\_COLRANGE}}
+\index{REFHELPER\_REGEXP\_COLRANGE@{REFHELPER\_REGEXP\_COLRANGE}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{REFHELPER\_REGEXP\_COLRANGE}{REFHELPER\_REGEXP\_COLRANGE}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af9cfa9197ca4a81fc42af561f2fd86b4} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+REFHELPER\+\_\+\+REGEXP\+\_\+\+COLRANGE = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\})\+:(\textbackslash{}\$?\mbox{[}a-\/z\mbox{]}\{1,3\})\textquotesingle{}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af81f5ce57cc2b31875f5508695a4b676}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}!REFHELPER\_REGEXP\_ROWRANGE@{REFHELPER\_REGEXP\_ROWRANGE}}
+\index{REFHELPER\_REGEXP\_ROWRANGE@{REFHELPER\_REGEXP\_ROWRANGE}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}ReferenceHelper}}
+\doxysubsubsection{\texorpdfstring{REFHELPER\_REGEXP\_ROWRANGE}{REFHELPER\_REGEXP\_ROWRANGE}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_reference_helper_af81f5ce57cc2b31875f5508695a4b676} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reference\+Helper\+::\+REFHELPER\+\_\+\+REGEXP\+\_\+\+ROWRANGE = \textquotesingle{}((\textbackslash{}w\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}\textquotesingle{}\mbox{[}\texorpdfstring{$^\wedge$}{\string^}!\mbox{]}\texorpdfstring{$\ast$}{*}\textbackslash{}\textquotesingle{})!)?(\textbackslash{}\$?\textbackslash{}d+)\+:(\textbackslash{}\$?\textbackslash{}d+)\textquotesingle{}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\mbox{\hyperlink{_reference_helper_8php}{Reference\+Helper.\+php}}\end{DoxyCompactItemize}

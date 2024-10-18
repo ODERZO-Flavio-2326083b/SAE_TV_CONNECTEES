@@ -1,0 +1,57 @@
+\chapter{About}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6}\index{About@{About}}
+\doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} is a set of two PHP scripts; the main {\ttfamily phpcs} script that tokenizes PHP, Java\+Script and CSS files to detect violations of a defined coding standard, and a second {\ttfamily phpcbf} script to automatically correct coding standard violations. \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} is an essential development tool that ensures your code remains clean and consistent.
+
+\href{https://travis-ci.org/squizlabs/PHP_CodeSniffer}{\texttt{ }} \href{http://squizlabs.github.io/PHP_CodeSniffer/analysis/squizlabs/PHP_CodeSniffer}{\texttt{ }}
+
+\href{https://gitter.im/squizlabs/PHP_CodeSniffer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge}{\texttt{ }}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md761}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md761}
+\doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} requires PHP version 5.\+1.\+2 or greater, although individual sniffs may have additional requirements such as external applications and scripts. See the \href{https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options}{\texttt{ Configuration Options manual page}} for a list of these requirements.
+
+The SVN pre-\/commit hook requires PHP version 5.\+2.\+4 or greater due to its use of the vertical whitespace character.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md762}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md762}
+The easiest way to get started with \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} is to download the \href{http://php.net/manual/en/intro.phar.php}{\texttt{ Phar}} files for each of the commands\+: \begin{DoxyVerb}curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+php phpcs.phar -h
+
+curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+php phpcbf.phar -h
+\end{DoxyVerb}
+
+
+If you use PEAR, you can install \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} using the PEAR installer. This will make the {\ttfamily phpcs} and {\ttfamily phpcbf} commands immediately available for use. To install \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} using the PEAR installer, first ensure you have \href{http://pear.php.net/manual/en/installation.getting.php}{\texttt{ installed PEAR}} and then run the following command\+: \begin{DoxyVerb}pear install PHP_CodeSniffer
+\end{DoxyVerb}
+
+
+If you prefer using \href{http://getcomposer.org/}{\texttt{ Composer}} you can easily install \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} system-\/wide with the following command\+: \begin{DoxyVerb}composer global require "squizlabs/php_codesniffer=*"
+\end{DoxyVerb}
+
+
+Make sure you have the composer bin dir in your PATH. The default value is {\ttfamily \texorpdfstring{$\sim$}{\string~}/.composer/vendor/bin/}, but you can check the value that you need to use by running {\ttfamily composer global config bin-\/dir -\/-\/absolute}.
+
+Or alternatively, include a dependency for {\ttfamily squizlabs/php\+\_\+codesniffer} in your {\ttfamily composer.\+json} file. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ "{}require-\/dev"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}squizlabs/php\_codesniffer"{}:\ "{}2.*"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+You will then be able to run \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} from the vendor bin directory\+: \begin{DoxyVerb}./vendor/bin/phpcs -h
+./vendor/bin/phpcbf -h
+\end{DoxyVerb}
+
+
+You can also download the \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} source and run the {\ttfamily phpcs} and {\ttfamily phpcbf} commands directly from the Git clone\+: \begin{DoxyVerb}git clone https://github.com/squizlabs/PHP_CodeSniffer.git
+cd PHP_CodeSniffer
+php scripts/phpcs -h
+php scripts/phpcbf -h
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md763}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md763}
+The documentation for \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} is available on the \href{https://github.com/squizlabs/PHP_CodeSniffer/wiki}{\texttt{ Github wiki}}.
+
+Information about upcoming features and releases is available on the \href{http://www.squizlabs.com/php-codesniffer}{\texttt{ Squiz Labs blog}}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md764}{}\doxysection{\texorpdfstring{Issues}{Issues}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md764}
+Bug reports and feature requests can be submitted on the \href{https://github.com/squizlabs/PHP_CodeSniffer/issues}{\texttt{ Github Issue Tracker}} or the \href{http://pear.php.net/package/PHP_CodeSniffer/bugs}{\texttt{ PEAR bug tracker}}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md765}{}\doxysection{\texorpdfstring{Contributing}{Contributing}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_aceec6f38a3c6b286e364da60fc018b6_autotoc_md765}
+See \doxysectlink{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_1192fbe41a4dd66d45ef635e70fae919}{CONTRIBUTING.md}{0} for information. 

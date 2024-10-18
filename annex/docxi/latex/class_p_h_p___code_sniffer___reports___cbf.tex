@@ -1,0 +1,86 @@
+\doxysection{Référence de la classe PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf}
+\hypertarget{class_p_h_p___code_sniffer___reports___cbf}{}\label{class_p_h_p___code_sniffer___reports___cbf}\index{PHP\_CodeSniffer\_Reports\_Cbf@{PHP\_CodeSniffer\_Reports\_Cbf}}
+Graphe d\textquotesingle{}héritage de PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_h_p___code_sniffer___reports___cbf}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___reports___cbf_a0512f74897877d1546444210fc8eece3}{generate\+File\+Report}} ( \$report, \mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}} \$phpcs\+File, \$show\+Sources=false, \$width=80)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___reports___cbf_a60d15144dea4280e74246a3cccd0888f}{generate}} ( \$cached\+Data, \$total\+Files, \$total\+Errors, \$total\+Warnings, \$total\+Fixable, \$show\+Sources=false, \$width=80, \$to\+Screen=\mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_p_h_p___code_sniffer___report}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report}}}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_p_h_p___code_sniffer___reports___cbf_a60d15144dea4280e74246a3cccd0888f}\index{PHP\_CodeSniffer\_Reports\_Cbf@{PHP\_CodeSniffer\_Reports\_Cbf}!generate@{generate}}
+\index{generate@{generate}!PHP\_CodeSniffer\_Reports\_Cbf@{PHP\_CodeSniffer\_Reports\_Cbf}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___reports___cbf_a60d15144dea4280e74246a3cccd0888f} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf\+::generate (\begin{DoxyParamCaption}\item[{}]{\$cached\+Data}{, }\item[{}]{\$total\+Files}{, }\item[{}]{\$total\+Errors}{, }\item[{}]{\$total\+Warnings}{, }\item[{}]{\$total\+Fixable}{, }\item[{}]{\$show\+Sources}{ = {\ttfamily false}, }\item[{}]{\$width}{ = {\ttfamily 80}, }\item[{}]{\$to\+Screen}{ = {\ttfamily \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}}}\end{DoxyParamCaption})}
+
+Prints all errors and warnings for each file processed.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$cached\+Data} & Any partial report data that was returned from generate\+File\+Report during the run. \\
+\hline
+int & {\em \$total\+Files} & Total number of files processed during the run. \\
+\hline
+int & {\em \$total\+Errors} & Total number of errors found during the run. \\
+\hline
+int & {\em \$total\+Warnings} & Total number of warnings found during the run. \\
+\hline
+int & {\em \$total\+Fixable} & Total number of problems that can be fixed. \\
+\hline
+boolean & {\em \$show\+Sources} & Show sources? \\
+\hline
+int & {\em \$width} & Maximum allowed line width. \\
+\hline
+boolean & {\em \$to\+Screen} & Is the report being printed to screen?\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interface_p_h_p___code_sniffer___report_a6318f925a0cf91830e8dad4c975c9972}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report}}.
+
+\Hypertarget{class_p_h_p___code_sniffer___reports___cbf_a0512f74897877d1546444210fc8eece3}\index{PHP\_CodeSniffer\_Reports\_Cbf@{PHP\_CodeSniffer\_Reports\_Cbf}!generateFileReport@{generateFileReport}}
+\index{generateFileReport@{generateFileReport}!PHP\_CodeSniffer\_Reports\_Cbf@{PHP\_CodeSniffer\_Reports\_Cbf}}
+\doxysubsubsection{\texorpdfstring{generateFileReport()}{generateFileReport()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___reports___cbf_a0512f74897877d1546444210fc8eece3} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Reports\+\_\+\+Cbf\+::generate\+File\+Report (\begin{DoxyParamCaption}\item[{}]{\$report}{, }\item[{\mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}}}]{\$phpcs\+File}{, }\item[{}]{\$show\+Sources}{ = {\ttfamily false}, }\item[{}]{\$width}{ = {\ttfamily 80}}\end{DoxyParamCaption})}
+
+Generate a partial report for a single processed file.
+
+Function should return TRUE if it printed or stored data about the file and FALSE if it ignored the file. Returning TRUE indicates that the file and its data should be counted in the grand totals.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$report} & Prepared report data. \\
+\hline
+\doxylink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File} & {\em \$phpcs\+File} & The file being reported on. \\
+\hline
+boolean & {\em \$show\+Sources} & Show sources? \\
+\hline
+int & {\em \$width} & Maximum allowed line width.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interface_p_h_p___code_sniffer___report_a453e5203642b1e911d789221ed7ebe2d}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Report}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/squizlabs/php\+\_\+codesniffer/\+Code\+Sniffer/\+Reports/\mbox{\hyperlink{_cbf_8php}{Cbf.\+php}}\end{DoxyCompactItemize}

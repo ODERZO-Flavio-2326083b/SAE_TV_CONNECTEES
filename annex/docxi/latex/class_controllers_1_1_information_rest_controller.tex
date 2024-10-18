@@ -1,0 +1,352 @@
+\doxysection{Référence de la classe Controllers\textbackslash{}Information\+Rest\+Controller}
+\hypertarget{class_controllers_1_1_information_rest_controller}{}\label{class_controllers_1_1_information_rest_controller}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+
+
+Classe pour gérer le contrôleur REST des informations.  
+
+
+Graphe d\textquotesingle{}héritage de Controllers\textbackslash{}Information\+Rest\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_controllers_1_1_information_rest_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_afe7f5c51b9d2b7ffadd34046d649452e}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_a2fec4d1b9cf6bb0b7525a63b1c74b1dc}{register\+\_\+routes}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_af7d1fb3488e24c3c982bf6eac398351b}{get\+\_\+items}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_af8758b334590a911ba885a5a62db39a6}{create\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_af0377eeb3b94fd6423137ef54814e74b}{get\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_a1d15a0309b444f06fc5e0be63e570b63}{update\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_a43660207cd21dff09e7b38b6ef5b41a0}{delete\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_ac164b6dc333bd52fad090f090e28597d}{get\+\_\+items\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_a4ba61181b8221c7031400bb512d375c2}{create\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_ac780cfd8b807d346e2d2e83a1c9cbe38}{get\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_ac620ba1d514ba5fac280c99b2c7bd3a4}{update\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_a0ebf9a08b6823ba815b0c6d98d509459}{delete\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_information_rest_controller_ad38141e97890f0d82068024cab892c2d}{get\+\_\+collection\+\_\+params}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe pour gérer le contrôleur REST des informations. 
+
+Cette classe permet de gérer les requêtes REST concernant les informations dans l\textquotesingle{}application, notamment la création, la récupération, la mise à jour et la suppression d\textquotesingle{}informations. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_controllers_1_1_information_rest_controller_afe7f5c51b9d2b7ffadd34046d649452e}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_afe7f5c51b9d2b7ffadd34046d649452e} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe.
+
+Initialise le namespace et la base REST pour les informations. Ces valeurs sont utilisées pour définir les points de terminaison lors de la création d\textquotesingle{}API REST dans Word\+Press.
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_controllers_1_1_information_rest_controller_af8758b334590a911ba885a5a62db39a6}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!create\_item@{create\_item}}
+\index{create\_item@{create\_item}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item()}{create\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_af8758b334590a911ba885a5a62db39a6} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::create\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Crée un nouvel élément d\textquotesingle{}information.
+
+Cette méthode traite la requête pour créer un nouvel élément d\textquotesingle{}information en utilisant les données fournies dans la requête. Elle initialise les propriétés de l\textquotesingle{}élément d\textquotesingle{}information, tente de l\textquotesingle{}insérer dans la base de données, et renvoie une réponse REST contenant l\textquotesingle{}ID de l\textquotesingle{}élément créé ou un message d\textquotesingle{}erreur en cas d\textquotesingle{}échec.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST contenant les données pour créer l\textquotesingle{}élément.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse REST contenant l\textquotesingle{}ID de l\textquotesingle{}élément créé ou un message d\textquotesingle{}erreur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_a4ba61181b8221c7031400bb512d375c2}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!create\_item\_permissions\_check@{create\_item\_permissions\_check}}
+\index{create\_item\_permissions\_check@{create\_item\_permissions\_check}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item\_permissions\_check()}{create\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_a4ba61181b8221c7031400bb512d375c2} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::create\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour créer un nouvel élément d\textquotesingle{}information.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour créer un nouvel élément d\textquotesingle{}information. La vérification est effectuée en utilisant la méthode {\ttfamily get\+\_\+items\+\_\+permissions\+\_\+check}, qui permet uniquement aux utilisateurs ayant le rôle d\textquotesingle{}administrateur d\textquotesingle{}effectuer cette action.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si l\textquotesingle{}utilisateur a les permissions nécessaires, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_a43660207cd21dff09e7b38b6ef5b41a0}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!delete\_item@{delete\_item}}
+\index{delete\_item@{delete\_item}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item()}{delete\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_a43660207cd21dff09e7b38b6ef5b41a0} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::delete\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Supprime un élément d\textquotesingle{}information spécifique.
+
+Cette méthode traite la requête pour supprimer un élément d\textquotesingle{}information identifié par son ID. Elle tente de récupérer l\textquotesingle{}élément de la base de données et, si celui-\/ci est trouvé, elle procède à sa suppression. En cas de succès, elle renvoie une réponse REST avec un statut 200. Si l\textquotesingle{}élément n\textquotesingle{}est pas trouvé ou si la suppression échoue, elle renvoie un message d\textquotesingle{}erreur approprié.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST contenant l\textquotesingle{}ID de l\textquotesingle{}élément à supprimer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse REST indiquant le succès ou l\textquotesingle{}échec de la suppression de l\textquotesingle{}élément d\textquotesingle{}information.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_a0ebf9a08b6823ba815b0c6d98d509459}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!delete\_item\_permissions\_check@{delete\_item\_permissions\_check}}
+\index{delete\_item\_permissions\_check@{delete\_item\_permissions\_check}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item\_permissions\_check()}{delete\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_a0ebf9a08b6823ba815b0c6d98d509459} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::delete\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour supprimer un élément d\textquotesingle{}information.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour supprimer un élément d\textquotesingle{}information spécifique. La vérification est effectuée en utilisant la méthode {\ttfamily get\+\_\+items\+\_\+permissions\+\_\+check}, qui permet uniquement aux utilisateurs ayant le rôle d\textquotesingle{}administrateur d\textquotesingle{}effectuer cette action.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si l\textquotesingle{}utilisateur a les permissions nécessaires, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_ad38141e97890f0d82068024cab892c2d}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!get\_collection\_params@{get\_collection\_params}}
+\index{get\_collection\_params@{get\_collection\_params}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{get\_collection\_params()}{get\_collection\_params()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_ad38141e97890f0d82068024cab892c2d} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::get\+\_\+collection\+\_\+params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère les paramètres de collection pour la requête REST.
+
+Cette méthode définit les paramètres de requête acceptés pour récupérer une collection d\textquotesingle{}éléments d\textquotesingle{}information, notamment la limite du nombre d\textquotesingle{}éléments à récupérer et l\textquotesingle{}offset à partir duquel commencer la récupération.
+
+\begin{DoxyReturn}{Renvoie}
+array Un tableau associatif des paramètres de requête, incluant \textquotesingle{}limit\textquotesingle{} et \textquotesingle{}offset\textquotesingle{}, avec des descriptions et des valeurs par défaut.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_af0377eeb3b94fd6423137ef54814e74b}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!get\_item@{get\_item}}
+\index{get\_item@{get\_item}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item()}{get\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_af0377eeb3b94fd6423137ef54814e74b} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::get\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère un élément d\textquotesingle{}information spécifique.
+
+Cette méthode traite la requête pour récupérer un élément d\textquotesingle{}information en fonction de son identifiant. Elle interroge la base de données pour obtenir les détails de l\textquotesingle{}élément demandé et renvoie une réponse REST contenant les informations de l\textquotesingle{}élément ou un message d\textquotesingle{}erreur si l\textquotesingle{}élément n\textquotesingle{}est pas trouvé.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST contenant l\textquotesingle{}ID de l\textquotesingle{}élément à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse REST contenant l\textquotesingle{}élément d\textquotesingle{}information demandé ou un message d\textquotesingle{}erreur si non trouvé.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_ac780cfd8b807d346e2d2e83a1c9cbe38}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!get\_item\_permissions\_check@{get\_item\_permissions\_check}}
+\index{get\_item\_permissions\_check@{get\_item\_permissions\_check}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item\_permissions\_check()}{get\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_ac780cfd8b807d346e2d2e83a1c9cbe38} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::get\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour récupérer un élément d\textquotesingle{}information.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour récupérer un élément d\textquotesingle{}information spécifique. La vérification est effectuée en utilisant la méthode {\ttfamily get\+\_\+items\+\_\+permissions\+\_\+check}, qui permet uniquement aux utilisateurs ayant le rôle d\textquotesingle{}administrateur d\textquotesingle{}effectuer cette action.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si l\textquotesingle{}utilisateur a les permissions nécessaires, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_af7d1fb3488e24c3c982bf6eac398351b}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!get\_items@{get\_items}}
+\index{get\_items@{get\_items}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items()}{get\_items()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_af7d1fb3488e24c3c982bf6eac398351b} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::get\+\_\+items (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère une liste d\textquotesingle{}éléments d\textquotesingle{}information.
+
+Cette méthode traite la requête pour récupérer les éléments d\textquotesingle{}information avec un support pour la pagination via les paramètres {\ttfamily offset} et {\ttfamily limit}. Elle crée une instance du gestionnaire d\textquotesingle{}informations et renvoie une réponse REST avec la liste des informations.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST contenant les paramètres pour la récupération des éléments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse REST contenant la liste des informations.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_ac164b6dc333bd52fad090f090e28597d}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!get\_items\_permissions\_check@{get\_items\_permissions\_check}}
+\index{get\_items\_permissions\_check@{get\_items\_permissions\_check}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items\_permissions\_check()}{get\_items\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_ac164b6dc333bd52fad090f090e28597d} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::get\+\_\+items\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour récupérer les éléments d\textquotesingle{}information.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour accéder à la liste des éléments d\textquotesingle{}information. Seuls les utilisateurs ayant le rôle d\textquotesingle{}administrateur sont autorisés à effectuer cette action. La méthode renvoie true si l\textquotesingle{}utilisateur a les permissions requises, sinon false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si l\textquotesingle{}utilisateur a les permissions nécessaires, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_a2fec4d1b9cf6bb0b7525a63b1c74b1dc}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!register\_routes@{register\_routes}}
+\index{register\_routes@{register\_routes}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{register\_routes()}{register\_routes()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_a2fec4d1b9cf6bb0b7525a63b1c74b1dc} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::register\+\_\+routes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enregistre les routes REST pour la gestion des informations.
+
+Cette méthode définit les points de terminaison pour créer, lire, mettre à jour et supprimer des éléments d\textquotesingle{}information via l\textquotesingle{}API REST. Elle utilise la classe WP\+\_\+\+REST\+\_\+\+Server pour définir les méthodes HTTP disponibles et leurs permissions respectives. Les arguments pour chaque point de terminaison sont également spécifiés.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_a1d15a0309b444f06fc5e0be63e570b63}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!update\_item@{update\_item}}
+\index{update\_item@{update\_item}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item()}{update\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_a1d15a0309b444f06fc5e0be63e570b63} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::update\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Met à jour un élément d\textquotesingle{}information spécifique.
+
+Cette méthode traite la requête pour mettre à jour un élément d\textquotesingle{}information en fonction de son identifiant. Elle récupère les données existantes, vérifie les paramètres fournis dans la requête, et effectue la mise à jour dans la base de données. En cas de succès, elle renvoie une réponse REST avec un statut 200. Si l\textquotesingle{}élément n\textquotesingle{}est pas trouvé ou si la mise à jour échoue, elle renvoie un message d\textquotesingle{}erreur approprié.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST contenant les données à mettre à jour et l\textquotesingle{}ID de l\textquotesingle{}élément.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse REST indiquant le succès ou l\textquotesingle{}échec de la mise à jour de l\textquotesingle{}élément d\textquotesingle{}information.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_information_rest_controller_ac620ba1d514ba5fac280c99b2c7bd3a4}\index{Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}!update\_item\_permissions\_check@{update\_item\_permissions\_check}}
+\index{update\_item\_permissions\_check@{update\_item\_permissions\_check}!Controllers\textbackslash{}InformationRestController@{Controllers\textbackslash{}InformationRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item\_permissions\_check()}{update\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_information_rest_controller_ac620ba1d514ba5fac280c99b2c7bd3a4} 
+Controllers\textbackslash{}\+Information\+Rest\+Controller\+::update\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour mettre à jour un élément d\textquotesingle{}information.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour mettre à jour un élément d\textquotesingle{}information spécifique. La vérification est effectuée en utilisant la méthode {\ttfamily get\+\_\+items\+\_\+permissions\+\_\+check}, qui permet uniquement aux utilisateurs ayant le rôle d\textquotesingle{}administrateur d\textquotesingle{}effectuer cette action.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de la requête REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si l\textquotesingle{}utilisateur a les permissions nécessaires, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{controllers_2_information_rest_controller_8php}{Information\+Rest\+Controller.\+php}}\end{DoxyCompactItemize}

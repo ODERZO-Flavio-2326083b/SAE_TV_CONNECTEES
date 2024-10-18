@@ -1,0 +1,82 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}Json\+File\+Loader}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader}{}\label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}Json\+File\+Loader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_abb552a12692fba471cdb4627924ca296}{load\+Resource}} (\$resource)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres protégées hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_a3466946f024de3fbca845ebe8afc6933}{get\+JSONError\+Message}} (\$error\+Code)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a64aa5a9a23b01af60ba6266c61569cb9}{load}} (\$resource, \$locale, \$domain=\textquotesingle{}messages\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_array_loader}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Array\+Loader}}}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_loader_1_1_loader_interface}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Loader\+Interface}}}
+
+
+\doxysubsection{Description détaillée}
+Json\+File\+Loader loads translations from an json file.
+
+\begin{DoxyAuthor}{Auteur}
+singles 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_a3466946f024de3fbca845ebe8afc6933}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader}!getJSONErrorMessage@{getJSONErrorMessage}}
+\index{getJSONErrorMessage@{getJSONErrorMessage}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader}}
+\doxysubsubsection{\texorpdfstring{getJSONErrorMessage()}{getJSONErrorMessage()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_a3466946f024de3fbca845ebe8afc6933} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Json\+File\+Loader\+::get\+JSONError\+Message (\begin{DoxyParamCaption}\item[{}]{\$error\+Code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Translates JSON\+\_\+\+ERROR\+\_\+\texorpdfstring{$\ast$}{*} constant into meaningful message.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$error\+Code} & Error code returned by json\+\_\+last\+\_\+error() call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Message string 
+\end{DoxyReturn}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_abb552a12692fba471cdb4627924ca296}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader}!loadResource@{loadResource}}
+\index{loadResource@{loadResource}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Loader\textbackslash{}JsonFileLoader}}
+\doxysubsubsection{\texorpdfstring{loadResource()}{loadResource()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_json_file_loader_abb552a12692fba471cdb4627924ca296} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+Json\+File\+Loader\+::load\+Resource (\begin{DoxyParamCaption}\item[{}]{\$resource}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\{
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$resource} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Resource\+Exception} & if stream content has an invalid format\\
+\hline
+\end{DoxyExceptions}
+\} 
+
+Réimplémentée à partir de \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_loader_1_1_file_loader_a7d29ed80f15369a24026303fc8deae10}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Loader\textbackslash{}\+File\+Loader}}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Loader/\mbox{\hyperlink{_json_file_loader_8php}{Json\+File\+Loader.\+php}}\end{DoxyCompactItemize}

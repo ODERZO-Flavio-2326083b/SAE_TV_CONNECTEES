@@ -5,16 +5,17 @@ namespace Views;
 /**
  * Class HelpMapView
  *
- * View for the map showing interesting locations nearby
+ * Vue pour la carte affichant les lieux intéressants à proximité.
  *
  * @package Views
  */
 class HelpMapView extends View
 {
     /**
-     * Displays the help map
+     * Affiche la carte d'aide.
      *
      * @return string
+     * Retourne le code HTML de la carte d'aide.
      */
     public function displayHelpMap() {
         return '<p>Hello, World!</p>';

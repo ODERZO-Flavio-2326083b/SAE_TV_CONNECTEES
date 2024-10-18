@@ -1,0 +1,206 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\+Code\+Ade.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e72707a3a5261782d6420fd5486fdbbe4}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e72707a3a5261782d6420fd5486fdbbe4}Envoie une notification aux cibles spécifiées via l\textquotesingle{}API One\+Signal.
+
+Si aucune cible spécifique n\textquotesingle{}est définie, la notification est envoyée à tous les utilisateurs. Si des cibles sont spécifiées, elles sont converties en filtres basés sur leurs codes ADE et la notification est envoyée uniquement à ces utilisateurs.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array | null & {\em \$targets} & Un tableau d\textquotesingle{}objets cibles (avec des codes ADE), ou null pour inclure tous les utilisateurs. \\
+\hline
+string & {\em \$message} & Le message de notification à envoyer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Réponse de l\textquotesingle{}API One\+Signal après l\textquotesingle{}envoi de la notification.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si une erreur survient lors de l\textquotesingle{}envoi de la notification.\\
+\hline
+\end{DoxyExceptions}
+// Envoyer une notification à tous les utilisateurs \+: \$this-\/\texorpdfstring{$>$}{>}send\+Notification(null, \textquotesingle{}Message pour tous les utilisateurs\textquotesingle{});
+
+// Envoyer une notification à des utilisateurs spécifiques \+: \$targets = \mbox{[}new Code\+Ade(\textquotesingle{}code1\textquotesingle{}), new Code\+Ade(\textquotesingle{}code2\textquotesingle{})\mbox{]}; \$this-\/\texorpdfstring{$>$}{>}send\+Notification(\$targets, \textquotesingle{}Message pour des utilisateurs spécifiques\textquotesingle{});
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_models}{Models}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ JsonSerializable;}
+\DoxyCodeLine{use\ PDO;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }CodeAde\ \textcolor{keyword}{extends}\ Model\ implements\ Entity,\ JsonSerializable}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$id;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$type;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$title;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$code;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ insert()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$database\ =\ \$this-\/>getDatabase();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$database-\/>prepare(\textcolor{stringliteral}{'INSERT\ INTO\ ecran\_code\_ade\ (type,\ title,\ code)\ VALUES\ (:type,\ :title,\ :code)'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':title'},\ \$this-\/>getTitle(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':code'},\ \$this-\/>getCode(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':type'},\ \$this-\/>getType(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$database-\/>lastInsertId();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ update()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'UPDATE\ ecran\_code\_ade\ SET\ title\ =\ :title,\ code\ =\ :code,\ type\ =\ :type\ WHERE\ id\ =\ :id'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$this-\/>getId(),\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':title'},\ \$this-\/>getTitle(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':code'},\ \$this-\/>getCode(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':type'},\ \$this-\/>getType(),\ PDO::PARAM\_STR);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$request-\/>rowCount();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \textcolor{keyword}{delete}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'DELETE\ FROM\ ecran\_code\_ade\ WHERE\ id\ =\ :id'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$this-\/>getId(),\ PDO::PARAM\_INT);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$request-\/>rowCount();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \textcolor{keyword}{get}(\$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ WHERE\ id\ =\ :id\ LIMIT\ 1'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':id'},\ \$id,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$request-\/>rowCount()\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntity(\$request-\/>fetch(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getList()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ ORDER\ BY\ id\ DESC\ LIMIT\ 1000'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntityList(\$request-\/>fetchAll(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkCode(\$title,\ \$code)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ WHERE\ title\ =\ :title\ OR\ code\ =\ :code\ LIMIT\ 2'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':title'},\ \$title,\ PDO::PARAM\_STR);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':code'},\ \$code,\ PDO::PARAM\_STR);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntityList(\$request-\/>fetchAll(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAllFromType(\$type)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ WHERE\ type\ =\ :type\ ORDER\ BY\ id\ DESC\ LIMIT\ 500'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':type'},\ \$type,\ PDO::PARAM\_STR);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntityList(\$request-\/>fetchAll(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getByCode(\$code)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ WHERE\ code\ =\ :code\ LIMIT\ 1'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':code'},\ \$code,\ PDO::PARAM\_STR);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntity(\$request-\/>fetch(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getByAlert(\$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ id,\ title,\ code,\ type\ FROM\ ecran\_code\_ade\ JOIN\ ecran\_code\_alert\ ON\ ecran\_code\_ade.id\ =\ ecran\_code\_alert.code\_ade\_id\ WHERE\ alert\_id\ =\ :id\ LIMIT\ 100'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindParam(\textcolor{stringliteral}{':id'},\ \$id,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntityList(\$request-\/>fetchAll(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEntity(\$data)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity\ =\ \textcolor{keyword}{new}\ CodeAde();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setId(\$data[\textcolor{stringliteral}{'id'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setTitle(\$data[\textcolor{stringliteral}{'title'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setCode(\$data[\textcolor{stringliteral}{'code'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setType(\$data[\textcolor{stringliteral}{'type'}]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$entity;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEntityList(\$dataList)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$listEntity\ =\ array();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$dataList\ as\ \$data)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$listEntity[]\ =\ \$this-\/>setEntity(\$data);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$listEntity;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCode()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>code;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setCode(\$code)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>code\ =\ \$code;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getId()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setId(\$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>\textcolor{keywordtype}{id}\ =\ \$id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getType()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>type;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setType(\$type)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>type\ =\ \$type;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getTitle()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>title;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setTitle(\$title)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>title\ =\ \$title;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ jsonSerialize()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ get\_object\_vars(\$this);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

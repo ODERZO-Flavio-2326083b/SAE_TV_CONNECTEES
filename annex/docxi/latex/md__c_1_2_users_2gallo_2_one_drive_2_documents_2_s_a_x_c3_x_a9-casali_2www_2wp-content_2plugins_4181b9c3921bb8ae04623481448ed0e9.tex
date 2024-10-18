@@ -1,0 +1,98 @@
+\chapter{Carbon}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9}\index{Carbon@{Carbon}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md756}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md756}%
+
+
+\href{https://packagist.org/packages/nesbot/carbon}{\texttt{ }} \href{https://packagist.org/packages/nesbot/carbon}{\texttt{ }} \href{https://travis-ci.org/briannesbitt/Carbon}{\texttt{ }} \href{https://styleci.io/repos/5724990}{\texttt{ }} \href{https://codecov.io/github/briannesbitt/Carbon?branch=master}{\texttt{ }} \href{https://php-eye.com/package/nesbot/carbon}{\texttt{ }} \href{https://github.com/phpstan/phpstan}{\texttt{ }}
+
+A simple PHP API extension for Date\+Time. \href{http://carbon.nesbot.com}{\texttt{ http\+://carbon.\+nesbot.\+com}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_carbon_1_1_carbon}{Carbon\(\backslash\)Carbon}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Right\ now\ is\ \%s"{}},\ Carbon::now()-\/>toDateTimeString());}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Right\ now\ in\ Vancouver\ is\ \%s"{}},\ Carbon::now(\textcolor{stringliteral}{'America/Vancouver'}));\ \ \textcolor{comment}{//implicit\ \_\_toString()}}
+\DoxyCodeLine{\$tomorrow\ =\ Carbon::now()-\/>addDay();}
+\DoxyCodeLine{\$lastWeek\ =\ Carbon::now()-\/>subWeek();}
+\DoxyCodeLine{\$nextSummerOlympics\ =\ Carbon::createFromDate(2016)-\/>addYears(4);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$officialDate\ =\ Carbon::now()-\/>toRfc2822String();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$howOldAmI\ =\ Carbon::createFromDate(1975,\ 5,\ 21)-\/>age;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$noonTodayLondonTime\ =\ Carbon::createFromTime(12,\ 0,\ 0,\ \textcolor{stringliteral}{'Europe/London'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$internetWillBlowUpOn\ =\ Carbon::create(2038,\ 01,\ 19,\ 3,\ 14,\ 7,\ \textcolor{stringliteral}{'GMT'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Don't\ really\ want\ this\ to\ happen\ so\ mock\ now}}
+\DoxyCodeLine{Carbon::setTestNow(Carbon::createFromDate(2000,\ 1,\ 1));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ comparisons\ are\ always\ done\ in\ UTC}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (Carbon::now()-\/>gte(\$internetWillBlowUpOn))\ \{}
+\DoxyCodeLine{\ \ \ \ die();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Phew!\ Return\ to\ normal\ behaviour}}
+\DoxyCodeLine{Carbon::setTestNow();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (Carbon::now()-\/>isWeekend())\ \{}
+\DoxyCodeLine{\ \ \ \ echo\ \textcolor{stringliteral}{'Party!'};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{echo\ Carbon::now()-\/>subMinutes(2)-\/>diffForHumans();\ \textcolor{comment}{//\ '2\ minutes\ ago'}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ ...\ but\ also\ does\ 'from\ now',\ 'after'\ and\ 'before'}}
+\DoxyCodeLine{\textcolor{comment}{//\ rolling\ up\ to\ seconds,\ minutes,\ hours,\ days,\ months,\ years}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$daysSinceEpoch\ =\ Carbon::createFromTimestamp(0)-\/>diffInDays();}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md757}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md757}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md758}{}\doxysubsection{\texorpdfstring{With Composer}{With Composer}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md758}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ composer\ require\ nesbot/carbon}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ "{}require"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}nesbot/carbon"{}:\ "{}\string~1.21"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{require\ \textcolor{stringliteral}{'vendor/autoload.php'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_carbon_1_1_carbon}{Carbon\(\backslash\)Carbon}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Now:\ \%s"{}},\ Carbon::now());}
+
+\end{DoxyCode}
+
+
+\label{_install-nocomposer}%
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md759}{}\doxysubsection{\texorpdfstring{Without Composer}{Without Composer}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md759}
+Why are you not using \href{http://getcomposer.org/}{\texttt{ composer}}? Download \href{https://github.com/briannesbitt/Carbon/blob/master/src/Carbon/Carbon.php}{\texttt{ Carbon.\+php}} from the repo and save the file into your project path somewhere.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{require\ \textcolor{stringliteral}{'path/to/Carbon.php'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_carbon_1_1_carbon}{Carbon\(\backslash\)Carbon}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Now:\ \%s"{}},\ Carbon::now());}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md760}{}\doxysection{\texorpdfstring{Docs}{Docs}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4181b9c3921bb8ae04623481448ed0e9_autotoc_md760}
+\href{http://carbon.nesbot.com/docs}{\texttt{ http\+://carbon.\+nesbot.\+com/docs}} 

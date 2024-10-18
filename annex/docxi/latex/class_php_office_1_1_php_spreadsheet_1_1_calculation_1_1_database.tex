@@ -1,0 +1,382 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Database}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database}{}\label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1560a80d7e3d6a7acfcea2b339725add}{DAVERAGE}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7a0a47b55c412f0afb89ddc0b9876a09}{DCOUNT}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1ea61c25b823d5ab4b21cf63bac3df2c}{DCOUNTA}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aad36ff499b7cde47aa25e56f512238cb}{DGET}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7b5c570efeeee10eb36c4c4f790dd633}{DMAX}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ab7c6b758b4303c58cbc1165fe332c8d0}{DMIN}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aa8d7f93cda26967c86b9e0c53cd59032}{DPRODUCT}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8c006b4978d3b6c99f4c00292de86800}{DSTDEV}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a3fa5d8969af19d69b283f879dd7fa0f6}{DSTDEVP}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_afcf0f9ee1e72e455276e84def03d9024}{DSUM}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a89ccc72a8346712b0e3f64fec82b8e0e}{DVAR}} (\$database, \$field, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8e18497a182b6341bdd0f60a6444bfeb}{DVARP}} (\$database, \$field, \$criteria)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a354818e7a13abd0e43a33dc3d82cdcf4}{field\+Extract}} (\$database, \$field)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ae031b9edc88e8289c1897558fa5ed5bf}{filter}} (\$database, \$criteria)
+\item 
+static \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_abe29bdc397347f4329c26132977a31bb}{get\+Filtered\+Column}} (\$database, \$field, \$criteria)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1560a80d7e3d6a7acfcea2b339725add}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DAVERAGE@{DAVERAGE}}
+\index{DAVERAGE@{DAVERAGE}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DAVERAGE()}{DAVERAGE()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1560a80d7e3d6a7acfcea2b339725add} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DAVERAGE (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DAVERAGE.
+
+Averages the values in a column of a list or database that match conditions you specify.
+
+Excel Function\+: DAVERAGE(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float\texorpdfstring{$\vert$}{|}string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7a0a47b55c412f0afb89ddc0b9876a09}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DCOUNT@{DCOUNT}}
+\index{DCOUNT@{DCOUNT}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DCOUNT()}{DCOUNT()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7a0a47b55c412f0afb89ddc0b9876a09} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DCOUNT (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DCOUNT.
+
+Counts the cells that contain numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DCOUNT(database,\mbox{[}field\mbox{]},criteria)
+
+Excel Function\+: DAVERAGE(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int
+\end{DoxyReturn}
+@\+TODO The field argument is optional. If field is omitted, DCOUNT counts all records in the database that match the criteria. \Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1ea61c25b823d5ab4b21cf63bac3df2c}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DCOUNTA@{DCOUNTA}}
+\index{DCOUNTA@{DCOUNTA}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DCOUNTA()}{DCOUNTA()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a1ea61c25b823d5ab4b21cf63bac3df2c} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DCOUNTA (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DCOUNTA.
+
+Counts the nonblank cells in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DCOUNTA(database,\mbox{[}field\mbox{]},criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int
+\end{DoxyReturn}
+@\+TODO The field argument is optional. If field is omitted, DCOUNTA counts all records in the database that match the criteria. \Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aad36ff499b7cde47aa25e56f512238cb}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DGET@{DGET}}
+\index{DGET@{DGET}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DGET()}{DGET()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aad36ff499b7cde47aa25e56f512238cb} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DGET (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DGET.
+
+Extracts a single value from a column of a list or database that matches conditions that you specify.
+
+Excel Function\+: DGET(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7b5c570efeeee10eb36c4c4f790dd633}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DMAX@{DMAX}}
+\index{DMAX@{DMAX}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DMAX()}{DMAX()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a7b5c570efeeee10eb36c4c4f790dd633} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DMAX (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DMAX.
+
+Returns the largest number in a column of a list or database that matches conditions you that specify.
+
+Excel Function\+: DMAX(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ab7c6b758b4303c58cbc1165fe332c8d0}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DMIN@{DMIN}}
+\index{DMIN@{DMIN}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DMIN()}{DMIN()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ab7c6b758b4303c58cbc1165fe332c8d0} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DMIN (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DMIN.
+
+Returns the smallest number in a column of a list or database that matches conditions you that specify.
+
+Excel Function\+: DMIN(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aa8d7f93cda26967c86b9e0c53cd59032}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DPRODUCT@{DPRODUCT}}
+\index{DPRODUCT@{DPRODUCT}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DPRODUCT()}{DPRODUCT()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_aa8d7f93cda26967c86b9e0c53cd59032} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DPRODUCT (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DPRODUCT.
+
+Multiplies the values in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DPRODUCT(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8c006b4978d3b6c99f4c00292de86800}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DSTDEV@{DSTDEV}}
+\index{DSTDEV@{DSTDEV}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DSTDEV()}{DSTDEV()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8c006b4978d3b6c99f4c00292de86800} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DSTDEV (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DSTDEV.
+
+Estimates the standard deviation of a population based on a sample by using the numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DSTDEV(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float\texorpdfstring{$\vert$}{|}string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a3fa5d8969af19d69b283f879dd7fa0f6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DSTDEVP@{DSTDEVP}}
+\index{DSTDEVP@{DSTDEVP}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DSTDEVP()}{DSTDEVP()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a3fa5d8969af19d69b283f879dd7fa0f6} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DSTDEVP (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DSTDEVP.
+
+Calculates the standard deviation of a population based on the entire population by using the numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DSTDEVP(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float\texorpdfstring{$\vert$}{|}string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_afcf0f9ee1e72e455276e84def03d9024}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DSUM@{DSUM}}
+\index{DSUM@{DSUM}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DSUM()}{DSUM()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_afcf0f9ee1e72e455276e84def03d9024} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DSUM (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DSUM.
+
+Adds the numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DSUM(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a89ccc72a8346712b0e3f64fec82b8e0e}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DVAR@{DVAR}}
+\index{DVAR@{DVAR}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DVAR()}{DVAR()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a89ccc72a8346712b0e3f64fec82b8e0e} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DVAR (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DVAR.
+
+Estimates the variance of a population based on a sample by using the numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DVAR(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8e18497a182b6341bdd0f60a6444bfeb}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!DVARP@{DVARP}}
+\index{DVARP@{DVARP}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{DVARP()}{DVARP()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a8e18497a182b6341bdd0f60a6444bfeb} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::\+DVARP (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+DVARP.
+
+Calculates the variance of a population based on the entire population by using the numbers in a column of a list or database that match conditions that you specify.
+
+Excel Function\+: DVARP(database,field,criteria)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+int | string & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a354818e7a13abd0e43a33dc3d82cdcf4}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!fieldExtract@{fieldExtract}}
+\index{fieldExtract@{fieldExtract}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{fieldExtract()}{fieldExtract()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_a354818e7a13abd0e43a33dc3d82cdcf4} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::field\+Extract (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+field\+Extract.
+
+Extracts the column ID to use for the data field.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+mixed & {\em \$field} & Indicates which column is used in the function. Enter the column label enclosed between double quotation marks, such as "{}\+Age"{} or "{}\+Yield,"{} or a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+null\texorpdfstring{$\vert$}{|}string 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ae031b9edc88e8289c1897558fa5ed5bf}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!filter@{filter}}
+\index{filter@{filter}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_ae031b9edc88e8289c1897558fa5ed5bf} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::filter (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+filter.
+
+Parses the selection criteria, extracts the database rows that match those criteria, and returns that subset of rows.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed\mbox{[}$\,$\mbox{]} & {\em \$database} & The range of cells that makes up the list or database. A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column. \\
+\hline
+mixed\mbox{[}$\,$\mbox{]} & {\em \$criteria} & The range of cells that contains the conditions you specify. You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array of mixed 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_abe29bdc397347f4329c26132977a31bb}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}!getFilteredColumn@{getFilteredColumn}}
+\index{getFilteredColumn@{getFilteredColumn}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Calculation\textbackslash{}Database}}
+\doxysubsubsection{\texorpdfstring{getFilteredColumn()}{getFilteredColumn()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_calculation_1_1_database_abe29bdc397347f4329c26132977a31bb} 
+static Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Calculation\textbackslash{}\+Database\+::get\+Filtered\+Column (\begin{DoxyParamCaption}\item[{}]{\$database}{, }\item[{}]{\$field}{, }\item[{}]{\$criteria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Calculation/\mbox{\hyperlink{_database_8php}{Database.\+php}}\end{DoxyCompactItemize}

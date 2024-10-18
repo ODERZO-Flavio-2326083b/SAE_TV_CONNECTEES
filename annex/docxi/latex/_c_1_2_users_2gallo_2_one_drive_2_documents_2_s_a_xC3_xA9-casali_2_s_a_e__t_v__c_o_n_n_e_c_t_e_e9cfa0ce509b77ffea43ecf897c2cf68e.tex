@@ -1,0 +1,52 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/views/\+Technician\+View.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e9cfa0ce509b77ffea43ecf897c2cf68e}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e9cfa0ce509b77ffea43ecf897c2cf68e}Affiche le formulaire de création de compte pour techniciens.
+
+Cette méthode génère un formulaire HTML pour la création de nouveaux comptes techniciens. Le formulaire inclut des champs nécessaires pour fournir les informations requises pour un compte technicien.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du formulaire pour créer un compte technicien.
+\end{DoxyReturn}
+// Appel de la méthode pour afficher le formulaire de technicien \+: echo \$this-\/\texorpdfstring{$>$}{>}display\+Form\+Technician();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_views}{Views}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_user}{Models\(\backslash\)User}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TechnicianView\ \textcolor{keyword}{extends}\ UserView}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayFormTechnician()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>Compte\ technicien</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Pour\ créer\ des\ techniciens,\ remplissez\ ce\ formulaire\ avec\ les\ valeurs\ demandées.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ '}\ .\ \$this-\/>displayBaseForm(\textcolor{stringliteral}{'Tech'});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayAllTechnicians(\$users)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$title\ =\ \textcolor{stringliteral}{'Techniciens'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$name\ =\ \textcolor{stringliteral}{'Tech'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$header\ =\ [\textcolor{stringliteral}{'Login'}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$row\ =\ array();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$count\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$users\ as\ \$user)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++\$count;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$row[]\ =\ [\$count,\ \$this-\/>buildCheckbox(\$name,\ \$user-\/>getId()),\ \$user-\/>getLogin()];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayAll(\$name,\ \$title,\ \$header,\ \$row,\ \$name);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

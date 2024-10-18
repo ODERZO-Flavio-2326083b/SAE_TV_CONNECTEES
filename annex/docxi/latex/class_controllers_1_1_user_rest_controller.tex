@@ -1,0 +1,286 @@
+\doxysection{Référence de la classe Controllers\textbackslash{}User\+Rest\+Controller}
+\hypertarget{class_controllers_1_1_user_rest_controller}{}\label{class_controllers_1_1_user_rest_controller}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+Graphe d\textquotesingle{}héritage de Controllers\textbackslash{}User\+Rest\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_controllers_1_1_user_rest_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_abc5f23d39be1c5acf55f79d69b0e55e5}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a0b21d0eef76631e83e3378145a969696}{register\+\_\+routes}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_ad990dcf8e0ca914e954c9829634a4e44}{get\+\_\+items}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a84186d43e5fd9b5ab4a1957b9b11619a}{create\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_aaf4be7a3936d2b27567fcdf54798be48}{get\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_af042dc0fd573a3a059e1aa9bc7bb5f9a}{update\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a4c4727f950316adac2ce8de9a1288f5e}{delete\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a983e1163e7925d411baf82ba6cd3ab6e}{get\+\_\+items\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a643f67cf8346c8c56a542376b83f89c0}{create\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a4c935b5108c1ca3bf5ae56875b261c3c}{get\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_ac4a8413d63f33d098e1afc2c5fb362cc}{update\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a21ffb6e8633ddd9c3aeab80cf301c028}{delete\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controllers_1_1_user_rest_controller_a73677e62997ec9609ee91f0df002dff8}{find\+\_\+ade\+\_\+codes}} (\$alert, \$codes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_controllers_1_1_user_rest_controller_abc5f23d39be1c5acf55f79d69b0e55e5}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_abc5f23d39be1c5acf55f79d69b0e55e5} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe.
+
+Initialise le namespace et la base REST pour les opérations liées à l\textquotesingle{}utilisateur. Ce constructeur est utilisé pour configurer les propriétés essentielles de la classe lors de sa création.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a84186d43e5fd9b5ab4a1957b9b11619a}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!create\_item@{create\_item}}
+\index{create\_item@{create\_item}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item()}{create\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a84186d43e5fd9b5ab4a1957b9b11619a} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::create\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Crée une nouvelle alerte.
+
+Cette méthode traite les requêtes POST pour créer une nouvelle alerte. Elle récupère les données de la requête, crée une instance de l\textquotesingle{}alerte et définit ses propriétés, y compris l\textquotesingle{}auteur, le contenu, la date de création et la date d\textquotesingle{}expiration. Les codes ADE sont également associés à l\textquotesingle{}alerte. Si les codes sont valides et que l\textquotesingle{}alerte est insérée avec succès, l\textquotesingle{}ID de la nouvelle alerte est retourné. En cas d\textquotesingle{}erreur, un message d\textquotesingle{}erreur est renvoyé.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les paramètres et informations nécessaires pour créer l\textquotesingle{}alerte.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse REST contenant l\textquotesingle{}ID de l\textquotesingle{}alerte créée si l\textquotesingle{}insertion réussit, ou un message d\textquotesingle{}erreur avec le code de statut 400 en cas d\textquotesingle{}échec. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a643f67cf8346c8c56a542376b83f89c0}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!create\_item\_permissions\_check@{create\_item\_permissions\_check}}
+\index{create\_item\_permissions\_check@{create\_item\_permissions\_check}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item\_permissions\_check()}{create\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a643f67cf8346c8c56a542376b83f89c0} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::create\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour créer un nouvel élément via l\textquotesingle{}API.
+
+Cette méthode utilise la vérification des permissions existantes pour déterminer si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour créer un nouvel élément dans l\textquotesingle{}API REST. Elle renvoie true si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur, sinon elle renvoie false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les informations sur la requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}utilisateur a les permissions requises, sinon false. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a4c4727f950316adac2ce8de9a1288f5e}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!delete\_item@{delete\_item}}
+\index{delete\_item@{delete\_item}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item()}{delete\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a4c4727f950316adac2ce8de9a1288f5e} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::delete\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Supprime une alerte existante de la base de données.
+
+Cette méthode traite les requêtes DELETE pour supprimer une alerte spécifiée par son ID. Elle crée une instance du gestionnaire d\textquotesingle{}alerte et tente de récupérer l\textquotesingle{}alerte à partir de la base de données. Si l\textquotesingle{}alerte existe et est supprimée avec succès, elle renvoie une réponse avec le code de statut 200. Sinon, elle renvoie un message d\textquotesingle{}erreur indiquant que la suppression a échoué, avec un code de statut 400.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant l\textquotesingle{}ID de l\textquotesingle{}alerte à supprimer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse REST indiquant le succès ou l\textquotesingle{}échec de la suppression, avec un code de statut approprié. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a21ffb6e8633ddd9c3aeab80cf301c028}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!delete\_item\_permissions\_check@{delete\_item\_permissions\_check}}
+\index{delete\_item\_permissions\_check@{delete\_item\_permissions\_check}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item\_permissions\_check()}{delete\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a21ffb6e8633ddd9c3aeab80cf301c028} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::delete\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour supprimer un élément spécifique via l\textquotesingle{}API.
+
+Cette méthode déléguée appelle la méthode de vérification des permissions pour les éléments afin de déterminer si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour supprimer un élément dans l\textquotesingle{}API REST. Elle renvoie true si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur, sinon elle renvoie false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les informations sur la requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}utilisateur a les permissions requises pour supprimer l\textquotesingle{}élément, sinon false. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a73677e62997ec9609ee91f0df002dff8}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!find\_ade\_codes@{find\_ade\_codes}}
+\index{find\_ade\_codes@{find\_ade\_codes}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{find\_ade\_codes()}{find\_ade\_codes()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a73677e62997ec9609ee91f0df002dff8} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::find\+\_\+ade\+\_\+codes (\begin{DoxyParamCaption}\item[{}]{\$alert}{, }\item[{}]{\$codes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Trouve et valide les codes ADE pour une alerte donnée.
+
+Cette méthode prend un tableau de codes et détermine s\textquotesingle{}ils sont valides en interrogeant le gestionnaire de codes ADE. Si le code \textquotesingle{}all\textquotesingle{} est fourni, cela indique que l\textquotesingle{}alerte doit être applicable à tout le monde. Les codes invalides ou inexistants entraînent un retour null, tandis que les codes valides sont ajoutés à un tableau qui sera retourné.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Alert & {\em \$alert} & L\textquotesingle{}objet d\textquotesingle{}alerte pour lequel les codes ADE sont validés et qui est mis à jour en conséquence. \\
+\hline
+array & {\em \$codes} & Un tableau de codes ADE à valider.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Code\+Ade\mbox{[}\mbox{]}\texorpdfstring{$\vert$}{|}null Un tableau d\textquotesingle{}objets Code\+Ade correspondant aux codes valides, ou null si un code invalide est rencontré. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_aaf4be7a3936d2b27567fcdf54798be48}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!get\_item@{get\_item}}
+\index{get\_item@{get\_item}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item()}{get\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_aaf4be7a3936d2b27567fcdf54798be48} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::get\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère une alerte spécifique à partir de la base de données.
+
+Cette méthode traite les requêtes GET pour obtenir une alerte basée sur son ID fourni dans la requête. Elle crée une instance du gestionnaire d\textquotesingle{}alerte et utilise son ID pour récupérer les informations de l\textquotesingle{}alerte dans la base de données. Si l\textquotesingle{}alerte est trouvée, les données de l\textquotesingle{}alerte sont renvoyées ; sinon, un message d\textquotesingle{}erreur est retourné avec un code de statut 404.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant l\textquotesingle{}ID de l\textquotesingle{}alerte à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse REST contenant les données de l\textquotesingle{}alerte si trouvée, ou un message d\textquotesingle{}erreur avec le code de statut 404 si l\textquotesingle{}alerte n\textquotesingle{}existe pas. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a4c935b5108c1ca3bf5ae56875b261c3c}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!get\_item\_permissions\_check@{get\_item\_permissions\_check}}
+\index{get\_item\_permissions\_check@{get\_item\_permissions\_check}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item\_permissions\_check()}{get\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a4c935b5108c1ca3bf5ae56875b261c3c} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::get\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour récupérer un élément spécifique via l\textquotesingle{}API.
+
+Cette méthode utilise la vérification des permissions existantes pour déterminer si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour accéder aux détails d\textquotesingle{}un élément dans l\textquotesingle{}API REST. Elle renvoie true si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur, sinon elle renvoie false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les informations sur la requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}utilisateur a les permissions requises, sinon false. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_ad990dcf8e0ca914e954c9829634a4e44}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!get\_items@{get\_items}}
+\index{get\_items@{get\_items}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items()}{get\_items()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_ad990dcf8e0ca914e954c9829634a4e44} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::get\+\_\+items (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère une liste d\textquotesingle{}alertes.
+
+Cette méthode est utilisée pour traiter les requêtes GET vers la route REST qui retourne toutes les alertes disponibles. Elle instancie le gestionnaire de codes ADE et utilise sa méthode pour récupérer la liste des alertes.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les paramètres et informations de la requête.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse REST contenant la liste des alertes ainsi qu\textquotesingle{}un code de statut HTTP 200. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a983e1163e7925d411baf82ba6cd3ab6e}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!get\_items\_permissions\_check@{get\_items\_permissions\_check}}
+\index{get\_items\_permissions\_check@{get\_items\_permissions\_check}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items\_permissions\_check()}{get\_items\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a983e1163e7925d411baf82ba6cd3ab6e} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::get\+\_\+items\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour accéder aux éléments de l\textquotesingle{}API.
+
+Cette méthode vérifie si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour récupérer des éléments via l\textquotesingle{}API REST. Elle renvoie true si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur, sinon elle renvoie false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les informations sur la requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}utilisateur a les permissions requises, sinon false. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_a0b21d0eef76631e83e3378145a969696}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!register\_routes@{register\_routes}}
+\index{register\_routes@{register\_routes}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{register\_routes()}{register\_routes()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_a0b21d0eef76631e83e3378145a969696} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::register\+\_\+routes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enregistre les routes REST pour les opérations sur les alertes.
+
+Cette méthode utilise la classe {\ttfamily WP\+\_\+\+REST\+\_\+\+Server} pour définir les routes REST qui permettent de créer, lire, mettre à jour et supprimer des alertes. Les routes sont accessibles via le namespace spécifié dans la classe et incluent des vérifications de permission pour chaque opération.
+
+Routes enregistrées \+:
+\begin{DoxyItemize}
+\item GET /\{namespace\}/\{rest\+\_\+base\} \+: Récupère une liste d\textquotesingle{}alertes.
+\item POST /\{namespace\}/\{rest\+\_\+base\} \+: Crée une nouvelle alerte.
+\item GET /\{namespace\}/\{rest\+\_\+base\}/\{id\} \+: Récupère une alerte spécifique par ID.
+\item PUT/\+PATCH /\{namespace\}/\{rest\+\_\+base\}/\{id\} \+: Met à jour une alerte spécifique par ID.
+\item DELETE /\{namespace\}/\{rest\+\_\+base\}/\{id\} \+: Supprime une alerte spécifique par ID.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_af042dc0fd573a3a059e1aa9bc7bb5f9a}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!update\_item@{update\_item}}
+\index{update\_item@{update\_item}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item()}{update\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_af042dc0fd573a3a059e1aa9bc7bb5f9a} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::update\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Met à jour une alerte existante dans la base de données.
+
+Cette méthode traite les requêtes PUT pour modifier les détails d\textquotesingle{}une alerte spécifiée par son ID. Elle crée une instance du gestionnaire d\textquotesingle{}alerte et récupère l\textquotesingle{}alerte à partir de la base de données. Si l\textquotesingle{}alerte existe, elle met à jour ses propriétés (contenu, date d\textquotesingle{}expiration, et codes associés) selon les données fournies dans la requête. Si les modifications sont réussies, elle renvoie une réponse avec le code de statut 200 ; sinon, elle renvoie un message d\textquotesingle{}erreur avec le code de statut 400.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant l\textquotesingle{}ID de l\textquotesingle{}alerte à mettre à jour ainsi que les nouvelles données.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse REST indiquant le succès ou l\textquotesingle{}échec de la mise à jour, avec un code de statut approprié. 
+\end{DoxyReturn}
+\Hypertarget{class_controllers_1_1_user_rest_controller_ac4a8413d63f33d098e1afc2c5fb362cc}\index{Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}!update\_item\_permissions\_check@{update\_item\_permissions\_check}}
+\index{update\_item\_permissions\_check@{update\_item\_permissions\_check}!Controllers\textbackslash{}UserRestController@{Controllers\textbackslash{}UserRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item\_permissions\_check()}{update\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_user_rest_controller_ac4a8413d63f33d098e1afc2c5fb362cc} 
+Controllers\textbackslash{}\+User\+Rest\+Controller\+::update\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour mettre à jour un élément spécifique via l\textquotesingle{}API.
+
+Cette méthode déléguée appelle la méthode de vérification des permissions pour les éléments afin de déterminer si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour mettre à jour un élément dans l\textquotesingle{}API REST. Elle renvoie true si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur, sinon elle renvoie false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & L\textquotesingle{}objet de requête contenant les informations sur la requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool True si l\textquotesingle{}utilisateur a les permissions requises pour mettre à jour l\textquotesingle{}élément, sinon false. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_user_rest_controller_8php}{User\+Rest\+Controller.\+php}}\end{DoxyCompactItemize}

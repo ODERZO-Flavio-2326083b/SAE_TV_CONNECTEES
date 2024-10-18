@@ -1,0 +1,68 @@
+\doxysection{Référence du fichier C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/pagination.php}
+\hypertarget{pagination_8php}{}\label{pagination_8php}\index{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/pagination.php@{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/pagination.php}}
+\doxysubsubsection*{Espaces de nommage}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_word_press}{Word\+Press}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pagination_8php_af1434e5d5305aaa5087d6ff21963f76a}{\$prev\+\_\+text}}
+\item 
+\mbox{\hyperlink{pagination_8php_af41dfffc1a1c4f0c1917511fb5ed1d66}{\$next\+\_\+text}}
+\item 
+\mbox{\hyperlink{pagination_8php_ace0e3cb67b5ff1e126d55b493c82cab6}{\$posts\+\_\+pagination}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des variables}
+\Hypertarget{pagination_8php_af41dfffc1a1c4f0c1917511fb5ed1d66}\index{pagination.php@{pagination.php}!\$next\_text@{\$next\_text}}
+\index{\$next\_text@{\$next\_text}!pagination.php@{pagination.php}}
+\doxysubsubsection{\texorpdfstring{\$next\_text}{\$next\_text}}
+{\footnotesize\ttfamily \label{pagination_8php_af41dfffc1a1c4f0c1917511fb5ed1d66} 
+\$next\+\_\+text}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ sprintf(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'<span\ class="{}nav-\/next-\/text"{}>\%s</span>\ \%s'},}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \_\_(\ \textcolor{stringliteral}{'Older\ <span\ class="{}nav-\/short"{}>Posts</span>'},\ \textcolor{stringliteral}{'twentytwenty'}\ ),}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'<span\ aria-\/hidden="{}true"{}>\&rarr;</span>'}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{pagination_8php_ace0e3cb67b5ff1e126d55b493c82cab6}\index{pagination.php@{pagination.php}!\$posts\_pagination@{\$posts\_pagination}}
+\index{\$posts\_pagination@{\$posts\_pagination}!pagination.php@{pagination.php}}
+\doxysubsubsection{\texorpdfstring{\$posts\_pagination}{\$posts\_pagination}}
+{\footnotesize\ttfamily \label{pagination_8php_ace0e3cb67b5ff1e126d55b493c82cab6} 
+\$posts\+\_\+pagination}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ get\_the\_posts\_pagination(}
+\DoxyCodeLine{\ \ \ \ array(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mid\_size'}\ \ =>\ 1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'prev\_text'}\ =>\ \mbox{\hyperlink{pagination_8php_af1434e5d5305aaa5087d6ff21963f76a}{\$prev\_text}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'next\_text'}\ =>\ \mbox{\hyperlink{pagination_8php_af41dfffc1a1c4f0c1917511fb5ed1d66}{\$next\_text}},}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{pagination_8php_af1434e5d5305aaa5087d6ff21963f76a}\index{pagination.php@{pagination.php}!\$prev\_text@{\$prev\_text}}
+\index{\$prev\_text@{\$prev\_text}!pagination.php@{pagination.php}}
+\doxysubsubsection{\texorpdfstring{\$prev\_text}{\$prev\_text}}
+{\footnotesize\ttfamily \label{pagination_8php_af1434e5d5305aaa5087d6ff21963f76a} 
+\$prev\+\_\+text}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ sprintf(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'\%s\ <span\ class="{}nav-\/prev-\/text"{}>\%s</span>'},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'<span\ aria-\/hidden="{}true"{}>\&larr;</span>'},}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \_\_(\ \textcolor{stringliteral}{'Newer\ <span\ class="{}nav-\/short"{}>Posts</span>'},\ \textcolor{stringliteral}{'twentytwenty'}\ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

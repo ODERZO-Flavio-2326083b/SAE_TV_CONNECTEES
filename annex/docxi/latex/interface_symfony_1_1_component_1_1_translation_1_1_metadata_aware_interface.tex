@@ -1,0 +1,99 @@
+\doxysection{Référence de l\textquotesingle{}interface Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Metadata\+Aware\+Interface}
+\hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface}{}\label{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Metadata\+Aware\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a0d93e84e9ff4c7c2ef54e9ec29514c5e}{get\+Metadata}} (\$key=\textquotesingle{}\textquotesingle{}, \$domain=\textquotesingle{}messages\textquotesingle{})
+\item 
+\mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a7426c25b249e80d90a8424d312297423}{set\+Metadata}} (\$key, \$value, \$domain=\textquotesingle{}messages\textquotesingle{})
+\item 
+\mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_ac389a9f9347d07aaccdfd0382ddd12e7}{delete\+Metadata}} (\$key=\textquotesingle{}\textquotesingle{}, \$domain=\textquotesingle{}messages\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Metadata\+Aware\+Interface.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{ fabien@symfony.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_ac389a9f9347d07aaccdfd0382ddd12e7}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}!deleteMetadata@{deleteMetadata}}
+\index{deleteMetadata@{deleteMetadata}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}}
+\doxysubsubsection{\texorpdfstring{deleteMetadata()}{deleteMetadata()}}
+{\footnotesize\ttfamily \label{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_ac389a9f9347d07aaccdfd0382ddd12e7} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Metadata\+Aware\+Interface\+::delete\+Metadata (\begin{DoxyParamCaption}\item[{}]{\$key}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$domain}{ = {\ttfamily \textquotesingle{}messages\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Deletes metadata for the given key and domain.
+
+Passing an empty domain will delete all metadata. Passing an empty key will delete all metadata for the given domain.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$key} & The key \\
+\hline
+string & {\em \$domain} & The domain name \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue_a6d5fd241692364daf4b47440f9491cfa}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Message\+Catalogue}}.
+
+\Hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a0d93e84e9ff4c7c2ef54e9ec29514c5e}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}!getMetadata@{getMetadata}}
+\index{getMetadata@{getMetadata}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}}
+\doxysubsubsection{\texorpdfstring{getMetadata()}{getMetadata()}}
+{\footnotesize\ttfamily \label{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a0d93e84e9ff4c7c2ef54e9ec29514c5e} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Metadata\+Aware\+Interface\+::get\+Metadata (\begin{DoxyParamCaption}\item[{}]{\$key}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}, }\item[{}]{\$domain}{ = {\ttfamily \textquotesingle{}messages\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Gets metadata for the given domain and key.
+
+Passing an empty domain will return an array with all metadata indexed by domain and then by key. Passing an empty key will return an array with all metadata for the given domain.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$key} & The key \\
+\hline
+string & {\em \$domain} & The domain name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed The value that was set or an array with the domains/keys or null 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue_a9aa50817128fd16b14a08d65fdec0fba}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Message\+Catalogue}}.
+
+\Hypertarget{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a7426c25b249e80d90a8424d312297423}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}!setMetadata@{setMetadata}}
+\index{setMetadata@{setMetadata}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}MetadataAwareInterface}}
+\doxysubsubsection{\texorpdfstring{setMetadata()}{setMetadata()}}
+{\footnotesize\ttfamily \label{interface_symfony_1_1_component_1_1_translation_1_1_metadata_aware_interface_a7426c25b249e80d90a8424d312297423} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Metadata\+Aware\+Interface\+::set\+Metadata (\begin{DoxyParamCaption}\item[{}]{\$key}{, }\item[{}]{\$value}{, }\item[{}]{\$domain}{ = {\ttfamily \textquotesingle{}messages\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Adds metadata to a message domain.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$key} & The key \\
+\hline
+mixed & {\em \$value} & The value \\
+\hline
+string & {\em \$domain} & The domain name \\
+\hline
+\end{DoxyParams}
+
+
+Implémenté dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue_a1630b5bc4212790adf202674f1616a7c}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Message\+Catalogue}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\mbox{\hyperlink{_metadata_aware_interface_8php}{Metadata\+Aware\+Interface.\+php}}\end{DoxyCompactItemize}

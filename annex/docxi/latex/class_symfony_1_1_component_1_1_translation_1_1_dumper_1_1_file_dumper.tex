@@ -1,0 +1,206 @@
+\doxysection{Référence de la classe Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}File\+Dumper}
+\hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper}{}\label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+Graphe d\textquotesingle{}héritage de Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}File\+Dumper\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=8.316832cm]{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a4adf8e86d3c7c5859758108a40a63ac1}{set\+Relative\+Path\+Template}} (\$relative\+Path\+Template)
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_ab300b33049bae999b8e5c0ab5e99f9b7}{set\+Backup}} (\$backup)
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a34e74e05df33b4a69714fc237c801c56}{dump}} (\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}} \$messages, \$options=array())
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa08ad292648323bd0618f488ea61d4da}{format\+Catalogue}} (\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}} \$messages, \$domain, array \$options=array())
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_dumper_interface}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Dumper\+Interface}}}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2ac388ef7cc4edc15ae0584ec8533fc1}{format}} (\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}} \$messages, \$domain)
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2a7d2a48914627c50b9a95ac2a6e9d94}{get\+Extension}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa02d0efa2c2ec8119a80bd02f8b1a49a}{\$relative\+Path\+Template}} = \textquotesingle{}\%domain\%.\%locale\%.\%extension\%\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_abec8bcaac998bca2951767306657d044}{get\+Relative\+Path}} (\$domain, \$locale)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a47773b1a868c723d02db529ab9e5e666}{\$backup}} = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+File\+Dumper is an implementation of Dumper\+Interface that dump a message catalogue to file(s). Performs backup of already existing files.
+
+Options\+:
+\begin{DoxyItemize}
+\item path (mandatory)\+: the directory where the files should be saved
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Auteur}
+Michel Salib \href{mailto:michelsalib@hotmail.com}{\texttt{ michelsalib@hotmail.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a34e74e05df33b4a69714fc237c801c56}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!dump@{dump}}
+\index{dump@{dump}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{dump()}{dump()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a34e74e05df33b4a69714fc237c801c56} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::dump (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}}}]{\$messages}{, }\item[{}]{\$options}{ = {\ttfamily array()}}\end{DoxyParamCaption})}
+
+\{Dumps the message catalogue.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue} & {\em \$messages} & The message catalogue \\
+\hline
+array & {\em \$options} & Options that are used by the dumper\\
+\hline
+\end{DoxyParams}
+\} 
+
+Implémente \mbox{\hyperlink{interface_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_dumper_interface_ab6ddae857cfaf1ec9740945528d1e867}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Dumper\+Interface}}.
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2ac388ef7cc4edc15ae0584ec8533fc1}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!format@{format}}
+\index{format@{format}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2ac388ef7cc4edc15ae0584ec8533fc1} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::format (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}}}]{\$messages}{, }\item[{}]{\$domain}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Transforms a domain of a message catalogue to its string representation.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Message\+Catalogue & {\em \$messages} & \\
+\hline
+string & {\em \$domain} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string representation
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Obsolète}
+\item[\mbox{\hyperlink{deprecated__deprecated000003}{Obsolète}}]since version 2.\+8, to be removed in 3.\+0. Overwrite format\+Catalogue() instead. \end{DoxyRefDesc}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_csv_file_dumper_a1eb3d2088efd6d1860a382f0dee8e713}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Csv\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_icu_res_file_dumper_a8008bf91cfd4914d136c1f1774612f47}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Icu\+Res\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_ini_file_dumper_aa5f1861c4825344326cf53f889f5b3a3}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Ini\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_json_file_dumper_acfab3ee001e0512f091f0bc2f83bd2ff}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Json\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_mo_file_dumper_af27d4e8247ca4fffc3b74f8f24dc0bb8}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Mo\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_po_file_dumper_acb29f28e88b8eaf775e73e4cbc6db73b}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Po\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_qt_file_dumper_a87c3f7c0e0cdad5c02ca1ad687e50e49}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Qt\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_xliff_file_dumper_adbb0530a31faff27570e5e6e455c5e91}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Xliff\+File\+Dumper}}, et \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_yaml_file_dumper_a54920f625d0e95383d9758b117facce6}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Yaml\+File\+Dumper}}.
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa08ad292648323bd0618f488ea61d4da}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!formatCatalogue@{formatCatalogue}}
+\index{formatCatalogue@{formatCatalogue}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{formatCatalogue()}{formatCatalogue()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa08ad292648323bd0618f488ea61d4da} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::format\+Catalogue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_message_catalogue}{Message\+Catalogue}}}]{\$messages}{, }\item[{}]{\$domain}{, }\item[{array}]{\$options}{ = {\ttfamily array()}}\end{DoxyParamCaption})}
+
+Transforms a domain of a message catalogue to its string representation.
+
+Override this function in child class if \$options is used for message formatting.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Message\+Catalogue & {\em \$messages} & \\
+\hline
+string & {\em \$domain} & \\
+\hline
+array & {\em \$options} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string representation 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_csv_file_dumper_a3759d502adee8ec97a78ffd069a353c5}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Csv\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_icu_res_file_dumper_ae7743125dd164571183f4dbdec6a812b}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Icu\+Res\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_ini_file_dumper_a01fe8ee983c1cd6a5e007d946ca0cfe0}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Ini\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_json_file_dumper_ac04a6716c04208e978b62a4ad28c7e74}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Json\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_mo_file_dumper_a3ca80b0630e1302aff9929632266d534}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Mo\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_po_file_dumper_ac8ccae1b6f310abcc72a33573e06fe24}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Po\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_qt_file_dumper_aecbe0a571988ac3da39f8be179ef3f1c}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Qt\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_xliff_file_dumper_a5e05eea38dc9ecbdf10b8ced716f41f0}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Xliff\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_yaml_file_dumper_a474917975f2c025400bea0613e0fd290}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Yaml\+File\+Dumper}}, et \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_dumper_1_1_concrete_file_dumper_a4cde0fcfc72b90a8a38156ccfc02201d}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Dumper\textbackslash{}\+Concrete\+File\+Dumper}}.
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2a7d2a48914627c50b9a95ac2a6e9d94}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!getExtension@{getExtension}}
+\index{getExtension@{getExtension}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{getExtension()}{getExtension()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a2a7d2a48914627c50b9a95ac2a6e9d94} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::get\+Extension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}, {\ttfamily [protected]}}
+
+Gets the file extension of the dumper.
+
+\begin{DoxyReturn}{Renvoie}
+string file extension 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_csv_file_dumper_ab3377cfe05934563cc671c4420820741}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Csv\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_icu_res_file_dumper_a19d1939c8c6f48bddb7019792a754cfa}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Icu\+Res\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_ini_file_dumper_a3f91a218fe0e8e7f1be987e2d2a2818c}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Ini\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_json_file_dumper_a7c1f086b190b4c60a42e29289610d639}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Json\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_mo_file_dumper_a20f1a19b553293d81dbd37176f6c5a1b}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Mo\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_po_file_dumper_a173cafb56af6849e8645997bf6a4f3b8}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Po\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_qt_file_dumper_a363e0daa2823f4c7b855fe74fdb4e067}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Qt\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_xliff_file_dumper_a9a39fabe7a188a4ead501d9b80f532ab}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Xliff\+File\+Dumper}}, \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_yaml_file_dumper_a760a37d5371761c264bb22c81057ff4f}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+Yaml\+File\+Dumper}}, et \mbox{\hyperlink{class_symfony_1_1_component_1_1_translation_1_1_tests_1_1_dumper_1_1_concrete_file_dumper_a2c8ddd0fc822a37196833bc668329cf9}{Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Tests\textbackslash{}\+Dumper\textbackslash{}\+Concrete\+File\+Dumper}}.
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_abec8bcaac998bca2951767306657d044}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!getRelativePath@{getRelativePath}}
+\index{getRelativePath@{getRelativePath}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{getRelativePath()}{getRelativePath()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_abec8bcaac998bca2951767306657d044} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::get\+Relative\+Path (\begin{DoxyParamCaption}\item[{}]{\$domain}{, }\item[{}]{\$locale}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Gets the relative file path using the template.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$domain} & The domain \\
+\hline
+string & {\em \$locale} & The locale\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string The relative file path 
+\end{DoxyReturn}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_ab300b33049bae999b8e5c0ab5e99f9b7}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!setBackup@{setBackup}}
+\index{setBackup@{setBackup}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{setBackup()}{setBackup()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_ab300b33049bae999b8e5c0ab5e99f9b7} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::set\+Backup (\begin{DoxyParamCaption}\item[{}]{\$backup}{}\end{DoxyParamCaption})}
+
+Sets backup flag.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em bool} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a4adf8e86d3c7c5859758108a40a63ac1}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!setRelativePathTemplate@{setRelativePathTemplate}}
+\index{setRelativePathTemplate@{setRelativePathTemplate}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{setRelativePathTemplate()}{setRelativePathTemplate()}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a4adf8e86d3c7c5859758108a40a63ac1} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::set\+Relative\+Path\+Template (\begin{DoxyParamCaption}\item[{}]{\$relative\+Path\+Template}{}\end{DoxyParamCaption})}
+
+Sets the template for the relative paths to files.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$relative\+Path\+Template} & A template for the relative paths to files \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a47773b1a868c723d02db529ab9e5e666}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!\$backup@{\$backup}}
+\index{\$backup@{\$backup}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{\$backup}{\$backup}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_a47773b1a868c723d02db529ab9e5e666} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::\$backup = \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa02d0efa2c2ec8119a80bd02f8b1a49a}\index{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}!\$relativePathTemplate@{\$relativePathTemplate}}
+\index{\$relativePathTemplate@{\$relativePathTemplate}!Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper@{Symfony\textbackslash{}Component\textbackslash{}Translation\textbackslash{}Dumper\textbackslash{}FileDumper}}
+\doxysubsubsection{\texorpdfstring{\$relativePathTemplate}{\$relativePathTemplate}}
+{\footnotesize\ttfamily \label{class_symfony_1_1_component_1_1_translation_1_1_dumper_1_1_file_dumper_aa02d0efa2c2ec8119a80bd02f8b1a49a} 
+Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Dumper\textbackslash{}\+File\+Dumper\+::\$relative\+Path\+Template = \textquotesingle{}\%domain\%.\%locale\%.\%extension\%\textquotesingle{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/symfony/translation/\+Dumper/\mbox{\hyperlink{_file_dumper_8php}{File\+Dumper.\+php}}\end{DoxyCompactItemize}

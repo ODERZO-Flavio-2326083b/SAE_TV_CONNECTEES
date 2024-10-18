@@ -2,14 +2,13 @@
 
 namespace Views;
 
-
 use Models\CodeAde;
 use Models\User;
 
 /**
  * Class StudentView
  *
- * All view for student (Forms, tables, messages)
+ * Toutes les vues pour les étudiants (Formulaires, tableaux, messages)
  *
  * @package Views
  */
@@ -17,9 +16,19 @@ class StudentView extends UserView
 {
 
     /**
-     * Form to create users with an Excel file
+     * Affiche le formulaire pour l'importation d'un fichier Excel d'étudiants.
      *
-     * @return string   Renvoie le formulaire
+     * Cette méthode génère un code HTML qui fournit des instructions à l'utilisateur
+     * pour télécharger un modèle de fichier Excel contenant des informations sur
+     * les étudiants, ainsi qu'un formulaire pour télécharger ce fichier une fois
+     * rempli. Lors de l'importation, un email est envoyé à chaque étudiant avec
+     * ses informations de connexion.
+     *
+     * @return string Retourne le code HTML du formulaire d'importation.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayInsertImportFileStudent() {
         return '
@@ -38,11 +47,23 @@ class StudentView extends UserView
     }
 
     /**
-     * Display all students in a table
+     * Affiche la liste de tous les étudiants avec leurs détails.
      *
-     * @param $users    User[]
+     * Cette méthode génère un tableau HTML affichant les informations des étudiants,
+     * y compris leur numéro, année, groupe, demi-groupe et un lien pour modifier leurs
+     * informations. Les étudiants sont extraits d'un tableau d'utilisateurs fourni
+     * en paramètre. Chaque étudiant est associé à un ensemble de codes, dont seuls les
+     * titres sont affichés dans le tableau.
      *
-     * @return string
+     * @param array $users Un tableau d'objets représentant les étudiants à afficher.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son ID,
+     *                     son login et ses codes.
+     *
+     * @return string Retourne le code HTML du tableau des étudiants.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayAllStudent($users) {
         $page = get_page_by_title('Modifier un utilisateur');
@@ -75,14 +96,31 @@ class StudentView extends UserView
     }
 
     /**
-     * Display the form to modify the student
+     * Affiche le formulaire de modification des informations d'un étudiant.
      *
-     * @param $user         User
-     * @param $years        CodeAde[]
-     * @param $groups       CodeAde[]
-     * @param $halfGroups   CodeAde[]
+     * Cette méthode génère un formulaire HTML pour modifier les informations d'un étudiant
+     * spécifié, y compris son année, groupe et demi-groupe. Les options de sélection sont
+     * remplies à partir des paramètres fournis pour les années, groupes et demi-groupes.
+     * Le formulaire inclut également des options pour valider ou annuler les modifications.
      *
-     * @return string
+     * @param object $user L'objet représentant l'étudiant dont les informations sont
+     *                     modifiées. Doit avoir des méthodes pour récupérer son login
+     *                     et ses codes associés.
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son code
+     *                     et son titre.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     *                      Chaque objet doit avoir des méthodes pour récupérer son code
+     *                      et son titre.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes
+     *                          disponibles. Chaque objet doit avoir des méthodes pour
+     *                          récupérer son code et son titre.
+     *
+     * @return string Retourne le code HTML du formulaire de modification d'étudiant.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function displayModifyStudent($user, $years, $groups, $halfGroups) {
         $page = get_page_by_title('Gestion des utilisateurs');
@@ -150,13 +188,29 @@ class StudentView extends UserView
 
         return $form;
     }
-
     /**
-     * Display a list of groups for the inscription of the student
+     * Affiche un modal pour la sélection des emplois du temps.
      *
-     * @param $years            CodeAde[]
-     * @param $groups           CodeAde[]
-     * @param $halfGroups       CodeAde[]
+     * Cette méthode génère un modal HTML qui permet à l'utilisateur de sélectionner
+     * son année, groupe et demi-groupe. Les options de sélection sont remplies à partir
+     * des paramètres fournis. Un formulaire est inclus pour soumettre les choix de
+     * l'utilisateur.
+     *
+     * @param array $years Un tableau d'objets représentant les années disponibles.
+     *                     Chaque objet doit avoir des méthodes pour récupérer son code
+     *                     et son titre.
+     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
+     *                      Chaque objet doit avoir des méthodes pour récupérer son code
+     *                      et son titre.
+     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes
+     *                          disponibles. Chaque objet doit avoir des méthodes pour
+     *                          récupérer son code et son titre.
+     *
+     * @return void Affiche directement le modal pour la sélection des emplois du temps.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
      */
     public function selectSchedules($years, $groups, $halfGroups) {
         echo '

@@ -1,0 +1,51 @@
+\chapter{CHANGELOG}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03}\index{CHANGELOG@{CHANGELOG}}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md767}{}\doxysection{\texorpdfstring{2.\+8.\+0}{2.\+8.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md767}
+
+\begin{DoxyItemize}
+\item deprecated File\+Dumper\+::format(), overwrite File\+Dumper\+::format\+Catalogue() instead.
+\item deprecated Translator\+::get\+Messages(), rely on Translator\+Bag\+Interface\+::get\+Catalogue() instead.
+\item added {\ttfamily File\+Dumper\+::format\+Catalogue} which allows format the catalogue without dumping it into file.
+\item added option {\ttfamily json\+\_\+encoding} to Json\+File\+Dumper
+\item added options {\ttfamily as\+\_\+tree}, {\ttfamily inline} to Yaml\+File\+Dumper
+\item added support for XLIFF 2.\+0.
+\item added support for XLIFF target and tool attributes.
+\item added message parameters to Data\+Collector\+Translator.
+\item \mbox{[}DEPRECATION\mbox{]} The {\ttfamily Diff\+Operation} class has been deprecated and will be removed in Symfony 3.\+0, since its operation has nothing to do with \textquotesingle{}diff\textquotesingle{}, so the class name is misleading. The {\ttfamily Target\+Operation} class should be used for this use-\/case instead.
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md768}{}\doxysection{\texorpdfstring{2.\+7.\+0}{2.\+7.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md768}
+
+\begin{DoxyItemize}
+\item added Data\+Collector\+Translator for collecting the translated messages.
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md769}{}\doxysection{\texorpdfstring{2.\+6.\+0}{2.\+6.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md769}
+
+\begin{DoxyItemize}
+\item added possibility to cache catalogues
+\item added Translator\+Bag\+Interface
+\item added Logging\+Translator
+\item added Translator\+::get\+Messages() for retrieving the message catalogue as an array
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md770}{}\doxysection{\texorpdfstring{2.\+5.\+0}{2.\+5.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md770}
+
+\begin{DoxyItemize}
+\item added relative file path template to the file dumpers
+\item added optional backup to the file dumpers
+\item changed Icu\+Res\+File\+Dumper to extend File\+Dumper
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md771}{}\doxysection{\texorpdfstring{2.\+3.\+0}{2.\+3.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md771}
+
+\begin{DoxyItemize}
+\item added classes to make operations on catalogues (like making a diff or a merge on 2 catalogues)
+\item added Translator\+::get\+Fallback\+Locales()
+\item deprecated Translator\+::set\+Fallback\+Locale() in favor of the new Translator\+::set\+Fallback\+Locales() method
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md772}{}\doxysection{\texorpdfstring{2.\+2.\+0}{2.\+2.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md772}
+
+\begin{DoxyItemize}
+\item Qt\+Translations\+Loader class renamed to Qt\+File\+Loader. Qt\+Translations\+Loader is deprecated and will be removed in 2.\+3.
+\item \mbox{[}BC BREAK\mbox{]} uniformized the exception thrown by the load() method when an error occurs. The load() method now throws Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Exception\textbackslash{}\+Not\+Found\+Resource\+Exception when a resource cannot be found and Symfony\textbackslash{}\+Component\textbackslash{}\+Translation\textbackslash{}\+Exception\textbackslash{}\+Invalid\+Resource\+Exception when a resource is invalid.
+\item changed the exception class thrown by some load() methods from \textbackslash{}\+Runtime\+Exception to \textbackslash{}\+Invalid\+Argument\+Exception (Icu\+Dat\+File\+Loader, Icu\+Res\+File\+Loader and Qt\+File\+Loader)
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md773}{}\doxysection{\texorpdfstring{2.\+1.\+0}{2.\+1.\+0}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4103b08ab4e91ae05fd17d1cd3603e03_autotoc_md773}
+
+\begin{DoxyItemize}
+\item added support for more than one fallback locale
+\item added support for extracting translation messages from templates (Twig and PHP)
+\item added dumpers for translation catalogs
+\item added support for QT, gettext, and Resource\+Bundles 
+\end{DoxyItemize}
