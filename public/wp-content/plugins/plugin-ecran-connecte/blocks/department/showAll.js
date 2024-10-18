@@ -1,17 +1,17 @@
 /**
- * Script pour créer le bloc d'ajout de département
+ * Script pour créer le bloc d'affichage de tous les départements
  */
 (function(blocks, element, data)
 {
     var el = element.createElement;
 
-    blocks.registerBlockType('tvconnecteeamu/add-department', {
-        title: 'Ajouter un département',
+    blocks.registerBlockType('tvconnecteeamu/showall-department', {
+        title: 'Afficher les départements',
         icon: 'smiley',
         category: 'common',
 
         edit: function() {
-            return "Ajoute des départments par un formulaire";
+            return "Affiche les départments par un tableau";
         },
         save: function() {
             return "test";

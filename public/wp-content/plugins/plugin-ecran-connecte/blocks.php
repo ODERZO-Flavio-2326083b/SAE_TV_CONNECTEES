@@ -710,3 +710,48 @@ function block_department_add()
 	));
 }
 add_action( 'init', 'block_department_add' );
+
+function department_modify_render_callback() {
+	if(is_page()) {
+		$dpt = new DepartmentController();
+		return $dpt->modify();
+	}
+}
+
+function block_department_modify()
+{
+	wp_register_script(
+		'department_modify-script',
+		plugins_url( '/blocks/department/modify.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-element', 'wp-data' )
+	);
+
+	register_block_type('tvconnecteeamu/modify-department', array(
+		'editor_script' => 'department_modify-script',
+		'render_callback' => 'department_modify_render_callback'
+	));
+}
+add_action('init', 'block_department_modify');
+
+function department_displayDeptTable_render_callback() {
+	if(is_page()) {
+		$dpt = new DepartmentController();
+		$dpt->deleteDepts();
+		return $dpt->displayDeptTable();
+	}
+}
+
+function block_department_displayDeptTable()
+{
+	wp_register_script(
+		'department_showall-script',
+		plugins_url( '/blocks/department/showAll.js', __FILE__),
+		array( 'wp-blocks', 'wp-element', 'wp-data' )
+	);
+
+	register_block_type('tvconnecteeamu/showall-department', array(
+		'editor_script' => 'department_showall-script',
+		'render_callback' => 'department_displayDeptTable_render_callback'
+	));
+}
+add_action('init', 'block_department_displayDeptTable');

@@ -2,6 +2,7 @@
 
 namespace Views;
 
+use Models\Department;
 use Views\View;
 
 class DepartmentView extends View {
@@ -19,15 +20,7 @@ class DepartmentView extends View {
                 <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
             	<small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
             </div>
-            <div class="form-group">
-            	<label for="dept_lat">Latitude du département</label>
-            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
-            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
-            	<label for="dept_long">Longitude du département</label>
-            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10" pattern="^\d+(\.\d+)?$">
-            	<small id="passwordHelpBlock" class="form-text text-muted">Format : Nombre décimal de 10 caractères maximum.</small>
-            </div>
-          <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+          	<button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
         </form>';
 	}
 
@@ -40,7 +33,7 @@ class DepartmentView extends View {
 	 *
 	 * @return string
 	 */
-	public function renderModifForm(string $name, int $lat, int $long) {
+	public function renderModifForm(string $name) {
 		$returnPage = get_page_by_title('Gestion des départements');
 		$linkManageCode = get_permalink($returnPage->ID);
 
@@ -49,20 +42,37 @@ class DepartmentView extends View {
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
+                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60" value="'. $name .'">
             </div>
-            <div class="form-group">
-            	<label for="dept_lat">Latitude du département</label>
-            	<input class="form-control" type="text" id="dept_lat" name="dept_lat" placeholder="Latitude" required="" minlength="4" maxlength="10">
-            	<label for="dept_long">Longitude du département</label>
-            	<input class="form-control" type="text" id="dept_long" name="dept_long" placeholder="Latitude" required="" minlength="4" maxlength="10">
-            </div>
-          <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+          <button type="submit" class="btn button_ecran" name="submit">Modifier</button>
+          <a href="'. $linkManageCode .'">Annuler</a>
         </form>';
 	}
 
-	public function renderDepartmentTable() {
+	/**
+	 * Rendu de la table des départements et des boutons
+	 *
+	 * @param $deptList     Department[]
+	 *
+	 * @return string
+	 */
+	public function renderAllDeptsTable($deptList): string {
+		$page = get_page_by_title('Modifier un département');
+		$linkModifDept = get_permalink($page->ID);
 
+		$title = 'Départements existants';
+		$name = 'Dept';
+		$header = ["Nom du département", "Lien de MAJ"];
+
+		$row = array();
+
+		$count = 1;
+		foreach ($deptList as $dept) {
+			$row[] = [$count, $this->buildCheckbox($name, $dept->getIdDepartment()), $dept->getName(), $this->buildLinkForModify($linkModifDept.'?id='.$dept->getIdDepartment())];
+			++$count;
+		}
+
+		return $this->displayAll($name, $title, $header, $row);
 	}
 
 	/**
@@ -75,15 +85,32 @@ class DepartmentView extends View {
 	}
 
 	/**
+	 * Affiche un modal de confirmation de mise à jour d'un département
+	 *
+	 * @return void
+	 */
+	public function successUpdate() {
+		$this->buildModal("Modification d'un département", "<p>Le département a bien été modifié!</p>");
+	}
+
+	/**
 	 * Affiche un modal d'erreur s'il y en a une lors de la création
 	 * du département.
 	 *
 	 * @return void
 	 */
 	public function errorCreation() {
-		$this->buildModal('Erreur lors de la création du département', '<p>Le département a rencontré une erreur lors de son ajout</p>');
+		$this->buildModal('Erreur lors de la création du département', '<p>Erreur lors de l\'ajout du département.</p>');
 	}
 
+	/**
+	 * Affiche un modal d'erreur lors de la mise à jour d'un département
+	 *
+	 * @return void
+	 */
+	public function errorUpdate() {
+		$this->buildModal('Errur lors de la modification du département.', '<p>Erreur lors de la mise à jour du département.</p>');
+	}
 
 	/**
 	 * Affiche un message d'erreur si le département existe déjà
@@ -91,12 +118,12 @@ class DepartmentView extends View {
 	 * @return void
 	 */
 	public function errorDuplicate() {
-		echo '<p class="alert alert-danger"> Ce département existe déjà </p>';
+		echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà </p>';
 	}
 
-	public function errorNothing() {
+	public function errorNothing(): string {
 		$page = get_page_by_title("Gestion des départements");
 		$returnLink = get_permalink($page->ID);
-		echo '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
+		return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
 	}
 }

@@ -22,14 +22,6 @@ class Department extends Model implements Entity, JsonSerializable {
 	 * @var string
 	 */
 	private $name;
-	/**
-	 * @var int
-	 */
-	private $longitude;
-	/**
-	 * @var int
-	 */
-	private $latitude;
 
 	/**
 	 * Insérer un département dans la base de données selon les attributs actuels
@@ -39,13 +31,8 @@ class Department extends Model implements Entity, JsonSerializable {
 	public function insert(): string {
 		$database = $this->getDatabase();
 
-		$request = $database->prepare('INSERT INTO ecran_departement (dept_nom, dept_longitude, dept_latitude) 
-										VALUES (:name, :longitude, :latitude)');
-
+		$request = $database->prepare('INSERT INTO ecran_departement (dept_nom) VALUES (:name)');
 		$request->bindValue(':name', $this->getName());
-		$request->bindValue(':longitude', $this->getLongitude());
-		$request->bindValue(':latitude', $this->getLatitude());
-
 		$request->execute();
 
 		return $database->lastInsertId();
@@ -58,8 +45,10 @@ class Department extends Model implements Entity, JsonSerializable {
 	public function update(): int {
 		$database = $this->getDatabase();
 
-		$request = $database->prepare(//TODO : UPDATE SQL)
-		);
+		$request = $database->prepare( 'UPDATE ecran_departement SET dept_nom = :name WHERE dept_id = :id' );
+
+		$request->bindValue(':name', $this->getName());
+		$request->bindValue(':id', $this->getIdDepartment());
 
 		$request->execute();
 
@@ -87,12 +76,10 @@ class Department extends Model implements Entity, JsonSerializable {
 	 *
 	 * @return bool|null
 	 */
-	public function get( $id ): ?bool {
-		$database = $this->getDatabase();
+	public function get( $id ) {
+		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_id = :id');
 
-		$request = $database->prepare(// TODO GET SQL
-
-		);
+		$request->bindValue(':id', $id, PDO::PARAM_INT);
 
 		$request->execute();
 
@@ -144,8 +131,6 @@ class Department extends Model implements Entity, JsonSerializable {
 
 		$entity->setIdDepartment( $data['dept_id'] );
 		$entity->setName( $data['dept_nom'] );
-		$entity->setLongitude( $data['dept_longitude'] );
-		$entity->setLatitude( $data['dept_latitude'] );
 
 		return $entity;
 	}
@@ -160,6 +145,19 @@ class Department extends Model implements Entity, JsonSerializable {
 		}
 
 		return $listEntity;
+	}
+
+	/**
+	 * Renvoie tous les départements stockés dans la base de données
+	 *
+	 * @return void
+	 */
+	public function getAllDepts() {
+		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement ORDER BY dept_id');
+
+		$request->execute();
+
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
 	}
 
 	/**
@@ -188,34 +186,6 @@ class Department extends Model implements Entity, JsonSerializable {
 	 */
 	public function setName( string $name ): void {
 		$this->name = $name;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getLongitude(): int {
-		return $this->longitude;
-	}
-
-	/**
-	 * @param int $longitude
-	 */
-	public function setLongitude( int $longitude ): void {
-		$this->longitude = $longitude;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getLatitude(): int {
-		return $this->latitude;
-	}
-
-	/**
-	 * @param int $latitude
-	 */
-	public function setLatitude( int $latitude ): void {
-		$this->latitude = $latitude;
 	}
 
 	public function jsonSerialize() {

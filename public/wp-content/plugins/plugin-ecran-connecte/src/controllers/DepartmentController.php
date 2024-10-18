@@ -37,14 +37,9 @@ class DepartmentController extends Controller {
 
 		if (isset($action)) {
 			$name = filter_input(INPUT_POST, 'dept_name');
-			$lat = filter_input(INPUT_POST, 'dept_lat');
-			$long = filter_input(INPUT_POST, 'dept_long');
-
 
 			if (is_string($name)) {
 				$this->model->setName($name);
-				$this->model->setLatitude($lat);
-				$this->model->setLongitude($long);
 
 				if (!$this->checkDuplicate($this->model)) {
 					$this->model->insert();
@@ -60,9 +55,80 @@ class DepartmentController extends Controller {
 		return $this->view->renderAddForm();
 	}
 
-	public function update() {
+	/**
+	 * Affiche le menu de modification en fonction de l'id fourni en GET
+	 * et filtre les inputs pour modifier le nom
+	 * d'un département dans la base de données
+	 *
+	 * @return string
+	 */
+	public function modify(): string {
+		if(!isset($_GET['id'])) {
+			return $this->view->errorNothing();
+		}
 
+		$id = $_GET['id'];
+
+		if (!is_numeric($id) || !$this->model->get($id)) {
+			return $this->view->errorNothing();
+		}
+
+		$submit = filter_input(INPUT_POST, 'submit');
+
+		if (isset($submit)) {
+			$nvNom = filter_input(INPUT_POST, 'dept_name');
+
+			if (is_string($nvNom)) {
+				$this->model->setIdDepartment($id);
+				$this->model->setName($nvNom);
+
+				if (!$this->checkDuplicate($this->model)) {
+					$this->model->update();
+					$this->view->successUpdate();
+				} else {
+					$this->view->errorDuplicate();
+				}
+			} else {
+				$this->view->errorUpdate();
+			}
+		}
+
+		$name = $this->model->get($id)->getName();
+		return $this->view->renderModifForm($name);
 	}
+
+	/**
+	 * Donne la liste de tous les départements à la vue
+	 * et affiche le tableau correspondant
+	 *
+	 * @return string
+	 */
+	public function displayDeptTable(): string {
+		$allDepts = $this->model->getAllDepts();
+
+		return $this->view->renderAllDeptsTable($allDepts);
+	}
+
+	/**
+	 * Si une requête POST est faite sur la page d'affichage des départements
+	 * on la traite et supprime les départements concernés
+	 *
+	 * @return void
+	 */
+	public function deleteDepts(): void {
+		$action = filter_input(INPUT_POST, 'delete');
+		if (isset($action)) {
+			if (isset($_REQUEST['checkboxStatusDept'])) {
+				$checked_values = $_REQUEST['checkboxStatusDept'];
+				foreach ($checked_values as $id) {
+					$this->model = $this->model->get($id);
+					$this->model->delete();
+					$this->view->refreshPage();
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * Vérifie si le nom du département existe déjà dans la base de données
