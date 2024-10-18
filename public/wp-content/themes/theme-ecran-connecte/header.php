@@ -33,7 +33,7 @@ if(in_array('television', $current_user->roles)) : ?>
             <?php endif; ?>
         </a>
     <?php else: ?>
-    <nav class="navbar navbar-expand-lg navbar-dark nav_ecran">
+    <nav class="navbar navbar-expand-lg navbar-dark nav_ecran" style="z-index: 99">
         <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
             <?php if (get_header_image()) : ?>
                 <img src="<?php header_image(); ?>" class="d-inline-block align-top logo" alt="Logo de l'IUT d'Aix-Marseille">
