@@ -57,7 +57,7 @@ class ProfileRestController extends WP_REST_Controller
                     'methods' => WP_REST_Server::READABLE,
                     'callback' => array($this, 'get_item'),
                     'permission_callback' => array($this, 'get_item_permissions_check'),
-                    'args' => null,
+                    'args' => array(),
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
             )
