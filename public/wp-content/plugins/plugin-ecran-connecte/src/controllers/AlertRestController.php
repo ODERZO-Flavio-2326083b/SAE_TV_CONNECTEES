@@ -308,7 +308,7 @@ class AlertRestController extends WP_REST_Controller
         return new WP_REST_Response(array('message' => 'Could not delete the alert'), 400);
     }
 
-*
+
     /**
      * Vérifie les permissions pour accéder à la liste des alertes.
      *

@@ -115,6 +115,115 @@ class InformationView extends View
     }
 
     /**
+     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le titre, le fichier video,
+     * et la date d'expiration.
+     *
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger une video. Si une video
+     * existe déjà, elle sera affichée avec une légende. Le champ de date d'expiration est requis et ne peut pas
+     * être antérieur à la date actuelle.
+     *
+     * @param string|null $title      Le titre de la video à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier video à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createVideo".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displayFormVideo($title = null, $content = null, $endDate = null, $type = "createVideo") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+
+        $form = '<form method="post" enctype="multipart/form-data">
+				<div class="form-group">
+	                <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
+	                <input id="title" class="form-control" type="text" name="title" placeholder="Insérer un titre" maxlength="60" value="' . $title . '">
+	            </div>';
+        if ($content != null) {
+            $form .= '
+	       	<figure class="text-center">
+			  <img class="img-thumbnail" src="' . TV_UPLOAD_PATH . $content . '" alt="' . $title . '">
+			  <figcaption>Vidéo actuelle</figcaption>
+			</figure>';
+        }
+        $form .= '
+		<div class="form-group">
+			<label for="contentFile">Ajouter une vidéo</label>
+	        <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
+	        <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
+	        <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+        </div>
+        <div class="form-group">
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
+        }
+
+        return $form . '</form>';
+    }
+
+    /**
+     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le titre, le fichier video,
+     * et la date d'expiration.
+     *
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un short. Si un short
+     * existe déjà, elle sera affichée avec une légende. Le champ de date d'expiration est requis et ne peut pas
+     * être antérieur à la date actuelle.
+     *
+     * @param string|null $title      Le titre du short à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier video à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createShort".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displayFormShort($title = null, $content = null, $endDate = null, $type = "createShort") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+
+        $form = '<form method="post" enctype="multipart/form-data">
+				<div class="form-group">
+	                <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
+	                <input id="title" class="form-control" type="text" name="title" placeholder="Insérer un titre" maxlength="60" value="' . $title . '">
+	            </div>';
+        if ($content != null) {
+            $form .= '
+	       	<figure class="text-center">
+			  <img class="img-thumbnail" src="' . TV_UPLOAD_PATH . $content . '" alt="' . $title . '">
+			  <figcaption>Vidéo actuelle</figcaption>
+			</figure>';
+        }
+        $form .= '
+		<div class="form-group">
+			<label for="contentFile">Ajouter une vidéo (short)</label>
+	        <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
+	        <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
+	        <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+	        <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
+        </div>
+        <div class="form-group">
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
+        }
+
+        return $form . '</form>';
+    }
+
+    /**
      * Affiche un formulaire pour créer ou modifier un tableau à partir d'un fichier XLS/XLSX avec des champs
      * pour le titre, le fichier à télécharger et la date d'expiration.
      *
