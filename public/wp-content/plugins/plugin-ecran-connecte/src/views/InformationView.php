@@ -469,12 +469,12 @@ class InformationView extends View
      * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
      *
      * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
-     * tels que du texte, des images ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
      * sur le site d'administration et l'affichage normal.
      *
      * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
      * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher ('text', 'img', 'pdf', 'event', 'special').
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
      * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
      *
      * @return void
@@ -496,7 +496,7 @@ class InformationView extends View
             $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
         }
 
-        if ($type == 'pdf' || $type == "event" || $type == "img") {
+        if ($type == 'pdf' || $type = "video" || $type="short" || $type == "event" || $type == "img") {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }

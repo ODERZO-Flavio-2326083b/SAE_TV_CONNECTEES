@@ -70,6 +70,8 @@ class InformationController extends Controller
         // All forms
         $actionText = filter_input(INPUT_POST, 'createText');
         $actionImg = filter_input(INPUT_POST, 'createImg');
+        $actionVideo = filter_input(INPUT_POST, 'createVideo');
+        $actionShort = filter_input(INPUT_POST, 'createShort');
         $actionTab = filter_input(INPUT_POST, 'createTab');
         $actionPDF = filter_input(INPUT_POST, 'createPDF');
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
@@ -134,7 +136,7 @@ class InformationController extends Controller
 
         }
 
-        if (isset($actionShort)){ // Si l'information est une vidéo
+        if (isset($actionShort)){ // Si l'information est un short
             $type = "short";
             $information->setType($type);
             $filename = $_FILES['contentFile']['name'];
@@ -277,7 +279,7 @@ class InformationController extends Controller
                 if ($_FILES["contentFile"]['size'] != 0) {
                     echo $_FILES["contentFile"]['size'];
                     $filename = $_FILES["contentFile"]['name'];
-                    if ($information->getType() == 'img') {
+                    if ($information->getType() == 'img') { // Si le type d'information est une image
                         $explodeName = explode('.', $filename);
                         $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
                         if (in_array(end($explodeName), $goodExtension)) {
@@ -286,7 +288,7 @@ class InformationController extends Controller
                         } else {
                             $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
                         }
-                    } elseif ($information->getType() == 'video' || $information->getType() == 'short') {
+                    } elseif ($information->getType() == 'video' || $information->getType() == 'short') { // Si le type d'information est une vidéo (longue ou courte)
                         $explodeName = explode('.', $filename);
                         $goodExtension = ['mp4', 'mov', 'avi'];
                         if (in_array(end($explodeName), $goodExtension)) {
@@ -297,7 +299,7 @@ class InformationController extends Controller
                         }
 
                     }
-                    else if ($information->getType() == 'pdf') {
+                    else if ($information->getType() == 'pdf') { // Si le type d'information est un PDF
                         $explodeName = explode('.', $filename);
                         if (end($explodeName) == 'pdf') {
                             $this->deleteFile($information->getId());
@@ -305,7 +307,7 @@ class InformationController extends Controller
                         } else {
                             $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
                         }
-                    } else if ($information->getType() == 'tab') {
+                    } else if ($information->getType() == 'tab') { // Si le type d'information est un tableau
                         $explodeName = explode('.', $filename);
                         $goodExtension = ['xls', 'xlsx', 'ods'];
                         if (in_array(end($explodeName), $goodExtension)) {
@@ -444,7 +446,7 @@ class InformationController extends Controller
                 if (in_array($contentExplode[1], $imgExtension)) {
                     $content = '<img class="img-thumbnail img_table_ecran" src="' . $content . $information->getContent() . '" alt="' . $information->getTitle() . '">';
                 } elseif (in_array($contentExplode[1], $videoExtension)) {
-                    $content = '<video controls preload="metadata" class="video_thumbnail video_table_ecran"><source src="' . $content . $information->getContent() . '" type="video/' . $contentExplode[1] . '"></video>';
+                    $content = '<video autoplay loop class="video_thumbnail video_table_ecran"><source src="' . $content . $information->getContent() . '" type="video/' . $contentExplode[1] . '"></video>';
                 }
                 else if ($contentExplode[1] === 'pdf') {
                     $content = '[pdf-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
