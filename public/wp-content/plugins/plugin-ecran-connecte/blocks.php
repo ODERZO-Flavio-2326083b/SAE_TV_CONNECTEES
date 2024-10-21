@@ -2,6 +2,7 @@
 
 use Controllers\AlertController;
 use Controllers\CodeAdeController;
+use Controllers\CSSCustomizerController;
 use Controllers\InformationController;
 use Controllers\SecretaryController;
 use Controllers\StudentController;
@@ -10,7 +11,6 @@ use Controllers\TeacherController;
 use Controllers\TechnicianController;
 use Controllers\TelevisionController;
 use Controllers\UserController;
-use Views\CSSView;
 use Views\HelpMapView;
 use Views\UserView;
 
@@ -690,32 +690,23 @@ add_action( 'init', 'block_help_map' );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Function of the block
+ *
+ * @return string
+ */
 function css_customizer_render_callback()
 {
     if(is_page()) {
-        $view = new CSSCustomizerView();
-        $model = new CSSCustomizer();
-        $controller = new CSSCustomizerController($view,$model);
+        $controller = new CSSCustomizerController();
         return $controller->useCssCustomizer();
 
     }
 }
 
+/**
+ * Build a block
+ */
 function block_modif_css()
 {
     wp_register_script(

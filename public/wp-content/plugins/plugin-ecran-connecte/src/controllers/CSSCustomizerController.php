@@ -1,18 +1,30 @@
 <?php
 
-namespace controllers;
+namespace Controllers;
 
-use Controllers\Controller;
+use Models\CSSCustomizer;
+use Views\CSSView;
 
 class CSSCustomizerController extends Controller
 {
-    public function __construct($view,$model)   {
-        $this->view = $view;
-        $this->model = $model;
+    /**
+     * @var CSSCustomizer
+     */
+    private $model;
+
+    /**
+     * @var CSSView
+     */
+    private $view;
+
+    public function __construct()   {
+        $this->view = new CSSView();
+        $this->model = new CSSCustomizer();
     }
 
     public function useCssCustomizer()
     {
+        $this->model->updateColor();
         $this->view->displayCssCustomizer();
     }
 
