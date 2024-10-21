@@ -2,6 +2,7 @@
 
 namespace Views;
 
+use Models\Department;
 use Views\View;
 
 class DepartmentView extends View {
@@ -48,8 +49,30 @@ class DepartmentView extends View {
         </form>';
 	}
 
-	public function renderDepartmentTable() {
+	/**
+	 * Rendu de la table des départements et des boutons
+	 *
+	 * @param $deptList     Department[]
+	 *
+	 * @return string
+	 */
+	public function renderAllDeptsTable($deptList): string {
+		$page = get_page_by_title('Modifier un département');
+		$linkModifDept = get_permalink($page->ID);
 
+		$title = 'Départements existants';
+		$name = 'Dept';
+		$header = ["Nom du département", "Lien de MAJ"];
+
+		$row = array();
+
+		$count = 1;
+		foreach ($deptList as $dept) {
+			$row[] = [$count, $this->buildCheckbox($name, $dept->getIdDepartment()), $dept->getName(), $this->buildLinkForModify($linkModifDept.'?id='.$dept->getIdDepartment())];
+			++$count;
+		}
+
+		return $this->displayAll($name, $title, $header, $row);
 	}
 
 	/**
@@ -62,15 +85,32 @@ class DepartmentView extends View {
 	}
 
 	/**
+	 * Affiche un modal de confirmation de mise à jour d'un département
+	 *
+	 * @return void
+	 */
+	public function successUpdate() {
+		$this->buildModal("Modification d'un département", "<p>Le département a bien été modifié!</p>");
+	}
+
+	/**
 	 * Affiche un modal d'erreur s'il y en a une lors de la création
 	 * du département.
 	 *
 	 * @return void
 	 */
 	public function errorCreation() {
-		$this->buildModal('Erreur lors de la création du département', '<p>Le département a rencontré une erreur lors de son ajout</p>');
+		$this->buildModal('Erreur lors de la création du département', '<p>Erreur lors de l\'ajout du département.</p>');
 	}
 
+	/**
+	 * Affiche un modal d'erreur lors de la mise à jour d'un département
+	 *
+	 * @return void
+	 */
+	public function errorUpdate() {
+		$this->buildModal('Errur lors de la modification du département.', '<p>Erreur lors de la mise à jour du département.</p>');
+	}
 
 	/**
 	 * Affiche un message d'erreur si le département existe déjà
@@ -78,10 +118,10 @@ class DepartmentView extends View {
 	 * @return void
 	 */
 	public function errorDuplicate() {
-		echo '<p class="alert alert-danger"> Ce département existe déjà </p>';
+		echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà </p>';
 	}
 
-	public function errorNothing() {
+	public function errorNothing(): string {
 		$page = get_page_by_title("Gestion des départements");
 		$returnLink = get_permalink($page->ID);
 		return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';

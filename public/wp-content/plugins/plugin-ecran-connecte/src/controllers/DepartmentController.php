@@ -55,11 +55,19 @@ class DepartmentController extends Controller {
 		return $this->view->renderAddForm();
 	}
 
+	/**
+	 * Affiche le menu de modification en fonction de l'id fourni en GET
+	 * et filtre les inputs pour modifier le nom
+	 * d'un département dans la base de données
+	 *
+	 * @return string
+	 */
 	public function modify(): string {
-		$id = $_GET['id'];
+		if(!isset($_GET['id'])) {
+			return $this->view->errorNothing();
+		}
 
-		$this->model->get($id);
-		echo json_encode($this->model->jsonSerialize());
+		$id = $_GET['id'];
 
 		if (!is_numeric($id) || !$this->model->get($id)) {
 			return $this->view->errorNothing();
@@ -68,11 +76,59 @@ class DepartmentController extends Controller {
 		$submit = filter_input(INPUT_POST, 'submit');
 
 		if (isset($submit)) {
-			// TODO
+			$nvNom = filter_input(INPUT_POST, 'dept_name');
+
+			if (is_string($nvNom)) {
+				$this->model->setIdDepartment($id);
+				$this->model->setName($nvNom);
+
+				if (!$this->checkDuplicate($this->model)) {
+					$this->model->update();
+					$this->view->successUpdate();
+				} else {
+					$this->view->errorDuplicate();
+				}
+			} else {
+				$this->view->errorUpdate();
+			}
 		}
 
-		return $this->view->renderModifForm($id);
+		$name = $this->model->get($id)->getName();
+		return $this->view->renderModifForm($name);
 	}
+
+	/**
+	 * Donne la liste de tous les départements à la vue
+	 * et affiche le tableau correspondant
+	 *
+	 * @return string
+	 */
+	public function displayDeptTable(): string {
+		$allDepts = $this->model->getAllDepts();
+
+		return $this->view->renderAllDeptsTable($allDepts);
+	}
+
+	/**
+	 * Si une requête POST est faite sur la page d'affichage des départements
+	 * on la traite et supprime les départements concernés
+	 *
+	 * @return void
+	 */
+	public function deleteDepts(): void {
+		$action = filter_input(INPUT_POST, 'delete');
+		if (isset($action)) {
+			if (isset($_REQUEST['checkboxStatusDept'])) {
+				$checked_values = $_REQUEST['checkboxStatusDept'];
+				foreach ($checked_values as $id) {
+					$this->model = $this->model->get($id);
+					$this->model->delete();
+					$this->view->refreshPage();
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * Vérifie si le nom du département existe déjà dans la base de données
@@ -92,6 +148,4 @@ class DepartmentController extends Controller {
 		}
 		return false;
 	}
-
-
 }

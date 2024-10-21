@@ -45,8 +45,10 @@ class Department extends Model implements Entity, JsonSerializable {
 	public function update(): int {
 		$database = $this->getDatabase();
 
-		$request = $database->prepare(//TODO : UPDATE SQL)
-		);
+		$request = $database->prepare( 'UPDATE ecran_departement SET dept_nom = :name WHERE dept_id = :id' );
+
+		$request->bindValue(':name', $this->getName());
+		$request->bindValue(':id', $this->getIdDepartment());
 
 		$request->execute();
 
@@ -74,8 +76,10 @@ class Department extends Model implements Entity, JsonSerializable {
 	 *
 	 * @return bool|null
 	 */
-	public function get( $id ): ?bool {
+	public function get( $id ) {
 		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_id = :id');
+
+		$request->bindValue(':id', $id, PDO::PARAM_INT);
 
 		$request->execute();
 
@@ -144,6 +148,19 @@ class Department extends Model implements Entity, JsonSerializable {
 	}
 
 	/**
+	 * Renvoie tous les départements stockés dans la base de données
+	 *
+	 * @return void
+	 */
+	public function getAllDepts() {
+		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement ORDER BY dept_id');
+
+		$request->execute();
+
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+	}
+
+	/**
 	 * @return int
 	 */
 	public function getIdDepartment(): int {
@@ -169,34 +186,6 @@ class Department extends Model implements Entity, JsonSerializable {
 	 */
 	public function setName( string $name ): void {
 		$this->name = $name;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getLongitude(): int {
-		return $this->longitude;
-	}
-
-	/**
-	 * @param int $longitude
-	 */
-	public function setLongitude( int $longitude ): void {
-		$this->longitude = $longitude;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getLatitude(): int {
-		return $this->latitude;
-	}
-
-	/**
-	 * @param int $latitude
-	 */
-	public function setLatitude( int $latitude ): void {
-		$this->latitude = $latitude;
 	}
 
 	public function jsonSerialize() {
