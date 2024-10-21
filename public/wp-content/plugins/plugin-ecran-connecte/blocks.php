@@ -711,7 +711,7 @@ function css_customizer_render_callback()
         $view = new CSSCustomizerView();
         $model = new CSSCustomizer();
         $controller = new CSSCustomizerController($view,$model);
-        return $controller->displayCssCustomizer();
+        return $controller->useCssCustomizer();
 
     }
 }

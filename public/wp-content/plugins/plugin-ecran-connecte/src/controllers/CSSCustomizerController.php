@@ -11,9 +11,8 @@ class CSSCustomizerController extends Controller
         $this->model = $model;
     }
 
-    public function displayCssCustomizer()
+    public function useCssCustomizer()
     {
-
         $this->view->displayCssCustomizer();
     }
 
