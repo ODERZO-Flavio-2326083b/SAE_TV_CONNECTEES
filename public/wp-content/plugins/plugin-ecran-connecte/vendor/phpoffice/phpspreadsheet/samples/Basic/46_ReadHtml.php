@@ -1,7 +1,7 @@
 <?php
 
 // Turn off error reporting
-error_reporting(0);
+// error_reporting(0);
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

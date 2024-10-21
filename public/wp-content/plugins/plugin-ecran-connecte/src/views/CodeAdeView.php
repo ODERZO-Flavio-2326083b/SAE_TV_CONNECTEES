@@ -208,6 +208,6 @@ class CodeAdeView extends View
     public function errorNobody() {
         $page = get_page_by_title('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
-        echo '<p>Il n\'y a rien par ici</p><a href="' . $linkManageCode . '">Retour</a>';
+        return '<p>Il n\'y a rien par ici</p><a href="' . $linkManageCode . '">Retour</a>';
     }
 }
