@@ -83,7 +83,12 @@ if(in_array('television', $current_user->roles)) : ?>
             <?php endif;
             if (in_array('administrator', $user_info->roles)) : ?>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des codes ADE'))); ?>">Code ADE</a>
+                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des codes ADE'))); ?>">Codes ADE</a>
+                </li>
+            <?php endif;
+            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)): ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title('Gestion des départements'))); ?>">Départements</a>
                 </li>
             <?php endif; ?>
             </ul>

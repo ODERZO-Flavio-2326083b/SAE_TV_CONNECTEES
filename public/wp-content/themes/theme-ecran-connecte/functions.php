@@ -9,7 +9,7 @@ add_filter('auto_update_plugin', '__return_true');
 add_filter('auto_update_theme', '__return_true');
 
 
-error_reporting(0);
+//error_reporting(0);
 /*
 function wp_maintenance_mode()
 {
@@ -128,6 +128,7 @@ $wpdb->time_zone = 'Europe/Paris';
 // All sidebars
 if (function_exists('register_sidebar')) {
     register_sidebar(array(
+		'id' => 'sidebar-header',
         'name' => 'Header',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -135,6 +136,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h2>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer',
         'name' => 'Footer',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -142,6 +144,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer-left',
         'name' => 'Footer gauche',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -149,6 +152,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer-right',
         'name' => 'Footer droite',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -156,6 +160,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-column-left',
         'name' => 'Colonne Gauche',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -163,6 +168,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-column-right',
         'name' => 'Colonne Droite',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
