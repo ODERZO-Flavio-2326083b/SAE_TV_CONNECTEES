@@ -176,3 +176,23 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
 }
+
+// remplacer la fonction dépréciée get_page_by_title_custom
+// par une fonction customisée prise en charge
+function get_page_by_title_custom($page_title) {
+	$args = array(
+		'post_type'   => 'page',
+		'title'       => $page_title,
+		'post_status' => 'publish',
+		'posts_per_page' => 1
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( $query->have_posts() ) {
+		$query->the_post();
+		return get_post();
+	}
+
+	return null;
+}
