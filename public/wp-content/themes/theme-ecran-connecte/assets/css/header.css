@@ -2,7 +2,7 @@
 .nav_ecran {
     position: sticky;
     top: 0;
-    background-color: #1F63DE;
+    background-color: var(--primary-background-color);
     margin-bottom: 10px;
     min-height: 5vh;
     width: 100%;
