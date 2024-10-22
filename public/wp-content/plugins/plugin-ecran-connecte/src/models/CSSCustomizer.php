@@ -9,8 +9,9 @@ class CSSCustomizer extends Model
     public function updateColor()
     {
 
+        cssfilename = 'customizer.css';
         // Chemin du fichier CSS à modifier
-        $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/custumizer.css';
+        $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/'.$cssfilename;
 
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,10 +22,10 @@ class CSSCustomizer extends Model
             // Générer le contenu du nouveau CSS
             $newCss = "
             body {
-                background-color: $backgroundColor;
+                --primary-background-color: $backgroundColor;
             }
             #texte {
-                font-size: ${fontSize}px;
+                --primary-size: $fontSize px;
             }";
 
             // Écrire le nouveau contenu dans le fichier CSS

@@ -1,11 +1,13 @@
+@import "custumizer.css";
+
 /* FOOTER */
 .footer_ecran {
     color: #ffffff;
-    background-color: #1F63DE;
+    background-color: var(--primary-background-color);
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    min-height: 5vh;
+    min-height: 5vh;<
 }
 
 .footer_custom {
