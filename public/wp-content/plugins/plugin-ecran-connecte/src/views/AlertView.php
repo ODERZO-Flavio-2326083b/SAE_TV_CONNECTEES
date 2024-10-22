@@ -146,7 +146,7 @@ class AlertView extends View
     public function contextDisplayAll() {
         return '
 		<div class="row">
-			<div class="col-6 mx-auto col-md-6 order-md-2" style="position: static">
+			<div class="col-6 mx-auto col-md-6 order-md-2">
 				<img src="' . TV_PLUG_PATH . 'public/img/alert.png" alt="Logo alerte" class="img-fluid mb-3 mb-md-0">
 			</div>
 			<div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
