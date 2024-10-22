@@ -4,6 +4,7 @@ use Controllers\AlertRestController;
 use Controllers\CodeAdeRestController;
 use Controllers\InformationRestController;
 use Controllers\ProfileRestController;
+use models\Localisation;
 
 include __DIR__ . '/config-notifs.php';
 include_once 'vendor/R34ICS/R34ICS.php';
@@ -89,12 +90,29 @@ function loadScriptsEcran()
     wp_enqueue_script('search_script_ecran', TV_PLUG_PATH . 'public/js/search.js', array('jquery'), '1.0', true);
     wp_enqueue_script('slideshow_script_ecran', TV_PLUG_PATH . 'public/js/slideshow.js', array('jquery'), '2.0', true);
     wp_enqueue_script('sortTable_script_ecran', TV_PLUG_PATH . 'public/js/sortTable.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('weather_script_ecran', TV_PLUG_PATH . 'public/js/weather.js', array('jquery'), '1.0', true);
     wp_enqueue_script('weatherTime_script_ecran', TV_PLUG_PATH . 'public/js/weather_and_time.js', array('jquery'), '1.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'loadScriptsEcran');
 
+/**
+ * Charger le script de météo seulement si nous sommes sur la page
+ * de l'emploi du temps d'une TV
+ */
+function loadWeatherScript() {
+	if(is_front_page() && in_array('television', wp_get_current_user()->roles)) {
+		wp_enqueue_script( 'weather_script_ecran', TV_PLUG_PATH . 'public/js/weather.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
+	}
+}
+
+add_action('wp_enqueue_scripts', 'loadWeatherScript');
+
+/**
+ * Injecter les valeurs de localisation et de requête AJAX au
+ * script de la météo
+ * @return void
+ */
 function injectLocVariables() {
 	$longitude = 5.4510;
 	$latitude = 43.5156;
@@ -103,9 +121,41 @@ function injectLocVariables() {
 		'longitude' => $longitude,
 		'latitude' => $latitude
 	));
+
+	wp_localize_script( 'retrieve_loc_script_ecran', 'retrieveLocVars', array(
+		'ajaxUrl' => admin_url('admin-ajax.php')
+	));
 }
 
 add_action('wp_enqueue_scripts', 'injectLocVariables');
+
+function handleMeteoAjaxData() {
+	if (is_front_page() && isset($_POST['longitude']) && isset($_POST['latitude'])) {
+		$longitude = sanitize_text_field($_POST['longitude']);
+		$latitude = sanitize_text_field($_POST['latitude']);
+
+		$locModel = new Localisation();
+
+		$locModel->setLongitude($longitude);
+		$locModel->setLatitude($latitude);
+		$locModel->setUserId(wp_get_current_user()->ID);
+
+		$locModel->insert();
+
+		// Envoyer une réponse JSON au JavaScript
+		wp_send_json_success(array(
+			'message' => 'Données reçues avec succès',
+			'longitude' => $longitude,
+			'latitude' => $latitude
+		));
+	} else {
+		// Si les données ne sont pas présentes, envoyer une erreur
+		wp_send_json_error('Données manquantes');
+	}
+}
+
+add_action('wp_ajax_handleMeteoData', 'handleMeteoAjaxData');
+add_action('wp_ajax_nopriv_handleMeteoData', 'handleMeteoAjaxData');
 
 /**
  * Create tables in the database (Alert & Information)

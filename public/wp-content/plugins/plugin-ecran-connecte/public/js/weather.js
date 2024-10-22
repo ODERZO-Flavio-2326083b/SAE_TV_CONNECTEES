@@ -1,7 +1,8 @@
 var meteoRequest = new XMLHttpRequest();
 var longitude = weatherVars.longitude;
 var latitude = weatherVars.latitude;
-var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&lang=fr&APPID=ae546c64c1c36e47123b3d512efa723e";
+var appId = "ae546c64c1c36e47123b3d512efa723e";
+var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&lang=fr&APPID=" + appId;
 
 /**
  * Display the weather
@@ -40,6 +41,21 @@ meteoRequest.onload = function () {
     }
 };
 
+/*
+var cityRequest = new XMLHttpRequest();
+var cityUrl = "https://api.openweathermap.org/geo/1.0/reverse?lat=" + latitude + "&lon=" + longitude +"&appid="+appId
+
+function refreshCity() {
+    cityRequest.open('GET', cityUrl, true);
+    cityRequest.setRequestHeader('Accept', 'application/json');
+    cityRequest.send();
+}
+
+cityRequest.onload = function() {
+    console.log("coucou");
+    console.log(JSON.parse(this.responseText)["local_names"]["fr"])
+}
+*/
 /** Getter **/
 function getAlt(json) {
     return json["weather"][0]["description"];
