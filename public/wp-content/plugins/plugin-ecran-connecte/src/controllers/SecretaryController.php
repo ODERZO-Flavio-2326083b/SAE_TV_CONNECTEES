@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Department;
 use Models\User;
 use Views\SecretaryView;
 
@@ -87,7 +88,9 @@ class SecretaryController extends UserController
                 $this->view->displayErrorCreation();
             }
         }
-        return $this->view->displayFormSecretary();
+        $deptModel = new Department();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayFormSecretary($dept);
     }
 
     /**

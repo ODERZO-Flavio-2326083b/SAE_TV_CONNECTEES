@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Department;
 use Models\User;
 use Views\StudyDirectorView;
 
@@ -124,7 +125,9 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        return $this->view->displayCreateDirector();
+        $deptModel = new Department();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayCreateDirector($dept);
     }
 
     /**

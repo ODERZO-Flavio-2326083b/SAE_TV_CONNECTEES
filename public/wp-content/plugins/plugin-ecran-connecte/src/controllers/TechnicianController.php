@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 use Views\TechnicianView;
 
@@ -97,7 +98,9 @@ class TechnicianController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        return $this->view->displayFormTechnician();
+        $deptModel = new Department();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayFormTechnician($dept);
     }
 
     /**
