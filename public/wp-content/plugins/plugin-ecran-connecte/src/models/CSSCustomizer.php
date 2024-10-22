@@ -9,7 +9,7 @@ class CSSCustomizer extends Model
     public function updateColor()
     {
 
-        cssfilename = 'customizer.css';
+        $cssfilename = 'global-info.css';
         // Chemin du fichier CSS à modifier
         $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/'.$cssfilename;
 
