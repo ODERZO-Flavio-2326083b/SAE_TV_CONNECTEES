@@ -95,6 +95,18 @@ function loadScriptsEcran()
 
 add_action('wp_enqueue_scripts', 'loadScriptsEcran');
 
+function injectLocVariables() {
+	$longitude = 5.4510;
+	$latitude = 43.5156;
+
+	wp_localize_script('weather_script_ecran', 'weatherVars', array(
+		'longitude' => $longitude,
+		'latitude' => $latitude
+	));
+}
+
+add_action('wp_enqueue_scripts', 'injectLocVariables');
+
 /**
  * Create tables in the database (Alert & Information)
  */
