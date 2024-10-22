@@ -434,7 +434,7 @@ class InformationView extends View
 			<div class="col-6 mx-auto col-md-6 order-md-2" style="position: static">
 				<img src="' . TV_PLUG_PATH . 'public/img/info.png" alt="Logo information" class="img-fluid mb-3 mb-md-0">
 			</div>
-			<div class="col-md-6 order-md-1 text-center text-md-left pr-md-5" style="position: static">
+			<div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
 				<p class="lead">Vous pouvez retrouver ici toutes les informations qui ont été créées sur ce site.</p>
 				<p class="lead">Les informations sont triées de la plus vieille à la plus récente.</p>
 				<p class="lead">Vous pouvez modifier une information en cliquant sur "Modifier" à la ligne correspondante à l\'information.</p>
