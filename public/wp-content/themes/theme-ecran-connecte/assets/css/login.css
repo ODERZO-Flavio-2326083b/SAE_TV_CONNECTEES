@@ -1,5 +1,5 @@
 body.login {
-    background-color: #f2eff2;
+    background-color: var(--primary-login-background-color);
 }
 
 body.login div#login {
@@ -26,9 +26,10 @@ body.login div#login h1 a {
 }
 
 body.login div#login form#loginform {
-    background-color: white;
+    background-color: var(--primary-form-login-background-color);
     border-radius: 3%;
-    border: 2px solid darkgrey;
+    border: 2px solid ;
+    border: var(--secondary-form-login-background-color);
     display: flex;
     flex-direction: column;
 }
@@ -55,8 +56,8 @@ body.login div#login form#loginform p.submit {
 }
 
 body.login div#login form#loginform p.submit input#wp-submit {
-    background-color: #1F63DE;
-    color: white;
+    background-color: var(--primary-input-background-color);
+    color: var(--secondary-input-background-color);
 }
 
 body.login div#login p#nav {

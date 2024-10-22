@@ -37,6 +37,7 @@ function add_scripts()
     wp_enqueue_style('content_ecran_theme', get_template_directory_uri() . '/assets/css/content.css');
     wp_enqueue_style('sidebar_ecran_theme', get_template_directory_uri() . '/assets/css/sidebar.css');
     wp_enqueue_style('footer_ecran_theme', get_template_directory_uri() . '/assets/css/footer.css');
+
 }
 
 add_action('wp_enqueue_scripts', 'add_scripts');
@@ -45,7 +46,6 @@ function load_dynamic_css() {
     $departement = 'info';
     wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global-".$departement.".css" );
 }
-
 add_action('wp_footer', 'load_dynamic_css');
 
 /**

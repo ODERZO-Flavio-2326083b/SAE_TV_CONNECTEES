@@ -1,0 +1,51 @@
+body {
+    --primary-background-color: red;
+    --secondary-background-color: black;
+}
+
+layout {
+    --primary-layout-background-color: yellow;
+}
+
+
+
+h1, h2, h3 ,h4, h5, h6 {
+    --primary-title-color: #1F63DE;
+}
+
+a, a:hover, a:link, a:active {
+    --primary-link-color:  #00558b;
+}
+
+.button_presentation_ecran {
+    --primary-button-border-color:  #1F63DE;
+    --primary-button-color:  #1F63DE;
+}
+
+.sidebar {
+    --primary-sidebar-color: red;
+}
+
+body.login {
+    --primary-login-background-color: black;
+}
+
+body.login div#login form#loginform {
+    --primary-form-login-background-color: white;
+    --secondary-form-login-background-color: darkgrey;
+}
+
+body.login div#login form#loginform p.submit input#wp-submit {
+    --primary-input-background-color: #1F63DE;
+    --secondary-input-background-color: white;
+}
+
+body.login div#login p#message {
+    background-color: #E6E6E6;
+}
+
+body.login div#login form#lostpasswordform {
+    background-color: #E6E6E6;
+    border-radius: 3%;
+    border: 2px solid darkgrey;
+}
