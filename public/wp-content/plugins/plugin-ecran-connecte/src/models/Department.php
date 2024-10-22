@@ -188,7 +188,7 @@ class Department extends Model implements Entity, JsonSerializable {
 		$this->name = $name;
 	}
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return get_object_vars($this);
 	}
 }
