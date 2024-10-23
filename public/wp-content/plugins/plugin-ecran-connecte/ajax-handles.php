@@ -2,14 +2,35 @@
 
 use Models\Localisation;
 
-function loadLocalisationScript(){
+/**
+ * Injecter les valeurs de localisation et de requête AJAX au
+ * script de la météo
+ * @return void
+ */
+function injectLocVariables() {
 	$model = new Localisation();
 
-	if(is_front_page() && in_array('television', wp_get_current_user()->roles)) {
-		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
+	if($userLoc = $model->getLocFromUserId(get_current_user_id())) {
+		$latitude = $userLoc->getLatitude();
+		$longitude = $userLoc->getLongitude();
+	} else {
+		$longitude = 5.4510;
+		$latitude = 43.5156;
 	}
-}
 
+	wp_localize_script('weather_script_ecran', 'weatherVars', array(
+		'longitude' => $longitude,
+		'latitude' => $latitude,
+		'apiKey' => "ae546c64c1c36e47123b3d512efa723e"
+	));
+}
+add_action('wp_enqueue_scripts', 'injectLocVariables');
+
+/**
+ * Gère les
+ *
+ * @return void
+ */
 function handleMeteoAjaxData() {
 	check_ajax_referer('locNonce', 'nonce');
 	if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
@@ -27,6 +48,7 @@ function handleMeteoAjaxData() {
 
 		wp_send_json_success(array(
 			'message' => 'Données reçues avec succès',
+			'currentUserId' => $userId,
 			'longitude' => $longitude,
 			'latitude' => $latitude
 		));
@@ -42,8 +64,9 @@ add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
 function loadLocAjaxIfUserHasNoLoc(){
 	$model = new Localisation();
 
-	error_log("COUCOU : ".$model->getLocFromUserId(get_current_user_id()));
-	if(!$model->getLocFromUserId(get_current_user_id()) || true){
+	if(is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(get_current_user_id()) ){
+		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
+
 		add_action('wp_enqueue_scripts', 'loadLocalisationScript');
 
 		wp_localize_script( 'retrieve_loc_script_ecran', 'retrieveLocVars', array(
@@ -57,23 +80,6 @@ function loadLocAjaxIfUserHasNoLoc(){
 
 add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
 
-/**
- * Injecter les valeurs de localisation et de requête AJAX au
- * script de la météo
- * @return void
- */
-function injectLocVariables() {
-	$longitude = 5.4510;
-	$latitude = 43.5156;
 
-	wp_localize_script('weather_script_ecran', 'weatherVars', array(
-		'longitude' => $longitude,
-		'latitude' => $latitude
-	));
-
-
-}
-
-add_action('wp_enqueue_scripts', 'injectLocVariables');
 
 
