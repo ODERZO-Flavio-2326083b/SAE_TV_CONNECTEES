@@ -76,7 +76,7 @@ function remove_admin_bar()
  */
 function wpm_admin_redirection()
 {
-    if (is_admin() && !current_user_can('administrator')) {
+    if (is_admin() && !current_user_can('administrator') && !defined('DOING_AJAX')) {
         wp_redirect(home_url());
         exit;
     }

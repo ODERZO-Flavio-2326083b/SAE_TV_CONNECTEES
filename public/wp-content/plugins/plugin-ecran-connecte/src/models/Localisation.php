@@ -1,6 +1,6 @@
 <?php
 
-namespace models;
+namespace Models;
 
 use Models\Entity;
 use Models\Model;
@@ -31,11 +31,10 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 
 	public function insert(): string {
 		$database = $this->getDatabase();
-		$request = $database->prepare('INSERT INTO ecran_localisation (latitude, longitude, adresse, user_id) 
-                                       VALUES (:latitude, :longitude, :adresse, :user_id)');
+		$request = $database->prepare('INSERT INTO ecran_localisation (latitude, longitude, user_id) 
+                                       VALUES (:latitude, :longitude, :user_id)');
 		$request->bindValue(':latitude', $this->getLatitude());
 		$request->bindValue(':longitude', $this->getLongitude());
-		$request->bindValue(':adresse', $this->getAdresse());
 		$request->bindValue(':user_id', $this->getUserId());
 		$request->execute();
 		return $database->lastInsertId();
@@ -195,7 +194,7 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		$this->user_id = $user_id;
 	}
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return get_object_vars($this);
 	}
 }

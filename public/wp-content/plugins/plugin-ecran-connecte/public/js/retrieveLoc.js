@@ -7,10 +7,13 @@
 function sendMeteoData(longitude, latitude) {
     // Construire un objet FormData avec les données à envoyer
     var formData = new FormData();
-    formData.append('action', 'handle_meteo_data'); // Spécifiez l'action AJAX
+    formData.append('action', 'handleMeteoAjaxData'); // Spécifiez l'action AJAX
     formData.append('longitude', longitude);
     formData.append('latitude', latitude);
+    formData.append('nonce', retrieveLocVars.ajaxNonce);
+    formData.append('currentUserId', retrieveLocVars.currentUserId);
 
+    console.log(retrieveLocVars.ajaxUrl);
     // Envoyer les données au serveur via l'URL AJAX
     fetch(retrieveLocVars.ajaxUrl, {
         method: 'POST',
@@ -26,6 +29,7 @@ function sendMeteoData(longitude, latitude) {
         })
         .catch(error => console.error('Erreur de requête:', error));
 }
+
 
 var options = {
     enableHighAccuracy: true,
