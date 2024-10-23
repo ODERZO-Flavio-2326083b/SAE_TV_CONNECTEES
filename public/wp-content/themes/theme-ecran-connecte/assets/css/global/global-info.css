@@ -41,11 +41,10 @@ body.login div#login form#loginform p.submit input#wp-submit {
 }
 
 body.login div#login p#message {
-    background-color: #E6E6E6;
+    --primary-message-login-background-color: #E6E6E6;
 }
 
 body.login div#login form#lostpasswordform {
-    background-color: #E6E6E6;
-    border-radius: 3%;
-    border: 2px solid darkgrey;
+    --primary-password-form-login-background-color: #E6E6E6;
+    --primary-form-login-border-color: darkgrey;
 }

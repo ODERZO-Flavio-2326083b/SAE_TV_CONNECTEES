@@ -75,11 +75,12 @@ body.login div#login p#backtoblog a {
 }
 
 body.login div#login p#message {
-    background-color: #E6E6E6;
+    background-color: var(--primary-message-login-background-color);
 }
 
 body.login div#login form#lostpasswordform {
-    background-color: #E6E6E6;
+    background-color: var(--primary-password-form-login-background-color);
     border-radius: 3%;
-    border: 2px solid darkgrey;
+    border: 2px solid;
+    border: var(--primary-form-login-border-color);
 }
