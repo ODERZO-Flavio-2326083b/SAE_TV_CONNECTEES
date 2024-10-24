@@ -1,5 +1,5 @@
 body.login {
-    background-color: var(--primary-login-background-color);
+    background-color: #f2eff2;
 }
 
 body.login div#login {
@@ -26,10 +26,9 @@ body.login div#login h1 a {
 }
 
 body.login div#login form#loginform {
-    background-color: var(--primary-form-login-background-color);
+    background-color: white;
     border-radius: 3%;
-    border: 2px solid ;
-    border: var(--secondary-form-login-background-color);
+    border: 2px solid darkgrey;
     display: flex;
     flex-direction: column;
 }
@@ -56,8 +55,8 @@ body.login div#login form#loginform p.submit {
 }
 
 body.login div#login form#loginform p.submit input#wp-submit {
-    background-color: var(--primary-input-background-color);
-    color: var(--secondary-input-background-color);
+    background-color: #1F63DE;
+    color: white;
 }
 
 body.login div#login p#nav {
@@ -75,12 +74,11 @@ body.login div#login p#backtoblog a {
 }
 
 body.login div#login p#message {
-    background-color: var(--primary-message-login-background-color);
+    background-color: #E6E6E6;
 }
 
 body.login div#login form#lostpasswordform {
-    background-color: var(--primary-password-form-login-background-color);
+    background-color: #E6E6E6;
     border-radius: 3%;
-    border: 2px solid;
-    border: var(--primary-form-login-border-color);
+    border: 2px solid darkgrey;
 }

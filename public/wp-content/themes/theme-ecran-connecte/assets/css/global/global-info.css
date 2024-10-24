@@ -1,12 +1,12 @@
-body {
+body, .container {
     --primary-background-color: red;
-    --secondary-background-color: black;
+    --secondary-background-color: white;
+
 }
 
-layout {
+.footer_ecran, .nav_ecran {
     --primary-layout-background-color: yellow;
 }
-
 
 
 h1, h2, h3 ,h4, h5, h6 {

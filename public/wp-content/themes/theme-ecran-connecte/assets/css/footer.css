@@ -1,6 +1,6 @@
 /* FOOTER */
 .footer_ecran {
-    color: #ffffff;
+    color: var(--primary-layout-color);
     background-color: var(--primary-layout-background-color);
     width: 100%;
     padding: 10px;
