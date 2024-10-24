@@ -123,15 +123,6 @@ class User extends Model implements Entity, JsonSerializable
         $request->execute();
         */
         // To review
-        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
-            $database = $this->getDatabase();
-
-            error_log("DEUXIEME : " . $this->getIdDepartement());
-
-            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
-            $request->bindValue(':dept_id', $this->getIdDepartement());
-            $request->bindValue(':user_id', $this->getIdUser());
-        }
 
         if ($this->getRole() == 'television') {
             foreach ($this->getCodes() as $code) {
@@ -161,6 +152,21 @@ class User extends Model implements Entity, JsonSerializable
             $request->execute();
         }
         return $id;
+    }
+
+    public function insertUserDept() {
+        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
+            $database = $this->getDatabase();
+
+            error_log("DEUXIEME : " . $this->getIdDepartement());
+
+            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
+            $request->bindValue(':dept_id', $this->getIdDepartement());
+            $request->bindValue(':user_id', $this->getIdUser());
+
+            $request->execute();
+        }
+        return $this->getIdUser();
     }
 
     /**
@@ -193,15 +199,6 @@ class User extends Model implements Entity, JsonSerializable
     public function setIdDepartement($id_departement): void
     {
         $this->id_departement = $id_departement;
-    }
-
-    public function getMaxIdUser() {
-        $request = $this->getDatabase()->prepare('SELECT * FROM wp_users WHERE
-                                                         ID IN (SELECT MAX(ID) FROM wp_users) LIMIT 1');
-
-        $request->execute();
-
-        return $this->setEntity($request->fetch());
     }
 
     /**

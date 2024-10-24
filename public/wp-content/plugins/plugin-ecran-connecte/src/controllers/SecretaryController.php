@@ -145,6 +145,7 @@ class SecretaryController extends UserController
             $this->view->displayContentSelect('student', $student->insert(), true) .
             $this->view->displayContentSelect('teacher', $teacher->insert()) .
             $this->view->displayContentSelect('studyDirector', $studyDirector->insert()) .
+            $this->view->displayContentSelect('studyDirector', $studyDirector->insertUserDept()) .
             $this->view->displayContentSelect('secretary', $secretary->insert()) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
             $this->view->displayContentSelect('television', $television->insert()) .
