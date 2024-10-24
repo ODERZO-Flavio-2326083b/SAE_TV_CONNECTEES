@@ -4,9 +4,11 @@ namespace Controllers;
 
 use Models\Alert;
 use Models\CodeAde;
+use Models\Department;
 use Models\Information;
 use Models\User;
 use R34ICS;
+use Views\StudyDirectorView;
 use Views\UserView;
 
 /**
@@ -404,5 +406,11 @@ class UserController extends Controller
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
         return $this->view->displayModifyMyCodes($this->model->getCodes(), $years, $groups, $halfGroups);
+    }
+
+    public function displayAllDepartement() {
+        $deptModel = new Department();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayAllDepartement($dept);
     }
 }

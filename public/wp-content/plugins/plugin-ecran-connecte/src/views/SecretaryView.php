@@ -27,11 +27,11 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormSecretary() {
+    public function displayFormSecretary($dept) {
         return '
         <h2> Compte secrétaire </h2>
         <p class="lead">Pour créer des secrétaires, remplissez ce formulaire avec les valeurs demandées.</p>
-        ' . $this->displayBaseForm('Secre');
+        ' . $this->displayBaseForm('Secre', $dept);
     }
 
     /**

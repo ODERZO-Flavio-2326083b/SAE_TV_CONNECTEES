@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 use Views\TelevisionView;
 
@@ -114,8 +115,9 @@ class TelevisionController extends UserController implements Schedule
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
-
-        return $this->view->displayFormTelevision($years, $groups, $halfGroups);
+        $deptModel = new Department();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $dept);
     }
 
     /**

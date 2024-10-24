@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Department;
 use Models\User;
 use Views\StudyDirectorView;
 
@@ -90,7 +91,7 @@ class StudyDirectorController extends UserController implements Schedule
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createDirec');
-
+        $deptModel = new Department();
         if (isset($action)) {
 
             $login = filter_input(INPUT_POST, 'loginDirec');
@@ -124,7 +125,32 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        return $this->view->displayCreateDirector();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayCreateDirector($dept);
+    }
+
+    public function insertUserDept() {
+        $action = filter_input(INPUT_POST, 'createDirec');
+        $deptModel = new Department();
+        if(isset($action)) {
+            $dept = filter_input(INPUT_POST, 'deptDirec');
+            $id_user = $this->model->insert();
+
+            $this->model->setIdDepartement($dept);
+            $this->model->setIdUser($id_user);
+
+            error_log("SALUTT : " . $this->model->getIdDepartement() . " ET " . $this->model->getIdUser() );
+
+            if ($this->model->insertUserDept()) {
+                $this->view->displayInsertValidate();
+            } else {
+                $this->view->displayErrorInsertion();
+            }
+        } else {
+            $this->view->displayErrorCreation();
+        }
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayCreateDirector($dept);
     }
 
     /**

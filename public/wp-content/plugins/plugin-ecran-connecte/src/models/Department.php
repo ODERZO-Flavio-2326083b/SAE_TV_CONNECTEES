@@ -114,13 +114,12 @@ class Department extends Model implements Entity, JsonSerializable {
 	 * @return array|mixed
 	 */
 	public function getDepartmentByName($name) {
-		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom, dept_longitude, dept_latitude 
-														FROM ecran_departement WHERE dept_nom = :name LIMIT 2');
+		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_nom = :name LIMIT 1');
 		$request->bindValue( ':name', $name);
 
 		$request->execute();
 
-		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+		return $this->setEntity($request->fetchAll(PDO::FETCH_ASSOC));
 	}
 
 	/**
