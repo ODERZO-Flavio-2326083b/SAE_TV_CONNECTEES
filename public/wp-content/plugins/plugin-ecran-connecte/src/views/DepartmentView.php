@@ -34,7 +34,7 @@ class DepartmentView extends View {
 	 * @return string
 	 */
 	public function renderModifForm(string $name) {
-		$returnPage = get_page_by_title('Gestion des départements');
+		$returnPage = get_page_by_title_custom('Gestion des départements');
 		$linkManageCode = get_permalink($returnPage->ID);
 
 		return '
@@ -57,7 +57,7 @@ class DepartmentView extends View {
 	 * @return string
 	 */
 	public function renderAllDeptsTable($deptList): string {
-		$page = get_page_by_title('Modifier un département');
+		$page = get_page_by_title_custom('Modifier un département');
 		$linkModifDept = get_permalink($page->ID);
 
 		$title = 'Départements existants';
@@ -122,7 +122,7 @@ class DepartmentView extends View {
 	}
 
 	public function errorNothing(): string {
-		$page = get_page_by_title("Gestion des départements");
+		$page = get_page_by_title_custom("Gestion des départements");
 		$returnLink = get_permalink($page->ID);
 		return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
 	}
