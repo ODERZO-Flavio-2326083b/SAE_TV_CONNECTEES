@@ -100,6 +100,8 @@ class InformationView extends View
 				<label for="contentFile">Ajouter une image</label>
 		        <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
 		        <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
+		        <small id="tabHelp" class="form-text text-muted">Formats acceptés : .jpg, .jpeg, .gif, .png, .svg</small>
+
 	        </div>
 	        <div class="form-group">
 				<label for="expirationDate">Date d\'expiration</label>
@@ -109,6 +111,115 @@ class InformationView extends View
 
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
+        }
+
+        return $form . '</form>';
+    }
+
+    /**
+     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le titre, le fichier video,
+     * et la date d'expiration.
+     *
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger une video. Si une video
+     * existe déjà, elle sera affichée avec une légende. Le champ de date d'expiration est requis et ne peut pas
+     * être antérieur à la date actuelle.
+     *
+     * @param string|null $title      Le titre de la video à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier video à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createVideo".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displayFormVideo($title = null, $content = null, $endDate = null, $type = "createVideo") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+
+        $form = '<form method="post" enctype="multipart/form-data">
+				<div class="form-group">
+	                <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
+	                <input id="title" class="form-control" type="text" name="title" placeholder="Insérer un titre" maxlength="60" value="' . $title . '">
+	            </div>';
+        if ($content != null) {
+            $form .= '
+	       	<figure class="text-center">
+			  <img class="img-thumbnail" src="' . TV_UPLOAD_PATH . $content . '" alt="' . $title . '">
+			  <figcaption>Vidéo actuelle</figcaption>
+			</figure>';
+        }
+        $form .= '
+		<div class="form-group">
+			<label for="contentFile">Ajouter une vidéo</label>
+	        <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
+	        <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
+	        <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+        </div>
+        <div class="form-group">
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
+        }
+
+        return $form . '</form>';
+    }
+
+    /**
+     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le titre, le fichier video,
+     * et la date d'expiration.
+     *
+     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un short. Si un short
+     * existe déjà, elle sera affichée avec une légende. Le champ de date d'expiration est requis et ne peut pas
+     * être antérieur à la date actuelle.
+     *
+     * @param string|null $title      Le titre du short à afficher dans le champ (optionnel).
+     * @param string|null $content    Le nom du fichier video à afficher (optionnel).
+     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
+     * @param string $type            Le type d'action à effectuer, par défaut "createShort".
+     *                                 Peut être "submit" pour soumettre le formulaire.
+     *
+     * @return string                 Une chaîne HTML contenant le formulaire.
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displayFormShort($title = null, $content = null, $endDate = null, $type = "createShort") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+
+        $form = '<form method="post" enctype="multipart/form-data">
+				<div class="form-group">
+	                <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
+	                <input id="title" class="form-control" type="text" name="title" placeholder="Insérer un titre" maxlength="60" value="' . $title . '">
+	            </div>';
+        if ($content != null) {
+            $form .= '
+	       	<figure class="text-center">
+			  <img class="img-thumbnail" src="' . TV_UPLOAD_PATH . $content . '" alt="' . $title . '">
+			  <figcaption>Vidéo actuelle</figcaption>
+			</figure>';
+        }
+        $form .= '
+		<div class="form-group">
+			<label for="contentFile">Ajouter une vidéo (short)</label>
+	        <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
+	        <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
+	        <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+	        <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
+        </div>
+        <div class="form-group">
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
         }
 
         return $form . '</form>';
@@ -303,12 +414,12 @@ class InformationView extends View
      * Affiche un formulaire de modification d'informations en fonction du type d'information.
      *
      * Cette méthode génère un lien pour revenir à la page de gestion des informations, puis
-     * affiche le formulaire correspondant au type d'information spécifié (texte, image, tableau, PDF ou événement).
+     * affiche le formulaire correspondant au type d'information spécifié (texte, image, vidéo, short, tableau, PDF ou événement).
      *
      * @param string $title      Le titre de l'information à modifier.
      * @param string $content    Le contenu de l'information à modifier (peut être une URL pour les images ou PDF).
      * @param string $endDate    La date d'expiration de l'information.
-     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'tab', 'pdf', 'event').
+     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'video', 'short' 'tab', 'pdf', 'event').
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
      *                          approprié pour le type d'information.
@@ -322,6 +433,10 @@ class InformationView extends View
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormText($title, $content, $endDate, 'submit');
         } elseif ($type == "img") {
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
+        } elseif ($type == "video") {
+            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormVideo($title, $content, $endDate, 'submit');
+        } elseif ($type == "short") {
+            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormShort($title, $content, $endDate, 'submit');
         } elseif ($type == "tab") {
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormTab($title, $content, $endDate, 'submit');
         } elseif ($type == "pdf") {
@@ -360,12 +475,12 @@ class InformationView extends View
      * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
      *
      * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
-     * tels que du texte, des images ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
      * sur le site d'administration et l'affichage normal.
      *
      * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
      * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher ('text', 'img', 'pdf', 'event', 'special').
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
      * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
      *
      * @return void
@@ -387,7 +502,7 @@ class InformationView extends View
             $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
         }
 
-        if ($type == 'pdf' || $type == "event" || $type == "img") {
+        if ($type == 'pdf' || $type == 'short' || $type == "event" || $type == "img") {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }
@@ -398,9 +513,13 @@ class InformationView extends View
 			</div>';
         } elseif ($type == "img" || $type == "event") {
             echo '<img class="img-thumbnail" src="' . $url . $content . '" alt="' . $title . '">';
-        } else if ($type == 'text') {
+        } elseif ($type == 'short'){
+            echo '<div class="video_container" id="' . $content . '"></div>';
+            echo '<video src="' . $url . $content . '" autoplay muted loop></video>';
+            echo '</div>';
+        } elseif ($type == 'text') {
             echo '<p class="lead">' . $content . '</p>';
-        } else if ($type == 'special') {
+        } elseif ($type == 'special') {
             $func = explode('(Do this(function:', $content);
             $text = explode('.', $func[0]);
             foreach ($text as $value) {

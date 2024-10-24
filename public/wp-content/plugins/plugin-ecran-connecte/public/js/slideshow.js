@@ -1,166 +1,171 @@
 let urlUpload = "/wp-content/uploads/media/";
-let pdfUrl = null;
+let pdfUrl = null; // Lien PDF, vide pour l'instant
+let videoUrl = null; // Lien video, vide pour l'instant
 let numPage = 0; // Numéro de page courante
 let totalPage = null; // Nombre de pages
-let endPage = false;
+let endPage = false; // Fin de page
 let stop = false;
 
 infoSlideShow();
 scheduleSlideshow();
 
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama si des slides d'informations sont présentes
  */
-function infoSlideShow()
-{
-    if(document.getElementsByClassName("myInfoSlides").length > 0) {
+function infoSlideShow() {
+    if (document.getElementsByClassName("myInfoSlides").length > 0) {
         console.log("-Début du diaporama");
         displayOrHide(document.getElementsByClassName("myInfoSlides"), 0);
     }
 }
 
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama si des slides sont présentes
  */
-function scheduleSlideshow()
-{
-    if(document.getElementsByClassName("mySlides").length > 0) {
+function scheduleSlideshow() {
+    if (document.getElementsByClassName("mySlides").length > 0) {
         console.log("-Début du diaporama");
         displayOrHide(document.getElementsByClassName("mySlides"), 0);
     }
 }
 
 /**
- * Display a slideshow
+ * Affiche le diaporama
+ * @param slides
+ * @param slideIndex
  */
-function displayOrHide(slides, slideIndex)
-{
-    if(slides.length > 0) {
-        if(slides.length > 1) {
-            for (let i = 0; i < slides.length; ++i) {
-                slides[i].style.display = "none";
-            }
+function displayOrHide(slides, slideIndex) {
+    if (slides.length > 0) {
+        // Cache les slides
+        for (let i = 0; i < slides.length; ++i) {
+            slides[i].style.display = "none";
         }
 
-        if(slideIndex === slides.length) {
+        // Reset slideIndex if it exceeds
+        if (slideIndex === slides.length) {
             console.log("-Fin du diaporama - On recommence");
             slideIndex = 0;
         }
 
-        // Check if the slide exist
-        if(slides[slideIndex] !== undefined) {
-
-            console.log("--Slide n°"+ slideIndex);
-            // Display the slide
+        // Affiche la slide actuelle si elle existe
+        if (slides[slideIndex] !== undefined) {
+            console.log("--Slide n°" + slideIndex);
             slides[slideIndex].style.display = "block";
-            // Check child
-            if(slides[slideIndex].childNodes) {
-                var count = 0;
-                // Try to find if it's a PDF
-                for(let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
-                    // If is a PDF
-                    if(slides[slideIndex].childNodes[i].className === 'canvas_pdf') {
 
-                        console.log("--Lecture de PDF");
+            // Check for child nodes
+            let count = 0;
+            for (let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
+                if (slides[slideIndex].childNodes[i].className === 'canvas_pdf') {
+                    console.log("--Lecture de PDF");
+                    count++;
 
-                        count = count + 1;
-
-                        // Generate the url
-                        let pdfLink = slides[slideIndex].childNodes[i].id;
-                        pdfUrl = urlUpload + pdfLink;
-
-                        let loadingTask = pdfjsLib.getDocument(pdfUrl);
-                        loadingTask.promise.then(function(pdf) {
-
-                            totalPage = pdf.numPages;
-                            ++numPage;
-
-                            let div = document.getElementById(pdfLink);
-                            let scale = 1.5;
-
-                            if(stop === false) {
-                                if(document.getElementById('the-canvas-' + pdfLink + '-page' + (numPage-1)) != null) {
-                                    console.log('----Supression page n°'+ (numPage-1));
-                                    document.getElementById('the-canvas-' + pdfLink + '-page' + (numPage-1)).remove();
-                                }
-                            }
-
-                            if(totalPage >= numPage && stop === false) {
-                                pdf.getPage(numPage).then(function(page) {
-
-                                    console.log(slides.length);
-                                    console.log(totalPage);
-                                    if(slides.length === 1 && totalPage === 1 || totalPage === null && slides.length === 1) {
-                                        stop = true;
-                                    }
-
-                                    console.log(stop);
-
-                                    console.log("---Page du PDF n°"+numPage);
-
-                                    let viewport = page.getViewport({ scale: scale, });
-
-                                    $('<canvas >', {
-                                        id: 'the-canvas-'+ pdfLink + '-page' + numPage,
-                                    }).appendTo(div).fadeOut(0).fadeIn(2000);
-
-                                    let canvas = document.getElementById('the-canvas-' + pdfLink + '-page' + numPage);
-                                    let context = canvas.getContext('2d');
-                                    canvas.height = viewport.height;
-                                    canvas.width = viewport.width;
-
-                                    let renderContext = {
-                                        canvasContext: context,
-                                        viewport: viewport
-                                    };
-
-                                    // Give the CSS to the canvas
-                                    if(slides === document.getElementsByClassName("mySlides")) {
-                                        canvas.style.maxHeight = "99vh";
-                                        canvas.style.maxWidth = "100%";
-                                        canvas.style.height = "99vh";
-                                        canvas.style.width = "auto";
-                                    } else {
-                                        canvas.style.maxHeight = "68vh";
-                                        canvas.style.maxWidth = "100%";
-                                        canvas.style.height = "auto";
-                                        canvas.style.width = "auto";
-                                    }
-
-                                    page.render(renderContext);
-                                });
-
-                                if(numPage === totalPage) {
-                                    // Reinitialise variables
-                                    if(stop === false) {
-                                        if(document.getElementById('the-canvas-' + pdfLink + '-page' + (totalPage)) != null) {
-                                            document.getElementById('the-canvas-' + pdfLink + '-page' + (totalPage)).remove();
-                                        }
-                                    }
-                                    console.log("--Fin du PDF");
-                                    totalPage = null;
-                                    numPage = 0;
-                                    endPage = true;
-                                    ++slideIndex;
-                                    // Go to the next slide
-                                }
-                            }
-                        });
-                    }
+                    // Génère l'URL pour appeler la fonction handlePDF
+                    pdfUrl = slides[slideIndex].childNodes[i].id; // Définit pdfUrl
+                    handlePDF(pdfUrl); // Passer pdfUrl comme argument
                 }
-                if(count === 0) {
-                    console.log("--Lecture image");
-                    // Go to the next slide
-                    ++slideIndex;
+                else if(slides[slideIndex].childNodes[i].className === 'video_container'){
+                    console.log("--Lecture de vidéo");
+                    count++;
+
+                    // Génère l'URL pour appeler la fonction handleVide
+                    videoUrl = slides[slideIndex].childNodes[i].id;
+                    handleVideo(videoUrl);
                 }
-            } else {
-                // Go to the next slide
-                ++slideIndex;
+            }
+
+            if (count === 0) {
+                console.log("--Lecture image");
             }
         }
-    }
 
-     if(slides.length !== 1 || totalPage !== 1) {
-        setTimeout(function(){displayOrHide(slides, slideIndex)} , 10000);
+        // Allez à la slide suivante.
+        setTimeout(function () {
+            displayOrHide(slides, slideIndex + 1);
+        }, 10000); // 10 secondes par slide
     }
+}
+
+/**
+ * Gestion des PDF dans la diaporama
+ * @param pdfLink
+ */
+function handlePDF(pdfLink) { // Changer le paramètre pour pdfLink
+    let loadingTask = pdfjsLib.getDocument(urlUpload + pdfLink);
+    loadingTask.promise.then(function (pdf) {
+        totalPage = pdf.numPages;
+        numPage++;
+
+        let div = document.getElementById(pdfLink);
+        let scale = 1.5;
+
+        if (!stop) {
+            if (numPage > 1) {
+                console.log('----Suppression de la page n°' + (numPage - 1));
+                document.getElementById('the-canvas-' + pdfLink + '-page' + (numPage - 1))?.remove();
+            }
+        }
+
+        if (totalPage >= numPage && !stop) {
+            pdf.getPage(numPage).then(function (page) {
+                console.log("---Page du PDF n°" + numPage);
+
+                let viewport = page.getViewport({ scale: scale });
+
+                // Create and append canvas
+                let canvas = document.createElement('canvas');
+                canvas.id = 'the-canvas-' + pdfLink + '-page' + numPage;
+                div.appendChild(canvas);
+                $(canvas).fadeOut(0).fadeIn(2000); // Animation d'apparition
+
+                let context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                let renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+
+                // Appliquer le style CSS en fonction du type de diaporama
+                if (div.classList.contains("mySlides")) {
+                    canvas.style.maxHeight = "99vh";
+                    canvas.style.maxWidth = "100%";
+                    canvas.style.height = "99vh";
+                    canvas.style.width = "auto";
+                } else {
+                    canvas.style.maxHeight = "68vh";
+                    canvas.style.maxWidth = "100%";
+                    canvas.style.height = "auto";
+                    canvas.style.width = "auto";
+                }
+
+                // Rendu de la page PDF sur le canvas
+                page.render(renderContext);
+            });
+
+            if (numPage === totalPage) {
+                console.log("--Fin du PDF");
+                totalPage = null;
+                numPage = 0;
+                endPage = true;
+                stop = true; // Assurez-vous que le diaporama s'arrête après la dernière page
+            }
+        }
+    });
+}
+
+/**
+ * Gestion des vidéos (short) dans le diaporama
+ * @param videoLink
+ */
+
+function handleVideo(videoLink)
+{
+    let video = document.createElement('video');
+    video.src = urlUpload + videoLink;
+    video.style.maxHeight = "99vh";
+    video.style.maxWidth = "100%";
+    video.style.height = "99vh";
+    video.style.width = "auto";
+    video.loop = true;
 }
