@@ -1,7 +1,7 @@
 <?php
 
 namespace ICal;
-
+#[\AllowDynamicProperties]
 class Event
 {
     // phpcs:disable Generic.Arrays.DisallowLongArraySyntax.Found
@@ -123,8 +123,8 @@ class Event
     {
         if (!empty($data)) {
             foreach ($data as $key => $value) {
-                $variable = self::snakeCase($key);
-                $this->{$variable} = self::prepareData($value);
+                $variable = $this::snakeCase($key);
+                $this->{$variable} = $this::prepareData($value);
             }
         }
     }
@@ -140,7 +140,7 @@ class Event
         if (is_string($value)) {
             return stripslashes(trim(str_replace('\n', "\n", $value)));
         } elseif (is_array($value)) {
-            return array_map('self::prepareData', $value);
+            return array_map( $this::prepareData( ... ), $value);
         }
 
         return $value;
