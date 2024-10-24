@@ -21,6 +21,10 @@ class CSSView extends View
         <label for=\"layout\">Couleur de la mise en page :</label>
         <input class=\"form-control\" type=\"color\" id=\"layout\" name=\"layout\" value=\"\">
     </div>
+        <div class=\"form-group\">
+        <label for=\"layout\">Couleur de l'écriture :</label>
+        <input class=\"form-control\" type=\"color\" id=\"layoutColor\" name=\"layoutColor\" value=\"\">
+    </div>
     <div class=\"form-group\">
         <label for=\"title\">Couleur du titre :</label>
         <input class=\"form-control\" type=\"color\" id=\"title\" name=\"title\" value=\"\">

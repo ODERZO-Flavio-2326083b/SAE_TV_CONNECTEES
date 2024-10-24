@@ -19,19 +19,13 @@ class CSSCustomizer extends Model
             $backgroundColor1 = $_POST['background1'];
             $backgroundColor2 = $_POST['background2'];
             $layout = $_POST['layout'];
+            $layoutColor = $_POST['layoutColor'];
             $title = $_POST['title'];
             $link = $_POST['link'];
             $buttonBorder = $_POST['buttonBorder'];
             $button = $_POST['button'];
             $sideBar = $_POST['sideBar'];
-            $backgroundLogin = $_POST['backgroundLogin'];
-            $formBackground1 = $_POST['formBackground1'];
-            $formBackground2 = $_POST['formBackground2'];
-            $inputBackground1 = $_POST['inputBackground1'];
-            $inputBackground2 = $_POST['inputBackground2'];
-            $messageLoginBackground = $_POST['messageLoginBackground'];
-            $passwordFormLoginbackground = $_POST['passwordFormLoginbackground'];
-            $formLoginBorder = $_POST['formLoginBorder'];
+
 
 
 
@@ -44,6 +38,7 @@ body, .container {
 
 .footer_ecran, .nav_ecran  {
     --primary-layout-background-color:  $layout;
+    --primary-layout-color:  $layoutColor;
 }
 
 h1, h2, h3 ,h4, h5, h6 {
@@ -65,12 +60,10 @@ a, a:hover, a:link, a:active {
 ";
 
             // Écrire le nouveau contenu dans le fichier CSS
-            echo "File path: " . $cssFile . "<br>";
             if (file_put_contents($cssFile, $newCss)) {
-                echo "salut <br>";
-                echo $newCss;
+              //  echo $newCss;
             } else {
-                echo "Erreur lors de la modification du fichier CSS.";
+               // echo "Erreur lors de la modification du fichier CSS.";
             }
 }
 
