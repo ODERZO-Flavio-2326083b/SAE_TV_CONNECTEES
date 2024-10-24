@@ -138,7 +138,7 @@ class UserView extends View
                 <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emplois du temps que souhaité.</p>
             </div>
         </div>
-        <a href="' . esc_url(get_permalink(get_page_by_title('Gestion des utilisateurs'))) . '">Voir les utilisateurs</a>';
+        <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))) . '">Voir les utilisateurs</a>';
     }
 
     /**

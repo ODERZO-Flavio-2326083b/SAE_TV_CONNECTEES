@@ -9,7 +9,7 @@ add_filter('auto_update_plugin', '__return_true');
 add_filter('auto_update_theme', '__return_true');
 
 
-error_reporting(0);
+//error_reporting(0);
 /*
 function wp_maintenance_mode()
 {
@@ -76,7 +76,7 @@ function remove_admin_bar()
  */
 function wpm_admin_redirection()
 {
-    if (is_admin() && !current_user_can('administrator')) {
+    if (is_admin() && !current_user_can('administrator') && !defined('DOING_AJAX')) {
         wp_redirect(home_url());
         exit;
     }
@@ -128,6 +128,7 @@ $wpdb->time_zone = 'Europe/Paris';
 // All sidebars
 if (function_exists('register_sidebar')) {
     register_sidebar(array(
+		'id' => 'sidebar-header',
         'name' => 'Header',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -135,6 +136,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h2>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer',
         'name' => 'Footer',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -142,6 +144,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer-left',
         'name' => 'Footer gauche',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -149,6 +152,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-footer-right',
         'name' => 'Footer droite',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -156,6 +160,7 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-column-left',
         'name' => 'Colonne Gauche',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
@@ -163,10 +168,31 @@ if (function_exists('register_sidebar')) {
         'after_title' => '</h3>',
     ));
     register_sidebar(array(
+	    'id' => 'sidebar-column-right',
         'name' => 'Colonne Droite',
         'before_widget' => '<li>',
         'after_widget' => '</li>',
         'before_title' => '<h3>',
         'after_title' => '</h3>',
     ));
+}
+
+// remplacer la fonction dépréciée get_page_by_title_custom
+// par une fonction customisée prise en charge
+function get_page_by_title_custom($page_title) {
+	$args = array(
+		'post_type'   => 'page',
+		'title'       => $page_title,
+		'post_status' => 'publish',
+		'posts_per_page' => 1
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( $query->have_posts() ) {
+		$query->the_post();
+		return get_post();
+	}
+
+	return null;
 }

@@ -10,31 +10,31 @@ if (function_exists('downloadFileICS_func')) {
     }
 
     // Url of all pages of Wordpress
-    $page = get_page_by_title('Emploi du temps');
+    $page = get_page_by_title_custom('Emploi du temps');
     $linkEDT = get_permalink($page->ID);
 
-    $page = get_page_by_title('Création des comptes');
+    $page = get_page_by_title_custom('Création des comptes');
     $linkAddUser = get_permalink($page->ID);
 
-    $page = get_page_by_title('Gestion des utilisateurs');
+    $page = get_page_by_title_custom('Gestion des utilisateurs');
     $linkManageUser = get_permalink($page->ID);
 
-    $page = get_page_by_title('Créer une alerte');
+    $page = get_page_by_title_custom('Créer une alerte');
     $linkAddAlert = get_permalink($page->ID);
 
-    $page = get_page_by_title('Gérer les alertes');
+    $page = get_page_by_title_custom('Gérer les alertes');
     $linkManageAlert = get_permalink($page->ID);
 
-    $page = get_page_by_title('Créer une information');
+    $page = get_page_by_title_custom('Créer une information');
     $linkAddInfo = get_permalink($page->ID);
 
-    $page = get_page_by_title('Gérer les informations');
+    $page = get_page_by_title_custom('Gérer les informations');
     $linkManageInfo = get_permalink($page->ID);
 
-    $page = get_page_by_title('Gestion codes ADE');
+    $page = get_page_by_title_custom('Gestion codes ADE');
     $linkCode = get_permalink($page->ID);
 
-    $page = get_page_by_title('Mon compte');
+    $page = get_page_by_title_custom('Mon compte');
     $linkAccount = get_permalink($page->ID);
 
     ?>
