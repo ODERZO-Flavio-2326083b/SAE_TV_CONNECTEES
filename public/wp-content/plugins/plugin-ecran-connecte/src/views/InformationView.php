@@ -514,9 +514,7 @@ class InformationView extends View
         } elseif ($type == "img" || $type == "event") {
             echo '<img class="img-thumbnail" src="' . $url . $content . '" alt="' . $title . '">';
         } elseif ($type == 'short'){
-            echo '<div class="video_container" id="' . $content . '"></div>';
-            echo '<video src="' . $url . $content . '" autoplay muted loop></video>';
-            echo '</div>';
+            echo '<video class="video_container" src="' . $url . $content . '" autoplay muted loop></video>';
         } elseif ($type == 'text') {
             echo '<p class="lead">' . $content . '</p>';
         } elseif ($type == 'special') {

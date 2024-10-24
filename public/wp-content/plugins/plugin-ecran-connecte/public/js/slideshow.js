@@ -159,13 +159,23 @@ function handlePDF(pdfLink) { // Changer le paramètre pour pdfLink
  * @param videoLink
  */
 
-function handleVideo(videoLink)
-{
+function handleVideo(videoLink) {
     let video = document.createElement('video');
     video.src = urlUpload + videoLink;
-    video.style.maxHeight = "99vh";
+    video.style.maxHeight = "68vh";
     video.style.maxWidth = "100%";
-    video.style.height = "99vh";
+    video.style.height = "auto";
     video.style.width = "auto";
     video.loop = true;
+
+    document.body.appendChild(video);
+
+    video.onloadedmetadata = function () {
+        let videoDuration = video.duration * 1000;
+        console.log("--Durée de la vidéo : " + videoDuration + "ms");
+
+        setTimeout(function () {
+            displayOrHide(document.getElementsByClassName("mySlides"), 0);
+        }, videoDuration);
+    };
 }
