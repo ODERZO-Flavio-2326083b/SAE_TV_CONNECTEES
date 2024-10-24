@@ -45,6 +45,10 @@ class User extends Model implements Entity, JsonSerializable
      * @var CodeAde[]
      */
     private $codes;
+    
+    private $id_departement;
+
+    private $id_user;
 
     /**
      * Insère un nouvel utilisateur avec un rôle spécifique et, le cas échéant,
@@ -70,7 +74,7 @@ class User extends Model implements Entity, JsonSerializable
             'user_login' => $this->getLogin(),
             'user_pass' => $this->getPassword(),
             'user_email' => $this->getEmail(),
-            'role' => $this->getRole()
+            'role' => $this->getRole(),
         );
         $id = wp_insert_user($userData);
         /*
@@ -119,6 +123,16 @@ class User extends Model implements Entity, JsonSerializable
         $request->execute();
         */
         // To review
+        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
+            $database = $this->getDatabase();
+
+            error_log("DEUXIEME : " . $this->getIdDepartement());
+
+            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
+            $request->bindValue(':dept_id', $this->getIdDepartement());
+            $request->bindValue(':user_id', $this->getIdUser());
+        }
+
         if ($this->getRole() == 'television') {
             foreach ($this->getCodes() as $code) {
 
@@ -147,6 +161,47 @@ class User extends Model implements Entity, JsonSerializable
             $request->execute();
         }
         return $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->id_user;
+    }
+
+    /**
+     * @param mixed $id_user
+     */
+    public function setIdUser($id_user): void
+    {
+        $this->id_user = $id_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdDepartement()
+    {
+        return $this->id_departement;
+    }
+
+    /**
+     * @param mixed $id_departement
+     */
+    public function setIdDepartement($id_departement): void
+    {
+        $this->id_departement = $id_departement;
+    }
+
+    public function getMaxIdUser() {
+        $request = $this->getDatabase()->prepare('SELECT * FROM wp_users WHERE
+                                                         ID IN (SELECT MAX(ID) FROM wp_users) LIMIT 1');
+
+        $request->execute();
+
+        return $this->setEntity($request->fetch());
     }
 
     /**

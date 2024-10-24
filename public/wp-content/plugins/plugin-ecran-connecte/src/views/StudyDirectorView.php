@@ -17,7 +17,7 @@ class StudyDirectorView extends UserView
     public function displayAllDepartement($dept) {
         $string = "";
         foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
+            $string .= '<option value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
         }
         return $string;
     }
@@ -60,7 +60,7 @@ class StudyDirectorView extends UserView
             <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select>
+                <select name="deptDirec" id="deptDirec" class="form-control" required="">
                     ' . $this->displayAllDepartement($dept) . '
                 </select>
             </div>

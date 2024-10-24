@@ -91,7 +91,7 @@ class StudyDirectorController extends UserController implements Schedule
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createDirec');
-
+        $deptModel = new Department();
         if (isset($action)) {
 
             $login = filter_input(INPUT_POST, 'loginDirec');
@@ -99,6 +99,8 @@ class StudyDirectorController extends UserController implements Schedule
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmDirec');
             $email = filter_input(INPUT_POST, 'emailDirec');
             $code = filter_input(INPUT_POST, 'codeDirec');
+            $dept = filter_input(INPUT_POST, 'deptDirec');
+            $id_user = $this->model->getMaxIdUser();
 
             // Vérifie les conditions de validation des entrées.
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
@@ -110,6 +112,10 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->model->setEmail($email);
                 $this->model->setRole('directeuretude');
                 $this->model->setCodes($code);
+                $this->model->setIdUser($id_user);
+                $this->model->setIdDepartement($dept);
+
+                //error_log("SALUTT : " . $this->model->getIdDepartement() . " ET " . $this->model->getIdUser() );
 
                 // Insère l'utilisateur et gère les fichiers associés.
                 if ($this->model->insert()) {
@@ -125,7 +131,6 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
         return $this->view->displayCreateDirector($dept);
     }
