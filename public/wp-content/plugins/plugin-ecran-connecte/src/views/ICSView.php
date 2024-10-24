@@ -2,6 +2,7 @@
 
 namespace Views;
 
+use Controllers\InformationController;
 use WP_User;
 
 /**
@@ -32,6 +33,8 @@ class ICSView extends View
      */
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
+        $controller = new InformationController();
+        $video_data = '';
 
         if (isset($ics_data['events'])) {
             $string = '<h1>' . $title . '</h1>';
@@ -126,6 +129,10 @@ class ICSView extends View
             return $this->displayNoSchedule($title, $current_user);
         }
 
+        $string .= $this->buildModal("Vidéo associée",'<video muted autoplay>
+                            <source src="' . $video_data['video_url'] . '" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>');
         return $string;
     }
 

@@ -704,4 +704,8 @@ class InformationController extends Controller
         }
         return $contentList;
     }
+
+    public function getVideoData(){
+        return;
+    }
 }
