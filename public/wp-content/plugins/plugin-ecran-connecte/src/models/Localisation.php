@@ -29,6 +29,11 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 	 */
 	private $user_id;
 
+	/**
+	 * Insère une localisation en fonction des attributs actuels
+	 *
+	 * @return string Le dernier id inséré
+	 */
 	public function insert(): string {
 		$database = $this->getDatabase();
 		$request = $database->prepare('INSERT INTO ecran_localisation (latitude, longitude, user_id) 
@@ -40,6 +45,11 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return $database->lastInsertId();
 	}
 
+	/**
+	 * Met à jour une localisation existante en fonction des attributs actuels
+	 *
+	 * @return int Nombre de lignes dans la table
+	 */
 	public function update(): int {
 		$database = $this->getDatabase();
 		$request = $database->prepare('UPDATE ecran_localisation 
@@ -54,6 +64,11 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return $request->rowCount();
 	}
 
+	/**
+	 * Supprime une localisation existante en fonction des attributs actuels
+	 *
+	 * @return int Nombre de lignes dans la table
+	 */
 	public function delete(): int {
 		$request = $this->getDatabase()->prepare('DELETE FROM ecran_localisation WHERE localisation_id = :id');
 		$request->bindValue(':id', $this->getLocalisationId(), PDO::PARAM_INT);
@@ -61,6 +76,12 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return $request->rowCount();
 	}
 
+	/**
+	 * Récupère une localisation existante en fonction d'un id
+	 * @param $id int id de localisation à chercher
+	 *
+	 * @return false|Localisation objet Localisation si succès, false sinon
+	 */
 	public function get($id) {
 		$request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
                                                   FROM ecran_localisation WHERE localisation_id = :id');
@@ -72,6 +93,14 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return false;
 	}
 
+	/**
+	 * Récupère toutes les localisations et retourne une liste de toutes les localisations
+	 *
+	 * @param int $begin début de la liste
+	 * @param int $numberElement fin de la liste
+	 *
+	 * @return array liste d'objets Localisation
+	 */
 	public function getList(int $begin = 0, int $numberElement = 25): array {
 		$request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
                                                   FROM ecran_localisation 
@@ -85,6 +114,14 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return [];
 	}
 
+	/**
+	 * À partir de données de la bd, crée un objet Localisation avec ses attributs
+	 * définis comme étant les informations de la bd
+	 *
+	 * @param $data mixed données de la bd
+	 *
+	 * @return Localisation l'objet créé
+	 */
 	public function setEntity($data): Localisation {
 		$entity = new Localisation();
 		$entity->setLocalisationId($data['localisation_id']);
@@ -98,9 +135,10 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 	/**
 	 * Permet de créer une liste d'entités Localisation à partir
 	 * des résultats d'une requête SQL
-	 * @param $dataList
 	 *
-	 * @return array
+	 * @param $dataList mixed données de la bd
+	 *
+	 * @return array liste d'objets Localisation
 	 */
 	public function setEntityList($dataList) {
 		$listEntity = [];
@@ -110,6 +148,14 @@ class Localisation extends Model implements \JsonSerializable, Entity {
 		return $listEntity;
 	}
 
+	/**
+	 * Récupère une localisation à partir d'un id utilisateur,
+	 * on utilisera cette fonction pour la météo des TV.
+	 *
+	 * @param $userId int id utilisateur wordpress
+	 *
+	 * @return false|Localisation objet Localisation si donnée trouvée, sinon false
+	 */
 	public function getLocFromUserId($userId) {
 		$request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
                                                   FROM ecran_localisation WHERE user_id = :id');

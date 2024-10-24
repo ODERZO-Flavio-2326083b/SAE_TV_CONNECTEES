@@ -4,7 +4,10 @@ use Models\Localisation;
 
 /**
  * Injecter les valeurs de localisation et de requête AJAX au
- * script de la météo
+ * script de la météo. Si l'utilisateur connecté a une localisation
+ * dans la bd, on l'utilise, sinon on remplace par la localisation par défaut
+ * (Ici, Aix-en-Provence)
+ *
  * @return void
  */
 function injectLocVariables() {
@@ -27,12 +30,13 @@ function injectLocVariables() {
 add_action('wp_enqueue_scripts', 'injectLocVariables');
 
 /**
- * Gère les
+ * Récupère les données reçues par requête AJAX et les traite
+ * pour les insérer dans la base de données.
  *
  * @return void
  */
 function handleMeteoAjaxData() {
-	check_ajax_referer('locNonce', 'nonce');
+	check_ajax_referer('locNonce', 'nonce'); // vérification de l'authenticité de la demande
 	if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
 		$longitude = sanitize_text_field($_POST['longitude']);
 		$latitude = sanitize_text_field($_POST['latitude']);
@@ -53,7 +57,7 @@ function handleMeteoAjaxData() {
 			'latitude' => $latitude
 		));
 	} else {
-		// Si les données ne sont pas présentes, envoyer une erreur
+		// si les données ne sont pas présentes, envoyer une erreur
 		wp_send_json_error('Données manquantes ; Latitude: '.$_POST['latitude'].' ; Longitude: '.$_POST['longitude']);
 	}
 }
@@ -61,6 +65,12 @@ function handleMeteoAjaxData() {
 add_action('wp_ajax_handleMeteoAjaxData', 'handleMeteoAjaxData');
 add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
 
+
+/**
+ * Charge le script de demande de localisation si l'utilisateur n'en a pas sur la page d'accueil
+ *
+ * @return void
+ */
 function loadLocAjaxIfUserHasNoLoc(){
 	$model = new Localisation();
 
@@ -69,6 +79,7 @@ function loadLocAjaxIfUserHasNoLoc(){
 
 		add_action('wp_enqueue_scripts', 'loadLocalisationScript');
 
+		// injection de variables dans le script.
 		wp_localize_script( 'retrieve_loc_script_ecran', 'retrieveLocVars', array(
 			'ajaxUrl' => admin_url('admin-ajax.php'),
 			'ajaxNonce' => wp_create_nonce('locNonce'),

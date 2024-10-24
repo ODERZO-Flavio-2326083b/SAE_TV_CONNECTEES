@@ -1,6 +1,39 @@
+
+// étape 1 : récupérer les informations de localisation de l'utilisateur
+
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+};
+
 /**
- * Permet d'envoyer par ajax les données de localisation
- * de l'utilisateur
+ * Récupère les informations de localisation de l'utilisteur et les envoie à la fonction
+ * de traitement AJAX
+ * @param pos
+ */
+function success(pos) {
+    var crd = pos.coords;
+
+    console.log("Votre position actuelle est :");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude : ${crd.longitude}`);
+    console.log(`La précision est de ${crd.accuracy} mètres.`);
+
+    sendMeteoData(crd.longitude, crd.latitude);
+}
+
+function error(err) {
+    console.warn(`ERREUR (${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+/**
+ * Permet d'envoyer par AJAX les données de localisation
+ * de l'utilisateur.
+ * Des variables sont injectées depuis le backend et récupérées
+ * avec retrieveLocVars.
  * @param longitude
  * @param latitude
  */
@@ -29,27 +62,3 @@ function sendMeteoData(longitude, latitude) {
         })
         .catch(error => console.error('Erreur de requête:', error));
 }
-
-
-var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-};
-
-function success(pos) {
-    var crd = pos.coords;
-
-    console.log("Votre position actuelle est :");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude : ${crd.longitude}`);
-    console.log(`La précision est de ${crd.accuracy} mètres.`);
-
-    sendMeteoData(crd.longitude, crd.latitude);
-}
-
-function error(err) {
-    console.warn(`ERREUR (${err.code}): ${err.message}`);
-}
-
-navigator.geolocation.getCurrentPosition(success, error, options);
