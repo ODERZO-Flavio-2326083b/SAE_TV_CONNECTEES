@@ -151,10 +151,21 @@ class User extends Model implements Entity, JsonSerializable
 
             $request->execute();
         }
+        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
+            $database = $this->getDatabase();
+
+            error_log("DEUXIEME : " . $this->getIdDepartement());
+
+            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
+            $request->bindValue(':dept_id', $this->getIdDepartement());
+            $request->bindParam(':user_id', $id, PDO::PARAM_INT);
+
+            $request->execute();
+        }
         return $id;
     }
 
-    public function insertUserDept() {
+    /*public function insertUserDept() {
         if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
             $database = $this->getDatabase();
 
@@ -167,7 +178,7 @@ class User extends Model implements Entity, JsonSerializable
             $request->execute();
         }
         return $this->getIdUser();
-    }
+    }*/
 
     /**
      * @return mixed
