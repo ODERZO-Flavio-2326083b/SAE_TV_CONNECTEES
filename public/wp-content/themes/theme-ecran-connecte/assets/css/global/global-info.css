@@ -26,25 +26,3 @@ a, a:hover, a:link, a:active {
     --primary-sidebar-color: red;
 }
 
-body.login {
-    --primary-login-background-color: black;
-}
-
-body.login div#login form#loginform {
-    --primary-form-login-background-color: white;
-    --secondary-form-login-background-color: darkgrey;
-}
-
-body.login div#login form#loginform p.submit input#wp-submit {
-    --primary-input-background-color: #1F63DE;
-    --secondary-input-background-color: white;
-}
-
-body.login div#login p#message {
-    --primary-message-login-background-color: #E6E6E6;
-}
-
-body.login div#login form#lostpasswordform {
-    --primary-password-form-login-background-color: #E6E6E6;
-    --primary-form-login-border-color: darkgrey;
-}
