@@ -617,7 +617,7 @@ class Alert extends Model implements Entity, JsonSerializable
         $this->adminId = $adminId;
     }
 
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return get_object_vars($this);
     }
 }

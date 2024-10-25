@@ -60,11 +60,11 @@ class CodeAdeView extends View
      * Retourne le code HTML du formulaire de modification de code ADE.
      */
     public function displayModifyCode($title, $type, $code) {
-        $page = get_page_by_title('Gestion des codes ADE');
+        $page = get_page_by_title_custom('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
 
         return '
-        <a href="' . esc_url(get_permalink(get_page_by_title('Gestion des codes ADE'))) . '">< Retour</a>
+        <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des codes ADE'))) . '">< Retour</a>
          <form method="post">
          	<div class="form-group">
             	<label for="title">Titre</label>
@@ -136,7 +136,7 @@ class CodeAdeView extends View
      * Retourne le code HTML affichant tous les codes ADE.
      */
     public function displayAllCode($years, $groups, $halfGroups) {
-        $page = get_page_by_title('Modifier un code ADE');
+        $page = get_page_by_title_custom('Modifier un code ADE');
         $linkManageCodeAde = get_permalink($page->ID);
 
         $title = 'Codes Ade';
@@ -176,7 +176,7 @@ class CodeAdeView extends View
      * Affiche un message de succès pour la modification d'un code ADE.
      */
     public function successModification() {
-        $page = get_page_by_title('Gestion des codes ADE');
+        $page = get_page_by_title_custom('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
         $this->buildModal('Modification du code ADE', '<p>Le code ADE a bien été modifié</p>', $linkManageCode);
     }
@@ -206,8 +206,8 @@ class CodeAdeView extends View
      * Affiche un message si aucun code n'est disponible.
      */
     public function errorNobody() {
-        $page = get_page_by_title('Gestion des codes ADE');
+        $page = get_page_by_title_custom('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
-        echo '<p>Il n\'y a rien par ici</p><a href="' . $linkManageCode . '">Retour</a>';
+        return '<p>Il n\'y a rien par ici</p><a href="' . $linkManageCode . '">Retour</a>';
     }
 }

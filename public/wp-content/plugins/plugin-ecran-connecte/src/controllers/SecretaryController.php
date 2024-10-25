@@ -123,7 +123,6 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     public function createUsers() {
-        $student = new StudentController();
         $teacher = new TeacherController();
         $studyDirector = new StudyDirectorController();
         $secretary = new SecretaryController();
@@ -132,15 +131,13 @@ class SecretaryController extends UserController
 
         return
             $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('student', 'Étudiants', true) .
-            $this->view->displayTitleSelect('teacher', 'Enseignants') .
+            $this->view->displayTitleSelect('teacher', 'Enseignants', true) .
             $this->view->displayTitleSelect('studyDirector', 'Directeurs d\'études') .
             $this->view->displayTitleSelect('secretary', 'Secrétaires') .
             $this->view->displayTitleSelect('technician', 'Technicien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('student', $student->insert(), true) .
-            $this->view->displayContentSelect('teacher', $teacher->insert()) .
+            $this->view->displayContentSelect('teacher', $teacher->insert(), true) .
             $this->view->displayContentSelect('studyDirector', $studyDirector->insert()) .
             $this->view->displayContentSelect('secretary', $secretary->insert()) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
@@ -164,7 +161,6 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     public function displayUsers() {
-        $student = new StudentController();
         $teacher = new TeacherController();
         $studyDirector = new StudyDirectorController();
         $secretary = new SecretaryController();
@@ -173,15 +169,13 @@ class SecretaryController extends UserController
 
         return
             $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('student', 'Étudiants', true) .
-            $this->view->displayTitleSelect('teacher', 'Enseignants') .
+            $this->view->displayTitleSelect('teacher', 'Enseignants', true) .
             $this->view->displayTitleSelect('studyDirector', 'Directeurs d\'études') .
             $this->view->displayTitleSelect('secretary', 'Secrétaires') .
             $this->view->displayTitleSelect('technician', 'Technicien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('student', $student->displayAllStudents(), true) .
-            $this->view->displayContentSelect('teacher', $teacher->displayAllTeachers()) .
+            $this->view->displayContentSelect('teacher', $teacher->displayAllTeachers(), true) .
             $this->view->displayContentSelect('studyDirector', $studyDirector->displayAllStudyDirector()) .
             $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary()) .
             $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .

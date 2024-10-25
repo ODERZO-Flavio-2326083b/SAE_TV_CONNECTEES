@@ -4,6 +4,7 @@ use Controllers\AlertRestController;
 use Controllers\CodeAdeRestController;
 use Controllers\InformationRestController;
 use Controllers\ProfileRestController;
+use Models\Localisation;
 
 include __DIR__ . '/config-notifs.php';
 include_once 'vendor/R34ICS/R34ICS.php';
@@ -89,8 +90,8 @@ function loadScriptsEcran()
     wp_enqueue_script('search_script_ecran', TV_PLUG_PATH . 'public/js/search.js', array('jquery'), '1.0', true);
     wp_enqueue_script('slideshow_script_ecran', TV_PLUG_PATH . 'public/js/slideshow.js', array('jquery'), '2.0', true);
     wp_enqueue_script('sortTable_script_ecran', TV_PLUG_PATH . 'public/js/sortTable.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('weather_script_ecran', TV_PLUG_PATH . 'public/js/weather.js', array('jquery'), '1.0', true);
     wp_enqueue_script('weatherTime_script_ecran', TV_PLUG_PATH . 'public/js/weather_and_time.js', array('jquery'), '1.0', true);
+	wp_enqueue_script('weather_script_ecran', TV_PLUG_PATH . 'public/js/weather.js', array( 'jquery' ), '1.0', true );
 }
 
 add_action('wp_enqueue_scripts', 'loadScriptsEcran');
@@ -187,6 +188,41 @@ function installDatabaseEcran()
 			PRIMARY KEY (id),
 			FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
 		) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            dept_id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_nom VARCHAR (60) NOT NULL,
+            PRIMARY KEY (dept_id)) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_user_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+			dept_id INT(10) NOT NULL ,
+			user_id BIGINT(20) UNSIGNED NOT NULL ,
+			PRIMARY KEY (dept_id, user_id),
+			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+			FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
+			) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_localisation';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            localisation_id INT(10) NOT NULL AUTO_INCREMENT,
+            latitude DECIMAL(10,6) NOT NULL,
+            longitude DECIMAL(10,6) NOT NULL,
+            adresse VARCHAR (60) NOT NULL,
+            user_id BIGINT(20) UNSIGNED NOT NULL,
+            PRIMARY KEY (localisation_id),
+            FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
+            ) $charset_collate;";
 
     dbDelta($sql);
 }
