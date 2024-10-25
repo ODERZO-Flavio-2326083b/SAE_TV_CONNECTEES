@@ -705,7 +705,11 @@ class InformationController extends Controller
         return $contentList;
     }
 
-    public function getVideoData(){
-        return;
+    public function getVideoData() {
+        // Récupération des informations de la vidéo
+        return [
+            'video_url' => 'URL_DE_LA_VIDEO'
+        ];
     }
+
 }
