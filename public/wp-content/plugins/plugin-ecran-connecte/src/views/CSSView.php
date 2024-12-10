@@ -11,7 +11,7 @@ class CSSView extends View
         echo "<form method=\"POST\">
     <div class=\"form-group\">
         <label for=\"cssFileSelector\">Choisir le css a modifier</label>
-        <select id=\"cssFileSelector\">
+        <select id=\"cssFileSelector\" name=\"cssFileSelector\">
             <option value=\"default\">default</option>
             <option value=\"info\">Info</option>
         </select>

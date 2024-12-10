@@ -11,11 +11,11 @@ class CSSCustomizer extends Model
 
         $cssfilename = 'global-info.css';
         // Chemin du fichier CSS à modifier
-        $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/'.$cssfilename;
 
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les valeurs soumises par le formulaire
+            $cssFileName = $_POST['cssFileSelector'];
             $backgroundColor1 = $_POST['background1'];
             $backgroundColor2 = $_POST['background2'];
             $layout = $_POST['layout'];
@@ -25,6 +25,8 @@ class CSSCustomizer extends Model
             $buttonBorder = $_POST['buttonBorder'];
             $button = $_POST['button'];
             $sideBar = $_POST['sideBar'];
+            $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-'.$cssFileName.'.css';
+
 
 
 
