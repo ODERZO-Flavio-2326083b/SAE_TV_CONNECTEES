@@ -38,7 +38,15 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormTelevision($years, $groups, $halfGroups) {
+
+    public function displayAllDepartement($dept) {
+        $string = "";
+        foreach ($dept as $departement) {
+            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
+        }
+        return $string;
+    }
+    public function displayFormTelevision($years, $groups, $halfGroups, $dept) {
         $form = '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
@@ -54,6 +62,13 @@ class TelevisionView extends UserView
             	<input type="password" class="form-control" id="pwdTv" name="pwdTv" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("Tv")>
             	<input type="password" class="form-control" id="pwdConfTv" name="pwdConfirmTv" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("Tv")>
             	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
+            </div>
+            <div class="form-group">
+                <label for="departementDirec">Département</label>
+                <br>    
+                <select>
+                    ' . $this->displayAllDepartement($dept) . '
+                </select>
             </div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
