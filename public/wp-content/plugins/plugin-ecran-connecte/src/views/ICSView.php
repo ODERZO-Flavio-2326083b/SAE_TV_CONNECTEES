@@ -35,6 +35,7 @@ class ICSView extends View
         $current_user = wp_get_current_user();
         $controller = new InformationController();
         $video_data = $controller->getVideoData();
+        $video = '<video autoplay muted><source src="' . $video_data['url'] . '" type="video/mp4"></video>';
 
         if (isset($ics_data['events'])) {
             $string = '<h1>' . $title . '</h1>';
@@ -129,12 +130,10 @@ class ICSView extends View
             return $this->displayNoSchedule($title, $current_user);
         }
 
-        if (!empty($video_data['video_url'])) {
-            $string .= '<button onclick="openModal()">Voir la vidéo</button>';
 
-            // Construire le modal avec la vidéo
-            $string .= $this->buildModal("Vidéo associée", '<iframe src="https://www.youtube.com/embed/5G6ianWzDNk" name="iframe_a" title="Iframe Example"></iframe>');
-        }
+        // Construire le modal avec la vidéo
+        $string .= $this->buildModal("Vidéo associée", $video);
+
         return $string;
     }
 

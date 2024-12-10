@@ -1,17 +1,24 @@
 .img_table_ecran {
-    width: 25%;
+    width: 20%;
 }
 
 .img-thumbnail {
-    max-height: 70vh;
+    max-height: 65vh;
 }
 
-.video_container{
-    max-height: 70vh;
+.video_container {
+    max-height: 65vh;
+    max-width: 80%;
     padding: .25rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
     border-radius: .25rem;
-    max-width: 100%;
     height: auto;
+}
+
+.video_container video {
+    width: 100%;
+    height: auto;
+    max-height: 45vh;
+    max-width: 95%;
 }

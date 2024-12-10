@@ -2,7 +2,7 @@
 CSS de l'emploi du temps
  */
 
-.shedule_tech{
+.schedule_tech{
     width: 50%;
 }
 
@@ -19,12 +19,12 @@ CSS de l'emploi du temps
 
 /* SLIDESHOW */
 .slideshow-container {
-    position: relative;
+    position: static;
     margin: auto;
 }
 
 .mySlides {
-    display: block;
+    display: flex;
 }
 
 .tabSchedule {
@@ -36,7 +36,7 @@ CSS de l'emploi du temps
 }
 
 @media (max-width: 1200px) {
-    .shedule_tech{
+    .schedule_tech{
         width: 100%;
     }
 }
