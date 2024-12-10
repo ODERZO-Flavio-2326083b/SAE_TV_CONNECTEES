@@ -1,39 +1,63 @@
-// Fonction pour récupérer une variable CSS spécifique
-function getCssVariable(variableName) {
-    // Utilise getComputedStyle pour obtenir les styles calculés de l'élément <html> (document.documentElement)
-    // getPropertyValue retourne la valeur de la variable CSS passée en paramètre
-    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+
+// Fonction pour récupérer le contenu brut du fichier CSS
+async function fetchCssFile(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Erreur lors du chargement du fichier CSS : ${response.statusText}`);
+        }
+        const cssText = await response.text();
+        console.log("Fichier CSS récupéré avec succès");
+        return cssText;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
-// Fonction pour peupler un formulaire avec les valeurs des variables CSS
-function populateFormWithCssVariables() {
-    // 1. Récupération des valeurs de chaque variable CSS
-    const primaryBackgroundColor = getCssVariable('--primary-background-color');
-    const secondaryBackgroundColor = getCssVariable('--secondary-background-color');
-    const primaryLayoutColor = getCssVariable('--primary-layout-background-color');
-    const primaryLayoutBackgroundColor = getCssVariable('--primary-layout-color');
-    const primaryTitleColor = getCssVariable('--primary-title-color');
-    const primaryLinkColor = getCssVariable('--primary-link-color');
-    const primaryButtonBorderColor = getCssVariable('--primary-button-border-color');
-    const primaryButtonColor = getCssVariable('--primary-button-color');
-    const primarySidebarColor = getCssVariable('--primary-sidebar-color');
+// Fonction pour extraire les variables CSS du contenu brut
+function extractCssVariables(cssText) {
+    const variables = {};
+    const variableRegex = /--([\w-]+)\s*:\s*([^;]+);/g;
+    let match;
 
-    // Affiche dans la console une des valeurs (utile pour déboguer)
-    console.log(primaryTitleColor);
+    while ((match = variableRegex.exec(cssText)) !== null) {
+        variables[`--${match[1]}`] = match[2].trim();
+    }
 
-    // 2. Affectation des valeurs récupérées aux champs du formulaire
-    // Chaque champ du formulaire (identifié par son id) est rempli avec la valeur CSS correspondante
-    document.getElementById('background1').value = primaryBackgroundColor;
-    document.getElementById('background2').value = secondaryBackgroundColor;
-    document.getElementById('layout').value = primaryLayoutBackgroundColor;
-    document.getElementById('layoutColor').value = primaryLayoutColor;
-    document.getElementById('title').value = primaryTitleColor;
-    document.getElementById('link').value = primaryLinkColor;
-    document.getElementById('buttonBorder').value = primaryButtonBorderColor;
-    document.getElementById('button').value = primaryButtonColor;
-    document.getElementById('sideBar').value = primarySidebarColor;
+    return variables;
 }
 
-// 3. Exécution de la fonction après le chargement complet de la page
-// Utilisation de l'événement DOMContentLoaded pour s'assurer que le DOM est prêt avant de manipuler les éléments
+// Fonction principale
+async function populateFormWithCssVariables() {
+    const cssFileUrl = "https://osef.alwaysdata.net/wp-content/themes/theme-ecran-connecte/assets/css/global/global-" + document.getElementById('cssFileSelector').value +".css";
+
+    // Étape 1 : Récupérer le contenu du fichier CSS
+    const cssText = await fetchCssFile(cssFileUrl);
+
+    if (!cssText) {
+        console.error("Impossible de récupérer les variables CSS");
+        return;
+    }
+
+    // Étape 2 : Extraire les variables CSS
+    const cssVariables = extractCssVariables(cssText);
+
+    // Étape 3 : Afficher les variables récupérées dans la console
+    console.log("Variables CSS récupérées :", cssVariables);
+
+    // Étape 4 : Affecter les valeurs aux champs du formulaire
+    document.getElementById('background1').value = cssVariables['--primary-background-color'] || '';
+    document.getElementById('background2').value = cssVariables['--secondary-background-color'] || '';
+    document.getElementById('layout').value = cssVariables['--primary-layout-background-color'] || '';
+    document.getElementById('layoutColor').value = cssVariables['--primary-layout-color'] || '';
+    document.getElementById('title').value = cssVariables['--primary-title-color'] || '';
+    document.getElementById('link').value = cssVariables['--primary-link-color'] || '';
+    document.getElementById('buttonBorder').value = cssVariables['--primary-button-border-color'] || '';
+    document.getElementById('button').value = cssVariables['--primary-button-color'] || '';
+    document.getElementById('sideBar').value = cssVariables['--primary-sidebar-color'] || '';
+}
+
+// Exécuter la fonction au chargement du DOM
+document.getElementById('cssFileSelector').addEventListener('change', populateFormWithCssVariables);
 window.addEventListener('DOMContentLoaded', populateFormWithCssVariables);
