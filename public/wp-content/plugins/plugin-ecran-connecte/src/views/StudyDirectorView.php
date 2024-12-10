@@ -2,6 +2,7 @@
 
 namespace Views;
 
+use Models\Department;
 use Models\User;
 
 /**
@@ -13,6 +14,13 @@ use Models\User;
  */
 class StudyDirectorView extends UserView
 {
+    public function displayAllDepartement($dept) {
+        $string = "";
+        foreach ($dept as $departement) {
+            $string .= '<option value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
+        }
+        return $string;
+    }
 
     /**
      * Affiche le formulaire de création d'un compte directeur d'études.
@@ -28,7 +36,7 @@ class StudyDirectorView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayCreateDirector() {
+    public function displayCreateDirector($dept) {
         return '
         <h2> Compte directeur d\'études</h2>
         <p class="lead">Pour créer des directeurs d\'études, remplissez ce formulaire avec les valeurs demandées.</p>
@@ -48,6 +56,13 @@ class StudyDirectorView extends UserView
                 <input type="password" class="form-control" id="pwdDirec" name="pwdDirec" minlength="8" maxlength="25" placeholder="Mot de passe" required="" onkeyup=checkPwd("Direc")>
                 <input type="password" class="form-control" id="pwdConfDirec" name="pwdConfirmDirec" minlength="8" maxlength="25" placeholder="Confirmer le Mot de passe" required="" onkeyup=checkPwd("Direc")>
                 <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
+            </div>
+            <div class="form-group">
+                <label for="departementDirec">Département</label>
+                <br>    
+                <select name="deptDirec" id="deptDirec" class="form-control" required="">
+                    ' . $this->displayAllDepartement($dept) . '
+                </select>
             </div>
             <div class="form-group">
                 <label for="codeADEDirec"> Code ADE</label>

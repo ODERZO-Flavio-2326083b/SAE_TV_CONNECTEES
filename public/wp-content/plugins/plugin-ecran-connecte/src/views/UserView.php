@@ -31,7 +31,15 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    protected function displayBaseForm($name) {
+
+    public function displayAllDepartement($dept) {
+        $string = "";
+        foreach ($dept as $departement) {
+            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
+        }
+        return $string;
+    }
+    protected function displayBaseForm($name, $dept) {
         return '
             <form method="post" class="cadre">
                 <div class="form-group">
@@ -47,7 +55,15 @@ class UserView extends View
                	<label for="pwd' . $name . '">Mot de passe</label>
                 	<input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
                     <input class="form-control" minlength="8" maxlength="25" type="password" id="pwdConf' . $name . '" name="pwdConfirm' . $name . '" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
-                	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                </div>
+                	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                
+                </div>
+                <div class="form-group">
+                <label for="departementDirec">Département</label>
+                <br>    
+                <select>
+                    ' . $this->displayAllDepartement($dept) . '
+                </select>
+            </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name . '" name="create' . $name . '">Créer</button>
             </form>';
     }
