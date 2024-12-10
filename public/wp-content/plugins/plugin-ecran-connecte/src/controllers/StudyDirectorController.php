@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Department;
 use Models\User;
 use Views\StudyDirectorView;
 
@@ -90,7 +91,7 @@ class StudyDirectorController extends UserController implements Schedule
      */
     public function insert() {
         $action = filter_input(INPUT_POST, 'createDirec');
-
+        $deptModel = new Department();
         if (isset($action)) {
 
             $login = filter_input(INPUT_POST, 'loginDirec');
@@ -98,6 +99,7 @@ class StudyDirectorController extends UserController implements Schedule
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmDirec');
             $email = filter_input(INPUT_POST, 'emailDirec');
             $code = filter_input(INPUT_POST, 'codeDirec');
+            $dept = filter_input(INPUT_POST, 'deptDirec');
 
             // Vérifie les conditions de validation des entrées.
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
@@ -109,6 +111,7 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->model->setEmail($email);
                 $this->model->setRole('directeuretude');
                 $this->model->setCodes($code);
+                $this->model->setIdDepartement($dept);
 
                 // Insère l'utilisateur et gère les fichiers associés.
                 if ($this->model->insert()) {
@@ -124,8 +127,35 @@ class StudyDirectorController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        return $this->view->displayCreateDirector();
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayCreateDirector($dept);
     }
+
+    /*public function insertUserDept() {
+        $action = filter_input(INPUT_POST, 'createDirec');
+        $deptModel = new Department();
+        if(isset($action)) {
+            $dept = filter_input(INPUT_POST, 'deptDirec');
+            $id_user = $this->model->insert();
+
+            $this->model->setIdDepartement($dept);
+            $this->model->setIdUser($id_user);
+
+            error_log("SALUTT : " . $this->model->getIdDepartement() . " ET " . $this->model->getIdUser() );
+
+            if (is_int($dept) && is_int($id_user)) {
+                if ($this->model->insertUserDept()) {
+                    $this->view->displayInsertValidate();
+                } else {
+                    $this->view->displayErrorInsertion();
+                }
+            } else {
+                $this->view->displayErrorCreation();
+            }
+        }
+        $dept = $deptModel->getAllDepts();
+        return $this->view->displayCreateDirector($dept);
+    }*/
 
     /**
      * Modifie les informations d'un directeur d'études existant.

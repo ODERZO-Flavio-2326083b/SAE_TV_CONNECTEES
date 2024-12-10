@@ -203,9 +203,10 @@ function installDatabaseEcran()
     $table_name = 'ecran_user_departement';
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
 			dept_id INT(10) NOT NULL ,
 			user_id BIGINT(20) UNSIGNED NOT NULL ,
-			PRIMARY KEY (dept_id, user_id),
+			PRIMARY KEY (id, dept_id, user_id),
 			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
 			FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
 			) $charset_collate;";
