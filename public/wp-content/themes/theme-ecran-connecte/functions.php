@@ -1,5 +1,7 @@
 <?php
 
+use Models\Department;
+
 include_once 'inc/customizer/custom_colors.php';
 include_once 'inc/customizer/custom_sidebar.php';
 include_once 'inc/customizer/custom_schedule.php';
@@ -23,21 +25,19 @@ add_action('get_header', 'wp_maintenance_mode');
 */
 
 function load_dynamic_css() {
-    if(wp_get_current_user()){
+
+    if ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
         $departement = "default";
     }
-    elseif ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
+    elseif(!is_user_logged_in()){
         $departement = "default";
     }
     else{
         $departmentModel = new Department();
-        $departementActuel = $departmentModel.get(get_current_user_id());
-        if ($departementActuel && method_exists($departementActuel, 'getName')) {
-            $departement = $departementActuel->getName();
-        }
-        else {
-            $departement = "default"; // Utiliser la valeur par défaut si le département n'est pas trouvé
-        }
+        $departementActuel = $departmentModel->get(get_current_user_id());
+        $departement = $departementActuel->getName();
+
+
     }
 
     wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
