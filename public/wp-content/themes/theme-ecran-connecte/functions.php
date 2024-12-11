@@ -23,9 +23,23 @@ add_action('get_header', 'wp_maintenance_mode');
 */
 
 function load_dynamic_css() {
-    $departmentModel = new Department();
-    $departementActuel = $departmentModel.get(get_current_user_id());
-    $departement = $departementActuel.getName();
+    if(wp_get_current_user()){
+        $departement = "default";
+    }
+    elseif ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
+        $departement = "default";
+    }
+    else{
+        $departmentModel = new Department();
+        $departementActuel = $departmentModel.get(get_current_user_id());
+        if ($departementActuel && method_exists($departementActuel, 'getName')) {
+            $departement = $departementActuel->getName();
+        }
+        else {
+            $departement = "default"; // Utiliser la valeur par défaut si le département n'est pas trouvé
+        }
+    }
+
     wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
 }
 add_action('wp_enqueue_scripts', 'load_dynamic_css');
