@@ -2,13 +2,17 @@
 
 namespace Views;
 
+use Models\Department;
 use Views\View;
 
 class CSSView extends View
 {
-    public function displayCssCustomizer()
+    public function displayCssCustomizer($listDepName)
     {
+        echo "<h1>Personnalisation du CSS</h1>";
         echo "<form method=\"POST\">
+
+
     <div class=\"form-group\">
         <label for=\"cssFileSelector\">Choisir le css a modifier</label>
         <select id=\"cssFileSelector\" name=\"cssFileSelector\">
