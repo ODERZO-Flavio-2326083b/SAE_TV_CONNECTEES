@@ -100,7 +100,10 @@ class TechnicianController extends UserController implements Schedule
         }
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->view->displayFormTechnician($dept);
+
+		$currDept = $deptModel->get(get_current_user_id());
+
+        return $this->view->displayFormTechnician($dept, $currDept);
     }
 
     /**

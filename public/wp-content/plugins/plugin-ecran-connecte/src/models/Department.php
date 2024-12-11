@@ -119,7 +119,7 @@ class Department extends Model implements Entity, JsonSerializable {
 
 		$request->execute();
 
-		return $this->setEntity($request->fetchAll(PDO::FETCH_ASSOC));
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
 	}
 
 	/**

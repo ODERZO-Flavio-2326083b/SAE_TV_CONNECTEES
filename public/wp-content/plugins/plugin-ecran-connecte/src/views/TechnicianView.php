@@ -28,11 +28,11 @@ class TechnicianView extends UserView
      * @date 2024-10-15
      */
 
-    public function displayFormTechnician($dept) {
+    public function displayFormTechnician($dept, $currDept) {
         return '
         <h2>Compte technicien</h2>
         <p class="lead">Pour créer des techniciens, remplissez ce formulaire avec les valeurs demandées.</p>
-        ' . $this->displayBaseForm('Tech', $dept);
+        ' . $this->displayBaseForm('Tech', $dept, $currDept);
     }
 
     /**

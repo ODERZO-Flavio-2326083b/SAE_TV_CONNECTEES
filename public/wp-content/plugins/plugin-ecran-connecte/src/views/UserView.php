@@ -32,14 +32,18 @@ class UserView extends View
      * @date 2024-10-15
      */
 
-    public function displayAllDepartement($dept) {
+    public function displayAllDepartement($dept, $currDept) {
         $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
-        }
+	    foreach ($dept as $departement) {
+		    $selected = ($currDept == $departement->getName()) ? " selected" : "";
+		    $string .= '<option value="' . $departement->getName() . '"' . $selected . '>' . $departement->getName() . '</option>';
+	    }
+
+		echo '<br>' . $currDept;
+		echo '<br>' . $string;
         return $string;
     }
-    protected function displayBaseForm($name, $dept) {
+    protected function displayBaseForm($name, $dept, $currDept) {
         return '
             <form method="post" class="cadre">
                 <div class="form-group">
@@ -60,8 +64,8 @@ class UserView extends View
                 <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select>
-                    ' . $this->displayAllDepartement($dept) . '
+                <select class="form-control">
+                    ' . $this->displayAllDepartement($dept, $currDept) . '
                 </select>
             </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name . '" name="create' . $name . '">Créer</button>

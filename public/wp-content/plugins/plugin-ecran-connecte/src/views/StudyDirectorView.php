@@ -14,13 +14,6 @@ use Models\User;
  */
 class StudyDirectorView extends UserView
 {
-    public function displayAllDepartement($dept) {
-        $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
-        }
-        return $string;
-    }
 
     /**
      * Affiche le formulaire de création d'un compte directeur d'études.
@@ -37,6 +30,7 @@ class StudyDirectorView extends UserView
      * @date 2024-10-15
      */
     public function displayCreateDirector($dept) {
+		// TODO : currDept
         return '
         <h2> Compte directeur d\'études</h2>
         <p class="lead">Pour créer des directeurs d\'études, remplissez ce formulaire avec les valeurs demandées.</p>
@@ -61,7 +55,7 @@ class StudyDirectorView extends UserView
                 <label for="departementDirec">Département</label>
                 <br>    
                 <select name="deptDirec" id="deptDirec" class="form-control" required="">
-                    ' . $this->displayAllDepartement($dept) . '
+                    ' . $this->displayAllDepartement($dept, "temp") . '
                 </select>
             </div>
             <div class="form-group">

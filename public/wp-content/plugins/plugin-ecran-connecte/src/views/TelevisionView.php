@@ -38,16 +38,10 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
+    public function displayFormTelevision($years, $groups, $halfGroups, $dept, $isAdmin, $currDept) {
+        $disabled = $isAdmin ? '' : 'disabled';
 
-    public function displayAllDepartement($dept) {
-        $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
-        }
-        return $string;
-    }
-    public function displayFormTelevision($years, $groups, $halfGroups, $dept) {
-        $form = '
+		$form = '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
         <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps"</p>
@@ -66,8 +60,8 @@ class TelevisionView extends UserView
             <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select>
-                    ' . $this->displayAllDepartement($dept) . '
+                <select class="form-control"' . $disabled . '>
+                    ' . $this->displayAllDepartement($dept, $currDept) . '
                 </select>
             </div>
             <div class="form-group">

@@ -116,8 +116,12 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
         $deptModel = new Department();
-        $dept = $deptModel->getAllDepts();
-        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $dept);
+		$isAdmin = in_array("administrator", wp_get_current_user()->roles);
+		$currDept = $deptModel->get(get_current_user_id())->getName();
+        //$dept = $isAdmin ? $deptModel->getAllDepts() : $currDept;
+		$dept = $deptModel->getAllDepts();
+
+        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $dept, $isAdmin, $currDept);
     }
 
     /**
