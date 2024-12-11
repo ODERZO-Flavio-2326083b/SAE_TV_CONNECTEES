@@ -23,7 +23,9 @@ add_action('get_header', 'wp_maintenance_mode');
 */
 
 function load_dynamic_css() {
-    $departement = 'default';
+    $departmentModel = new Department();
+    $departementActuel = $departmentModel.get(get_current_user_id());
+    $departement = $departementActuel.getName();
     wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
 }
 add_action('wp_enqueue_scripts', 'load_dynamic_css');
