@@ -16,8 +16,9 @@ class CSSView extends View
     <div class=\"form-group\">
         <label for=\"cssFileSelector\">Choisir le css a modifier</label>
         <select id=\"cssFileSelector\" name=\"cssFileSelector\">
-            <option value=\"default\">default</option>
-            <option value=\"info\">Info</option>
+            <option value=\"default\">default</option>";
+            $this->fomulaireDep($listDepName);
+        echo "
         </select>
         
         
@@ -63,5 +64,11 @@ class CSSView extends View
 </form>
 
 ";
+    }
+
+    public function fomulaireDep($listDepName) {
+        foreach ($listDepName as $dep) {
+            echo "<option value=\"$dep\">$dep</option>";
+        }
     }
 }
