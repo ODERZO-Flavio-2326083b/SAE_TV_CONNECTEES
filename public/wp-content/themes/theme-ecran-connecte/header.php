@@ -79,6 +79,8 @@ if(in_array('television', $current_user->roles)) : ?>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))); ?>">Voir les utilisateurs</a>
                     </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion du CSS'))); ?>">Gestion du css</a>
                 </li>
             <?php endif;
             if (in_array('administrator', $user_info->roles)) : ?>

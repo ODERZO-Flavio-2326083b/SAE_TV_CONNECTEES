@@ -1,5 +1,7 @@
 <?php
 
+use Models\Department;
+
 include_once 'inc/customizer/custom_colors.php';
 include_once 'inc/customizer/custom_sidebar.php';
 include_once 'inc/customizer/custom_schedule.php';
@@ -22,6 +24,26 @@ function wp_maintenance_mode()
 add_action('get_header', 'wp_maintenance_mode');
 */
 
+function load_dynamic_css() {
+
+    if ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
+        $departement = "default";
+    }
+    elseif(!is_user_logged_in()){
+        $departement = "default";
+    }
+    else{
+        $departmentModel = new Department();
+        $departementActuel = $departmentModel->get(get_current_user_id());
+        $departement = $departementActuel->getName();
+
+
+    }
+
+    wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
+}
+add_action('wp_enqueue_scripts', 'load_dynamic_css');
+
 function add_scripts()
 {
     //jQuery
@@ -32,13 +54,16 @@ function add_scripts()
     wp_enqueue_script('bootstrap_js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery_cdn'), '', true);
 
     // CSS
-    wp_enqueue_style( 'style_ecran', get_template_directory_uri().'/style.css');
-    wp_enqueue_style( 'header_ecran_theme', get_template_directory_uri().'/assets/css/header.css');
-    wp_enqueue_style( 'content_ecran_theme', get_template_directory_uri().'/assets/css/content.css');
-    wp_enqueue_style( 'sidebar_ecran_theme', get_template_directory_uri().'/assets/css/sidebar.css');
-    wp_enqueue_style( 'footer_ecran_theme', get_template_directory_uri().'/assets/css/footer.css');
+    wp_enqueue_style('style_ecran', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style('header_ecran_theme', get_template_directory_uri() . '/assets/css/header.css');
+    wp_enqueue_style('content_ecran_theme', get_template_directory_uri() . '/assets/css/content.css');
+    wp_enqueue_style('sidebar_ecran_theme', get_template_directory_uri() . '/assets/css/sidebar.css');
+    wp_enqueue_style('footer_ecran_theme', get_template_directory_uri() . '/assets/css/footer.css');
+
 }
+
 add_action('wp_enqueue_scripts', 'add_scripts');
+
 
 
 /**
