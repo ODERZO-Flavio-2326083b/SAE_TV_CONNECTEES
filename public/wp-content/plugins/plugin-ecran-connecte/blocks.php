@@ -2,6 +2,7 @@
 
 use Controllers\AlertController;
 use Controllers\CodeAdeController;
+use Controllers\CSSCustomizerController;
 use Controllers\DepartmentController;
 use Controllers\InformationController;
 use Controllers\SecretaryController;
@@ -685,6 +686,42 @@ function block_help_map()
     ));
 }
 add_action( 'init', 'block_help_map' );
+
+
+
+
+
+/**
+ * Function of the block
+ *
+ * @return string
+ */
+function css_customizer_render_callback()
+{
+    if(is_page()) {
+        $controller = new CSSCustomizerController();
+        return $controller->useCssCustomizer();
+
+    }
+}
+
+/**
+ * Build a block
+ */
+function block_modif_css()
+{
+    wp_register_script(
+        'css_customizer_script',
+        plugins_url( 'blocks/cssCustomizer/modify.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-data' )
+    );
+
+    register_block_type('tvconnecteeamu/modify-css', array(
+        'editor_script' => 'css_customizer_script',
+        'render_callback' => 'css_customizer_render_callback'
+    ));
+}
+add_action( 'init', 'block_modif_css' );
 
 /**
  *

@@ -91,6 +91,11 @@ class Department extends Model implements Entity, JsonSerializable {
 
 	}
 
+    /**
+     * @param int $begin
+     * @param int $numberElement
+     * @return array
+     */
 	public function getList( int $begin = 0, int $numberElement = 25 ): array {
 		$request = $this->getDatabase()->prepare(// TODO GETLIST SQL
 		);

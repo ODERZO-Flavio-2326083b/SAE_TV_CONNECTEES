@@ -18,9 +18,8 @@ if (!defined('ABSPATH')) {
 class R34ICS extends Controller
 {
 
-    var $ical_path = '/vendors/ics-parser/src/ICal/ICal.php';
-    var $event_path = '/vendors/ics-parser/src/ICal/Event.php';
-    var $carbon_path = '/vendors/ics-parser/vendor/nesbot/carbon/src/Carbon/Carbon.php';
+    var $ical_path = '/vendor/johngrogg/ics-parser/src/ICal/ICal.php';
+    var $event_path = '/vendor/johngrogg/ics-parser/src/ICal/Event.php';
     var $parser_loaded = false;
     var $limit_days = 365;
 
@@ -35,7 +34,6 @@ class R34ICS extends Controller
         // Set property values
         $this->ical_path = dirname(__FILE__) . $this->ical_path;
         $this->event_path = dirname(__FILE__) . $this->event_path;
-        $this->carbon_path = dirname(__FILE__) . $this->carbon_path;
         $this->view = new ICSView();
     }
 
@@ -351,7 +349,6 @@ class R34ICS extends Controller
     {
         include_once($this->ical_path);
         include_once($this->event_path);
-        include_once($this->carbon_path);
         return true;
     }
 
