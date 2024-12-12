@@ -34,8 +34,17 @@ class ICSView extends View
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
         $controller = new InformationController();
+
         $video_data = $controller->getVideoData();
-        $video = '<video autoplay muted><source src="' . $video_data['url'] . '" type="video/mp4"></video>';
+        $video_url = isset($video_data['url']) ? $video_data['url'] : '';
+
+        if (!empty($video_url)){
+            $string = '<h1>' . $title . '</h1>';
+            $string .= '<video autoplay muted> ';
+            $string .= '<source src="' . $video_url . '" type="video/mp4">';
+            $string .= '</video>';
+            return $string;
+        }
 
         if (isset($ics_data['events'])) {
             $string = '<h1>' . $title . '</h1>';
@@ -130,9 +139,6 @@ class ICSView extends View
             return $this->displayNoSchedule($title, $current_user);
         }
 
-
-        // Construire le modal avec la vidéo
-        $string .= $this->buildModal("Vidéo associée", $video);
 
         return $string;
     }
