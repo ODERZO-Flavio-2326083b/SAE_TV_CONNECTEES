@@ -172,7 +172,7 @@ class TelevisionView extends UserView
     }
 
     /**
-     * Génère un élément `<select>` HTML pour sélectionner des emplois du temps.
+     * Génère un élément '<select>' HTML pour sélectionner des emplois du temps.
      *
      * Cette méthode crée un menu déroulant contenant des options pour les années,
      * groupes et demi-groupes. Si un code d'emploi du temps est fourni, il sera
@@ -182,7 +182,7 @@ class TelevisionView extends UserView
      * @param array $groups Un tableau d'objets représentant les groupes disponibles.
      * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
      * @param object|null $code Un objet représentant le code d'emploi du temps à pré-sélectionner (facultatif).
-     * @param int $count Un compteur utilisé pour générer un ID unique pour le `<select>` (par défaut à 0).
+     * @param int $count Un compteur utilisé pour générer un ID unique pour le '<select>' (par défaut à 0).
      *
      * @return string Le code HTML du menu déroulant pour sélectionner un emploi du temps.
      *

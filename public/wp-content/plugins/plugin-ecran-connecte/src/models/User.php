@@ -53,23 +53,20 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Insère un nouvel utilisateur avec un rôle spécifique et, le cas échéant,
      * associe des codes à cet utilisateur. Cette méthode utilise la fonction
-     * `wp_insert_user` pour créer l'utilisateur avec les données appropriées
+     * 'wp_insert_user' pour créer l'utilisateur avec les données appropriées
      * (login, mot de passe, email, rôle).
      *
      * Si le rôle de l'utilisateur est 'television', des codes spécifiques
-     * sont ajoutés à la table `ecran_code_user`. Pour les rôles 'enseignant'
-     * et 'directeuretude', un nouvel objet `CodeAde` est créé et inséré,
+     * sont ajoutés à la table 'ecran_code_user'. Pour les rôles 'enseignant'
+     * et 'directeuretude', un nouvel objet 'CodeAde' est créé et inséré,
      * puis associé à l'utilisateur.
      *
      * @return int L'ID de l'utilisateur créé en cas de succès.
-     * @throws Exception Si une erreur survient lors de l'insertion de l'utilisateur
-     *                   ou de l'association des codes.
      *
      * @version 1.0
      * @date 2024-10-15
      */
     public function insert() {
-        // Take 7 lines to create an user with a specific role
         $userData = array(
             'user_login' => $this->getLogin(),
             'user_pass' => $this->getPassword(),
@@ -77,53 +74,6 @@ class User extends Model implements Entity, JsonSerializable
             'role' => $this->getRole(),
         );
         $id = wp_insert_user($userData);
-        /*
-        $id = wp_create_user($this->getLogin(), $this->getPassword(), $this->getEmail());
-	    $user = new WP_User($id);
-	    $user->add_role($this->getRole());
-        */
-        /*
-        $request = $this->getDatabase()->prepare('INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, user_url, user_registered, user_activation_key, user_status, display_name) VALUES (:login, :password, :name, :email, :url, NOW(), :key, :status, :display_name)');
-
-        $nul = " ";
-        $zero = "0";
-
-        $request->bindValue(':login', $this->getLogin(), PDO::PARAM_STR);
-        $request->bindValue(':password', $this->getPassword(), PDO::PARAM_STR);
-        $request->bindValue(':name', $this->getLogin(), PDO::PARAM_STR);
-        $request->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
-        $request->bindParam(':url', $nul);
-        $request->bindParam(':key', $nul);
-        $request->bindParam(':status', $zero, PDO::PARAM_INT);
-        $request->bindValue(':display_name', $this->getLogin(), PDO::PARAM_STR);
-
-        $request->execute();
-
-        $id = $this->getDatabase()->lastInsertId();
-
-        $capabilities = 'wp_capabilities';
-        $role = 'a:1:{s:'.strlen($this->getRole()).':"'.$this->getRole().'";b:1;}';
-
-        $request = $this->getDatabase()->prepare('INSERT INTO wp_usermeta(user_id, meta_key, meta_value) VALUES (:id, :capabilities, :role)');
-
-        $request->bindParam(':id', $id, PDO::PARAM_INT);
-        $request->bindParam(':capabilities', $capabilities, PDO::PARAM_STR);
-        $request->bindParam(':role', $role, PDO::PARAM_STR);
-
-        $request->execute();
-
-        $level = "wp_user_level";
-
-        $request = $this->getDatabase()->prepare('INSERT INTO wp_usermeta(user_id, meta_key, meta_value) VALUES (:id, :level, :value)');
-
-        $request->bindParam(':id', $id, PDO::PARAM_INT);
-        $request->bindParam(':level', $level, PDO::PARAM_STR);
-        $request->bindParam(':value', $zero, PDO::PARAM_STR);
-
-        $request->execute();
-        */
-        // To review
-
         if ($this->getRole() == 'television') {
             foreach ($this->getCodes() as $code) {
 
@@ -134,27 +84,9 @@ class User extends Model implements Entity, JsonSerializable
 
                 $request->execute();
             }
-        } else if ($this->getRole() == 'enseignant' || $this->getRole() == 'directeuretude') {
-
-            $codeAde = new CodeAde();
-
-            $codeAde->setTitle($this->getLogin());
-            $codeAde->setCode($this->getCodes());
-            $codeAde->setType('teacher');
-
-            $idCode = $codeAde->insert();
-
-            $request = $this->getDatabase()->prepare('INSERT INTO ecran_code_user (user_id, code_ade_id) VALUES (:userId, :codeAdeId)');
-
-            $request->bindParam(':userId', $id, PDO::PARAM_INT);
-            $request->bindValue(':codeAdeId', $idCode, PDO::PARAM_INT);
-
-            $request->execute();
         }
-        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
+        if ($this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
             $database = $this->getDatabase();
-
-            error_log("DEUXIEME : " . $this->getIdDepartement());
 
             $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
             $request->bindValue(':dept_id', $this->getIdDepartement());
@@ -164,21 +96,6 @@ class User extends Model implements Entity, JsonSerializable
         }
         return $id;
     }
-
-    /*public function insertUserDept() {
-        if ($this->getRole() == 'directeuretude' || $this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
-            $database = $this->getDatabase();
-
-            error_log("DEUXIEME : " . $this->getIdDepartement());
-
-            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
-            $request->bindValue(':dept_id', $this->getIdDepartement());
-            $request->bindValue(':user_id', $this->getIdUser());
-
-            $request->execute();
-        }
-        return $this->getIdUser();
-    }*/
 
     /**
      * @return mixed
@@ -216,13 +133,11 @@ class User extends Model implements Entity, JsonSerializable
      * Met à jour le mot de passe d'un utilisateur dans la base de données.
      * Si le rôle de l'utilisateur est 'enseignant' ou 'directeuretude',
      * seul le code associé est mis à jour. Sinon, les anciens codes sont
-     * supprimés de la table `ecran_code_user` avant d'ajouter les nouveaux
+     * supprimés de la table 'ecran_code_user' avant d'ajouter les nouveaux
      * codes.
      *
      * @return int Le nombre de lignes affectées par la mise à jour, indiquant
      *             si l'opération a réussi.
-     * @throws Exception Si une erreur survient lors de la mise à jour des données
-     *                   ou de l'exécution des requêtes SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -236,41 +151,34 @@ class User extends Model implements Entity, JsonSerializable
 
         $request->execute();
 
-        if ($this->getRole() === 'enseignant' || $this->getRole() === 'directeuretude') {
+        $request = $database->prepare('DELETE FROM ecran_code_user WHERE user_id = :id');
 
-            $this->getCodes()[0]->update();
+        $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
 
-        } else {
-            $request = $database->prepare('DELETE FROM ecran_code_user WHERE user_id = :id');
+        $request->execute();
 
-            $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+        foreach ($this->getCodes() as $code) {
+            if ($code instanceof CodeAde && !is_null($code->getId())) {
+                $request = $database->prepare('INSERT INTO ecran_code_user (user_id, code_ade_id) VALUES (:userId, :codeAdeId)');
 
-            $request->execute();
+                $request->bindValue(':userId', $this->getId(), PDO::PARAM_INT);
+                $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
 
-            foreach ($this->getCodes() as $code) {
-                if ($code instanceof CodeAde && !is_null($code->getId())) {
-                    $request = $database->prepare('INSERT INTO ecran_code_user (user_id, code_ade_id) VALUES (:userId, :codeAdeId)');
-
-                    $request->bindValue(':userId', $this->getId(), PDO::PARAM_INT);
-                    $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
-
-                    $request->execute();
-                }
+                $request->execute();
             }
         }
+
         return $request->rowCount();
     }
 
     /**
      * Supprime un utilisateur de la base de données ainsi que toutes les informations
-     * associées dans la table `wp_usermeta`. La méthode supprime d'abord l'utilisateur
-     * de la table `wp_users` et récupère le nombre de lignes affectées. Ensuite,
-     * elle supprime toutes les métadonnées associées à cet utilisateur dans `wp_usermeta`.
+     * associées dans la table 'wp_usermeta'. La méthode supprime d'abord l'utilisateur
+     * de la table 'wp_users' et récupère le nombre de lignes affectées. Ensuite,
+     * elle supprime toutes les métadonnées associées à cet utilisateur dans 'wp_usermeta'.
      *
-     * @return int Le nombre de lignes supprimées dans la table `wp_users`, indiquant
+     * @return int Le nombre de lignes supprimées dans la table 'wp_users', indiquant
      *             si l'utilisateur a été trouvé et supprimé avec succès.
-     * @throws Exception Si une erreur survient lors de la suppression des données
-     *                   ou de l'exécution des requêtes SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -296,14 +204,12 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère les informations d'un utilisateur à partir de la base de données
      * en utilisant son ID. La méthode exécute une requête SQL pour sélectionner
-     * l'utilisateur correspondant dans la table `wp_users`. Si l'utilisateur est
+     * l'utilisateur correspondant dans la table 'wp_users'. Si l'utilisateur est
      * trouvé, les données sont transformées en entité et renvoyées. Sinon, la
-     * méthode retourne `false`.
+     * méthode retourne 'false'.
      *
      * @param int $id L'identifiant de l'utilisateur à récupérer.
-     * @return mixed L'entité utilisateur si trouvée, sinon `false`.
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
-     *
+     * @return mixed L'entité utilisateur si trouvée, sinon 'false'.
      * @version 1.0
      * @date 2024-10-15
      */
@@ -330,16 +236,15 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère une liste d'utilisateurs à partir de la base de données.
      * Cette méthode exécute une requête SQL pour sélectionner un certain
-     * nombre d'utilisateurs à partir de la table `wp_users` en
-     * fonction de l'offset (`$begin`) et du nombre d'éléments
-     * (`$numberElement`). Les résultats sont renvoyés sous forme
+     * nombre d'utilisateurs à partir de la table 'wp_users' en
+     * fonction de l'offset ('$begin') et du nombre d'éléments
+     * ('$numberElement'). Les résultats sont renvoyés sous forme
      * d'une liste d'entités. Si aucun utilisateur n'est trouvé, un
      * tableau vide est retourné.
      *
      * @param int $begin L'offset pour la pagination, par défaut 0.
      * @param int $numberElement Le nombre d'utilisateurs à récupérer, par défaut 25.
      * @return array Une liste d'entités utilisateur, ou un tableau vide si aucun utilisateur n'est trouvé.
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -361,15 +266,13 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère une liste d'utilisateurs ayant un rôle spécifique.
      * Cette méthode exécute une requête SQL pour sélectionner
-     * les utilisateurs de la table `wp_users` qui ont un rôle
-     * donné dans la table `wp_usermeta`. Les utilisateurs sont
-     * triés par leur nom d'utilisateur (`user_login`).
+     * les utilisateurs de la table 'wp_users' qui ont un rôle
+     * donné dans la table 'wp_usermeta'. Les utilisateurs sont
+     * triés par leur nom d'utilisateur ('user_login').
      * Jusqu'à 1000 utilisateurs peuvent être retournés.
      *
      * @param string $role Le rôle à filtrer dans la base de données.
      * @return array Une liste d'entités utilisateur correspondant au rôle spécifié.
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
-     *
      * @version 1.0
      * @date 2024-10-15
      */
@@ -390,7 +293,7 @@ class User extends Model implements Entity, JsonSerializable
      * Récupère les codes associés à une liste d'utilisateurs.
      * Cette méthode parcourt chaque utilisateur fourni et exécute
      * une requête SQL pour obtenir les codes associés à chaque utilisateur
-     * dans les tables `ecran_code_ade` et `ecran_code_user`.
+     * dans les tables 'ecran_code_ade' et 'ecran_code_user'.
      * Les résultats sont ensuite attribués à chaque utilisateur sous forme
      * d'une liste de codes.
      *
@@ -398,8 +301,6 @@ class User extends Model implements Entity, JsonSerializable
      *                     les codes doivent être récupérés.
      * @return array Un tableau d'objets utilisateur mis à jour avec leurs
      *               codes associés.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -430,15 +331,13 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Vérifie si un utilisateur existe en fonction de son nom d'utilisateur ou de son email.
      * Cette méthode exécute une requête SQL pour rechercher un utilisateur
-     * dans la table `wp_users` en utilisant le nom d'utilisateur ou l'email fournis.
+     * dans la table 'wp_users' en utilisant le nom d'utilisateur ou l'email fournis.
      * Elle renvoie une liste d'utilisateurs correspondant aux critères de recherche.
      *
      * @param string $login Le nom d'utilisateur à vérifier.
      * @param string $email L'email à vérifier.
      * @return array Un tableau d'objets utilisateur correspondants, ou un tableau vide
      *               si aucun utilisateur n'est trouvé.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -457,12 +356,10 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère la liste des utilisateurs associés à un code spécifique.
      * Cette méthode exécute une requête SQL pour récupérer les détails des utilisateurs
-     * dans la table `wp_users` qui sont liés à un code dans la table `ecran_code_user`.
+     * dans la table 'wp_users' qui sont liés à un code dans la table 'ecran_code_user'.
      *
      * @return array Un tableau d'objets utilisateur correspondants, ou un tableau vide
      *               si aucun utilisateur n'est lié au code.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -479,14 +376,12 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      * Crée un nouveau code de suppression de compte pour un utilisateur.
-     * Cette méthode insère un enregistrement dans la table `ecran_code_delete_account`
+     * Cette méthode insère un enregistrement dans la table 'ecran_code_delete_account'
      * en associant l'ID de l'utilisateur à un code fourni.
      *
      * @param string $code Le code à associer à l'utilisateur pour la suppression de compte.
      *
      * @return void
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -502,14 +397,12 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      * Met à jour le code de suppression de compte associé à un utilisateur.
-     * Cette méthode modifie l'enregistrement existant dans la table `ecran_code_delete_account`
+     * Cette méthode modifie l'enregistrement existant dans la table 'ecran_code_delete_account'
      * en remplaçant l'ancien code par le nouveau code fourni.
      *
      * @param string $code Le nouveau code à associer à l'utilisateur pour la suppression de compte.
      *
      * @return void
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -525,12 +418,10 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      * Supprime le code de suppression de compte associé à un utilisateur.
-     * Cette méthode efface l'enregistrement de la table `ecran_code_delete_account`
+     * Cette méthode efface l'enregistrement de la table 'ecran_code_delete_account'
      * correspondant à l'identifiant de l'utilisateur spécifié.
      *
      * @return int Le nombre de lignes affectées par la requête DELETE.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -548,11 +439,9 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère le code de suppression de compte associé à l'utilisateur.
      * Cette méthode effectue une requête pour obtenir le code stocké dans
-     * la table `ecran_code_delete_account` en fonction de l'identifiant de l'utilisateur.
+     * la table 'ecran_code_delete_account' en fonction de l'identifiant de l'utilisateur.
      *
      * @return string|null Le code de suppression de compte si trouvé, sinon null.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -580,8 +469,6 @@ class User extends Model implements Entity, JsonSerializable
      *                    'user_email', et d'autres selon la structure de la base de données.
      *
      * @return User L'instance de l'utilisateur configurée avec les données.
-     *
-     * @throws Exception Si une erreur survient lors de l'exécution de la requête SQL.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -611,7 +498,7 @@ class User extends Model implements Entity, JsonSerializable
         if (function_exists('get_user_by')) {
             $user_info = get_user_by('id', $entity->getId());
             if (in_array('etudiant', $user_info->roles)) {
-                $codesSort = ['', '', ''];
+                $codesSort = [new CodeAde(), new CodeAde(), new CodeAde()];
                 foreach ($entity->getCodes() as $code) {
                     if ($code instanceof CodeAde) {
                         if ($code->getType() === 'year') {
@@ -639,8 +526,6 @@ class User extends Model implements Entity, JsonSerializable
      * @param array $dataList Tableau contenant les données des utilisateurs à traiter.
      *
      * @return array Un tableau d'instances d'utilisateur configurées.
-     *
-     * @throws Exception Si une erreur survient lors de la configuration d'une entité.
      *
      * @version 1.0
      * @date 2024-10-15

@@ -62,10 +62,8 @@ a, a:hover, a:link, a:active {
 ";
 
             // Écrire le nouveau contenu dans le fichier CSS
-            if (file_put_contents($cssFile, $newCss)) {
-              //  echo $newCss;
-            } else {
-               // echo "Erreur lors de la modification du fichier CSS.";
+            if (!file_put_contents($cssFile, $newCss)) {
+				echo "Erreur lors de la modification du fichier CSS.";
             }
 }
 

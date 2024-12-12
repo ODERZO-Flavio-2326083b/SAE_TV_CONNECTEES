@@ -172,7 +172,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * Cette fonction exécute une requête préparée pour sélectionner une alerte
      * correspondant à l'ID fourni. Elle retourne l'entité alerte en utilisant
-     * la méthode `setEntity` pour initialiser ses attributs avec les données récupérées.
+     * la méthode 'setEntity' pour initialiser ses attributs avec les données récupérées.
      *
      * @param int $id L'ID de l'alerte à récupérer.
      * @return mixed Retourne l'entité alerte ou null si aucune alerte n'est trouvée.
@@ -196,7 +196,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * Cette fonction exécute une requête préparée pour sélectionner un
      * ensemble d'alertes en fonction des paramètres fournis pour
      * la pagination (offset et limite). Elle retourne une liste d'entités
-     * alertes en utilisant la méthode `setEntityList` pour initialiser
+     * alertes en utilisant la méthode 'setEntityList' pour initialiser
      * les attributs avec les données récupérées.
      *
      * @param int $begin Position de départ pour la récupération des alertes (par défaut 0).
@@ -207,7 +207,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getList($begin = 0, $numberElement = 25) {
-        $request = $this->getDatabase()->prepare("SELECT id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert ORDER BY id ASC LIMIT :begin, :numberElement");
+        $request = $this->getDatabase()->prepare("SELECT id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert ORDER BY id LIMIT :begin, :numberElement");
 
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
@@ -226,7 +226,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * Cette fonction exécute une requête préparée pour sélectionner les alertes
      * associées à un auteur donné, en fonction des paramètres fournis pour la
      * pagination (offset et limite). Elle retourne une liste d'entités alertes
-     * en utilisant la méthode `setEntityList` pour initialiser les attributs
+     * en utilisant la méthode 'setEntityList' pour initialiser les attributs
      * avec les données récupérées.
      *
      * @param int $author Identifiant de l'auteur dont on souhaite récupérer les alertes.
@@ -238,7 +238,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getAuthorListAlert($author, $begin = 0, $numberElement = 25) {
-        $request = $this->getDatabase()->prepare("SELECT id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert  WHERE author = :author ORDER BY id ASC LIMIT :begin, :numberElement");
+        $request = $this->getDatabase()->prepare("SELECT id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert  WHERE author = :author ORDER BY id LIMIT :begin, :numberElement");
 
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
@@ -256,9 +256,9 @@ class Alert extends Model implements Entity, JsonSerializable
      * Récupère une liste d'alertes depuis l'interface administrateur.
      *
      * Cette fonction exécute une requête préparée pour sélectionner jusqu'à
-     * 200 alertes de la table `ecran_alert`, récupérant des informations
+     * 200 alertes de la table 'ecran_alert', récupérant des informations
      * telles que l'identifiant, le contenu, l'auteur, la date d'expiration
-     * et la date de création. Elle utilise ensuite la méthode `setEntityList`
+     * et la date de création. Elle utilise ensuite la méthode 'setEntityList'
      * pour initialiser les attributs des alertes récupérées.
      *
      * @return array Retourne un tableau d'entités alertes ou un tableau vide si aucune alerte n'est trouvée.
@@ -278,8 +278,8 @@ class Alert extends Model implements Entity, JsonSerializable
      * Récupère les alertes pour un utilisateur spécifique.
      *
      * Cette méthode exécute une requête préparée pour sélectionner les alertes
-     * associées à un utilisateur donné, en joignant plusieurs tables : `ecran_alert`,
-     * `ecran_code_alert`, `ecran_code_ade`, et `ecran_code_user`. Elle filtre les
+     * associées à un utilisateur donné, en joignant plusieurs tables : 'ecran_alert',
+     * 'ecran_code_alert', 'ecran_code_ade', et 'ecran_code_user'. Elle filtre les
      * résultats en fonction de l'identifiant de l'utilisateur passé en paramètre.
      * Les alertes sont triées par date d'expiration (du plus ancien au plus récent).
      *
@@ -296,7 +296,7 @@ class Alert extends Model implements Entity, JsonSerializable
 															JOIN ecran_code_alert ON ecran_alert.id = ecran_code_alert.alert_id
 															JOIN ecran_code_ade ON ecran_code_alert.code_ade_id = ecran_code_ade.id
 															JOIN ecran_code_user ON ecran_code_ade.id = ecran_code_user.code_ade_id
-															WHERE ecran_code_user.user_id = :id ORDER BY expiration_date ASC');
+															WHERE ecran_code_user.user_id = :id ORDER BY expiration_date');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -309,7 +309,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * Récupère les alertes destinées à tous les utilisateurs.
      *
      * Cette méthode exécute une requête préparée pour sélectionner les alertes
-     * qui sont marquées comme destinées à tout le monde (`for_everyone = 1`).
+     * qui sont marquées comme destinées à tout le monde ('for_everyone = 1').
      * Les résultats sont triés par date d'expiration dans l'ordre croissant
      * et limité à 50 alertes.
      *
@@ -319,9 +319,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getForEveryone() {
-        $request = $this->getDatabase()->prepare('SELECT ecran_alert.id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert WHERE for_everyone = 1 ORDER BY expiration_date ASC LIMIT 50');
-
-        $request->bindParam(':id', $id, PDO::PARAM_INT);
+        $request = $this->getDatabase()->prepare('SELECT ecran_alert.id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert WHERE for_everyone = 1 ORDER BY expiration_date LIMIT 50');
 
         $request->execute();
 
@@ -332,8 +330,8 @@ class Alert extends Model implements Entity, JsonSerializable
      * Récupère les alertes liées à un code spécifique.
      *
      * Cette méthode exécute une requête préparée pour sélectionner les alertes
-     * associées à un identifiant de code d'alerte (`alert_id`). Elle joint
-     * les tables `ecran_code_alert` et `ecran_alert` pour obtenir les détails
+     * associées à un identifiant de code d'alerte ('alert_id'). Elle joint
+     * les tables 'ecran_code_alert' et 'ecran_alert' pour obtenir les détails
      * des alertes. Les résultats sont limités à 50 alertes.
      *
      * @return array Retourne un tableau d'entités alertes ou un tableau vide si aucune alerte n'est trouvée.
@@ -376,7 +374,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * Compte le nombre total d'alertes dans la base de données.
      *
      * Cette méthode exécute une requête préparée pour compter le nombre total
-     * d'enregistrements dans la table `ecran_alert`. Elle renvoie le total
+     * d'enregistrements dans la table 'ecran_alert'. Elle renvoie le total
      * des alertes présentes.
      *
      * @return int Retourne le nombre total d'alertes.
@@ -423,8 +421,8 @@ class Alert extends Model implements Entity, JsonSerializable
      * Définit une liste d'entités à partir des données fournies.
      *
      * Cette méthode prend un tableau de données, crée une entité pour chaque
-     * élément du tableau en utilisant la méthode `setEntity`, et retourne la
-     * liste des entités créées. Si le paramètre `$adminSite` est vrai,
+     * élément du tableau en utilisant la méthode 'setEntity', et retourne la
+     * liste des entités créées. Si le paramètre '$adminSite' est vrai,
      * cela indique que les données proviennent du site admin, ce qui peut
      * influencer la façon dont les entités sont créées.
      *
@@ -446,7 +444,7 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * Crée et définit une entité Alert à partir des données fournies.
      *
-     * Cette méthode initialise une nouvelle instance de l'entité `Alert`
+     * Cette méthode initialise une nouvelle instance de l'entité 'Alert'
      * en remplissant ses attributs avec les données fournies. Elle gère
      * également l'attribution de l'auteur et des codes associés à l'alerte
      * en fonction de la provenance des données (site admin ou non).

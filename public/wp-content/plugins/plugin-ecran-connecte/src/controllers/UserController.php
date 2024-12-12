@@ -8,7 +8,6 @@ use Models\Department;
 use Models\Information;
 use Models\User;
 use R34ICS;
-use Views\StudyDirectorView;
 use Views\UserView;
 
 /**
@@ -44,8 +43,8 @@ class UserController extends Controller
      * pour interagir avec la base de données des utilisateurs, tandis
      * que la vue gère l'affichage des données à l'utilisateur.
      *
-     * - Le modèle `User` est responsable de la logique métier liée aux utilisateurs.
-     * - La vue `UserView` est utilisée pour rendre le contenu HTML associé
+     * - Le modèle 'User' est responsable de la logique métier liée aux utilisateurs.
+     * - La vue 'UserView' est utilisée pour rendre le contenu HTML associé
      *   à l'affichage des utilisateurs.
      *
      * @version 1.0
@@ -73,7 +72,6 @@ class UserController extends Controller
      *   "event", le fichier associé est également supprimé.
      *
      * @param int $id L'ID de l'utilisateur à supprimer.
-     * @throws Exception Si la suppression de l'utilisateur échoue.
      *
      * @return void
      */
@@ -81,8 +79,7 @@ class UserController extends Controller
         $user = $this->model->get($id);
         $userData = get_userdata($id);
         $user->delete();
-        if (in_array("enseignant", $userData->roles) || in_array("secretaire", $userData->roles) ||
-            in_array("administrator", $userData->roles) || in_array("directeuretude", $userData->roles)) {
+        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles)) {
             $modelAlert = new Alert();
             $alerts = $modelAlert->getAuthorListAlert($user->getLogin());
             foreach ($alerts as $alert) {
@@ -90,12 +87,11 @@ class UserController extends Controller
             }
         }
 
-        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles) ||
-            in_array("directeuretude", $userData->roles)) {
+        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles)) {
             $modelInfo = new Information();
             $infos = $modelInfo->getAuthorListInformation($user->getId());
             foreach ($infos as $info) {
-                $goodType = ['img', 'pdf', 'tab', 'event'];
+                $goodType = ['img', 'pdf', 'event'];
                 if (in_array($info->getType(), $goodType)) {
                     $infoController = new InformationController();
                     $infoController->deleteFile($info->getId());
@@ -294,8 +290,6 @@ class UserController extends Controller
      *                de l'année spécifiée, ou un formulaire pour sélectionner
      *                un calendrier si l'identifiant est invalide ou inexistant.
      *
-     * @throws Exception Si une erreur se produit lors de la récupération du
-     *                   calendrier ou si l'identifiant n'est pas valide.
      */
     function displayYearSchedule() {
         $id = $this->getMyIdUrl();
@@ -325,7 +319,6 @@ class UserController extends Controller
      * @return bool Retourne true si un utilisateur avec le même login ou email existe,
      *              sinon false.
      *
-     * @throws Exception Si une erreur se produit lors de la vérification des utilisateurs.
      */
     public function checkDuplicateUser(User $newUser) {
         $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
@@ -353,8 +346,6 @@ class UserController extends Controller
      * @return string Retourne le rendu HTML du formulaire de modification des codes,
      *                y compris les messages de succès ou d'erreur si applicable.
      *
-     * @throws Exception Si une erreur se produit lors de la récupération des codes
-     *                   ou lors de la mise à jour de l'utilisateur.
      */
     public function modifyCodes() {
         $current_user = wp_get_current_user();

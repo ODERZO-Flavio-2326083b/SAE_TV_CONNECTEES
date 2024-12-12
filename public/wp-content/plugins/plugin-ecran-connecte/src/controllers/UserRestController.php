@@ -29,7 +29,7 @@ class UserRestController extends WP_REST_Controller
     /**
      * Enregistre les routes REST pour les opérations sur les alertes.
      *
-     * Cette méthode utilise la classe `WP_REST_Server` pour définir les routes REST
+     * Cette méthode utilise la classe 'WP_REST_Server' pour définir les routes REST
      * qui permettent de créer, lire, mettre à jour et supprimer des alertes.
      * Les routes sont accessibles via le namespace spécifié dans la classe et
      * incluent des vérifications de permission pour chaque opération.

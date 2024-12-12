@@ -14,23 +14,7 @@ use Models\User;
  */
 class UserView extends View
 {
-    /**
-     * Génère un formulaire de base pour la création d'un compte utilisateur.
-     *
-     * Cette méthode crée un formulaire HTML standard contenant des champs pour
-     * le login, l'email, le mot de passe et la confirmation du mot de passe.
-     * Le formulaire utilise des classes Bootstrap pour le style et inclut
-     * également des messages d'aide pour informer l'utilisateur des exigences
-     * concernant les valeurs saisies.
-     *
-     * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
-     *
-     * @return string Le code HTML du formulaire.
-     *
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
+
 
     public function displayAllDepartement($dept) {
         $string = "";
@@ -39,6 +23,24 @@ class UserView extends View
         }
         return $string;
     }
+
+	/**
+	 * Génère un formulaire de base pour la création d'un compte utilisateur.
+	 *
+	 * Cette méthode crée un formulaire HTML standard contenant des champs pour
+	 * le login, l'email, le mot de passe et la confirmation du mot de passe.
+	 * Le formulaire utilise des classes Bootstrap pour le style et inclut
+	 * également des messages d'aide pour informer l'utilisateur des exigences
+	 * concernant les valeurs saisies.
+	 *
+	 * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+	 *
+	 * @return string Le code HTML du formulaire.
+	 *
+	 *
+	 * @version 1.0
+	 * @date 2024-10-15
+	 */
     protected function displayBaseForm($name, $dept) {
         return '
             <form method="post" class="cadre">
@@ -145,10 +147,7 @@ class UserView extends View
             <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
                 <h2 class="mb-3 bd-text-purple-bright">Les utilisateurs</h2>
                 <p class="lead">Vous pouvez créer ici les utilisateurs</p>
-                <p class="lead">Il y a plusieurs types d\'utilisateur : Les étudiants, enseignants, directeurs d\'études, secrétaires, techniciens, télévisions.</p>
-                <p class="lead">Les étudiants ont accès à leur emploi du temps et reçoivent les alertes les concernant et les informations.</p>
-                <p class="lead">Les enseignants ont accès à leur emploi du temps et peuvent poster des alertes.</p>
-                <p class="lead">Les directeurs d\'études ont accès à leur emploi du temps et peuvent poster des alertes et des informations.</p>
+                <p class="lead">Il y a plusieurs types d\'utilisateur : Les secrétaires, techniciens, télévisions.</p>
                 <p class="lead">Les secrétaires peuvent poster des alertes et des informations. Ils peuvent aussi créer des utilisateurs.</p>
                 <p class="lead">Les techniciens ont accès aux emplois du temps des promotions.</p>
                 <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emplois du temps que souhaité.</p>

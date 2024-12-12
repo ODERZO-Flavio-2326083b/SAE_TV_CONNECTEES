@@ -115,63 +115,6 @@ class InformationView extends View
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier un tableau à partir d'un fichier XLS/XLSX avec des champs
-     * pour le titre, le fichier à télécharger et la date d'expiration.
-     *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un fichier
-     * de type Excel. Si un contenu est déjà présent, le tableau correspondant sera affiché.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la date actuelle.
-     *
-     * @param string|null $title      Le titre du tableau à afficher dans le champ (optionnel).
-     * @param string|null $content    Le nom du fichier du tableau à afficher (optionnel).
-     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
-     * @param string $type            Le type d'action à effectuer, par défaut "createTab".
-     *                                 Peut être "submit" pour soumettre le formulaire.
-     *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function displayFormTab($title = null, $content = null, $endDate = null, $type = "createTab") {
-        $dateMin = date('Y-m-d', strtotime("+1 day"));
-
-        $form = '<form method="post" enctype="multipart/form-data">
-						<div class="form-group">
-			                <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
-			                <input id="title" class="form-control" type="text" name="title" placeholder="Inserer un titre" maxlength="60" value="' . $title . '">
-			            </div>';
-
-        if ($content != null) {
-            $info = new InformationController();
-            $list = $info->readSpreadSheet(TV_UPLOAD_PATH . $content);
-            foreach ($list as $table) {
-                $form .= $table;
-            }
-        }
-
-        $form .= '
-			<div class="form-group">
-                <label for="contentFile">Ajout du fichier Xls (ou xlsx)</label>
-                <input class="form-control-file" id="contentFile" type="file" name="contentFile" />
-                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                <small id="tabHelp" class="form-text text-muted">Nous vous conseillons de ne pas dépasser trois colonnes.</small>
-                <small id="tabHelp" class="form-text text-muted">Nous vous conseillons également de ne pas mettre trop de contenu dans une cellule.</small>
-            </div>
-            <div class="form-group">
-				<label for="expirationDate">Date d\'expiration</label>
-				<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
-			</div>
-			<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
-
-        if ($type == 'submit') {
-            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
-        }
-
-        return $form . '</form>';
-    }
-
-    /**
      * Affiche un formulaire pour créer ou modifier un document PDF avec des champs pour le titre,
      * le fichier à télécharger et la date d'expiration.
      *
@@ -308,7 +251,7 @@ class InformationView extends View
      * @param string $title      Le titre de l'information à modifier.
      * @param string $content    Le contenu de l'information à modifier (peut être une URL pour les images ou PDF).
      * @param string $endDate    La date d'expiration de l'information.
-     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'tab', 'pdf', 'event').
+     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'pdf', 'event').
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
      *                          approprié pour le type d'information.
@@ -322,8 +265,6 @@ class InformationView extends View
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormText($title, $content, $endDate, 'submit');
         } elseif ($type == "img") {
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
-        } elseif ($type == "tab") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormTab($title, $content, $endDate, 'submit');
         } elseif ($type == "pdf") {
             return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
         } elseif ($type == "event") {
