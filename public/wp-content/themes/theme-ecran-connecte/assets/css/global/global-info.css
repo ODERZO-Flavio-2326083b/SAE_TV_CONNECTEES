@@ -1,0 +1,28 @@
+body, .container {
+    --primary-background-color: red;
+    --secondary-background-color: white;
+
+}
+
+.footer_ecran, .nav_ecran {
+    --primary-layout-background-color: yellow;
+}
+
+
+h1, h2, h3 ,h4, h5, h6 {
+    --primary-title-color: #1F63DE;
+}
+
+a, a:hover, a:link, a:active {
+    --primary-link-color:  #00558b;
+}
+
+.button_presentation_ecran {
+    --primary-button-border-color:  #1F63DE;
+    --primary-button-color:  #1F63DE;
+}
+
+.sidebar {
+    --primary-sidebar-color: red;
+}
+
