@@ -8,7 +8,7 @@
 
 .video_container {
     max-height: 65vh;
-    max-width: 80%;
+    max-width: 100%;
     padding: .25rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -17,7 +17,7 @@
 }
 
 .video_container video {
-    width: 100%;
+    width: 20%;
     height: auto;
     max-height: 45vh;
     max-width: 95%;

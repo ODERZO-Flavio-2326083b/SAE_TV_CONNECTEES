@@ -497,6 +497,7 @@ class InformationView extends View
             echo '<h2 class="titleInfo">' . $title . '</h2>';
         }
 
+
         $url = TV_UPLOAD_PATH;
         if ($adminSite) {
             $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;

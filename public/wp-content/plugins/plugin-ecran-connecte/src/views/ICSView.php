@@ -2,7 +2,6 @@
 
 namespace Views;
 
-use Controllers\InformationController;
 use WP_User;
 
 /**
@@ -33,18 +32,6 @@ class ICSView extends View
      */
     public function displaySchedule($ics_data, $title, $allDay) {
         $current_user = wp_get_current_user();
-        $controller = new InformationController();
-
-        $video_data = $controller->getVideoData();
-        $video_url = isset($video_data['url']) ? $video_data['url'] : '';
-
-        if (!empty($video_url)){
-            $string = '<h1>' . $title . '</h1>';
-            $string .= '<video autoplay muted> ';
-            $string .= '<source src="' . $video_url . '" type="video/mp4">';
-            $string .= '</video>';
-            return $string;
-        }
 
         if (isset($ics_data['events'])) {
             $string = '<h1>' . $title . '</h1>';
@@ -139,20 +126,14 @@ class ICSView extends View
             return $this->displayNoSchedule($title, $current_user);
         }
 
-
         return $string;
     }
-
-
-
 
     /**
      * Génère le début de l'affichage de l'emploi du temps en tant que tableau HTML.
      *
      * Cette méthode crée le tableau HTML pour afficher l'emploi du temps, avec des colonnes
-     * dif
-     *
-     * férentes en fonction des rôles de l'utilisateur. Si l'utilisateur n'est pas un technicien,
+     * différentes en fonction des rôles de l'utilisateur. Si l'utilisateur n'est pas un technicien,
      * des colonnes supplémentaires sont ajoutées pour le cours et le groupe/enseignant.
      *
      * @param WP_User $current_user  L'utilisateur actuel, utilisé pour déterminer les colonnes à afficher.
