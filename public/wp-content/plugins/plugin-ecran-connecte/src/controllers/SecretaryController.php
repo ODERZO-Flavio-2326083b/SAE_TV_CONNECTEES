@@ -195,10 +195,7 @@ class SecretaryController extends UserController
             $user = $this->model->get($id);
             $wordpressUser = get_user_by('id', $id);
 
-            if (in_array("etudiant", $wordpressUser->roles)) {
-                $controller = new StudentController();
-                return $controller->modify($user);
-            } elseif (in_array("television", $wordpressUser->roles)) {
+            if (in_array("television", $wordpressUser->roles)) {
                 $controller = new TelevisionController();
                 return $controller->modify($user);
             } else {

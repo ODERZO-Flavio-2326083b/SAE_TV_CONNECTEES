@@ -192,22 +192,14 @@ class UserController extends Controller
         $current_user = wp_get_current_user();
         $string = $this->view->displayStartMultiSelect();
 
-        if (in_array('etudiant', $current_user->roles)) {
-            $string .= $this->view->displayTitleSelect('code', 'Modifier mes codes', true) .
-                $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe');
-        } else {
-            $string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
-        }
+		$string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
 
         $string .= $this->view->displayTitleSelect('delete', 'Supprimer mon compte') .
             $this->view->displayEndOfTitle();
 
-        if (in_array('etudiant', $current_user->roles)) {
-            $string .= $this->view->displayContentSelect('code', $this->modifyCodes(), true) .
-                $this->view->displayContentSelect('pass', $this->modifyPwd());
-        } else {
-            $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
-        }
+
+        $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
+
 
         $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . $this->view->displayEndDiv();
 
