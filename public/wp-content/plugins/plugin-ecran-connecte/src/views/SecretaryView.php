@@ -27,11 +27,11 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormSecretary($dept, $currDept) {
+    public function displayFormSecretary($allDepts, $currDept) {
         return '
         <h2> Compte secrétaire </h2>
         <p class="lead">Pour créer des secrétaires, remplissez ce formulaire avec les valeurs demandées.</p>
-        ' . $this->displayBaseForm('Secre', $dept, $currDept);
+        ' . $this->displayBaseForm('Secre', $allDepts, $currDept);
     }
 
     /**
@@ -138,16 +138,16 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllSecretary($users) {
+    public function displayAllSecretary($users, $userDeptList) {
         $title = 'Secrétaires';
         $name = 'Secre';
-        $header = ['Login'];
+        $header = ['Login', 'Département'];
 
         $row = array();
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin()];
+            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), $userDeptList[$count-1]];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'Secre');

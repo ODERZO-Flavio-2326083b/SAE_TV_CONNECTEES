@@ -69,6 +69,7 @@ class SecretaryController extends UserController
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
+			$deptId = filter_input(INPUT_POST, 'deptIdSecre');
 
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
@@ -78,6 +79,7 @@ class SecretaryController extends UserController
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('secretaire');
+				$this->model->setIdDepartment($deptId);
 
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
                     $this->view->displayInsertValidate();
@@ -89,11 +91,11 @@ class SecretaryController extends UserController
             }
         }
         $deptModel = new Department();
-        $dept = $deptModel->getAllDepts();
+        $allDepts = $deptModel->getAllDepts();
 
 		$currDept = $deptModel->get(get_current_user_id());
 
-        return $this->view->displayFormSecretary($dept, $currDept);
+        return $this->view->displayFormSecretary($allDepts, $currDept);
     }
 
     /**
@@ -111,7 +113,14 @@ class SecretaryController extends UserController
      */
     public function displayAllSecretary() {
         $users = $this->model->getUsersByRole('secretaire');
-        return $this->view->displayAllSecretary($users);
+	    $deptModel = new Department();
+
+	    $userDeptList = array();
+	    foreach ($users as $user) {
+		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+	    }
+
+        return $this->view->displayAllSecretary($users, $userDeptList);
     }
 
     /**

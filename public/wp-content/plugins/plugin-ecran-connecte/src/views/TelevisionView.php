@@ -60,8 +60,8 @@ class TelevisionView extends UserView
             <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select class="form-control"' . $disabled . '>
-                    ' . $this->displayAllDepartement($dept, $currDept) . '
+                <select name="deptIdTv" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($dept) . '
                 </select>
             </div>
             <div class="form-group">
@@ -92,19 +92,19 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTv($users) {
+    public function displayAllTv($users, $userDeptList) {
         $page = get_page_by_title_custom('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
         $title = 'Televisions';
         $name = 'Tele';
-        $header = ['Login', 'Nombre d\'emplois du temps ', 'Modifier'];
+        $header = ['Login', 'Nombre d\'emplois du temps ', 'Département', 'Modifier'];
 
         $row = array();
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1], $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'tele');

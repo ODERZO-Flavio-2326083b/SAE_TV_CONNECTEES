@@ -3,6 +3,7 @@
 namespace Views;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 
 /**
@@ -15,11 +16,18 @@ use Models\User;
 class UserView extends View
 {
 
-
-    public function displayAllDepartement($dept) {
+	/**
+	 * Génère une balise option pour chaque département contenant son nom.
+	 * La valeur est l'ID du département.
+	 *
+	 * @param $depts Department[] Liste de tous les départements
+	 *
+	 * @return string
+	 */
+    public function buildDepartmentOptions(array $depts): string {
         $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
+        foreach ($depts as $departement) {
+            $string .= '<option value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
         }
         return $string;
     }
@@ -34,6 +42,7 @@ class UserView extends View
 	 * concernant les valeurs saisies.
 	 *
 	 * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+	 * @param Department $depts Tous les Départements, pour le menu déroulant de sélection
 	 *
 	 * @return string Le code HTML du formulaire.
 	 *
@@ -41,7 +50,7 @@ class UserView extends View
 	 * @version 1.0
 	 * @date 2024-10-15
 	 */
-    protected function displayBaseForm($name, $dept) {
+    protected function displayBaseForm($name, $depts) {
         return '
             <form method="post" class="cadre">
                 <div class="form-group">
@@ -62,8 +71,8 @@ class UserView extends View
                 <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select class="form-control">
-                    ' . $this->displayAllDepartement($dept, $currDept) . '
+                <select name="deptId'. $name .'" class="form-control">
+                    ' . $this->buildDepartmentOptions($depts) . '
                 </select>
             </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name . '" name="create' . $name . '">Créer</button>

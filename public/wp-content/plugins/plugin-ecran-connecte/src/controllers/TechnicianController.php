@@ -74,6 +74,7 @@ class TechnicianController extends UserController implements Schedule
             $password = filter_input(INPUT_POST, 'pwdTech');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTech');
             $email = filter_input(INPUT_POST, 'emailTech');
+			$deptId = filter_input(INPUT_POST, 'deptIdTech');
 
             // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
@@ -84,13 +85,14 @@ class TechnicianController extends UserController implements Schedule
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('technicien');
+				$this->model->setIdDepartment($deptId);
 
                 // Insertion dans la base de données
-                if ($this->model->insert()) {
-                    $this->view->displayInsertValidate();
-                } else {
-                    $this->view->displayErrorInsertion();
-                }
+	            if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+		            $this->view->displayInsertValidate();
+	            } else {
+		            $this->view->displayErrorInsertion();
+	            }
             } else {
                 $this->view->displayErrorCreation();
             }
@@ -119,7 +121,15 @@ class TechnicianController extends UserController implements Schedule
      */
     public function displayAllTechnician() {
         $users = $this->model->getUsersByRole('technicien');
-        return $this->view->displayAllTechnicians($users);
+
+		$deptModel = new Department();
+
+	    $userDeptList = array();
+	    foreach ($users as $user) {
+		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+	    }
+
+        return $this->view->displayAllTechnicians($users, $userDeptList);
     }
 
     /**

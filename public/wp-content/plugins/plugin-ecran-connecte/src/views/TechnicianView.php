@@ -52,16 +52,16 @@ class TechnicianView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTechnicians($users) {
+    public function displayAllTechnicians($users, $userDeptList) {
         $title = 'Techniciens';
         $name = 'Tech';
-        $header = ['Login'];
+        $header = ['Login', 'Département'];
 
         $row = array();
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin()];
+            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), $userDeptList[$count-1]];
         }
 
         return $this->displayAll($name, $title, $header, $row, $name);

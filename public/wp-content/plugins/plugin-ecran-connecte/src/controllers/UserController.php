@@ -394,6 +394,6 @@ class UserController extends Controller
     public function displayAllDepartement() {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->view->displayAllDepartement($dept);
+        return $this->view->buildDepartmentOptions($dept);
     }
 }

@@ -76,7 +76,7 @@ class Department extends Model implements Entity, JsonSerializable {
 	 *
 	 * @return bool|null
 	 */
-	public function get( $id ) {
+	public function get( $id ): bool|null {
 		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_id = :id');
 
 		$request->bindValue(':id', $id, PDO::PARAM_INT);
@@ -154,14 +154,32 @@ class Department extends Model implements Entity, JsonSerializable {
 	/**
 	 * Renvoie tous les départements stockés dans la base de données
 	 *
-	 * @return void
+	 * @return Department[]
 	 */
-	public function getAllDepts() {
+	public function getAllDepts(): array {
 		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement ORDER BY dept_id');
 
 		$request->execute();
 
 		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+	}
+
+	/**
+	 * Renvoie le département de l'id user donné.
+	 * @param int $userId id user
+	 *
+	 * @return Department départment de l'id user
+	 */
+	public function getUserDepartment(int $userId): Department {
+		$request = $this->getDatabase()->prepare('SELECT d.dept_id as dept_id, d.dept_nom as dept_nom 
+														FROM ecran_departement d
+                         								JOIN ecran_user_departement u ON d.dept_id = u.dept_id
+                         								WHERE u.user_id = :id');
+
+		$request->bindValue(':id', $userId);
+		$request->execute();
+
+		return $this->setEntity($request->fetch(PDO::FETCH_ASSOC));
 	}
 
 	/**
