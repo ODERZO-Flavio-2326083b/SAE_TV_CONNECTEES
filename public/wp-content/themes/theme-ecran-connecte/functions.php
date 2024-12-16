@@ -40,7 +40,12 @@ function load_dynamic_css() {
 
     }
 
-    wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
+    if(file_exists(get_template_directory_uri() . "/assets/css/global/global-".$departement.".css")){
+        wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
+    }
+    else{
+        wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-default.css" );
+    }
 }
 add_action('wp_enqueue_scripts', 'load_dynamic_css');
 
