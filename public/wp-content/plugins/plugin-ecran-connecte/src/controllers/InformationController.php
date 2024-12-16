@@ -3,7 +3,6 @@
 namespace Controllers;
 
 use Models\Information;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 use Views\InformationView;
 
 /**
@@ -31,8 +30,8 @@ class InformationController extends Controller
      *
      * Ce constructeur initialise les instances des modèles et des vues
      * nécessaires pour gérer les informations. Il crée une nouvelle
-     * instance de la classe `Information` pour le modèle et une
-     * instance de `InformationView` pour la vue.
+     * instance de la classe 'Information' pour le modèle et une
+     * instance de 'InformationView' pour la vue.
      *
      * @version 1.0
      * @date 2024-10-16
@@ -51,7 +50,7 @@ class InformationController extends Controller
      *
      * - Récupère l'utilisateur courant.
      * - Récupère les données des formulaires pour chaque type d'information.
-     * - Définit les propriétés de l'objet `Information`.
+     * - Définit les propriétés de l'objet 'Information'.
      * - Insère l'information dans le modèle approprié et gère les fichiers
      *   téléchargés selon leur type.
      *
@@ -163,13 +162,11 @@ class InformationController extends Controller
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('text', 'Texte', true) .
             $this->view->displayTitleSelect('image', 'Image') .
-            $this->view->displayTitleSelect('table', 'Tableau') .
             $this->view->displayTitleSelect('pdf', 'PDF') .
             $this->view->displayTitleSelect('event', 'Événement') .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('text', $this->view->displayFormText(), true) .
             $this->view->displayContentSelect('image', $this->view->displayFormImg()) .
-            $this->view->displayContentSelect('table', $this->view->displayFormTab()) .
             $this->view->displayContentSelect('pdf', $this->view->displayFormPDF()) .
             $this->view->displayContentSelect('event', $this->view->displayFormEvent()) .
             $this->view->displayEndDiv() .
@@ -257,15 +254,6 @@ class InformationController extends Controller
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
                         } else {
                             $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
-                        }
-                    } else if ($information->getType() == 'tab') {
-                        $explodeName = explode('.', $filename);
-                        $goodExtension = ['xls', 'xlsx', 'ods'];
-                        if (in_array(end($explodeName), $goodExtension)) {
-                            $this->deleteFile($information->getId());
-                            $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
-                        } else {
-                            $this->view->buildModal('Tableau non valide', '<p>Ce fichier est un tableau non valide, veuillez choisir un autre tableau</p>');
                         }
                     }
                 }
@@ -392,13 +380,11 @@ class InformationController extends Controller
                 $content = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
             }
 
-            if (in_array($information->getType(), ['img', 'pdf', 'event', 'tab'])) {
+            if (in_array($information->getType(), ['img', 'pdf', 'event'])) {
                 if (in_array($contentExplode[1], $imgExtension)) {
                     $content = '<img class="img-thumbnail img_table_ecran" src="' . $content . $information->getContent() . '" alt="' . $information->getTitle() . '">';
                 } else if ($contentExplode[1] === 'pdf') {
                     $content = '[pdf-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
-                } else if ($information->getType() === 'tab') {
-                    $content = 'Tableau Excel';
                 }
             } else {
                 $content = $information->getContent();
@@ -413,8 +399,6 @@ class InformationController extends Controller
                 $type = 'Événement';
             } else if ($information->getType() === 'text') {
                 $type = 'Texte';
-            } else if ($information->getType() === 'tab') {
-                $type = 'Table Excel';
             }
             $dataList[] = [$row, $this->view->buildCheckbox($name, $information->getId()), $information->getTitle(), $content, $information->getCreationDate(), $information->getExpirationDate(), $information->getAuthor()->getLogin(), $type, $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId())];
         }
@@ -427,7 +411,7 @@ class InformationController extends Controller
                     $entity = $this->model->get($id);
                     if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $entity->getAuthor()->getId() == $current_user->ID) {
                         $type = $entity->getType();
-                        $types = ["img", "pdf", "tab", "event"];
+                        $types = ["img", "pdf", "event"];
                         if (in_array($type, $types)) {
                             $this->deleteFile($id);
                         }
@@ -453,7 +437,7 @@ class InformationController extends Controller
      * @param int $id L'identifiant de l'information à vérifier.
      * @param string $endDate La date de fin au format 'Y-m-d'.
      *
-     * @return void
+     * @return boolean
      *
      * @version 1.0.0
      * @date    2024-10-16
@@ -463,7 +447,9 @@ class InformationController extends Controller
             $information = $this->model->get($id);
             $this->deleteFile($id);
             $information->delete();
+			return true;
         }
+		return false;
     }
 
     /**
@@ -484,15 +470,6 @@ class InformationController extends Controller
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
-                if ($information->getType() == 'tab') {
-                    $list = $this->readSpreadSheet(TV_UPLOAD_PATH . $information->getContent());
-                    $content = "";
-                    foreach ($list as $table) {
-                        $content .= $table;
-                    }
-                    $information->setContent($content);
-                }
-
                 $adminSite = true;
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
@@ -500,7 +477,7 @@ class InformationController extends Controller
                 $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
             }
         }
-        $this->view->displayEndDiv();
+        echo $this->view->displayEndDiv();
     }
 
     /**
@@ -578,68 +555,6 @@ class InformationController extends Controller
             }
             echo $this->view->displayEndDiv();
         }
-        $this->view->displayEndDiv();
-    }
-
-    /**
-     * Lit un fichier tableur et retourne son contenu au format HTML.
-     *
-     * Cette méthode charge un fichier tableur à partir du chemin donné et
-     * génère un tableau HTML contenant les données. Les données sont regroupées
-     * par tableau pour chaque 10 lignes lues. Elle utilise la bibliothèque
-     * PhpSpreadsheet pour gérer différents types de fichiers de tableur.
-     *
-     * @param string $content Chemin relatif du fichier tableur à lire.
-     *
-     * @return array Un tableau contenant les chaînes de caractères HTML des
-     *               tableaux générés à partir des données du fichier.
-     *
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception Si le fichier ne peut pas
-     *               être lu ou si le format est non pris en charge.
-     *
-     * @version 1.0.0
-     * @date    2024-10-16
-     */
-    public function readSpreadSheet($content) {
-        $file = $_SERVER['DOCUMENT_ROOT'] . $content;
-
-        $extension = ucfirst(strtolower(end(explode(".", $file))));
-        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($extension);
-        $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($file);
-
-        $worksheet = $spreadsheet->getActiveSheet();
-        $highestRow = $worksheet->getHighestRow();
-
-        $contentList = array();
-        $content = "";
-        $mod = 0;
-        for ($i = 0; $i < $highestRow; ++$i) {
-            $mod = $i % 10;
-            if ($mod == 0) {
-                $content .= '<table class ="table table-bordered tablesize">';
-            }
-            foreach ($worksheet->getRowIterator($i + 1, 1) as $row) {
-                $content .= '<tr scope="row">';
-                $cellIterator = $row->getCellIterator();
-                $cellIterator->setIterateOnlyExistingCells(false);
-                foreach ($cellIterator as $cell) {
-                    $content .= '<td class="text-center">' .
-                        $cell->getValue() .
-                        '</td>';
-                }
-                $content .= '</tr>';
-            }
-            if ($mod == 9) {
-                $content .= '</table>';
-                array_push($contentList, $content);
-                $content = "";
-            }
-        }
-        if ($mod != 9 && $i > 0) {
-            $content .= '</table>';
-            array_push($contentList, $content);
-        }
-        return $contentList;
+        echo $this->view->displayEndDiv();
     }
 }

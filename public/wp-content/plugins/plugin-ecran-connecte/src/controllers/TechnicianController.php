@@ -61,9 +61,6 @@ class TechnicianController extends UserController implements Schedule
      *                de l'insertion.
      *
      *
-     * @throws Exception Si une erreur se produit lors de l'insertion dans la base
-     *                   de données (facultatif, selon l'implémentation de `insert`
-     *                   dans le modèle).
      *
      * @version 1.0
      * @date 2024-10-15

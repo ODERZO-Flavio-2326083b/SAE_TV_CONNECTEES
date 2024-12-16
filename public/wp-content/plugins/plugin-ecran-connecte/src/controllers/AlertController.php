@@ -47,7 +47,7 @@ class AlertController extends Controller
      * push est envoyée via OneSignal. Si une erreur survient lors de l'insertion,
      * un message d'erreur est affiché.
      *
-     * @return string Le formulaire de création d'alerte ou un message de confirmation/erreur.
+     * @return string|void Le formulaire de création d'alerte ou un message de confirmation/erreur.
      *
      *
      * @version 1.0
@@ -129,7 +129,7 @@ class AlertController extends Controller
      *
      * La méthode permet aussi de supprimer l'alerte si l'utilisateur en fait la demande.
      *
-     * @return string Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
+     * @return string|void Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
      *
      *
      * @version 1.0

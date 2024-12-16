@@ -109,7 +109,6 @@ class Controller
         // Vérifie si le fichier local existe
         for ($i = 0; $i <= 3; ++$i) {
             $file_path = $base_path . 'file' . $i . '/' . $code . '.ics'; // Crée le chemin du fichier
-            // TODO: Demander a propos du filesize
             if (file_exists($file_path) && filesize($file_path) > 100) // Vérifie si le fichier existe et a une taille suffisante
                 return $file_path; // Retourne le chemin du fichier
         }
@@ -170,7 +169,7 @@ class Controller
      * Cette méthode tente de convertir la chaîne de caractères donnée
      * en timestamp. Si la conversion échoue, elle retourne faux.
      * Sinon, elle décompose la date en année, mois et jour, et utilise
-     * la fonction `checkdate` pour valider la date.
+     * la fonction 'checkdate' pour valider la date.
      *
      * @param string $date La chaîne de caractères représentant la date à vérifier
      *                     au format 'YYYY-MM-DD'.

@@ -6,7 +6,7 @@ use Controllers\InformationRestController;
 use Controllers\ProfileRestController;
 use Models\Localisation;
 
-include __DIR__ . '/config-notifs.php';
+include_once __DIR__ . '/config-notifs.php';
 include_once 'vendor/R34ICS/R34ICS.php';
 include 'widgets/WidgetAlert.php';
 include 'widgets/WidgetWeather.php';
@@ -258,26 +258,6 @@ $result = add_role(
 );
 
 $result = add_role(
-    'etudiant',
-    __('Etudiant'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
-
-$result = add_role(
-    'enseignant',
-    __('Enseignant'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
-
-$result = add_role(
     'technicien',
     __('Technicien'),
     array(
@@ -287,15 +267,6 @@ $result = add_role(
     )
 );
 
-$result = add_role(
-    'directeuretude',
-    __('Directeur etude'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
 $result = add_role(
     'informationposter',
     __('informationPoster'),

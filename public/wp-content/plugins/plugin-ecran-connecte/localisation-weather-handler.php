@@ -58,7 +58,7 @@ function handleMeteoAjaxData() {
 		));
 	} else {
 		// si les données ne sont pas présentes, envoyer une erreur
-		wp_send_json_error('Données manquantes ; Latitude: '.$_POST['latitude'].' ; Longitude: '.$_POST['longitude']);
+		wp_send_json_error('Données manquantes ; Latitude: ' . $_POST['latitude'] . ' ; Longitude: ' . $_POST['longitude']);
 	}
 }
 

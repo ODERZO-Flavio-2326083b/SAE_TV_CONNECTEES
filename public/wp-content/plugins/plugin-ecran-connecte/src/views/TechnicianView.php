@@ -43,8 +43,8 @@ class TechnicianView extends UserView
      * une case à cocher pour sélectionner le technicien, et le login du technicien.
      *
      * @param array $users Un tableau d'objets représentant les techniciens à afficher.
-     *                     Chaque objet doit implémenter la méthode `getId()` pour
-     *                     obtenir l'identifiant et `getLogin()` pour obtenir le login.
+     *                     Chaque objet doit implémenter la méthode 'getId()' pour
+     *                     obtenir l'identifiant et 'getLogin()' pour obtenir le login.
      *
      * @return string Le code HTML du tableau contenant la liste des techniciens.
      *

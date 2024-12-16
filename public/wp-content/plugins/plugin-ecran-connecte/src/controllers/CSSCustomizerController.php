@@ -28,8 +28,8 @@ class CSSCustomizerController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->model->updateColor();
         }
-        $this->departement = new Department();
-        $listDepartement = $this->departement->getAllDepts();
+        $departement = new Department();
+        $listDepartement = $departement->getAllDepts();
         $listDepName = []; // Initialiser un tableau vide
 
         foreach ($listDepartement as $e) {

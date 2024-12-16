@@ -24,12 +24,10 @@ class Model
      * Initialise la connexion à la base de données en utilisant PDO.
      *
      * Cette méthode crée une nouvelle instance de PDO pour établir une connexion
-     * à la base de données MySQL spécifiée par les constantes `DB_HOST`, `DB_NAME`,
-     * `DB_USER` et `DB_PASSWORD`. Le mode d'erreur est configuré pour être silencieux,
+     * à la base de données MySQL spécifiée par les constantes 'DB_HOST', 'DB_NAME',
+     * 'DB_USER' et 'DB_PASSWORD'. Le mode d'erreur est configuré pour être silencieux,
      * ce qui signifie que les erreurs ne seront pas rapportées par des exceptions
      * mais peuvent toujours être récupérées par des méthodes PDO appropriées.
-     *
-     * @throws PDOException Si la connexion à la base de données échoue.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -44,13 +42,11 @@ class Model
      * Initialise la connexion à la base de données pour le mode visualiseur en utilisant PDO.
      *
      * Cette méthode crée une nouvelle instance de PDO pour établir une connexion
-     * à la base de données MySQL spécifiée par les constantes `DB_HOST_VIEWER`,
-     * `DB_NAME_VIEWER`, `DB_USER_VIEWER` et `DB_PASSWORD_VIEWER`. Le mode d'erreur
+     * à la base de données MySQL spécifiée par les constantes 'DB_HOST_VIEWER',
+     * 'DB_NAME_VIEWER', 'DB_USER_VIEWER' et 'DB_PASSWORD_VIEWER'. Le mode d'erreur
      * est configuré pour être silencieux, ce qui signifie que les erreurs ne seront
      * pas rapportées par des exceptions, mais peuvent être récupérées par les
      * méthodes appropriées de PDO.
-     *
-     * @throws PDOException Si la connexion à la base de données échoue.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -65,12 +61,10 @@ class Model
      * Récupère une instance de la connexion à la base de données.
      *
      * Cette méthode initialise la connexion à la base de données en appelant la méthode
-     * `setDatabase()`, puis retourne l'instance de PDO de la base de données.
+     * 'setDatabase()', puis retourne l'instance de PDO de la base de données.
      * Cela permet d'accéder à la base de données pour exécuter des requêtes SQL.
      *
      * @return PDO L'instance de connexion à la base de données.
-     *
-     * @throws PDOException Si la connexion échoue lors de l'initialisation.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -84,13 +78,11 @@ class Model
      * Récupère une instance de la connexion à la base de données pour les utilisateurs.
      *
      * Cette méthode initialise la connexion à la base de données en appelant la méthode
-     * `setDatabaseViewer()`, puis retourne l'instance de PDO de la base de données.
+     * 'setDatabaseViewer()', puis retourne l'instance de PDO de la base de données.
      * Cette connexion est généralement utilisée pour les opérations de lecture et
      * d'affichage des données accessibles aux utilisateurs.
      *
      * @return PDO L'instance de connexion à la base de données pour les utilisateurs.
-     *
-     * @throws PDOException Si la connexion échoue lors de l'initialisation.
      *
      * @version 1.0
      * @date 2024-10-15

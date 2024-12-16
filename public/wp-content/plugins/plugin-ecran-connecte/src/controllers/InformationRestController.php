@@ -136,7 +136,7 @@ class InformationRestController extends WP_REST_Controller
      * Récupère une liste d'éléments d'information.
      *
      * Cette méthode traite la requête pour récupérer les éléments d'information
-     * avec un support pour la pagination via les paramètres `offset` et `limit`.
+     * avec un support pour la pagination via les paramètres 'offset' et 'limit'.
      * Elle crée une instance du gestionnaire d'informations et renvoie
      * une réponse REST avec la liste des informations.
      *
@@ -327,7 +327,7 @@ class InformationRestController extends WP_REST_Controller
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
      * pour créer un nouvel élément d'information. La vérification est effectuée
-     * en utilisant la méthode `get_items_permissions_check`, qui permet uniquement
+     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
      * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
@@ -346,7 +346,7 @@ class InformationRestController extends WP_REST_Controller
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
      * pour récupérer un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode `get_items_permissions_check`, qui permet uniquement
+     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
      * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
@@ -365,7 +365,7 @@ class InformationRestController extends WP_REST_Controller
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
      * pour mettre à jour un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode `get_items_permissions_check`, qui permet uniquement
+     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
      * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
@@ -384,7 +384,7 @@ class InformationRestController extends WP_REST_Controller
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
      * pour supprimer un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode `get_items_permissions_check`, qui permet uniquement
+     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
      * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
