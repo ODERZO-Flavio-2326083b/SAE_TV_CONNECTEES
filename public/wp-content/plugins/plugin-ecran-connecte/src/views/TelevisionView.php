@@ -3,6 +3,7 @@
 namespace Views;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 
 /**
@@ -31,6 +32,9 @@ class TelevisionView extends UserView
      * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
      *                          Chaque objet doit implémenter les méthodes nécessaires
      *                          pour l'affichage des informations.
+     * @param Department[] $allDepts Liste de tous les objets départements
+     * @param bool $isAdmin Booléen, true si l'utilisateur est un admin
+     * @param int|null $currDept (optionnel) Département actuel de l'utilisateur, null s'il est un admin
      *
      * @return string Le code HTML du formulaire de création de compte télévision.
      *
@@ -38,7 +42,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormTelevision($years, $groups, $halfGroups, $dept, $isAdmin, $currDept) {
+    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin, int $currDept = null): string {
         $disabled = $isAdmin ? '' : 'disabled';
 
 		$form = '
@@ -61,7 +65,7 @@ class TelevisionView extends UserView
                 <label for="departementDirec">Département</label>
                 <br>    
                 <select name="deptIdTv" class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($dept) . '
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <div class="form-group">

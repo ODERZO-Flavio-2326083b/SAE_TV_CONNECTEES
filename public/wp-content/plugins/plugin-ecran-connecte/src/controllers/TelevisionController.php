@@ -75,15 +75,17 @@ class TelevisionController extends UserController implements Schedule
 	    $deptModel = new Department();
 
 	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche les départements
-	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTv');
             $password = filter_input(INPUT_POST, 'pwdTv');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
             $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-			$deptId = filter_input(INPUT_POST, 'deptIdTv');
+			// les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+	        // de pouvoir le changer
+			$deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
@@ -124,7 +126,6 @@ class TelevisionController extends UserController implements Schedule
         $years = $codeAde->getAllFromType('year');
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
-
 
 	    $allDepts = $deptModel->getAllDepts();
 

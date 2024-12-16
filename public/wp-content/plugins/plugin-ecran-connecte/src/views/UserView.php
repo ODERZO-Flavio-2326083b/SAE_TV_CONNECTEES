@@ -24,10 +24,11 @@ class UserView extends View
 	 *
 	 * @return string
 	 */
-    public function buildDepartmentOptions(array $depts): string {
+    public function buildDepartmentOptions(array $depts, int $currDept = null): string {
         $string = "";
         foreach ($depts as $departement) {
-            $string .= '<option value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
+			$selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
+            $string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
         }
         return $string;
     }

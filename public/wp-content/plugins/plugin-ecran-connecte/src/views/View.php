@@ -342,7 +342,7 @@ class View
      * @date 2024-10-15
      */
     public function displayBadPassword() {
-        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas correctes </p>');
+        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas corrects </p>');
     }
 
     /**
@@ -364,7 +364,7 @@ class View
     public function displayErrorDouble($doubles) {
         $content = "";
         foreach ($doubles as $double) {
-            $content .= '<p class="alert alert-danger">' . $double . ' a rencontré un problème lors de l\'enregistrement, vérifié son login et son email !</p>';
+            $content .= '<p class="alert alert-danger">' . $double . ' a rencontré un problème lors de l\'enregistrement, vérifiez son login et son email !</p>';
         }
         $this->buildModal('Erreur durant l\'inscription', $content);
     }
@@ -386,33 +386,26 @@ class View
         $this->buildModal('Inscription validée', '<p class=\'alert alert-success\'>Votre inscription a été validée.</p>');
     }
 
-    /**
-     * Display a message if the extension of the file is wrong
-     */
-    public function displayWrongExtension() {
-        $this->buildModal('Mauvais fichier !', '<p class="alert alert-danger"> Mauvaise extension de fichier !</p>');
-    }
-
-    /**
-     * Display a message if the file isn't a good file
-     */
-    public function displayWrongFile() {
-        $this->buildModal('Mauvais fichier !', '<p class="alert alert-danger"> Vous utilisez un mauvais fichier excel / ou vous avez changé le nom des colonnes</p>');
-    }
-
-    /**
-     * Display a message if the modification is a success
-     */
-    public function displayModificationValidate($redirect = null) {
+	/**
+	 * Affiche un message lors du succès d'une modification
+	 *
+	 * @param $redirect string|null (optionnel) URL vers laquelle rediriger l'utilisateur
+	 *
+	 * @return void
+	 */
+    public function displayModificationValidate(string $redirect = null): void {
         $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée</p>', $redirect);
     }
 
-    /**
-     * Display a message if the creation of an user has failed
-     */
-    public function displayErrorInsertion() {
+	/**
+	 * Affiche un message lors de l'echec d'une insertion
+	 *
+	 * @return void
+	 */
+    public function displayErrorInsertion(): void {
         $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e) </p>');
     }
+
 
     /**
      * Affiche un modal d'erreur indiquant que le formulaire n'a pas été correctement rempli.
@@ -428,12 +421,17 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function errorMessageInvalidForm() {
+    public function errorMessageInvalidForm(): void {
         $this->buildModal('Le formulaire n\'a pas été correctement remplie', '<p class="alert alert-danger">Le formulaire a été mal rempli, veuillez revoir les données rentrées et réessayez.</p>');
     }
 
-
-    public function errorMessageCantAdd() {
+	/**
+	 * Affiche un modal d'erreur indiquant que
+	 * le formulaire d'information ou d'alertes a mal été rempli
+	 *
+	 * @return void
+	 */
+    public function errorMessageCantAdd(): void {
         $this->buildModal('L\'ajout a échoué', '<p class="alert alert-danger">Une erreur s\'est produite lors de l\'envoi du formulaire, veuillez réessayer après avoir vérifié vos informations.</p>');
     }
 }

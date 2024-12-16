@@ -60,8 +60,6 @@ class TechnicianController extends UserController implements Schedule
      *                ou un message de validation ou d'erreur selon le résultat
      *                de l'insertion.
      *
-     *
-     *
      * @version 1.0
      * @date 2024-10-15
      */
@@ -98,11 +96,11 @@ class TechnicianController extends UserController implements Schedule
             }
         }
         $deptModel = new Department();
-        $dept = $deptModel->getAllDepts();
+        $allDepts = $deptModel->getAllDepts();
 
 		$currDept = $deptModel->get(get_current_user_id());
 
-        return $this->view->displayFormTechnician($dept, $currDept);
+        return $this->view->displayFormTechnician($allDepts, $currDept);
     }
 
     /**

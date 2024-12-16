@@ -19,27 +19,27 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $login;
+    private string $login;
 
     /**
      * @var string
      */
-    private $password;
+    private string $password;
 
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
-     * @var string (Student | Teacher | Television | Secretary | Study Director | Technician)
+     * @var string (television | secretaire | technicien)
      */
-    private $role;
+    private string $role;
 
     /**
      * @var CodeAde[]
@@ -62,12 +62,12 @@ class User extends Model implements Entity, JsonSerializable
      * et 'directeuretude', un nouvel objet 'CodeAde' est créé et inséré,
      * puis associé à l'utilisateur.
      *
-     * @return int L'ID de l'utilisateur créé en cas de succès.
+     * @return int|\WP_Error L'ID de l'utilisateur créé en cas de succès.
      *
      * @version 1.0
      * @date 2024-10-15
      */
-    public function insert() {
+    public function insert(): int|\WP_Error {
         $userData = array(
             'user_login' => $this->getLogin(),
             'user_pass' => $this->getPassword(),
@@ -152,7 +152,7 @@ class User extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function delete() {
+    public function delete(): int {
         $database = $this->getDatabase();
         $request = $database->prepare('DELETE FROM wp_users WHERE ID = :id');
 
@@ -178,12 +178,16 @@ class User extends Model implements Entity, JsonSerializable
      * méthode retourne 'false'.
      *
      * @param int $id L'identifiant de l'utilisateur à récupérer.
-     * @return mixed L'entité utilisateur si trouvée, sinon 'false'.
+     *
+     * @return false|User L'entité utilisateur si trouvée, sinon 'false'.
      * @version 1.0
      * @date 2024-10-15
      */
-    public function get($id) {
-        $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email FROM wp_users WHERE ID = :id LIMIT 1');
+    public function get( $id ): false|User {
+        $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email, d.dept_id as dept_id 
+														FROM wp_users wp
+														INNER JOIN ecran_user_departement d ON d.user_id = wp.ID
+														WHERE ID = :id LIMIT 1');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -193,13 +197,6 @@ class User extends Model implements Entity, JsonSerializable
             return $this->setEntity($request->fetch());
         }
         return false;
-        /*
-        $author = get_user_by('id', $id);
-
-        $this->setLogin($author->user_login);
-
-        return $this;
-        */
     }
 
     /**
@@ -218,11 +215,11 @@ class User extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getList($begin = 0, $numberElement = 25) {
+    public function getList(int $begin = 0, int $numberElement = 25): array {
         $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email FROM wp_users user JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement');
 
-        $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
-        $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
+        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
+        $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
 
         $request->execute();
 
@@ -273,13 +270,14 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @param array $users Un tableau d'objets utilisateur pour lesquels
      *                     les codes doivent être récupérés.
+     *
      * @return array Un tableau d'objets utilisateur mis à jour avec leurs
      *               codes associés.
      *
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getMyCodes($users) {
+    public function getMyCodes(array $users): array {
         foreach ($users as $user) {
             $request = $this->getDatabase()->prepare('SELECT code.id, type, title, code FROM ecran_code_ade code, ecran_code_user user WHERE user.user_id = :id AND user.code_ade_id = code.id ORDER BY code.id LIMIT 100');
 
@@ -310,6 +308,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @param string $login Le nom d'utilisateur à vérifier.
      * @param string $email L'email à vérifier.
+     *
      * @return array Un tableau d'objets utilisateur correspondants, ou un tableau vide
      *               si aucun utilisateur n'est trouvé.
      *
@@ -403,7 +402,7 @@ class User extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function deleteCode() {
+    public function deleteCode(): int {
         $request = $this->getDatabase()->prepare('DELETE FROM ecran_code_delete_account WHERE user_id = :id');
 
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
@@ -423,7 +422,7 @@ class User extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getCodeDeleteAccount() {
+    public function getCodeDeleteAccount(): ?string {
         $request = $this->getDatabase()->prepare('SELECT code FROM ecran_code_delete_account WHERE user_id = :id LIMIT 1');
 
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
@@ -562,23 +561,23 @@ class User extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @param $role
+     * @param $role string
      */
-    public function setRole($role) {
+    public function setRole(string $role): void {
         $this->role = $role;
     }
 
     /**
      * @return CodeAde[]
      */
-    public function getCodes() {
+    public function getCodes(): array {
         return $this->codes;
     }
 
     /**
      * @param CodeAde[] $codes
      */
-    public function setCodes($codes) {
+    public function setCodes(array $codes): void {
         $this->codes = $codes;
     }
 
