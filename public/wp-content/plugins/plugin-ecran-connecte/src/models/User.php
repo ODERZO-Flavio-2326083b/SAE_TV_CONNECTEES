@@ -495,24 +495,6 @@ class User extends Model implements Entity, JsonSerializable
 
         $entity->setCodes($codes);
 
-        if (function_exists('get_user_by')) {
-            $user_info = get_user_by('id', $entity->getId());
-            if (in_array('etudiant', $user_info->roles)) {
-                $codesSort = [new CodeAde(), new CodeAde(), new CodeAde()];
-                foreach ($entity->getCodes() as $code) {
-                    if ($code instanceof CodeAde) {
-                        if ($code->getType() === 'year') {
-                            $codesSort[0] = $code;
-                        } else if ($code->getType() === 'group') {
-                            $codesSort[1] = $code;
-                        } else {
-                            $codesSort[2] = $code;
-                        }
-                    }
-                }
-                $entity->setCodes($codesSort);
-            }
-        }
         return $entity;
     }
 
