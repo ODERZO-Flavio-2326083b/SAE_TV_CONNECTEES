@@ -169,7 +169,7 @@ class InformationController extends Controller
             $this->view->displayContentSelect('image', $this->view->displayFormImg()) .
             $this->view->displayContentSelect('pdf', $this->view->displayFormPDF()) .
             $this->view->displayContentSelect('event', $this->view->displayFormEvent()) .
-            $this->view->displayEndDiv() .
+            '</div>' .
             $this->view->contextCreateInformation();
     }
 
@@ -477,7 +477,7 @@ class InformationController extends Controller
                 $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
             }
         }
-        echo $this->view->displayEndDiv();
+        echo '</div>';
     }
 
     /**
@@ -553,8 +553,8 @@ class InformationController extends Controller
             } else {
                 echo '<img src="' . TV_UPLOAD_PATH . $event->getContent() . '" alt="' . $event->getTitle() . '">';
             }
-            echo $this->view->displayEndDiv();
+            echo '</div>';
         }
-        echo $this->view->displayEndDiv();
+        echo '</div>';
     }
 }

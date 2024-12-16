@@ -142,7 +142,7 @@ class SecretaryController extends UserController
             $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
             $this->view->displayContentSelect('television', $television->insert()) .
-            $this->view->displayEndDiv() .
+            '</div>' .
             $this->view->contextCreateUser();
     }
 
@@ -174,7 +174,7 @@ class SecretaryController extends UserController
             $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
             $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
             $this->view->displayContentSelect('television', $television->displayAllTv()) .
-            $this->view->displayEndDiv();
+            '</div>';
     }
 
     /**

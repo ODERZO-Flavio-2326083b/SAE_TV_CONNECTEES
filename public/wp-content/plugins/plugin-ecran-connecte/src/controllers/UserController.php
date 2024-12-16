@@ -201,7 +201,7 @@ class UserController extends Controller
         $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
 
 
-        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . $this->view->displayEndDiv();
+        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . '</div>';
 
         return $string;
     }

@@ -328,15 +328,6 @@ class View
     }
 
     /**
-     * Close a div
-     *
-     * @return string
-     */
-    public function displayEndDiv() {
-        return '</div>';
-    }
-
-    /**
      * Affiche un modal d'erreur pour indiquer que les mots de passe fournis sont incorrects.
      *
      * Cette méthode utilise la fonction 'buildModal' pour générer un modal Bootstrap

@@ -250,11 +250,11 @@ class TelevisionController extends UserController implements Schedule
                         if ($this->displaySchedule($code->getCode())) {
                             $string .= $this->view->displayMidSlide();
                             $string .= $this->displaySchedule($code->getCode());
-                            $string .= $this->view->displayEndDiv();
+                            $string .= '</div>';
                         }
                     }
                 }
-                $string .= $this->view->displayEndDiv();
+                $string .= '</div>';
             }
         } else {
             if (!empty($user->getCodes()[0])) {
