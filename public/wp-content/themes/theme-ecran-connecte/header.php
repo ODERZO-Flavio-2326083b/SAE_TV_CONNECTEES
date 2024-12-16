@@ -51,7 +51,7 @@ if(in_array('television', $current_user->roles)) : ?>
                 $user_id = get_current_user_id();
                 $user_info = get_userdata($user_id); ?>
             <ul class="navbar-nav mr-auto">
-            <?php if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles) || in_array('directeuretude', $user_info->roles)|| in_array('enseignant', $user_info->roles)): ?>
+            <?php if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)): ?>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -61,7 +61,7 @@ if(in_array('television', $current_user->roles)) : ?>
                     </div>
                 </li>
             <?php endif;
-            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles) || in_array('directeuretude', $user_info->roles) || in_array('enseignant', $user_info->roles)) : ?>
+            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)) : ?>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alertes</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -37,7 +37,7 @@ class ProfileRestController extends WP_REST_Controller
     /**
      * Enregistre les routes pour l'API REST "Profile".
      *
-     * Cette méthode utilise `register_rest_route()` pour définir les routes
+     * Cette méthode utilise 'register_rest_route()' pour définir les routes
      * disponibles dans l'API REST sous le namespace spécifié. Elle enregistre
      * une route accessible en méthode "GET" pour récupérer des informations
      * de profil d'utilisateur, avec une vérification des permissions et un

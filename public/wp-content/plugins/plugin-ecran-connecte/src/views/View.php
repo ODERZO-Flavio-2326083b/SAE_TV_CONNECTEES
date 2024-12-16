@@ -144,7 +144,7 @@ class View
      * Génère un lien HTML pour modifier un élément.
      *
      * Cette méthode crée un lien qui redirige vers une page de modification spécifiée.
-     * Le lien est affiché sous la forme d'un élément `<a>` HTML avec le texte "Modifier".
+     * Le lien est affiché sous la forme d'un élément '<a>' HTML avec le texte "Modifier".
      *
      * @param string $link L'URL vers laquelle le lien doit rediriger pour modifier l'élément.
      *
@@ -180,7 +180,7 @@ class View
     /**
      * Génère le début d'un conteneur de sélection multiple sous forme de navigation par onglets.
      *
-     * Cette méthode crée un élément HTML `<nav>` contenant une structure de navigation par onglets
+     * Cette méthode crée un élément HTML '<nav>' contenant une structure de navigation par onglets
      * pour les sélections multiples. Cela peut être utilisé pour organiser des options
      * ou des catégories, permettant à l'utilisateur de choisir plusieurs éléments de manière intuitive.
      *
@@ -201,7 +201,7 @@ class View
      * Cette méthode crée un lien HTML qui sert de titre pour un onglet de navigation.
      * Il peut être marqué comme actif en fonction de l'argument fourni.
      *
-     * @param string $id L'identifiant de l'onglet, utilisé pour les attributs `id` et `href`.
+     * @param string $id L'identifiant de l'onglet, utilisé pour les attributs 'id' et 'href'.
      * @param string $title Le texte affiché pour le titre de l'onglet.
      * @param bool $active Indique si l'onglet doit être marqué comme actif (true) ou non (false). Par défaut, il est false.
      *
@@ -339,7 +339,7 @@ class View
     /**
      * Affiche un modal d'erreur pour indiquer que les mots de passe fournis sont incorrects.
      *
-     * Cette méthode utilise la fonction `buildModal` pour générer un modal Bootstrap
+     * Cette méthode utilise la fonction 'buildModal' pour générer un modal Bootstrap
      * avec un message d'alerte en rouge, signalant à l'utilisateur que les deux mots
      * de passe qu'il a saisis ne correspondent pas ou ne sont pas corrects.
      *
