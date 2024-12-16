@@ -126,23 +126,17 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     public function createUsers() {
-        $teacher = new TeacherController();
-        $studyDirector = new StudyDirectorController();
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
 
         return
             $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('teacher', 'Enseignants', true) .
-            $this->view->displayTitleSelect('studyDirector', 'Directeurs d\'études') .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires') .
+            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->view->displayTitleSelect('technician', 'Technicien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('teacher', $teacher->insert(), true) .
-            $this->view->displayContentSelect('studyDirector', $studyDirector->insert()) .
-            $this->view->displayContentSelect('secretary', $secretary->insert()) .
+            $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
             $this->view->displayContentSelect('television', $television->insert()) .
             $this->view->displayEndDiv() .
@@ -164,23 +158,17 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     public function displayUsers() {
-        $teacher = new TeacherController();
-        $studyDirector = new StudyDirectorController();
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
 
         return
             $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('teacher', 'Enseignants', true) .
-            $this->view->displayTitleSelect('studyDirector', 'Directeurs d\'études') .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires') .
+            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->view->displayTitleSelect('technician', 'Technicien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('teacher', $teacher->displayAllTeachers(), true) .
-            $this->view->displayContentSelect('studyDirector', $studyDirector->displayAllStudyDirector()) .
-            $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary()) .
+            $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
             $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
             $this->view->displayContentSelect('television', $television->displayAllTv()) .
             $this->view->displayEndDiv();
@@ -207,16 +195,7 @@ class SecretaryController extends UserController
             $user = $this->model->get($id);
             $wordpressUser = get_user_by('id', $id);
 
-            if (in_array("etudiant", $wordpressUser->roles)) {
-                $controller = new StudentController();
-                return $controller->modify($user);
-            } elseif (in_array("enseignant", $wordpressUser->roles)) {
-                $controller = new TeacherController();
-                return $controller->modify($user);
-            } elseif (in_array("directeuretude", $wordpressUser->roles)) {
-                $controller = new StudyDirectorController();
-                return $controller->modify($user);
-            } elseif (in_array("television", $wordpressUser->roles)) {
+            if (in_array("television", $wordpressUser->roles)) {
                 $controller = new TelevisionController();
                 return $controller->modify($user);
             } else {
@@ -233,7 +212,7 @@ class SecretaryController extends UserController
      * Cette méthode vérifie si une action de suppression a été demandée. Si c'est le cas,
      * elle parcourt les rôles spécifiés (étudiant, enseignant, directeur, technicien, secrétaire, télévision)
      * et vérifie si des utilisateurs correspondant à ces rôles ont été sélectionnés. Pour chaque utilisateur
-     * sélectionné, la méthode appelle `deleteUser` pour effectuer la suppression de l'utilisateur correspondant.
+     * sélectionné, la méthode appelle 'deleteUser' pour effectuer la suppression de l'utilisateur correspondant.
      *
      * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression des utilisateurs.
      *
@@ -243,7 +222,7 @@ class SecretaryController extends UserController
      */
     public function deleteUsers() {
         $actionDelete = filter_input(INPUT_POST, 'delete');
-        $roles = ['Etu', 'Teacher', 'Direc', 'Tech', 'Secre', 'Tele'];
+        $roles = ['Tech', 'Secre', 'Tele'];
 
         if (isset($actionDelete)) {
             foreach ($roles as $role) {
@@ -261,7 +240,7 @@ class SecretaryController extends UserController
      * Supprime un utilisateur spécifié par son identifiant.
      *
      * Cette méthode récupère l'utilisateur à partir de la base de données à l'aide de l'identifiant
-     * fourni, puis appelle la méthode `delete` sur l'instance de l'utilisateur pour le supprimer
+     * fourni, puis appelle la méthode 'delete' sur l'instance de l'utilisateur pour le supprimer
      * de la base de données.
      *
      * @param int $id L'identifiant de l'utilisateur à supprimer.

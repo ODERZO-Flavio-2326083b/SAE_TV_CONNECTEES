@@ -26,6 +26,7 @@ add_action('get_header', 'wp_maintenance_mode');
 
 function load_dynamic_css() {
 
+	$departement = "default";
     if ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
         $departement = "default";
     }
@@ -33,9 +34,9 @@ function load_dynamic_css() {
         $departement = "default";
     }
     else{
-        $departmentModel = new Department();
-        $departementActuel = $departmentModel->get(get_current_user_id());
-        $departement = $departementActuel->getName();
+        //$departmentModel = new Department();
+        //$departementActuel = $departmentModel->get(get_current_user_id());
+        //$departement = $departementActuel->getName();
 
 
     }
@@ -127,7 +128,7 @@ function my_login_logo_url_title()
 {
     return get_bloginfo('name');
 }
-add_filter('login_headertitle', 'my_login_logo_url_title');
+add_filter('login_headertext', 'my_login_logo_url_title');
 
 // Register a new navigation menu
 function add_Main_Nav()

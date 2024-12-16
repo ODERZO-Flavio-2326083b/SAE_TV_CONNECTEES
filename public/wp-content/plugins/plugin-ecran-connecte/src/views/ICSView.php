@@ -83,15 +83,6 @@ class ICSView extends View
                                                     $string .= $this->getContent($event);
                                                 }
                                             }
-                                        } elseif (in_array('enseignant', $current_user->roles) || in_array('directeuretude', $current_user->roles)
-                                            || in_array('etudiant', $current_user->roles)) {
-                                            if ($current_study > 9) {
-                                                break;
-                                            }
-                                            if ($this->getContent($event)) {
-                                                ++$current_study;
-                                                $string .= $this->getContent($event, $day);
-                                            }
                                         } else {
                                             if ($current_study > 9) {
                                                 break;
@@ -165,7 +156,7 @@ class ICSView extends View
     /**
      * Génère une chaîne HTML représentant la date dans un format localisé.
      *
-     * Cette méthode retourne un titre HTML (`<h2>`) contenant la date complète (jour de la semaine, jour, mois)
+     * Cette méthode retourne un titre HTML ('<h2>') contenant la date complète (jour de la semaine, jour, mois)
      * formatée en fonction de la localisation de WordPress. La méthode ajoute un jour au jour fourni
      * pour calculer le jour de la semaine.
      *
@@ -192,14 +183,14 @@ class ICSView extends View
      * et construit une représentation formatée de l'événement, incluant
      * sa durée, son emplacement et sa description. Si l'événement est en
      * cours, elle retourne les détails formatés. Sinon, elle retourne
-     * `false`.
+     * 'false'.
      *
      * @param array $event  Un tableau associatif représentant l'événement,
      *                      contenant les clés 'deb', 'fin', 'label', et 'description'.
      * @param int $day      Le jour du mois (optionnel). Par défaut, il s'agit du jour actuel.
      *
      * @return string|false  Une chaîne formatée représentant l'événement actif
-     *                       ou `false` si l'événement n'est pas actif.
+     *                       ou 'false' si l'événement n'est pas actif.
      *
      *
      * @version 1.0
@@ -245,7 +236,7 @@ class ICSView extends View
      *
      * @param array $datas   Un tableau contenant les données à afficher dans les cellules du tableau.
      * @param bool $active   Un indicateur optionnel pour déterminer si la ligne doit être
-     *                       marquée comme active (par défaut, `false`).
+     *                       marquée comme active (par défaut, 'false').
      *
      * @return string       Une chaîne HTML représentant la ligne du tableau.
      *
@@ -255,9 +246,9 @@ class ICSView extends View
      */
     public function displayLineSchedule($datas, $active = false) {
         if ($active) {
-            $string = '<tr class="table-success" scope="row">';
+            $string = '<tr class="table-success">';
         } else {
-            $string = '<tr scope="row">';
+            $string = '<tr>';
         }
         foreach ($datas as $data) {
             $string .= '<td class="text-center">' . $data . '</td>';
@@ -269,7 +260,7 @@ class ICSView extends View
     /**
      * Génère le code HTML de fin pour l'affichage d'un emploi du temps.
      *
-     * Cette méthode clôt le tableau HTML en fermant les balises `<tbody>` et `<table>`.
+     * Cette méthode clôt le tableau HTML en fermant les balises '<tbody>' et '<table>'.
      *
      * @return string       Une chaîne HTML représentant la fin du tableau de l'emploi du temps.
      *

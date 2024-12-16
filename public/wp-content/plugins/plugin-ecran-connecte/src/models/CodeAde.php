@@ -36,23 +36,17 @@ class CodeAde extends Model implements Entity, JsonSerializable
     private $code;
 
     /**
-     * Envoie une notification aux cibles spécifiées via l'API OneSignal.
+     Insère un nouvel enregistrement dans la table 'ecran_code_ade'.
      *
-     * Si aucune cible spécifique n'est définie, la notification est envoyée à tous les utilisateurs.
-     * Si des cibles sont spécifiées, elles sont converties en filtres basés sur leurs codes ADE et
-     * la notification est envoyée uniquement à ces utilisateurs.
+     * Cette méthode utilise les propriétés de l'objet courant pour insérer
+     * un enregistrement dans la base de données. Les champs 'type', 'title' et 'code'
+     * doivent être préalablement définis via les méthodes 'setType', 'setTitle' et 'setCode'.
      *
-     * @param array|null $targets  Un tableau d'objets cibles (avec des codes ADE), ou null pour inclure tous les utilisateurs.
-     * @param string $message      Le message de notification à envoyer.
-     *
-     * @return string Réponse de l'API OneSignal après l'envoi de la notification.
-     *
-     * @throws Exception Si une erreur survient lors de l'envoi de la notification.
-     *
+     * @return false|string L'ID de l'enregistrement inséré, tel que retourné par la base de données.
      *
      * @version 1.0
      * @date 2024-10-15
-     */
+	 */
     public function insert() {
         $database = $this->getDatabase();
         $request = $database->prepare('INSERT INTO ecran_code_ade (type, title, code) VALUES (:type, :title, :code)');
@@ -67,11 +61,11 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Met à jour un enregistrement existant dans la table `ecran_code_ade`.
+     * Met à jour un enregistrement existant dans la table 'ecran_code_ade'.
      *
      * Cette méthode prépare et exécute une requête de mise à jour pour modifier
-     * les colonnes `title`, `code` et `type` d'un enregistrement spécifique
-     * identifié par son `id`. La méthode retourne le nombre de lignes affectées
+     * les colonnes 'title', 'code' et 'type' d'un enregistrement spécifique
+     * identifié par son 'id'. La méthode retourne le nombre de lignes affectées
      * par l'opération.
      *
      * @return int Le nombre de lignes mises à jour.
@@ -93,10 +87,10 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Supprime un enregistrement dans la table `ecran_code_ade`.
+     * Supprime un enregistrement dans la table 'ecran_code_ade'.
      *
      * Cette méthode prépare et exécute une requête pour supprimer
-     * un enregistrement identifié par son `id`. La méthode retourne le
+     * un enregistrement identifié par son 'id'. La méthode retourne le
      * nombre de lignes affectées par l'opération, ce qui indique
      * si la suppression a été effectuée avec succès.
      *
@@ -116,15 +110,15 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère un enregistrement de la table `ecran_code_ade` en fonction de son identifiant.
+     * Récupère un enregistrement de la table 'ecran_code_ade' en fonction de son identifiant.
      *
      * Cette méthode prépare et exécute une requête pour récupérer
-     * les informations d'un code identifié par son `id`.
+     * les informations d'un code identifié par son 'id'.
      * Si l'enregistrement existe, il est renvoyé sous forme d'entité,
-     * sinon la méthode retourne `false`.
+     * sinon la méthode retourne 'false'.
      *
      * @param int $id L'identifiant du code à récupérer.
-     * @return mixed L'entité correspondante si trouvée, sinon `false`.
+     * @return mixed L'entité correspondante si trouvée, sinon 'false'.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -143,7 +137,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère une liste d'enregistrements de la table `ecran_code_ade`.
+     * Récupère une liste d'enregistrements de la table 'ecran_code_ade'.
      *
      * Cette méthode prépare et exécute une requête pour obtenir jusqu'à
      * 1000 enregistrements de codes, triés par identifiant dans l'ordre décroissant.
@@ -163,7 +157,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Vérifie si un code ou un titre existe déjà dans la table `ecran_code_ade`.
+     * Vérifie si un code ou un titre existe déjà dans la table 'ecran_code_ade'.
      *
      * Cette méthode prépare et exécute une requête pour sélectionner les enregistrements
      * dont le titre ou le code correspondent aux valeurs fournies. Elle limite les résultats
@@ -188,7 +182,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère tous les enregistrements de la table `ecran_code_ade` correspondant à un type donné.
+     * Récupère tous les enregistrements de la table 'ecran_code_ade' correspondant à un type donné.
      *
      * Cette méthode prépare et exécute une requête pour sélectionner tous les enregistrements
      * dont le type correspond à celui fourni. Les résultats sont triés par identifiant
@@ -211,7 +205,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère un enregistrement de la table `ecran_code_ade` correspondant à un code spécifique.
+     * Récupère un enregistrement de la table 'ecran_code_ade' correspondant à un code spécifique.
      *
      * Cette méthode prépare et exécute une requête pour sélectionner un enregistrement
      * dont le code correspond à celui fourni. Si un enregistrement est trouvé,
@@ -234,11 +228,11 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère une liste d'enregistrements de la table `ecran_code_ade` associés à un identifiant d'alerte.
+     * Récupère une liste d'enregistrements de la table 'ecran_code_ade' associés à un identifiant d'alerte.
      *
      * Cette méthode prépare et exécute une requête pour sélectionner les enregistrements
-     * de la table `ecran_code_ade` qui sont liés à une alerte spécifique, identifiée par son ID.
-     * La requête utilise une jointure avec la table `ecran_code_alert` pour récupérer les codes associés.
+     * de la table 'ecran_code_ade' qui sont liés à une alerte spécifique, identifiée par son ID.
+     * La requête utilise une jointure avec la table 'ecran_code_alert' pour récupérer les codes associés.
      *
      * @param int $id L'identifiant de l'alerte pour laquelle les codes doivent être récupérés.
      * @return array Une liste d'entités correspondant aux codes associés à l'alerte.
@@ -257,15 +251,15 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Crée une instance de `CodeAde` à partir des données fournies.
+     * Crée une instance de 'CodeAde' à partir des données fournies.
      *
-     * Cette méthode initialise un nouvel objet `CodeAde` en utilisant les données
+     * Cette méthode initialise un nouvel objet 'CodeAde' en utilisant les données
      * passées sous forme de tableau associatif. Les propriétés de l'objet sont
      * définies en fonction des valeurs correspondantes dans le tableau.
      *
      * @param array $data Un tableau associatif contenant les données nécessaires pour initialiser l'objet.
      *                    Doit contenir les clés 'id', 'title', 'code' et 'type'.
-     * @return CodeAde L'objet `CodeAde` créé et initialisé avec les données fournies.
+     * @return CodeAde L'objet 'CodeAde' créé et initialisé avec les données fournies.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -282,16 +276,16 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Crée une liste d'instances de `CodeAde` à partir d'un tableau de données.
+     * Crée une liste d'instances de 'CodeAde' à partir d'un tableau de données.
      *
-     * Cette méthode parcourt un tableau de données et utilise la méthode `setEntity`
-     * pour créer une instance de `CodeAde` pour chaque entrée. Elle renvoie ensuite
+     * Cette méthode parcourt un tableau de données et utilise la méthode 'setEntity'
+     * pour créer une instance de 'CodeAde' pour chaque entrée. Elle renvoie ensuite
      * un tableau contenant toutes les instances créées.
      *
-     * @param array $dataList Un tableau contenant des données associatives pour chaque `CodeAde`.
+     * @param array $dataList Un tableau contenant des données associatives pour chaque 'CodeAde'.
      *                        Chaque élément du tableau doit être un tableau contenant les clés
-     *                        nécessaires pour initialiser un objet `CodeAde`.
-     * @return array Un tableau d'instances `CodeAde` créées à partir des données fournies.
+     *                        nécessaires pour initialiser un objet 'CodeAde'.
+     * @return array Un tableau d'instances 'CodeAde' créées à partir des données fournies.
      *
      * @version 1.0
      * @date 2024-10-15

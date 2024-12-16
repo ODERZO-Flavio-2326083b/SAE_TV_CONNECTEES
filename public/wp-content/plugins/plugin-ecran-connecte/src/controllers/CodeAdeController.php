@@ -30,8 +30,8 @@ class CodeAdeController extends Controller
     /**
      * Constructeur de la classe.
      *
-     * Ce constructeur initialise les instances du modèle `CodeAde` et de la vue
-     * `CodeAdeView`.
+     * Ce constructeur initialise les instances du modèle 'CodeAde' et de la vue
+     * 'CodeAdeView'.
      *
      * @version 1.0
      * @date 2024-09-16
@@ -49,7 +49,7 @@ class CodeAdeController extends Controller
      * valides. Elle gère également l'affichage des messages de succès ou d'erreur
      * selon le résultat de l'insertion.
      *
-     * @return void
+     * @return string Formulaire de création de Code
      *
      * @version 1.0
      * @date 2024-09-16
@@ -169,7 +169,7 @@ class CodeAdeController extends Controller
      *
      * Cette méthode vérifie si une demande de suppression a été effectuée.
      * Si c'est le cas, elle récupère les IDs des codes sélectionnés et
-     * les supprime un par un en appelant la méthode `delete` du modèle.
+     * les supprime un par un en appelant la méthode 'delete' du modèle.
      * La page est rafraîchie après la suppression.
      *
      * @return void

@@ -66,7 +66,7 @@ if (function_exists('downloadFileICS_func')) {
                         </div>
                     </li>
                 <?php }
-                if (in_array('secretaire', $current_user->roles) || in_array('administrator', $current_user->roles) || in_array('enseignant', $current_user->roles) || in_array('directeuretude', $current_user->roles)) { ?>
+                if (in_array('secretaire', $current_user->roles) || in_array('administrator', $current_user->roles)) { ?>
                     <li class="menu-item_dropdown menu-item">
                         <button class="dropbtn">Alertes
                             <i class="fa fa-caret-down"></i>
@@ -76,7 +76,7 @@ if (function_exists('downloadFileICS_func')) {
                             <a href="<?php echo $linkManageAlert; ?>">Gestion des alertes</a>
                         </div>
                     </li>
-                    <?php if (in_array('secretaire', $current_user->roles) || in_array('administrator', $current_user->roles) || in_array('directeuretude', $current_user->roles)) { ?>
+                    <?php if (in_array('secretaire', $current_user->roles) || in_array('administrator', $current_user->roles)) { ?>
                         <li class="menu-item_dropdown menu-item">
                             <button class="dropbtn">Informations
                                 <i class="fa fa-caret-down"></i>
