@@ -532,6 +532,30 @@ class InformationView extends View
         echo '</div>';
     }
 
+    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
+        echo '<div class="myInfoSlides text-center">';
+
+        // If the title is empty
+        if ($title != "Sans titre") {
+            echo '<h2 class="titleInfo">' . $title . '</h2>';
+        }
+
+
+        $url = TV_UPLOAD_PATH;
+        if ($adminSite) {
+            $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
+        }
+
+        if ($type == 'video') {
+            $extension = explode('.', $content);
+            $extension = $extension[1];
+        }
+         if ($type == 'video') {
+             echo '<video class="video_container" src="' . $url . $content . '" autoplay muted loop></video>';
+         }
+        echo '</div>';
+    }
+
     /**
      * Affiche le contexte et les instructions pour visualiser et gérer toutes les informations créées sur le site.
      *
@@ -582,7 +606,7 @@ class InformationView extends View
 		<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>
 		<div>
 			<h3>Information non trouvée</h3>
-			<p>Cette information n\'éxiste pas, veuillez bien vérifier d\'avoir bien cliqué sur une information.</p>
+			<p>Cette information n\'existe pas, veuillez bien vérifier d\'avoir bien cliqué sur une information.</p>
 			<a href="' . esc_url(get_permalink(get_page_by_title_custom('Créer une information'))) . '">Créer une information</a>
 		</div>';
     }
@@ -620,7 +644,7 @@ class InformationView extends View
     public function displayCreateValidate() {
         $page = get_page_by_title_custom('Gestion des informations');
         $linkManageInfo = get_permalink($page->ID);
-        $this->buildModal('Ajout d\'information validé', '<p class="alert alert-success"> L\'information a été ajoutée </p>', $linkManageInfo);
+        $this->buildModal('Ajout d\'information validé', '<p class="alert alert-success"> L\'information a été ajoutée. </p>', $linkManageInfo);
     }
 
     /**
@@ -640,14 +664,14 @@ class InformationView extends View
     public function displayModifyValidate() {
         $page = get_page_by_title_custom('Gestion des informations');
         $linkManageInfo = get_permalink($page->ID);
-        $this->buildModal('Modification d\'information validée', '<p class="alert alert-success"> L\'information a été modifiée </p>', $linkManageInfo);
+        $this->buildModal('Modification d\'information validée', '<p class="alert alert-success"> L\'information a été modifiée. </p>', $linkManageInfo);
     }
 
     /**
      * Display a message if the insertion of the information doesn't work
      */
     public function displayErrorInsertionInfo() {
-        echo '<p>Il y a eu une erreur durant l\'insertion de l\'information</p>';
+        echo '<p>Il y a eu une erreur durant l\'insertion de l\'information.</p>';
     }
 
     /**
@@ -668,7 +692,7 @@ class InformationView extends View
         return '
 		<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>
 		<div>
-			<h3>Vous ne pouvez pas modifier cette alerte</h3>
+			<h3>Vous ne pouvez pas modifier cette alerte.</h3>
 			<p>Cette information appartient à quelqu\'un d\'autre, vous ne pouvez donc pas modifier cette information.</p>
 			<a href="' . esc_url(get_permalink(get_page_by_title_custom('Créer une information'))) . '">Créer une information</a>
 		</div>';

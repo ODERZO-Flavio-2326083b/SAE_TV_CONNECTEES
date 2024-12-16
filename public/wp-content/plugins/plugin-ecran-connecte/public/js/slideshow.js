@@ -58,7 +58,7 @@ function displayOrHide(slides, slideIndex) {
             let duration = 10000;
             for (let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
                 let currentNode = slides[slideIndex].childNodes[i];
-
+                console.log(currentNode);
                 // Si la diapositive contient un PDF
                 if (currentNode.className === 'canvas_pdf') {
                     console.log("--Lecture de PDF");
@@ -80,12 +80,12 @@ function displayOrHide(slides, slideIndex) {
 
             if (count === 0) {
                 console.log("--Lecture image");
+                ++slideIndex;
             }
 
-                // Si aucune vidéo n'est présente, on passe à la diapositive suivante immédiatement
-                setTimeout(function () {
-                    displayOrHide(slides, slideIndex + 1);
-                }, duration); // 5 secondes pour les autres contenus
+            if(slides.length !== 1 || totalPage !== 1) {
+                setTimeout(function(){displayOrHide(slides, slideIndex)} , 10000);
+            }
         }
     }
 

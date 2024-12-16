@@ -559,9 +559,9 @@ class InformationController extends Controller
                     $adminSite = false;
                 }
                 $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                $this->view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
             }
         }
-        $this->view->displayEndDiv();
     }
 
     /**
@@ -639,7 +639,6 @@ class InformationController extends Controller
             }
             echo $this->view->displayEndDiv();
         }
-        $this->view->displayEndDiv();
     }
 
     /**
