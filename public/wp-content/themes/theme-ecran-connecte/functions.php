@@ -26,7 +26,7 @@ add_action('get_header', 'wp_maintenance_mode');
 
 function load_dynamic_css() {
 
-    if ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
+    if (in_array("administrator", wp_get_current_user()->roles)){
         $departement = "default";
     }
     elseif(!is_user_logged_in()){
@@ -34,10 +34,11 @@ function load_dynamic_css() {
     }
     else{
         $departmentModel = new Department();
-        $departementActuel = $departmentModel->get(get_current_user_id());
-        $departement = $departementActuel->getName();
-
-
+        if($departmentModel->get(get_current_user_id())) {
+            $departementActuel = $departmentModel->get(get_current_user_id());
+            $departement = $departementActuel->getName();
+        }
+        else{$departement = "default";}
     }
 
     if(file_exists(get_template_directory_uri() . "/assets/css/global/global-".$departement.".css")){
