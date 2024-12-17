@@ -1,337 +1,294 @@
 <?php
 
+require_once "src/utils/customFunctions.php";
+
 use Controllers\AlertController;
 use Controllers\CodeAdeController;
 use Controllers\CSSCustomizerController;
 use Controllers\DepartmentController;
 use Controllers\InformationController;
 use Controllers\SecretaryController;
-use Controllers\StudentController;
-use Controllers\StudyDirectorController;
-use Controllers\TeacherController;
 use Controllers\TechnicianController;
 use Controllers\TelevisionController;
 use Controllers\UserController;
-use Views\HelpMapView;
 use Views\UserView;
+use function Utils\does_user_has_role;
+
 
 /*
- * ALERT BLOCKS
+ * Gestion des alertes : création, affichage et modification.
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc de création d'alertes
 function alert_render_callback()
 {
-    if(is_page()) {
-        $alert = new AlertController();
-        return $alert->insert();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$alert = new AlertController();
+		return $alert->insert();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de création d'alertes
 function block_alert()
 {
-    wp_register_script(
-        'alert-script',
-        plugins_url( '/blocks/alert/create.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'alert-script',
+		plugins_url('/blocks/alert/create.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/add-alert', array(
-        'editor_script' => 'alert-script',
-        'render_callback' => 'alert_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/add-alert', array(
+		'editor_script' => 'alert-script',
+		'render_callback' => 'alert_render_callback'
+	));
 }
 add_action('init', 'block_alert');
 
-
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc d'affichage des alertes
 function alert_management_render_callback()
 {
-    if(is_page()) {
-        $alert = new AlertController();
-        return $alert->displayAll();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$alert = new AlertController();
+		return $alert->displayAll();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc d'affichage des alertes
 function block_alert_management()
 {
-    wp_register_script(
-        'alert_manage-script',
-        plugins_url( '/blocks/alert/displayAll.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'alert_manage-script',
+		plugins_url('/blocks/alert/displayAll.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/manage-alert', array(
-        'editor_script' => 'alert_manage-script',
-        'render_callback' => 'alert_management_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/manage-alert', array(
+		'editor_script' => 'alert_manage-script',
+		'render_callback' => 'alert_management_render_callback'
+	));
 }
-add_action( 'init', 'block_alert_management' );
+add_action('init', 'block_alert_management');
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc de modification des alertes
 function alert_modify_render_callback()
 {
-    if(is_page()) {
-        $alert = new AlertController();
-        return $alert->modify();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$alert = new AlertController();
+		return $alert->modify();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification des alertes
 function block_alert_modify()
 {
-    wp_register_script(
-        'alert_modify-script',
-        plugins_url( '/blocks/alert/modify.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'alert_modify-script',
+		plugins_url('/blocks/alert/modify.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/modify-alert', array(
-        'editor_script' => 'alert_modify-script',
-        'render_callback' => 'alert_modify_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/modify-alert', array(
+		'editor_script' => 'alert_modify-script',
+		'render_callback' => 'alert_modify_render_callback'
+	));
 }
-add_action( 'init', 'block_alert_modify' );
+add_action('init', 'block_alert_modify');
 
 /*
- * CODE ADE BLOCKS
+ * Gestion des codes ADE : création, affichage et modification.
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc d'ajout de Code ADE
 function code_ade_render_callback()
 {
-    if(is_page()) {
-        $codeAde = new CodeAdeController();
-        return $codeAde->insert();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$codeAde = new CodeAdeController();
+		return $codeAde->insert();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de création de Code ADE
 function block_code_ade()
 {
-    wp_register_script(
-        'code_ade-script',
-        plugins_url( '/blocks/codeAde/create.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'code_ade-script',
+		plugins_url('/blocks/codeAde/create.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/add-code', array(
-        'editor_script' => 'code_ade-script',
-        'render_callback' => 'code_ade_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/add-code', array(
+		'editor_script' => 'code_ade-script',
+		'render_callback' => 'code_ade_render_callback'
+	));
 }
-add_action( 'init', 'block_code_ade' );
+add_action('init', 'block_code_ade');
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc d'affichage des codes ADE
 function code_management_render_callback()
 {
-    if(is_page()) {
-        $code = new CodeAdeController();
-        $code->deleteCodes();
-        return $code->displayAllCodes();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$code = new CodeAdeController();
+		$code->deleteCodes();
+		return $code->displayAllCodes();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc d'affichage des codes ADE
 function block_code_management()
 {
-    wp_register_script(
-        'code_manage-script',
-        plugins_url( '/blocks/codeAde/displayAll.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'code_manage-script',
+		plugins_url('/blocks/codeAde/displayAll.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/manage-code', array(
-        'editor_script' => 'code_manage-script',
-        'render_callback' => 'code_management_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/manage-code', array(
+		'editor_script' => 'code_manage-script',
+		'render_callback' => 'code_management_render_callback'
+	));
 }
-add_action( 'init', 'block_code_management' );
+add_action('init', 'block_code_management');
 
-
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc de modification des codes ADE
 function code_modify_render_callback()
 {
-    if(is_page()) {
-        $code = new CodeAdeController();
-        return $code->modify();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$code = new CodeAdeController();
+		return $code->modify();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification des codes ADE
 function block_code_modify()
 {
-    wp_register_script(
-        'code_modify-script',
-        plugins_url( '/blocks/codeAde/modify.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'code_modify-script',
+		plugins_url('/blocks/codeAde/modify.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/modify-code', array(
-        'editor_script' => 'code_modify-script',
-        'render_callback' => 'code_modify_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/modify-code', array(
+		'editor_script' => 'code_modify-script',
+		'render_callback' => 'code_modify_render_callback'
+	));
 }
-add_action( 'init', 'block_code_modify' );
+add_action('init', 'block_code_modify');
 
 /*
- * INFORMATION BLOCKS
+ * Gestion des informations : création, affichage et modification.
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc de création d'informations
 function information_render_callback()
 {
-    if(is_page()) {
-        $information = new InformationController();
-        return $information->create();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$information = new InformationController();
+		return $information->create();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de création d'informations
 function block_information()
 {
-    wp_register_script(
-        'information-script',
-        plugins_url( '/blocks/information/create.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'information-script',
+		plugins_url('/blocks/information/create.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/add-information', array(
-        'editor_script' => 'information-script',
-        'render_callback' => 'information_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/add-information', array(
+		'editor_script' => 'information-script',
+		'render_callback' => 'information_render_callback'
+	));
 }
-add_action( 'init', 'block_information' );
+add_action('init', 'block_information');
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc d'affichage des informations
 function information_management_render_callback()
 {
-    if(is_page()) {
-        $information = new InformationController();
-        return $information->displayAll();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$information = new InformationController();
+		return $information->displayAll();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc d'affichage des informations
 function block_information_management()
 {
-    wp_register_script(
-        'information_manage-script',
-        plugins_url( '/blocks/information/displayAll.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'information_manage-script',
+		plugins_url('/blocks/information/displayAll.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/manage-information', array(
-        'editor_script' => 'information_manage-script',
-        'render_callback' => 'information_management_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/manage-information', array(
+		'editor_script' => 'information_manage-script',
+		'render_callback' => 'information_management_render_callback'
+	));
 }
-add_action( 'init', 'block_information_management' );
+add_action('init', 'block_information_management');
 
-
-/**
- * Function of the block
- *
- * @return string
- */
+// Fonction de rendu du bloc de modification des informations
 function information_modify_render_callback()
 {
-    if(is_page()) {
-        $information = new InformationController();
-        return $information->modify();
-    }
+	if (is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
+		$information = new InformationController();
+		return $information->modify();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
+	}
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification des informations
 function block_information_modify()
 {
-    wp_register_script(
-        'information_modify-script',
-        plugins_url( '/blocks/information/modify.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
+	wp_register_script(
+		'information_modify-script',
+		plugins_url('/blocks/information/modify.js', __FILE__),
+		array('wp-blocks', 'wp-element', 'wp-data')
+	);
 
-    register_block_type('tvconnecteeamu/modify-information', array(
-        'editor_script' => 'information_modify-script',
-        'render_callback' => 'information_modify_render_callback'
-    ));
+	register_block_type('tvconnecteeamu/modify-information', array(
+		'editor_script' => 'information_modify-script',
+		'render_callback' => 'information_modify_render_callback'
+	));
 }
-add_action( 'init', 'block_information_modify' );
+add_action('init', 'block_information_modify');
 
 /*
- * SCHEDULE BLOCKS
+ * Gestion des emplois du temps : création, affichage et modification.
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Rendu de l'emploi du temps correspondant au role de l'utilisateur connecté
 function schedule_render_callback()
 {
         $current_user = wp_get_current_user();
-        if(in_array('directeuretude', $current_user->roles)) {
-            $controller = new StudyDirectorController();
-            return $controller->displayMySchedule();
-        } else if (in_array("enseignant", $current_user->roles)) {
-            $controller = new TeacherController();
-            return $controller->displayMySchedule();
-        } else if (in_array("etudiant", $current_user->roles)) {
-            $controller = new StudentController();
-            return $controller->displayMySchedule();
-        } else if (in_array("television", $current_user->roles)) {
+        if (in_array("television", $current_user->roles)) {
             $controller = new TelevisionController();
             return $controller->displayMySchedule();
         } else if (in_array("technicien", $current_user->roles)) {
@@ -346,9 +303,7 @@ function schedule_render_callback()
         }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc d'affichage de l'emploi du temps
 function block_schedule()
 {
     wp_register_script(
@@ -364,22 +319,19 @@ function block_schedule()
 }
 add_action('init', 'block_schedule');
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de rendu de l'emploi du temps de l'année
 function schedules_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
         $schedule = new UserController();
         return $schedule->displayYearSchedule();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc d'affichage de l'emploi du temps de l'année
 function block_schedules()
 {
     wp_register_script(
@@ -396,25 +348,22 @@ function block_schedules()
 add_action( 'init', 'block_schedules' );
 
 /*
- *
+ * Gestion des notifications
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Rendu du bouton d'inscription aux notifications
 function subscription_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
         $view = new UserView();
         return $view->displayButtonSubscription();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout de l'affichage du bouton d'inscriptions au notifications
 function block_subscription()
 {
     wp_register_script(
@@ -431,25 +380,22 @@ function block_subscription()
 add_action('init', 'block_subscription');
 
 /*
- * USER BLOCKS
+ * Gestion des utilisateurs : création, affichage et modification.
  */
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de création d'utilisateur
 function creation_user_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
         $manageUser = new SecretaryController();
         return $manageUser->createUsers();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de création d'utilisateurs
 function block_creation_user()
 {
     wp_register_script(
@@ -465,23 +411,20 @@ function block_creation_user()
 }
 add_action( 'init', 'block_creation_user' );
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de suppressions d'utilisateurs
 function management_user_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
         $manageUser = new SecretaryController();
         $manageUser->deleteUsers();
         return $manageUser->displayUsers();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de suppressions d'utilisateurs
 function block_management_user()
 {
     wp_register_script(
@@ -497,22 +440,19 @@ function block_management_user()
 }
 add_action( 'init', 'block_management_user' );
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de modification d'utilisateurs
 function user_modify_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator', 'secretaire'))) {
         $user = new SecretaryController();
         return $user->modifyUser();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification des utilisateurs
 function block_user_modify()
 {
     wp_register_script(
@@ -528,22 +468,16 @@ function block_user_modify()
 }
 add_action( 'init', 'block_user_modify' );
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de modification de son propre compte
 function choose_account_render_callback()
 {
-    if(is_page()) {
+    if(is_page() ) {
         $user = new UserController();
         return $user->chooseModif();
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification de son propre compte
 function block_choose_account() {
     wp_register_script(
         'choose_account-script',
@@ -558,43 +492,8 @@ function block_choose_account() {
 }
 add_action( 'init', 'block_choose_account' );
 
-/**
- * Function of the block
- *
- * @return string
- */
-function code_account_render_callback()
-{
-    $current_user = wp_get_current_user();
-    if(is_page() && in_array('etudiant', $current_user->roles)) {
-        $myAccount = new StudentController();
-        $myAccount->modifyCodes();
-    }
-}
 
-/**
- * Build a block
- */
-function block_code_account()
-{
-    wp_register_script(
-        'code_account-script',
-        plugins_url( 'block.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
-
-    register_block_type('tvconnecteeamu/code-account', array(
-        'editor_script' => 'code_account-script',
-        'render_callback' => 'code_account_render_callback'
-    ));
-}
-add_action( 'init', 'block_code_account' );
-
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de suppression de son propre compte
 function delete_account_render_callback()
 {
     if(is_page()) {
@@ -605,9 +504,7 @@ function delete_account_render_callback()
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de suppression de son compte
 function block_delete_account()
 {
     wp_register_script(
@@ -623,11 +520,7 @@ function block_delete_account()
 }
 add_action( 'init', 'block_delete_account' );
 
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de modification de son mot de passe
 function password_modify_render_callback()
 {
     if(is_page()) {
@@ -638,9 +531,7 @@ function password_modify_render_callback()
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de modification de son mot de passe
 function block_password_modify()
 {
     wp_register_script(
@@ -656,58 +547,23 @@ function block_password_modify()
 }
 add_action( 'init', 'block_password_modify' );
 
-/**
- * Function of the block
- *
- * @return string
+/*
+ * Gestion du CSS
  */
-function help_map_render_callback()
-{
-    if(is_page()) {
-        $view = new HelpMapView();
-        return $view->displayHelpMap();
-    }
-}
 
-/**
- * Build a block
- */
-function block_help_map()
-{
-    wp_register_script(
-        'help_map-script',
-        plugins_url( '/blocks/helpMap/display.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
-
-    register_block_type('tvconnecteeamu/help-map', array(
-        'editor_script' => 'help_map-script',
-        'render_callback' => 'help_map_render_callback'
-    ));
-}
-add_action( 'init', 'block_help_map' );
-
-
-
-
-
-/**
- * Function of the block
- *
- * @return string
- */
+// Bloc de customisation du CSS
 function css_customizer_render_callback()
 {
-    if(is_page()) {
+    if(is_page() && does_user_has_role(array('administrator'))) {
         $controller = new CSSCustomizerController();
-        return $controller->useCssCustomizer();
-
+        $controller->useCssCustomizer();
+    } else {
+	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+	    exit;
     }
 }
 
-/**
- * Build a block
- */
+// Ajout du bloc de customisation du CSS
 function block_modif_css()
 {
     wp_register_script(
@@ -723,16 +579,22 @@ function block_modif_css()
 }
 add_action( 'init', 'block_modif_css' );
 
-/**
- *
+/*
+ * Gestion des départements : création, affichage et modification.
  */
+
+// Bloc de création de départements
 function department_add_render_callback() {
-	if(is_page()) {
+	if(is_page() && does_user_has_role(array('administrator'))) {
 		$dpt = new DepartmentController();
 		return $dpt->insert();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
 	}
 }
 
+// Ajout du bloc de création de départements
 function block_department_add()
 {
 	wp_register_script(
@@ -748,13 +610,18 @@ function block_department_add()
 }
 add_action( 'init', 'block_department_add' );
 
+// Bloc de modification de département
 function department_modify_render_callback() {
-	if(is_page()) {
+	if(is_page() && does_user_has_role(array('administrator'))) {
 		$dpt = new DepartmentController();
 		return $dpt->modify();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
 	}
 }
 
+// Ajout du bloc de modification de département
 function block_department_modify()
 {
 	wp_register_script(
@@ -770,14 +637,19 @@ function block_department_modify()
 }
 add_action('init', 'block_department_modify');
 
+// Bloc d'affichage de départements
 function department_displayDeptTable_render_callback() {
-	if(is_page()) {
+	if(is_page() && does_user_has_role(array('administrator'))) {
 		$dpt = new DepartmentController();
 		$dpt->deleteDepts();
 		return $dpt->displayDeptTable();
+	} else {
+		echo "Désolé, vous n'avez pas la permission de voir ce contenu";
+		exit;
 	}
 }
 
+// Ajout du bloc d'affichage des départements
 function block_department_displayDeptTable()
 {
 	wp_register_script(

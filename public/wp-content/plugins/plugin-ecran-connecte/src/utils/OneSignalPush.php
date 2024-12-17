@@ -2,7 +2,7 @@
 
 namespace Utils;
 
-include __DIR__ . '/../../config-notifs.php';
+include_once __DIR__ . '/../../config-notifs.php';
 
 use Models\CodeAde;
 

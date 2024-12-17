@@ -59,7 +59,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Insère un nouvel enregistrement d'information dans la base de données.
      *
      * Cette méthode prépare une requête SQL pour insérer un nouvel enregistrement dans
-     * la table `ecran_information`. Elle lie les valeurs des propriétés de l'objet
+     * la table 'ecran_information'. Elle lie les valeurs des propriétés de l'objet
      * courant à la requête SQL, puis exécute la requête. Enfin, elle renvoie l'ID
      * du nouvel enregistrement inséré.
      *
@@ -89,7 +89,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Met à jour un enregistrement d'information existant dans la base de données.
      *
      * Cette méthode prépare une requête SQL pour mettre à jour un enregistrement
-     * dans la table `ecran_information`. Elle lie les valeurs des propriétés de
+     * dans la table 'ecran_information'. Elle lie les valeurs des propriétés de
      * l'objet courant à la requête SQL, puis exécute la requête. La méthode renvoie
      * le nombre de lignes affectées par l'opération.
      *
@@ -115,7 +115,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Supprime un enregistrement d'information de la base de données.
      *
      * Cette méthode prépare une requête SQL pour supprimer un enregistrement
-     * dans la table `ecran_information` en fonction de l'identifiant
+     * dans la table 'ecran_information' en fonction de l'identifiant
      * spécifié. Elle lie l'identifiant de l'enregistrement à la requête SQL,
      * exécute la requête et renvoie le nombre de lignes affectées par
      * l'opération.
@@ -139,13 +139,13 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère un enregistrement d'information à partir de son identifiant.
      *
      * Cette méthode prépare une requête SQL pour sélectionner un enregistrement
-     * dans la table `ecran_information` basé sur l'identifiant fourni. Elle lie
+     * dans la table 'ecran_information' basé sur l'identifiant fourni. Elle lie
      * cet identifiant à la requête SQL, exécute la requête, et si un enregistrement
      * est trouvé, il est renvoyé sous forme d'entité. Si aucun enregistrement
-     * n'est trouvé, la méthode retourne `false`.
+     * n'est trouvé, la méthode retourne 'false'.
      *
      * @param int $id L'identifiant de l'enregistrement à récupérer.
-     * @return mixed L'entité correspondant à l'enregistrement ou `false` si
+     * @return mixed L'entité correspondant à l'enregistrement ou 'false' si
      *               aucun enregistrement n'est trouvé.
      *
      * @version 1.0
@@ -168,7 +168,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère une liste d'enregistrements d'information.
      *
      * Cette méthode prépare une requête SQL pour sélectionner une liste d'enregistrements
-     * dans la table `ecran_information`, avec pagination. Elle lie les paramètres de début
+     * dans la table 'ecran_information', avec pagination. Elle lie les paramètres de début
      * et le nombre d'éléments à récupérer, exécute la requête, et si des enregistrements
      * sont trouvés, ils sont renvoyés sous forme de liste d'entités. Si aucun enregistrement
      * n'est trouvé, un tableau vide est retourné.
@@ -181,7 +181,7 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getList($begin = 0, $numberElement = 25) {
-        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id FROM ecran_information ORDER BY id ASC LIMIT :begin, :numberElement");
+        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id FROM ecran_information ORDER BY id LIMIT :begin, :numberElement");
 
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
@@ -198,7 +198,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère une liste d'enregistrements d'information d'un auteur spécifique.
      *
      * Cette méthode prépare une requête SQL pour sélectionner les enregistrements
-     * dans la table `ecran_information` où l'auteur correspond à celui spécifié.
+     * dans la table 'ecran_information' où l'auteur correspond à celui spécifié.
      * La méthode utilise la pagination pour retourner un sous-ensemble des résultats
      * en fonction des paramètres de début et de nombre d'éléments. Les résultats
      * sont triés par date d'expiration.
@@ -224,13 +224,13 @@ class Information extends Model implements Entity, JsonSerializable
     } //getAuthorListInformation()
 
     /**
-     * Compte le nombre total d'enregistrements dans la table `ecran_information`.
+     * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
      *
      * Cette méthode exécute une requête SQL pour compter tous les enregistrements
      * présents dans la table. Elle retourne un entier représentant le nombre
      * total d'enregistrements.
      *
-     * @return int Le nombre total d'enregistrements dans `ecran_information`.
+     * @return int Le nombre total d'enregistrements dans 'ecran_information'.
      *
      * @version 1.0
      * @date 2024-10-15
@@ -247,7 +247,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère la liste des informations de type "event".
      *
      * Cette méthode exécute une requête SQL pour sélectionner toutes les informations
-     * de type "event" dans la table `ecran_information`, triées par date d'expiration.
+     * de type "event" dans la table 'ecran_information', triées par date d'expiration.
      *
      * @return array Un tableau d'entités représentant les informations de type "event".
      *
@@ -255,7 +255,7 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getListInformationEvent() {
-        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type FROM ecran_information WHERE type = "event" ORDER BY expiration_date ASC');
+        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type FROM ecran_information WHERE type = \'event\' ORDER BY expiration_date');
 
         $request->execute();
 
@@ -267,7 +267,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère les informations à partir du site d'administration.
      *
      * Cette méthode exécute une requête SQL pour sélectionner les informations
-     * dans la table `ecran_information`, avec un maximum de 200 résultats.
+     * dans la table 'ecran_information', avec un maximum de 200 résultats.
      *
      * @return array Un tableau d'entités représentant les informations.
      *
@@ -286,7 +286,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère les informations administratives à partir du site d'administration.
      *
      * Cette méthode exécute une requête SQL pour sélectionner les informations
-     * dans la table `ecran_information` où `administration_id` n'est pas nul,
+     * dans la table 'ecran_information' où 'administration_id' n'est pas nul,
      * avec un maximum de 500 résultats.
      *
      * @return array Un tableau d'entités représentant les informations administratives.
@@ -306,7 +306,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Récupère les informations d'un site d'administration par son ID.
      *
      * Cette méthode exécute une requête SQL pour sélectionner une information
-     * spécifique dans la table `ecran_information` en fonction de son ID.
+     * spécifique dans la table 'ecran_information' en fonction de son ID.
      * Elle retourne l'entité correspondante si trouvée, sinon elle retourne faux.
      *
      * @param int $id L'ID de l'information à récupérer.
@@ -332,7 +332,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Crée une liste d'entités à partir d'une liste de données.
      *
      * Cette méthode prend une liste de données et crée une liste d'entités
-     * correspondantes en appelant la méthode `setEntity` pour chaque élément.
+     * correspondantes en appelant la méthode 'setEntity' pour chaque élément.
      * Elle peut également prendre en compte un paramètre indiquant si
      * les entités sont pour un site d'administration.
      *
@@ -353,10 +353,10 @@ class Information extends Model implements Entity, JsonSerializable
 
 
     /**
-     * Crée une instance d'entité `Information` à partir d'un tableau de données.
+     * Crée une instance d'entité 'Information' à partir d'un tableau de données.
      *
-     * Cette méthode initialise une nouvelle entité `Information` en utilisant les données
-     * fournies dans le tableau `$data`. Elle gère également l'auteur de l'information
+     * Cette méthode initialise une nouvelle entité 'Information' en utilisant les données
+     * fournies dans le tableau '$data'. Elle gère également l'auteur de l'information
      * en fonction de la présence d'un identifiant d'administration.
      *
      * @param array $data Un tableau associatif contenant les données de l'entité, y compris :
@@ -369,7 +369,7 @@ class Information extends Model implements Entity, JsonSerializable
      *                    - administration_id (int|null): L'identifiant de l'administration, s'il existe.
      *                    - author (int): L'identifiant de l'auteur.
      * @param bool $adminSite Indique si l'entité est pour un site d'administration (par défaut : faux).
-     * @return Information L'instance d'entité `Information` créée et initialisée avec les données fournies.
+     * @return Information L'instance d'entité 'Information' créée et initialisée avec les données fournies.
      *
      * @version 1.0
      * @date 2024-10-15
