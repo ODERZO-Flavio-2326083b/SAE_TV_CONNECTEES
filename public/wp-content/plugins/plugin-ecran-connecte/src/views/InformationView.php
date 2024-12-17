@@ -497,64 +497,63 @@ class InformationView extends View
             echo '<h2 class="titleInfo">' . $title . '</h2>';
         }
 
+        $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        $url = TV_UPLOAD_PATH;
-        if ($adminSite) {
-            $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
+        // Utilisation de switch pour les types nécessitant une extension
+        switch ($type) {
+            case 'pdf':
+            case 'short':
+            case 'video':
+            case 'event':
+            case 'img':
+                $extension = explode('.', $content);
+                $extension = $extension[1];
+                break;
         }
 
-        if ($type == 'pdf' || $type == 'short' || $type == "event" || $type == "img") {
-            $extension = explode('.', $content);
-            $extension = $extension[1];
+        // Utilisation de switch pour afficher les contenus
+        switch ($type) {
+            case 'pdf':
+            case 'event':
+                if ($extension == 'pdf') {
+                    echo '<div class="canvas_pdf" id="' . $content . '"></div>';
+                }
+                break;
+
+            case 'img':
+                echo '<img class="img-thumbnail" src="' . $url . $content . '" alt="' . $title . '">';
+                break;
+
+            case 'short':
+                echo '<video class="short_container" src="' . $url . $content . '" autoplay loop muted></video>';
+                break;
+
+            case 'video':
+                echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
+                break;
+
+            case 'text':
+                echo '<p class="lead">' . $content . '</p>';
+                break;
+
+            case 'special':
+                $func = explode('(Do this(function:', $content);
+                $text = explode('.', $func[0]);
+                foreach ($text as $value) {
+                    echo '<p class="lead">' . $value . '</p>';
+                }
+                $func = explode(')end)', $func[1]);
+                echo $func[0]();
+                break;
+
+            default:
+                echo $content;
+                break;
         }
 
-        if ($type == 'pdf' || $type == "event" && $extension == "pdf") {
-            echo '
-			<div class="canvas_pdf" id="' . $content . '">
-			</div>';
-        } elseif ($type == "img" || $type == "event") {
-            echo '<img class="img-thumbnail" src="' . $url . $content . '" alt="' . $title . '">';
-        } elseif ($type == 'short'){
-            echo '<video class="video_container" src="' . $url . $content . '" autoplay muted loop></video>';
-        } elseif ($type == 'text') {
-            echo '<p class="lead">' . $content . '</p>';
-        } elseif ($type == 'special') {
-            $func = explode('(Do this(function:', $content);
-            $text = explode('.', $func[0]);
-            foreach ($text as $value) {
-                echo '<p class="lead">' . $value . '</p>';
-            }
-            $func = explode(')end)', $func[1]);
-            echo $func[0]();
-        } else {
-            echo $content;
-        }
         echo '</div>';
     }
 
-    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
-        echo '<div class="myInfoSlides text-center">';
-
-        // If the title is empty
-        if ($title != "Sans titre") {
-            echo '<h2 class="titleInfo">' . $title . '</h2>';
-        }
-
-
-        $url = TV_UPLOAD_PATH;
-        if ($adminSite) {
-            $url = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
-        }
-
-        if ($type == 'video') {
-            $extension = explode('.', $content);
-            $extension = $extension[1];
-        }
-         if ($type == 'video') {
-             echo '<video class="video_container" src="' . $url . $content . '" autoplay muted loop></video>';
-         }
-        echo '</div>';
-    }
 
     /**
      * Affiche le contexte et les instructions pour visualiser et gérer toutes les informations créées sur le site.

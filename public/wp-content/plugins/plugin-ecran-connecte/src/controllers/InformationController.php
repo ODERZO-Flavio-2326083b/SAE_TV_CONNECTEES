@@ -450,7 +450,7 @@ class InformationController extends Controller
                 if (in_array($contentExplode[1], $imgExtension)) {
                     $content = '<img class="img-thumbnail img_table_ecran" src="' . $content . $information->getContent() . '" alt="' . $information->getTitle() . '">';
                 } elseif (in_array($contentExplode[1], $videoExtension)) {
-                    $content = '<video autoplay muted loop class="video_thumbnail video_table_ecran"><source src="' . $content . $information->getContent() . '" type="video/' . $contentExplode[1] . '"></video>';
+                    $content = '[video-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
                 }
                 else if ($contentExplode[1] === 'pdf') {
                     $content = '[pdf-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
@@ -545,21 +545,12 @@ class InformationController extends Controller
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
-                if ($information->getType() == 'tab') {
-                    $list = $this->readSpreadSheet(TV_UPLOAD_PATH . $information->getContent());
-                    $content = "";
-                    foreach ($list as $table) {
-                        $content .= $table;
-                    }
-                    $information->setContent($content);
-                }
 
                 $adminSite = true;
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
                 $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
-                $this->view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
             }
         }
     }
@@ -704,11 +695,5 @@ class InformationController extends Controller
         return $contentList;
     }
 
-    /**
-     * @return void
-     */
-    public function getVideoData() {
-
-    }
 
 }
