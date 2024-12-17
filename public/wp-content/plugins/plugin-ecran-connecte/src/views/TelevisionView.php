@@ -195,8 +195,8 @@ class TelevisionView extends UserView
             $select .= '<option value="' . $code->getCode() . '">' . $code->getTitle() . '</option>';
         }
 
-        $select .= '<option value="0">Aucun</option>
-            		<optgroup label="Année">';
+        $select .= '<option disabled selected value>Sélectionnez un code ADE</option>
+					<optgroup label="Année">';
 
         foreach ($years as $year) {
             $select .= '<option value="' . $year->getCode() . '">' . $year->getTitle() . '</option >';

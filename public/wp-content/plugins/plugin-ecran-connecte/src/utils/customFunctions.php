@@ -3,14 +3,14 @@
 namespace Utils;
 
 /**
- * Fonction pour remplacer la fonction dépréciée get_page_by_title(), qui renvoie le lien d'une
- * page wordpress depuis son nom.
+ * Fonction customisée qui recherche une page à partir de son nom, pour remplacer
+ * la fonction dépréciée get_page_by_title().
  *
- * @param $page_title string Titre de la page à chercher
+ * @param string $page_title Nom de la page à chercher
  *
- * @return array|\WP_Post|null Lien de la ou les pages trouvées, null si aucune.
+ * @return WP_Post|array|null La page trouvée, ou l'array de pages trouvées. null si aucune page trouvée.
  */
-function get_page_by_title_custom($page_title) {
+function get_page_by_title_custom( string $page_title): WP_Post|array|null {
 	$args = array(
 		'post_type'   => 'page',
 		'title'       => $page_title,
@@ -31,11 +31,11 @@ function get_page_by_title_custom($page_title) {
 /**
  * Renvoie un booléen qui correspond à si l'utilisateur actuel possède au moins un des roles
  *
- * @param $roles_array
+ * @param array $roles_array Liste de roles à vérifier
  *
  * @return bool
  */
-function does_user_has_role($roles_array): bool {
+function does_user_has_role( array $roles_array): bool {
 	$current_user = wp_get_current_user();
 	foreach ($roles_array as $role) {
 		if (in_array( $role, $current_user->roles)) {

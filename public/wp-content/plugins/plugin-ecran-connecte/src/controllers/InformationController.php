@@ -69,7 +69,6 @@ class InformationController extends Controller
         // All forms
         $actionText = filter_input(INPUT_POST, 'createText');
         $actionImg = filter_input(INPUT_POST, 'createImg');
-        $actionTab = filter_input(INPUT_POST, 'createTab');
         $actionPDF = filter_input(INPUT_POST, 'createPDF');
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
 
@@ -115,19 +114,6 @@ class InformationController extends Controller
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
                 $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
-            }
-        }
-        if (isset($actionTab)) { // If the information is a table
-            $type = "tab";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['xls', 'xlsx', 'ods'];
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->view->buildModal('Tableau non valide', '<p>Ce fichier est un tableau non valide, veuillez choisir un autre tableau</p>');
             }
         }
         if (isset($actionPDF)) {

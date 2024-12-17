@@ -2,9 +2,7 @@
 
 namespace Views;
 
-use Models\CodeAde;
 use Models\Department;
-use Models\User;
 
 /**
  * Class UserView
@@ -96,7 +94,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayModifyPassword() {
+    public function displayModifyPassword(): string {
         return '
             <form id="check" method="post">
                 <h2>Modifier le mot de passe</h2>
@@ -122,7 +120,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayDeleteAccount() {
+    public function displayDeleteAccount(): string {
         return '
             <form id="check" method="post">
                 <h2>Supprimer le compte</h2>
@@ -149,7 +147,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function contextCreateUser() {
+    public function contextCreateUser(): string {
         return '
         <hr class="half-rule">
         <div class="row">
@@ -183,7 +181,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayEnterCode() {
+    public function displayEnterCode(): string {
         return '
         <form method="post">
             <label for="codeDelete"> Code de suppression de compte</label>
@@ -207,7 +205,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayButtonSubscription() {
+    public function displayButtonSubscription(): string {
         $wpnonce = wp_create_nonce('wp_rest');
 
         return '
@@ -236,7 +234,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayModifyMyCodes($codes, $years, $groups, $halfGroups) {
+    public function displayModifyMyCodes(array $codes, array $years, array $groups, array $halfGroups): string {
         $form = '
         <form method="post">
             <h2> Modifier mes emplois du temps</h2>
@@ -296,7 +294,7 @@ class UserView extends View
      *
      * @return string Le message à afficher
      */
-    public function displaySelectSchedule() {
+    public function displaySelectSchedule(): string {
         return '<p>Veuillez choisir un emploi du temps.</p>';
     }
 
@@ -314,7 +312,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayHome() {
+    public function displayHome(): string {
         return '
         <div class="row">
             <div class="col-6 mx-auto col-md-6 order-md-1">
@@ -331,35 +329,35 @@ class UserView extends View
     /**
      * Affiche un message pour la modification réussie du mot de passe
      */
-    public function displayModificationPassValidate() {
+    public function displayModificationPassValidate(): void {
         $this->buildModal('Modification du mot de passe', '<div class="alert alert-success" role="alert">La modification à été réussie !</div>', home_url());
     }
 
     /**
      * Affiche un message si le mot de passe est incorrect
      */
-    public function displayWrongPassword() {
+    public function displayWrongPassword(): void {
         $this->buildModal('Mot de passe incorrect', '<div class="alert alert-danger">Mauvais mot de passe</div>');
     }
 
     /**
      * Affiche un message si le mail a été envoyé
      */
-    public function displayMailSend() {
+    public function displayMailSend(): void {
         $this->buildModal('Mail envoyé', '<div class="alert alert-success"> Un mail a été envoyé à votre adresse mail, merci de bien vouloir entrer le code reçu</div>');
     }
 
     /**
      * Message pour prévenir qu'une inscription a échoué
      */
-    public function displayErrorCreation() {
+    public function displayErrorCreation(): void {
         $this->buildModal('Inscription échouée', '<div class="alert alert-danger">Il y a eu une erreur dans le formulaire, veuillez vérifier vos informations et réessayer</div>');
     }
 
     /**
      * Message pour prévenir qu'un login existe déjà
      */
-    public function displayErrorLogin() {
+    public function displayErrorLogin(): void {
         $this->buildModal('Inscription échouée', '<div class="alert alert-danger"> Le login est déjà utilisé ! </div>');
     }
 
@@ -368,7 +366,7 @@ class UserView extends View
      *
      * @return string Le message à afficher
      */
-    public function displayNoStudy() {
+    public function displayNoStudy(): string {
         return '<p>Vous n\'avez pas cours!</p>';
     }
 
@@ -386,7 +384,7 @@ class UserView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function errorMessageNoCodeRegister() {
+    public function errorMessageNoCodeRegister(): string {
         $current_user = wp_get_current_user();
         return '
         <h2>' . $current_user->user_login . '</h2>
@@ -396,14 +394,14 @@ class UserView extends View
     /**
      * Affiche un message de succès lors du changement de code
      */
-    public function successMesageChangeCode() {
+    public function successMesageChangeCode(): void {
         $this->buildModal('Modification validée', '<div class="alert alert-success"> Le changement de groupe a été pris en compte</div>');
     }
 
     /**
      * Affiche un message d'erreur lors du changement de code
      */
-    public function errorMesageChangeCode() {
+    public function errorMesageChangeCode(): void {
         $this->buildModal('Modification échouée', '<div class="alert alert-danger"> Le changement de groupe n\'a pas été pris en compte</div>');
     }
 }

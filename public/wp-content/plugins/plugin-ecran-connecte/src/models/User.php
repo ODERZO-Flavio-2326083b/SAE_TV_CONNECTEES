@@ -186,7 +186,7 @@ class User extends Model implements Entity, JsonSerializable
     public function get( $id ): false|User {
         $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email, d.dept_id as dept_id 
 														FROM wp_users wp
-														INNER JOIN ecran_user_departement d ON d.user_id = wp.ID
+														LEFT JOIN ecran_user_departement d ON d.user_id = wp.ID
 														WHERE ID = :id LIMIT 1');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
@@ -458,7 +458,7 @@ class User extends Model implements Entity, JsonSerializable
         $entity->setPassword($data['user_pass']);
         $entity->setEmail($data['user_email']);
         $entity->setRole(get_user_by('ID', $data['ID'])->roles[0]);
-		$entity->setIdDepartment($data['dept_id']);
+		$entity->setIdDepartment(($data['dept_id']) ?: 0);
 
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade JOIN ecran_code_user ON ecran_code_ade.id = ecran_code_user.code_ade_id WHERE ecran_code_user.user_id = :id');
 
