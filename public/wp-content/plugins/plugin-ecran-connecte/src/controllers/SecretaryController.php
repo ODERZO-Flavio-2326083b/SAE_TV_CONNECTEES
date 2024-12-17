@@ -64,12 +64,21 @@ class SecretaryController extends UserController
     public function insert() {
         $action = filter_input(INPUT_POST, 'createSecre');
 
+	    $currentUser = wp_get_current_user();
+	    $deptModel = new Department();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
-			$deptId = filter_input(INPUT_POST, 'deptIdSecre');
+	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+	        // de pouvoir le changer
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
@@ -90,12 +99,10 @@ class SecretaryController extends UserController
                 $this->view->displayErrorCreation();
             }
         }
-        $deptModel = new Department();
         $allDepts = $deptModel->getAllDepts();
 
-		$currDept = $deptModel->get(get_current_user_id());
 
-        return $this->view->displayFormSecretary($allDepts, $currDept);
+        return $this->view->displayFormSecretary($allDepts, $isAdmin, $currDept);
     }
 
     /**

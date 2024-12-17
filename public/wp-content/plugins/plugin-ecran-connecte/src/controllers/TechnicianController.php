@@ -63,8 +63,15 @@ class TechnicianController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function insert() {
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'createTech');
+
+	    $currentUser = wp_get_current_user();
+	    $deptModel = new Department();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+		// si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
 
@@ -72,7 +79,9 @@ class TechnicianController extends UserController implements Schedule
             $password = filter_input(INPUT_POST, 'pwdTech');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTech');
             $email = filter_input(INPUT_POST, 'emailTech');
-			$deptId = filter_input(INPUT_POST, 'deptIdTech');
+	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+	        // de pouvoir le changer
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
 
             // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
@@ -95,12 +104,10 @@ class TechnicianController extends UserController implements Schedule
                 $this->view->displayErrorCreation();
             }
         }
-        $deptModel = new Department();
+
         $allDepts = $deptModel->getAllDepts();
 
-		$currDept = $deptModel->get(get_current_user_id());
-
-        return $this->view->displayFormTechnician($allDepts, $currDept);
+        return $this->view->displayFormTechnician($allDepts, $currDept, $isAdmin);
     }
 
     /**
