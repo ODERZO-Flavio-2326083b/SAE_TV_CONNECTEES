@@ -29,13 +29,22 @@ function extractCssVariables(cssText) {
 
 // Fonction principale
 async function populateFormWithCssVariables() {
-    const cssFileUrl = "https://testonsleschoses.alwaysdata.net/wp-content/themes/theme-ecran-connecte/assets/css/global/global-" + document.getElementById('cssFileSelector').value +".css";
+    const cssFileUrl = "https://osef.alwaysdata.net/wp-content/themes/theme-ecran-connecte/assets/css/global/global-" + document.getElementById('cssFileSelector').value +".css";
 
     // Étape 1 : Récupérer le contenu du fichier CSS
     const cssText = await fetchCssFile(cssFileUrl);
 
     if (!cssText) {
         console.error("Impossible de récupérer les variables CSS");
+        document.getElementById('background1').value = null;
+        document.getElementById('background2').value = null;
+        document.getElementById('layout').value = null;
+        document.getElementById('layoutColor').value = null;
+        document.getElementById('title').value =null;
+        document.getElementById('link').value =null;
+        document.getElementById('buttonBorder').value = null;
+        document.getElementById('button').value = null;
+        document.getElementById('sideBar').value =null;
         return;
     }
 
