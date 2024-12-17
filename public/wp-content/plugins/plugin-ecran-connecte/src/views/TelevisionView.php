@@ -3,6 +3,7 @@
 namespace Views;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 
 /**
@@ -31,6 +32,9 @@ class TelevisionView extends UserView
      * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
      *                          Chaque objet doit implémenter les méthodes nécessaires
      *                          pour l'affichage des informations.
+     * @param Department[] $allDepts Liste de tous les objets départements
+     * @param bool $isAdmin Booléen, true si l'utilisateur est un admin
+     * @param int|null $currDept (optionnel) Département actuel de l'utilisateur, null s'il est un admin
      *
      * @return string Le code HTML du formulaire de création de compte télévision.
      *
@@ -38,16 +42,10 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
+    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin, int $currDept = null): string {
+        $disabled = $isAdmin ? '' : 'disabled';
 
-    public function displayAllDepartement($dept) {
-        $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
-        }
-        return $string;
-    }
-    public function displayFormTelevision($years, $groups, $halfGroups, $dept) {
-        $form = '
+		$form = '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
         <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps"</p>
@@ -66,8 +64,8 @@ class TelevisionView extends UserView
             <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select>
-                    ' . $this->displayAllDepartement($dept) . '
+                <select name="deptIdTv" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <div class="form-group">
@@ -98,19 +96,19 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTv($users) {
+    public function displayAllTv($users, $userDeptList) {
         $page = get_page_by_title_custom('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
         $title = 'Televisions';
         $name = 'Tele';
-        $header = ['Login', 'Nombre d\'emplois du temps ', 'Modifier'];
+        $header = ['Login', 'Nombre d\'emplois du temps ', 'Département', 'Modifier'];
 
         $row = array();
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1], $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'tele');
