@@ -3,6 +3,7 @@
 namespace Views;
 
 use Models\CodeAde;
+use Models\Department;
 use Models\User;
 
 /**
@@ -15,11 +16,20 @@ use Models\User;
 class UserView extends View
 {
 
-
-    public function displayAllDepartement($dept) {
+	/**
+	 * Génère une balise option pour chaque département contenant son nom.
+	 * La valeur est l'ID du département.
+	 *
+	 * @param Department[] $depts Liste de tous les départements
+	 * @param int|null $currDept ID du département actuel
+	 *
+	 * @return string Code HTML de selection des départements
+	 */
+    public function buildDepartmentOptions(array $depts, int $currDept = null): string {
         $string = "";
-        foreach ($dept as $departement) {
-            $string .= '<option value="' . $departement->getName() . '">' . $departement->getName() . '</option>';
+        foreach ($depts as $departement) {
+			$selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
+            $string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
         }
         return $string;
     }
@@ -34,6 +44,7 @@ class UserView extends View
 	 * concernant les valeurs saisies.
 	 *
 	 * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+	 * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de sélection
 	 *
 	 * @return string Le code HTML du formulaire.
 	 *
@@ -41,8 +52,9 @@ class UserView extends View
 	 * @version 1.0
 	 * @date 2024-10-15
 	 */
-    protected function displayBaseForm($name, $dept) {
-        return '
+    protected function displayBaseForm(string $name, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
+		$disabled = $isAdmin ? '' : 'disabled';
+		return '
             <form method="post" class="cadre">
                 <div class="form-group">
                     <label for="login' . $name . '">Login</label>
@@ -62,8 +74,8 @@ class UserView extends View
                 <div class="form-group">
                 <label for="departementDirec">Département</label>
                 <br>    
-                <select>
-                    ' . $this->displayAllDepartement($dept) . '
+                <select name="deptId'. $name .'" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name . '" name="create' . $name . '">Créer</button>

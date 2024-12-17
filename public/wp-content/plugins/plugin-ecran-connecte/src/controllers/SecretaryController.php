@@ -64,11 +64,21 @@ class SecretaryController extends UserController
     public function insert() {
         $action = filter_input(INPUT_POST, 'createSecre');
 
+	    $currentUser = wp_get_current_user();
+	    $deptModel = new Department();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
+	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+	        // de pouvoir le changer
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
@@ -78,6 +88,7 @@ class SecretaryController extends UserController
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('secretaire');
+				$this->model->setIdDepartment($deptId);
 
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
                     $this->view->displayInsertValidate();
@@ -88,9 +99,10 @@ class SecretaryController extends UserController
                 $this->view->displayErrorCreation();
             }
         }
-        $deptModel = new Department();
-        $dept = $deptModel->getAllDepts();
-        return $this->view->displayFormSecretary($dept);
+        $allDepts = $deptModel->getAllDepts();
+
+
+        return $this->view->displayFormSecretary($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -108,7 +120,14 @@ class SecretaryController extends UserController
      */
     public function displayAllSecretary() {
         $users = $this->model->getUsersByRole('secretaire');
-        return $this->view->displayAllSecretary($users);
+	    $deptModel = new Department();
+
+	    $userDeptList = array();
+	    foreach ($users as $user) {
+		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+	    }
+
+        return $this->view->displayAllSecretary($users, $userDeptList);
     }
 
     /**
@@ -139,7 +158,7 @@ class SecretaryController extends UserController
             $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
             $this->view->displayContentSelect('television', $television->insert()) .
-            $this->view->displayEndDiv() .
+            '</div>' .
             $this->view->contextCreateUser();
     }
 
@@ -171,7 +190,7 @@ class SecretaryController extends UserController
             $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
             $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
             $this->view->displayContentSelect('television', $television->displayAllTv()) .
-            $this->view->displayEndDiv();
+            '</div>';
     }
 
     /**
