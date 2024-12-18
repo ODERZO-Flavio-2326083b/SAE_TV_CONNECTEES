@@ -525,7 +525,7 @@ class InformationView extends View
                 break;
 
             case 'short':
-                echo '<video class="short_container" src="' . $url . $content . '" autoplay loop muted></video>';
+                echo '<video class="short_container" src="' . $url . $content . '" id="' .$title . '" autoplay loop muted></video>';
                 break;
 
             case 'video':

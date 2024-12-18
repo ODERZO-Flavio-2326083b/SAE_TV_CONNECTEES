@@ -6,7 +6,7 @@
     max-height: 65vh;
 }
 
-.video_container {
+.short_container {
     max-height: 65vh;
     max-width: 100%;
     padding: .25rem;
@@ -16,7 +16,7 @@
     height: auto;
 }
 
-.video_container video {
+.short_container video {
     width: 20%;
     height: auto;
     max-height: 45vh;
