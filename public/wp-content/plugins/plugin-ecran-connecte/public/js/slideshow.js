@@ -9,7 +9,7 @@ infoSlideShow();
 scheduleSlideshow();
 
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama s'il existe des informations
  */
 function infoSlideShow()
 {
@@ -20,7 +20,7 @@ function infoSlideShow()
 }
 
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama s'il existe des informations
  */
 function scheduleSlideshow()
 {
@@ -31,7 +31,7 @@ function scheduleSlideshow()
 }
 
 /**
- * Display a slideshow
+ * Affiche un diaporama
  */
 function displayOrHide(slides, slideIndex)
 {
@@ -49,9 +49,11 @@ function displayOrHide(slides, slideIndex)
             slideIndex = 0;
         }
 
+        // Si une vidéo (format paysage) est détectée, on l'ignore
         if (slides[slideIndex].querySelector('.video_container')){
             console.log("--Vidéo ignorée");
             ++slideIndex;
+            // Si la dernière slide est la vidéo, on réinitialise
             if (slideIndex === slides.length){
                 console.log("-Fin du diaporama - On recommence");
                 slideIndex = 0;
@@ -59,31 +61,25 @@ function displayOrHide(slides, slideIndex)
 
         }
 
-        // Check if the slide exist
+        // On vérifie qu'il existe une dernière slide
         if(slides[slideIndex] !== undefined) {
 
             console.log("--Slide n°"+ slideIndex);
 
             slides[slideIndex].style.display = "block";
-            // Check child
-
-
-
-
-
+            // On vérifie qu'un enfant existe
             if(slides[slideIndex].childNodes) {
                 let count = 0;
-                // Try to find if it's a PDF
                 for(let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
                     let child = slides[slideIndex].childNodes[i];
-                    // If is a PDF
+                    // Si c'est un PDF
                     if(child.className === 'canvas_pdf') {
 
                         console.log("--Lecture de PDF");
 
                         count = count + 1;
 
-                        // Generate the url
+                        // On génère l'URL
                         let pdfLink = slides[slideIndex].childNodes[i].id;
                         pdfUrl = urlUpload + pdfLink;
 
@@ -128,7 +124,7 @@ function displayOrHide(slides, slideIndex)
                                         viewport: viewport
                                     };
 
-                                    // Give the CSS to the canvas
+                                    // On donne à notre page un CSS
                                     if(slides === document.getElementsByClassName("mySlides")) {
                                         canvas.style.maxHeight = "99vh";
                                         canvas.style.maxWidth = "100%";
@@ -155,13 +151,15 @@ function displayOrHide(slides, slideIndex)
                                     totalPage = null;
                                     numPage = 0;
                                     endPage = true;
+                                    // Aller à la prochaine slide.
                                     ++slideIndex;
-                                    // Go to the next slide
+
                                 }
                             }
                         });
                     }
 
+                    // Si c'est un short
                     if (child.className === 'short_container') {
                         console.log("--Lecture short");
                     }
@@ -172,13 +170,16 @@ function displayOrHide(slides, slideIndex)
                     ++slideIndex;
                 }
             } else {
-                // Go to the next slide
+                // Aller à la prochaine slide
                 ++slideIndex;
             }
         }
     }
 
     if(slides.length !== 1 || totalPage !== 1) {
+        // On définit notre temps, ici 10 secondes
         setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
     }
 }
+
+
