@@ -4,6 +4,7 @@ namespace Views;
 
 use Models\CodeAde;
 use Models\Department;
+use models\Scrapper;
 use Models\User;
 
 /**
@@ -66,8 +67,8 @@ class TelevisionView extends UserView
                 <br>    
                 <select name="deptIdTv" class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
-            </div>
+                </select>            </div>
+
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
             $this->buildSelectCode($years, $groups, $halfGroups) . '

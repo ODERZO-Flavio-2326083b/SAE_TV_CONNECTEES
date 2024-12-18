@@ -241,6 +241,7 @@ class TelevisionController extends UserController implements Schedule
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];
 
+
         $string = "";
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {

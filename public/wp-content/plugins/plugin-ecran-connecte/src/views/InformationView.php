@@ -489,7 +489,7 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displaySlide($title, $content, $type, $adminSite = false) {
+    public function displaySlide($title, $content, $type, $scrapper,$adminSite = false) {
         echo '<div class="myInfoSlides text-center">';
 
         // If the title is empty
@@ -534,6 +534,10 @@ class InformationView extends View
 
             case 'text':
                 echo '<p class="lead">' . $content . '</p>';
+                break;
+
+            case 'scrapper':
+                $scrapper->printWebsite();
                 break;
 
             case 'special':

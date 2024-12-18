@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\Information;
+use Models\Scrapper;
 use Views\InformationView;
 
 /**
@@ -466,6 +467,16 @@ class InformationController extends Controller
      */
     public function informationMain() {
         $informations = $this->model->getList();
+        $infoScrapper = new information();
+        $infoScrapper->setAuthor(1);
+        $infoScrapper->setCreationDate(date("2024-12-18"));
+        $infoScrapper->setId(27);
+        $infoScrapper->setContent("scrapper");
+        $infoScrapper->setAdminId(1);
+        $infoScrapper->setTitle("info du site scrapper");
+        $infoScrapper->setType("text");
+        $infoScrapper->setExpirationDate("2028-12-18");
+        $informations[] = $infoScrapper;
         $this->view->displayStartSlideshow();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
@@ -474,7 +485,7 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
             }
         }
         echo '</div>';

@@ -518,4 +518,7 @@ class Information extends Model implements Entity, JsonSerializable
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }
+
+
+
 }
