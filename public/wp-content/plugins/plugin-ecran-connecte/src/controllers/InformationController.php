@@ -549,7 +549,6 @@ class InformationController extends Controller
             if ($extension == "pdf") {
                 echo '
 				<div class="canvas_pdf" id="' . $event->getContent() . '"></div>';
-                //echo do_shortcode('[pdf-embedder url="'.$event->getContent().'"]');
             } else {
                 echo '<img src="' . TV_UPLOAD_PATH . $event->getContent() . '" alt="' . $event->getTitle() . '">';
             }

@@ -19,6 +19,13 @@ function infoSlideShow()
     }
 }
 
+function videoSlideshow(){
+    if (document.getElementsByClassName("myVideoSlides").length > 0){
+        console.log("-Début du diaporama vidéo");
+        displayOrHideVideo(document.getElementsByClassName("myVideoSlides"), 0);
+    }
+}
+
 /**
  * Lance le diaporama s'il existe des informations
  */
@@ -181,5 +188,70 @@ function displayOrHide(slides, slideIndex)
         setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
     }
 }
+
+/**
+ * Affiche un diaporama en n'affichant que les vidéos, qu'on utilisera donc à droite dans notre télévision
+ */
+function displayOrHideVideo(slides, slideIndex)
+{
+    if(slides.length > 0) {
+        if(slides.length > 1) {
+            for (let i = 0; i < slides.length; ++i) {
+                slides[i].style.display = "none";
+            }
+        }
+
+        if(slideIndex === slides.length) {
+            console.log("-Fin du diaporama - On recommence");
+            slideIndex = 0;
+        }
+
+        // On vérifie qu'une vidéo est présente
+        if (slides[slideIndex].querySelector('.video_container')){
+            console.log("--Vidéo trouvée");
+
+            // On affiche la vidéo
+            slides[slideIndex].style.display = "block";
+        } else {
+            // Si ce n'est pas une vidéo, on passe à la prochaine slide
+            console.log("--Non vidéo trouvée - On passe à la suivante");
+            ++slideIndex;
+        }
+
+        // On vérifie qu'il existe une dernière slide
+        if(slides[slideIndex] !== undefined) {
+            console.log("--Slide n°"+ slideIndex);
+
+            // On vérifie qu'un enfant existe et que c'est bien une vidéo
+            if(slides[slideIndex].childNodes) {
+                let count = 0;
+                for(let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
+                    let child = slides[slideIndex].childNodes[i];
+
+                    // Si c'est une vidéo, on l'affiche
+                    if(child.className === 'video_container') {
+                        console.log("--Lecture de la vidéo");
+                        count++;
+
+                    }
+                }
+
+                if(count === 0) {
+                    console.log("--Pas de vidéo - Aller à la prochaine slide");
+                    ++slideIndex;
+                }
+            } else {
+                // Aller à la prochaine slide
+                ++slideIndex;
+            }
+        }
+    }
+
+    if(slides.length !== 1 || totalPage !== 1) {
+        // On définit notre temps, ici 10 secondes
+        setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
+    }
+}
+
 
 
