@@ -42,24 +42,42 @@ function displayOrHide(slides, slideIndex)
             }
         }
 
+
+
         if(slideIndex === slides.length) {
             console.log("-Fin du diaporama - On recommence");
             slideIndex = 0;
+        }
+
+        if (slides[slideIndex].querySelector('.video_container')){
+            console.log("--Vidéo ignorée");
+            ++slideIndex;
+            if (slideIndex === slides.length){
+                console.log("-Fin du diaporama - On recommence");
+                slideIndex = 0;
+            }
+
         }
 
         // Check if the slide exist
         if(slides[slideIndex] !== undefined) {
 
             console.log("--Slide n°"+ slideIndex);
-            // Display the slide
+
             slides[slideIndex].style.display = "block";
             // Check child
+
+
+
+
+
             if(slides[slideIndex].childNodes) {
-                var count = 0;
+                let count = 0;
                 // Try to find if it's a PDF
                 for(let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
+                    let child = slides[slideIndex].childNodes[i];
                     // If is a PDF
-                    if(slides[slideIndex].childNodes[i].className === 'canvas_pdf') {
+                    if(child.className === 'canvas_pdf') {
 
                         console.log("--Lecture de PDF");
 
@@ -87,14 +105,10 @@ function displayOrHide(slides, slideIndex)
 
                             if(totalPage >= numPage && stop === false) {
                                 pdf.getPage(numPage).then(function(page) {
-
-                                    console.log(slides.length);
-                                    console.log(totalPage);
                                     if(slides.length === 1 && totalPage === 1 || totalPage === null && slides.length === 1) {
                                         stop = true;
                                     }
 
-                                    console.log(stop);
 
                                     console.log("---Page du PDF n°"+numPage);
 
@@ -147,10 +161,14 @@ function displayOrHide(slides, slideIndex)
                             }
                         });
                     }
+
+                    if (child.className === 'short_container') {
+                        console.log("--Lecture short");
+                    }
                 }
+
                 if(count === 0) {
                     console.log("--Lecture image");
-                    // Go to the next slide
                     ++slideIndex;
                 }
             } else {
@@ -160,7 +178,7 @@ function displayOrHide(slides, slideIndex)
         }
     }
 
-     if(slides.length !== 1 || totalPage !== 1) {
-        setTimeout(function(){displayOrHide(slides, slideIndex)} , 10000);
+    if(slides.length !== 1 || totalPage !== 1) {
+        setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
     }
 }

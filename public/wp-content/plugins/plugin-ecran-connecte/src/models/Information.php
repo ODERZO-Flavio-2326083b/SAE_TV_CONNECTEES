@@ -398,9 +398,10 @@ class Information extends Model implements Entity, JsonSerializable
         } else {
             $entity->setAdminId($data['administration_id']);
         }
-
+    
         return $entity;
     }
+
 
     /**
      * @return int
