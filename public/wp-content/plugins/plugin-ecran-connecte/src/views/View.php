@@ -2,6 +2,8 @@
 
 namespace Views;
 
+use Models\Department;
+
 /**
  * Class View
  *
@@ -139,6 +141,24 @@ class View
         </nav>';
         return $pagination;
     }
+
+	/**
+	 * Génère une balise option pour chaque département contenant son nom.
+	 * La valeur est l'ID du département.
+	 *
+	 * @param Department[] $depts Liste de tous les départements
+	 * @param int|null $currDept ID du département actuel
+	 *
+	 * @return string Code HTML de selection des départements
+	 */
+	public function buildDepartmentOptions(array $depts, int $currDept = null): string {
+		$string = "";
+		foreach ($depts as $departement) {
+			$selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
+			$string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
+		}
+		return $string;
+	}
 
     /**
      * Génère un lien HTML pour modifier un élément.
@@ -299,6 +319,8 @@ class View
      */
     public function buildModal($title, $content, $redirect = null) {
         $modal = '
+		<div class="modal-backdrop" id="modalBackdrop" style="display: none;"></div>
+
 		<!-- MODAL -->
 		<div class="modal" id="myModal" tabindex="-1" role="dialog">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -311,7 +333,7 @@ class View
 		      </div>
 		      <div class="modal-footer">';
         if (empty($redirect)) {
-            $modal .= '<button type="button" class="btn button_ecran" onclick="$(\'#myModal\').hide();">Fermer</button>';
+            $modal .= '<button type="button" class="btn button_ecran" onclick="$(\'#myModal\').hide(); $(\'#modalBackdrop\').hide();">Fermer</button>';
         } else {
             $modal .= '<button type="button" class="btn button_ecran" onclick="document.location.href =\' ' . $redirect . ' \'">Fermer</button>';
         }
@@ -322,6 +344,7 @@ class View
 		
 		<script>
 			$(\'#myModal\').show();
+			$(\'#modalBackdrop\').show();
 		</script>';
 
         echo $modal;
