@@ -402,9 +402,6 @@ class Information extends Model implements Entity, JsonSerializable
         return $entity;
     }
 
-    public function getVideos(){
-        $request = $this->getDatabase()->prepare('SELECT id, title, content, type, author, expiration_date, creation_date FROM ecran_information WHERE type = "video" ORDER BY expiration_date ASC');
-    }
 
     /**
      * @return int
