@@ -42,7 +42,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin, int $currDept = null): string {
+    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
         $disabled = $isAdmin ? '' : 'disabled';
 
 		$form = '
@@ -62,9 +62,9 @@ class TelevisionView extends UserView
             	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
             </div>
             <div class="form-group">
-                <label for="departementDirec">Département</label>
+                <label for="deptIdTv">Département</label>
                 <br>    
-                <select name="deptIdTv" class="form-control"' . $disabled . '>
+                <select id="deptIdTv" name="deptIdTv" class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
@@ -89,6 +89,8 @@ class TelevisionView extends UserView
      * @param array $users Un tableau d'objets représentant les utilisateurs de type télévision.
      *                     Chaque objet doit implémenter les méthodes nécessaires pour récupérer
      *                     le login et les codes d'emploi du temps associés.
+     * @param array $userDeptList Tableau contenant tous les noms des départements dans le même ordre
+     *                            que le tableau $users
      *
      * @return string Le code HTML du tableau affichant les utilisateurs de télévision.
      *

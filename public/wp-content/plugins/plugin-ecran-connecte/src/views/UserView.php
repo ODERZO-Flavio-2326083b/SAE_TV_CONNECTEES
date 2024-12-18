@@ -15,24 +15,6 @@ class UserView extends View
 {
 
 	/**
-	 * Génère une balise option pour chaque département contenant son nom.
-	 * La valeur est l'ID du département.
-	 *
-	 * @param Department[] $depts Liste de tous les départements
-	 * @param int|null $currDept ID du département actuel
-	 *
-	 * @return string Code HTML de selection des départements
-	 */
-    public function buildDepartmentOptions(array $depts, int $currDept = null): string {
-        $string = "";
-        foreach ($depts as $departement) {
-			$selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
-            $string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
-        }
-        return $string;
-    }
-
-	/**
 	 * Génère un formulaire de base pour la création d'un compte utilisateur.
 	 *
 	 * Cette méthode crée un formulaire HTML standard contenant des champs pour

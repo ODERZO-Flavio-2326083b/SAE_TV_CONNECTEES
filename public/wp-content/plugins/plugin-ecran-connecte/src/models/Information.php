@@ -55,6 +55,11 @@ class Information extends Model implements Entity, JsonSerializable
 	 */
 	private $adminId;
 
+	/**
+	 * @var int
+	 */
+	private $idDepartment;
+
     /**
      * Insère un nouvel enregistrement d'information dans la base de données.
      *
@@ -70,7 +75,9 @@ class Information extends Model implements Entity, JsonSerializable
      */
     public function insert() {
         $database = $this->getDatabase();
-        $request = $database->prepare("INSERT INTO ecran_information (title, content, creation_date, expiration_date, type, author, administration_id) VALUES (:title, :content, :creationDate, :expirationDate, :type, :userId, :administration_id) ");
+        $request = $database->prepare("INSERT INTO ecran_information 
+    										(title, content, creation_date, expiration_date, type, author, administration_id, department_id) 
+											VALUES (:title, :content, :creationDate, :expirationDate, :type, :userId, :administration_id, :department_id) ");
 
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
@@ -79,6 +86,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request->bindValue(':type', $this->getType(), PDO::PARAM_STR);
         $request->bindValue(':userId', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':administration_id', $this->getAdminId(), PDO::PARAM_INT);
+		$request->bindValue(':department_id', $this->getIdDepartment(), PDO::PARAM_INT);
 
         $request->execute();
 
@@ -181,7 +189,8 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getList($begin = 0, $numberElement = 25) {
-        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id FROM ecran_information ORDER BY id LIMIT :begin, :numberElement");
+        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
+														FROM ecran_information ORDER BY id LIMIT :begin, :numberElement");
 
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
@@ -212,7 +221,7 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getAuthorListInformation($author, $begin = 0, $numberElement = 25) {
-        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id FROM ecran_information WHERE author = :author ORDER BY expiration_date LIMIT :begin, :numberElement');
+        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id FROM ecran_information WHERE author = :author ORDER BY expiration_date LIMIT :begin, :numberElement');
 
         $request->bindParam(':author', $author, PDO::PARAM_INT);
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
@@ -222,6 +231,34 @@ class Information extends Model implements Entity, JsonSerializable
 
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     } //getAuthorListInformation()
+
+	/**
+	 * Récupère une liste d'informations provenant d'un département spécifique.
+	 *
+	 * Cette méthode prépare une requête SQL pour sélectionner les enregistrements
+	 * dans la table 'ecran_information' où le département correspond à celui spécifié.
+	 * La méthode utilise la pagination pour retourner un sous-ensemble des résultats
+	 * en fonction des paramètres de début et de nombre d'éléments. Les résultats
+	 * sont triés par date d'expiration.
+	 *
+	 * @param int $idDept L'identifiant du département
+	 * @param int $begin Point de départ pour la récupération des informations
+	 * @param int $numberElement Le nombre d'informations à récupérer
+	 *
+	 * @return array Une liste d'entités correspondant aux informations récupérées
+	 */
+	public function getInformationsByDeptId(int $idDept, int $begin = 0, int $numberElement = 25): array {
+		$request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
+														FROM ecran_information WHERE department_id = :id ORDER BY expiration_date LIMIT :begin, :numberElement');
+
+		$request->bindParam(':id', $idDept, PDO::PARAM_INT);
+		$request->bindValue(':begin', $begin, PDO::PARAM_INT);
+		$request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
+
+		$request->execute();
+
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+	}
 
     /**
      * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
@@ -383,7 +420,7 @@ class Information extends Model implements Entity, JsonSerializable
         $entity->setContent($data['content']);
         $entity->setCreationDate(date('Y-m-d', strtotime($data['creation_date'])));
         $entity->setExpirationDate(date('Y-m-d', strtotime($data['expiration_date'])));
-
+		$entity->setIdDepartment($data['department_id']);
         $entity->setType($data['type']);
 
         if ($data['administration_id'] != null) {
@@ -514,6 +551,20 @@ class Information extends Model implements Entity, JsonSerializable
     public function setAdminId($adminId) {
         $this->adminId = $adminId;
     }
+
+	/**
+	 * @return int
+	 */
+	public function getIdDepartment(): int {
+		return $this->idDepartment;
+	}
+
+	/**
+	 * @param int $idDepartment
+	 */
+	public function setIdDepartment(int $idDepartment): void {
+		$this->idDepartment = $idDepartment;
+	}
 
     public function jsonSerialize(): array {
         return get_object_vars($this);

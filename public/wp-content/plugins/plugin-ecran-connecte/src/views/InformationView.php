@@ -35,8 +35,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormText($title = null, $content = null, $endDate = null, $type = "createText") {
+    public function displayFormText(array $allDepts, bool $isAdmin = false, int $currDept = null, $title = null, $content = null, $endDate = null, $type = "createText") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
 
         $form = '
         <form method="post">
@@ -51,6 +52,13 @@ class InformationView extends View
             <div class="form-group">
                 <label for="expirationDate">Date d\'expiration</label>
                 <input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+            </div>
+            <div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
@@ -80,8 +88,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormImg($title = null, $content = null, $endDate = null, $type = "createImg") {
+    public function displayFormImg( array $allDepts, bool $isAdmin = false, int $currDept = null,$title = null, $content = null, $endDate = null, $type = "createImg") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
 
         $form = '<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
@@ -107,6 +116,13 @@ class InformationView extends View
 				<label for="expirationDate">Date d\'expiration</label>
 				<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
 			</div>
+			<div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
 			<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
@@ -302,8 +318,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormPDF($title = null, $content = null, $endDate = null, $type = "createPDF") {
+    public function displayFormPDF(array $allDepts, bool $isAdmin = false, int $currDept = null, $title = null, $content = null, $endDate = null, $type = "createPDF") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
 
         $form = '<form method="post" enctype="multipart/form-data">
 					<div class="form-group">
@@ -328,6 +345,13 @@ class InformationView extends View
 				<label for="expirationDate">Date d\'expiration</label>
 				<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
 			</div>
+			<div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
 			<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
@@ -354,8 +378,10 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormEvent($endDate = null, $type = "createEvent") {
+    public function displayFormEvent( array $allDepts, bool $isAdmin = false, int $currDept = null, $endDate = null, $type = "createEvent") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
+
         $form = '
 		<form method="post" enctype="multipart/form-data">
 			<div class="form-group">
@@ -368,6 +394,13 @@ class InformationView extends View
 				<label for="expirationDate">Date d\'expiration</label>
 				<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
 			</div>
+			<div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
 			<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
@@ -499,17 +532,11 @@ class InformationView extends View
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        // Utilisation de switch pour les types nécessitant une extension
-        switch ($type) {
-            case 'pdf':
-            case 'short':
-            case 'video':
-            case 'event':
-            case 'img':
-                $extension = explode('.', $content);
-                $extension = $extension[1];
-                break;
-        }
+	    if (in_array($type, ['pdf', 'event', 'img', 'short', 'video'])) {
+		    $extension = explode('.', $content);
+		    $extension = $extension[1];
+	    }
+
 
         // Utilisation de switch pour afficher les contenus
         switch ($type) {
