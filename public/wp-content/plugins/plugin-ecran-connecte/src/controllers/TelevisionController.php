@@ -152,7 +152,7 @@ class TelevisionController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modify($user) {
+    public function modify(User $user): string {
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
@@ -203,7 +203,7 @@ class TelevisionController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTv() {
+    public function displayAllTv(): string {
         $users = $this->model->getUsersByRole('television');
 		$deptModel = new Department();
 
@@ -236,7 +236,7 @@ class TelevisionController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayMySchedule() {
+    public function displayMySchedule(): string {
         $current_user = wp_get_current_user();
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];

@@ -2,8 +2,6 @@
 
 namespace Views;
 
-use Models\User;
-
 /**
  * Class TechnicianView
  *
@@ -56,7 +54,7 @@ class TechnicianView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTechnicians($users, $userDeptList) {
+    public function displayAllTechnicians(array $users, array $userDeptList): string {
         $title = 'Techniciens';
         $name = 'Tech';
         $header = ['Login', 'Département'];

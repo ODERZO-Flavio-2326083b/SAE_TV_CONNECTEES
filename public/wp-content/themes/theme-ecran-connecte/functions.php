@@ -210,7 +210,16 @@ if (function_exists('register_sidebar')) {
 
 // remplacer la fonction dépréciée get_page_by_title_custom
 // par une fonction customisée prise en charge
-function get_page_by_title_custom($page_title) {
+
+/**
+ * Fonction customisée qui recherche une page à partir de son nom, pour remplacer
+ * la fonction dépréciée get_page_by_title().
+ *
+ * @param string $page_title Nom de la page à chercher
+ *
+ * @return WP_Post|array|null La page trouvée, ou l'array de pages trouvées. null si aucune page trouvée.
+ */
+function get_page_by_title_custom($page_title): WP_Post|array|null {
 	$args = array(
 		'post_type'   => 'page',
 		'title'       => $page_title,

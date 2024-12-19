@@ -44,8 +44,7 @@ class AlertView extends View
             </div>
             <input type="button" onclick="addButtonAlert()" class="btn button_ecran" value="+">
             <button type="submit" class="btn button_ecran" name="submit">Valider</button>
-        </form>
-        <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))) . '">Voir les alertes</a>' . $this->contextCreateAlert();
+        </form>' . $this->contextCreateAlert();
     }
 
     /**
@@ -205,7 +204,6 @@ class AlertView extends View
         }
 
         $select .= '<option value="all">Tous</option>
-                    <option value="0">Aucun</option>
             		<optgroup label="Année">';
 
         foreach ($years as $year) {

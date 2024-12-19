@@ -18,12 +18,12 @@ class SecretaryController extends UserController
     /**
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * @var SecretaryView
      */
-    private $view;
+    private SecretaryView $view;
 
     /**
      * Constructor of SecretaryController.
@@ -41,7 +41,7 @@ class SecretaryController extends UserController
      *
      * @return string
      */
-    public function displayMySchedule() {
+    public function displayMySchedule(): string {
         return $this->view->displayWelcomeAdmin();
     }
 
@@ -61,7 +61,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function insert() {
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'createSecre');
 
 	    $currentUser = wp_get_current_user();
@@ -118,7 +118,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllSecretary() {
+    public function displayAllSecretary(): string {
         $users = $this->model->getUsersByRole('secretaire');
 	    $deptModel = new Department();
 
@@ -144,7 +144,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function createUsers() {
+    public function createUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
@@ -176,7 +176,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayUsers() {
+    public function displayUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
@@ -208,7 +208,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyUser() {
+    public function modifyUser(): string {
         $id = $_GET['id'];
         if (is_numeric($id) && $this->model->get($id)) {
             $user = $this->model->get($id);
@@ -239,7 +239,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function deleteUsers() {
+    public function deleteUsers(): void {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         $roles = ['Tech', 'Secre', 'Tele'];
 
@@ -263,6 +263,7 @@ class SecretaryController extends UserController
      * de la base de données.
      *
      * @param int $id L'identifiant de l'utilisateur à supprimer.
+     *
      * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression
      *               de l'utilisateur.
      *
@@ -270,7 +271,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    private function deleteUser($id) {
+    private function deleteUser(int $id): void {
         $user = $this->model->get($id);
         $user->delete();
     }
