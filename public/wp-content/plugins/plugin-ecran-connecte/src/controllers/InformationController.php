@@ -210,10 +210,18 @@ class InformationController extends Controller
             return $this->view->noInformation();
         }
 
-        $current_user = wp_get_current_user();
+		$deptModel = new Department();
+	    $currentUser = wp_get_current_user();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+	    $allDepts = $deptModel->getAllDepts();
+
         $information = $this->model->get($id);
 
-        if (!(in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $information->getAuthor()->getId() == $current_user->ID)) {
+        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $currentUser->roles) || $information->getAuthor()->getId() == $currentUser->ID)) {
             return $this->view->noInformation();
         }
 
@@ -271,7 +279,8 @@ class InformationController extends Controller
             $information->delete();
             $this->view->displayModifyValidate();
         }
-        return $this->view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType());
+        return $this->view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType()
+                    ,$allDepts, $isAdmin, $currDept);
     }
 
 
