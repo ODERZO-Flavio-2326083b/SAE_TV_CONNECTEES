@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\CodeAde;
 use Models\Department;
+use models\Scrapper;
 use Models\User;
 use Views\TelevisionView;
 

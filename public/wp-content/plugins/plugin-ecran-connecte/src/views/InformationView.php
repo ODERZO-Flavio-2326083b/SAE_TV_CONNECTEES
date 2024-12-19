@@ -4,7 +4,7 @@ namespace Views;
 
 
 use Controllers\InformationController;
-use Models\Information;
+use Models\Scrapper;
 
 /**
  * Class InformationView

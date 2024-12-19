@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\Department;
 use Models\Information;
+use Models\Scrapper;
 use Views\InformationView;
 
 /**
@@ -481,6 +482,16 @@ class InformationController extends Controller
     public function informationMain() {
 		$deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+        $infoScrapper = new information();
+        $infoScrapper->setAuthor(1);
+        $infoScrapper->setCreationDate(date("2024-12-18"));
+        $infoScrapper->setId(27);
+        $infoScrapper->setContent("scrapper");
+        $infoScrapper->setAdminId(1);
+        $infoScrapper->setTitle("info du site scrapper");
+        $infoScrapper->setType("scrapper");
+        $infoScrapper->setExpirationDate("2028-12-18");
+        $informations[] = $infoScrapper;
         $this->view->displayStartSlideshow();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
@@ -489,7 +500,7 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
             }
         }
         echo '</div>';
