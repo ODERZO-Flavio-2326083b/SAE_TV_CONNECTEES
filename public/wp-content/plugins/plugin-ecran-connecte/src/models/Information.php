@@ -160,7 +160,8 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function get($id) {
-        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id FROM ecran_information WHERE id = :id LIMIT 1");
+        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
+														FROM ecran_information WHERE id = :id LIMIT 1");
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
 

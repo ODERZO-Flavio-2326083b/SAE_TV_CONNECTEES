@@ -203,7 +203,7 @@ class InformationController extends Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function modify() {
+    public function modify(): string {
         $id = $_GET['id'];
 
         if (empty($id) || is_numeric($id) && !$this->model->get($id)) {

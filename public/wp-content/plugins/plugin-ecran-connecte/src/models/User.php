@@ -184,10 +184,10 @@ class User extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function get( $id ): false|User {
-        $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email, d.dept_id as dept_id 
+        $request = $this->getDatabase()->prepare('SELECT wp.ID as ID, user_login, user_pass, user_email, d.dept_id as dept_id 
 														FROM wp_users wp
 														LEFT JOIN ecran_user_departement d ON d.user_id = wp.ID
-														WHERE ID = :id LIMIT 1');
+														WHERE wp.ID = :id LIMIT 1');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
 
