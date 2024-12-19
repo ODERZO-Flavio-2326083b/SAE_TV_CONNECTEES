@@ -488,7 +488,7 @@ class InformationController extends Controller
         $infoScrapper->setId(27);
         $infoScrapper->setContent("scrapper");
         $infoScrapper->setAdminId(1);
-        $infoScrapper->setTitle("info du site scrapper");
+        $infoScrapper->setTitle("Sans titre");
         $infoScrapper->setType("scrapper");
         $infoScrapper->setExpirationDate("2028-12-18");
         $informations[] = $infoScrapper;

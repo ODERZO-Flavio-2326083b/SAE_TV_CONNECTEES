@@ -61,9 +61,9 @@ class Scrapper
             $article = $articles->item(rand(0, $articles->length - 1));
             $varArticle = $this->getArticle($article);
             $html .= '<div>';
-        //$html .= '<h2>' . $varArticle['title'] . '</h2>';
+            $html .= '<h2>' . $varArticle['title'] . '</h2>';
             $html .= '<p>' . $varArticle['content'] . '</p>';
-           // $html .= '<a href="' . $varArticle['link'] . '">';
+            $html .= '<a href="' . $varArticle['link'] . '">';
             $html .= '<img src="' . $varArticle['image'] . '">';
             $html .= '</a>';
             $html .= '</div>';

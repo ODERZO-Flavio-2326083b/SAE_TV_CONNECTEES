@@ -525,7 +525,6 @@ class InformationView extends View
     public function displaySlide($title, $content, $type, $scrapper,$adminSite = false) {
         echo '<div class="myInfoSlides text-center">';
 
-        // If the title is empty
         if ($title != "Sans titre") {
             echo '<h2 class="titleInfo">' . $title . '</h2>';
         }
