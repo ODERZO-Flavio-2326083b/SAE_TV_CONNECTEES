@@ -156,7 +156,7 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return false|Localisation objet Localisation si donnée trouvée, sinon false
      */
-    public function getLocFromUserId($userId) : ?Localisation {
+    public function getLocFromUserId($userId) : false|Localisation {
         $request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
                                                   FROM ecran_localisation WHERE user_id = :id');
         $request->bindValue(':id', $userId, PDO::PARAM_INT);

@@ -247,11 +247,14 @@ class AlertController extends Controller
         $row = $begin;
         foreach ($alertList as $alert) {
             ++$row;
-            $dataList[] = [$row, $this->view->buildCheckbox($name, $alert->getId()),
-                $alert->getContent(), $alert->getCreationDate(),
-                $alert->getExpirationDate(), $alert->getAuthor()->getLogin(),
-                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte')))
-                    . '?id=' . $alert->getId())];
+            $dataList[] = [
+                $row,
+                $this->view->buildCheckbox($name, $alert->getId()),
+                $alert->getContent(),
+                $alert->getCreationDate(),
+                $alert->getExpirationDate(),
+                $alert->getAuthor()->getLogin(),
+                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
         }
 
         // Suppression d'alertes sélectionnées
