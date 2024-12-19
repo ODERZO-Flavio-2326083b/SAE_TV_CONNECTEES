@@ -337,7 +337,7 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function create_item_permissions_check($request) {
+    public function create_item_permissions_check($request) : bool {
         return $this->get_items_permissions_check($request);
     }
 
@@ -356,7 +356,7 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_item_permissions_check($request) {
+    public function get_item_permissions_check($request) : bool {
         return $this->get_items_permissions_check($request);
     }
 
@@ -375,7 +375,7 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function update_item_permissions_check($request) {
+    public function update_item_permissions_check($request) : bool {
         return $this->get_items_permissions_check($request);
     }
 
@@ -394,7 +394,7 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function delete_item_permissions_check($request) {
+    public function delete_item_permissions_check($request) : bool {
         return $this->get_items_permissions_check($request);
     }
 
@@ -411,7 +411,7 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_collection_params() {
+    public function get_collection_params() : array {
         $query_params = [];
 
         $query_params['limit'] = array(

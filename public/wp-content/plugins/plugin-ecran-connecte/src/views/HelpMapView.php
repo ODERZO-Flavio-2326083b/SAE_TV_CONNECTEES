@@ -17,7 +17,7 @@ class HelpMapView extends View
      * @return string
      * Retourne le code HTML de la carte d'aide.
      */
-    public function displayHelpMap() {
+    public function displayHelpMap() : string {
         return '<p>Hello, World!</p>';
     }
 }
