@@ -365,6 +365,20 @@ class Information extends Model implements Entity, JsonSerializable
         return false;
     }
 
+    public function getVideosByDeptId(int $idDept, int $begin = 0, int $numberElement = 25): array {
+        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
+														FROM ecran_information WHERE department_id = :id AND type=\'video\' ORDER BY expiration_date LIMIT :begin, :numberElement');
+
+        $request->bindParam(':id', $idDept, PDO::PARAM_INT);
+        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
+        $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
+
+        $request->execute();
+
+        return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+    }
+
+
     /**
      * Crée une liste d'entités à partir d'une liste de données.
      *
