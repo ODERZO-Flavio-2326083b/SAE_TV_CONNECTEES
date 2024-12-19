@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Department;
 use Models\Information;
 use Views\InformationView;
 
@@ -64,12 +65,19 @@ class InformationController extends Controller
      *                options de sélection.
      */
     public function create() {
-        $current_user = wp_get_current_user();
+
+	    $currentUser = wp_get_current_user();
+	    $deptModel = new Department();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+	    $allDepts = $deptModel->getAllDepts();
 
         // All forms
         $actionText = filter_input(INPUT_POST, 'createText');
         $actionImg = filter_input(INPUT_POST, 'createImg');
-        $actionTab = filter_input(INPUT_POST, 'createTab');
         $actionPDF = filter_input(INPUT_POST, 'createPDF');
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
 
@@ -78,26 +86,29 @@ class InformationController extends Controller
         $content = filter_input(INPUT_POST, 'content');
         $endDate = filter_input(INPUT_POST, 'expirationDate');
         $creationDate = date('Y-m-d');
+		// si l'utilisateur est un admin, il peut choisir un dpt, sinon on prend le dpt de l'utilisateur
+	    $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
-        // If the title is empty
+	    // If the title is empty
         if ($title == '') {
             $title = 'Sans titre';
         }
 
         $information = $this->model;
 
-        // Set the base of all information
-        $information->setTitle($title);
-        $information->setAuthor($current_user->ID);
-        $information->setCreationDate($creationDate);
-        $information->setExpirationDate($endDate);
-        $information->setAdminId(null);
-
         if (isset($actionText)) {   // If the information is a text
             $information->setContent($content);
             $information->setType("text");
 
-            // Try to insert the information
+	        $information->setTitle($title);
+	        $information->setAuthor($currentUser->ID);
+	        $information->setCreationDate($creationDate);
+	        $information->setExpirationDate($endDate);
+	        $information->setAdminId(null);
+	        $information->setIdDepartment($deptId);
+
+
+	        // Try to insert the information
             if ($information->insert()) {
                 $this->view->displayCreateValidate();
             } else {
@@ -117,19 +128,6 @@ class InformationController extends Controller
                 $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
             }
         }
-        if (isset($actionTab)) { // If the information is a table
-            $type = "tab";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['xls', 'xlsx', 'ods'];
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->view->buildModal('Tableau non valide', '<p>Ce fichier est un tableau non valide, veuillez choisir un autre tableau</p>');
-            }
-        }
         if (isset($actionPDF)) {
             $type = "pdf";
             $information->setType($type);
@@ -139,7 +137,7 @@ class InformationController extends Controller
                 $fileTmpName = $_FILES['contentFile']['tmp_name'];
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF</p>');
+                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
             }
         }
         if (isset($actionEvent)) {
@@ -154,6 +152,8 @@ class InformationController extends Controller
                 $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'pdf'];
                 if (in_array(end($explodeName), $goodExtension)) {
                     $this->registerFile($filename, $fileTmpName, $information);
+                } else {
+					$this->view->buildModal('Fichiers non valide', '<p>Ce fichier n\'est pas valide, merci de choisir d\'autres fichiers.</p>');
                 }
             }
         }
@@ -165,10 +165,10 @@ class InformationController extends Controller
             $this->view->displayTitleSelect('pdf', 'PDF') .
             $this->view->displayTitleSelect('event', 'Événement') .
             $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('text', $this->view->displayFormText(), true) .
-            $this->view->displayContentSelect('image', $this->view->displayFormImg()) .
-            $this->view->displayContentSelect('pdf', $this->view->displayFormPDF()) .
-            $this->view->displayContentSelect('event', $this->view->displayFormEvent()) .
+            $this->view->displayContentSelect('text', $this->view->displayFormText($allDepts, $isAdmin, $currDept), true) .
+            $this->view->displayContentSelect('image', $this->view->displayFormImg($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('pdf', $this->view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('event', $this->view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
             '</div>' .
             $this->view->contextCreateInformation();
     }
@@ -347,6 +347,9 @@ class InformationController extends Controller
         $url = $this->getPartOfUrl();
         $number = filter_input(INPUT_GET, 'number');
         $pageNumber = 1;
+
+	    $deptModel = new Department();
+
         if (sizeof($url) >= 2 && is_numeric($url[1])) {
             $pageNumber = $url[1];
         }
@@ -359,17 +362,18 @@ class InformationController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles)) {
+        if (in_array('administrator', $current_user->roles)) {
             $informationList = $this->model->getList($begin, $number);
         } else {
-            $informationList = $this->model->getAuthorListInformation($current_user->ID, $begin, $number);
+            $informationList = $this->model->getInformationsByDeptId($deptModel->getUserDepartment($current_user->ID)->getIdDepartment());
         }
 
         $name = 'Info';
-        $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration', 'Auteur', 'Type', 'Modifier'];
+        $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration', 'Auteur', 'Type', 'Département', 'Modifier'];
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
+
         foreach ($informationList as $information) {
             ++$row;
 
@@ -400,7 +404,17 @@ class InformationController extends Controller
             } else if ($information->getType() === 'text') {
                 $type = 'Texte';
             }
-            $dataList[] = [$row, $this->view->buildCheckbox($name, $information->getId()), $information->getTitle(), $content, $information->getCreationDate(), $information->getExpirationDate(), $information->getAuthor()->getLogin(), $type, $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId())];
+            $dataList[] = [$row,
+	            $this->view->buildCheckbox($name,
+		            $information->getId()),
+	                $information->getTitle(),
+	                $content,
+	                $information->getCreationDate(),
+	                $information->getExpirationDate(),
+	                $information->getAuthor()->getLogin(),
+	                $type,
+	                $deptModel->get($information->getIdDepartment())->getName(),
+	                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId())];
         }
 
         $submit = filter_input(INPUT_POST, 'delete');
@@ -465,7 +479,8 @@ class InformationController extends Controller
      * @date    2024-10-16
      */
     public function informationMain() {
-        $informations = $this->model->getList();
+		$deptModel = new Department();
+        $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
         $this->view->displayStartSlideshow();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));

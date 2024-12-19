@@ -50,7 +50,7 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayWelcomeAdmin() {
+    public function displayWelcomeAdmin(): string {
         return '
         <div class="row">
             <div class="col-6 mx-auto col-md-6 order-md-1">
@@ -132,13 +132,14 @@ class SecretaryView extends UserView
      * leur identifiant de connexion (login) sont affichés.
      *
      * @param array $users Tableau d'objets utilisateur contenant les informations des secrétaires.
+     * @param array $userDeptList Liste des noms de départements dans le même ordre que les users
      * @return string Retourne le code HTML du tableau listant les secrétaires.
      *
      *
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllSecretary($users, $userDeptList) {
+    public function displayAllSecretary(array $users, array $userDeptList): string {
         $title = 'Secrétaires';
         $name = 'Secre';
         $header = ['Login', 'Département'];
@@ -166,7 +167,7 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayNoUser() {
+    public function displayNoUser(): string {
         return '<p class="alert alert-danger">Veuillez choisir un utilisateur </p>';
     }
 }

@@ -76,7 +76,7 @@ class Department extends Model implements Entity, JsonSerializable {
 	 *
 	 * @return bool|null
 	 */
-	public function get( $id ): bool|null {
+	public function get( $id ): bool|Department {
 		$request = $this->getDatabase()->prepare('SELECT dept_id, dept_nom FROM ecran_departement WHERE dept_id = :id');
 
 		$request->bindValue(':id', $id, PDO::PARAM_INT);
