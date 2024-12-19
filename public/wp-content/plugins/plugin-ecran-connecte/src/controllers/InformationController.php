@@ -80,6 +80,8 @@ class InformationController extends Controller
         $actionImg = filter_input(INPUT_POST, 'createImg');
         $actionPDF = filter_input(INPUT_POST, 'createPDF');
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
+	    $actionVideo = filter_input(INPUT_POST, 'createVideo');
+	    $actionShort = filter_input(INPUT_POST, 'createShort');
 
         // Variables
         $title = filter_input(INPUT_POST, 'title');
@@ -95,20 +97,17 @@ class InformationController extends Controller
         }
 
         $information = $this->model;
+	    $information->setContent($content);
+	    $information->setTitle($title);
+	    $information->setAuthor($currentUser->ID);
+	    $information->setCreationDate($creationDate);
+	    $information->setExpirationDate($endDate);
+	    $information->setAdminId(null);
+	    $information->setIdDepartment($deptId ?: 0);
 
-        if (isset($actionText)) {   // If the information is a text
-            $information->setContent($content);
-            $information->setType("text");
-
-	        $information->setTitle($title);
-	        $information->setAuthor($currentUser->ID);
-	        $information->setCreationDate($creationDate);
-	        $information->setExpirationDate($endDate);
-	        $information->setAdminId(null);
-	        $information->setIdDepartment($deptId);
-
-
+	    if (isset($actionText)) {   // If the information is a text
 	        // Try to insert the information
+		    $information->setType("text");
             if ($information->insert()) {
                 $this->view->displayCreateValidate();
             } else {
@@ -157,6 +156,19 @@ class InformationController extends Controller
                 }
             }
         }
+	    if (isset($actionShort) || isset($actionVideo)){ // Si l'information est un short
+		    isset($actionShort) ? $type = "short" : $type = "video";
+		    $information->setType($type);
+		    $filename = $_FILES['contentFile']['name'];
+		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
+		    $explodeName = explode('.', $filename);
+		    $goodExtension = ['mp4', 'mov', 'avi'];
+		    if (in_array(end($explodeName), $goodExtension)) {
+			    $this->registerFile($filename, $fileTmpName, $information);
+		    } else {
+			    $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+		    }
+	    }
         // Return a selector with all forms
         return
             $this->view->displayStartMultiSelect() .
@@ -164,11 +176,15 @@ class InformationController extends Controller
             $this->view->displayTitleSelect('image', 'Image') .
             $this->view->displayTitleSelect('pdf', 'PDF') .
             $this->view->displayTitleSelect('event', 'Événement') .
+            $this->view->displayTitleSelect('video', "Vidéos") .
+            $this->view->displayTitleSelect('short', "Shorts") .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('text', $this->view->displayFormText($allDepts, $isAdmin, $currDept), true) .
             $this->view->displayContentSelect('image', $this->view->displayFormImg($allDepts, $isAdmin, $currDept)) .
             $this->view->displayContentSelect('pdf', $this->view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
             $this->view->displayContentSelect('event', $this->view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('video', $this->view->displayFormVideo($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('short', $this->view->displayFormShort($allDepts, $isAdmin, $currDept)) .
             '</div>' .
             $this->view->contextCreateInformation();
     }
