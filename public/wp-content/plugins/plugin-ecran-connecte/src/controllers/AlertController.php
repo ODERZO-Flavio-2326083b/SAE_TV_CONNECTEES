@@ -47,13 +47,13 @@ class AlertController extends Controller
      * push est envoyée via OneSignal. Si une erreur survient lors de l'insertion,
      * un message d'erreur est affiché.
      *
-     * @return string|void Le formulaire de création d'alerte ou un message de confirmation/erreur.
+     * @return string Le formulaire de création d'alerte ou un message de confirmation/erreur.
      *
      *
      * @version 1.0
      * @date 16-09-2024
      */
-    public function insert() {
+    public function insert(): string {
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'submit');
         if (isset($action)) {
@@ -72,11 +72,10 @@ class AlertController extends Controller
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
                         $this->view->errorMessageInvalidForm();
-                        return;
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
-                } else if ($code == 'all') {
+                } elseif ($code == 'all') {
                     $this->model->setForEveryone(1);
                 }
             }
@@ -171,7 +170,7 @@ class AlertController extends Controller
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
-                } else if ($code == 'all') {
+                } elseif ($code == 'all') {
                     $alert->setForEveryone(1);
                 }
             }
@@ -218,7 +217,7 @@ class AlertController extends Controller
      * @version 1.0
      * @date 16-09-2024
      */
-    public function displayAll() {
+    public function displayAll() : string {
         $numberAllEntity = $this->model->countAll();
         $url = $this->getPartOfUrl();
         $number = filter_input(INPUT_GET, 'number');
