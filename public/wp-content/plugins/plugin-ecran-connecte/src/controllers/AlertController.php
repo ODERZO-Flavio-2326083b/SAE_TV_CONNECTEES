@@ -80,7 +80,8 @@ class AlertController extends Controller
                 }
             }
 
-            if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280 && $this->isRealDate($endDate) && $creationDateString < $endDateString) {
+            if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280
+                && $this->isRealDate($endDate) && $creationDateString < $endDateString) {
                 $current_user = wp_get_current_user();
 
                 // Définir l'alerte
@@ -124,17 +125,18 @@ class AlertController extends Controller
      * Cette méthode vérifie l'existence de l'alerte à partir de l'ID fourni et s'assure que
      * l'utilisateur actuel a les permissions nécessaires (administrateur, secrétaire ou auteur de l'alerte)
      * pour modifier l'alerte. Elle permet également de modifier le contenu, la date d'expiration et
-     * les codes ADE associés à l'alerte. Si la modification réussit, une confirmation est affichée, sinon un message d'erreur est renvoyé.
+     * les codes ADE associés à l'alerte. Si la modification réussit,
+     * une confirmation est affichée, sinon un message d'erreur est renvoyé.
      *
      * La méthode permet aussi de supprimer l'alerte si l'utilisateur en fait la demande.
      *
-     * @return string|void Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
+     * @return string Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
      *
      *
      * @version 1.0
      * @date 16-09-2024
      */
-    public function modify() {
+    public function modify() : string {
         $id = $_GET['id'];
 
         if (!is_numeric($id) || !$this->model->get($id)) {
@@ -142,7 +144,8 @@ class AlertController extends Controller
         }
         $current_user = wp_get_current_user();
         $alert = $this->model->get($id);
-        if (!in_array('administrator', $current_user->roles) && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
+        if (!in_array('administrator', $current_user->roles)
+            && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
             return $this->view->alertNotAllowed();
         }
 
@@ -166,7 +169,6 @@ class AlertController extends Controller
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
                         $this->view->errorMessageInvalidForm();
-                        return;
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
@@ -245,7 +247,10 @@ class AlertController extends Controller
         $row = $begin;
         foreach ($alertList as $alert) {
             ++$row;
-            $dataList[] = [$row, $this->view->buildCheckbox($name, $alert->getId()), $alert->getContent(), $alert->getCreationDate(), $alert->getExpirationDate(), $alert->getAuthor()->getLogin(), $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
+            $dataList[] = [$row, $this->view->buildCheckbox($name, $alert->getId()),
+                $alert->getContent(), $alert->getCreationDate(),
+                $alert->getExpirationDate(), $alert->getAuthor()->getLogin(),
+                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
         }
 
         // Suppression d'alertes sélectionnées
