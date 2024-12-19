@@ -18,5 +18,8 @@
       "Models\\": "src/models/",
       "Views\\": "src/views/"
     }
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*"
   }
 }
