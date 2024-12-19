@@ -66,40 +66,38 @@ class TechnicianController extends UserController implements Schedule
     public function insert(): string {
         $action = filter_input(INPUT_POST, 'createTech');
 
-	    $currentUser = wp_get_current_user();
-	    $deptModel = new Department();
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
 
-	    $isAdmin = in_array("administrator", $currentUser->roles);
-		// si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
-
             $login = filter_input(INPUT_POST, 'loginTech');
             $password = filter_input(INPUT_POST, 'pwdTech');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTech');
             $email = filter_input(INPUT_POST, 'emailTech');
-	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
-	        // de pouvoir le changer
-	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
+            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
 
             // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
-
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('technicien');
-				$this->model->setIdDepartment($deptId);
+                $this->model->setIdDepartment($deptId);
 
                 // Insertion dans la base de données
-	            if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-		            $this->view->displayInsertValidate();
-	            } else {
-		            $this->view->displayErrorInsertion();
-	            }
+                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+                    $this->view->displayInsertValidate();
+                } else {
+                    $this->view->displayErrorInsertion();
+                }
             } else {
                 $this->view->displayErrorCreation();
             }
@@ -127,12 +125,12 @@ class TechnicianController extends UserController implements Schedule
     public function displayAllTechnician(): string {
         $users = $this->model->getUsersByRole('technicien');
 
-		$deptModel = new Department();
+        $deptModel = new Department();
 
-	    $userDeptList = array();
-	    foreach ($users as $user) {
-		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
-	    }
+        $userDeptList = array();
+        foreach ($users as $user) {
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+        }
 
         return $this->view->displayAllTechnicians($users, $userDeptList);
     }

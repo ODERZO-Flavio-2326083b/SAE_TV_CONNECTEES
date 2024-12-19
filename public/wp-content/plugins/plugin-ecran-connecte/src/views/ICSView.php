@@ -30,7 +30,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displaySchedule($ics_data, $title, $allDay) {
+    public function displaySchedule($ics_data, $title, $allDay) : string {
         $current_user = wp_get_current_user();
 
         if (isset($ics_data['events'])) {
@@ -50,7 +50,7 @@ class ICSView extends View
                                 if ($day == date('j')) {
                                     $string .= $this->displayStartSchedule($current_user);
                                 }
-                            } else if (in_array('television', $current_user->roles) || in_array('technicien', $current_user->roles)) {
+                            } elseif (in_array('television', $current_user->roles) || in_array('technicien', $current_user->roles)) {
                                 if ($day == date('j')) {
                                     $string .= $this->displayStartSchedule($current_user);
                                 }
@@ -135,7 +135,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayStartSchedule($current_user) {
+    public function displayStartSchedule($current_user) : string {
         $string = '<div class="table-responsive">
                     <table class="table tabSchedule">
                         <thead class="headerTab">
@@ -170,7 +170,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function giveDate($day, $month, $year) {
+    public function giveDate($day, $month, $year) : string {
         $day_of_week = $day + 1;
 
         return '<h2>' . date_i18n('l j F', mktime(0, 0, 0, $month, $day_of_week, $year)) . '</h2>';
@@ -196,7 +196,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getContent($event, $day = 0) {
+    public function getContent($event, $day = 0) : string|false {
         if ($day == 0) {
             $day = date('j');
         }
@@ -208,7 +208,8 @@ class ICSView extends View
                 $active = true;
             } else {
                 $active = false;
-            }        }
+            }
+        }
 
         if (substr($event['label'], -3) == "alt") {
             $label = substr($event['label'], 0, -3);
@@ -224,7 +225,6 @@ class ICSView extends View
                 return $this->displayLineSchedule([$duration, $label, $description, $event['location']], $active);
             }
         }
-
         return false;
     }
 
@@ -244,7 +244,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayLineSchedule($datas, $active = false) {
+    public function displayLineSchedule($datas, $active = false) : string {
         if ($active) {
             $string = '<tr class="table-success">';
         } else {
@@ -253,7 +253,6 @@ class ICSView extends View
         foreach ($datas as $data) {
             $string .= '<td class="text-center">' . $data . '</td>';
         }
-
         return $string . '</tr>';
     }
 
@@ -268,7 +267,7 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayEndSchedule() {
+    public function displayEndSchedule() : string {
         return '</tbody>
              </table>
           </div>';
@@ -291,10 +290,10 @@ class ICSView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayNoSchedule($title, $current_user) {
+    public function displayNoSchedule($title, $current_user) : string|false {
         if (get_theme_mod('ecran_connecte_schedule_msg', 'show') == 'show' && in_array('television', $current_user->roles)) {
             return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
-        } else if (!in_array('television', $current_user->roles)) {
+        } elseif (!in_array('television', $current_user->roles)) {
             return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
         } else {
             return false;

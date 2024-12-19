@@ -54,7 +54,7 @@ class CodeAdeController extends Controller
      * @version 1.0
      * @date 2024-09-16
      */
-    public function insert() {
+    public function insert() : string {
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
@@ -103,7 +103,7 @@ class CodeAdeController extends Controller
      * @version 1.0
      * @date 2024-09-16
      */
-    public function modify() {
+    public function modify(): string {
         $id = $_GET['id'];
         if (is_numeric($id) && !$this->model->get($id)) {
             return $this->view->errorNobody();
@@ -156,7 +156,7 @@ class CodeAdeController extends Controller
      * @version 1.0
      * @date 2024-09-16
      */
-    public function displayAllCodes() {
+    public function displayAllCodes() : string {
         $years = $this->model->getAllFromType('year');
         $groups = $this->model->getAllFromType('group');
         $halfGroups = $this->model->getAllFromType('halfGroup');
