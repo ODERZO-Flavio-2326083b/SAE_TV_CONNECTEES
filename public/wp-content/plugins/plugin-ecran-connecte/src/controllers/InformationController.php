@@ -46,7 +46,7 @@ class InformationController extends Controller
      * Crée de nouvelles informations à partir des entrées utilisateur.
      *
      * Cette méthode gère la création de différents types d'informations
-     * (texte, image, tableau, PDF, événement) en fonction des actions
+     * (texte, image, PDF, événement) en fonction des actions
      * des formulaires soumis. Elle effectue les opérations suivantes :
      *
      * - Récupère l'utilisateur courant.
@@ -70,52 +70,51 @@ class InformationController extends Controller
 	    $deptModel = new Department();
 
 	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
 	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
 	    $allDepts = $deptModel->getAllDepts();
 
-        // All forms
+        // Pour toutes les actions
         $actionText = filter_input(INPUT_POST, 'createText');
         $actionImg = filter_input(INPUT_POST, 'createImg');
         $actionPDF = filter_input(INPUT_POST, 'createPDF');
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
+	    $actionVideo = filter_input(INPUT_POST, 'createVideo');
+	    $actionShort = filter_input(INPUT_POST, 'createShort');
 
         // Variables
         $title = filter_input(INPUT_POST, 'title');
         $content = filter_input(INPUT_POST, 'content');
         $endDate = filter_input(INPUT_POST, 'expirationDate');
         $creationDate = date('Y-m-d');
-		// si l'utilisateur est un admin, il peut choisir un dpt, sinon on prend le dpt de l'utilisateur
+		// Si l'utilisateur est un admin, il peut choisir un département, sinon on prend le dpt de l'utilisateur
 	    $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
-	    // If the title is empty
+	    // Si le titre est vide
         if ($title == '') {
             $title = 'Sans titre';
         }
 
         $information = $this->model;
+	    $information->setContent($content);
+	    $information->setTitle($title);
+	    $information->setAuthor($currentUser->ID);
+	    $information->setCreationDate($creationDate);
+	    $information->setExpirationDate($endDate);
+	    $information->setAdminId(null);
+	    $information->setIdDepartment($deptId ?: 0);
 
-        if (isset($actionText)) {   // If the information is a text
-            $information->setContent($content);
-            $information->setType("text");
-
-	        $information->setTitle($title);
-	        $information->setAuthor($currentUser->ID);
-	        $information->setCreationDate($creationDate);
-	        $information->setExpirationDate($endDate);
-	        $information->setAdminId(null);
-	        $information->setIdDepartment($deptId);
-
-
+	    if (isset($actionText)) {   // Si l'information est un texte
 	        // Try to insert the information
+		    $information->setType("text");
             if ($information->insert()) {
                 $this->view->displayCreateValidate();
             } else {
                 $this->view->displayErrorInsertionInfo();
             }
         }
-        if (isset($actionImg)) {  // If the information is an image
+        if (isset($actionImg)) {  // Si l'information est une image
             $type = "img";
             $information->setType($type);
             $filename = $_FILES['contentFile']['name'];
@@ -128,7 +127,7 @@ class InformationController extends Controller
                 $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
             }
         }
-        if (isset($actionPDF)) {
+        if (isset($actionPDF)) { // Si l'information est un PDF
             $type = "pdf";
             $information->setType($type);
             $filename = $_FILES['contentFile']['name'];
@@ -140,7 +139,7 @@ class InformationController extends Controller
                 $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
             }
         }
-        if (isset($actionEvent)) {
+        if (isset($actionEvent)) { // Si l'information est un événement
             $type = 'event';
             $information->setType($type);
             $countFiles = count($_FILES['contentFile']['name']);
@@ -157,18 +156,35 @@ class InformationController extends Controller
                 }
             }
         }
-        // Return a selector with all forms
+	    if (isset($actionShort) || isset($actionVideo)){ // Si l'information est un short
+		    isset($actionShort) ? $type = "short" : $type = "video";
+		    $information->setType($type);
+		    $filename = $_FILES['contentFile']['name'];
+		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
+		    $explodeName = explode('.', $filename);
+		    $goodExtension = ['mp4', 'mov', 'avi'];
+		    if (in_array(end($explodeName), $goodExtension)) {
+			    $this->registerFile($filename, $fileTmpName, $information);
+		    } else {
+			    $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+		    }
+	    }
+
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('text', 'Texte', true) .
             $this->view->displayTitleSelect('image', 'Image') .
             $this->view->displayTitleSelect('pdf', 'PDF') .
             $this->view->displayTitleSelect('event', 'Événement') .
+            $this->view->displayTitleSelect('video', "Vidéos") .
+            $this->view->displayTitleSelect('short', "Shorts") .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('text', $this->view->displayFormText($allDepts, $isAdmin, $currDept), true) .
             $this->view->displayContentSelect('image', $this->view->displayFormImg($allDepts, $isAdmin, $currDept)) .
             $this->view->displayContentSelect('pdf', $this->view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
             $this->view->displayContentSelect('event', $this->view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('video', $this->view->displayFormVideo($allDepts, $isAdmin, $currDept)) .
+            $this->view->displayContentSelect('short', $this->view->displayFormShort($allDepts, $isAdmin, $currDept)) .
             '</div>' .
             $this->view->contextCreateInformation();
     }
@@ -210,10 +226,18 @@ class InformationController extends Controller
             return $this->view->noInformation();
         }
 
-        $current_user = wp_get_current_user();
+		$deptModel = new Department();
+	    $currentUser = wp_get_current_user();
+
+	    $isAdmin = in_array("administrator", $currentUser->roles);
+	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+	    $allDepts = $deptModel->getAllDepts();
+
         $information = $this->model->get($id);
 
-        if (!(in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $information->getAuthor()->getId() == $current_user->ID)) {
+        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $currentUser->roles) || $information->getAuthor()->getId() == $currentUser->ID)) {
             return $this->view->noInformation();
         }
 
@@ -226,30 +250,33 @@ class InformationController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
+			$information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
+			$information->setAuthor($currentUser->login);
 
             if ($information->getType() == 'text') {
-                // Set new information
+                // On set une nouvelle information
                 $information->setContent($content);
             } else {
-                // Change the content
+                // On change le contenu
                 if ($_FILES["contentFile"]['size'] != 0) {
                     echo $_FILES["contentFile"]['size'];
                     $filename = $_FILES["contentFile"]['name'];
-                    if ($information->getType() == 'img') {
+                    if ($information->getType() == 'img') { // Si le type est une image
                         $explodeName = explode('.', $filename);
                         $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-                        if (in_array(end($explodeName), $goodExtension)) {
-                            $this->deleteFile($information->getId());   //$_SERVER['DOCUMENT_ROOT'].$this->model->getContent()
+                        if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
+                            $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
                         } else {
                             $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
                         }
-                    } else if ($information->getType() == 'pdf') {
+                    } else if ($information->getType() == 'pdf') { // Si le type est un PDF
                         $explodeName = explode('.', $filename);
-                        if (end($explodeName) == 'pdf') {
+                        if (end($explodeName) == 'pdf') { // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
                         } else {
@@ -271,7 +298,8 @@ class InformationController extends Controller
             $information->delete();
             $this->view->displayModifyValidate();
         }
-        return $this->view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType());
+        return $this->view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType()
+                    ,$allDepts, $isAdmin, $currDept);
     }
 
 
@@ -301,7 +329,7 @@ class InformationController extends Controller
         $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
 
-        // Upload the file
+        // Upload le fichier
         if ($result = move_uploaded_file($tmpName, $name)) {
             $entity->setContent('temporary content');
             if ($entity->getId() == null) {
@@ -332,7 +360,7 @@ class InformationController extends Controller
     }
 
     /**
-     * Delete the file who's link to the id
+     * Supprime le fichier qui est lié à l'identifiant
      *
      * @param $id int Code
      */
@@ -394,27 +422,31 @@ class InformationController extends Controller
                 $content = $information->getContent();
             }
 
-            $type = $information->getType();
-            if ($information->getType() === 'img') {
-                $type = 'Image';
-            } else if ($information->getType() === 'pdf') {
-                $type = 'PDF';
-            } else if ($information->getType() === 'event') {
-                $type = 'Événement';
-            } else if ($information->getType() === 'text') {
-                $type = 'Texte';
-            }
-            $dataList[] = [$row,
-	            $this->view->buildCheckbox($name,
-		            $information->getId()),
-	                $information->getTitle(),
-	                $content,
-	                $information->getCreationDate(),
-	                $information->getExpirationDate(),
-	                $information->getAuthor()->getLogin(),
-	                $type,
-	                $deptModel->get($information->getIdDepartment())->getName(),
-	                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId())];
+            $type = match ($information->getType()) {
+                'img' => 'Image',
+                'pdf' => 'PDF',
+                'event' => 'Événement',
+                'text' => 'Texte',
+                'video' => 'Video',
+                'short' => 'Short',
+                default => 'Special',
+            };
+
+            $dataList[] = [
+                $row,
+                $this->view->buildCheckbox($name, $information->getId()),
+                $information->getTitle(),
+                $content,
+                $information->getCreationDate(),
+                $information->getExpirationDate(),
+                $information->getAuthor()->getLogin(),
+                $type,
+                $deptModel->get($information->getIdDepartment())->getName(),
+                $this->view->buildLinkForModify(
+                    esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId()
+                )
+            ];
+
         }
 
         $submit = filter_input(INPUT_POST, 'delete');
