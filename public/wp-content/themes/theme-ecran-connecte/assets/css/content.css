@@ -35,6 +35,14 @@ a:hover {
     color: var(--primary-button-color);
 }
 
+.modal-backdrop {
+    background-color: rgba(0,0,0,0.3);
+}
+
+.modal {
+    z-index: 1050;
+}
+
 td {
 	font-weight:bold;
 }

@@ -22,14 +22,14 @@ class TechnicianController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TechnicianController.
      *
      * @var TechnicianView
      */
-    private $view;
+    private TechnicianView $view;
 
     /**
      * Constructeur de la classe TechnicianController.
@@ -124,7 +124,7 @@ class TechnicianController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTechnician() {
+    public function displayAllTechnician(): string {
         $users = $this->model->getUsersByRole('technicien');
 
 		$deptModel = new Department();
@@ -152,7 +152,7 @@ class TechnicianController extends UserController implements Schedule
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayMySchedule() {
+    public function displayMySchedule(): string {
         $codeAde = new CodeAde();
 
         $years = $codeAde->getAllFromType('year');

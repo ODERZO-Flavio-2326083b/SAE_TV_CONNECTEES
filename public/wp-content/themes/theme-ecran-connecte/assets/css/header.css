@@ -1,6 +1,5 @@
 /* HEADER */
 .nav_ecran {
-    position: sticky;
     top: 0;
     background-color: var(--primary-layout-background-color);
     margin-bottom: 10px;

@@ -12,7 +12,7 @@ $years = $model->getAllFromType('year');
 $groups = $model->getAllFromType('group');
 $halfGroups = $model->getAllFromType('halfGroup');
 
-echo '<option value="0">Aucun</option>
+echo '<option disabled selected value>Sélectionnez un code ADE</option>
       <optgroup label="Année">';
 foreach ($years as $year) {
     echo '<option value="' . $year->getCode() . '">' . $year->getTitle() . '</option >';
