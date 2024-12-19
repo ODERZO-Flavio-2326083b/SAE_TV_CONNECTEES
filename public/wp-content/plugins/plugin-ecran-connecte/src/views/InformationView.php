@@ -178,9 +178,13 @@ class InformationView extends View
 			<label for="expirationDate">Date d\'expiration</label>
 			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
 		</div>
-		<select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+		<div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-        </select>
+                </select>
+        </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
@@ -237,9 +241,13 @@ class InformationView extends View
 			<label for="expirationDate">Date d\'expiration</label>
 			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
 		</div>
-		<select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-        </select>
+		<div class="form-group">
+            <label for="informationDept">Département</label>
+            <br>    
+            <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+            </select>
+        </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {

@@ -250,9 +250,12 @@ class InformationController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
+			$information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
+			$information->setAuthor($currentUser->login);
 
             if ($information->getType() == 'text') {
                 // On set une nouvelle information
