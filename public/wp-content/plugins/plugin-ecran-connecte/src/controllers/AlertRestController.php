@@ -428,7 +428,7 @@ class AlertRestController extends WP_REST_Controller
         foreach ($codes as $code) {
             if ($code == 'all') {
                 $alert->setForEveryone(1);
-            } else if ($code != 0) {
+            } elseif ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {
