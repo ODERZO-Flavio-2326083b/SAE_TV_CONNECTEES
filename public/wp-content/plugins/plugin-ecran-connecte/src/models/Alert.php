@@ -466,6 +466,7 @@ class Alert extends Model implements Entity, JsonSerializable
             $entity->setAdminId($data['id']);
             $entity->setForEveryone(1);
         } else {
+            $entity->setForEveryone(0);
             $entity->setAdminId($data['administration_id']);
 
             $codes = array();

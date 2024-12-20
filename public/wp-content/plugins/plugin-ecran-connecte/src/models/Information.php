@@ -83,7 +83,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request->bindValue(':creationDate', $this->getCreationDate(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':type', $this->getType(), PDO::PARAM_STR);
-        $request->bindValue(':userId', $this->getAuthor(), PDO::PARAM_INT);
+        $request->bindValue(':userId', $this->getAuthor()->getId(), PDO::PARAM_INT);
         $request->bindValue(':administration_id', $this->getAdminId(), PDO::PARAM_INT);
         $request->bindValue(':department_id', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->execute();
@@ -506,7 +506,7 @@ class Information extends Model implements Entity, JsonSerializable
     /**
      * @return int
      */
-    public function getAdminId() : int {
+    public function getAdminId() : null|int {
         return $this->adminId;
     }
 

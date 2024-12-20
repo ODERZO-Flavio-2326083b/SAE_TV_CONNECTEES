@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\Department;
 use Models\Information;
+use Models\User;
 use Views\InformationView;
 
 /**
@@ -68,6 +69,7 @@ class InformationController extends Controller
 
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
+		$userModel = new User();
 
         $isAdmin = in_array("administrator", $currentUser->roles);
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
@@ -99,7 +101,7 @@ class InformationController extends Controller
         $information = $this->model;
 	    $information->setContent($content);
 	    $information->setTitle($title);
-	    $information->setAuthor($currentUser->ID);
+	    $information->setAuthor($userModel->get($currentUser->ID));
 	    $information->setCreationDate($creationDate);
 	    $information->setExpirationDate($endDate);
 	    $information->setAdminId(null);
@@ -236,7 +238,7 @@ class InformationController extends Controller
 
         $information = $this->model->get($id);
 
-        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $current_user->roles)
+        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $currentUser->roles)
             || $information->getAuthor()->getId() == $currentUser->ID)) {
             return $this->view->noInformation();
         }
