@@ -14,27 +14,27 @@ use Models\Department;
 class UserView extends View
 {
 
-	/**
-	 * Génère un formulaire de base pour la création d'un compte utilisateur.
-	 *
-	 * Cette méthode crée un formulaire HTML standard contenant des champs pour
-	 * le login, l'email, le mot de passe et la confirmation du mot de passe.
-	 * Le formulaire utilise des classes Bootstrap pour le style et inclut
-	 * également des messages d'aide pour informer l'utilisateur des exigences
-	 * concernant les valeurs saisies.
-	 *
-	 * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
-	 * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de sélection
-	 *
-	 * @return string Le code HTML du formulaire.
-	 *
-	 *
-	 * @version 1.0
-	 * @date 2024-10-15
-	 */
+    /**
+     * Génère un formulaire de base pour la création d'un compte utilisateur.
+     *
+     * Cette méthode crée un formulaire HTML standard contenant des champs pour
+     * le login, l'email, le mot de passe et la confirmation du mot de passe.
+     * Le formulaire utilise des classes Bootstrap pour le style et inclut
+     * également des messages d'aide pour informer l'utilisateur des exigences
+     * concernant les valeurs saisies.
+     *
+     * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+     * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de sélection
+     *
+     * @return string Le code HTML du formulaire.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     protected function displayBaseForm(string $name, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
-		$disabled = $isAdmin ? '' : 'disabled';
-		return '
+        $disabled = $isAdmin ? '' : 'disabled';
+        return '
             <form method="post" class="cadre">
                 <div class="form-group">
                     <label for="login' . $name . '">Login</label>
@@ -46,10 +46,10 @@ class UserView extends View
                     <input class="form-control" type="email" name="email' . $name . '" placeholder="Email" required="">
                 </div>
                 <div class="form-group">
-               	<label for="pwd' . $name . '">Mot de passe</label>
-                	<input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
+                   <label for="pwd' . $name . '">Mot de passe</label>
+                    <input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
                     <input class="form-control" minlength="8" maxlength="25" type="password" id="pwdConf' . $name . '" name="pwdConfirm' . $name . '" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
-                	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                
+                    <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                
                 </div>
                 <div class="form-group">
                 <label for="departementDirec">Département</label>
