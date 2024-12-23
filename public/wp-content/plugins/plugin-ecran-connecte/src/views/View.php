@@ -36,27 +36,27 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAll($name, $title, $dataHeader, $dataList, $idTable = '') {
+    public function displayAll($name, $title, $dataHeader, $dataList, $idTable = '') : string {
         $name = '\'' . $name . '\'';
         $table = '
-		<h2>' . $title . '</h2>
-		<input type="text" id="key' . $idTable . '" name="key" onkeyup="search(\'' . $idTable . '\')" placeholder="Recherche...">
-		<form method="post">
-			<div class="table-responsive">
-				<table class="table table-striped table-hover" id="table' . $idTable . '">
-					<thead>
-						<tr class="text-center">
-							<th width="5%" class="text-center" onclick="sortTable(0, \'' . $idTable . '\')">#</th>
-		                    <th scope="col" width="5%" class="text-center"><input type="checkbox" onClick="toggle(this, ' . $name . ')" /></th>';
+        <h2>' . $title . '</h2>
+        <input type="text" id="key' . $idTable . '" name="key" onkeyup="search(\'' . $idTable . '\')" placeholder="Recherche...">
+        <form method="post">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover" id="table' . $idTable . '">
+                    <thead>
+                        <tr class="text-center">
+                            <th width="5%" class="text-center" onclick="sortTable(0, \'' . $idTable . '\')">#</th>
+                            <th scope="col" width="5%" class="text-center"><input type="checkbox" onClick="toggle(this, ' . $name . ')" /></th>';
         $count = 1;
         foreach ($dataHeader as $data) {
             ++$count;
             $table .= '<th scope="col" class="text-center" onclick="sortTable(' . $count . ', \'' . $idTable . '\')">' . $data . '</th>';
         }
         $table .= '
-			</tr>
-		</thead>
-		<tbody>';
+            </tr>
+        </thead>
+        <tbody>';
         foreach ($dataList as $data) {
             $table .= '<tr>';
             foreach ($data as $column) {
@@ -65,11 +65,11 @@ class View
             $table .= '</tr>';
         }
         $table .= '
-					</tbody>
-				</table>
-			</div>
-	        <button type="submit" class="btn delete_button_ecran" value="Supprimer" name="delete" onclick="return confirm(\' Voulez-vous supprimer le(s) élément(s) sélectionné(s) ?\');">Supprimer</button>
-	    </form>';
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" class="btn delete_button_ecran" value="Supprimer" name="delete" onclick="return confirm(\' Voulez-vous supprimer le(s) élément(s) sélectionné(s) ?\');">Supprimer</button>
+        </form>';
         return $table;
     }
 
@@ -93,7 +93,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function pageNumber($pageNumber, $currentPage, $url, $numberElement = null) {
+    public function pageNumber($pageNumber, $currentPage, $url, $numberElement = null) : string {
         $pagination = '
         <nav aria-label="Page navigation example">
             <ul class="pagination">';
@@ -142,23 +142,23 @@ class View
         return $pagination;
     }
 
-	/**
-	 * Génère une balise option pour chaque département contenant son nom.
-	 * La valeur est l'ID du département.
-	 *
-	 * @param Department[] $depts Liste de tous les départements
-	 * @param int|null $currDept ID du département actuel
-	 *
-	 * @return string Code HTML de selection des départements
-	 */
-	public function buildDepartmentOptions(array $depts, int $currDept = null): string {
-		$string = "";
-		foreach ($depts as $departement) {
-			$selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
-			$string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
-		}
-		return $string;
-	}
+    /**
+     * Génère une balise option pour chaque département contenant son nom.
+     * La valeur est l'ID du département.
+     *
+     * @param Department[] $depts Liste de tous les départements
+     * @param int|null $currDept ID du département actuel
+     *
+     * @return string Code HTML de selection des départements
+     */
+    public function buildDepartmentOptions(array $depts, int $currDept = null): string {
+        $string = "";
+        foreach ($depts as $departement) {
+            $selected = ($currDept == $departement->getIdDepartment()) ? " selected" : "";
+            $string .= '<option'. $selected .' value="' . $departement->getIdDepartment() . '">' . $departement->getName() . '</option>';
+        }
+        return $string;
+    }
 
     /**
      * Génère un lien HTML pour modifier un élément.
@@ -174,7 +174,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildLinkForModify($link) {
+    public function buildLinkForModify($link) : string {
         return '<a href="' . $link . '">Modifier</a>';
     }
 
@@ -193,7 +193,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildCheckbox($name, $id) {
+    public function buildCheckbox($name, $id) : string {
         return '<input type="checkbox" name="checkboxStatus' . $name . '[]" value="' . $id . '"/>';
     }
 
@@ -210,7 +210,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayStartMultiSelect() {
+    public function displayStartMultiSelect() : string {
         return '<nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">';
     }
@@ -231,7 +231,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayTitleSelect($id, $title, $active = false) {
+    public function displayTitleSelect($id, $title, $active = false) : string {
         $string = '<a class="nav-item nav-link';
         if ($active) $string .= ' active';
         $string .= '" id="nav-' . $id . '-tab" data-toggle="tab" href="#nav-' . $id . '" role="tab" aria-controls="nav-' . $id . '" aria-selected="false">' . $title . '</a>';
@@ -252,7 +252,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayEndOfTitle() {
+    public function displayEndOfTitle() : string {
         return '
             </div>
         </nav>
@@ -280,7 +280,7 @@ class View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayContentSelect($id, $content, $active = false) {
+    public function displayContentSelect($id, $content, $active = false) : string {
         $string = '<div class="tab-pane fade show';
         if ($active) $string .= ' active';
         $string .= '" id="nav-' . $id . '" role="tabpanel" aria-labelledby="nav-' . $id . '-tab">' . $content . '</div>';
@@ -319,33 +319,33 @@ class View
      */
     public function buildModal($title, $content, $redirect = null) {
         $modal = '
-		<div class="modal-backdrop" id="modalBackdrop" style="display: none;"></div>
+        <div class="modal-backdrop" id="modalBackdrop" style="display: none;"></div>
 
-		<!-- MODAL -->
-		<div class="modal" id="myModal" tabindex="-1" role="dialog">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">' . $title . '</h5>
-		      </div>
-		      <div class="modal-body">
-		        ' . $content . '
-		      </div>
-		      <div class="modal-footer">';
+        <!-- MODAL -->
+        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">' . $title . '</h5>
+              </div>
+              <div class="modal-body">
+                ' . $content . '
+              </div>
+              <div class="modal-footer">';
         if (empty($redirect)) {
             $modal .= '<button type="button" class="btn button_ecran" onclick="$(\'#myModal\').hide(); $(\'#modalBackdrop\').hide();">Fermer</button>';
         } else {
             $modal .= '<button type="button" class="btn button_ecran" onclick="document.location.href =\' ' . $redirect . ' \'">Fermer</button>';
         }
         $modal .= '</div>
-		    </div>
-		  </div>
-		</div>
-		
-		<script>
-			$(\'#myModal\').show();
-			$(\'#modalBackdrop\').show();
-		</script>';
+            </div>
+          </div>
+        </div>
+        
+        <script>
+            $(\'#myModal\').show();
+            $(\'#modalBackdrop\').show();
+        </script>';
 
         echo $modal;
     }
@@ -409,22 +409,22 @@ class View
         $this->buildModal('Inscription validée', '<p class=\'alert alert-success\'>Votre inscription a été validée.</p>');
     }
 
-	/**
-	 * Affiche un message lors du succès d'une modification
-	 *
-	 * @param $redirect string|null (optionnel) URL vers laquelle rediriger l'utilisateur
-	 *
-	 * @return void
-	 */
+    /**
+     * Affiche un message lors du succès d'une modification
+     *
+     * @param $redirect string|null (optionnel) URL vers laquelle rediriger l'utilisateur
+     *
+     * @return void
+     */
     public function displayModificationValidate(string $redirect = null): void {
         $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée</p>', $redirect);
     }
 
-	/**
-	 * Affiche un message lors de l'echec d'une insertion
-	 *
-	 * @return void
-	 */
+    /**
+     * Affiche un message lors de l'echec d'une insertion
+     *
+     * @return void
+     */
     public function displayErrorInsertion(): void {
         $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e) </p>');
     }
@@ -448,12 +448,12 @@ class View
         $this->buildModal('Le formulaire n\'a pas été correctement remplie', '<p class="alert alert-danger">Le formulaire a été mal rempli, veuillez revoir les données rentrées et réessayez.</p>');
     }
 
-	/**
-	 * Affiche un modal d'erreur indiquant que
-	 * le formulaire d'information ou d'alertes a mal été rempli
-	 *
-	 * @return void
-	 */
+    /**
+     * Affiche un modal d'erreur indiquant que
+     * le formulaire d'information ou d'alertes a mal été rempli
+     *
+     * @return void
+     */
     public function errorMessageCantAdd(): void {
         $this->buildModal('L\'ajout a échoué', '<p class="alert alert-danger">Une erreur s\'est produite lors de l\'envoi du formulaire, veuillez réessayer après avoir vérifié vos informations.</p>');
     }

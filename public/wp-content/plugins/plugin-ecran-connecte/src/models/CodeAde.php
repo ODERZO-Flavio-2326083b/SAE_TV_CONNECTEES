@@ -47,7 +47,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
 	 */
-    public function insert() {
+    public function insert() : string {
         $database = $this->getDatabase();
         $request = $database->prepare('INSERT INTO ecran_code_ade (type, title, code) VALUES (:type, :title, :code)');
 
@@ -73,9 +73,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function update() {
+    public function update() : int {
         $request = $this->getDatabase()->prepare('UPDATE ecran_code_ade SET title = :title, code = :code, type = :type WHERE id = :id');
-
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':code', $this->getCode(), PDO::PARAM_STR);
@@ -99,7 +98,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function delete() {
+    public function delete() : int {
         $request = $this->getDatabase()->prepare('DELETE FROM ecran_code_ade WHERE id = :id');
 
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
@@ -123,7 +122,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function get($id) {
+    public function get($id) : mixed{
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE id = :id LIMIT 1');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
@@ -148,7 +147,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getList() {
+    public function getList() : array {
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade ORDER BY id DESC LIMIT 1000');
 
         $request->execute();
@@ -170,14 +169,11 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function checkCode($title, $code) {
+    public function checkCode($title, $code) : array {
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE title = :title OR code = :code LIMIT 2');
-
         $request->bindParam(':title', $title, PDO::PARAM_STR);
         $request->bindParam(':code', $code, PDO::PARAM_STR);
-
         $request->execute();
-
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
@@ -194,13 +190,10 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getAllFromType($type) {
+    public function getAllFromType($type) : array {
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE type = :type ORDER BY id DESC LIMIT 500');
-
         $request->bindParam(':type', $type, PDO::PARAM_STR);
-
         $request->execute();
-
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
@@ -217,13 +210,10 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getByCode($code) {
+    public function getByCode($code) : mixed {
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE code = :code LIMIT 1');
-
         $request->bindParam(':code', $code, PDO::PARAM_STR);
-
         $request->execute();
-
         return $this->setEntity($request->fetch(PDO::FETCH_ASSOC));
     }
 
@@ -240,13 +230,10 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function getByAlert($id) {
+    public function getByAlert($id) : array {
         $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade JOIN ecran_code_alert ON ecran_code_ade.id = ecran_code_alert.code_ade_id WHERE alert_id = :id LIMIT 100');
-
         $request->bindParam(':id', $id, PDO::PARAM_INT);
-
         $request->execute();
-
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
@@ -264,7 +251,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function setEntity($data) {
+    public function setEntity($data) : CodeAde {
         $entity = new CodeAde();
 
         $entity->setId($data['id']);
@@ -290,7 +277,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date 2024-10-15
      */
-    public function setEntityList($dataList) {
+    public function setEntityList($dataList) : array {
         $listEntity = array();
         foreach ($dataList as $data) {
             $listEntity[] = $this->setEntity($data);
@@ -299,9 +286,9 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int|string
+     * @return int
      */
-    public function getCode() {
+    public function getCode() : int {
         return $this->code;
     }
 
@@ -315,7 +302,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @return int
      */
-    public function getId() {
+    public function getId() : int {
         return $this->id;
     }
 
@@ -329,7 +316,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @return string
      */
-    public function getType() {
+    public function getType() : string {
         return $this->type;
     }
 
@@ -343,7 +330,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @return string
      */
-    public function getTitle() {
+    public function getTitle() : string {
         return $this->title;
     }
 
