@@ -9,7 +9,7 @@ use Views\InformationView;
 /**
  * Class InformationController
  *
- * Manage information (create, update, delete, display)
+ * Gère les informations avec ces différentes fonctions (créer, mettre à jour, supprimer, afficher)
  *
  * @package Controllers
  */
@@ -46,7 +46,7 @@ class InformationController extends Controller
      * Crée de nouvelles informations à partir des entrées utilisateur.
      *
      * Cette méthode gère la création de différents types d'informations
-     * (texte, image, PDF, événement) en fonction des actions
+     * (texte, image, PDF, événement, vidéo, short) en fonction des actions
      * des formulaires soumis. Elle effectue les opérations suivantes :
      *
      * - Récupère l'utilisateur courant.
@@ -106,7 +106,7 @@ class InformationController extends Controller
 	    $information->setIdDepartment($deptId ?: 0);
 
 	    if (isset($actionText)) {   // Si l'information est un texte
-	        // Try to insert the information
+
 		    $information->setType("text");
             if ($information->insert()) {
                 $this->view->displayCreateValidate();
@@ -120,7 +120,7 @@ class InformationController extends Controller
             $filename = $_FILES['contentFile']['name'];
             $fileTmpName = $_FILES['contentFile']['tmp_name'];
             $explodeName = explode('.', $filename);
-            $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
+            $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg']; // On définit les extensions valides pour nos images
             if (in_array(end($explodeName), $goodExtension)) {
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
@@ -148,7 +148,7 @@ class InformationController extends Controller
                 $filename = $_FILES['contentFile']['name'][$i];
                 $fileTmpName = $_FILES['contentFile']['tmp_name'][$i];
                 $explodeName = explode('.', $filename);
-                $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'pdf'];
+                $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'pdf']; // On définit les extensions valides pour nos événements
                 if (in_array(end($explodeName), $goodExtension)) {
                     $this->registerFile($filename, $fileTmpName, $information);
                 } else {
@@ -156,13 +156,13 @@ class InformationController extends Controller
                 }
             }
         }
-	    if (isset($actionShort) || isset($actionVideo)){ // Si l'information est un short
+	    if (isset($actionShort) || isset($actionVideo)){ // Si l'information est un short ou une vidéo
 		    isset($actionShort) ? $type = "short" : $type = "video";
 		    $information->setType($type);
 		    $filename = $_FILES['contentFile']['name'];
 		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
 		    $explodeName = explode('.', $filename);
-		    $goodExtension = ['mp4', 'mov', 'avi'];
+		    $goodExtension = ['mp4', 'mov', 'avi']; // On définit les extensions valides pour nos vidéos/shorts
 		    if (in_array(end($explodeName), $goodExtension)) {
 			    $this->registerFile($filename, $fileTmpName, $information);
 		    } else {
@@ -195,7 +195,7 @@ class InformationController extends Controller
      * Cette méthode gère la modification des informations en vérifiant
      * d'abord si l'utilisateur a les droits nécessaires. Elle permet de
      * mettre à jour le titre, le contenu, la date d'expiration et de
-     * remplacer un fichier (image, PDF, tableau) si un nouveau fichier
+     * remplacer un fichier (image, PDF, vidéo, short) si un nouveau fichier
      * est téléchargé. Elle inclut également une option pour supprimer
      * l'information.
      *
@@ -219,21 +219,22 @@ class InformationController extends Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function modify(): string {
+    public function modify(): string
+    {
         $id = $_GET['id'];
 
         if (empty($id) || is_numeric($id) && !$this->model->get($id)) {
             return $this->view->noInformation();
         }
 
-		$deptModel = new Department();
-	    $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+        $currentUser = wp_get_current_user();
 
-	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département.
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
-	    $allDepts = $deptModel->getAllDepts();
+        $allDepts = $deptModel->getAllDepts();
 
         $information = $this->model->get($id);
 
@@ -255,7 +256,7 @@ class InformationController extends Controller
             $information->setExpirationDate($endDate);
 
             if ($information->getType() == 'text') {
-                // On set une nouvelle information
+                // On met en place une nouvelle information
                 $information->setContent($content);
             } else {
                 // On change le contenu
@@ -279,16 +280,27 @@ class InformationController extends Controller
                         } else {
                             $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
                         }
+                    } else if ($information->getType() == 'video' || $information->getType() == 'short') {
+                        $explodeName = explode('.', $filename);
+                        $goodExtension = ['mp4', 'mpeg', 'avi', 'mov'];
+                        if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
+                            $this->deleteFile($information->getId());
+                            $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
+
+                        } else {
+                            $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+                        }
                     }
                 }
             }
+        }
 
             if ($information->update()) {
                 $this->view->displayModifyValidate();
             } else {
                 $this->view->errorMessageCantAdd();
             }
-        }
+
 
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {

@@ -595,7 +595,7 @@ class InformationView extends View
     }
 
     /**
-     * Start the slideshow
+     * Démarre le diaporama
      */
     public function displayStartSlideEvent() {
         echo '
@@ -603,7 +603,7 @@ class InformationView extends View
     }
 
     /**
-     * Start a slide
+     * Lance une diapositive
      */
     public function displaySlideBegin() {
         echo '
@@ -651,7 +651,7 @@ class InformationView extends View
     }
 
     /**
-     * Display a message if the insertion of the information doesn't work
+     * Affiche un message s'il y a une erreur lors de l'insertion.
      */
     public function displayErrorInsertionInfo() {
         echo '<p>Il y a eu une erreur durant l\'insertion de l\'information.</p>';
