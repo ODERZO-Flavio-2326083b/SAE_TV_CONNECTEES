@@ -75,7 +75,7 @@ class Controller
      * @version 1.0
      * @date 2024-10-16
      */
-    public function getUrl($code) {
+    public function getUrl($code) : string {
         $str = strtotime("now"); // Récupère le timestamp actuel
         $str2 = strtotime(date("Y-m-d", strtotime('now')) . " +6 day"); // Timestamp pour 6 jours dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
@@ -103,7 +103,7 @@ class Controller
      * @version 1.0
      * @date 2024-10-16
      */
-    public function getFilePath($code) {
+    public function getFilePath($code) : string {
         $base_path = ABSPATH . TV_ICSFILE_PATH; // Définit le chemin de base
 
         // Vérifie si le fichier local existe
@@ -179,7 +179,7 @@ class Controller
      * @version 1.0
      * @date 2024-10-16
      */
-    public function isRealDate($date) {
+    public function isRealDate($date) : bool {
         if (false === strtotime($date)) { // Vérifie si la date peut être convertie en timestamp
             return false; // Retourne faux si la date n'est pas valide
         }

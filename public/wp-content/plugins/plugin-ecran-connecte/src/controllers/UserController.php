@@ -126,7 +126,6 @@ class UserController extends Controller
         if (isset($action)) {
             $password = filter_input(INPUT_POST, 'verifPwd');
             if (wp_check_password($password, $current_user->user_pass)) {
-
                 $code = wp_generate_password();
                 if (!empty($user->getCodeDeleteAccount())) {
                     $user->updateCode($code);
@@ -139,14 +138,14 @@ class UserController extends Controller
                 $subject = "Désinscription à la télé-connecté";
                 $message = ' <!DOCTYPE html>
                              <html lang="fr">
-                             	<head>
-                               		<title>Désnscription à la télé-connecté</title>
-                              	</head>
-                              	<body>
-                               		<p>Bonjour, vous avez décidé de vous désinscrire sur le site de la Télé Connecté</p>
-                               		<p> Votre code de désinscription est : ' . $code . '.</p>
-                               		<p> Pour vous désinscrire, rendez-vous sur le site : <a href="' . home_url() . '/mon-compte/"> Tv Connectée.</p>
-                              	</body>
+                                 <head>
+                                       <title>Désnscription à la télé-connecté</title>
+                                  </head>
+                                  <body>
+                                       <p>Bonjour, vous avez décidé de vous désinscrire sur le site de la Télé Connecté</p>
+                                       <p> Votre code de désinscription est : ' . $code . '.</p>
+                                       <p> Pour vous désinscrire, rendez-vous sur le site : <a href="' . home_url() . '/mon-compte/"> Tv Connectée.</p>
+                                  </body>
                              </html>';
 
                 $headers = array('Content-Type: text/html; charset=UTF-8');
@@ -188,11 +187,11 @@ class UserController extends Controller
      *
      * @return string La vue affichant les options de modification sélectionnées par l'utilisateur.
      */
-    public function chooseModif() {
+    public function chooseModif() : string {
         $current_user = wp_get_current_user();
         $string = $this->view->displayStartMultiSelect();
 
-		$string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
+        $string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
 
         $string .= $this->view->displayTitleSelect('delete', 'Supprimer mon compte') .
             $this->view->displayEndOfTitle();
@@ -220,7 +219,7 @@ class UserController extends Controller
      * @return string La vue affichant le formulaire pour modifier le mot de passe
      *                ou un message de confirmation de modification.
      */
-    public function modifyPwd() {
+    public function modifyPwd() : string {
         $action = filter_input(INPUT_POST, 'modifyMyPwd');
         $current_user = wp_get_current_user();
         if (isset($action)) {
@@ -252,7 +251,7 @@ class UserController extends Controller
      *
      * @global R34ICS $R34ICS Instance de la classe R34ICS utilisée pour afficher le calendrier.
      */
-    public function displaySchedule($code, $allDay = false) {
+    public function displaySchedule($code, $allDay = false) : string {
         global $R34ICS;
         $R34ICS = new R34ICS();
 
@@ -283,7 +282,7 @@ class UserController extends Controller
      *                un calendrier si l'identifiant est invalide ou inexistant.
      *
      */
-    function displayYearSchedule() {
+    function displayYearSchedule() : string {
         $id = $this->getMyIdUrl();
 
         $codeAde = new CodeAde();
@@ -312,7 +311,7 @@ class UserController extends Controller
      *              sinon false.
      *
      */
-    public function checkDuplicateUser(User $newUser) {
+    public function checkDuplicateUser(User $newUser) : bool {
         $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
 
         if (sizeof($codesAde) > 0) {
@@ -339,7 +338,7 @@ class UserController extends Controller
      *                y compris les messages de succès ou d'erreur si applicable.
      *
      */
-    public function modifyCodes() {
+    public function modifyCodes() : string {
         $current_user = wp_get_current_user();
         $codeAde = new CodeAde();
         $this->model = $this->model->get($current_user->ID);
@@ -352,7 +351,6 @@ class UserController extends Controller
             $halfGroup = filter_input(INPUT_POST, 'modifHalfgroup');
 
             if (is_numeric($year) && is_numeric($group) && is_numeric($halfGroup)) {
-
                 $codes = [$year, $group, $halfGroup];
                 $codesAde = [];
                 foreach ($codes as $code) {
