@@ -64,7 +64,7 @@ class InformationController extends Controller
      * @return string HTML du formulaire de création d'informations avec des
      *                options de sélection.
      */
-    public function create() {
+    public function create(): string {
 
 	    $currentUser = wp_get_current_user();
 	    $deptModel = new Department();
@@ -293,13 +293,14 @@ class InformationController extends Controller
                     }
                 }
             }
-        }
+
 
             if ($information->update()) {
                 $this->view->displayModifyValidate();
             } else {
                 $this->view->errorMessageCantAdd();
             }
+        }
 
 
         $delete = filter_input(INPUT_POST, 'delete');
@@ -410,6 +411,7 @@ class InformationController extends Controller
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
+        $videoExtension = ['mp4', 'avi', 'mov'];
 
         foreach ($informationList as $information) {
             ++$row;
@@ -421,12 +423,16 @@ class InformationController extends Controller
                 $content = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
             }
 
-            if (in_array($information->getType(), ['img', 'pdf', 'event'])) {
+            if (in_array($information->getType(), ['img', 'pdf', 'event', 'video', 'short'])) {
                 if (in_array($contentExplode[1], $imgExtension)) {
                     $content = '<img class="img-thumbnail img_table_ecran" src="' . $content . $information->getContent() . '" alt="' . $information->getTitle() . '">';
                 } else if ($contentExplode[1] === 'pdf') {
                     $content = '[pdf-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
                 }
+                else if (in_array($contentExplode[1], $videoExtension)) {
+                    $content = '<video src="' . $content . $information->getContent() . '" autoplay muted loop>';
+                }
+
             } else {
                 $content = $information->getContent();
             }
@@ -605,7 +611,6 @@ class InformationController extends Controller
             if ($extension == "pdf") {
                 echo '
 				<div class="canvas_pdf" id="' . $event->getContent() . '"></div>';
-                //echo do_shortcode('[pdf-embedder url="'.$event->getContent().'"]');
             } else {
                 echo '<img src="' . TV_UPLOAD_PATH . $event->getContent() . '" alt="' . $event->getTitle() . '">';
             }
