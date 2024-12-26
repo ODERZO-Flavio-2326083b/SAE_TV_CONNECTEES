@@ -282,7 +282,7 @@ class InformationController extends Controller
                         }
                     } else if ($information->getType() == 'video' || $information->getType() == 'short') {
                         $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'mpeg', 'avi', 'mov'];
+                        $goodExtension = ['mp4', 'avi', 'mov'];
                         if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
