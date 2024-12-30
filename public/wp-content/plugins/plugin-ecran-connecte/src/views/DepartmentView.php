@@ -17,7 +17,7 @@ class DepartmentView extends View {
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
+                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="2" maxlength="60">
                 <small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
             </div>
               <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
