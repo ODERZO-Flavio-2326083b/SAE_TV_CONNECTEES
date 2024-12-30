@@ -71,14 +71,13 @@ class Alert extends Model implements Entity, JsonSerializable
     public function insert() : int {
         $database = $this->getDatabase();
         $request = $database->prepare('
-            INSERT INTO ecran_alert (author, content, creation_date, expiration_date, for_everyone, administration_id) 
-            VALUES (:author, :content, :creation_date, :expirationDate, :for_everyone, :administrationId)');
+            INSERT INTO ecran_alert (author, content, creation_date, expiration_date, for_everyone) 
+            VALUES (:author, :content, :creation_date, :expirationDate, :for_everyone)');
         $request->bindValue(':author', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':creation_date', $this->getCreationDate(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':for_everyone', $this->isForEveryone(), PDO::PARAM_INT);
-        $request->bindValue(':administrationId', $this->getAdminId(), PDO::PARAM_INT);
 
         $request->execute();
 
@@ -463,11 +462,9 @@ class Alert extends Model implements Entity, JsonSerializable
 
 
         if ($adminSite) {
-            $entity->setAdminId($data['id']);
             $entity->setForEveryone(1);
         } else {
             $entity->setForEveryone(0);
-            $entity->setAdminId($data['administration_id']);
 
             $codes = array();
 
@@ -475,12 +472,11 @@ class Alert extends Model implements Entity, JsonSerializable
                 if ($entity->isForEveryone()) {
                     $codeAde->setTitle('Tous');
                     $codeAde->setCode('all');
-                    $codes[] = $codeAde;
                 } else {
                     $codeAde->setTitle('Aucun');
                     $codeAde->setCode('0');
-                    $codes[] = $codeAde;
                 }
+                $codes[] = $codeAde;
             }
 
             foreach ($codeAde->getByAlert($data['id']) as $code) {
@@ -591,9 +587,9 @@ class Alert extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAdminId() : int {
+    public function getAdminId() : ?int {
         return $this->adminId;
     }
 
