@@ -2,12 +2,8 @@
 
 namespace Controllers;
 
-include __DIR__ . '/../utils/OneSignalPush.php';
-
 use Models\Alert;
 use Models\CodeAde;
-use Utils\OneSignalPush;
-use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -161,8 +157,7 @@ class AlertRestController extends WP_REST_Controller
      * les données fournies dans la requête, définit les propriétés de l'alerte, y compris l'auteur,
      * le contenu, la date de création et la date d'expiration. Les codes ADE associés à l'alerte
      * sont également définis. En cas d'erreur lors de la création de l'alerte, un message d'erreur
-     * approprié est renvoyé. Si l'insertion est réussie, une notification push est envoyée et
-     * l'ID de l'alerte créée est retourné.
+     * approprié est renvoyé. Si l'insertion est réussie, l'ID de l'alerte créée est retourné.
      *
      * @param WP_REST_Request $request Les paramètres de la requête REST contenant les détails de l'alerte.
      * @return WP_REST_Response Une réponse de l'API REST contenant l'ID de l'alerte créée ou un message d'erreur.
@@ -191,14 +186,6 @@ class AlertRestController extends WP_REST_Controller
 
         // Essayer d'insérer le code ADE
         if (($insert_id = $alert->insert())) {
-            // Envoyer la notification push
-            $oneSignalPush = new OneSignalPush();
-
-            if ($alert->isForEveryone()) {
-                $oneSignalPush->sendNotification(null, $alert->getContent());
-            } else {
-                $oneSignalPush->sendNotification($ade_codes, $alert->getContent());
-            }
 
             // Retourner l'ID de l'alerte insérée
             return new WP_REST_Response(array('id' => $insert_id), 200);
