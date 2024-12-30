@@ -6,6 +6,7 @@ let endPage = false;
 let stop = false;
 
 infoSlideShow();
+videoSlideshow();
 scheduleSlideshow();
 
 /**
@@ -19,6 +20,9 @@ function infoSlideShow()
     }
 }
 
+/**
+ * Lance le diaporama s'il existe des vidéos
+ */
 function videoSlideshow(){
     if (document.getElementsByClassName("myVideoSlides").length > 0){
         console.log("-Début du diaporama vidéo");
