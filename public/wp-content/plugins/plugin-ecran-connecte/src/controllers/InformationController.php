@@ -531,6 +531,7 @@ class InformationController extends Controller
 		$deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
         $this->view->displayStartSlideshow();
+        $this->view->displayStartSlideVideo();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
@@ -538,7 +539,12 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                if ($information->getType() !== 'video') {
+                    $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                }
+                elseif ($information->getType() === 'video') {
+                    $this->view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                }
             }
         }
         echo '</div>';
