@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\Department;
 use Models\Information;
+use Models\User;
 use Views\InformationView;
 
 /**
@@ -68,6 +69,7 @@ class InformationController extends Controller
 
 	    $currentUser = wp_get_current_user();
 	    $deptModel = new Department();
+        $userModel = new User();
 
 	    $isAdmin = in_array("administrator", $currentUser->roles);
 	    // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
@@ -99,7 +101,7 @@ class InformationController extends Controller
         $information = $this->model;
 	    $information->setContent($content);
 	    $information->setTitle($title);
-	    $information->setAuthor($currentUser->ID);
+	    $information->setAuthor($userModel->get($currentUser->ID));
 	    $information->setCreationDate($creationDate);
 	    $information->setExpirationDate($endDate);
 	    $information->setAdminId(null);
@@ -327,14 +329,14 @@ class InformationController extends Controller
      *
      * @param string $filename Le nom du fichier téléchargé.
      * @param string $tmpName Le nom temporaire du fichier sur le serveur.
-     * @param object $entity L'entité à laquelle le contenu du fichier est associé.
+     * @param Information $entity L'entité à laquelle le contenu du fichier est associé.
      *
      * @return void
      *
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function registerFile($filename, $tmpName, $entity) {
+    public function registerFile(string $filename, string $tmpName, Information $entity): void {
         $id = 'temporary';
         $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.' . $extension_upload;

@@ -438,9 +438,9 @@ class InformationView extends View
 				$extension = explode('.', $content);
 				$extension = $extension[1];
 				if ($extension == "pdf") {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
+					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
 				} else {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
+					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
 				}
 			default:
 				return $this->noInformation();
