@@ -87,7 +87,7 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormImg( array $allDepts, bool $isAdmin = false, int $currDept = null,$title = null, $content = null, $endDate = null, $type = "createImg") {
+    public function displayFormImg(array $allDepts, bool $isAdmin = false, int $currDept = null,$title = null, $content = null, $endDate = null, $type = "createImg") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
 
@@ -150,8 +150,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormVideo($title = null, $content = null, $endDate = null, $type = "createVideo") : string {
+    public function displayFormVideo(array $allDepts, bool $isAdmin = false, int $currDept = null, $title = null, $content = null, $endDate = null, $type = "createVideo") : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -173,10 +174,17 @@ class InformationView extends View
             <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
         </div>
         <div class="form-group">
-            <label for="expirationDate">Date d\'expiration</label>
-            <input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
         </div>
-        <button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
@@ -204,8 +212,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormShort($title = null, $content = null, $endDate = null, $type = "createShort") : string {
+    public function displayFormShort(array $allDepts, bool $isAdmin = false, int $currDept = null, $title = null, $content = null, $endDate = null, $type = "createShort") : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
+	    $disabled = $isAdmin ? '' : 'disabled';
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -228,69 +237,20 @@ class InformationView extends View
             <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
         </div>
         <div class="form-group">
-            <label for="expirationDate">Date d\'expiration</label>
-            <input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+			<label for="expirationDate">Date d\'expiration</label>
+			<input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
+		</div>
+		<div class="form-group">
+            <label for="informationDept">Département</label>
+            <br>    
+            <select id="informationDept" name="informationDept" class="form-control"' . $disabled . '>
+                ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+            </select>
         </div>
-        <button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
+		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
 
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\'Voulez-vous supprimer cette vidéo ?\');">Supprimer</button>';
-        }
-
-        return $form . '</form>';
-    }
-
-    /**
-     * Affiche un formulaire pour créer ou modifier un tableau à partir d'un fichier XLS/XLSX avec des champs
-     * pour le titre, le fichier à télécharger et la date d'expiration.
-     *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de télécharger un fichier
-     * de type Excel. Si un contenu est déjà présent, le tableau correspondant sera affiché.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la date actuelle.
-     *
-     * @param string|null $title      Le titre du tableau à afficher dans le champ (optionnel).
-     * @param string|null $content    Le nom du fichier du tableau à afficher (optionnel).
-     * @param string|null $endDate    La date d'expiration à afficher (optionnel).
-     * @param string $type            Le type d'action à effectuer, par défaut "createTab".
-     *                                 Peut être "submit" pour soumettre le formulaire.
-     *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function displayFormTab($title = null, $content = null, $endDate = null, $type = "createTab") : string {
-        $dateMin = date('Y-m-d', strtotime("+1 day"));
-
-        $form = '<form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="title">Titre <span class="text-muted">(Optionnel)</span></label>
-                            <input id="title" class="form-control" type="text" name="title" placeholder="Inserer un titre" maxlength="60" value="' . $title . '">
-                        </div>';
-        if ($content != null) {
-            $info = new InformationController();
-            $list = $info->readSpreadSheet(TV_UPLOAD_PATH . $content);
-            foreach ($list as $table) {
-                $form .= $table;
-            }
-        }
-
-        $form .= '
-            <div class="form-group">
-                <label for="contentFile">Ajout du fichier Xls (ou xlsx)</label>
-                <input class="form-control-file" id="contentFile" type="file" name="contentFile" />
-                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                <small id="tabHelp" class="form-text text-muted">Nous vous conseillons de ne pas dépasser trois colonnes.</small>
-                <small id="tabHelp" class="form-text text-muted">Nous vous conseillons également de ne pas mettre trop de contenu dans une cellule.</small>
-            </div>
-            <div class="form-group">
-                <label for="expirationDate">Date d\'expiration</label>
-                <input id="expirationDate" class="form-control" type="date" name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required >
-            </div>
-            <button class="btn button_ecran" type="submit" name="' . $type . '">Valider</button>';
-
-        if ($type == 'submit') {
-            $form .= '<button type="submit" class="btn delete_button_ecran" name="delete" onclick="return confirm(\' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
         }
 
         return $form . '</form>';
@@ -455,38 +415,36 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayModifyInformationForm($title, $content, $endDate, $type) : string {
-        if ($type == "text") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormText($title, $content, $endDate, 'submit');
-        } elseif ($type == "img") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
-        } elseif ($type == "video") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormVideo($title, $content, $endDate, 'submit');
-        } elseif ($type == "short") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormShort($title, $content, $endDate, 'submit');
-        } elseif ($type == "tab") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormTab($title, $content, $endDate, 'submit');
-        } elseif ($type == "pdf") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
-        } elseif ($type == "event") {
-            $extension = explode('.', $content);
-            $extension = $extension[1];
-            if ($extension == "pdf") {
-                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                    . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
-            } else {
-                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations')))
-                    . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
-            }
-        } else {
-            return $this->noInformation();
-        }
+    public function displayModifyInformationForm( string $title, string $content, string $endDate, string $type,
+	        array $allDepts, bool $isAdmin = false, int $currDept = null): string {
+
+		switch($type) {
+			case "text":
+				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+				       $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+			case "img":
+				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+				      $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+			case "video":
+				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+				       $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+			case "short":
+				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+				       $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+			case "pdf":
+				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+				       $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+			case "event":
+				$extension = explode('.', $content);
+				$extension = $extension[1];
+				if ($extension == "pdf") {
+					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+				} else {
+					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+				}
+			default:
+				return $this->noInformation();
+		}
     }
 
     /**
@@ -640,7 +598,7 @@ class InformationView extends View
     }
 
     /**
-     * Start the slideshow
+     * Démarre le diaporama
      */
     public function displayStartSlideEvent() {
         echo '
@@ -648,7 +606,7 @@ class InformationView extends View
     }
 
     /**
-     * Start a slide
+     * Lance une diapositive
      */
     public function displaySlideBegin() {
         echo '
@@ -696,7 +654,7 @@ class InformationView extends View
     }
 
     /**
-     * Display a message if the insertion of the information doesn't work
+     * Affiche un message s'il y a une erreur lors de l'insertion.
      */
     public function displayErrorInsertionInfo() {
         echo '<p>Il y a eu une erreur durant l\'insertion de l\'information.</p>';

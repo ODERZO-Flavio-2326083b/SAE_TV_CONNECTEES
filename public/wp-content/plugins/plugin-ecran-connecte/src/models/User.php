@@ -217,7 +217,7 @@ class User extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getUsersByRole(string $role): array {
-        $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email, d.dept_id 
+        $request = $this->getDatabase()->prepare('SELECT wp.ID as ID, user_login, user_pass, user_email, d.dept_id 
                                                         FROM wp_users wp
                                                         JOIN wp_usermeta meta ON wp.ID = meta.user_id
                                                         JOIN ecran_user_departement d ON d.user_id = wp.ID
@@ -283,7 +283,7 @@ class User extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function checkUser(string $login, string $email): array {
-        $request = $this->getDatabase()->prepare('SELECT ID, user_login, user_pass, user_email, d.dept_id as dept_id 
+        $request = $this->getDatabase()->prepare('SELECT wp.ID as ID, user_login, user_pass, user_email, d.dept_id as dept_id 
                                                         FROM wp_users wp
                                                         JOIN ecran_user_departement d ON d.user_id = wp.ID
                                                         WHERE user_login = :login OR user_email = :email LIMIT 2');
