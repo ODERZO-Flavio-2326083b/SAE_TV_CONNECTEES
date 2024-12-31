@@ -530,10 +530,6 @@ class InformationView extends View
                 echo '<video class="short_container" src="' . $url . $content . '" id="' .$title . '" autoplay loop muted></video>';
                 break;
 
-            case 'video':
-                echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
-                break;
-
             case 'text':
                 echo '<p class="lead">' . $content . '</p>';
                 break;
