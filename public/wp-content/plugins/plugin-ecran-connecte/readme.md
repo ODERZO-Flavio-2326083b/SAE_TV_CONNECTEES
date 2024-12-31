@@ -6,7 +6,6 @@ L'emploi du temps est affiché automatiquement en fonction de la personne connec
 
 Voici les différents Readme écrits par Nicolas Rohrbach :
 - [Readme d'installation](ReadMeInstallationEcran.md)
-- [Readme de la configuration des notifications](ReadMeNotifications.md)  
 - [Readme du fonctionnement](ReadMeEcranConnecte.md)  
 - [Readme du code](ReadMeCodeEcran.md)
 

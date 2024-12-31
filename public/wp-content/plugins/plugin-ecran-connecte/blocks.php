@@ -348,38 +348,6 @@ function block_schedules()
 add_action( 'init', 'block_schedules' );
 
 /*
- * Gestion des notifications
- */
-
-// Rendu du bouton d'inscription aux notifications
-function subscription_render_callback()
-{
-    if(does_user_has_role(array('administrator', 'secretaire'))) {
-        $view = new UserView();
-        return $view->displayButtonSubscription();
-    } else {
-	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
-	    exit;
-    }
-}
-
-// Ajout de l'affichage du bouton d'inscriptions au notifications
-function block_subscription()
-{
-    wp_register_script(
-        'subscription-script',
-        plugins_url( '/blocks/subscriptionPush/subscriptionPush.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
-
-    register_block_type('tvconnecteeamu/subscription', array(
-        'editor_script' => 'subscription-script',
-        'render_callback' => 'subscription_render_callback'
-    ));
-}
-add_action('init', 'block_subscription');
-
-/*
  * Gestion des utilisateurs : création, affichage et modification.
  */
 
