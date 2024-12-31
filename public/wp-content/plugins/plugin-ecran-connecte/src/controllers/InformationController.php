@@ -528,9 +528,27 @@ class InformationController extends Controller
      * @date    2024-10-16
      */
     public function informationMain() {
-		$deptModel = new Department();
+        $deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+
+        // Début du conteneur général pour les informations
         $this->view->displayStartSlideshow();
+        foreach ($informations as $information) {
+            $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
+            if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
+                $adminSite = true;
+                if (is_null($information->getAdminId())) {
+                    $adminSite = false;
+                }
+                // Affiche les informations sauf les vidéos
+                if ($information->getType() !== 'video') {
+                    $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                }
+            }
+        }
+        echo '</div>';
+
+        // Début du conteneur pour les vidéos
         $this->view->displayStartSlideVideo();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
@@ -539,10 +557,8 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                if ($information->getType() !== 'video') {
-                    $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
-                }
-                elseif ($information->getType() === 'video') {
+                // Affiche uniquement les vidéos
+                if ($information->getType() === 'video') {
                     $this->view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
                 }
             }

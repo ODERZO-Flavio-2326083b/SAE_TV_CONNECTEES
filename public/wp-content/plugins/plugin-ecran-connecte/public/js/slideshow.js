@@ -60,17 +60,6 @@ function displayOrHide(slides, slideIndex)
             slideIndex = 0;
         }
 
-        // Si une vidéo (format paysage) est détectée, on l'ignore
-        if (slides[slideIndex].querySelector('.video_container')){
-            console.log("--Vidéo ignorée");
-            ++slideIndex;
-            // Si la dernière slide est la vidéo, on réinitialise
-            if (slideIndex === slides.length){
-                console.log("-Fin du diaporama - On recommence");
-                slideIndex = 0;
-            }
-
-        }
 
         // On vérifie qu'il existe une dernière slide
         if(slides[slideIndex] !== undefined) {
