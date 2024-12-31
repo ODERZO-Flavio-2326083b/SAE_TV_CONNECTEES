@@ -2,11 +2,8 @@
 
 namespace Controllers;
 
-include __DIR__ . '/../utils/OneSignalPush.php';
-
 use Models\Alert;
 use Models\CodeAde;
-use Utils\OneSignalPush;
 use Views\AlertView;
 
 /**
@@ -43,9 +40,8 @@ class AlertController extends Controller
      *
      * Cette méthode vérifie si le formulaire d'ajout d'alerte a été soumis et valide
      * les champs tels que les codes ADE, le contenu de l'alerte et la date d'expiration.
-     * Si la validation réussit, l'alerte est insérée dans la base de données et une notification
-     * push est envoyée via OneSignal. Si une erreur survient lors de l'insertion,
-     * un message d'erreur est affiché.
+     * Si la validation réussit, l'alerte est insérée dans la base de données.
+     * Si une erreur survient lors de l'insertion, un message d'erreur est affiché.
      *
      * @return string Le formulaire de création d'alerte ou un message de confirmation/erreur.
      *
@@ -94,15 +90,6 @@ class AlertController extends Controller
                 // Insérer l'alerte
                 if ($id = $this->model->insert()) {
                     $this->view->displayAddValidate();
-
-                    // Envoyer la notification push
-                    $oneSignalPush = new OneSignalPush();
-
-                    if ($this->model->isForEveryone()) {
-                        $oneSignalPush->sendNotification(null, $this->model->getContent());
-                    } else {
-                        $oneSignalPush->sendNotification($codesAde, $this->model->getContent());
-                    }
                 } else {
                     $this->view->errorMessageCantAdd();
                 }

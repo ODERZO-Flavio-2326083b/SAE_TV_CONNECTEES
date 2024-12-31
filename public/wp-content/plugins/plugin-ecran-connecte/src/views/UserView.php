@@ -173,29 +173,6 @@ class UserView extends View
     }
 
     /**
-     * Affiche un bouton de souscription aux notifications.
-     *
-     * Cette méthode génère un bouton HTML qui permet à l'utilisateur de
-     * s'abonner à des notifications. Le bouton est stylisé avec Bootstrap
-     * et contient un nonce de sécurité pour protéger les requêtes REST.
-     * Le nonce est utilisé pour vérifier la validité de la requête lorsque
-     * l'utilisateur clique sur le bouton.
-     *
-     * @return string Le code HTML du bouton de souscription.
-     *
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function displayButtonSubscription(): string {
-        $wpnonce = wp_create_nonce('wp_rest');
-
-        return '
-        <a href="#" id="my-notification-button" class="btn btn-danger">Recevoir des notifications</a></br>
-        <input id="wpnonce" type="hidden" value="' . $wpnonce . '" />';
-    }
-
-    /**
      * Affiche un formulaire pour modifier les emplois du temps de l'utilisateur.
      *
      * Cette méthode génère un formulaire HTML contenant des sélecteurs pour
