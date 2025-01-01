@@ -32,6 +32,13 @@ class TelevisionController extends UserController implements Schedule
     private $view;
 
     /**
+     * Contrôleur InformationController permettant d'utiliser les informations vidéos
+     * @var InformationController
+     */
+    private $controllerInfo;
+
+
+    /**
      * Initialise une nouvelle instance de la classe.
      *
      * Ce constructeur appelle le constructeur parent pour s'assurer que
@@ -47,6 +54,7 @@ class TelevisionController extends UserController implements Schedule
         parent::__construct();
         $this->model = new User();
         $this->view = new TelevisionView();
+        $this->informationController = new InformationController();
     }
 
     /**
@@ -214,6 +222,7 @@ class TelevisionController extends UserController implements Schedule
         return $this->view->displayAllTv($users, $userDeptList);
     }
 
+
     /**
      * Affiche l'emploi du temps de l'utilisateur courant.
      *
@@ -239,8 +248,10 @@ class TelevisionController extends UserController implements Schedule
         $current_user = wp_get_current_user();
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];
-
         $string = "";
+
+        $this->informationController->handleVideo();
+
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">

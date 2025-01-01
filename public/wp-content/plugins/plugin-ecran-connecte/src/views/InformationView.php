@@ -497,6 +497,41 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
+    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
+        echo '<div class="myVideoSlides text-center">';
+
+        // If the title is empty
+        if ($title != "Sans titre") {
+            echo '<h2 class="titleInfo">' . $title . '</h2>';
+        }
+
+        $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
+
+        echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
+
+
+
+        echo '</div>';
+    }
+
+    /**
+     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
+     *
+     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
+     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * sur le site d'administration et l'affichage normal.
+     *
+     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
+     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     public function displaySlide($title, $content, $type, $adminSite = false) {
         echo '<div class="myInfoSlides text-center">';
 
@@ -553,40 +588,7 @@ class InformationView extends View
     }
 
 
-    /**
-     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
-     *
-     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
-     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
-     * sur le site d'administration et l'affichage normal.
-     *
-     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
-     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
-     *
-     * @return void
-     *
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
-        echo '<div class="myVideoSlides text-center">';
 
-        // If the title is empty
-        if ($title != "Sans titre") {
-            echo '<h2 class="titleInfo">' . $title . '</h2>';
-        }
-
-        $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
-
-        echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
-
-
-
-        echo '</div>';
-    }
 
     /**
      * Affiche le contexte et les instructions pour visualiser et gérer toutes les informations créées sur le site.
