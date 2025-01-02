@@ -1,6 +1,6 @@
 <?php
 
-use Models\Localisation;
+use models\Localisation;
 
 /**
  * Injecter les valeurs de localisation et de requête AJAX au

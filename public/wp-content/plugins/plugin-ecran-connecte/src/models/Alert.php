@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use JsonSerializable;
 use PDO;
@@ -10,7 +10,7 @@ use PDO;
  *
  * Alert entity
  *
- * @package Models
+ * @package models
  */
 class Alert extends Model implements Entity, JsonSerializable
 {

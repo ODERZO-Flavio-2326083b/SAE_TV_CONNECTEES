@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
+use models\CodeAde;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Request;

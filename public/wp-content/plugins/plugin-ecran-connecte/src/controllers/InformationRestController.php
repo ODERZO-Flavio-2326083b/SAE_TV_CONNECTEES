@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Information;
+use models\Information;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Request;
