@@ -35,7 +35,7 @@ class TelevisionController extends UserController implements Schedule
      * Contrôleur InformationController permettant d'utiliser les informations vidéos
      * @var InformationController
      */
-    private $controllerInfo;
+    private $informationController;
 
 
     /**
@@ -250,8 +250,6 @@ class TelevisionController extends UserController implements Schedule
         $user = $this->model->getMyCodes([$user])[0];
         $string = "";
 
-        $this->informationController->handleVideo();
-
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">
@@ -283,8 +281,11 @@ class TelevisionController extends UserController implements Schedule
             }
         } else {
             if (!empty($user->getCodes()[0])) {
+                $this->informationController->displayVideo();
+
                 $string .= $this->displaySchedule($user->getCodes()[0]->getCode());
             } else {
+                $this->informationController->displayVideo();
                 $string .= '<p>Vous n\'avez pas cours</p>';
             }
         }

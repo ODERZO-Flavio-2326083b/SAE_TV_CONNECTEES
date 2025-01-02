@@ -8,7 +8,46 @@ let stop = false;
 infoSlideShow();
 videoSlideshow();
 scheduleSlideshow();
+init();
 
+function init(){
+    document.addEventListener('DOMContentLoaded', () => {
+        setupVideoSlideshow();
+    });
+}
+
+
+
+
+// Fonction : Configurer le diaporama vidéo
+function setupVideoSlideshow() {
+    const video = document.querySelector('.video_container'); // Vidéo principale
+    const videoContainer = video.closest('.myVideoSlides'); // Conteneur parent
+    const tableContainer = document.querySelector('.table-responsive'); // Tableau emploi du temps
+    // Vérifier si le tableau est présent
+    const hasTable = tableContainer && tableContainer.querySelector('.tabSchedule');
+    console.log(hasTable);
+    // Ajouter un écouteur d'événement à la vidéo
+    video.addEventListener('ended', () => handleVideoEnd(videoContainer, tableContainer, noCourseContainer, hasTable));
+}
+
+// Fonction : Gestion de la fin de la vidéo
+function handleVideoEnd(videoContainer, tableContainer, noCourseContainer, hasTable) {
+    videoContainer.style.display = 'none';
+    console.log("-- Vidéo disparue")
+
+    if (hasTable) {
+        // Si le tableau est présent, l'afficher
+        showElement(tableContainer);
+        console.log("-- EDT apparu")
+    }
+}
+
+// Fonction utilitaire : Afficher un élément
+function showElement(element) {
+    element.style.display = 'block';
+    element.classList.add('show'); // Utiliser la classe CSS pour des transitions (facultatif)
+}
 /**
  * Lance le diaporama s'il existe des informations
  */

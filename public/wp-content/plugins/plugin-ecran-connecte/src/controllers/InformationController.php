@@ -549,12 +549,12 @@ class InformationController extends Controller
         echo '</div>';
     }
 
-    public function handleVideo(){
+    public function displayVideo(){
         $deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
 
         // Début du conteneur pour les vidéos
-        $this->view->displayStartSlideshow();
+        $this->view->displayStartSlideVideo();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {

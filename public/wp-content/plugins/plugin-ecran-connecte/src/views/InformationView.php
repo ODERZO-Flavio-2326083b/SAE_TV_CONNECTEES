@@ -476,7 +476,7 @@ class InformationView extends View
      * @date 2024-12-29
      */
     public function displayStartSlideVideo() {
-        echo '<div id="video-slideshow-container" class="video-slideshow-container">';
+        echo '<div class="video-slideshow-container">';
     }
 
     /**
@@ -498,7 +498,7 @@ class InformationView extends View
      * @date 2024-10-15
      */
     public function displaySlideVideo($title, $content, $type, $adminSite = false) {
-        echo '<div class="myVideoSlides text-center">';
+        echo '<div class="myVideoSlides text-center" style="display: block;">';
 
         // If the title is empty
         if ($title != "Sans titre") {
