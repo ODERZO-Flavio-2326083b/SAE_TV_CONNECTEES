@@ -27,6 +27,19 @@ CSS de l'emploi du temps
     display: flex;
 }
 
+
+
+.video_container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 61%;
+    height: auto;
+}
+
+
+
 .tabSchedule {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }

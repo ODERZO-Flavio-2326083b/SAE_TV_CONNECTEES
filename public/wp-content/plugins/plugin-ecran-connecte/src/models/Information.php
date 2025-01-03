@@ -61,6 +61,11 @@ class Information extends Model implements Entity, JsonSerializable
     private $idDepartment;
 
     /**
+     * @var int
+     */
+    private $duration;
+
+    /**
      * Insère un nouvel enregistrement d'information dans la base de données.
      *
      * Cette méthode prépare une requête SQL pour insérer un nouvel enregistrement dans
@@ -334,6 +339,8 @@ class Information extends Model implements Entity, JsonSerializable
         return false;
     }
 
+
+
     /**
      * Crée une liste d'entités à partir d'une liste de données.
      *
@@ -529,6 +536,21 @@ class Information extends Model implements Entity, JsonSerializable
      */
     public function setIdDepartment(int $idDepartment): void {
         $this->idDepartment = $idDepartment;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDuration(): int{
+        return $this->duration;
+    }
+
+    /**
+     * @param int $duration
+     * @return void
+     */
+    public function setDuration(int $duration): void{
+        $this->duration = $duration;
     }
 
     public function jsonSerialize(): array {
