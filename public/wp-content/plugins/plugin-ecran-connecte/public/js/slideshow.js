@@ -201,6 +201,14 @@ function displayOrHideVideo(slides, slideIndex) {
         // Une fois que toutes les vidéos ont été passées, on cache la diapositive, laissant apparaître l'emploi du temps
         if (slideIndex === slides.length) {
             console.log("--Fin du diaporama - On cache les vidéos");
+
+            // On attend 6 secondes, avant de refaire apparaître le diaporama
+            setTimeout(function () {
+                console.log("--Reprise du diaporama après 10 secondes");
+                displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
+            }, 6000);
+
+            return;
         }
 
         // On vérifie qu'il existe une dernière slide
@@ -227,7 +235,7 @@ function displayOrHideVideo(slides, slideIndex) {
             // On définit notre temps, ici 3 secondes
             setTimeout(function () {
                 displayOrHideVideo(slides, slideIndex)
-            }, 3000);
+            }, 2000);
         }
     }
 }
