@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
 use Exception;
 
@@ -9,7 +9,7 @@ use Exception;
  *
  * Contrôleur principal contenant toutes les fonctions de base.
  *
- * @package Controllers
+ * @package controllers
  */
 class Controller
 {

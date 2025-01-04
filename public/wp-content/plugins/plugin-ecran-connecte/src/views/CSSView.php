@@ -1,9 +1,9 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Department;
-use Views\View;
+use models\Department;
+use views\View;
 
 class CSSView extends View
 {

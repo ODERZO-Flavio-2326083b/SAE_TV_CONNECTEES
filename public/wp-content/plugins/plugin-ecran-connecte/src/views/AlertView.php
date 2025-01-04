@@ -1,16 +1,16 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Alert;
-use Models\CodeAde;
+use models\Alert;
+use models\CodeAde;
 
 /**
  * Class AlertView
  *
  * Gère toutes les vues liées aux alertes (formulaires, tableaux, messages).
  *
- * @package Views
+ * @package views
  */
 class AlertView extends View
 {

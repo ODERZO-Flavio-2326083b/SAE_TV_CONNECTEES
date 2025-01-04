@@ -1,6 +1,6 @@
 <?php
 
-namespace Views;
+namespace views;
 
 use WP_User;
 
@@ -9,7 +9,7 @@ use WP_User;
  *
  * Affiche l'emploi du temps.
  *
- * @package Views
+ * @package views
  */
 class ICSView extends View
 {

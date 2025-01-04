@@ -1,16 +1,16 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Views\CodeAdeView;
+use models\CodeAde;
+use views\CodeAdeView;
 
 /**
  * Class CodeAdeController
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
- * @package Controllers
+ * @package controllers
  */
 class CodeAdeController extends Controller
 {

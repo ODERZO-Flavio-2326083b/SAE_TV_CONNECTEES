@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TelevisionView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TelevisionView;
 
 /**
  * Class TelevisionController
  *
  * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des emplois du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TelevisionController extends UserController implements Schedule
 {

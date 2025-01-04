@@ -1,15 +1,15 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\CodeAde;
+use models\CodeAde;
 
 /**
  * Class CodeAdeView
  *
  * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
  *
- * @package Views
+ * @package views
  */
 class CodeAdeView extends View
 {

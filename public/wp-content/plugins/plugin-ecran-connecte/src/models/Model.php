@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use PDO;
 
@@ -10,7 +10,7 @@ use PDO;
  * Generic class for Model
  * Contain basic function and connection to the database
  *
- * @package Models
+ * @package models
  */
 class Model
 {

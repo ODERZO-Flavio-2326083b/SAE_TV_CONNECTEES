@@ -1,17 +1,17 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Department;
-use Models\User;
-use Views\SecretaryView;
+use models\Department;
+use models\User;
+use views\SecretaryView;
 
 /**
  * Class SecretaryController
  *
  * Gère toutes les actions relatives aux secrétaires (Création, mise à jour, affichage).
  *
- * @package Controllers
+ * @package controllers
  */
 class SecretaryController extends UserController
 {
