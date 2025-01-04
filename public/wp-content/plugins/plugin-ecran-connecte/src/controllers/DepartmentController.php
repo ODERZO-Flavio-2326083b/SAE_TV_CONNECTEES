@@ -1,10 +1,10 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Controllers\Controller;
-use Models\Department;
-use Views\DepartmentView;
+use controllers\Controller;
+use models\Department;
+use views\DepartmentView;
 
 class DepartmentController extends Controller {
     /**

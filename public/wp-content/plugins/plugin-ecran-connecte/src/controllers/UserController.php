@@ -1,21 +1,21 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Alert;
-use Models\CodeAde;
-use Models\Department;
-use Models\Information;
-use Models\User;
+use models\Alert;
+use models\CodeAde;
+use models\Department;
+use models\Information;
+use models\User;
 use R34ICS;
-use Views\UserView;
+use views\UserView;
 
 /**
  * Class UserController
  *
  * Gère tous les utilisateurs (Création, mise à jour, suppression)
  *
- * @package Controllers
+ * @package controllers
  */
 class UserController extends Controller
 {

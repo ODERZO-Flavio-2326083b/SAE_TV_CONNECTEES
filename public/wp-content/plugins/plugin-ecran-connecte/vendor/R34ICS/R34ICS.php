@@ -6,9 +6,9 @@
  * Time: 15:08
  */
 
-use Controllers\Controller;
-use Models\CodeAde;
-use Views\ICSView;
+use controllers\Controller;
+use models\CodeAde;
+use views\ICSView;
 
 if (!defined('ABSPATH')) {
     exit;

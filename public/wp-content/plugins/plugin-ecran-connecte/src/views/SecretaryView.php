@@ -1,15 +1,15 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\User;
+use models\User;
 
 /**
  * Class SecretaryView
  *
  * All view for secretary (Forms, tables, messages)
  *
- * @package Views
+ * @package views
  */
 class SecretaryView extends UserView
 {

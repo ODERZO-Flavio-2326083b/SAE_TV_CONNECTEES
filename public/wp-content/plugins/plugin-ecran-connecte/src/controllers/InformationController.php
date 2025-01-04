@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Department;
-use Models\Information;
-use Models\User;
-use Views\InformationView;
+use models\Department;
+use models\Information;
+use models\User;
+use views\InformationView;
 
 /**
  * Class InformationController
  *
  * Gère les informations avec ces différentes fonctions (créer, mettre à jour, supprimer, afficher)
  *
- * @package Controllers
+ * @package controllers
  */
 class InformationController extends Controller
 {

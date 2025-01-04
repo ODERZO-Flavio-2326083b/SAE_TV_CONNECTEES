@@ -2,16 +2,16 @@
 
 require_once "src/utils/customFunctions.php";
 
-use Controllers\AlertController;
-use Controllers\CodeAdeController;
-use Controllers\CSSCustomizerController;
-use Controllers\DepartmentController;
-use Controllers\InformationController;
-use Controllers\SecretaryController;
-use Controllers\TechnicianController;
-use Controllers\TelevisionController;
-use Controllers\UserController;
-use Views\UserView;
+use controllers\AlertController;
+use controllers\CodeAdeController;
+use controllers\CSSCustomizerController;
+use controllers\DepartmentController;
+use controllers\InformationController;
+use controllers\SecretaryController;
+use controllers\TechnicianController;
+use controllers\TelevisionController;
+use controllers\UserController;
+use views\UserView;
 use function Utils\does_user_has_role;
 
 

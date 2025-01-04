@@ -1,10 +1,10 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CSSCustomizer;
-use Models\Department;
-use Views\CSSView;
+use models\CSSCustomizer;
+use models\Department;
+use views\CSSView;
 
 class CSSCustomizerController extends Controller
 {

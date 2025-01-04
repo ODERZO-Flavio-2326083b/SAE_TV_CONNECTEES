@@ -1,15 +1,15 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Department;
+use models\Department;
 
 /**
  * Class UserView
  *
  * Contient les méthodes pour afficher les vues liées aux utilisateurs.
  *
- * @package Views
+ * @package views
  */
 class UserView extends View
 {

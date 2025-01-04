@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace models;
 
-use Models\Entity;
-use Models\Model;
+use models\Entity;
+use models\Model;
 use PDO;
 
 class Localisation extends Model implements \JsonSerializable, Entity {

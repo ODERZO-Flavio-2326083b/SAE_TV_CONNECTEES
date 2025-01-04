@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TelevisionView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TelevisionView;
 
 /**
  * Class TelevisionController
  *
  * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des emplois du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TelevisionController extends UserController implements Schedule
 {
@@ -22,14 +22,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $view;
+    private TelevisionView $view;
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -155,6 +155,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -183,7 +184,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace models;
 
-use Models\Model;
+use models\Model;
 
 class CSSCustomizer extends Model
 {

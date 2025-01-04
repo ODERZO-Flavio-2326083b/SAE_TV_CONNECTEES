@@ -1,10 +1,9 @@
 <?php
 
-use Controllers\AlertRestController;
-use Controllers\CodeAdeRestController;
-use Controllers\InformationRestController;
-use Controllers\ProfileRestController;
-use Models\Localisation;
+use controllers\rest\AlertRestController;
+use controllers\rest\CodeAdeRestController;
+use controllers\rest\InformationRestController;
+use controllers\rest\ProfileRestController;
 
 include_once 'vendor/R34ICS/R34ICS.php';
 include 'widgets/WidgetAlert.php';
@@ -146,7 +145,9 @@ function installDatabaseEcran()
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
 			code VARCHAR (20) NOT NULL,
-			PRIMARY KEY (id)
+			dept_id INT(10),
+			PRIMARY KEY (id),
+			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
 			) $charset_collate;";
 
     dbDelta($query);
