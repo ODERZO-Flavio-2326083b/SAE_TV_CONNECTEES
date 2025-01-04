@@ -45,7 +45,7 @@ class TelevisionView extends UserView
     public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
         $disabled = $isAdmin ? '' : 'disabled';
 
-		$form = '
+		return '
         <h2> Compte télévision</h2>
         <p class="lead">Pour créer des télévisions, remplissez ce formulaire avec les valeurs demandées.</p>
         <p class="lead">Vous pouvez mettre autant d\'emploi du temps que vous souhaitez, cliquez sur "Ajouter des emplois du temps"</p>
@@ -70,13 +70,11 @@ class TelevisionView extends UserView
             </div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
-            $this->buildSelectCode($years, $groups, $halfGroups) . '
+            $this->buildSelectCode($years, $groups, $halfGroups, $allDepts) . '
             </div>
             <input type="button" class="btn button_ecran" onclick="addButtonTv()" value="Ajouter des emplois du temps">
             <button type="submit" class="btn button_ecran" id="validTv" name="createTv">Créer</button>
         </form>';
-
-        return $form;
     }
 
     /**
@@ -98,7 +96,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTv($users, $userDeptList) {
+    public function displayAllTv(array $users, array $userDeptList): string {
         $page = get_page_by_title_custom('Modifier un utilisateur');
         $linkManageUser = get_permalink($page->ID);
 
@@ -127,11 +125,12 @@ class TelevisionView extends UserView
      * années, groupes et demi-groupes disponibles, tout en pré-remplissant les informations
      * existantes de l'utilisateur.
      *
-     * @param object $user L'utilisateur à modifier, qui doit implémenter les méthodes
+     * @param User $user L'utilisateur à modifier, qui doit implémenter les méthodes
      *                     nécessaires pour récupérer le login et les codes d'emploi du temps.
-     * @param array $years Un tableau d'objets représentant les années disponibles.
-     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
-     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     * @param array<CodeAde> $years Un tableau d'objets représentant les années disponibles.
+     * @param array<CodeAde> $groups Un tableau d'objets représentant les groupes disponibles.
+     * @param array<CodeAde> $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     * @param array<Department> $allDepts Tableau d'objets de tous les Department de la base de données.
      *
      * @return string Le code HTML du formulaire de modification de l'utilisateur.
      *
@@ -139,7 +138,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyForm($user, $years, $groups, $halfGroups) : string {
+    public function modifyForm(User $user, array $years, array $groups, array $halfGroups, array $allDepts) : string {
         $count = 0;
         $string = '
         <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))) . '">< Retour</a>
@@ -150,18 +149,18 @@ class TelevisionView extends UserView
         foreach ($user->getCodes() as $code) {
             $count = $count + 1;
             if ($count == 1) {
-                $string .= $this->buildSelectCode($years, $groups, $halfGroups, $code, $count);
+                $string .= $this->buildSelectCode($years, $groups, $halfGroups, $allDepts, $code, $count);
             } else {
                 $string .= '
 					<div class="row">' .
-                    $this->buildSelectCode($years, $groups, $halfGroups, $code, $count) .
+                    $this->buildSelectCode($years, $groups, $halfGroups, $allDepts, $code, $count) .
                     '<input type="button" id="selectId' . $count . '" onclick="deleteRow(this.id)" class="btn button_ecran" value="Supprimer">
 					</div>';
             }
         }
 
         if ($count == 0) {
-            $string .= $this->buildSelectCode($years, $groups, $halfGroups, null, $count);
+            $string .= $this->buildSelectCode($years, $groups, $halfGroups, $allDepts, null, $count);
         }
 
         $page = get_page_by_title_custom('Gestion des utilisateurs');
@@ -181,10 +180,10 @@ class TelevisionView extends UserView
      * groupes et demi-groupes. Si un code d'emploi du temps est fourni, il sera
      * pré-sélectionné dans le menu déroulant.
      *
-     * @param array $years Un tableau d'objets représentant les années disponibles.
-     * @param array $groups Un tableau d'objets représentant les groupes disponibles.
-     * @param array $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
-     * @param object|null $code Un objet représentant le code d'emploi du temps à pré-sélectionner (facultatif).
+     * @param array<CodeAde> $years Un tableau d'objets représentant les années disponibles.
+     * @param array<CodeAde> $groups Un tableau d'objets représentant les groupes disponibles.
+     * @param array<CodeAde> $halfGroups Un tableau d'objets représentant les demi-groupes disponibles.
+     * @param CodeAde|null $code Un objet représentant le code d'emploi du temps à pré-sélectionner (facultatif).
      * @param int $count Un compteur utilisé pour générer un ID unique pour le '<select>' (par défaut à 0).
      *
      * @return string Le code HTML du menu déroulant pour sélectionner un emploi du temps.
@@ -193,31 +192,68 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) : string {
+    public function buildSelectCode(array $years, array $groups, array $halfGroups, array $allDepts, CodeAde $code = null, int $count = 0): string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
 
         if (!is_null($code)) {
             $select .= '<option value="' . $code->getCode() . '">' . $code->getTitle() . '</option>';
+        } else {
+            $select .= '<option disabled selected value>Sélectionnez un code ADE</option>';
         }
 
-        $select .= '<option disabled selected value>Sélectionnez un code ADE</option>
-					<optgroup label="Année">';
+        $allOptions = [];
 
         foreach ($years as $year) {
-            $select .= '<option value="' . $year->getCode() . '">' . $year->getTitle() . '</option >';
+            $allOptions[$year->getDeptId()][] = [
+                'code' => $year->getCode(),
+                'title' => $year->getTitle(),
+                'type' => 'Année'
+            ];
         }
-        $select .= '</optgroup><optgroup label="Groupe">';
 
         foreach ($groups as $group) {
-            $select .= '<option value="' . $group->getCode() . '">' . $group->getTitle() . '</option>';
+            $allOptions[$group->getDeptId()][] = [
+                'code' => $group->getCode(),
+                'title' => $group->getTitle(),
+                'type' => 'Groupe'
+            ];
         }
-        $select .= '</optgroup><optgroup label="Demi groupe">';
 
         foreach ($halfGroups as $halfGroup) {
-            $select .= '<option value="' . $halfGroup->getCode() . '">' . $halfGroup->getTitle() . '</option>';
+            $allOptions[$halfGroup->getDeptId()][] = [
+                'code' => $halfGroup->getCode(),
+                'title' => $halfGroup->getTitle(),
+                'type' => 'Demi groupe'
+            ];
         }
-        $select .= '</optgroup>
-			</select>';
+
+        // trier les départements par id
+        ksort($allOptions);
+
+        foreach ($allOptions as $deptId => $options) {
+            $deptName = 'Département inconnu';
+            foreach ($allDepts as $dept) {
+                if ($dept->getIdDepartment() === $deptId) {
+                    $deptName = $dept->getName();
+                    break;
+                }
+            }
+            $select .= '<optgroup label="Département ' . $deptName . '">';
+
+            // trier les options au sein de chaque département par type puis par titre
+            usort($options, function ($a, $b) {
+                return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
+            });
+
+            foreach ($options as $option) {
+                $select .= '<option value="' . $option['code'] . '">'
+                           . $option['type'] . ' - ' . $option['title'] . '</option>';
+            }
+
+            $select .= '</optgroup>';
+        }
+
+        $select .= '</select>';
 
         return $select;
     }
