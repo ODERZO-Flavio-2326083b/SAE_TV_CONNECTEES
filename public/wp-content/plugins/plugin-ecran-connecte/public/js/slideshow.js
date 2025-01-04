@@ -56,14 +56,10 @@ function displayOrHide(slides, slideIndex)
                 slides[i].style.display = "none";
             }
         }
-
-
-
         if(slideIndex === slides.length) {
             console.log("-Fin du diaporama - On recommence");
             slideIndex = 0;
         }
-
 
         // On vérifie qu'il existe une dernière slide
         if(slides[slideIndex] !== undefined) {
@@ -80,8 +76,7 @@ function displayOrHide(slides, slideIndex)
                     if(child.className === 'canvas_pdf') {
 
                         console.log("--Lecture de PDF");
-
-                        count = count + 1;
+                        count++;
 
                         // On génère l'URL
                         let pdfLink = slides[slideIndex].childNodes[i].id;
@@ -182,10 +177,13 @@ function displayOrHide(slides, slideIndex)
     }
 
     if(slides.length !== 1 || totalPage !== 1) {
-        // On définit notre temps, ici 4 secondes
-        setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
+        // On définit notre temps, ici 10 secondes
+        setTimeout(function(){displayOrHide(slides, slideIndex)} , 10000);
     }
 }
+
+
+
 
 /**
  * Affiche un diaporama en n'affichant que les vidéos, qu'on utilisera donc à droite dans notre télévision
@@ -206,7 +204,7 @@ function displayOrHideVideo(slides, slideIndex) {
             setTimeout(function () {
                 console.log("--Reprise du diaporama après 10 secondes");
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
-            }, 6000);
+            }, 15000);
 
             return;
         }
@@ -232,10 +230,10 @@ function displayOrHideVideo(slides, slideIndex) {
         }
 
         if (slides.length !== 1 || totalPage !== 1) {
-            // On définit notre temps, ici 3 secondes
+            // On définit notre temps, ici 5 secondes
             setTimeout(function () {
                 displayOrHideVideo(slides, slideIndex)
-            }, 2000);
+            }, 5000);
         }
     }
 }
