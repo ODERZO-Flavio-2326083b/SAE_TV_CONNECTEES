@@ -36,6 +36,11 @@ class CodeAde extends Model implements Entity, JsonSerializable
     private $code;
 
     /**
+     * @var int
+     */
+    private $deptId;
+
+    /**
      Insère un nouvel enregistrement dans la table 'ecran_code_ade'.
      *
      * Cette méthode utilise les propriétés de l'objet courant pour insérer
@@ -49,11 +54,12 @@ class CodeAde extends Model implements Entity, JsonSerializable
 	 */
     public function insert() : string {
         $database = $this->getDatabase();
-        $request = $database->prepare('INSERT INTO ecran_code_ade (type, title, code) VALUES (:type, :title, :code)');
+        $request = $database->prepare('INSERT INTO ecran_code_ade (type, title, code, dept_id) VALUES (:type, :title, :code, :dept_id)');
 
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':code', $this->getCode(), PDO::PARAM_STR);
         $request->bindValue(':type', $this->getType(), PDO::PARAM_STR);
+        $request->bindValue(':dept_id', $this->getDeptId(), PDO::PARAM_INT);
 
         $request->execute();
 
@@ -74,11 +80,14 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function update() : int {
-        $request = $this->getDatabase()->prepare('UPDATE ecran_code_ade SET title = :title, code = :code, type = :type WHERE id = :id');
+        $request = $this->getDatabase()->prepare('UPDATE ecran_code_ade 
+                                                  SET title = :title, code = :code, type = :type, dept_id = :dept_id 
+                                                  WHERE id = :id');
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':code', $this->getCode(), PDO::PARAM_STR);
         $request->bindValue(':type', $this->getType(), PDO::PARAM_STR);
+        $request->bindValue(':dept_id', $this->getDeptId(), PDO::PARAM_INT);
 
         $request->execute();
 
@@ -123,7 +132,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function get($id) : mixed{
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE id = :id LIMIT 1');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id 
+                                                  FROM ecran_code_ade WHERE id = :id LIMIT 1');
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
 
@@ -148,7 +158,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getList() : array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade ORDER BY id DESC LIMIT 1000');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id
+                                                        FROM ecran_code_ade ORDER BY id DESC LIMIT 1000');
 
         $request->execute();
 
@@ -170,7 +181,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function checkCode($title, $code) : array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE title = :title OR code = :code LIMIT 2');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id 
+                                                        FROM ecran_code_ade WHERE title = :title OR code = :code LIMIT 2');
         $request->bindParam(':title', $title, PDO::PARAM_STR);
         $request->bindParam(':code', $code, PDO::PARAM_STR);
         $request->execute();
@@ -191,7 +203,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getAllFromType($type) : array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE type = :type ORDER BY id DESC LIMIT 500');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id
+                                                        FROM ecran_code_ade WHERE type = :type ORDER BY id DESC LIMIT 500');
         $request->bindParam(':type', $type, PDO::PARAM_STR);
         $request->execute();
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
@@ -211,7 +224,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getByCode($code) : mixed {
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade WHERE code = :code LIMIT 1');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id
+                                                        FROM ecran_code_ade WHERE code = :code LIMIT 1');
         $request->bindParam(':code', $code, PDO::PARAM_STR);
         $request->execute();
         return $this->setEntity($request->fetch(PDO::FETCH_ASSOC));
@@ -231,7 +245,11 @@ class CodeAde extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getByAlert($id) : array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade JOIN ecran_code_alert ON ecran_code_ade.id = ecran_code_alert.code_ade_id WHERE alert_id = :id LIMIT 100');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id
+                                                        FROM ecran_code_ade 
+                                                        JOIN ecran_code_alert 
+                                                        ON ecran_code_ade.id = ecran_code_alert.code_ade_id 
+                                                        WHERE alert_id = :id LIMIT 100');
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
@@ -258,6 +276,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
         $entity->setTitle($data['title']);
         $entity->setCode($data['code']);
         $entity->setType($data['type']);
+        $entity->setDeptId($data['dept_id']);
 
         return $entity;
     }
@@ -295,7 +314,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @param $code
      */
-    public function setCode($code) {
+    public function setCode($code): void {
         $this->code = $code;
     }
 
@@ -309,7 +328,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @param $id
      */
-    public function setId($id) {
+    public function setId($id): void {
         $this->id = $id;
     }
 
@@ -323,7 +342,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @param $type
      */
-    public function setType($type) {
+    public function setType($type): void {
         $this->type = $type;
     }
 
@@ -337,8 +356,22 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * @param $title
      */
-    public function setTitle($title) {
+    public function setTitle($title): void {
         $this->title = $title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDeptId(): int {
+        return $this->deptId;
+    }
+
+    /**
+     * @param int $deptId
+     */
+    public function setDeptId(int $deptId): void {
+        $this->deptId = $deptId;
     }
 
     public function jsonSerialize(): array {

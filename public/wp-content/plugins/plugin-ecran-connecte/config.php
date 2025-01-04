@@ -145,7 +145,9 @@ function installDatabaseEcran()
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
 			code VARCHAR (20) NOT NULL,
-			PRIMARY KEY (id)
+			dept_id INT(10),
+			PRIMARY KEY (id),
+			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
 			) $charset_collate;";
 
     dbDelta($query);
