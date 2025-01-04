@@ -3,6 +3,7 @@
 namespace views;
 
 use models\CodeAde;
+use models\Department;
 
 /**
  * Class CodeAdeView
@@ -20,7 +21,8 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML du formulaire de création de code ADE.
      */
-    public function createForm() : string {
+    public function createForm(array $allDepts, bool $isAdmin = false, int $currDept = null) : string {
+        $disabled = $isAdmin ? '' : 'disabled';
         return '
         <form method="post">
             <div class="form-group">
@@ -45,6 +47,13 @@ class CodeAdeView extends View
                     <label class="form-check-label" for="halfGroup">Demi-groupe</label>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="dept">Département</label>
+                <br>    
+                <select id="dept" name="dept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
           <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
         </form>';
     }
@@ -59,7 +68,8 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML du formulaire de modification de code ADE.
      */
-    public function displayModifyCode($title, $type, $code) : string {
+    public function displayModifyCode($title, $type, $code, array $allDepts, bool $isAdmin = false, int $currDept = null) : string {
+        $disabled = $isAdmin ? '' : 'disabled';
         $page = get_page_by_title_custom('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
 
@@ -78,6 +88,13 @@ class CodeAdeView extends View
             	<label for="type">Selectionner un type</label>
              	<select class="form-control" id="type" name="type">
                     ' . $this->createTypeOption($type) . '
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dept">Département</label>
+                <br>    
+                <select id="dept" name="dept" class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <button type="submit" class="btn button_ecran" name="submit">Modifier</button>
@@ -136,12 +153,14 @@ class CodeAdeView extends View
      * Retourne le code HTML affichant tous les codes ADE.
      */
     public function displayAllCode($years, $groups, $halfGroups) : string {
+        $deptModel = new Department();
+
         $page = get_page_by_title_custom('Modifier un code ADE');
         $linkManageCodeAde = get_permalink($page->ID);
 
         $title = 'Codes Ade';
         $name = 'Code';
-        $header = ['Titre', 'Code', 'Type', 'Modifier'];
+        $header = ['Titre', 'Code', 'Type', 'Département', 'Modifier'];
 
         $codesAde = [$years, $groups, $halfGroups];
 
@@ -160,7 +179,10 @@ class CodeAdeView extends View
                 ++$count;
                 $row[] = [$count,
                     $this->buildCheckbox($name, $code->getId()),
-                    $code->getTitle(), $code->getCode(), $code->getType(),
+                    $code->getTitle(),
+                    $code->getCode(),
+                    $code->getType(),
+                    $deptModel->get($code->getDeptId())->getName(),
                     $this->buildLinkForModify($linkManageCodeAde . '?id=' . $code->getId())];
             }
         }
