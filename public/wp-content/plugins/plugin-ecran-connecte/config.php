@@ -1,10 +1,9 @@
 <?php
 
-use controllers\AlertRestController;
-use controllers\CodeAdeRestController;
-use controllers\InformationRestController;
-use controllers\ProfileRestController;
-use models\Localisation;
+use controllers\rest\AlertRestController;
+use controllers\rest\CodeAdeRestController;
+use controllers\rest\InformationRestController;
+use controllers\rest\ProfileRestController;
 
 include_once 'vendor/R34ICS/R34ICS.php';
 include 'widgets/WidgetAlert.php';

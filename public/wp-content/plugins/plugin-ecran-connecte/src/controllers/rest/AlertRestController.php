@@ -1,6 +1,6 @@
 <?php
 
-namespace controllers;
+namespace controllers\rest;
 
 use models\Alert;
 use models\CodeAde;

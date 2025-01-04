@@ -17,6 +17,7 @@ class ComposerStaticInit5af73e98c2cd35777ac7e205f4a236df
         ),
         'c' => 
         array (
+            'controllers\\rest\\' => 17,
             'controllers\\' => 12,
         ),
     );
@@ -29,6 +30,10 @@ class ComposerStaticInit5af73e98c2cd35777ac7e205f4a236df
         'models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/models',
+        ),
+        'controllers\\rest\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/controllers/rest',
         ),
         'controllers\\' => 
         array (
