@@ -44,13 +44,31 @@ class Scrapper
             }
         }
         $link = $article->getElementsByTagName('a')->item(0)->getAttribute('href');
-        $image = $article->getElementsByTagName('img')->item(0)->getAttribute('src');
+
+        $image = $article->getElementsByTagName('img')->item($article->getElementsByTagName('img')->length-1)->getAttribute('src');
+
+        $footers = $article->getElementsByTagName('footer');
+        foreach ($footers as $footer) {
+            if($footer != null) {
+                $classContent = $footer->getAttribute('class');
+                if ($classContent == 'meta') {
+                    $author = $footer->nodeValue;
+                    break;
+                } else {
+                    $author = "pas de contenue";
+                }
+            }
+            else{
+                $author = "pas de contenue";
+            }
+        }
 
         return [
             'title' => $title,
             'content' => $content,
             'link' => $link,
-            'image' => $image
+            'image' => $image,
+            'footer'=> $author
         ];
     }
 
@@ -64,8 +82,9 @@ class Scrapper
             $html .= '<h2>' . $varArticle['title'] . '</h2>';
             $html .= '<p>' . $varArticle['content'] . '</p>';
             $html .= '<a href="' . $varArticle['link'] . '">';
-            $html .= '<img src="' . $varArticle['image'] . '">';
+            $html .= '<img src="' . $varArticle['image'] . '" height=190em width=100%>';
             $html .= '</a>';
+            $html .= '<footer> <p>Publié' . $varArticle['footer'] . '</p> </footer>';
             $html .= '</div>';
 
         $html .= '</div>';
