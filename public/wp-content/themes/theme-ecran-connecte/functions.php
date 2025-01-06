@@ -34,9 +34,9 @@ function load_dynamic_css() {
         $departement = "default";
     }
     else{
-        //$departmentModel = new Department();
-        //$departementActuel = $departmentModel->get(get_current_user_id());
-        //$departement = $departementActuel->getName();
+        $departmentModel = new Department();
+        $departementActuel = $departmentModel->getUserDepartment(get_current_user_id());
+        $departement = $departementActuel->getName();
 
 
     }
