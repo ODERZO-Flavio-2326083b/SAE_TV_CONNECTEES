@@ -401,12 +401,12 @@ class InformationView extends View
      * Affiche un formulaire de modification d'informations en fonction du type d'information.
      *
      * Cette méthode génère un lien pour revenir à la page de gestion des informations, puis
-     * affiche le formulaire correspondant au type d'information spécifié (texte, image, vidéo, short, tableau, PDF ou événement).
+     * affiche le formulaire correspondant au type d'information spécifié (texte, image, vidéo, short, PDF ou événement).
      *
      * @param string $title      Le titre de l'information à modifier.
      * @param string $content    Le contenu de l'information à modifier (peut être une URL pour les images ou PDF).
      * @param string $endDate    La date d'expiration de l'information.
-     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'video', 'short' 'tab', 'pdf', 'event').
+     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'video', 'short', 'pdf', 'event').
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
      *                          approprié pour le type d'information.
