@@ -1,8 +1,8 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Department;
+use models\Department;
 
 /**
  * Class View
@@ -10,7 +10,7 @@ use Models\Department;
  * Main class View,
  * got basics functions for all views
  *
- * @package Views
+ * @package views
  */
 class View
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Views;
+namespace views;
 
 /**
  * Class HelpMapView
  *
  * Vue pour la carte affichant les lieux intéressants à proximité.
  *
- * @package Views
+ * @package views
  */
 class HelpMapView extends View
 {

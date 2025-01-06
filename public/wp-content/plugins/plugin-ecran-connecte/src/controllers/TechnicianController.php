@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TechnicianView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TechnicianView;
 
 /**
  * Class TechnicianController
  *
  * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de l'emploi du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TechnicianController extends UserController implements Schedule
 {

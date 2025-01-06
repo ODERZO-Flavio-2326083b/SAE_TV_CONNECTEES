@@ -1,17 +1,17 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
+use models\CodeAde;
+use models\Department;
+use models\User;
 
 /**
  * Class TelevisionView
  *
  * Contient toutes les vues liées à la télévision (Formulaires, tableaux)
  *
- * @package Views
+ * @package views
  */
 class TelevisionView extends UserView
 {

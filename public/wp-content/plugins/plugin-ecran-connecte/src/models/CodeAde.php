@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use JsonSerializable;
 use PDO;
@@ -10,7 +10,7 @@ use PDO;
  *
  * Code ADE entity
  *
- * @package Models
+ * @package models
  */
 class CodeAde extends Model implements Entity, JsonSerializable
 {
