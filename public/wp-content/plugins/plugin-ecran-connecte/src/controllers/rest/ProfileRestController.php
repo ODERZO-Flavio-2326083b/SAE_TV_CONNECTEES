@@ -1,11 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace controllers\rest;
 
-use Models\Alert;
-use Models\CodeAde;
-use Models\User;
-use WP_Error;
+use models\User;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;

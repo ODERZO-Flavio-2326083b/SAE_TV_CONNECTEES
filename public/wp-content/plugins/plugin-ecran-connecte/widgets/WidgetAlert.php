@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\AlertController;
+use controllers\AlertController;
 
 add_action('widgets_init', 'alert_register_widget');
 function alert_register_widget() {

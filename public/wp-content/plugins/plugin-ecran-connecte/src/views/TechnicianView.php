@@ -1,13 +1,13 @@
 <?php
 
-namespace Views;
+namespace views;
 
 /**
  * Class TechnicianView
  *
  * Contient toutes les vues liées aux techniciens (Formulaires, tableaux)
  *
- * @package Views
+ * @package views
  */
 class TechnicianView extends UserView
 {

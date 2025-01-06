@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use JsonSerializable;
 use PDO;
@@ -11,7 +11,7 @@ use WP_User;
  *
  * User entity
  *
- * @package Models
+ * @package models
  */
 class User extends Model implements Entity, JsonSerializable
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Controllers;
+namespace controllers\rest;
 
-use Models\Alert;
-use Models\CodeAde;
+use models\Alert;
+use models\CodeAde;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;

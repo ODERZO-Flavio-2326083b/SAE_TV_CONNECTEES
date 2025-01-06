@@ -1,17 +1,17 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Alert;
-use Models\CodeAde;
-use Views\AlertView;
+use models\Alert;
+use models\CodeAde;
+use views\AlertView;
 
 /**
  * Class AlertController
  *
  * Gère les alertes (création, modification, suppression, affichage)
  *
- * @package Controllers
+ * @package controllers
  */
 class AlertController extends Controller
 {
