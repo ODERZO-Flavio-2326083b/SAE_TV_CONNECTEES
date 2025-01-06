@@ -1,11 +1,11 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TelevisionView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TelevisionView;
 
 /**
  * Class TelevisionController

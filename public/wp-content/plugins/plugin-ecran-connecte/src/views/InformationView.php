@@ -1,10 +1,10 @@
 <?php
 
-namespace Views;
+namespace views;
 
 
-use Controllers\InformationController;
-use Models\Information;
+use controllers\InformationController;
+use models\Information;
 
 /**
  * Class InformationView
