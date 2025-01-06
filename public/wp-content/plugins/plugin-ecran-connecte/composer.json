@@ -18,5 +18,8 @@
       "models\\": "src/models/",
       "views\\": "src/views/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit" : "10.5.40"
   }
 }

@@ -22,20 +22,20 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    public $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $view;
+    public $view;
 
     /**
      * Contrôleur InformationController permettant d'utiliser les informations vidéos
      * @var InformationController
      */
-    private $informationController;
+    public $informationController;
 
 
     /**

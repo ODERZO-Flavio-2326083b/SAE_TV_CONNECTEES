@@ -25,14 +25,14 @@ class UserController extends Controller
      *
      * @var User
      */
-    private $model;
+    public $model;
 
     /**
      * Vue d'utilisateur.
      *
      * @var UserView
      */
-    private $view;
+    public $view;
 
     /**
      * Constructeur de la classe UserController.
