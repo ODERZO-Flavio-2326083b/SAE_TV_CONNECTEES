@@ -29,7 +29,7 @@ function extractCssVariables(cssText) {
 
 // Fonction principale
 async function populateFormWithCssVariables() {
-    const cssFileUrl = "https://osef.alwaysdata.net/wp-content/themes/theme-ecran-connecte/assets/css/global/global-" + document.getElementById('cssFileSelector').value +".css";
+    const cssFileUrl = "/wp-content/themes/theme-ecran-connecte/assets/css/global/global-" + document.getElementById('cssFileSelector').value +".css";
 
     // Étape 1 : Récupérer le contenu du fichier CSS
     const cssText = await fetchCssFile(cssFileUrl);
