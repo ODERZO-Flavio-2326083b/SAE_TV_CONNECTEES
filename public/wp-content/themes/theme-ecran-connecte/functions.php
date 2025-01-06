@@ -34,15 +34,17 @@ function load_dynamic_css() {
     }
     else{
         $departmentModel = new Department();
-        if($departmentModel->get(get_current_user_id())) {
-            $departementActuel = $departmentModel->get(get_current_user_id());
+        if($departmentModel->getUserDepartment(get_current_user_id())) {
+            $departementActuel = $departmentModel->getUserDepartment(get_current_user_id());
             $departement = $departementActuel->getName();
         }
         else{$departement = "default";}
     }
 
-    if(file_exists(get_template_directory_uri() . "/assets/css/global/global-".$departement.".css")){
+
+    if(file_exists( "wp-content/themes/theme-ecran-connecte/assets/css/global/global-".$departement.".css")){
         wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
+
     }
     else{
         wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-default.css" );
