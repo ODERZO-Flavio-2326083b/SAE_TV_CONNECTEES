@@ -62,19 +62,15 @@ class AlertController extends Controller
             $endDateString = strtotime($endDate);
             $creationDateString = strtotime(date('Y-m-d', time()));
 
-            $this->model->setForEveryone(0);
 
             $codesAde = array();
             foreach ($codes as $code) {
-                if ($code != 'all' && $code != 0) {
-                    if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
-                    } else {
-                        $codesAde[] = $codeAde->getByCode($code);
-                    }
-                } elseif ($code == 'all') {
-                    $this->model->setForEveryone(1);
+                if (is_null($codeAde->getByCode($code)->getId())) {
+                    $this->view->errorMessageInvalidForm();
+                } else {
+                    $codesAde[] = $codeAde->getByCode($code);
                 }
+
             }
 
             if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280
@@ -153,18 +149,12 @@ class AlertController extends Controller
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
 	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
-            $alert->setForEveryone(0);
-
             $codesAde = array();
             foreach ($codes as $code) {
-                if ($code != 'all' && $code != 0) {
-                    if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
-                    } else {
-                        $codesAde[] = $codeAde->getByCode($code);
-                    }
-                } elseif ($code == 'all') {
-                    $alert->setForEveryone(1);
+                if (is_null($codeAde->getByCode($code)->getId())) {
+                    $this->view->errorMessageInvalidForm();
+                } else {
+                    $codesAde[] = $codeAde->getByCode($code);
                 }
             }
 
@@ -291,10 +281,6 @@ class AlertController extends Controller
         $alertsUser = $this->model->getForUser($current_user->ID);
         //$alertsUser = array_unique($alertsUser); // Supprimer les doublons
 
-        foreach ($this->model->getForEveryone() as $alert) {
-            $alertsUser[] = $alert;
-        }
-
         $contentList = array();
         foreach ($alertsUser as $alert) {
             $endDate = date('Y-m-d', strtotime($alert->getExpirationDate()));
@@ -335,7 +321,6 @@ class AlertController extends Controller
                     $alert->setExpirationDate($adminInfo->getExpirationDate());
                 }
                 $alert->setCodes([]);
-                $alert->setForEveryone(1);
                 $alert->update();
             } else {
                 $alert->delete();

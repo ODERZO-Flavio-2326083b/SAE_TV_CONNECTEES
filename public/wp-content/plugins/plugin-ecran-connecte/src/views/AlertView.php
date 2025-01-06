@@ -100,17 +100,16 @@ class AlertView extends View
                 <label for="selectId1">Année, groupe, demi-groupes concernés</label>
             </div>';
 
-        if (!$alert->getForEveryone()) {
-            $count = 1;
-            foreach ($codes as $code) {
-                $form .= '
-				<div class="row">' .
-                    $this->buildSelectCode($years, $groups, $halfGroups, $allDepts, $code, $count)
-                    . '<input type="button" id="selectId' . $count . '" onclick="deleteRowAlert(this.id)" class="button_ecran" value="Supprimer">
-                  </div>';
-                $count = $count + 1;
-            }
+        $count = 1;
+        foreach ($codes as $code) {
+            $form .= '
+			<div class="row">' .
+                $this->buildSelectCode($years, $groups, $halfGroups, $allDepts, $code, $count)
+                . '<input type="button" id="selectId' . $count . '" onclick="deleteRowAlert(this.id)" class="button_ecran" value="Supprimer">
+              </div>';
+            $count = $count + 1;
         }
+
 
         $form .= '<input type="button" class = "btn button_ecran" onclick="addButtonAlert()" value="+">
                   <button type="submit" class="btn button_ecran" name="submit">Valider</button>
@@ -188,12 +187,11 @@ class AlertView extends View
      * @param $halfGroups   CodeAde[]  Liste des demi-groupes.
      * @param $code         CodeAde    Code sélectionné (optionnel).
      * @param $count        int        Compteur pour l'identifiant du select.
-     * @param $forEveryone  int        Indicateur si l'alerte est pour tout le monde.
      *
      * @return string
      * Retourne le code HTML du select.
      */
-    public static function buildSelectCode($years, $groups, $halfGroups, $allDepts, $code = null, $count = 0, $forEveryone = 0) : string {
+    public static function buildSelectCode($years, $groups, $halfGroups, $allDepts, $code = null, $count = 0) : string {
 	    $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectAlert[]" required="">';
 
 	    if (!is_null($code)) {
