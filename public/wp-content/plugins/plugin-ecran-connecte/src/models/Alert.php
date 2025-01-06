@@ -83,15 +83,17 @@ class Alert extends Model implements Entity, JsonSerializable
 
         $id = $database->lastInsertId();
 
-        foreach ($this->getCodes() as $code) {
-            if ($code !== 'all' || $code !== 0) {
-                $request = $database->prepare('INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:idAlert, :idCodeAde)');
-                $request->bindParam(':idAlert', $id, PDO::PARAM_INT);
-                $request->bindValue(':idCodeAde', $code->getId(), PDO::PARAM_INT);
+		if(!$this->isForEveryone()) {
+			foreach ( $this->getCodes() as $code ) {
+				if ( $code->getCode() != 'all' && $code->getCode() != 0 ) {
+					$request = $database->prepare( 'INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:idAlert, :idCodeAde)' );
+					$request->bindParam( ':idAlert', $id, PDO::PARAM_INT );
+					$request->bindValue( ':idCodeAde', $code->getId(), PDO::PARAM_INT );
 
-                $request->execute();
-            }
-        }
+					$request->execute();
+				}
+			}
+		}
 
         return $id;
     }
@@ -127,15 +129,19 @@ class Alert extends Model implements Entity, JsonSerializable
 
         $request->execute();
 
-        foreach ($this->getCodes() as $code) {
-            if ($code->getCode() !== 'all' || $code->getCode() !== 0) {
-                $request = $database->prepare('INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:alertId, :codeAdeId)');
-                $request->bindValue(':alertId', $this->getId(), PDO::PARAM_INT);
-                $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
+		if(!$this->isForEveryone()) {
+			foreach ( $this->getCodes() as $code ) {
+				if ( $code->getCode() != 'all' && $code->getCode() != 0 ) {
+					$request = $database->prepare( 'INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:alertId, :codeAdeId)' );
+					$request->bindValue( ':alertId', $this->getId(), PDO::PARAM_INT );
+					$request->bindValue( ':codeAdeId', $code->getId(), PDO::PARAM_INT );
 
-                $request->execute();
-            }
-        }
+					$request->execute();
+
+					$count += $request->rowCount();
+				}
+			}
+		}
 
         return $count;
     }
@@ -466,21 +472,15 @@ class Alert extends Model implements Entity, JsonSerializable
         } else {
             $entity->setForEveryone(0);
 
-            $codes = array();
-
-            if (sizeof($codes) <= 0) {
-                if ($entity->isForEveryone()) {
-                    $codeAde->setTitle('Tous');
-                    $codeAde->setCode('all');
-                } else {
-                    $codeAde->setTitle('Aucun');
-                    $codeAde->setCode('0');
-                }
-                $codes[] = $codeAde;
-            }
-
-            foreach ($codeAde->getByAlert($data['id']) as $code) {
-                $codes[] = $code;
+			$codes = array();
+            if ($entity->isForEveryone()) {
+	            $codeAde->setTitle( 'Tous' );
+	            $codeAde->setCode( 'all' );
+	            $codes[] = $codeAde;
+            } else {
+	            foreach ( $codeAde->getByAlert( $data['id'] ) as $code ) {
+		            $codes[] = $code;
+	            }
             }
             $entity->setCodes($codes);
         }

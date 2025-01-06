@@ -54,7 +54,7 @@ class AlertController extends Controller
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'submit');
         if (isset($action)) {
-            $codes = $_POST['selectAlert'];
+	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
 
@@ -89,7 +89,7 @@ class AlertController extends Controller
                 $this->model->setCodes($codesAde);
 
                 // Insérer l'alerte
-                if ($id = $this->model->insert()) {
+                if ($this->model->insert()) {
                     $this->view->displayAddValidate();
                 } else {
                     $this->view->errorMessageCantAdd();
@@ -128,7 +128,7 @@ class AlertController extends Controller
      * @date 16-09-2024
      */
     public function modify() : string {
-        $id = $_GET['id'];
+        $id = filter_input(INPUT_GET, 'id');
 
         if (!is_numeric($id) || !$this->model->get($id)) {
             return $this->view->noAlert();
@@ -151,7 +151,7 @@ class AlertController extends Controller
             // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
-            $codes = $_POST['selectAlert'];
+	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
             $alert->setForEveryone(0);
 
