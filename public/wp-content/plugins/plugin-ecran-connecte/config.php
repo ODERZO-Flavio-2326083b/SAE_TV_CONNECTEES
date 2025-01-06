@@ -115,7 +115,6 @@ function installDatabaseEcran()
 			type VARCHAR (10) DEFAULT 'text' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			department_id INT(10),
-            duration INT(10) DEFAULT '10' NOT NULL,
 			PRIMARY KEY (id),
 			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
 			FOREIGN KEY (department_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
