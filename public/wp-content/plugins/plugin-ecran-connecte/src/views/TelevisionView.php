@@ -192,7 +192,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildSelectCode(array $years, array $groups, array $halfGroups, array $allDepts, CodeAde $code = null, int $count = 0): string {
+    public static function buildSelectCode(array $years, array $groups, array $halfGroups, array $allDepts, CodeAde $code = null, int $count = 0): string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
 
         if (!is_null($code)) {

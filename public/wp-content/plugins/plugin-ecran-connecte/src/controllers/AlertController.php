@@ -4,6 +4,7 @@ namespace controllers;
 
 use models\Alert;
 use models\CodeAde;
+use models\Department;
 use views\AlertView;
 
 /**
@@ -103,7 +104,10 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->creationForm($years, $groups, $halfGroups);
+	    $deptModel = new Department();
+	    $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->creationForm($years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -188,7 +192,10 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($alert, $years, $groups, $halfGroups);
+		$deptModel = new Department();
+		$allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($alert, $years, $groups, $halfGroups, $allDepts);
     }
 
 
