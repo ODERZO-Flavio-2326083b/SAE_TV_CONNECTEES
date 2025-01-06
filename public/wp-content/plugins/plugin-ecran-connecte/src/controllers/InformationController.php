@@ -138,7 +138,7 @@ class InformationController extends Controller
                 $fileTmpName = $_FILES['contentFile']['tmp_name'];
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
+                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF.</p>');
             }
         }
         if (isset($actionEvent)) { // Si l'information est un événement
@@ -520,7 +520,6 @@ class InformationController extends Controller
      *
      * Récupère la liste des informations, vérifie si leur date d'expiration est dépassée,
      * et affiche chaque information en fonction de son type.
-     * Pour les tableaux, le contenu est lu à partir d'un fichier et formaté pour l'affichage.
      *
      * @return void
      *
