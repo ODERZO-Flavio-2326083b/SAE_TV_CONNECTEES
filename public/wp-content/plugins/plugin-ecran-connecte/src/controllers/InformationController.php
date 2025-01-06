@@ -533,6 +533,7 @@ class InformationController extends Controller
 		$deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
         $infoScrapper = new information();
+        $infoScrapper->setIdDepartment(1);
         $infoScrapper->setAuthor(1);
         $infoScrapper->setCreationDate(date("2024-12-18"));
         $infoScrapper->setId(27);

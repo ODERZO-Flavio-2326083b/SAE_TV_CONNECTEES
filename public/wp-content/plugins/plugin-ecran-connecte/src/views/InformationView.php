@@ -415,29 +415,36 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayModifyInformationForm($title, $content, $endDate, $type) {
-        if ($type == "text") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormText($title, $content, $endDate, 'submit');
-        } elseif ($type == "img") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
-        } elseif ($type == "video") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormVideo($title, $content, $endDate, 'submit');
-        } elseif ($type == "short") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormShort($title, $content, $endDate, 'submit');
-        } elseif ($type == "tab") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormTab($title, $content, $endDate, 'submit');
-        } elseif ($type == "pdf") {
-            return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
-        } elseif ($type == "event") {
-            $extension = explode('.', $content);
-            $extension = $extension[1];
-            if ($extension == "pdf") {
-                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($title, $content, $endDate, 'submit');
-            } else {
-                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($title, $content, $endDate, 'submit');
-            }
-        } else {
-            return $this->noInformation();
+    public function displayModifyInformationForm( string $title, string $content, string $endDate, string $type,
+                                                  array $allDepts, bool $isAdmin = false, int $currDept = null): string
+    {
+
+        switch ($type) {
+            case "text":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "img":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "video":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "short":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "pdf":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "event":
+                $extension = explode('.', $content);
+                $extension = $extension[1];
+                if ($extension == "pdf") {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                } else {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                }
+            default:
+                return $this->noInformation();
         }
     }
 
