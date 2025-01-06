@@ -164,7 +164,7 @@ class InformationController extends Controller
 		    $filename = $_FILES['contentFile']['name'];
 		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
 		    $explodeName = explode('.', $filename);
-		    $goodExtension = ['mp4', 'mov', 'avi']; // On définit les extensions valides pour nos vidéos/shorts
+		    $goodExtension = ['mp4', 'mov']; // On définit les extensions valides pour nos vidéos/shorts
 		    if (in_array(end($explodeName), $goodExtension)) {
 			    $this->registerFile($filename, $fileTmpName, $information);
 		    } else {
@@ -284,7 +284,7 @@ class InformationController extends Controller
                         }
                     } else if ($information->getType() == 'video' || $information->getType() == 'short') {
                         $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'avi', 'mov'];
+                        $goodExtension = ['mp4', 'mov'];
                         if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
@@ -413,7 +413,7 @@ class InformationController extends Controller
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-        $videoExtension = ['mp4', 'avi', 'mov'];
+        $videoExtension = ['mp4', 'mov'];
 
         foreach ($informationList as $information) {
             ++$row;

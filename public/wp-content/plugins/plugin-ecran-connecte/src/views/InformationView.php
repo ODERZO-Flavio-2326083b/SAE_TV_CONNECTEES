@@ -171,7 +171,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .mov</small>
         </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
@@ -233,7 +233,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo (short)</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .mov</small>
             <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
         </div>
         <div class="form-group">
