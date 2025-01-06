@@ -84,7 +84,7 @@ class Scrapper
             $html .= '<a href="' . $varArticle['link'] . '">';
             $html .= '<img src="' . $varArticle['image'] . '" height=190em width=100%>';
             $html .= '</a>';
-            $html .= '<footer> <p>Publié' . $varArticle['footer'] . '</p> </footer>';
+            $html .= '<footer> <p><small>Publié' . $varArticle['footer'] . '</small></p> </footer>';
             $html .= '</div>';
 
         $html .= '</div>';
