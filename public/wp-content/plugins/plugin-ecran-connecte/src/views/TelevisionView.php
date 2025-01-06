@@ -4,7 +4,6 @@ namespace Views;
 
 use Models\CodeAde;
 use Models\Department;
-use models\Scrapper;
 use Models\User;
 
 /**
@@ -67,8 +66,8 @@ class TelevisionView extends UserView
                 <br>    
                 <select id="deptIdTv" name="deptIdTv" class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>            </div>
-
+                </select>
+            </div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
             $this->buildSelectCode($years, $groups, $halfGroups) . '
@@ -111,7 +110,10 @@ class TelevisionView extends UserView
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1], $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [$count,
+                $this->buildCheckbox($name, $user->getId()),
+                $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1],
+                $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'tele');
@@ -137,7 +139,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyForm($user, $years, $groups, $halfGroups) {
+    public function modifyForm($user, $years, $groups, $halfGroups) : string {
         $count = 0;
         $string = '
         <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))) . '">< Retour</a>
@@ -191,7 +193,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) {
+    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) : string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
 
         if (!is_null($code)) {
@@ -233,7 +235,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyPassword() {
+    public function modifyPassword() : string {
         return '
 		<form method="post">
 		<label>Nouveau mot de passe </label>
@@ -255,7 +257,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayStartSlide() {
+    public function displayStartSlide() : string {
         return '<div id="slideshow-container" class="slideshow-container">';
     }
 
@@ -273,7 +275,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayMidSlide() {
+    public function displayMidSlide() : string {
         return '<div class="mySlides">';
     }
 }

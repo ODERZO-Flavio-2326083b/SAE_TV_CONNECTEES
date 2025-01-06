@@ -4,7 +4,6 @@ namespace Controllers;
 
 use Models\CodeAde;
 use Models\Department;
-use models\Scrapper;
 use Models\User;
 use Views\TelevisionView;
 
@@ -72,27 +71,26 @@ class TelevisionController extends UserController implements Schedule
         $action = filter_input(INPUT_POST, 'createTv');
         $codeAde = new CodeAde();
 
-	    $currentUser = wp_get_current_user();
-	    $deptModel = new Department();
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
 
-	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-	    $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTv');
             $password = filter_input(INPUT_POST, 'pwdTv');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
             $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-			// les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
-	        // de pouvoir le changer
-			$deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
+            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm) {
-
                 $codesAde = array();
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {
@@ -110,7 +108,7 @@ class TelevisionController extends UserController implements Schedule
                 $this->model->setPassword($password);
                 $this->model->setRole('television');
                 $this->model->setCodes($codesAde);
-				$this->model->setIdDepartment($deptId);
+                $this->model->setIdDepartment($deptId);
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
@@ -128,7 +126,7 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-	    $allDepts = $deptModel->getAllDepts();
+        $allDepts = $deptModel->getAllDepts();
 
         return $this->view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
     }
@@ -161,7 +159,7 @@ class TelevisionController extends UserController implements Schedule
         $action = filter_input(INPUT_POST, 'modifValidate');
 
         if (isset($action)) {
-	        $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+            $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
             $codesAde = array();
             foreach ($codes as $code) {
@@ -206,12 +204,12 @@ class TelevisionController extends UserController implements Schedule
      */
     public function displayAllTv(): string {
         $users = $this->model->getUsersByRole('television');
-		$deptModel = new Department();
+        $deptModel = new Department();
 
-		$userDeptList = array();
-		foreach ($users as $user) {
-			$userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
-		}
+        $userDeptList = array();
+        foreach ($users as $user) {
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+        }
 
         return $this->view->displayAllTv($users, $userDeptList);
     }

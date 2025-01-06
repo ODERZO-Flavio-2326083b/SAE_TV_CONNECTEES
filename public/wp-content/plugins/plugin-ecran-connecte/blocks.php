@@ -2,16 +2,16 @@
 
 require_once "src/utils/customFunctions.php";
 
-use Controllers\AlertController;
-use Controllers\CodeAdeController;
-use Controllers\CSSCustomizerController;
-use Controllers\DepartmentController;
-use Controllers\InformationController;
-use Controllers\SecretaryController;
-use Controllers\TechnicianController;
-use Controllers\TelevisionController;
-use Controllers\UserController;
-use Views\UserView;
+use controllers\AlertController;
+use controllers\CodeAdeController;
+use controllers\CSSCustomizerController;
+use controllers\DepartmentController;
+use controllers\InformationController;
+use controllers\SecretaryController;
+use controllers\TechnicianController;
+use controllers\TelevisionController;
+use controllers\UserController;
+use views\UserView;
 use function Utils\does_user_has_role;
 
 
@@ -346,38 +346,6 @@ function block_schedules()
     ));
 }
 add_action( 'init', 'block_schedules' );
-
-/*
- * Gestion des notifications
- */
-
-// Rendu du bouton d'inscription aux notifications
-function subscription_render_callback()
-{
-    if(does_user_has_role(array('administrator', 'secretaire'))) {
-        $view = new UserView();
-        return $view->displayButtonSubscription();
-    } else {
-	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
-	    exit;
-    }
-}
-
-// Ajout de l'affichage du bouton d'inscriptions au notifications
-function block_subscription()
-{
-    wp_register_script(
-        'subscription-script',
-        plugins_url( '/blocks/subscriptionPush/subscriptionPush.js', __FILE__ ),
-        array( 'wp-blocks', 'wp-element', 'wp-data' )
-    );
-
-    register_block_type('tvconnecteeamu/subscription', array(
-        'editor_script' => 'subscription-script',
-        'render_callback' => 'subscription_render_callback'
-    ));
-}
-add_action('init', 'block_subscription');
 
 /*
  * Gestion des utilisateurs : création, affichage et modification.

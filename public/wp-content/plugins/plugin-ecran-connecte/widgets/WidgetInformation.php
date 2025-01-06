@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\InformationController;
+use controllers\InformationController;
 
 add_action('widgets_init', 'information_register_widget');
 function information_register_widget() {

@@ -1,40 +1,40 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Department;
+use models\Department;
 
 /**
  * Class UserView
  *
  * Contient les méthodes pour afficher les vues liées aux utilisateurs.
  *
- * @package Views
+ * @package views
  */
 class UserView extends View
 {
 
-	/**
-	 * Génère un formulaire de base pour la création d'un compte utilisateur.
-	 *
-	 * Cette méthode crée un formulaire HTML standard contenant des champs pour
-	 * le login, l'email, le mot de passe et la confirmation du mot de passe.
-	 * Le formulaire utilise des classes Bootstrap pour le style et inclut
-	 * également des messages d'aide pour informer l'utilisateur des exigences
-	 * concernant les valeurs saisies.
-	 *
-	 * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
-	 * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de sélection
-	 *
-	 * @return string Le code HTML du formulaire.
-	 *
-	 *
-	 * @version 1.0
-	 * @date 2024-10-15
-	 */
+    /**
+     * Génère un formulaire de base pour la création d'un compte utilisateur.
+     *
+     * Cette méthode crée un formulaire HTML standard contenant des champs pour
+     * le login, l'email, le mot de passe et la confirmation du mot de passe.
+     * Le formulaire utilise des classes Bootstrap pour le style et inclut
+     * également des messages d'aide pour informer l'utilisateur des exigences
+     * concernant les valeurs saisies.
+     *
+     * @param string $name Le nom du type d'utilisateur (ex. "Prof", "Tech", "Direc") utilisé pour personnaliser les IDs et les noms des champs.
+     * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de sélection
+     *
+     * @return string Le code HTML du formulaire.
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
     protected function displayBaseForm(string $name, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
-		$disabled = $isAdmin ? '' : 'disabled';
-		return '
+        $disabled = $isAdmin ? '' : 'disabled';
+        return '
             <form method="post" class="cadre">
                 <div class="form-group">
                     <label for="login' . $name . '">Login</label>
@@ -46,10 +46,10 @@ class UserView extends View
                     <input class="form-control" type="email" name="email' . $name . '" placeholder="Email" required="">
                 </div>
                 <div class="form-group">
-               	<label for="pwd' . $name . '">Mot de passe</label>
-                	<input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
+                   <label for="pwd' . $name . '">Mot de passe</label>
+                    <input class="form-control" minlength="8" maxlength="25" type="password" id="pwd' . $name . '" name="pwd' . $name . '" placeholder="Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
                     <input class="form-control" minlength="8" maxlength="25" type="password" id="pwdConf' . $name . '" name="pwdConfirm' . $name . '" placeholder="Confirmer le Mot de passe" minlength="8" maxlength="25" required="" onkeyup=checkPwd("' . $name . '")>
-                	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                
+                    <small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>                
                 </div>
                 <div class="form-group">
                 <label for="departementDirec">Département</label>
@@ -170,29 +170,6 @@ class UserView extends View
             <input type="text" class="form-control text-center" name="codeDelete" placeholder="Code à rentrer" required="">
             <button type="submit" name="deleteAccount" class="btn button_ecran">Supprimer</button>
         </form>';
-    }
-
-    /**
-     * Affiche un bouton de souscription aux notifications.
-     *
-     * Cette méthode génère un bouton HTML qui permet à l'utilisateur de
-     * s'abonner à des notifications. Le bouton est stylisé avec Bootstrap
-     * et contient un nonce de sécurité pour protéger les requêtes REST.
-     * Le nonce est utilisé pour vérifier la validité de la requête lorsque
-     * l'utilisateur clique sur le bouton.
-     *
-     * @return string Le code HTML du bouton de souscription.
-     *
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function displayButtonSubscription(): string {
-        $wpnonce = wp_create_nonce('wp_rest');
-
-        return '
-        <a href="#" id="my-notification-button" class="btn btn-danger">Recevoir des notifications</a></br>
-        <input id="wpnonce" type="hidden" value="' . $wpnonce . '" />';
     }
 
     /**

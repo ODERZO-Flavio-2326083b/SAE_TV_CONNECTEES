@@ -1,17 +1,17 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Department;
-use Models\User;
-use Views\SecretaryView;
+use models\Department;
+use models\User;
+use views\SecretaryView;
 
 /**
  * Class SecretaryController
  *
  * Gère toutes les actions relatives aux secrétaires (Création, mise à jour, affichage).
  *
- * @package Controllers
+ * @package controllers
  */
 class SecretaryController extends UserController
 {
@@ -64,31 +64,30 @@ class SecretaryController extends UserController
     public function insert(): string {
         $action = filter_input(INPUT_POST, 'createSecre');
 
-	    $currentUser = wp_get_current_user();
-	    $deptModel = new Department();
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
 
-	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
-	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
-	        // de pouvoir le changer
-	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
+            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
-
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('secretaire');
-				$this->model->setIdDepartment($deptId);
+                $this->model->setIdDepartment($deptId);
 
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
                     $this->view->displayInsertValidate();
@@ -120,12 +119,12 @@ class SecretaryController extends UserController
      */
     public function displayAllSecretary(): string {
         $users = $this->model->getUsersByRole('secretaire');
-	    $deptModel = new Department();
+        $deptModel = new Department();
 
-	    $userDeptList = array();
-	    foreach ($users as $user) {
-		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
-	    }
+        $userDeptList = array();
+        foreach ($users as $user) {
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+        }
 
         return $this->view->displayAllSecretary($users, $userDeptList);
     }
