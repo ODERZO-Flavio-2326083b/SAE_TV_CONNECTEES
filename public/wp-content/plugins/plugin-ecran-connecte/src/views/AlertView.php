@@ -1,16 +1,16 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\Alert;
-use Models\CodeAde;
+use models\Alert;
+use models\CodeAde;
 
 /**
  * Class AlertView
  *
  * Gère toutes les vues liées aux alertes (formulaires, tableaux, messages).
  *
- * @package Views
+ * @package views
  */
 class AlertView extends View
 {
@@ -25,7 +25,7 @@ class AlertView extends View
      * @return string
      * Retourne le code HTML du formulaire de création d'alerte.
      */
-    public function creationForm($years, $groups, $halfGroups) {
+    public function creationForm($years, $groups, $halfGroups) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day")); // Fixe la date minimale au jour suivant.
 
         return '
@@ -44,8 +44,7 @@ class AlertView extends View
             </div>
             <input type="button" onclick="addButtonAlert()" class="btn button_ecran" value="+">
             <button type="submit" class="btn button_ecran" name="submit">Valider</button>
-        </form>
-        <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))) . '">Voir les alertes</a>' . $this->contextCreateAlert();
+        </form>' . $this->contextCreateAlert();
     }
 
     /**
@@ -54,7 +53,7 @@ class AlertView extends View
      * @return string
      * Retourne le texte explicatif sur la gestion des alertes.
      */
-    public function contextCreateAlert() {
+    public function contextCreateAlert() : string {
         return '
 		<hr class="half-rule">
 		<div>
@@ -82,7 +81,7 @@ class AlertView extends View
      * @return string
      * Retourne le code HTML du formulaire de modification d'alerte.
      */
-    public function modifyForm($alert, $years, $groups, $halfGroups) {
+    public function modifyForm($alert, $years, $groups, $halfGroups) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $codes = $alert->getCodes();
 
@@ -128,7 +127,7 @@ class AlertView extends View
      * @return string
      * Retourne le texte explicatif sur la modification des alertes.
      */
-    public function contextModify() {
+    public function contextModify() : string {
         return '
 		<hr class="half-rule">
 		<div>
@@ -143,7 +142,7 @@ class AlertView extends View
      * @return string
      * Retourne le code HTML de la section affichant toutes les alertes.
      */
-    public function contextDisplayAll() {
+    public function contextDisplayAll() : string {
         return '
 		<div class="row">
 			<div class="col-6 mx-auto col-md-6 order-md-2">
@@ -195,17 +194,14 @@ class AlertView extends View
      * @return string
      * Retourne le code HTML du select.
      */
-    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0, $forEveryone = 0) {
+    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0, $forEveryone = 0) : string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectAlert[]" required="">';
-
         if ($forEveryone) {
             $select .= '<option value="all" selected>Tous</option>';
         } elseif (!is_null($code)) {
             $select .= '<option value="' . $code->getCode() . '" selected>' . $code->getTitle() . '</option>';
         }
-
         $select .= '<option value="all">Tous</option>
-                    <option value="0">Aucun</option>
             		<optgroup label="Année">';
 
         foreach ($years as $year) {
@@ -233,7 +229,7 @@ class AlertView extends View
      * @return string
      * Retourne le message d'alerte non trouvée.
      */
-    public function noAlert() {
+    public function noAlert() : string {
         return '
 		<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))) . '">< Retour</a>
 		<div>
@@ -249,7 +245,7 @@ class AlertView extends View
      * @return string
      * Retourne le message d'alerte non modifiable.
      */
-    public function alertNotAllowed() {
+    public function alertNotAllowed() : string {
         return '
 		<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))) . '">< Retour</a>
 		<div>

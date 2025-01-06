@@ -1,13 +1,13 @@
 <?php
 
-namespace Views;
+namespace views;
 
 /**
  * Class HelpMapView
  *
  * Vue pour la carte affichant les lieux intéressants à proximité.
  *
- * @package Views
+ * @package views
  */
 class HelpMapView extends View
 {
@@ -17,7 +17,7 @@ class HelpMapView extends View
      * @return string
      * Retourne le code HTML de la carte d'aide.
      */
-    public function displayHelpMap() {
+    public function displayHelpMap() : string {
         return '<p>Hello, World!</p>';
     }
 }

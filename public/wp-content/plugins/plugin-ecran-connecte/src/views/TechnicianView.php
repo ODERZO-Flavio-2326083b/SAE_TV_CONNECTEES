@@ -1,15 +1,13 @@
 <?php
 
-namespace Views;
-
-use Models\User;
+namespace views;
 
 /**
  * Class TechnicianView
  *
  * Contient toutes les vues liées aux techniciens (Formulaires, tableaux)
  *
- * @package Views
+ * @package views
  */
 class TechnicianView extends UserView
 {
@@ -56,7 +54,7 @@ class TechnicianView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllTechnicians($users, $userDeptList) {
+    public function displayAllTechnicians(array $users, array $userDeptList): string {
         $title = 'Techniciens';
         $name = 'Tech';
         $header = ['Login', 'Département'];

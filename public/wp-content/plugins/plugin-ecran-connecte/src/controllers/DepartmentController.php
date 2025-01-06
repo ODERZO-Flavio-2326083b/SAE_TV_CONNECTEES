@@ -1,151 +1,151 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Controllers\Controller;
-use Models\Department;
-use Views\DepartmentView;
+use controllers\Controller;
+use models\Department;
+use views\DepartmentView;
 
 class DepartmentController extends Controller {
-	/**
-	 * Modèle département
-	 * @var Department
-	 */
-	private $model;
+    /**
+     * Modèle département
+     * @var Department
+     */
+    private $model;
 
-	/**
-	 * Vue département
-	 */
-	private $view;
+    /**
+     * Vue département
+     */
+    private $view;
 
-	/**
-	 * Constructeur basique
-	 */
-	public function __construct() {
-		$this->model = new Department();
-		$this->view = new DepartmentView();
-	}
+    /**
+     * Constructeur basique
+     */
+    public function __construct() {
+        $this->model = new Department();
+        $this->view = new DepartmentView();
+    }
 
-	/**
-	 * Utilise le POST du formulaire de création de département et
-	 * filtre les inputs pour insérer les informations dans la base de données.
-	 *
-	 * @return string
-	 */
-	public function insert(): string {
-		$action = filter_input(INPUT_POST, 'submit');
+    /**
+     * Utilise le POST du formulaire de création de département et
+     * filtre les inputs pour insérer les informations dans la base de données.
+     *
+     * @return string
+     */
+    public function insert(): string {
+        $action = filter_input(INPUT_POST, 'submit');
 
-		if (isset($action)) {
-			$name = filter_input(INPUT_POST, 'dept_name');
+        if (isset($action)) {
+            $name = filter_input(INPUT_POST, 'dept_name');
 
-			if (is_string($name)) {
-				$this->model->setName($name);
+            if (is_string($name)) {
+                $this->model->setName($name);
 
-				if (!$this->checkDuplicate($this->model)) {
-					$this->model->insert();
-					$this->view->successCreation();
-				} else {
-					$this->view->errorDuplicate();
-				}
-			} else {
-				$this->view->errorCreation();
-			}
+                if (!$this->checkDuplicate($this->model)) {
+                    $this->model->insert();
+                    $this->view->successCreation();
+                } else {
+                    $this->view->errorDuplicate();
+                }
+            } else {
+                $this->view->errorCreation();
+            }
 
-		}
-		return $this->view->renderAddForm();
-	}
+        }
+        return $this->view->renderAddForm();
+    }
 
-	/**
-	 * Affiche le menu de modification en fonction de l'id fourni en GET
-	 * et filtre les inputs pour modifier le nom
-	 * d'un département dans la base de données
-	 *
-	 * @return string
-	 */
-	public function modify(): string {
-		if(!isset($_GET['id'])) {
-			return $this->view->errorNothing();
-		}
+    /**
+     * Affiche le menu de modification en fonction de l'id fourni en GET
+     * et filtre les inputs pour modifier le nom
+     * d'un département dans la base de données
+     *
+     * @return string
+     */
+    public function modify(): string {
+        if (!isset($_GET['id'])) {
+            return $this->view->errorNothing();
+        }
 
-		$id = $_GET['id'];
+        $id = $_GET['id'];
 
-		if (!is_numeric($id) || !$this->model->get($id)) {
-			return $this->view->errorNothing();
-		}
+        if (!is_numeric($id) || !$this->model->get($id)) {
+            return $this->view->errorNothing();
+        }
 
-		$submit = filter_input(INPUT_POST, 'submit');
+        $submit = filter_input(INPUT_POST, 'submit');
 
-		if (isset($submit)) {
-			$nvNom = filter_input(INPUT_POST, 'dept_name');
+        if (isset($submit)) {
+            $nvNom = filter_input(INPUT_POST, 'dept_name');
 
-			if (is_string($nvNom)) {
-				$this->model->setIdDepartment($id);
-				$this->model->setName($nvNom);
+            if (is_string($nvNom)) {
+                $this->model->setIdDepartment($id);
+                $this->model->setName($nvNom);
 
-				if (!$this->checkDuplicate($this->model)) {
-					$this->model->update();
-					$this->view->successUpdate();
-				} else {
-					$this->view->errorDuplicate();
-				}
-			} else {
-				$this->view->errorUpdate();
-			}
-		}
+                if (!$this->checkDuplicate($this->model)) {
+                    $this->model->update();
+                    $this->view->successUpdate();
+                } else {
+                    $this->view->errorDuplicate();
+                }
+            } else {
+                $this->view->errorUpdate();
+            }
+        }
 
-		$name = $this->model->get($id)->getName();
-		return $this->view->renderModifForm($name);
-	}
+        $name = $this->model->get($id)->getName();
+        return $this->view->renderModifForm($name);
+    }
 
-	/**
-	 * Donne la liste de tous les départements à la vue
-	 * et affiche le tableau correspondant
-	 *
-	 * @return string
-	 */
-	public function displayDeptTable(): string {
-		$allDepts = $this->model->getAllDepts();
+    /**
+     * Donne la liste de tous les départements à la vue
+     * et affiche le tableau correspondant
+     *
+     * @return string
+     */
+    public function displayDeptTable(): string {
+        $allDepts = $this->model->getAllDepts();
 
-		return $this->view->renderAllDeptsTable($allDepts);
-	}
+        return $this->view->renderAllDeptsTable($allDepts);
+    }
 
-	/**
-	 * Si une requête POST est faite sur la page d'affichage des départements
-	 * on la traite et supprime les départements concernés
-	 *
-	 * @return void
-	 */
-	public function deleteDepts(): void {
-		$action = filter_input(INPUT_POST, 'delete');
-		if (isset($action)) {
-			if (isset($_REQUEST['checkboxStatusDept'])) {
-				$checked_values = $_REQUEST['checkboxStatusDept'];
-				foreach ($checked_values as $id) {
-					$this->model = $this->model->get($id);
-					$this->model->delete();
-					$this->view->refreshPage();
-				}
-			}
-		}
-	}
+    /**
+     * Si une requête POST est faite sur la page d'affichage des départements
+     * on la traite et supprime les départements concernés
+     *
+     * @return void
+     */
+    public function deleteDepts(): void {
+        $action = filter_input(INPUT_POST, 'delete');
+        if (isset($action)) {
+            if (isset($_REQUEST['checkboxStatusDept'])) {
+                $checked_values = $_REQUEST['checkboxStatusDept'];
+                foreach ($checked_values as $id) {
+                    $this->model = $this->model->get($id);
+                    $this->model->delete();
+                    $this->view->refreshPage();
+                }
+            }
+        }
+    }
 
 
-	/**
-	 * Vérifie si le nom du département existe déjà dans la base de données
-	 *
-	 * @param Department $department
-	 *
-	 * @return bool
-	 */
-	public function checkDuplicate(Department $department): bool {
-		$departments = $this->model->getDepartmentByName($department->getName());
+    /**
+     * Vérifie si le nom du département existe déjà dans la base de données
+     *
+     * @param Department $department
+     *
+     * @return bool
+     */
+    public function checkDuplicate(Department $department): bool {
+        $departments = $this->model->getDepartmentByName($department->getName());
 
-		foreach ($departments as $d) {
-			if ($department->getName() === $d->getName()) {
-				return true;
-			}
+        foreach ($departments as $d) {
+            if ($department->getName() === $d->getName()) {
+                return true;
+            }
 
-		}
-		return false;
-	}
+        }
+        return false;
+    }
 }

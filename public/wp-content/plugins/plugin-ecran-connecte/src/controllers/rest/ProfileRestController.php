@@ -1,11 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace controllers\rest;
 
-use Models\Alert;
-use Models\CodeAde;
-use Models\User;
-use WP_Error;
+use models\User;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -116,7 +113,7 @@ class ProfileRestController extends WP_REST_Controller
      * @version 1.0
      * @date 2024-10-15
      */
-    public function get_item_permissions_check($request) {
+    public function get_item_permissions_check($request) : bool {
         $current_user = wp_get_current_user();
         return !is_null($current_user);
     }

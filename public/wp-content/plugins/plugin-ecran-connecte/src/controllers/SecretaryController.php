@@ -1,29 +1,29 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Department;
-use Models\User;
-use Views\SecretaryView;
+use models\Department;
+use models\User;
+use views\SecretaryView;
 
 /**
  * Class SecretaryController
  *
  * Gère toutes les actions relatives aux secrétaires (Création, mise à jour, affichage).
  *
- * @package Controllers
+ * @package controllers
  */
 class SecretaryController extends UserController
 {
     /**
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * @var SecretaryView
      */
-    private $view;
+    private SecretaryView $view;
 
     /**
      * Constructor of SecretaryController.
@@ -41,7 +41,7 @@ class SecretaryController extends UserController
      *
      * @return string
      */
-    public function displayMySchedule() {
+    public function displayMySchedule(): string {
         return $this->view->displayWelcomeAdmin();
     }
 
@@ -61,34 +61,33 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function insert() {
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'createSecre');
 
-	    $currentUser = wp_get_current_user();
-	    $deptModel = new Department();
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
 
-	    $isAdmin = in_array("administrator", $currentUser->roles);
-	    // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-	    $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
-	        // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
-	        // de pouvoir le changer
-	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
+            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
-
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
                 $this->model->setRole('secretaire');
-				$this->model->setIdDepartment($deptId);
+                $this->model->setIdDepartment($deptId);
 
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
                     $this->view->displayInsertValidate();
@@ -118,14 +117,14 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllSecretary() {
+    public function displayAllSecretary(): string {
         $users = $this->model->getUsersByRole('secretaire');
-	    $deptModel = new Department();
+        $deptModel = new Department();
 
-	    $userDeptList = array();
-	    foreach ($users as $user) {
-		    $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
-	    }
+        $userDeptList = array();
+        foreach ($users as $user) {
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+        }
 
         return $this->view->displayAllSecretary($users, $userDeptList);
     }
@@ -144,7 +143,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function createUsers() {
+    public function createUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
@@ -176,7 +175,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayUsers() {
+    public function displayUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
@@ -208,7 +207,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyUser() {
+    public function modifyUser(): string {
         $id = $_GET['id'];
         if (is_numeric($id) && $this->model->get($id)) {
             $user = $this->model->get($id);
@@ -239,7 +238,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    public function deleteUsers() {
+    public function deleteUsers(): void {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         $roles = ['Tech', 'Secre', 'Tele'];
 
@@ -263,6 +262,7 @@ class SecretaryController extends UserController
      * de la base de données.
      *
      * @param int $id L'identifiant de l'utilisateur à supprimer.
+     *
      * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression
      *               de l'utilisateur.
      *
@@ -270,7 +270,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date 2024-10-15
      */
-    private function deleteUser($id) {
+    private function deleteUser(int $id): void {
         $user = $this->model->get($id);
         $user->delete();
     }

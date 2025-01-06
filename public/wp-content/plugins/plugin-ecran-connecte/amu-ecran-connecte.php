@@ -12,11 +12,11 @@
  * GitHub Plugin URI: https://github.com/Nicolas-Rohrbach/plugin-ecran-connecte
  */
 
-use Controllers\AlertController;
-use Controllers\CodeAdeController;
-use Controllers\InformationController;
-use Models\CodeAde;
-use Models\User;
+use controllers\AlertController;
+use controllers\CodeAdeController;
+use controllers\InformationController;
+use models\CodeAde;
+use models\User;
 
 if (! defined('ABSPATH')) {
 	die;

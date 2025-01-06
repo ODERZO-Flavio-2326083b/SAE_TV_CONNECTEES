@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use PDO;
 
@@ -10,7 +10,7 @@ use PDO;
  * Generic class for Model
  * Contain basic function and connection to the database
  *
- * @package Models
+ * @package models
  */
 class Model
 {
@@ -69,7 +69,7 @@ class Model
      * @version 1.0
      * @date 2024-10-15
      */
-    protected function getDatabase() {
+    protected function getDatabase() : PDO {
         self::setDatabase();
         return self::$database;
     }
@@ -87,7 +87,7 @@ class Model
      * @version 1.0
      * @date 2024-10-15
      */
-    protected function getDatabaseViewer() {
+    protected function getDatabaseViewer() : PDO {
         self::setDatabaseViewer();
         return self::$database;
     }

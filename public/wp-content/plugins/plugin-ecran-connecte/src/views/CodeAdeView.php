@@ -1,15 +1,15 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\CodeAde;
+use models\CodeAde;
 
 /**
  * Class CodeAdeView
  *
  * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
  *
- * @package Views
+ * @package views
  */
 class CodeAdeView extends View
 {
@@ -20,7 +20,7 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML du formulaire de création de code ADE.
      */
-    public function createForm() {
+    public function createForm() : string {
         return '
         <form method="post">
             <div class="form-group">
@@ -59,7 +59,7 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML du formulaire de modification de code ADE.
      */
-    public function displayModifyCode($title, $type, $code) {
+    public function displayModifyCode($title, $type, $code) : string {
         $page = get_page_by_title_custom('Gestion des codes ADE');
         $linkManageCode = get_permalink($page->ID);
 
@@ -93,7 +93,7 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML des options de sélection de type de code.
      */
-    private function createTypeOption($selectedType) {
+    private function createTypeOption($selectedType) : string {
         $result = '';
 
         // Déclare les types de code disponibles
@@ -135,7 +135,7 @@ class CodeAdeView extends View
      * @return string
      * Retourne le code HTML affichant tous les codes ADE.
      */
-    public function displayAllCode($years, $groups, $halfGroups) {
+    public function displayAllCode($years, $groups, $halfGroups) : string {
         $page = get_page_by_title_custom('Modifier un code ADE');
         $linkManageCodeAde = get_permalink($page->ID);
 
@@ -152,13 +152,16 @@ class CodeAdeView extends View
             foreach ($codeAde as $code) {
                 if ($code->getType() === 'year') {
                     $code->setType('Année');
-                } else if ($code->getType() === 'group') {
+                } elseif ($code->getType() === 'group') {
                     $code->setType('Groupe');
-                } else if ($code->getType() === 'halfGroup') {
+                } elseif ($code->getType() === 'halfGroup') {
                     $code->setType('Demi-groupe');
                 }
                 ++$count;
-                $row[] = [$count, $this->buildCheckbox($name, $code->getId()), $code->getTitle(), $code->getCode(), $code->getType(), $this->buildLinkForModify($linkManageCodeAde . '?id=' . $code->getId())];
+                $row[] = [$count,
+                    $this->buildCheckbox($name, $code->getId()),
+                    $code->getTitle(), $code->getCode(), $code->getType(),
+                    $this->buildLinkForModify($linkManageCodeAde . '?id=' . $code->getId())];
             }
         }
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\User;
+use models\User;
 
 /**
  * Class SecretaryView
  *
  * All view for secretary (Forms, tables, messages)
  *
- * @package Views
+ * @package views
  */
 class SecretaryView extends UserView
 {
@@ -50,7 +50,7 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayWelcomeAdmin() {
+    public function displayWelcomeAdmin(): string {
         return '
         <div class="row">
             <div class="col-6 mx-auto col-md-6 order-md-1">
@@ -66,10 +66,12 @@ class SecretaryView extends UserView
                 <p class="lead mb-4">Les informations seront affichés dans la partie de droite des télévisions et les alertes dans la partie rouge en bas des téléviseurs.</p>
                 <div class="row mx-n2">
                     <div class="col-md px-2">
-                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une information"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une information</a>
+                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une information")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une information</a>
                     </div>
                     <div class="col-md px-2">
-                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une alerte"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une alerte</a>
+                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une alerte")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une alerte</a>
                     </div>
                 </div>
             </div>
@@ -78,16 +80,20 @@ class SecretaryView extends UserView
             <div class="col-md-6 p-3 p-md-5 bg-light border border-white">
                 <h3><img src="' . TV_PLUG_PATH . '/public/img/+.png" alt="Ajouter une information/alerte" class="logo">Ajouter</h3>
                 <p>Ajouter une information ou une alerte. Elles seront affichées le lendemain sur toutes les télévisions</p>
-                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une information"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une information</a>
+                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une information")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une information</a>
                 <hr class="half-rule">
-                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une alerte"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une alerte</a>
+                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer une alerte")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer une alerte</a>
             </div>
             <div class="col-md-6 p-3 p-md-5 bg-light border border-white">
                 <h3><img src="' . TV_PLUG_PATH . '/public/img/gestion.png" alt="voir les informations/alertes" class="logo">Gérer</h3>
                 <p>Voir toutes les informations et alertes déjà publiées. Vous pouvez les supprimers, les modifiers ou bien juste les regarder</p>
-                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des informations"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir mes informations</a>
+                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des informations")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir mes informations</a>
                 <hr class="half-rule">
-                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des alertes"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir mes alertes</a>
+                <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des alertes")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir mes alertes</a>
             </div>
         </div>
         <div class="row">
@@ -100,10 +106,12 @@ class SecretaryView extends UserView
                 <p class="lead mb-4">Ils pourront aussi gérer leurs informations et leurs alertes.</p>
                 <div class="row mx-n2">
                     <div class="col-md px-2">
-                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer un utilisateur"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer un utilisateur</a>
+                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Créer un utilisateur")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Créer un utilisateur</a>
                     </div>
                     <div class="col-md px-2">
-                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des utilisateurs"))) . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir les utilisateurs</a>
+                        <a href="' . esc_url(get_permalink(get_page_by_title_custom("Gestion des utilisateurs")))
+            . '" class="btn btn-lg button_presentation_ecran w-100 mb-3">Voir les utilisateurs</a>
                     </div>
                 </div>
             </div>
@@ -132,13 +140,14 @@ class SecretaryView extends UserView
      * leur identifiant de connexion (login) sont affichés.
      *
      * @param array $users Tableau d'objets utilisateur contenant les informations des secrétaires.
+     * @param array $userDeptList Liste des noms de départements dans le même ordre que les users
      * @return string Retourne le code HTML du tableau listant les secrétaires.
      *
      *
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayAllSecretary($users, $userDeptList) {
+    public function displayAllSecretary(array $users, array $userDeptList): string {
         $title = 'Secrétaires';
         $name = 'Secre';
         $header = ['Login', 'Département'];
@@ -166,7 +175,7 @@ class SecretaryView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayNoUser() {
+    public function displayNoUser(): string {
         return '<p class="alert alert-danger">Veuillez choisir un utilisateur </p>';
     }
 }

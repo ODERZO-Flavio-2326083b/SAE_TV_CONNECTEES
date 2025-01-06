@@ -1,17 +1,17 @@
 <?php
 
-namespace Views;
+namespace views;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
+use models\CodeAde;
+use models\Department;
+use models\User;
 
 /**
  * Class TelevisionView
  *
  * Contient toutes les vues liées à la télévision (Formulaires, tableaux)
  *
- * @package Views
+ * @package views
  */
 class TelevisionView extends UserView
 {
@@ -42,7 +42,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin, int $currDept = null): string {
+    public function displayFormTelevision(array $years, array $groups, array $halfGroups, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
         $disabled = $isAdmin ? '' : 'disabled';
 
 		$form = '
@@ -62,9 +62,9 @@ class TelevisionView extends UserView
             	<small id="passwordHelpBlock" class="form-text text-muted">Votre mot de passe doit contenir entre 8 et 25 caractère</small>
             </div>
             <div class="form-group">
-                <label for="departementDirec">Département</label>
+                <label for="deptIdTv">Département</label>
                 <br>    
-                <select name="deptIdTv" class="form-control"' . $disabled . '>
+                <select id="deptIdTv" name="deptIdTv" class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
             </div>
@@ -89,6 +89,8 @@ class TelevisionView extends UserView
      * @param array $users Un tableau d'objets représentant les utilisateurs de type télévision.
      *                     Chaque objet doit implémenter les méthodes nécessaires pour récupérer
      *                     le login et les codes d'emploi du temps associés.
+     * @param array $userDeptList Tableau contenant tous les noms des départements dans le même ordre
+     *                            que le tableau $users
      *
      * @return string Le code HTML du tableau affichant les utilisateurs de télévision.
      *
@@ -108,7 +110,10 @@ class TelevisionView extends UserView
         $count = 0;
         foreach ($users as $user) {
             ++$count;
-            $row[] = [$count, $this->buildCheckbox($name, $user->getId()), $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1], $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
+            $row[] = [$count,
+                $this->buildCheckbox($name, $user->getId()),
+                $user->getLogin(), sizeof($user->getCodes()), $userDeptList[$count-1],
+                $this->buildLinkForModify($linkManageUser . '?id=' . $user->getId())];
         }
 
         return $this->displayAll($name, $title, $header, $row, 'tele');
@@ -134,7 +139,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyForm($user, $years, $groups, $halfGroups) {
+    public function modifyForm($user, $years, $groups, $halfGroups) : string {
         $count = 0;
         $string = '
         <a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))) . '">< Retour</a>
@@ -188,15 +193,15 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) {
+    public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0) : string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectTv[]" required="">';
 
         if (!is_null($code)) {
             $select .= '<option value="' . $code->getCode() . '">' . $code->getTitle() . '</option>';
         }
 
-        $select .= '<option value="0">Aucun</option>
-            		<optgroup label="Année">';
+        $select .= '<option disabled selected value>Sélectionnez un code ADE</option>
+					<optgroup label="Année">';
 
         foreach ($years as $year) {
             $select .= '<option value="' . $year->getCode() . '">' . $year->getTitle() . '</option >';
@@ -230,7 +235,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function modifyPassword() {
+    public function modifyPassword() : string {
         return '
 		<form method="post">
 		<label>Nouveau mot de passe </label>
@@ -252,7 +257,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayStartSlide() {
+    public function displayStartSlide() : string {
         return '<div id="slideshow-container" class="slideshow-container">';
     }
 
@@ -270,7 +275,7 @@ class TelevisionView extends UserView
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displayMidSlide() {
+    public function displayMidSlide() : string {
         return '<div class="mySlides">';
     }
 }
