@@ -104,11 +104,17 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function update() : int {
-        $request = $this->getDatabase()->prepare("UPDATE ecran_information SET title = :title, content = :content, expiration_date = :expirationDate WHERE id = :id");
+        $request = $this->getDatabase()->prepare("UPDATE ecran_information 
+														SET title = :title, 
+														    content = :content, 
+														    expiration_date = :expirationDate,
+														    department_id = :deptId
+														WHERE id = :id");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+		$request->bindValue(':deptId', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->execute();
         return $request->rowCount();
     }

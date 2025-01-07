@@ -253,7 +253,9 @@ class InformationController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
+	        $information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
 
@@ -295,7 +297,6 @@ class InformationController extends Controller
                     }
                 }
             }
-
 
             if ($information->update()) {
                 $this->view->displayModifyValidate();
