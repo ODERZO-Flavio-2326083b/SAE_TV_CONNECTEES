@@ -1,6 +1,6 @@
 <?php
 
-use Models\Department;
+use models\Department;
 
 include_once 'inc/customizer/custom_colors.php';
 include_once 'inc/customizer/custom_sidebar.php';
