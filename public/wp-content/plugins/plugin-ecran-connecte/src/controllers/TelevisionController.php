@@ -12,7 +12,7 @@ use views\TelevisionView;
  *
  * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des emplois du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TelevisionController extends UserController implements Schedule
 {
