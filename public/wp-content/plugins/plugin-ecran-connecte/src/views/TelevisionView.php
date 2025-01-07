@@ -2,9 +2,9 @@
 
 namespace views;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
+use models\CodeAde;
+use models\Department;
+use models\User;
 
 /**
  * Class TelevisionView
