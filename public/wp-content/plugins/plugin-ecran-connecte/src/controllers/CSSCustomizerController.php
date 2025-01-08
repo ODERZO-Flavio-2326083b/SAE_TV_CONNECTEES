@@ -65,6 +65,7 @@ class CSSCustomizerController extends Controller
         foreach ($listDepartement as $e) {
             $listDepName[] = $e->getName(); // Ajouter le nom du département au tableau
         }
+        $this->view->displayContextCSS();
         $this->view->displayCssCustomizer($listDepName);
     }
 

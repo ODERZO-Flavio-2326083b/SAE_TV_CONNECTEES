@@ -16,6 +16,38 @@ use views\View;
  */
 class CSSView extends View
 {
+
+
+    /**
+     * Affiche le contexte de personnalisation du CSS.
+     *
+     * Cette méthode génère une section explicative permettant à l'utilisateur de comprendre les possibilités
+     * de personnalisation des télévisions par département. Elle décrit les étapes nécessaires,
+     * notamment la création de départements, la sélection d'un département à personnaliser,
+     * et la visualisation des modifications en se connectant à la télévision correspondante.
+     *
+     * Le contenu affiché sert d'introduction et d'explication pour guider les utilisateurs
+     * dans l'utilisation de la fonctionnalité de personnalisation.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
+     */
+    public function displayContextCSS(){
+        echo "
+        <h2>Gestion du CSS</h2>
+        <div class='row'>
+                <p class='lead'>Sur cette page, il est possible de personnaliser la télévision d'un département au choix.</p>
+                <p class='lead'>Après avoir créé les départements, vous pouvez en sélectionner un afin de modifier les couleurs des télévisions
+                de ce département.</p>
+               <p class='lead'>Une fois votre choix validé, connectez-vous à la télévision du département sélectionné afin de voir les changements.</p>
+            </div>
+        <hr class='half-rule'>";
+    }
+
+
+
     /**
      * Affiche le formulaire de personnalisation du CSS.
      *
@@ -32,12 +64,11 @@ class CSSView extends View
      */
     public function displayCssCustomizer($listDepName)
     {
-        echo "<h1>Personnalisation du CSS</h1>";
         echo "<form method=\"POST\">
 
 
     <div class=\"form-group\">
-        <label for=\"cssFileSelector\">Choisir le css a modifier</label>
+        <label for=\"cssFileSelector\">Choisir le CSS à modifier : </label>
         <select id=\"cssFileSelector\" name=\"cssFileSelector\">
             <option value=\"default\">default</option>";
             $this->fomulaireDep($listDepName);
@@ -93,7 +124,7 @@ class CSSView extends View
      * Affiche les options de départements dans un formulaire.
      *
      * Cette méthode génère dynamiquement les options d'un menu déroulant (select) pour chaque département
-     * contenu dans la liste `$listDepName`. Chaque département est affiché comme une option dans le formulaire,
+     * contenu dans la liste '$listDepName'. Chaque département est affiché comme une option dans le formulaire,
      * permettant à l'utilisateur de sélectionner un département parmi les choix proposés.
      *
      * @param array $listDepName Liste des départements à afficher dans le formulaire.

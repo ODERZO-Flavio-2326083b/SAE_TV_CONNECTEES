@@ -111,7 +111,7 @@ class DepartmentView extends View {
      * @date 08-01-2025
      */
     public function successCreation() {
-        $this->buildModal("Ajout d'un département", "<p>Le département a bien été créé!</p>");
+        $this->buildModal("Ajout d'un département", "<p>Le département a bien été créé !</p>");
     }
 
     /**
@@ -127,7 +127,7 @@ class DepartmentView extends View {
      * @date 08-01-2025
      */
     public function successUpdate() {
-        $this->buildModal("Modification d'un département", "<p>Le département a bien été modifié!</p>");
+        $this->buildModal("Modification d'un département", "<p>Le département a bien été modifié !</p>");
     }
 
     /**
@@ -176,7 +176,7 @@ class DepartmentView extends View {
      * @date 08-01-2025
      */
     public function errorDuplicate() {
-        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà </p>';
+        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà. </p>';
     }
 
     /**

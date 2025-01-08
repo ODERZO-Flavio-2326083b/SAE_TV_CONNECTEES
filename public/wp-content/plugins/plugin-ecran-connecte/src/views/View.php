@@ -372,7 +372,7 @@ class View
      * @date 2024-10-15
      */
     public function displayBadPassword() {
-        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas corrects </p>');
+        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas corrects. </p>');
     }
 
     /**
@@ -433,7 +433,7 @@ class View
      */
 
     public function displayModificationValidate(string $redirect = null): void {
-        $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée</p>', $redirect);
+        $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée.</p>', $redirect);
     }
 
     /**
@@ -442,7 +442,7 @@ class View
      * @return void
      */
     public function displayErrorInsertion(): void {
-        $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e) </p>');
+        $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e). </p>');
     }
 
 
