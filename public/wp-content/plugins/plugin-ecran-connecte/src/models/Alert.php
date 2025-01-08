@@ -542,6 +542,19 @@ class Alert extends Model implements Entity, JsonSerializable
         $this->adminId = $adminId;
     }
 
+    /**
+     * Sérialise l'objet en un tableau associatif pour le format JSON.
+     *
+     * Implémente l'interface `JsonSerializable` afin de permettre la conversion
+     * de l'objet en une structure de données JSON. Cette méthode utilise
+     * `get_object_vars` pour récupérer les propriétés accessibles de l'objet
+     * sous forme de tableau associatif.
+     *
+     * @return array Tableau associatif représentant les propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-10-16
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }

@@ -537,6 +537,19 @@ class Information extends Model implements Entity, JsonSerializable
         $this->idDepartment = $idDepartment;
     }
 
+    /**
+     * Sérialise l'objet en tableau associatif pour JSON.
+     *
+     * Cette méthode convertit l'objet actuel en un tableau associatif
+     * contenant ses propriétés publiques et protégées. Cela permet une
+     * sérialisation facile de l'objet en JSON, facilitant son export ou
+     * son stockage.
+     *
+     * @return array Un tableau associatif contenant les propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-01-07
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }
