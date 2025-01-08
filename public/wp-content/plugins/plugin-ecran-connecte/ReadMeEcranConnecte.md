@@ -6,10 +6,10 @@ Si vous souhaitez mieux comprendre les fonctions les plus importantes, veuillez 
 
 ## Principe
 
-Ce projet permet d'afficher l'emploi du temps de la personne connectée.  
-En plus de voir son emploi du temps, l'utilisateur pourra aussi recevoir des informations venant de son département et des alertes le concernant.  
+Ce projet permet d'afficher l'emploi du temps des différents groupes d'étudiants par département via des télévisions.
+En plus de voir leur emploi du temps, les étudiants pourront aussi recevoir des informations venant de leur département et des alertes les concernant.  
 
-Ce projet a aussi pour but d'être affiché sur des télévisions afin d'afficher l'emploi du temps des différentes promotions.
+Ce projet a aussi pour but d'informer les agents d'entretien des salles qui sont occupées, afin de qu'ils puissent s'occuper des salles vides.
 
 Ce projet est composé de deux parties :  
     - Le plugin qui permet d'avoir nos différentes fonctionnalités.
@@ -18,11 +18,8 @@ Ce projet est composé de deux parties :
 ## Plugins
 
 Il y a plusieurs plugins utilisés pour ce projet, voici une liste décrivant l'utilité de chaque plugin :  
-    - Members : Permet de limiter les pages d'un site à certain membre  
-    - Ecran connecté : Plugin principal du site, nous allons en parler plus en détails en dessous  
-    - GithubMachin : Permet de faire la synchronisation entre notre plugin et son code sur GitHub  
-    - WPS Hide Login : Change l'URL de connexion.
-    - WP Crontrol : Permet de faire appel au cron de WordPress
+    - Ecran connecté : Plugin principal du site, nous allons en parler plus en détails en dessous. 
+    - WP Crontrol : Permet de faire appel au cron de WordPress.
 
 Nous allons traiter plus en détail le plugin que nous développons, le plugin "Ecran connecté".  
 
@@ -55,9 +52,8 @@ Pour le récupérer rendez-vous sur le ReadMe d'installation du projet.
 Il est téléchargé tous les matins via "WP Crontrol", en cas de problème de téléchargement, le plugin prend l'emploi du temps téléchargé la veille.  
 L'emploi du temps télécharge une période d'une semaine en cas de problème venant de l'ADE permettant de continuer à fonctionner.  
 L'affichage de l'emploi du temps est sur la journée pour les étudiants et les techniciens.  
-Les enseignants et directeur d'études ont quant à eux accès aux dix prochains cours.  
 
-Les emplois du temps des différentes promotions sont disponibles pour toutes les personnes connectées.  
+Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectées.  
 
 
 ### Informations
@@ -72,10 +68,10 @@ Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son 
 Les vidéos et shorts (vidéo courte au format vertical) sont au format .mp4 ou .webm et sont affichés dans un diaporama par-dessus l'emploi du temps
 dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pendant une certaine durée pour laisser place à l'emploi du temps.
 
-Les shorts sont affichés dans la diaporama d'informations à gauche comme les autres.
+Les shorts sont affichés dans la diaporama d'informations à droite comme les autres.
 
-Les événements sont des informations spéciales. Lorsqu'une information événement est posté, les télévisions n'affiche que les informations en plein écran.  
-Ces informations sont donc destinés pour les journées sans cours du style "journée porte ouverte".  
+Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent que les informations en plein écran.  
+Ces informations sont donc destinées pour les journées sans cours du style "journée porte ouverte".  
 
 
 ### Alerte
