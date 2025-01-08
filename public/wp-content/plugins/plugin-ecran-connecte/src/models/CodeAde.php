@@ -373,7 +373,8 @@ class CodeAde extends Model implements Entity, JsonSerializable
     public function setDeptId(int $deptId): void {
         $this->deptId = $deptId;
     }
-
+	
+   /**
      * Sérialise l'objet en un tableau associatif compatible JSON.
      *
      * Implémente l'interface `JsonSerializable`, permettant la conversion
