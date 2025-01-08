@@ -55,6 +55,7 @@ class CSSCustomizerController extends Controller
      */
     public function useCssCustomizer()
     {
+        $returnString = "";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->model->updateColor();
         }
@@ -65,6 +66,7 @@ class CSSCustomizerController extends Controller
         foreach ($listDepartement as $e) {
             $listDepName[] = $e->getName(); // Ajouter le nom du département au tableau
         }
+        $this->view->displayContextCSS();
         $this->view->displayCssCustomizer($listDepName);
     }
 

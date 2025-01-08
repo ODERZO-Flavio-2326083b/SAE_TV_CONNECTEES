@@ -16,6 +16,19 @@ use views\View;
  */
 class CSSView extends View
 {
+
+
+    public function displayContextCSS(){
+        echo "
+        <div class='row'>
+                <p class='lead'>Vous pouvez retrouver ici toutes les informations qui ont été créées sur ce site.</p>
+            </div>
+        </div>
+        <hr class='half-rule'>";
+    }
+
+
+
     /**
      * Affiche le formulaire de personnalisation du CSS.
      *
@@ -37,7 +50,7 @@ class CSSView extends View
 
 
     <div class=\"form-group\">
-        <label for=\"cssFileSelector\">Choisir le css a modifier</label>
+        <label for=\"cssFileSelector\">Choisir le CSS à modifier : </label>
         <select id=\"cssFileSelector\" name=\"cssFileSelector\">
             <option value=\"default\">default</option>";
             $this->fomulaireDep($listDepName);
@@ -93,7 +106,7 @@ class CSSView extends View
      * Affiche les options de départements dans un formulaire.
      *
      * Cette méthode génère dynamiquement les options d'un menu déroulant (select) pour chaque département
-     * contenu dans la liste `$listDepName`. Chaque département est affiché comme une option dans le formulaire,
+     * contenu dans la liste '$listDepName'. Chaque département est affiché comme une option dans le formulaire,
      * permettant à l'utilisateur de sélectionner un département parmi les choix proposés.
      *
      * @param array $listDepName Liste des départements à afficher dans le formulaire.
