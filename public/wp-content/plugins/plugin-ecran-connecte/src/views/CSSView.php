@@ -18,9 +18,24 @@ class CSSView extends View
 {
 
 
+    /**
+     * Affiche le contexte de personnalisation du CSS.
+     *
+     * Cette méthode génère une section explicative permettant à l'utilisateur de comprendre les possibilités
+     * de personnalisation des télévisions par département. Elle décrit les étapes nécessaires,
+     * notamment la création de départements, la sélection d'un département à personnaliser,
+     * et la visualisation des modifications en se connectant à la télévision correspondante.
+     *
+     * Le contenu affiché sert d'introduction et d'explication pour guider les utilisateurs
+     * dans l'utilisation de la fonctionnalité de personnalisation.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
+     */
     public function displayContextCSS(){
         echo "
-        <h1>Personnalisation du CSS</h1>
         <div class='row'>
                 <p class='lead'>Sur cette page, il est possible de personnaliser la télévision d'un département au choix</p>
                 <p class='lead'>Après avoir créé les départements, vous pouvez en sélectionner un afin de modifier les couleurs des télévisions
