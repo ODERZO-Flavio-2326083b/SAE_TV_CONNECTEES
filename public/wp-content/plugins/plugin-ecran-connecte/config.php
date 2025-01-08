@@ -100,6 +100,9 @@ function installDatabaseEcran()
 {
     global $wpdb;
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	if (get_option('init_database') == 1) {
+		return;
+	}
 
     $table_name = 'ecran_information';
 
@@ -225,52 +228,89 @@ function installDatabaseEcran()
             ) $charset_collate;";
 
     dbDelta($sql);
+
+	update_option('init_database', 1);
 }
 
 add_action('plugins_loaded', 'installDatabaseEcran');
 
 
-/*
- * CREATE ROLES
+/**
+ * Retirer les roles par défaut de WordPress
+ *
+ * @return void
  */
+function removeBuiltInRoles(): void {
+	if (get_option('built_in_roles_removed') == 1) {
+		return;
+	}
 
-$result = add_role(
-    'secretaire',
-    __('Secretaire'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+	global $wp_roles;
+	$roles_to_remove = array('subscriber', 'contributor', 'author', 'editor');
+	foreach ($roles_to_remove as $role) {
+		if (isset($wp_roles->roles[$role])) {
+			$wp_roles->remove_role($role);
+		}
+	}
+	update_option('built_in_roles_removed', 1);
+}
 
-$result = add_role(
-    'television',
-    __('Television'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+add_action('admin_menu', 'removeBuiltInRoles');
 
-$result = add_role(
-    'technicien',
-    __('Technicien'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+/**
+ * Ajoute les nouveaux roles à WordPress
+ *
+ * @return void
+ */
+function addNewRoles() {
+	if (get_option('custom_roles_added') == 1) {
+		return;
+	}
 
-$result = add_role(
-    'informationposter',
-    __('informationPoster'),
-    array(
-        'read' => true,  // true allows this capability
-    )
-);
+	add_role(
+		'secretaire',
+		__('Secretaire'),
+		array(
+			'read' => true,
+			'edit_posts' => true,
+			'delete_posts' => false,
+		)
+	);
+
+	add_role(
+		'television',
+		__('Television'),
+		array(
+			'read' => true,
+			'edit_posts' => true,
+			'delete_posts' => false,
+		)
+	);
+
+	add_role(
+		'technicien',
+		__('Agent d\'entretien'),
+		array(
+			'read' => true,
+			'edit_posts' => true,
+			'delete_posts' => false,
+		)
+	);
+
+	add_role(
+		'subadmin',
+		__('Sous-administrateur'),
+		array(
+			'read' => true,
+			'edit_posts' => true,
+			'delete_posts' => true,
+			'admin_perms' => true
+		)
+	);
+	update_option('custom_roles_added', 1);
+}
+
+add_action('admin_menu', 'addNewRoles');
 
 /*
  * CREATE REST API ENDPOINTS
