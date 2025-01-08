@@ -37,9 +37,6 @@ class Scrapper
      *
      * @return string Le code HTML de la page.
      *
-     * @example
-     * // Récupérer le code HTML de la page :
-     * $html = $scrapper->getHtml();
      *
      * @version 1.0
      * @date 07-01-2025
@@ -58,9 +55,6 @@ class Scrapper
      *
      * @return \DOMNodeList Liste des articles trouvés dans la page.
      *
-     * @example
-     * // Récupérer la liste des articles :
-     * $articles = $scrapper->getArticles();
      *
      * @version 1.0
      * @date 07-01-2025
@@ -86,9 +80,6 @@ class Scrapper
      * @return array Détails de l'article sous forme de tableau associatif avec les clés suivantes : 'title', 'content',
      *               'link', 'image', 'footer'.
      *
-     * @example
-     * // Récupérer les informations d'un article :
-     * $articleDetails = $scrapper->getArticle($article);
      *
      * @version 1.0
      * @date 07-01-2025
@@ -146,9 +137,6 @@ class Scrapper
      * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la méthode `getArticles()`. Elle affiche ensuite
      * cet article en HTML avec son titre, son contenu, son image, son lien et un footer contenant l'auteur de l'article.
      *
-     * @example
-     * // Afficher un article aléatoire :
-     * $scrapper->printWebsite();
      *
      * @version 1.0
      * @date 07-01-2025
