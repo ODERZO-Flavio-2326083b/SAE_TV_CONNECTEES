@@ -1,7 +1,5 @@
 <?php
 
-require_once "src/utils/customFunctions.php";
-
 use controllers\AlertController;
 use controllers\CodeAdeController;
 use controllers\CSSCustomizerController;
@@ -12,7 +10,6 @@ use controllers\TechnicianController;
 use controllers\TelevisionController;
 use controllers\UserController;
 use views\UserView;
-use function Utils\does_user_has_role;
 
 
 /*
