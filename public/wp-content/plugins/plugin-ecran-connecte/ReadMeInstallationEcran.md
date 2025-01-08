@@ -2,7 +2,7 @@
 
 ## Prérequis
 
-Avant de commencer l'instllation du site, vous devez avoir :
+Avant de commencer l'installation du site, vous devez avoir :
 
 - WordPress : <https://fr.wordpress.org/download/>  
 
@@ -10,7 +10,7 @@ Avant de commencer l'instllation du site, vous devez avoir :
 
 - Une base de données avec un utilisateur.  
 
-- Le fichier contenant les pages de WordPress
+- Le fichier contenant les pages de WordPress.
 
 ## WordPress
 
@@ -34,9 +34,12 @@ Maintenant que WordPress est en place, on peut ajouter nos plugins et thèmes.
 
 Pour ce faire, remplacer le dossier "wp-content" par notre dossier zippé "wp-content".  
 
-Allez ensuite dans la partie administrateur du site "nomdusite/wp-admin".  
+Une fois le contenu installé, il faut activer les plugins (extensions) et le thème :
 
-Allez ensuite dans l'onglet des plugins et activez les tous.  
+Dans "nomdevotresite/wp-admin" :
+- Activez l'extension Ecran Connecté AMU
+- 
+Allez ensuite dans l'onglet des plugins et activez-les tous.  
 
 Allez ensuite à l'onglet thème et activer le thème "Ecran connecté".  
 
