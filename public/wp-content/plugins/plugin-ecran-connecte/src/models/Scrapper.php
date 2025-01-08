@@ -2,19 +2,69 @@
 
 namespace models;
 
+/**
+ * Class Scrapper
+ *
+ * Classe générique pour l'extraction de données depuis un site web.
+ * Permet de scrapper les articles du site 'https://www.informatiquenews.fr/news' et d'en extraire des informations telles que
+ * le titre, le contenu, l'image, le lien et l'auteur de chaque article. Utilise les fonctionnalités DOM et XPath de PHP pour
+ * extraire et traiter le contenu HTML.
+ *
+ * @package models
+ */
 class Scrapper
 {
+    /**
+     * Classe Scrapper pour extraire des articles depuis un site web.
+     *
+     * Cette classe permet de récupérer des articles depuis le site web 'https://www.informatiquenews.fr/news' en scrappant
+     * son contenu HTML. Elle extrait des informations telles que le titre, le contenu, l'image, le lien et l'auteur de chaque
+     * article. Elle utilise la bibliothèque DOM de PHP pour parser le HTML et XPath pour naviguer dans la structure du DOM.
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function __construct()
     {
         $this->url = 'https://www.informatiquenews.fr/news';
     }
 
+    /**
+     * Récupère le contenu HTML de la page d'articles.
+     *
+     * Cette méthode utilise la fonction `file_get_contents` pour récupérer le code HTML de la page d'articles depuis
+     * l'URL spécifiée dans la classe.
+     *
+     * @return string Le code HTML de la page.
+     *
+     * @example
+     * // Récupérer le code HTML de la page :
+     * $html = $scrapper->getHtml();
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getHtml()
     {
         $html = file_get_contents($this->url);
         return $html;
     }
 
+    /**
+     * Récupère tous les articles présents sur la page.
+     *
+     * Cette méthode charge le HTML récupéré avec `getHtml()` et utilise DOMXPath pour naviguer dans le DOM et extraire
+     * tous les éléments `<article>` présents sur la page. Ces éléments sont ensuite retournés sous forme d'une liste.
+     *
+     * @return \DOMNodeList Liste des articles trouvés dans la page.
+     *
+     * @example
+     * // Récupérer la liste des articles :
+     * $articles = $scrapper->getArticles();
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getArticles()
     {
         $html = $this->getHtml();
@@ -25,6 +75,24 @@ class Scrapper
         return $articles;
     }
 
+    /**
+     * Récupère les détails d'un article spécifique.
+     *
+     * Cette méthode permet d'extraire le titre, le contenu, le lien, l'image et l'auteur de chaque article en utilisant
+     * les balises HTML correspondantes dans l'élément `<article>`.
+     *
+     * @param \DOMElement $article L'article à traiter.
+     *
+     * @return array Détails de l'article sous forme de tableau associatif avec les clés suivantes : 'title', 'content',
+     *               'link', 'image', 'footer'.
+     *
+     * @example
+     * // Récupérer les informations d'un article :
+     * $articleDetails = $scrapper->getArticle($article);
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getArticle($article)
     {
         $title = $article->getElementsByTagName('h2')->item(0)->nodeValue;
@@ -72,6 +140,19 @@ class Scrapper
         ];
     }
 
+    /**
+     * Affiche un article aléatoire du site web.
+     *
+     * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la méthode `getArticles()`. Elle affiche ensuite
+     * cet article en HTML avec son titre, son contenu, son image, son lien et un footer contenant l'auteur de l'article.
+     *
+     * @example
+     * // Afficher un article aléatoire :
+     * $scrapper->printWebsite();
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function printWebsite()  {
         $articles = $this->getArticles();
 
