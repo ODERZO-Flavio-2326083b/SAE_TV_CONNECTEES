@@ -416,35 +416,36 @@ class InformationView extends View
      * @date 2024-10-15
      */
     public function displayModifyInformationForm( string $title, string $content, string $endDate, string $type,
-	        array $allDepts, bool $isAdmin = false, int $currDept = null): string {
+                                                  array $allDepts, bool $isAdmin = false, int $currDept = null): string
+    {
 
-		switch($type) {
-			case "text":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "img":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				      $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "video":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "short":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "pdf":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "event":
-				$extension = explode('.', $content);
-				$extension = $extension[1];
-				if ($extension == "pdf") {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-				} else {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-				}
-			default:
-				return $this->noInformation();
-		}
+        switch ($type) {
+            case "text":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "img":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "video":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "short":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "pdf":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "event":
+                $extension = explode('.', $content);
+                $extension = $extension[1];
+                if ($extension == "pdf") {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                } else {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                }
+            default:
+                return $this->noInformation();
+        }
     }
 
     /**
@@ -482,10 +483,9 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displaySlide($title, $content, $type, $adminSite = false) {
+    public function displaySlide($title, $content, $type, $scrapper,$adminSite = false) {
         echo '<div class="myInfoSlides text-center">';
 
-        // If the title is empty
         if ($title != "Sans titre") {
             echo '<h2 class="titleInfo">' . $title . '</h2>';
         }
@@ -521,6 +521,10 @@ class InformationView extends View
 
             case 'text':
                 echo '<p class="lead">' . $content . '</p>';
+                break;
+
+            case 'scrapper':
+                $scrapper->printWebsite();
                 break;
 
             case 'special':
