@@ -22,7 +22,7 @@ use function Utils\does_user_has_role;
 // Fonction de rendu du bloc de création d'alertes
 function alert_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('add_alert')) {
 		$alert = new AlertController();
 		return $alert->insert();
 	} else {
@@ -50,7 +50,7 @@ add_action('init', 'block_alert');
 // Fonction de rendu du bloc d'affichage des alertes
 function alert_management_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('view_alerts')) {
 		$alert = new AlertController();
 		return $alert->displayAll();
 	} else {
@@ -78,7 +78,7 @@ add_action('init', 'block_alert_management');
 // Fonction de rendu du bloc de modification des alertes
 function alert_modify_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('edit_alert')) {
 		$alert = new AlertController();
 		return $alert->modify();
 	} else {
@@ -110,7 +110,7 @@ add_action('init', 'block_alert_modify');
 // Fonction de rendu du bloc d'ajout de Code ADE
 function code_ade_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('add_ade_code')) {
 		$codeAde = new CodeAdeController();
 		return $codeAde->insert();
 	} else {
@@ -138,7 +138,7 @@ add_action('init', 'block_code_ade');
 // Fonction de rendu du bloc d'affichage des codes ADE
 function code_management_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('view_ade_codes')) {
 		$code = new CodeAdeController();
 		$code->deleteCodes();
 		return $code->displayAllCodes();
@@ -167,7 +167,7 @@ add_action('init', 'block_code_management');
 // Fonction de rendu du bloc de modification des codes ADE
 function code_modify_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('edit_ade_code')) {
 		$code = new CodeAdeController();
 		return $code->modify();
 	} else {
@@ -199,7 +199,7 @@ add_action('init', 'block_code_modify');
 // Fonction de rendu du bloc de création d'informations
 function information_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('add_information')) {
 		$information = new InformationController();
 		return $information->create();
 	} else {
@@ -227,7 +227,7 @@ add_action('init', 'block_information');
 // Fonction de rendu du bloc d'affichage des informations
 function information_management_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('view_informations')) {
 		$information = new InformationController();
 		return $information->displayAll();
 	} else {
@@ -255,7 +255,7 @@ add_action('init', 'block_information_management');
 // Fonction de rendu du bloc de modification des informations
 function information_modify_render_callback()
 {
-	if (does_user_has_role(array('administrator', 'secretaire'))) {
+	if (current_user_can('edit_information')) {
 		$information = new InformationController();
 		return $information->modify();
 	} else {
@@ -354,7 +354,7 @@ add_action( 'init', 'block_schedules' );
 // Bloc de création d'utilisateur
 function creation_user_render_callback()
 {
-    if(does_user_has_role(array('administrator', 'secretaire'))) {
+    if(current_user_can('add_user')) {
         $manageUser = new SecretaryController();
         return $manageUser->createUsers();
     } else {
@@ -382,7 +382,7 @@ add_action( 'init', 'block_creation_user' );
 // Bloc de suppressions d'utilisateurs
 function management_user_render_callback()
 {
-    if(does_user_has_role(array('administrator', 'secretaire'))) {
+    if(current_user_can('view_users')) {
         $manageUser = new SecretaryController();
         $manageUser->deleteUsers();
         return $manageUser->displayUsers();
@@ -411,7 +411,7 @@ add_action( 'init', 'block_management_user' );
 // Bloc de modification d'utilisateurs
 function user_modify_render_callback()
 {
-    if(does_user_has_role(array('administrator', 'secretaire'))) {
+    if(current_user_can('edit_user')) {
         $user = new SecretaryController();
         return $user->modifyUser();
     } else {
@@ -439,9 +439,12 @@ add_action( 'init', 'block_user_modify' );
 // Bloc de modification de son propre compte
 function choose_account_render_callback()
 {
-    if(is_page() ) {
+    if(is_user_logged_in()) {
         $user = new UserController();
         return $user->chooseModif();
+    } else {
+		echo 'Merci de vous connecter avant d\'accéder à cette page.';
+		exit;
     }
 }
 
@@ -464,7 +467,7 @@ add_action( 'init', 'block_choose_account' );
 // Bloc de suppression de son propre compte
 function delete_account_render_callback()
 {
-    if(is_page()) {
+    if(is_user_logged_in()) {
         $myAccount = new UserController();
         $view = new UserView();
         $myAccount->deleteAccount();
@@ -491,11 +494,14 @@ add_action( 'init', 'block_delete_account' );
 // Bloc de modification de son mot de passe
 function password_modify_render_callback()
 {
-    if(is_page()) {
+    if(is_user_logged_in()) {
         $myAccount = new UserController();
         $view = new UserView();
         $myAccount->modifyPwd();
         return $view->displayModifyPassword();
+    } else {
+		echo 'Merci de vous connecter avec d\'accéder à cette page.';
+		exit;
     }
 }
 
@@ -522,7 +528,7 @@ add_action( 'init', 'block_password_modify' );
 // Bloc de customisation du CSS
 function css_customizer_render_callback()
 {
-    if(does_user_has_role(array('administrator'))) {
+    if(current_user_can('edit_css')) {
         $controller = new CSSCustomizerController();
         $controller->useCssCustomizer();
     } else {
@@ -553,7 +559,7 @@ add_action( 'init', 'block_modif_css' );
 
 // Bloc de création de départements
 function department_add_render_callback() {
-	if(does_user_has_role(array('administrator'))) {
+	if(current_user_can('add_department')) {
 		$dpt = new DepartmentController();
 		return $dpt->insert();
 	} else {
@@ -580,7 +586,7 @@ add_action( 'init', 'block_department_add' );
 
 // Bloc de modification de département
 function department_modify_render_callback() {
-	if(does_user_has_role(array('administrator'))) {
+	if(current_user_can('edit_department')) {
 		$dpt = new DepartmentController();
 		return $dpt->modify();
 	} else {
@@ -607,7 +613,7 @@ add_action('init', 'block_department_modify');
 
 // Bloc d'affichage de départements
 function department_displayDeptTable_render_callback() {
-	if(does_user_has_role(array('administrator'))) {
+	if(current_user_can('view_departments')) {
 		$dpt = new DepartmentController();
 		$dpt->deleteDepts();
 		return $dpt->displayDeptTable();
