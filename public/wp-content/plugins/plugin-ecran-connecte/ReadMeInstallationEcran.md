@@ -38,38 +38,17 @@ Une fois le contenu installé, il faut activer les plugins (extensions) et le th
 
 Dans "nomdevotresite/wp-admin" :
 - Activez l'extension Ecran Connecté AMU
-- 
-Allez ensuite dans l'onglet des plugins et activez-les tous.  
-
-Allez ensuite à l'onglet thème et activer le thème "Ecran connecté".  
+- Par la suite, dans l'onglet Apparence, puis Thèmes, activez le thème "Ecran connecté".
 
 Les plugins et le thème sont maintenant activés.
 
-## Mise à jour automatique de l'EDT
-
-Pour que les pages se mettent a jour automatiquement, il vous faut rajouter une tâche récurrente manuellement. 
-
-Pour ce faire, allez dans la partie administrateur du site "nomdusite/wp-admin".  
-
-Dans la barre latérale, cliquez sur "Réglages", puis "Planifications Cron". 
-
-Allez ensuite dans l'onglet "Ajouter un évènement cron". 
-
-Dans la section "Nom du crochet", renseignez "downloadFileICS" (sans les guillemets). 
-
-Dans la section "Prochaine exécution", sélectionnez "Demain". 
-
-Dans la section "Fréquence", sélectionnez "Une fois par jour (Daily)". 
-
-Vous pouvez ensuite confirmer l'ajout avec le bouton "Add Event". 
 
 ## Pages
 
 Pour finir, il ne reste plus qu'à ajouter les pages du site.
 
-Allez dans importer, WordPress et donné le fichier xml contenant les pages.  
+Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'importation. Importer le fichier XML.
 
-Le site est maintenant prêt, il faut néanmoins enregistré les différents groupe afin de pouvoir les utiliser.
 
 ## Enregistrer des groupes
 
