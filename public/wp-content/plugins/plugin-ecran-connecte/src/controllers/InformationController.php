@@ -75,7 +75,7 @@ class InformationController extends Controller
         $deptModel = new Department();
         $userModel = new User();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -236,7 +236,7 @@ class InformationController extends Controller
         $deptModel = new Department();
         $currentUser = wp_get_current_user();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département.
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
