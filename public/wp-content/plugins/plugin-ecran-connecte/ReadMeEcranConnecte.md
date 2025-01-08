@@ -24,7 +24,7 @@ Il y a plusieurs plugins utilisés pour ce projet, voici une liste décrivant l'
     - WPS Hide Login : Change l'URL de connexion.
     - WP Crontrol : Permet de faire appel au cron de WordPress
 
-Nous allons traiter plus en détails le plugin que nous développons, le plugin "Ecran connecté".  
+Nous allons traiter plus en détail le plugin que nous développons, le plugin "Ecran connecté".  
 
 Ce plugin permet plusieurs fonctionnalités :  
     - Création de plusieurs types de compte (Secrétaire, Agent d'entretien/Technicien, Télévision).
@@ -88,6 +88,10 @@ Les alertes défilent les une après les autres en bas de l'écran dans un bande
 Les alertes ne sont que du texte.
 
 ### Départements
+Les départements sont créés à l'aide du formulaire à la page dédiée, en ajoutant le nom du département, sa création amène à l'utilisation des autres pages : 
+- Chaque utilisateur crée est associé à un département.
+- Chaque information créée est associé à un département.
+- Pour la personnalisation de la télévision, chaque télévision est associée à un département.
 
 
 ### Météo

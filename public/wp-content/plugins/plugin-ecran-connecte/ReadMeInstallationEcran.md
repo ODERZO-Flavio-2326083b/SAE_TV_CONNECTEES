@@ -37,7 +37,7 @@ Pour ce faire, remplacer le dossier "wp-content" par notre dossier zippé "wp-co
 Une fois le contenu installé, il faut activer les plugins (extensions) et le thème :
 
 Dans "nomdevotresite/wp-admin" :
-- Activez l'extension Ecran Connecté AMU
+- Activez l'extension Ecran Connecté AMU.
 - Par la suite, dans l'onglet Apparence, puis Thèmes, activez le thème "Ecran connecté".
 
 Les plugins et le thème sont maintenant activés.
@@ -47,7 +47,7 @@ Les plugins et le thème sont maintenant activés.
 
 Pour finir, il ne reste plus qu'à ajouter les pages du site.
 
-Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'importation. Importer le fichier XML.
+Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'importation. Importer le fichier XML pages.xml.
 
 
 ## Enregistrer des groupes
@@ -60,7 +60,7 @@ Cliquez sur le bouton "Export to agenda..." en bas à gauche de la page puis "G�
 
 Vous aurez alors une URL de ce style "https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8395&calType=ical&firstDate=2025-01-06&lastDate=2025-01-10"
 
-Récupérer la valeur à resources=.... (Dans notre lien d'exemple, il s'agit de 8395).  
+Récupérer la valeur à resources=... (Dans notre lien d'exemple, il s'agit de 8395).  
 
 Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire pour ajouter le code.  
 
