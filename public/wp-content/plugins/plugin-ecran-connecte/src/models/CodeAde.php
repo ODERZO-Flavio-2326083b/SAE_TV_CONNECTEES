@@ -341,6 +341,18 @@ class CodeAde extends Model implements Entity, JsonSerializable
         $this->title = $title;
     }
 
+    /**
+     * Sérialise l'objet en un tableau associatif compatible JSON.
+     *
+     * Implémente l'interface `JsonSerializable`, permettant la conversion
+     * de l'objet en une structure JSON. Cette méthode retourne un tableau
+     * associatif contenant toutes les propriétés accessibles de l'objet.
+     *
+     * @return array Tableau associatif des propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-10-16
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }

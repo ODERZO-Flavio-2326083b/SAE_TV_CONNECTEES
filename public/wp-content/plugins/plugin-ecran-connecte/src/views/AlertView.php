@@ -18,13 +18,23 @@ class AlertView extends View
     /**
      * Affiche le formulaire de création d'une alerte.
      *
-     * @param $years        array   Liste des années disponibles pour l'alerte.
-     * @param $groups       array   Liste des groupes disponibles pour l'alerte.
-     * @param $halfGroups   array   Liste des demi-groupes disponibles pour l'alerte.
+     * Cette méthode génère un formulaire HTML permettant à l'utilisateur de créer
+     * une alerte. Le formulaire permet à l'utilisateur
+     * de saisir un contenu pour l'alerte, de définir une date d'expiration et de
+     * sélectionner les années, groupes et demi-groupes
+     * concernés par l'alerte. La date minimale de l'alerte est fixée au jour suivant
+     * la date actuelle.
      *
-     * @return string
-     * Retourne le code HTML du formulaire de création d'alerte.
+     * @param array $years        Liste des années disponibles pour l'alerte.
+     * @param array $groups       Liste des groupes disponibles pour l'alerte.
+     * @param array $halfGroups   Liste des demi-groupes disponibles pour l'alerte.
+     *
+     * @return string Le code HTML du formulaire de création d'alerte.
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
+
     public function creationForm($years, $groups, $halfGroups) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day")); // Fixe la date minimale au jour suivant.
 
@@ -50,8 +60,19 @@ class AlertView extends View
     /**
      * Explique le contexte d'affichage des alertes.
      *
-     * @return string
-     * Retourne le texte explicatif sur la gestion des alertes.
+     * Cette méthode génère un texte explicatif sur la gestion des alertes et leur
+     * affichage sur les téléviseurs connectés
+     * au site. Le texte comprend une explication sur la manière dont les alertes
+     * sont affichées et sur le fait qu'elles
+     * seront postées directement sur tous les téléviseurs. Elle inclut également
+     * une illustration de l'affichage des alertes
+     * sur un téléviseur.
+     *
+     * @return string Le texte explicatif sur la gestion des alertes, incluant
+     * l'illustration et les détails d'affichage.
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
     public function contextCreateAlert() : string {
         return '
@@ -73,13 +94,22 @@ class AlertView extends View
     /**
      * Affiche le formulaire pour modifier une alerte existante.
      *
-     * @param $alert       Alert  Instance de l'alerte à modifier.
-     * @param $years        array  Liste des années disponibles.
-     * @param $groups       array  Liste des groupes disponibles.
-     * @param $halfGroups   array  Liste des demi-groupes disponibles.
+     * Cette méthode génère le code HTML du formulaire permettant à un utilisateur de modifier une alerte existante.
+     * Elle inclut les champs nécessaires pour changer le contenu de l'alerte, sa date d'expiration, ainsi que les années,
+     * groupes, ou demi-groupes concernés. La méthode prend également en compte les alertes destinées à tout le monde
+     * ou à des groupes spécifiques.
      *
-     * @return string
-     * Retourne le code HTML du formulaire de modification d'alerte.
+     * Une option pour supprimer l'alerte est incluse dans le formulaire avec une confirmation pour éviter des suppressions accidentelles.
+     *
+     * @param Alert $alert Instance de l'alerte à modifier, contenant les informations actuelles de l'alerte.
+     * @param array $years Liste des années disponibles pour l'alerte.
+     * @param array $groups Liste des groupes disponibles pour l'alerte.
+     * @param array $halfGroups Liste des demi-groupes disponibles pour l'alerte.
+     *
+     * @return string Le code HTML du formulaire de modification d'alerte, prêt à être affiché.
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
     public function modifyForm($alert, $years, $groups, $halfGroups) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
@@ -124,8 +154,15 @@ class AlertView extends View
     /**
      * Explique le contexte de modification d'une alerte.
      *
-     * @return string
-     * Retourne le texte explicatif sur la modification des alertes.
+     * Cette méthode fournit un texte explicatif sur la gestion des modifications des alertes.
+     * Elle informe l'utilisateur que les modifications effectuées sur une alerte prendront effet le lendemain.
+     * Le texte précise également les possibilités offertes, telles que la prolongation de la durée d'expiration
+     * ou la modification du contenu de l'alerte.
+     *
+     * @return string Le texte explicatif en format HTML.
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
     public function contextModify() : string {
         return '
@@ -139,8 +176,16 @@ class AlertView extends View
     /**
      * Affiche toutes les alertes créées sur le site.
      *
-     * @return string
-     * Retourne le code HTML de la section affichant toutes les alertes.
+     * Cette méthode génère une section HTML contenant un aperçu des alertes créées sur le site.
+     * Elle inclut une description expliquant le tri des alertes par ordre chronologique (de la plus ancienne à la plus récente)
+     * et fournit des instructions pour modifier ou supprimer des alertes.
+     *
+     * Un lien est également inclus pour accéder au formulaire de création d'une nouvelle alerte.
+     *
+     * @return string Le code HTML de la section affichant toutes les alertes.
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
     public function contextDisplayAll() : string {
         return '
@@ -162,7 +207,18 @@ class AlertView extends View
     /**
      * Affiche les alertes principales.
      *
-     * @param $texts      array  Liste des textes des alertes à afficher.
+     * Cette méthode génère une section HTML contenant les alertes principales à afficher sous forme de texte défilant.
+     * Elle utilise une structure de conteneurs pour permettre un défilement fluide des alertes dans une animation.
+     *
+     * Les alertes sont fournies sous forme d'un tableau de chaînes de caractères et sont insérées individuellement dans la structure HTML.
+     *
+     * @param array $texts
+     * Liste des textes des alertes à afficher.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 07-01-2025
      */
     public function displayAlertMain($texts) {
         echo '
@@ -182,17 +238,36 @@ class AlertView extends View
     }
 
     /**
-     * Construit un select HTML avec tous les codes Ade.
+     * Construit un élément select HTML contenant les codes ADE organisés par catégories.
      *
-     * @param $years        CodeAde[]  Liste des années.
-     * @param $groups       CodeAde[]  Liste des groupes.
-     * @param $halfGroups   CodeAde[]  Liste des demi-groupes.
-     * @param $code         CodeAde    Code sélectionné (optionnel).
-     * @param $count        int        Compteur pour l'identifiant du select.
-     * @param $forEveryone  int        Indicateur si l'alerte est pour tout le monde.
+     * Cette méthode génère un menu déroulant HTML (`<select>`) permettant de sélectionner parmi les codes ADE
+     * regroupés en catégories : années, groupes et demi-groupes. Elle prend en charge la présélection d'un code
+     * ou l'affichage de l'option "Tous" lorsque l'alerte est destinée à tout le monde.
+     *
+     * @param CodeAde[] $years
+     * Liste des années disponibles, chaque entrée étant une instance de `CodeAde`.
+     *
+     * @param CodeAde[] $groups
+     * Liste des groupes disponibles, chaque entrée étant une instance de `CodeAde`.
+     *
+     * @param CodeAde[] $halfGroups
+     * Liste des demi-groupes disponibles, chaque entrée étant une instance de `CodeAde`.
+     *
+     * @param CodeAde|null $code
+     * Code ADE présélectionné (optionnel). Peut être null si aucune présélection n'est requise.
+     *
+     * @param int $count
+     * Compteur unique utilisé pour générer un identifiant unique pour l'élément `<select>`.
+     *
+     * @param int $forEveryone
+     * Indicateur permettant de savoir si l'option "Tous" doit être sélectionnée par défaut.
+     * Valeur 1 : "Tous" est sélectionné, 0 sinon.
      *
      * @return string
-     * Retourne le code HTML du select.
+     * Retourne le code HTML complet de l'élément `<select>`, incluant les options organisées par catégories.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function buildSelectCode($years, $groups, $halfGroups, $code = null, $count = 0, $forEveryone = 0) : string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count . '" name="selectAlert[]" required="">';
@@ -224,10 +299,16 @@ class AlertView extends View
     }
 
     /**
-     * Affiche un message lorsque l'alerte n'a pas été trouvée.
+     * Génère le message HTML affiché lorsqu'une alerte n'a pas été trouvée.
+     *
+     * Cette méthode produit un message clair et informatif pour l'utilisateur indiquant que l'alerte demandée
+     * n'existe pas. Elle inclut des liens vers la page de gestion des alertes et la page de création d'une nouvelle alerte.
      *
      * @return string
-     * Retourne le message d'alerte non trouvée.
+     * Retourne le code HTML contenant le message d'alerte non trouvée et les liens d'orientation.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function noAlert() : string {
         return '
@@ -240,10 +321,17 @@ class AlertView extends View
     }
 
     /**
-     * Affiche un message lorsque l'utilisateur n'a pas les droits pour modifier l'alerte.
+     * Génère le message HTML affiché lorsque l'utilisateur n'a pas les droits pour modifier une alerte.
+     *
+     * Cette méthode informe l'utilisateur qu'il ne dispose pas des autorisations nécessaires pour modifier
+     * l'alerte en question. Elle propose également des liens vers la page de gestion des alertes et la page
+     * de création d'une nouvelle alerte.
      *
      * @return string
-     * Retourne le message d'alerte non modifiable.
+     * Retourne le code HTML contenant le message d'accès refusé et les liens d'orientation.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function alertNotAllowed() : string {
         return '
@@ -256,14 +344,32 @@ class AlertView extends View
     }
 
     /**
-     * Affiche une modale pour valider la création d'une alerte.
+     * Affiche une modale pour confirmer la création d'une alerte.
+     *
+     * Cette méthode utilise une modale pour informer l'utilisateur que la création de l'alerte
+     * a été réussie. Le message de succès est affiché, et un lien est fourni pour rediriger
+     * vers la page de gestion des alertes.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayAddValidate() {
         $this->buildModal('Ajout d\'alerte', '<div class="alert alert-success"> Votre alerte a été envoyée !</div>', esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))));
     }
 
     /**
-     * Affiche une modale pour valider la modification d'une alerte.
+     * Affiche une modale pour confirmer la modification d'une alerte.
+     *
+     * Cette méthode utilise une modale pour informer l'utilisateur que la modification de l'alerte
+     * a été effectuée avec succès. Le message de succès est affiché, et un lien est fourni pour rediriger
+     * vers la page de gestion des alertes.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayModifyValidate() {
         $page = get_page_by_title_custom('Gestion des alertes');
