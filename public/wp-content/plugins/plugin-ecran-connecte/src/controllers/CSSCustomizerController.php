@@ -55,7 +55,6 @@ class CSSCustomizerController extends Controller
      */
     public function useCssCustomizer()
     {
-        $returnString = "";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->model->updateColor();
         }

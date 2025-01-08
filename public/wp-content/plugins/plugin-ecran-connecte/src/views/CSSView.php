@@ -37,7 +37,7 @@ class CSSView extends View
     public function displayContextCSS(){
         echo "
         <div class='row'>
-                <p class='lead'>Sur cette page, il est possible de personnaliser la télévision d'un département au choix</p>
+                <p class='lead'>Sur cette page, il est possible de personnaliser la télévision d'un département au choix.</p>
                 <p class='lead'>Après avoir créé les départements, vous pouvez en sélectionner un afin de modifier les couleurs des télévisions
                 de ce département.</p>
                <p class='lead'>Une fois votre choix validé, connectez-vous à la télévision du département sélectionné afin de voir les changements.</p>

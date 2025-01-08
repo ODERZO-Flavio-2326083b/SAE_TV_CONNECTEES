@@ -116,7 +116,7 @@ class SecretaryView extends UserView
             <div class="col-md-6 order-md-2 text-center text-md-left pr-md-5">
                 <h2 class="mb-3 bd-text-purple-bright">Mettre à jour</h2>
                 <p class="lead">Vous pouvez mettre à jour les emplois du temps du site.</p>
-                <p class="lead mb-4">Mettre à jour, permet aussi de synchroniser les informations et les alertes postées depuis le site de l\'administration</p>
+                <p class="lead mb-4">Mettre à jour permet aussi de synchroniser les informations et les alertes postées depuis le site de l\'administration</p>
                 <form method="post">
                     <button type="submit" class="btn btn-lg button_presentation_ecran" name="updatePluginEcranConnecte">Mettre à jour</button>
                 </form>
@@ -169,6 +169,6 @@ class SecretaryView extends UserView
      * @date 2024-10-15
      */
     public function displayNoUser(): string {
-        return '<p class="alert alert-danger">Veuillez choisir un utilisateur </p>';
+        return '<p class="alert alert-danger">Veuillez choisir un utilisateur.</p>';
     }
 }
