@@ -139,6 +139,31 @@ class Department extends Model implements Entity, JsonSerializable {
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+	/**
+	 * Renvoie tous les départements stockés dans la base de données
+	 * qui n'ont aucun sous administrateur.
+	 *
+	 * @return Department[]
+	 */
+	public function getAllDeptsWithoutSubadmin(): array {
+		$request = $this->getDatabase()->prepare('
+		SELECT d.dept_id AS dept_id, d.dept_nom AS dept_nom
+		FROM ecran_departement d
+		WHERE NOT EXISTS (
+		    SELECT 1
+		    FROM ecran_user_departement u
+		    JOIN wp_usermeta um 
+		      ON u.user_id = um.user_id
+		     AND um.meta_key = \'wp_capabilities\'
+		     AND um.meta_value LIKE \'%subadmin%\'
+		    WHERE u.dept_id = d.dept_id);
+		');
+
+		$request->execute();
+
+		return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+	}
+
     /**
      * Renvoie le département de l'id user donné.
      * @param int $userId id user
