@@ -166,7 +166,7 @@ class CodeAdeView extends View
         $page = get_page_by_title_custom('Modifier un code ADE');
         $linkManageCodeAde = get_permalink($page->ID);
 
-        $title = 'Codes Ade';
+        $title = 'Codes ADE';
         $name = 'Code';
         $header = ['Titre', 'Code', 'Type', 'Modifier'];
 
