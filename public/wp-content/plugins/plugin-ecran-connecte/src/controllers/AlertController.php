@@ -142,23 +142,39 @@ class AlertController extends Controller
 
         $codeAde = new CodeAde();
 
+        $years = $codeAde->getAllFromType('year');
+        $groups = $codeAde->getAllFromType('group');
+        $halfGroups = $codeAde->getAllFromType('halfGroup');
+
+        $deptModel = new Department();
+        $allDepts = $deptModel->getAllDepts();
+
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
+            $error = false;
             // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
 	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
             $codesAde = array();
-            foreach ($codes as $code) {
-                if (is_null($codeAde->getByCode($code)->getId())) {
-                    $this->view->errorMessageInvalidForm();
-                } else {
-                    $codesAde[] = $codeAde->getByCode($code);
+            if (!empty($codes)){
+                foreach ($codes as $code) {
+                    if (is_null($codeAde->getByCode($code)->getId())) {
+                        $error = true;
+                    } else {
+                        $codesAde[] = $codeAde->getByCode($code);
+                    }
                 }
+            } else {
+                $error = true;
             }
 
-            // Définir l'alerte
+            if($error) {
+                $this->view->errorMessageCantAdd();
+                return $this->view->modifyForm($alert, $years, $groups, $halfGroups, $allDepts);
+            }
+
             $alert->setContent($content);
             $alert->setExpirationDate($expirationDate);
             $alert->setCodes($codesAde);
@@ -170,20 +186,11 @@ class AlertController extends Controller
             }
         }
 
-        // Supprimer l'alerte si demandé
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
             $this->view->displayModifyValidate();
         }
-
-        // Récupération des types de codes pour le formulaire
-        $years = $codeAde->getAllFromType('year');
-        $groups = $codeAde->getAllFromType('group');
-        $halfGroups = $codeAde->getAllFromType('halfGroup');
-
-		$deptModel = new Department();
-		$allDepts = $deptModel->getAllDepts();
 
         return $this->view->modifyForm($alert, $years, $groups, $halfGroups, $allDepts);
     }
