@@ -16,7 +16,7 @@ class Scrapper
 {
     /**
      * Classe Scrapper pour extraire des articles depuis un site web.
-     *
+     *h
      * Cette classe permet de récupérer des articles depuis le site web 'https://www.informatiquenews.fr/news' en scrappant
      * son contenu HTML. Elle extrait des informations telles que le titre, le contenu, l'image, le lien et l'auteur de chaque
      * article. Elle utilise la bibliothèque DOM de PHP pour parser le HTML et XPath pour naviguer dans la structure du DOM.
