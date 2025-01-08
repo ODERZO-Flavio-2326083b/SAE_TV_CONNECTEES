@@ -244,7 +244,8 @@ class InformationController extends Controller
 
         $information = $this->model->get($id);
 
-        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $currentUser->roles) || $information->getAuthor()->getId() == $currentUser->ID)) {
+        if (!(current_user_can('edit_information') ||
+              $information->getAuthor()->getId() == $currentUser->ID)) {
             return $this->view->noInformation();
         }
 
@@ -409,7 +410,7 @@ class InformationController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles)) {
+        if (current_user_can('admin_capability')) {
             $informationList = $this->model->getList($begin, $number);
         } else {
             $informationList = $this->model->getInformationsByDeptId($deptModel->getUserDepartment($current_user->ID)->getIdDepartment());
@@ -478,7 +479,8 @@ class InformationController extends Controller
                 $checked_values = $_REQUEST['checkboxStatusInfo'];
                 foreach ($checked_values as $id) {
                     $entity = $this->model->get($id);
-                    if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $entity->getAuthor()->getId() == $current_user->ID) {
+                    if (current_user_can('edit_information')
+                        || $entity->getAuthor()->getId() == $current_user->ID) {
                         $type = $entity->getType();
                         $types = ["img", "pdf", "event"];
                         if (in_array($type, $types)) {

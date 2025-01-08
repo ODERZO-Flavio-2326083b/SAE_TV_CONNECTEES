@@ -238,12 +238,10 @@ class SecretaryController extends UserController
             if (in_array("television", $wordpressUser->roles)) {
                 $controller = new TelevisionController();
                 return $controller->modify($user);
-            } else {
-                return $this->view->displayNoUser();
             }
-        } else {
-            return $this->view->displayNoUser();
         }
+        return $this->view->displayNoUser();
+
     }
 
     /**

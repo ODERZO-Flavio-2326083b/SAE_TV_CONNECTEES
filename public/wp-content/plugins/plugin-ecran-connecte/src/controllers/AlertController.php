@@ -131,8 +131,8 @@ class AlertController extends Controller
         }
         $current_user = wp_get_current_user();
         $alert = $this->model->get($id);
-        if (!in_array('administrator', $current_user->roles)
-            && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
+        if (current_user_can('edit_alert')
+            && $alert->getAuthor()->getId() != $current_user->ID) {
             return $this->view->alertNotAllowed();
         }
 
@@ -223,7 +223,7 @@ class AlertController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles)) {
+        if (current_user_can('view_alerts')) {
             $alertList = $this->model->getList($begin, $number);
         } else {
             $alertList = $this->model->getAuthorListAlert($current_user->ID, $begin, $number);
