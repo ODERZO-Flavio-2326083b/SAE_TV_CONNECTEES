@@ -139,9 +139,9 @@ class UserView extends View
             <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
                 <h2 class="mb-3 bd-text-purple-bright">Les utilisateurs</h2>
                 <p class="lead">Vous pouvez créer ici les utilisateurs</p>
-                <p class="lead">Il y a plusieurs types d\'utilisateur : Les secrétaires, techniciens, télévisions.</p>
+                <p class="lead">Il y a plusieurs types d\'utilisateurs : Les secrétaires, agents d\'entretien, télévisions.</p>
                 <p class="lead">Les secrétaires peuvent poster des alertes et des informations. Ils peuvent aussi créer des utilisateurs.</p>
-                <p class="lead">Les techniciens ont accès aux emplois du temps des promotions.</p>
+                <p class="lead">Les agents d\'entretien ont accès aux emplois du temps des promotions.</p>
                 <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emplois du temps que souhaité.</p>
             </div>
         </div>

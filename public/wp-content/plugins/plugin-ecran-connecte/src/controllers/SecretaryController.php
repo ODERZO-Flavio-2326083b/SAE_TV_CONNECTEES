@@ -151,7 +151,7 @@ class SecretaryController extends UserController
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Technicien') .
+            $this->view->displayTitleSelect('technician', 'Agent d\'entretien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
@@ -183,7 +183,7 @@ class SecretaryController extends UserController
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Technicien') .
+            $this->view->displayTitleSelect('technician', 'Agents d\'entretiens') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
