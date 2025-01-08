@@ -52,23 +52,23 @@ Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'imp
 
 ## Enregistrer des groupes
 
-Dans cette partie, nous verrons comment enregistrer des groupes.  
-Pour ce faire connectez vous sur votre ent et allez dans l'ADE.  
+Dans cette partie, nous verrons comment enregistrer des groupes : une année, une classe ou un demi-groupe.  
+Pour ce faire, connectez-vous sur votre ENT et allez dans Planning des cours (ADE).  
 
 Sélectionnez le groupe de votre choix.
-Cliquez sur le bouton "Export to agenda..." puis "générer URL"
+Cliquez sur le bouton "Export to agenda..." en bas à gauche de la page puis "Générer URL"
 
-Vous aurez alors une URL de ce style "https://ade-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=6445&calType=ical&firstDate=2020-03-02&lastDate=2020-03-08"
+Vous aurez alors une URL de ce style "https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8395&calType=ical&firstDate=2025-01-06&lastDate=2025-01-10"
 
-Récupérer la valeur à ressources=.... (Dans notre lien d'exemple, il s'agit de 6445).  
+Récupérer la valeur à resources=.... (Dans notre lien d'exemple, il s'agit de 8395).  
 
-Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire.  
+Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire pour ajouter le code.  
 
-## Custimisation
+## Création de départements
+La création de département est essentielle au bon fonctionnement du site.
+Allez sur la page "Départements" et remplissez le formulaire.
 
-Vous pouvez customisé ce site comme vous le souhaitez.
+Vous pourrez par la suite compléter les différents formulaires du site selon vos besoins : Informations,
+Utilisateurs...
 
-Il y a plusieurs partie modifiable sur le site.
-Pour cela cliquez sur "Personnalisé" sur la barre wordpress
 
-Votre site est dorénavant prêt à être utilisé.
