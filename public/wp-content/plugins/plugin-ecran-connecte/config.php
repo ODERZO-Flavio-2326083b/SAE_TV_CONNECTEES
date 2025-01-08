@@ -255,62 +255,147 @@ function removeBuiltInRoles(): void {
 	update_option('built_in_roles_removed', 1);
 }
 
-add_action('admin_menu', 'removeBuiltInRoles');
+add_action('init', 'removeBuiltInRoles');
 
 /**
- * Ajoute les nouveaux roles à WordPress
+ * Ajoute les nouveaux roles et permissions à WordPress
  *
  * @return void
  */
 function addNewRoles() {
-	if (get_option('custom_roles_added') == 1) {
-		return;
+
+	$allCaps = [
+		// Permissions liées aux alertes
+		'alert_header_menu_access',  // Accès au menu des alertes dans l'interface
+		'add_alert',                 // Permission d'ajouter de nouvelles alertes
+		'view_alerts',               // Permission de voir toutes les alertes
+		'edit_alert',                // Permission de modifier les alertes existantes
+
+		// Permissions liées aux utilisateurs
+		'user_header_menu_access',   // Accès au menu des utilisateurs dans
+									 // l'interface
+		'subadmin_access',           // Accès aux sous-administrateurs
+		'add_user',                  // Permission d'ajouter de nouveaux utilisateurs
+		'view_users',                // Permission de voir la liste complète des
+									 // utilisateurs
+		'edit_user',                 // Permission de modifier les informations des
+									 // utilisateurs
+
+		// Permissions liées aux informations
+		'information_header_menu_access',  // Accès au menu des informations dans
+										   // l'interface
+		'add_information',                 // Permission d'ajouter de nouvelles
+                                           // informations
+		'view_informations',               // Permission de consulter toutes les
+                                           // informations
+		'edit_information',                // Permission de modifier les
+                                           // informations existantes
+
+		// Permissions liées aux départements
+		'department_header_menu_access',   // Accès au menu des départements dans
+                                           // l'interface
+		'add_department',                  // Permission d'ajouter de nouveaux
+                                           // départements
+		'view_departments',                // Permission de consulter la
+                                           // liste des départements
+		'edit_department',                 // Permission de modifier les départements
+                                           // existants
+
+		// Permissions liées aux codes ADE
+		'ade_code_header_menu_access',     // Accès au menu des codes ADE dans
+                                           // l'interface
+		'add_ade_code',                    // Permission d'ajouter de nouveaux
+                                           // codes ADE
+		'view_ade_codes',                  // Permission de consulter la liste des
+                                           // codes ADE
+		'edit_ade_code',                   // Permission de modifier les codes ADE
+                                           // existants
+
+		// Permissions diverses
+		'admin_capability',                // Permission d'accès complet pour
+                                           // les administrateurs
+		'edit_css',                        // Permission de modifier le CSS du site
+        'schedule_access'                  // Permission d'accès à l'emploi du temps
+	];
+
+	$admin = get_role('administrator');
+	foreach ( $allCaps as $cap ) {
+		$admin->add_cap($cap);
 	}
 
 	add_role(
 		'secretaire',
 		__('Secretaire'),
-		array(
-			'read' => true,
-			'edit_posts' => true,
-			'delete_posts' => false,
-		)
+		array()
 	);
 
 	add_role(
 		'television',
 		__('Television'),
-		array(
-			'read' => true,
-			'edit_posts' => true,
-			'delete_posts' => false,
-		)
+		array()
 	);
 
 	add_role(
 		'technicien',
 		__('Agent d\'entretien'),
-		array(
-			'read' => true,
-			'edit_posts' => true,
-			'delete_posts' => false,
-		)
+		array()
 	);
 
 	add_role(
 		'subadmin',
 		__('Sous-administrateur'),
-		array(
-			'read' => true,
-			'edit_posts' => true,
-			'delete_posts' => true,
-			'admin_perms' => true
-		)
+		// Un sous-admin peut faire tout ce qu'un administrateur peut faire sur le
+		// site, sauf accéder aux sous admins
+		array()
 	);
-	update_option('custom_roles_added', 1);
+
+    $secretaire = get_role('secretaire');
+    $secretaireCaps = [
+        'information_header_menu_access',
+        'add_information',
+        'view_informations',
+        'edit_information',
+        'alert_header_menu_access',
+        'add_alert',
+        'view_alerts',
+        'edit_alert',
+        'user_header_menu_access',
+        'add_user',
+        'view_users',
+        'edit_user',
+    ];
+
+    foreach ( $secretaireCaps as $cap ) {
+        $secretaire->add_cap($cap);
+    }
+
+    $subadmin = get_role('subadmin');
+    $subadminCaps = array_diff($allCaps, array('subadmin_access'));
+
+    foreach ( $subadminCaps as $cap ) {
+        $subadmin->add_cap($cap);
+    }
+
+    $technicien = get_role('technicien');
+    $technicienCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $technicienCaps as $cap ) {
+        $technicien->add_cap($cap);
+    }
+
+    $television = get_role('television');
+    $televisionCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $televisionCaps as $cap ) {
+        $television->add_cap($cap);
+    }
 }
 
-add_action('admin_menu', 'addNewRoles');
+add_action('init', 'addNewRoles');
 
 /*
  * CREATE REST API ENDPOINTS
