@@ -2,7 +2,7 @@
 
 Voici un guide expliquant le fonctionnement de l'écran connecté.  
 
-Si vous souhaitez mieux comprendre les fonctions les plus importantes, veuillez lire le ReadMe dédié à ces dernières : ReadMeInstallationEcran.  
+Si vous souhaitez mieux comprendre les fonctions les plus importantes, veuillez lire le ReadMe dédié à ces dernières : [ReadMeInstallationEcran.md](ReadMeInstallationEcran.md).  
 
 ## Principe
 
@@ -19,7 +19,7 @@ Ce projet est composé de deux parties :
 
 Il y a plusieurs plugins utilisés pour ce projet, voici une liste décrivant l'utilité de chaque plugin :  
     - Ecran connecté : Plugin principal du site, nous allons en parler plus en détails en dessous. 
-    - WP Crontrol : Permet de faire appel au cron de WordPress.
+    - WPCrontrol : Permet de faire appel au cron de WordPress.
 
 Nous allons traiter plus en détail le plugin que nous développons, le plugin "Ecran connecté".  
 
@@ -34,15 +34,18 @@ Ce plugin permet plusieurs fonctionnalités :
 
 ### Utilisateurs
 
-Il y a six rôles différents avec chacun leur droit :  
+Il y a trois rôles différents avec chacun leur droit :  
 
-|  Utilisateur       | Voir son emploi du temps |   Poster des informations | Poster des alertes | Inscrire des utilisateurs |
-|:------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|
-| Technicien         |        Oui               |      Non                  |     Non            |     Non                   |
-| Télévision         |        Oui               |      Non                  |     Non            |     Non                   |
-| Secretaire         |        Non               |      Oui                  |     Oui            |     Oui                   |
+|     Utilisateur     | Voir son emploi du temps |   Poster des informations | Poster des alertes | Inscrire des utilisateurs | Personnaliser la télévision |
+|:-------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|:---------------------------:|
+|     Technicien      |           Oui            |            Non            |        Non         |            Non            |             Non             |
+|     Télévision      |           Oui            |            Non            |        Non         |            Non            |             Non             |
+|     Secrétaire      |           Non            |            Oui            |        Oui         |            Oui            |             Non             |
+| Sous-administrateur |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |
+
 
 Les techniciens sont des agents d'entretien, qui vont avoir accès à l'emploi du temps pour leur permettre de savoir quelles salles sont occupées.
+Les sous-administrateurs sont les administrateurs de leur département respectif.
 
 ### Emploi du temps
 
@@ -53,13 +56,13 @@ Il est téléchargé tous les matins via "WP Crontrol", en cas de problème de t
 L'emploi du temps télécharge une période d'une semaine en cas de problème venant de l'ADE permettant de continuer à fonctionner.  
 L'affichage de l'emploi du temps est sur la journée pour les étudiants et les techniciens.  
 
-Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectées.  
+Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectés.  
 
 
 ### Informations
 
 Les informations sont visibles par tous les utilisateurs selon leur département.
-Elles sont affichées dans un diaporama sur le côté de l'écran.
+Elles sont affichées dans un diaporama à la droite de l'écran.
 
 Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short).
 
@@ -68,11 +71,11 @@ Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son 
 Les vidéos et shorts (vidéo courte au format vertical) sont au format .mp4 ou .webm et sont affichés dans un diaporama par-dessus l'emploi du temps
 dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pendant une certaine durée pour laisser place à l'emploi du temps.
 
-Les shorts sont affichés dans la diaporama d'informations à droite comme les autres.
+Les shorts sont affichés dans le diaporama d'informations à droite comme les autres.
 
 Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent que les informations en plein écran.  
 Ces informations sont donc destinées pour les journées sans cours du style "journée porte ouverte".  
-
+Un événement est soit une image, soit un PDF.
 
 ### Alerte
 
@@ -99,10 +102,10 @@ Voir "weather.js".
 
 Le thème permet de créer la structure du site. Cela nous permet de modeler le site à notre convenance.
 Le site respecte la charte graphique de l'AMU. Nous avons le site séparé en quatre parties principales :
-    - Le Header où se trouve le logo du site et le menu
-    - Le Main où se trouve l'emploi du temps
-    - La sidebar avec les informations
-    - Le footer avec les alertes, la date et la météo
+    - Le Header où se trouvent le logo du site et le menu.
+    - Le Main où se trouve l'emploi du temps.
+    - La sidebar avec les informations.
+    - Le footer avec les alertes, la date et la météo.
 
 
 ### Personnalisation via WordPress

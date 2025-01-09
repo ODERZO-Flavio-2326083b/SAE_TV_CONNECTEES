@@ -29,9 +29,9 @@ Un utilisateur Technician peut accéder aux emplois du temps.
 
 ### Emploi du temps
 
-Les emplois du temps sont téléchargés en format ICS.  
+Les emplois du temps sont téléchargés au format ICS.  
 
-Les classes utilisées sont : R34ICS et UserController  
+Les classes utilisées sont : R34ICS et UserController.  
 
 Lorsqu'un utilisateur est connecté, il appelle R34ICS pour pouvoir afficher son emploi du temps, R34ICS permet de lire les fichiers ICS.  
 
@@ -41,9 +41,9 @@ Une information correspond au type de fichier suivant : Texte, Image, PDF, Vidé
 
 Les classes utilisées sont : InformationController, Information & InformationView.  
 Les librairies "PhpOffice" et "PDF.js" sont aussi utilisées.  
-Fichier javascript : slideshow.js  
+Fichier javascript : slideshow.js, qui gère les diaporamas.
 
-Les informations sont affichées dans un diaporama dans la partie gauche de la télévision.
+Les informations sont affichées dans un diaporama dans la partie droite de la télévision.
 
 Les vidéos sont affichées par-dessus l'emploi du temps dans un autre diaporama, puis disparaissent pendant
 un certain temps pour laisser place à l'emploi du temps.

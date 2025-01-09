@@ -60,7 +60,7 @@ Cliquez sur le bouton "Export to agenda..." en bas à gauche de la page puis "G�
 
 Vous aurez alors une URL de ce style "https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8395&calType=ical&firstDate=2025-01-06&lastDate=2025-01-10"
 
-Récupérer la valeur à resources=... (Dans notre lien d'exemple, il s'agit de 8395).  
+Récupérer la valeur dans resources=... (Dans notre lien d'exemple, il s'agit de 8395).  
 
 Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire pour ajouter le code.  
 
@@ -68,7 +68,7 @@ Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le form
 La création de département est essentielle au bon fonctionnement du site.
 Allez sur la page "Départements" et remplissez le formulaire.
 
-Vous pourrez par la suite compléter les différents formulaires du site selon vos besoins : Informations,
-Utilisateurs...
+Vous pourrez par la suite compléter les différents formulaires du site selon vos besoins, notamment dans les pages Informations,
+Utilisateurs.
 
 
