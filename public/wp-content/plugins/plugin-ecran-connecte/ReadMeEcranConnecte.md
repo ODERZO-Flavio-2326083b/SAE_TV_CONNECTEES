@@ -71,7 +71,7 @@ dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pen
 Les shorts sont affichés dans la diaporama d'informations à droite comme les autres.
 
 Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent que les informations en plein écran.  
-Ces informations sont donc destinées pour les journées sans cours du style "journée porte ouverte".  
+Ces informations sont donc destinées pour les journées sans cours du style "journée portes ouvertes".  
 
 
 ### Alerte
