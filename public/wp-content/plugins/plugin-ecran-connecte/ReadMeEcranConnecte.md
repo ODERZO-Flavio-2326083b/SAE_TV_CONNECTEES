@@ -2,7 +2,7 @@
 
 Voici un guide expliquant le fonctionnement de l'écran connecté.  
 
-Si vous souhaitez mieux comprendre les fonctions les plus importantes, veuillez lire le ReadMe dédié à ces dernières : [ReadMeInstallationEcran.md](ReadMeInstallationEcran.md).  
+Si vous souhaitez mieux comprendre les fonctions les plus importantes, veuillez lire le ReadMe dédié à ces dernières : [ReadMeInstallationEcran.md](ReadMeInstallationEcran.md).
 
 ## Principe
 
@@ -18,7 +18,7 @@ Ce projet est composé de deux parties :
 ## Plugins
 
 Il y a plusieurs plugins utilisés pour ce projet, voici une liste décrivant l'utilité de chaque plugin :  
-    - Ecran connecté : Plugin principal du site, nous allons en parler plus en détails en dessous. 
+    - Ecran connecté : Plugin principal du site, nous allons en parler plus en détails en dessous.
     - WPCrontrol : Permet de faire appel au cron de WordPress.
 
 Nous allons traiter plus en détail le plugin que nous développons, le plugin "Ecran connecté".  
@@ -34,7 +34,7 @@ Ce plugin permet plusieurs fonctionnalités :
 
 ### Utilisateurs
 
-Il y a trois rôles différents avec chacun leur droit :  
+Il y a trois rôles différents avec chacun leur droit :
 
 |     Utilisateur     | Voir son emploi du temps |   Poster des informations | Poster des alertes | Inscrire des utilisateurs | Personnaliser la télévision |
 |:-------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|:---------------------------:|
@@ -56,7 +56,7 @@ Il est téléchargé tous les matins via "WP Crontrol", en cas de problème de t
 L'emploi du temps télécharge une période d'une semaine en cas de problème venant de l'ADE permettant de continuer à fonctionner.  
 L'affichage de l'emploi du temps est sur la journée pour les étudiants et les techniciens.  
 
-Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectés.  
+Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectés.
 
 
 ### Informations
@@ -74,8 +74,9 @@ dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pen
 Les shorts sont affichés dans le diaporama d'informations à droite comme les autres.
 
 Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent que les informations en plein écran.  
-Ces informations sont donc destinées pour les journées sans cours du style "journée porte ouverte".  
+Ces informations sont donc destinées pour les journées sans cours du style "journée portes ouvertes".  
 Un événement est soit une image, soit un PDF.
+
 
 ### Alerte
 
@@ -102,10 +103,10 @@ Voir "weather.js".
 
 Le thème permet de créer la structure du site. Cela nous permet de modeler le site à notre convenance.
 Le site respecte la charte graphique de l'AMU. Nous avons le site séparé en quatre parties principales :
-    - Le Header où se trouvent le logo du site et le menu.
-    - Le Main où se trouve l'emploi du temps.
-    - La sidebar avec les informations.
-    - Le footer avec les alertes, la date et la météo.
+    - Le Header où se trouve le logo du site et le menu
+    - Le Main où se trouve l'emploi du temps
+    - La sidebar avec les informations
+    - Le footer avec les alertes, la date et la météo
 
 
 ### Personnalisation via WordPress
