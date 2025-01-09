@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use getID3;
 use models\Department;
 use models\Information;
 use models\User;
@@ -106,6 +107,7 @@ class InformationController extends Controller
 	    $information->setExpirationDate($endDate);
 	    $information->setAdminId(null);
 	    $information->setIdDepartment($deptId ?: 0);
+        $information->setDuration(5000);
 
 	    if (isset($actionText)) {   // Si l'information est un texte
 
@@ -340,6 +342,18 @@ class InformationController extends Controller
         $id = 'temporary';
         $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
+        $entity->setDuration(5000);
+
+        if($entity->getType() == 'video' || $entity->getType() == 'short') {
+            $getID3 = new getID3();
+            $fileInfo = $getID3->analyze($tmpName);
+            var_dump(is_file($tmpName));
+            var_dump($fileInfo);
+            if (isset($fileInfo['playtime_seconds'])) {
+                $duration = $fileInfo['playtime_seconds'];
+                $entity->setDuration(floor($duration*1000));
+            }
+        }
 
         // Upload le fichier
         if ($result = move_uploaded_file($tmpName, $name)) {

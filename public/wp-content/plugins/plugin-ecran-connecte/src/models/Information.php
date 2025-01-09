@@ -81,8 +81,25 @@ class Information extends Model implements Entity, JsonSerializable
     public function insert() : int {
         $database = $this->getDatabase();
         $request = $database->prepare("INSERT INTO ecran_information 
-                                            (title, content, creation_date, expiration_date, type, author, administration_id, department_id) 
-                                            VALUES (:title, :content, :creationDate, :expirationDate, :type, :userId, :administration_id, :department_id) ");
+                                            (title,
+                                             content,
+                                             creation_date,
+                                             expiration_date,
+                                             type,
+                                             author,
+                                             administration_id,
+                                             department_id,
+                                             duration)
+                                            VALUES
+                                            (:title,
+                                             :content,
+                                             :creationDate,
+                                             :expirationDate,
+                                             :type,
+                                             :userId,
+                                             :administration_id,
+                                             :department_id,
+                                             :duration) ");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':creationDate', $this->getCreationDate(), PDO::PARAM_STR);
@@ -91,6 +108,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request->bindValue(':userId', $this->getAuthor()->getId(), PDO::PARAM_INT);
         $request->bindValue(':administration_id', $this->getAdminId(), PDO::PARAM_INT);
         $request->bindValue(':department_id', $this->getIdDepartment(), PDO::PARAM_INT);
+        $request->bindValue(':duration', $this->getDuration(), PDO::PARAM_INT);
         $request->execute();
         return $database->lastInsertId();
     }
@@ -109,7 +127,11 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function update() : int {
-        $request = $this->getDatabase()->prepare("UPDATE ecran_information SET title = :title, content = :content, expiration_date = :expirationDate WHERE id = :id");
+        $request = $this->getDatabase()->prepare("UPDATE ecran_information 
+                                                SET title = :title, 
+                                                    content = :content, 
+                                                    expiration_date = :expirationDate 
+                                                WHERE id = :id");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
@@ -156,8 +178,18 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function get($id) : mixed {
-        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
-                                                        FROM ecran_information WHERE id = :id LIMIT 1");
+        $request = $this->getDatabase()->prepare("SELECT 
+                                                id, 
+                                                title, 
+                                                content, 
+                                                creation_date, 
+                                                expiration_date, 
+                                                author, 
+                                                type, 
+                                                administration_id, 
+                                                department_id,
+                                                duration
+                                                FROM ecran_information WHERE id = :id LIMIT 1");
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();
         if ($request->rowCount() > 0) {
@@ -183,8 +215,22 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getList($begin = 0, $numberElement = 25) : array {
-        $request = $this->getDatabase()->prepare("SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
-                                                        FROM ecran_information ORDER BY id LIMIT :begin, :numberElement");
+        $request = $this->getDatabase()->prepare("SELECT 
+                                                            id, 
+                                                            title,
+                                                            content,
+                                                            creation_date,
+                                                            expiration_date,
+                                                            author, 
+                                                            type,
+                                                            administration_id,
+                                                            department_id, 
+                                                            duration
+                                                        FROM ecran_information 
+                                                        ORDER BY id 
+                                                        LIMIT 
+                                                            :begin,
+                                                            :numberElement");
         $request->bindValue(':begin', (int)$begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', (int)$numberElement, PDO::PARAM_INT);
         $request->execute();
@@ -236,7 +282,7 @@ class Information extends Model implements Entity, JsonSerializable
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
     public function getInformationsByDeptId(int $idDept, int $begin = 0, int $numberElement = 25): array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id
+        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id, duration
                                                         FROM ecran_information WHERE department_id = :id ORDER BY expiration_date LIMIT :begin, :numberElement');
         $request->bindParam(':id', $idDept, PDO::PARAM_INT);
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
@@ -330,7 +376,7 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getInformationFromAdminSite($id) : mixed {
-        $request = $this->getDatabaseViewer()->prepare('SELECT id, title, content, type, author, expiration_date, creation_date FROM ecran_information WHERE id = :id LIMIT 1');
+        $request = $this->getDatabaseViewer()->prepare('SELECT id, title, content, type, author, expiration_date, creation_date, duration FROM ecran_information WHERE id = :id LIMIT 1');
         $request->bindValue(':id', $id, PDO::PARAM_INT);
         $request->execute();
         if ($request->rowCount() > 0) {
@@ -397,6 +443,7 @@ class Information extends Model implements Entity, JsonSerializable
         $entity->setExpirationDate(date('Y-m-d', strtotime($data['expiration_date'])));
         $entity->setIdDepartment($data['department_id']);
         $entity->setType($data['type']);
+        $entity->setDuration($data['duration']);
         if ($data['administration_id'] != null) {
             $author->setLogin('Administration');
             $entity->setAuthor($author);
