@@ -73,8 +73,19 @@ Récupérer la valeur dans resources=... (Dans notre lien d'exemple, il s'agit d
 
 Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire pour ajouter le code.  
 
+## Personnalisation avec WordPress
 
+Vous pouvez personnaliser ce site comme vous le souhaitez.
 
+Il y a plusieurs parties modifiables sur le site.
+Pour cela, cliquez sur "Personnaliser" sur la barre WordPress, on y retrouve :
+- Les couleurs du site
+- Le logo du site
+- L'affichage ou non de certains éléments de la télévision (barre de navigation, partie d'informations, emploi du temps...).
+
+En cliquant sur "Modifier la page", vous pouvez ajouter manuellement du contenu.
+
+Votre site est dorénavant prêt à être utilisé.
 
 
 
