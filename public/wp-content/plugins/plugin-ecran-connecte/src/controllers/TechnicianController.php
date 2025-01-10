@@ -152,11 +152,15 @@ class TechnicianController extends UserController implements Schedule
      */
     public function displayMySchedule(): string {
         $codeAde = new CodeAde();
+        $user = new User();
+        $techUserObj = $user->get(wp_get_current_user()->ID);
 
         $years = $codeAde->getAllFromType('year');
         $string = "";
         foreach ($years as $year) {
-            $string .= $this->displaySchedule($year->getCode());
+            if($year->getDeptId() == $techUserObj->getIdDepartment()) {
+                $string .= $this->displaySchedule( $year->getCode() );
+            }
         }
         return $string;
     }
