@@ -469,7 +469,7 @@ class InformationView extends View
      * Affiche le début d'un conteneur pour un diaporama de vidéos.
      *
      * Cette méthode génère une structure HTML pour le conteneur principal
-     * du diaporama destiné uniquement aux vidéos, positionné à droite de l'écran.
+     * du diaporama destiné uniquement aux vidéos, positionné à gauche de l'écran.
      *
      * @return void
      * @version 1.0
