@@ -130,12 +130,14 @@ class Information extends Model implements Entity, JsonSerializable
         $request = $this->getDatabase()->prepare("UPDATE ecran_information 
                                                 SET title = :title, 
                                                     content = :content, 
-                                                    expiration_date = :expirationDate 
+                                                    expiration_date = :expirationDate, 
+                                                    duration = :duration
                                                 WHERE id = :id");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+        $request->bindValue(':duration', $this->getDuration(), PDO::PARAM_INT);
         $request->execute();
         return $request->rowCount();
     }
@@ -282,8 +284,24 @@ class Information extends Model implements Entity, JsonSerializable
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
     public function getInformationsByDeptId(int $idDept, int $begin = 0, int $numberElement = 25): array {
-        $request = $this->getDatabase()->prepare('SELECT id, title, content, creation_date, expiration_date, author, type, administration_id, department_id, duration
-                                                        FROM ecran_information WHERE department_id = :id ORDER BY expiration_date LIMIT :begin, :numberElement');
+        $request = $this->getDatabase()->prepare('SELECT 
+                                                id, 
+                                                title, 
+                                                content, 
+                                                creation_date, 
+                                                expiration_date, 
+                                                author, 
+                                                type, 
+                                                administration_id, 
+                                                department_id, 
+                                                duration
+                                                FROM 
+                                                    ecran_information 
+                                                WHERE 
+                                                    department_id = :id 
+                                                ORDER BY 
+                                                    expiration_date 
+                                                LIMIT :begin, :numberElement');
         $request->bindParam(':id', $idDept, PDO::PARAM_INT);
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
