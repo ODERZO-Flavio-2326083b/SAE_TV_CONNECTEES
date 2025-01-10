@@ -33,9 +33,9 @@ class DepartmentView extends View // TODO : Missing doc comment for class Deparm
     /**
      * Rendu du formulaire de modification d'un Département
      *
-     * @param string $name TODO : Missing parameter comment (?)
-     * @param int    $lat TODO : Missing parameter comment (?) / Superfluous parameter comment
-     * @param int    $long TODO : Missing parameter comment (?) / Superfluous parameter comment
+     * @param string $name TODO : Missing parameter comment
+     * @param int    $lat TODO : Missing parameter comment / Superfluous parameter comment
+     * @param int    $long TODO : Superfluous parameter comment
      *
      * @return string
      */
