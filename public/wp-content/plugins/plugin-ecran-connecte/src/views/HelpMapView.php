@@ -1,5 +1,5 @@
 <?php
-
+// TODO : Missing file doc comment
 namespace Views;
 
 /**
@@ -8,7 +8,7 @@ namespace Views;
  * Vue pour la carte affichant les lieux intéressants à proximité.
  *
  * @package Views
- */
+ */ // TODO : Missing @category, @author, @license, @link tags in class comment
 class HelpMapView extends View
 {
     /**
@@ -17,7 +17,8 @@ class HelpMapView extends View
      * @return string
      * Retourne le code HTML de la carte d'aide.
      */
-    public function displayHelpMap() : string {
+    public function displayHelpMap() : string
+    {
         return '<p>Hello, World!</p>';
     }
 }
