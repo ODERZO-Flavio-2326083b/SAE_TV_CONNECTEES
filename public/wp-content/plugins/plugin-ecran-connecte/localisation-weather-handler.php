@@ -1,5 +1,7 @@
 <?php
 
+use models\Department;
+use models\Information;
 use models\Localisation;
 
 /**
@@ -91,6 +93,38 @@ function loadLocAjaxIfUserHasNoLoc(){
 
 add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
 
+/**
+ * Récupère les durées de chaque information du département de l'utilisateur
+ * connecté, et les trie dans deux listes : durées des vidéos, et durées
+ * des informations non vidéos.
+ * @return void
+ */
+function loadInformationDurations() {
+    $informationModel = new Information();
+    $deptModel = new Department();
+    $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
+                                   ->getIdDepartment();
+
+    $informations = $informationModel->getInformationsByDeptId($currentUserDeptId,0, 1000);
+
+    $videoDurations = array();
+    $otherDurations = array();
+
+    foreach ($informations as $information) {
+        if ($information->getType() === 'video') {
+            $videoDurations[] = $information->getDuration();
+        } else {
+            $otherDurations[] = $information->getDuration();
+        }
+    }
+
+    wp_localize_script( 'slideshow_script_ecran', 'DURATIONS', array(
+        'videoDurations' => $videoDurations,
+        'otherDurations' => $otherDurations
+    ));
+}
+
+add_action('wp_enqueue_scripts', 'loadInformationDurations');
 
 
 
