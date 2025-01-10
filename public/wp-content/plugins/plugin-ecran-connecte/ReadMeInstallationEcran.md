@@ -26,7 +26,7 @@ La première étape consiste à mettre en place WordPress.
     - Le login de l'utilisateur de la base de données.  
     - Le mot de passe de l'utilisateur de la base de données.  
 
-Après avoir validé les identifiants pour la base de données, vous serez amené à vous créer un compte administrateur et de donner un titre à votre site.  
+Après avoir validé les identifiants pour la base de données, vous serez amenés à vous créer un compte administrateur et de donner un titre à votre site.  
 
 ## Installation du plugin & du thème
 
