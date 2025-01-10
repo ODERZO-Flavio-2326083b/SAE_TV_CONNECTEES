@@ -1,5 +1,5 @@
 <?php
-
+// [TODO] Missing file doc comment
 namespace Views;
 
 use Models\CodeAde;
@@ -10,7 +10,7 @@ use Models\CodeAde;
  * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
  *
  * @package Views
- */
+ */ //[TODO] Missing @category, @author, @license, @link tags in class comment
 class CodeAdeView extends View
 {
 
