@@ -16,7 +16,8 @@
       "controllers\\": "src/controllers/",
       "controllers\\rest\\": "src/controllers/rest",
       "models\\": "src/models/",
-      "views\\": "src/views/"
+      "views\\": "src/views/",
+      "utils\\": "src/utils/"
     }
   }
 }
