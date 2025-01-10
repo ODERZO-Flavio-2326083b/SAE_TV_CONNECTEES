@@ -56,3 +56,9 @@ La librairie "JQuery Ticker" est aussi utilisée.
 Fichier javascript : alertTicker.js.
 
 Les alertes sont uniquement des textes.
+
+### Scrapping
+Le scrapping, méthode de récupération de données de site web, est également affiché dans le diaporama d'informations.
+Il est statique, ce qu'il signifie que pour changer ces informations, il faut se rendre dans le fichier Scrapper.php, localisé dans le dossier models.
+On modifie "$this->url->'liendusite.net';".
+Il est recommandé d'éviter un site utilisant des cookies.

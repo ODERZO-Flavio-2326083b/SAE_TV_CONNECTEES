@@ -65,6 +65,7 @@ Les informations sont visibles par tous les utilisateurs selon leur département
 Elles sont affichées dans un diaporama à la droite de l'écran.
 
 Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short).
+Les images sont affichées au format 
 
 Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son propre lecteur de PDF. Voir "slideshow.js"
 
@@ -74,8 +75,9 @@ dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pen
 Les shorts sont affichés dans le diaporama d'informations à droite comme les autres.
 
 Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent que les informations en plein écran.  
-Ces informations sont donc destinées pour les journées sans cours du style "journée portes ouvertes".  
+Ces informations sont donc destinées pour les journées sans cours du style "Journée portes ouvertes".  
 Un événement est soit une image, soit un PDF.
+
 
 
 ### Alerte
