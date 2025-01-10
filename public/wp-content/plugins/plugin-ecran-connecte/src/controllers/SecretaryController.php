@@ -23,7 +23,7 @@ class SecretaryController extends UserController
     /**
      * @var SecretaryView
      */
-    private SecretaryView $view;
+    private SecretaryView $_view;
 
     /**
      * Constructor of SecretaryController.
@@ -33,7 +33,7 @@ class SecretaryController extends UserController
     public function __construct() {
         parent::__construct();
         $this->model = new User();
-        $this->view = new SecretaryView();
+        $this->_view = new SecretaryView();
     }
 
     /**
@@ -42,7 +42,7 @@ class SecretaryController extends UserController
      * @return string
      */
     public function displayMySchedule(): string {
-        return $this->view->displayWelcomeAdmin();
+        return $this->_view->displayWelcomeAdmin();
     }
 
     /**
@@ -90,18 +90,18 @@ class SecretaryController extends UserController
                 $this->model->setIdDepartment($deptId);
 
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
         $allDepts = $deptModel->getAllDepts();
 
 
-        return $this->view->displayFormSecretary($allDepts, $isAdmin, $currDept);
+        return $this->_view->displayFormSecretary($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -126,7 +126,7 @@ class SecretaryController extends UserController
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->view->displayAllSecretary($users, $userDeptList);
+        return $this->_view->displayAllSecretary($users, $userDeptList);
     }
 
     /**
@@ -151,25 +151,25 @@ class SecretaryController extends UserController
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
-            $subadminTitle = $this->view->displayTitleSelect(
+            $subadminTitle = $this->_view->displayTitleSelect(
                 'subadmin', 'Sous-administrateurs');
-            $subadminContent = $this->view->displayContentSelect('subadmin',
+            $subadminContent = $this->_view->displayContentSelect('subadmin',
                 $subadmin->insert());
         }
 
         return
-            $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Agent d\'entretien') .
-            $this->view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayStartMultiSelect() .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
-            $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
-            $this->view->displayContentSelect('technician', $technician->insert()) .
-            $this->view->displayContentSelect('television', $television->insert()) .
+            $this->_view->displayEndOfTitle() .
+            $this->_view->displayContentSelect('secretary', $secretary->insert(), true) .
+            $this->_view->displayContentSelect('technician', $technician->insert()) .
+            $this->_view->displayContentSelect('television', $television->insert()) .
             $subadminContent .
             '</div>' .
-            $this->view->contextCreateUser();
+            $this->_view->contextCreateUser();
     }
 
     /**
@@ -194,22 +194,22 @@ class SecretaryController extends UserController
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
-            $subadminTitle = $this->view->displayTitleSelect(
+            $subadminTitle = $this->_view->displayTitleSelect(
                 'subadmin', 'Sous-administrateurs');
-            $subadminContent = $this->view->displayContentSelect('subadmin',
+            $subadminContent = $this->_view->displayContentSelect('subadmin',
                 $subadmin->displayAllSubadmin());
         }
 
         return
-            $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Agents d\'entretiens') .
-            $this->view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayStartMultiSelect() .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
-            $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
-            $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
-            $this->view->displayContentSelect('television', $television->displayAllTv()) .
+            $this->_view->displayEndOfTitle() .
+            $this->_view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
+            $this->_view->displayContentSelect('technician', $technician->displayAllTechnician()) .
+            $this->_view->displayContentSelect('television', $television->displayAllTv()) .
             $subadminContent .
             '</div>';
     }
@@ -240,7 +240,7 @@ class SecretaryController extends UserController
                 return $controller->modify($user);
             }
         }
-        return $this->view->displayNoUser();
+        return $this->_view->displayNoUser();
 
     }
 

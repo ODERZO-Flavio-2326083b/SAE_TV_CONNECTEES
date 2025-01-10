@@ -27,7 +27,7 @@ class InformationController extends Controller
     /**
      * @var InformationView
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe.
@@ -43,7 +43,7 @@ class InformationController extends Controller
     public function __construct()
     {
         $this->model = new Information();
-        $this->view = new InformationView();
+        $this->_view = new InformationView();
     }
 
     /**
@@ -115,9 +115,9 @@ class InformationController extends Controller
 
             $information->setType("text");
             if ($information->insert()) {
-                $this->view->displayCreateValidate();
+                $this->_view->displayCreateValidate();
             } else {
-                $this->view->displayErrorInsertionInfo();
+                $this->_view->displayErrorInsertionInfo();
             }
         }
         if (isset($actionImg)) {  // Si l'information est une image
@@ -130,7 +130,7 @@ class InformationController extends Controller
             if (in_array(end($explodeName), $goodExtension)) {
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
+                $this->_view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
             }
         }
         if (isset($actionPDF)) { // Si l'information est un PDF
@@ -142,7 +142,7 @@ class InformationController extends Controller
                 $fileTmpName = $_FILES['contentFile']['tmp_name'];
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
+                $this->_view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
             }
         }
         if (isset($actionEvent)) { // Si l'information est un événement
@@ -158,7 +158,7 @@ class InformationController extends Controller
                 if (in_array(end($explodeName), $goodExtension)) {
                     $this->registerFile($filename, $fileTmpName, $information);
                 } else {
-                    $this->view->buildModal('Fichiers non valide', '<p>Ce fichier n\'est pas valide, merci de choisir d\'autres fichiers.</p>');
+                    $this->_view->buildModal('Fichiers non valide', '<p>Ce fichier n\'est pas valide, merci de choisir d\'autres fichiers.</p>');
                 }
             }
         }
@@ -172,27 +172,27 @@ class InformationController extends Controller
             if (in_array(end($explodeName), $goodExtension)) {
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+                $this->_view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
             }
         }
 
         return
-            $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('text', 'Texte', true) .
-            $this->view->displayTitleSelect('image', 'Image') .
-            $this->view->displayTitleSelect('pdf', 'PDF') .
-            $this->view->displayTitleSelect('event', 'Événement') .
-            $this->view->displayTitleSelect('video', "Vidéos") .
-            $this->view->displayTitleSelect('short', "Shorts") .
-            $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('text', $this->view->displayFormText($allDepts, $isAdmin, $currDept), true) .
-            $this->view->displayContentSelect('image', $this->view->displayFormImg($allDepts, $isAdmin, $currDept)) .
-            $this->view->displayContentSelect('pdf', $this->view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
-            $this->view->displayContentSelect('event', $this->view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
-            $this->view->displayContentSelect('video', $this->view->displayFormVideo($allDepts, $isAdmin, $currDept)) .
-            $this->view->displayContentSelect('short', $this->view->displayFormShort($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayStartMultiSelect() .
+            $this->_view->displayTitleSelect('text', 'Texte', true) .
+            $this->_view->displayTitleSelect('image', 'Image') .
+            $this->_view->displayTitleSelect('pdf', 'PDF') .
+            $this->_view->displayTitleSelect('event', 'Événement') .
+            $this->_view->displayTitleSelect('video', "Vidéos") .
+            $this->_view->displayTitleSelect('short', "Shorts") .
+            $this->_view->displayEndOfTitle() .
+            $this->_view->displayContentSelect('text', $this->_view->displayFormText($allDepts, $isAdmin, $currDept), true) .
+            $this->_view->displayContentSelect('image', $this->_view->displayFormImg($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayContentSelect('pdf', $this->_view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayContentSelect('event', $this->_view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayContentSelect('video', $this->_view->displayFormVideo($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayContentSelect('short', $this->_view->displayFormShort($allDepts, $isAdmin, $currDept)) .
             '</div>' .
-            $this->view->contextCreateInformation();
+            $this->_view->contextCreateInformation();
     }
 
     /**
@@ -230,7 +230,7 @@ class InformationController extends Controller
         $id = $_GET['id'];
 
         if (empty($id) || is_numeric($id) && !$this->model->get($id)) {
-            return $this->view->noInformation();
+            return $this->_view->noInformation();
         }
 
         $deptModel = new Department();
@@ -246,11 +246,11 @@ class InformationController extends Controller
 
         if (!(current_user_can('edit_information') ||
               $information->getAuthor()->getId() == $currentUser->ID)) {
-            return $this->view->noInformation();
+            return $this->_view->noInformation();
         }
 
         if (!is_null($information->getAdminId())) {
-            return $this->view->informationNotAllowed();
+            return $this->_view->informationNotAllowed();
         }
 
         $submit = filter_input(INPUT_POST, 'submit');
@@ -279,7 +279,7 @@ class InformationController extends Controller
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
                         } else {
-                            $this->view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
+                            $this->_view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
                         }
                     } else if ($information->getType() == 'pdf') { // Si le type est un PDF
                         $explodeName = explode('.', $filename);
@@ -287,7 +287,7 @@ class InformationController extends Controller
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
                         } else {
-                            $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
+                            $this->_view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
                         }
                     } else if ($information->getType() == 'video' || $information->getType() == 'short') {
                         $explodeName = explode('.', $filename);
@@ -297,16 +297,16 @@ class InformationController extends Controller
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
 
                         } else {
-                            $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+                            $this->_view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
                         }
                     }
                 }
             }
 
             if ($information->update()) {
-                $this->view->displayModifyValidate();
+                $this->_view->displayModifyValidate();
             } else {
-                $this->view->errorMessageCantAdd();
+                $this->_view->errorMessageCantAdd();
             }
         }
 
@@ -314,9 +314,9 @@ class InformationController extends Controller
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $information->delete();
-            $this->view->displayModifyValidate();
+            $this->_view->displayModifyValidate();
         }
-        return $this->view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType()
+        return $this->_view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType()
             , $allDepts, $isAdmin, $currDept);
     }
 
@@ -358,7 +358,7 @@ class InformationController extends Controller
                 $id = $entity->getId();
             }
         } else {
-            $this->view->errorMessageCantAdd();
+            $this->_view->errorMessageCantAdd();
         }
         // If the file upload and the upload of the information in the database works
         if ($id != 0) {
@@ -371,9 +371,9 @@ class InformationController extends Controller
 
             $entity->setContent($content);
             if ($entity->update()) {
-                $this->view->displayCreateValidate();
+                $this->_view->displayCreateValidate();
             } else {
-                $this->view->errorMessageCantAdd();
+                $this->_view->errorMessageCantAdd();
             }
         }
     }
@@ -459,7 +459,7 @@ class InformationController extends Controller
 
             $dataList[] = [
                 $row,
-                $this->view->buildCheckbox($name, $information->getId()),
+                $this->_view->buildCheckbox($name, $information->getId()),
                 $information->getTitle(),
                 $content,
                 $information->getCreationDate(),
@@ -467,7 +467,7 @@ class InformationController extends Controller
                 $information->getAuthor()->getLogin(),
                 $type,
                 $deptModel->get($information->getIdDepartment())->getName(),
-                $this->view->buildLinkForModify(
+                $this->_view->buildLinkForModify(
                     esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId()
                 )
             ];
@@ -490,14 +490,14 @@ class InformationController extends Controller
                         $entity->delete();
                     }
                 }
-                $this->view->refreshPage();
+                $this->_view->refreshPage();
             }
         }
         $returnString = "";
         if ($pageNumber == 1) {
-            $returnString = $this->view->contextDisplayAll();
+            $returnString = $this->_view->contextDisplayAll();
         }
-        return $returnString . $this->view->displayAll($name, 'Informations', $header, $dataList) . $this->view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))), $number);
+        return $returnString . $this->_view->displayAll($name, 'Informations', $header, $dataList) . $this->_view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))), $number);
     }
 
     /**
@@ -542,7 +542,7 @@ class InformationController extends Controller
         $deptModel = new Department();
         $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
         $informations[] = $this->createScrapper();
-        $this->view->displayStartSlideshow();
+        $this->_view->displayStartSlideshow();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
@@ -550,7 +550,7 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
+                $this->_view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
             }
         }
         echo '</div>';
@@ -619,9 +619,9 @@ class InformationController extends Controller
     public function displayEvent()
     {
         $events = $this->model->getListInformationEvent();
-        $this->view->displayStartSlideEvent();
+        $this->_view->displayStartSlideEvent();
         foreach ($events as $event) {
-            $this->view->displaySlideBegin();
+            $this->_view->displaySlideBegin();
             $extension = explode('.', $event->getContent());
             $extension = $extension[1];
             if ($extension == "pdf") {

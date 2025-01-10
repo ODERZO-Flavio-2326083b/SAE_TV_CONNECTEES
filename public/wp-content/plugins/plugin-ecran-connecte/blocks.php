@@ -466,9 +466,9 @@ function delete_account_render_callback()
 {
     if(is_user_logged_in()) {
         $myAccount = new UserController();
-        $view = new UserView();
+        $_view = new UserView();
         $myAccount->deleteAccount();
-        return $view->displayDeleteAccount().$view->displayEnterCode();
+        return $_view->displayDeleteAccount().$_view->displayEnterCode();
     }
 }
 
@@ -493,9 +493,9 @@ function password_modify_render_callback()
 {
     if(is_user_logged_in()) {
         $myAccount = new UserController();
-        $view = new UserView();
+        $_view = new UserView();
         $myAccount->modifyPwd();
-        return $view->displayModifyPassword();
+        return $_view->displayModifyPassword();
     } else {
 		echo 'Merci de vous connecter avec d\'accéder à cette page.';
 		exit;

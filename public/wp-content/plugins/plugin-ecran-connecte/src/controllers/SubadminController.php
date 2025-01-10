@@ -27,12 +27,12 @@ class SubadminController extends UserController {
 	 *
 	 * @var SubadminView
 	 */
-	private SubadminView $view;
+	private SubadminView $_view;
 
 	public function __construct() {
 		parent::__construct();
 		$this->model = new User();
-		$this->view = new SubadminView();
+		$this->_view = new SubadminView();
 	}
 
 	public function insert(): string {
@@ -70,18 +70,18 @@ class SubadminController extends UserController {
 
 				// Insertion dans la base de données
 				if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-					$this->view->displayInsertValidate();
+					$this->_view->displayInsertValidate();
 				} else {
-					$this->view->displayErrorInsertion();
+					$this->_view->displayErrorInsertion();
 				}
 			} else {
-				$this->view->displayErrorCreation();
+				$this->_view->displayErrorCreation();
 			}
 		}
 
 		$allDepts = $deptModel->getAllDeptsWithoutSubadmin();
 
-		return $this->view->displayFormSubadmin($allDepts, $currDept, $isAdmin);
+		return $this->_view->displayFormSubadmin($allDepts, $currDept, $isAdmin);
 	}
 
 	public function displayAllSubadmin(): string {
@@ -95,7 +95,7 @@ class SubadminController extends UserController {
 				$deptModel->getUserDepartment($user->getId())->getName();
 		}
 
-		return $this->view->displayAllTechnicians($users, $userDeptList);
+		return $this->_view->displayAllTechnicians($users, $userDeptList);
 	}
 
 }
