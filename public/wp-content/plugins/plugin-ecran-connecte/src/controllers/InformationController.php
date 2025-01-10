@@ -347,8 +347,6 @@ class InformationController extends Controller
         if($entity->getType() == 'video' || $entity->getType() == 'short') {
             $getID3 = new getID3();
             $fileInfo = $getID3->analyze($tmpName);
-            var_dump(is_file($tmpName));
-            var_dump($fileInfo);
             if (isset($fileInfo['playtime_seconds'])) {
                 $duration = $fileInfo['playtime_seconds'];
                 $entity->setDuration(floor($duration*1000));
@@ -356,7 +354,7 @@ class InformationController extends Controller
         }
 
         // Upload le fichier
-        if ($result = move_uploaded_file($tmpName, $name)) {
+        if (move_uploaded_file($tmpName, $name)) {
             $entity->setContent('temporary content');
             if ($entity->getId() == null) {
                 $id = $entity->insert();
@@ -542,7 +540,7 @@ class InformationController extends Controller
      */
     public function informationMain() {
         $deptModel = new Department();
-        $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+        $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(get_current_user_id())->getIdDepartment());
 
         // Début du conteneur général pour les informations
         $this->view->displayStartSlideshow();
