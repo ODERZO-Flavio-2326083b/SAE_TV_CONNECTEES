@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
 use Exception;
 
@@ -9,7 +9,7 @@ use Exception;
  *
  * Contrôleur principal contenant toutes les fonctions de base.
  *
- * @package Controllers
+ * @package controllers
  */
 class Controller
 {
@@ -25,9 +25,10 @@ class Controller
      * @return array Tableau des segments nettoyés de l'URL.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function getPartOfUrl() {
+    public function getPartOfUrl()
+    {
         $url = $_SERVER['REQUEST_URI']; // Récupère l'URL de la requête
         $urlExplode = explode('/', $url); // Sépare l'URL par le caractère /
         $cleanUrl = array(); // Tableau pour stocker les segments nettoyés
@@ -52,9 +53,10 @@ class Controller
      * @return void
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function addLogEvent($event) {
+    public function addLogEvent($event)
+    {
         $time = date("D, d M Y H:i:s"); // Obtient l'heure actuelle
         $time = "[" . $time . "] "; // Formate l'heure pour le log
         $event = $time . $event . "\n"; // Prépare le message d'erreur
@@ -73,9 +75,10 @@ class Controller
      * @return string L'URL générée pour le calendrier iCalendar.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function getUrl($code) : string {
+    public function getUrl($code) : string
+    {
         $str = strtotime("now"); // Récupère le timestamp actuel
         $str2 = strtotime(date("Y-m-d", strtotime('now')) . " +6 day"); // Timestamp pour 6 jours dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
@@ -101,16 +104,18 @@ class Controller
      *                téléchargé.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function getFilePath($code) : string {
+    public function getFilePath($code) : string
+    {
         $base_path = ABSPATH . TV_ICSFILE_PATH; // Définit le chemin de base
 
         // Vérifie si le fichier local existe
         for ($i = 0; $i <= 3; ++$i) {
             $file_path = $base_path . 'file' . $i . '/' . $code . '.ics'; // Crée le chemin du fichier
-            if (file_exists($file_path) && filesize($file_path) > 100) // Vérifie si le fichier existe et a une taille suffisante
+            if (file_exists($file_path) && filesize($file_path) > 100) { // Vérifie si le fichier existe et a une taille suffisante
                 return $file_path; // Retourne le chemin du fichier
+            }
         }
 
         // Pas de version locale, téléchargeons-en une
@@ -136,15 +141,16 @@ class Controller
      *                   ou de l'enregistrement.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function addFile($code) {
+    public function addFile($code)
+    {
         try {
             $path = ABSPATH . TV_ICSFILE_PATH . "file0/" . $code . '.ics'; // Définit le chemin du fichier à créer
             $url = $this->getUrl($code); // Obtient l'URL du fichier à télécharger
             //file_put_contents($path, fopen($url, 'r'));
             $contents = ''; // Initialise une variable pour stocker le contenu
-            if (($handler = @fopen($url, "r")) !== FALSE) { // Ouvre l'URL
+            if (($handler = @fopen($url, "r")) !== false) { // Ouvre l'URL
                 while (!feof($handler)) {
                     $contents .= fread($handler, 8192); // Lit le contenu en morceaux
                 }
@@ -177,9 +183,10 @@ class Controller
      * @return bool Retourne vrai si la date est valide, faux sinon.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function isRealDate($date) : bool {
+    public function isRealDate($date) : bool
+    {
         if (false === strtotime($date)) { // Vérifie si la date peut être convertie en timestamp
             return false; // Retourne faux si la date n'est pas valide
         }

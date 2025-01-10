@@ -51,7 +51,7 @@ if(in_array('television', $current_user->roles)) : ?>
                 $user_id = get_current_user_id();
                 $user_info = get_userdata($user_id); ?>
             <ul class="navbar-nav mr-auto">
-            <?php if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)): ?>
+            <?php if (current_user_can('information_header_menu_access')): ?>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -61,7 +61,7 @@ if(in_array('television', $current_user->roles)) : ?>
                     </div>
                 </li>
             <?php endif;
-            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)) : ?>
+            if (current_user_can('alert_header_menu_access')) : ?>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alertes</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,7 +71,7 @@ if(in_array('television', $current_user->roles)) : ?>
                     </div>
                 </li>
             <?php endif;
-            if (in_array('administrator', $user_info->roles) || in_array('secretaire', $user_info->roles)): ?>
+            if (current_user_can('user_header_menu_access')): ?>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilisateurs</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -80,17 +80,17 @@ if(in_array('television', $current_user->roles)) : ?>
                         <a class="dropdown-item" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion des utilisateurs'))); ?>">Voir les utilisateurs</a>
                     </div>
             <?php endif;
-            if (in_array('administrator', $user_info->roles)): ?>
+            if (current_user_can('edit_css')): ?>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion du CSS'))); ?>">Gestion du css</a>
+                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion du CSS'))); ?>">Gestion du CSS</a>
                 </li>
             <?php endif;
-            if (in_array('administrator', $user_info->roles)) : ?>
+            if (current_user_can('ade_code_header_menu_access')) : ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion des codes ADE'))); ?>">Codes ADE</a>
                 </li>
             <?php endif;
-            if (in_array('administrator', $user_info->roles)): ?>
+            if (current_user_can('department_header_menu_access')): ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion des départements'))); ?>">Départements</a>
                 </li>

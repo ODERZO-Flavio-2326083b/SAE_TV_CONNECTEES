@@ -1,11 +1,35 @@
 <?php
 
-namespace Models;
+namespace models;
 
-use Models\Model;
+use models\Model;
 
+/**
+ * Classe CSSCustomizer
+ *
+ * Cette classe gère la personnalisation du fichier CSS global en fonction
+ * des données soumises par l'utilisateur via un formulaire. Elle permet
+ * de mettre à jour les couleurs, les mises en page et les autres éléments
+ * de style sur la base des choix de l'utilisateur, et d'enregistrer ces
+ * modifications dans un fichier CSS spécifique.
+ *
+ * @package models
+ */
 class CSSCustomizer extends Model
 {
+    /**
+     * Met à jour le fichier CSS avec les valeurs soumises par le formulaire.
+     *
+     * Cette méthode récupère les valeurs envoyées par le formulaire via
+     * la méthode POST et génère un nouveau contenu CSS en fonction de ces
+     * valeurs. Elle écrit ensuite ce nouveau contenu dans le fichier CSS
+     * spécifié.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 2024-12-18
+     */
     public function updateColor()
     {
 

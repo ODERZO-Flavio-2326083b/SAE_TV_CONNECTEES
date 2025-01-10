@@ -13,7 +13,8 @@ function search(idTable)
 
     console.log(tr);
 
-    for (i = 1; i < tr.length - 1; ++i) {
+    for (i = 1; i < tr.length; ++i) {
+        hide = 0;
         allTd = tr[i].getElementsByTagName("td");
         for(j = 0; j < allTd.length; ++j) {
             td = allTd[j];

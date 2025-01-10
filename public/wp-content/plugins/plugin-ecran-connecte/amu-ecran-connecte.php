@@ -12,11 +12,11 @@
  * GitHub Plugin URI: https://github.com/Nicolas-Rohrbach/plugin-ecran-connecte
  */
 
-use Controllers\AlertController;
-use Controllers\CodeAdeController;
-use Controllers\InformationController;
-use Models\CodeAde;
-use Models\User;
+use controllers\AlertController;
+use controllers\CodeAdeController;
+use controllers\InformationController;
+use models\CodeAde;
+use models\User;
 
 if (! defined('ABSPATH')) {
 	die;
@@ -30,7 +30,7 @@ require __DIR__ . '/autoload.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 include 'config.php';
-include 'localisation-weather-handler.php';
+include 'jsInjections.php';
 include 'blocks.php';
 
 // Upload schedules

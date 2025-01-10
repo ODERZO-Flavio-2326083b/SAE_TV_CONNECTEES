@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TelevisionView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TelevisionView;
 
 /**
  * Class TelevisionController
  *
  * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des emplois du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TelevisionController extends UserController implements Schedule
 {
@@ -22,14 +22,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $_view;
+    private TelevisionView $view;
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -46,7 +46,7 @@ class TelevisionController extends UserController implements Schedule
     public function __construct() {
         parent::__construct();
         $this->model = new User();
-        $this->_view = new TelevisionView();
+        $this->view = new TelevisionView();
     }
 
     /**
@@ -74,7 +74,7 @@ class TelevisionController extends UserController implements Schedule
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -112,12 +112,12 @@ class TelevisionController extends UserController implements Schedule
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->_view->displayInsertValidate();
+                    $this->view->displayInsertValidate();
                 } else {
-                    $this->_view->displayErrorInsertion();
+                    $this->view->displayErrorInsertion();
                 }
             } else {
-                $this->_view->displayErrorCreation();
+                $this->view->displayErrorCreation();
             }
         }
 
@@ -128,7 +128,7 @@ class TelevisionController extends UserController implements Schedule
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->_view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
+        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -155,6 +155,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -174,7 +175,7 @@ class TelevisionController extends UserController implements Schedule
             $user->setCodes($codesAde);
 
             if ($user->update()) {
-                $this->_view->displayModificationValidate($linkManageUser);
+                $this->view->displayModificationValidate($linkManageUser);
             }
         }
 
@@ -183,7 +184,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->_view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -211,7 +214,7 @@ class TelevisionController extends UserController implements Schedule
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->_view->displayAllTv($users, $userDeptList);
+        return $this->view->displayAllTv($users, $userDeptList);
     }
 
     /**
@@ -240,6 +243,7 @@ class TelevisionController extends UserController implements Schedule
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];
 
+
         $string = "";
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
@@ -257,12 +261,12 @@ class TelevisionController extends UserController implements Schedule
                 }
                 $string .= '</div></div>';
             } else {
-                $string .= $this->_view->displayStartSlide();
+                $string .= $this->view->displayStartSlide();
                 foreach ($user->getCodes() as $code) {
                     $path = $this->getFilePath($code->getCode());
                     if (file_exists($path)) {
                         if ($this->displaySchedule($code->getCode())) {
-                            $string .= $this->_view->displayMidSlide();
+                            $string .= $this->view->displayMidSlide();
                             $string .= $this->displaySchedule($code->getCode());
                             $string .= '</div>';
                         }

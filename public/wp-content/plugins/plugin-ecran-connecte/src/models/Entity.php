@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Models;
+namespace models;
 
 /**
  * Interface Entity
  *
  * Link the database tables to the PHP code
  *
- * @package Models
+ * @package models
  */
 interface Entity
 {

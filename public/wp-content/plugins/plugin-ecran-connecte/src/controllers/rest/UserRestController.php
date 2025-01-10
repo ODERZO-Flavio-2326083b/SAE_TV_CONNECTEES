@@ -1,10 +1,9 @@
 <?php
 
-namespace Controllers;
+namespace controllers\rest;
 
-use Models\Alert;
-use Models\CodeAde;
-use WP_Error;
+use models\Alert;
+use models\CodeAde;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -405,13 +404,10 @@ class UserRestController extends WP_REST_Controller
     private function find_ade_codes($alert, $codes) {
         // Find the ADE codes
         $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
         $ade_codes = array();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } elseif ($code != 0) {
+            if ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {

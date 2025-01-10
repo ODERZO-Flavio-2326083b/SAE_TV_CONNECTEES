@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use JsonSerializable;
 use PDO;
@@ -10,7 +10,7 @@ use PDO;
  *
  * Alert entity
  *
- * @package Models
+ * @package models
  */
 class Alert extends Model implements Entity, JsonSerializable
 {
@@ -48,11 +48,6 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * @var int
      */
-    private $forEveryone;
-
-    /**
-     * @var int
-     */
     private $adminId;
 
 
@@ -71,28 +66,26 @@ class Alert extends Model implements Entity, JsonSerializable
     public function insert() : int {
         $database = $this->getDatabase();
         $request = $database->prepare('
-            INSERT INTO ecran_alert (author, content, creation_date, expiration_date, for_everyone, administration_id) 
-            VALUES (:author, :content, :creation_date, :expirationDate, :for_everyone, :administrationId)');
+            INSERT INTO ecran_alert (author, content, creation_date, expiration_date) 
+            VALUES (:author, :content, :creation_date, :expirationDate)');
         $request->bindValue(':author', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':creation_date', $this->getCreationDate(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
-        $request->bindValue(':for_everyone', $this->isForEveryone(), PDO::PARAM_INT);
-        $request->bindValue(':administrationId', $this->getAdminId(), PDO::PARAM_INT);
 
         $request->execute();
 
         $id = $database->lastInsertId();
 
-        foreach ($this->getCodes() as $code) {
-            if ($code !== 'all' || $code !== 0) {
-                $request = $database->prepare('INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:idAlert, :idCodeAde)');
-                $request->bindParam(':idAlert', $id, PDO::PARAM_INT);
-                $request->bindValue(':idCodeAde', $code->getId(), PDO::PARAM_INT);
+		foreach ( $this->getCodes() as $code ) {
+			if ( $code->getCode() != 'all' && $code->getCode() != 0 ) {
+				$request = $database->prepare( 'INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:idAlert, :idCodeAde)' );
+				$request->bindParam( ':idAlert', $id, PDO::PARAM_INT );
+				$request->bindValue( ':idCodeAde', $code->getId(), PDO::PARAM_INT );
 
-                $request->execute();
-            }
-        }
+				$request->execute();
+			}
+		}
 
         return $id;
     }
@@ -112,11 +105,10 @@ class Alert extends Model implements Entity, JsonSerializable
      */
     public function update() : int {
         $database = $this->getDatabase();
-        $request = $database->prepare('UPDATE ecran_alert SET content = :content, expiration_date = :expirationDate, for_everyone = :for_everyone WHERE id = :id');
+        $request = $database->prepare('UPDATE ecran_alert SET content = :content, expiration_date = :expirationDate WHERE id = :id');
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
-        $request->bindValue(':for_everyone', $this->isForEveryone(), PDO::PARAM_INT);
 
         $request->execute();
 
@@ -128,15 +120,17 @@ class Alert extends Model implements Entity, JsonSerializable
 
         $request->execute();
 
-        foreach ($this->getCodes() as $code) {
-            if ($code->getCode() !== 'all' || $code->getCode() !== 0) {
-                $request = $database->prepare('INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:alertId, :codeAdeId)');
-                $request->bindValue(':alertId', $this->getId(), PDO::PARAM_INT);
-                $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
+		foreach ( $this->getCodes() as $code ) {
+			if ( $code->getCode() != 'all' && $code->getCode() != 0 ) {
+				$request = $database->prepare( 'INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:alertId, :codeAdeId)' );
+				$request->bindValue( ':alertId', $this->getId(), PDO::PARAM_INT );
+				$request->bindValue( ':codeAdeId', $code->getId(), PDO::PARAM_INT );
 
-                $request->execute();
-            }
-        }
+				$request->execute();
+
+				$count += $request->rowCount();
+			}
+		}
 
         return $count;
     }
@@ -298,26 +292,6 @@ class Alert extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * Récupère les alertes destinées à tous les utilisateurs.
-     *
-     * Cette méthode exécute une requête préparée pour sélectionner les alertes
-     * qui sont marquées comme destinées à tout le monde ('for_everyone = 1').
-     * Les résultats sont triés par date d'expiration dans l'ordre croissant
-     * et limité à 50 alertes.
-     *
-     * @return array Retourne un tableau d'entités alertes ou un tableau vide si aucune alerte n'est trouvée.
-     *
-     * @version 1.0
-     * @date 2024-10-15
-     */
-    public function getForEveryone() : array {
-        $request = $this->getDatabase()->prepare('SELECT ecran_alert.id, content, creation_date, expiration_date, author, administration_id FROM ecran_alert WHERE for_everyone = 1 ORDER BY expiration_date LIMIT 50');
-        $request->execute();
-
-        return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
-    }
-
-    /**
      * Récupère les alertes liées à un code spécifique.
      *
      * Cette méthode exécute une requête préparée pour sélectionner les alertes
@@ -353,7 +327,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function getAdminWebsiteAlert() : array {
-        $request = $this->getDatabase()->prepare('SELECT id, content, author, expiration_date, creation_date, for_everyone FROM ecran_alert WHERE administration_id IS NOT NULL LIMIT 500');
+        $request = $this->getDatabase()->prepare('SELECT id, content, author, expiration_date, creation_date FROM ecran_alert WHERE administration_id IS NOT NULL LIMIT 500');
         $request->execute();
 
         return $this->setEntityList($request->fetchAll());
@@ -461,32 +435,11 @@ class Alert extends Model implements Entity, JsonSerializable
             $entity->setAuthor($author->get($data['author']));
         }
 
-
-        if ($adminSite) {
-            $entity->setAdminId($data['id']);
-            $entity->setForEveryone(1);
-        } else {
-            $entity->setAdminId($data['administration_id']);
-
-            $codes = array();
-
-            if (sizeof($codes) <= 0) {
-                if ($entity->isForEveryone()) {
-                    $codeAde->setTitle('Tous');
-                    $codeAde->setCode('all');
-                    $codes[] = $codeAde;
-                } else {
-                    $codeAde->setTitle('Aucun');
-                    $codeAde->setCode('0');
-                    $codes[] = $codeAde;
-                }
-            }
-
-            foreach ($codeAde->getByAlert($data['id']) as $code) {
-                $codes[] = $code;
-            }
-            $entity->setCodes($codes);
+		$codes = array();
+        foreach ( $codeAde->getByAlert( $data['id'] ) as $code ) {
+            $codes[] = $code;
         }
+        $entity->setCodes($codes);
 
         return $entity;
     }
@@ -576,23 +529,9 @@ class Alert extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function isForEveryone() : int {
-        return $this->forEveryone;
-    }
-
-    /**
-     * @param int $forEveryone
-     */
-    public function setForEveryone($forEveryone) {
-        $this->forEveryone = $forEveryone;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAdminId() : int {
+    public function getAdminId() : ?int {
         return $this->adminId;
     }
 
@@ -603,6 +542,19 @@ class Alert extends Model implements Entity, JsonSerializable
         $this->adminId = $adminId;
     }
 
+    /**
+     * Sérialise l'objet en un tableau associatif pour le format JSON.
+     *
+     * Implémente l'interface `JsonSerializable` afin de permettre la conversion
+     * de l'objet en une structure de données JSON. Cette méthode utilise
+     * `get_object_vars` pour récupérer les propriétés accessibles de l'objet
+     * sous forme de tableau associatif.
+     *
+     * @return array Tableau associatif représentant les propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-10-16
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }

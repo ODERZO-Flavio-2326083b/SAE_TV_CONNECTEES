@@ -1,16 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Views\CodeAdeView;
+use Exception;
+use models\CodeAde;
+use models\Department;
+use views\CodeAdeView;
 
 /**
  * Class CodeAdeController
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
- * @package Controllers
+ * @package controllers
  */
 class CodeAdeController extends Controller
 {
@@ -25,7 +27,7 @@ class CodeAdeController extends Controller
      * Vue de CodeAdeController
      * @var CodeAdeView
      */
-    private $_view;
+    private $view;
 
     /**
      * Constructeur de la classe.
@@ -38,7 +40,7 @@ class CodeAdeController extends Controller
      */
     public function __construct() {
         $this->model = new CodeAde();
-        $this->_view = new CodeAdeView();
+        $this->view = new CodeAdeView();
     }
 
     /**
@@ -51,10 +53,20 @@ class CodeAdeController extends Controller
      *
      * @return string Formulaire de création de Code
      *
+     * @throws Exception
      * @version 1.0
      * @date 2024-09-16
      */
     public function insert() : string {
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
+
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
@@ -63,6 +75,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
@@ -72,20 +85,21 @@ class CodeAdeController extends Controller
                 $this->model->setTitle($title);
                 $this->model->setCode($code);
                 $this->model->setType($type);
+                $this->model->setDeptId($dept);
 
                 // Vérifie les doublons et insère le code
                 if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
-                    $this->_view->successCreation();
+                    $this->view->successCreation();
                     $this->addFile($code);
-                    $this->_view->refreshPage();
+                    $this->view->refreshPage();
                 } else {
-                    $this->_view->displayErrorDoubleCode();
+                    $this->view->displayErrorDoubleCode();
                 }
             } else {
-                $this->_view->errorCreation();
+                $this->view->errorCreation();
             }
         }
-        return $this->_view->createForm();
+        return $this->view->createForm($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -106,8 +120,17 @@ class CodeAdeController extends Controller
     public function modify(): string {
         $id = $_GET['id'];
         if (is_numeric($id) && !$this->model->get($id)) {
-            return $this->_view->errorNobody();
+            return $this->view->errorNobody();
         }
+
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
 
         $result = $codeAde = $this->model->get($id);
 
@@ -118,6 +141,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
@@ -127,21 +151,22 @@ class CodeAdeController extends Controller
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
+                $codeAde->setDeptId($dept);
 
                 // Vérifie les doublons et met à jour le code
-                if (!$this->checkDuplicateCode($codeAde) && $codeAde->update()) {
+                if ($codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
                     }
-                    $this->_view->successModification();
+                    $this->view->successModification();
                 } else {
-                    $this->_view->displayErrorDoubleCode();
+                    $this->view->displayErrorDoubleCode();
                 }
             } else {
-                $this->_view->errorModification();
+                $this->view->errorModification();
             }
         }
-        return $this->_view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode());
+        return $this->view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode(), $allDepts, $isAdmin, $codeAde->getDeptId());
     }
 
     /**
@@ -161,7 +186,7 @@ class CodeAdeController extends Controller
         $groups = $this->model->getAllFromType('group');
         $halfGroups = $this->model->getAllFromType('halfGroup');
 
-        return $this->_view->displayAllCode($years, $groups, $halfGroups);
+        return $this->view->displayAllCode($years, $groups, $halfGroups);
     }
 
     /**
@@ -185,7 +210,7 @@ class CodeAdeController extends Controller
                 foreach ($checked_values as $id) {
                     $this->model = $this->model->get($id);
                     $this->model->delete();
-                    $this->_view->refreshPage();
+                    $this->view->refreshPage();
                 }
             }
         }

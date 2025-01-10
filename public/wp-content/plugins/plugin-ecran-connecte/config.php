@@ -1,12 +1,10 @@
 <?php
 
-use Controllers\AlertRestController;
-use Controllers\CodeAdeRestController;
-use Controllers\InformationRestController;
-use Controllers\ProfileRestController;
-use Models\Localisation;
+use controllers\rest\AlertRestController;
+use controllers\rest\CodeAdeRestController;
+use controllers\rest\InformationRestController;
+use controllers\rest\ProfileRestController;
 
-include_once __DIR__ . '/config-notifs.php';
 include_once 'vendor/R34ICS/R34ICS.php';
 include 'widgets/WidgetAlert.php';
 include 'widgets/WidgetWeather.php';
@@ -63,7 +61,6 @@ function loadScriptsEcran()
 
     // LIBRARY
     wp_enqueue_script('pdf-js', 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.2.228/build/pdf.min.js', array(), '', false);
-    wp_enqueue_script('onesignal-js', 'https://cdn.onesignal.com/sdks/OneSignalSDK.js', array(), '', false);
     wp_enqueue_script('plugin-jquerymin', TV_PLUG_PATH . 'public/js/vendor/jquery.min.js', array('jquery'), '', true);
     wp_enqueue_script('plugin-JqueryEzMin', TV_PLUG_PATH . 'public/js/vendor/jquery.easing.min.js', array('jquery'), '', true);
     wp_enqueue_script('plugin-jqueryEzTic', TV_PLUG_PATH . 'public/js/vendor/jquery.easy-ticker.js', array('jquery'), '', true);
@@ -84,8 +81,6 @@ function loadScriptsEcran()
     wp_enqueue_script('addCodeTv_script_ecran', TV_PLUG_PATH . 'public/js/addOrDeleteTvCode.js', array('jquery'), '1.0', true);
     wp_enqueue_script('alertTicker_script_ecran', TV_PLUG_PATH . 'public/js/alertTicker.js', array('jquery'), '', true);
     wp_enqueue_script('confPass_script_ecran', TV_PLUG_PATH . 'public/js/confirmPass.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('oneSignal_script_ecran', TV_PLUG_PATH . 'public/js/oneSignalPush.js', array('jquery'), '', true);
-    wp_add_inline_script('oneSignal_script_ecran', 'const ONESIGNAL_APP_ID = \'' . ONESIGNAL_APP_ID . '\';', 'before');
     wp_enqueue_script('scroll_script_ecran', TV_PLUG_PATH . 'public/js/scroll.js', array('plugin-jquerymin', 'plugin-jqueryEzTic', 'plugin-jqueryEzMinTic', 'plugin-JqueryEzMin'), '', true);
     wp_enqueue_script('search_script_ecran', TV_PLUG_PATH . 'public/js/search.js', array('jquery'), '1.0', true);
     wp_enqueue_script('slideshow_script_ecran', TV_PLUG_PATH . 'public/js/slideshow.js', array('jquery'), '2.0', true);
@@ -105,6 +100,9 @@ function installDatabaseEcran()
 {
     global $wpdb;
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	if (get_option('init_database') == 1) {
+		return;
+	}
 
     $table_name = 'ecran_information';
 
@@ -135,7 +133,6 @@ function installDatabaseEcran()
 			creation_date datetime DEFAULT NOW() NOT NULL,
 			expiration_date datetime NOT NULL,
 			author BIGINT(20) UNSIGNED NOT NULL,
-			for_everyone INT(1) DEFAULT '1' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			PRIMARY KEY (id),
 			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE
@@ -150,7 +147,9 @@ function installDatabaseEcran()
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
 			code VARCHAR (20) NOT NULL,
-			PRIMARY KEY (id)
+			dept_id INT(10),
+			PRIMARY KEY (id),
+			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
 			) $charset_collate;";
 
     dbDelta($query);
@@ -230,52 +229,174 @@ function installDatabaseEcran()
             ) $charset_collate;";
 
     dbDelta($sql);
+
+	update_option('init_database', 1);
 }
 
 add_action('plugins_loaded', 'installDatabaseEcran');
 
 
-/*
- * CREATE ROLES
+/**
+ * Retirer les roles par défaut de WordPress
+ *
+ * @return void
  */
+function removeBuiltInRoles(): void {
+	if (get_option('built_in_roles_removed') == 1) {
+		return;
+	}
 
-$result = add_role(
-    'secretaire',
-    __('Secretaire'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+	global $wp_roles;
+	$roles_to_remove = array('subscriber', 'contributor', 'author', 'editor');
+	foreach ($roles_to_remove as $role) {
+		if (isset($wp_roles->roles[$role])) {
+			$wp_roles->remove_role($role);
+		}
+	}
+	update_option('built_in_roles_removed', 1);
+}
 
-$result = add_role(
-    'television',
-    __('Television'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+add_action('init', 'removeBuiltInRoles');
 
-$result = add_role(
-    'technicien',
-    __('Technicien'),
-    array(
-        'read' => true,  // true allows this capability
-        'edit_posts' => true,
-        'delete_posts' => false, // Use false to explicitly deny
-    )
-);
+/**
+ * Ajoute les nouveaux roles et permissions à WordPress
+ *
+ * @return void
+ */
+function addNewRoles() {
 
-$result = add_role(
-    'informationposter',
-    __('informationPoster'),
-    array(
-        'read' => true,  // true allows this capability
-    )
-);
+	$allCaps = [
+		// Permissions liées aux alertes
+		'alert_header_menu_access',  // Accès au menu des alertes dans l'interface
+		'add_alert',                 // Permission d'ajouter de nouvelles alertes
+		'view_alerts',               // Permission de voir toutes les alertes
+		'edit_alert',                // Permission de modifier les alertes existantes
+
+		// Permissions liées aux utilisateurs
+		'user_header_menu_access',   // Accès au menu des utilisateurs dans
+									 // l'interface
+		'subadmin_access',           // Accès aux sous-administrateurs
+		'add_user',                  // Permission d'ajouter de nouveaux utilisateurs
+		'view_users',                // Permission de voir la liste complète des
+									 // utilisateurs
+		'edit_user',                 // Permission de modifier les informations des
+									 // utilisateurs
+
+		// Permissions liées aux informations
+		'information_header_menu_access',  // Accès au menu des informations dans
+										   // l'interface
+		'add_information',                 // Permission d'ajouter de nouvelles
+                                           // informations
+		'view_informations',               // Permission de consulter toutes les
+                                           // informations
+		'edit_information',                // Permission de modifier les
+                                           // informations existantes
+
+		// Permissions liées aux départements
+		'department_header_menu_access',   // Accès au menu des départements dans
+                                           // l'interface
+		'add_department',                  // Permission d'ajouter de nouveaux
+                                           // départements
+		'view_departments',                // Permission de consulter la
+                                           // liste des départements
+		'edit_department',                 // Permission de modifier les départements
+                                           // existants
+
+		// Permissions liées aux codes ADE
+		'ade_code_header_menu_access',     // Accès au menu des codes ADE dans
+                                           // l'interface
+		'add_ade_code',                    // Permission d'ajouter de nouveaux
+                                           // codes ADE
+		'view_ade_codes',                  // Permission de consulter la liste des
+                                           // codes ADE
+		'edit_ade_code',                   // Permission de modifier les codes ADE
+                                           // existants
+
+		// Permissions diverses
+		'admin_capability',                // Permission d'accès complet pour
+                                           // les administrateurs
+		'edit_css',                        // Permission de modifier le CSS du site
+        'schedule_access'                  // Permission d'accès à l'emploi du temps
+	];
+
+	$admin = get_role('administrator');
+	foreach ( $allCaps as $cap ) {
+		$admin->add_cap($cap);
+	}
+
+	add_role(
+		'secretaire',
+		__('Secretaire'),
+		array()
+	);
+
+	add_role(
+		'television',
+		__('Television'),
+		array()
+	);
+
+	add_role(
+		'technicien',
+		__('Agent d\'entretien'),
+		array()
+	);
+
+	add_role(
+		'subadmin',
+		__('Sous-administrateur'),
+		// Un sous-admin peut faire tout ce qu'un administrateur peut faire sur le
+		// site, sauf accéder aux sous admins
+		array()
+	);
+
+    $secretaire = get_role('secretaire');
+    $secretaireCaps = [
+        'information_header_menu_access',
+        'add_information',
+        'view_informations',
+        'edit_information',
+        'alert_header_menu_access',
+        'add_alert',
+        'view_alerts',
+        'edit_alert',
+        'user_header_menu_access',
+        'add_user',
+        'view_users',
+        'edit_user',
+    ];
+
+    foreach ( $secretaireCaps as $cap ) {
+        $secretaire->add_cap($cap);
+    }
+
+    $subadmin = get_role('subadmin');
+    $subadminCaps = array_diff($allCaps, array('subadmin_access'));
+
+    foreach ( $subadminCaps as $cap ) {
+        $subadmin->add_cap($cap);
+    }
+
+    $technicien = get_role('technicien');
+    $technicienCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $technicienCaps as $cap ) {
+        $technicien->add_cap($cap);
+    }
+
+    $television = get_role('television');
+    $televisionCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $televisionCaps as $cap ) {
+        $television->add_cap($cap);
+    }
+}
+
+add_action('init', 'addNewRoles');
 
 /*
  * CREATE REST API ENDPOINTS

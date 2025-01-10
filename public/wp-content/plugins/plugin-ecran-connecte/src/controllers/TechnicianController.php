@@ -1,18 +1,18 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\CodeAde;
-use Models\Department;
-use Models\User;
-use Views\TechnicianView;
+use models\CodeAde;
+use models\Department;
+use models\User;
+use views\TechnicianView;
 
 /**
  * Class TechnicianController
  *
  * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de l'emploi du temps)
  *
- * @package Controllers
+ * @package controllers
  */
 class TechnicianController extends UserController implements Schedule
 {
@@ -69,7 +69,7 @@ class TechnicianController extends UserController implements Schedule
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 

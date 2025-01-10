@@ -1,21 +1,21 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
-use Models\Alert;
-use Models\CodeAde;
-use Models\Department;
-use Models\Information;
-use Models\User;
+use models\Alert;
+use models\CodeAde;
+use models\Department;
+use models\Information;
+use models\User;
 use R34ICS;
-use Views\UserView;
+use views\UserView;
 
 /**
  * Class UserController
  *
  * Gère tous les utilisateurs (Création, mise à jour, suppression)
  *
- * @package Controllers
+ * @package controllers
  */
 class UserController extends Controller
 {
@@ -74,6 +74,9 @@ class UserController extends Controller
      * @param int $id L'ID de l'utilisateur à supprimer.
      *
      * @return void
+     *
+     * @version 1.0
+     * @date 2à24-10-16
      */
     public function delete($id) {
         $user = $this->model->get($id);
@@ -389,6 +392,18 @@ class UserController extends Controller
         return $this->_view->displayModifyMyCodes($this->model->getCodes(), $years, $groups, $halfGroups);
     }
 
+    /**
+     * Affiche la liste de tous les départements sous forme d'options.
+     *
+     * Cette méthode récupère tous les départements à partir du modèle `Department`,
+     * puis les transmet à la vue pour construire une liste d'options,
+     * généralement utilisée dans un formulaire.
+     *
+     * @return string Retourne le HTML généré par la vue pour les options des départements.
+     *
+     * @version 1.0
+     * @date 2024-10-16
+     */
     public function displayAllDepartement() {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();

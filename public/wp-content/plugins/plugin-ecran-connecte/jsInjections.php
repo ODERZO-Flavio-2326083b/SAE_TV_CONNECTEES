@@ -1,6 +1,10 @@
 <?php
 
-use Models\Localisation;
+use models\CodeAde;
+use models\Department;
+use models\Localisation;
+use views\AlertView;
+use views\TelevisionView;
 
 /**
  * Injecter les valeurs de localisation et de requête AJAX au
@@ -92,5 +96,50 @@ function loadLocAjaxIfUserHasNoLoc(){
 add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
 
 
+/**
+ * Envoie le code HTML du sélecteur de code ADE pour la modification de
+ * compte télévision.
+ *
+ * @return void
+ */
+function injectAllCodesOnTvEdit() {
+	$codeAde = new CodeAde();
+	$deptModel = new Department();
+
+	$years = $codeAde->getAllFromType('year');
+	$groups = $codeAde->getAllFromType('group');
+	$halfGroups = $codeAde->getAllFromType('halfGroup');
+
+	$allDepts = $deptModel->getAllDepts();
+
+	wp_localize_script('addCodeTv_script_ecran', 'codeHTML', array(
+		'tv' => TelevisionView::buildSelectCode($years, $groups, $halfGroups, $allDepts)
+	));
+}
+
+add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
+
+/**
+ * Envoie le code HTML du sélecteur de code ADE pour
+ * la modification d'alertes.
+ *
+ * @return void
+ */
+function injectAllCodesOnAlertEdit() {
+	$codeAde = new CodeAde();
+	$deptModel = new Department();
+
+	$years = $codeAde->getAllFromType('year');
+	$groups = $codeAde->getAllFromType('group');
+	$halfGroups = $codeAde->getAllFromType('halfGroup');
+
+	$allDepts = $deptModel->getAllDepts();
+
+	wp_localize_script('addCodeAlert_script_ecran', 'codeHTML', array(
+		'alert' => AlertView::buildSelectCode($years, $groups, $halfGroups, $allDepts)
+	));
+}
+
+add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 

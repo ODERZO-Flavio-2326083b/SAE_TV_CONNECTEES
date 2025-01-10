@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace models;
 
 use JsonSerializable;
 use PDO;
@@ -10,7 +10,7 @@ use PDO;
  *
  * Information entity
  *
- * @package Models
+ * @package models
  */
 class Information extends Model implements Entity, JsonSerializable
 {
@@ -83,7 +83,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request->bindValue(':creationDate', $this->getCreationDate(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':type', $this->getType(), PDO::PARAM_STR);
-        $request->bindValue(':userId', $this->getAuthor(), PDO::PARAM_INT);
+        $request->bindValue(':userId', $this->getAuthor()->getId(), PDO::PARAM_INT);
         $request->bindValue(':administration_id', $this->getAdminId(), PDO::PARAM_INT);
         $request->bindValue(':department_id', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->execute();
@@ -104,11 +104,17 @@ class Information extends Model implements Entity, JsonSerializable
      * @date 2024-10-15
      */
     public function update() : int {
-        $request = $this->getDatabase()->prepare("UPDATE ecran_information SET title = :title, content = :content, expiration_date = :expirationDate WHERE id = :id");
+        $request = $this->getDatabase()->prepare("UPDATE ecran_information 
+														SET title = :title, 
+														    content = :content, 
+														    expiration_date = :expirationDate,
+														    department_id = :deptId
+														WHERE id = :id");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+		$request->bindValue(':deptId', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->execute();
         return $request->rowCount();
     }
@@ -406,9 +412,9 @@ class Information extends Model implements Entity, JsonSerializable
 
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId() : int {
+    public function getId() : ?int {
         return $this->id;
     }
 
@@ -506,7 +512,7 @@ class Information extends Model implements Entity, JsonSerializable
     /**
      * @return int
      */
-    public function getAdminId() : int {
+    public function getAdminId() : null|int {
         return $this->adminId;
     }
 
@@ -531,7 +537,23 @@ class Information extends Model implements Entity, JsonSerializable
         $this->idDepartment = $idDepartment;
     }
 
+    /**
+     * Sérialise l'objet en tableau associatif pour JSON.
+     *
+     * Cette méthode convertit l'objet actuel en un tableau associatif
+     * contenant ses propriétés publiques et protégées. Cela permet une
+     * sérialisation facile de l'objet en JSON, facilitant son export ou
+     * son stockage.
+     *
+     * @return array Un tableau associatif contenant les propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-01-07
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }
+
+
+
 }
