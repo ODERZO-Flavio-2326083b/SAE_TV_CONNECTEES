@@ -31,8 +31,8 @@ class TechnicianView extends UserView
 
     public function displayFormTechnician(array $dept, int $currDept, bool $isAdmin): string {
         return '
-        <h2>Compte technicien</h2>
-        <p class="lead">Pour créer des techniciens, remplissez ce formulaire avec les valeurs demandées.</p>
+        <h2>Compte agent d\'entretien</h2>
+        <p class="lead">Pour créer des agents d\'entretien, remplissez ce formulaire avec les valeurs demandées.</p>
         ' . $this->displayBaseForm('Tech', $dept, $isAdmin, $currDept);
     }
 
@@ -55,7 +55,7 @@ class TechnicianView extends UserView
      * @date 2024-10-15
      */
     public function displayAllTechnicians(array $users, array $userDeptList): string {
-        $title = 'Techniciens';
+        $title = 'Agent d\'entretien';
         $name = 'Tech';
         $header = ['Login', 'Département'];
 

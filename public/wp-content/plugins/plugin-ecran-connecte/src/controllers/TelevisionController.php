@@ -22,21 +22,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    public $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    public $view;
-
-    /**
-     * Contrôleur InformationController permettant d'utiliser les informations vidéos
-     * @var InformationController
-     */
-    public $informationController;
-
+    private TelevisionView $view;
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -54,7 +47,6 @@ class TelevisionController extends UserController implements Schedule
         parent::__construct();
         $this->model = new User();
         $this->view = new TelevisionView();
-        $this->informationController = new InformationController();
     }
 
     /**
@@ -163,6 +155,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -191,7 +184,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -222,7 +217,6 @@ class TelevisionController extends UserController implements Schedule
         return $this->view->displayAllTv($users, $userDeptList);
     }
 
-
     /**
      * Affiche l'emploi du temps de l'utilisateur courant.
      *
@@ -248,8 +242,9 @@ class TelevisionController extends UserController implements Schedule
         $current_user = wp_get_current_user();
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];
-        $string = "";
 
+
+        $string = "";
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">
@@ -281,11 +276,8 @@ class TelevisionController extends UserController implements Schedule
             }
         } else {
             if (!empty($user->getCodes()[0])) {
-                $this->informationController->displayVideo();
-
                 $string .= $this->displaySchedule($user->getCodes()[0]->getCode());
             } else {
-                $this->informationController->displayVideo();
                 $string .= '<p>Vous n\'avez pas cours</p>';
             }
         }

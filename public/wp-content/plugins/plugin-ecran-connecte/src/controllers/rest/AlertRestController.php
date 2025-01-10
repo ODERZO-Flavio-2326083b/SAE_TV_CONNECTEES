@@ -409,13 +409,10 @@ class AlertRestController extends WP_REST_Controller
     private function find_ade_codes($alert, $codes) {
         // Trouver les codes ADE
         $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
         $ade_codes = array();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } elseif ($code != 0) {
+            if ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {

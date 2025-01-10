@@ -1,6 +1,6 @@
 <?php
 
-use Models\Department;
+use models\Department;
 
 include_once 'inc/customizer/custom_colors.php';
 include_once 'inc/customizer/custom_sidebar.php';
@@ -26,8 +26,7 @@ add_action('get_header', 'wp_maintenance_mode');
 
 function load_dynamic_css() {
 
-	$departement = "default";
-    if ($isAdmin = in_array("administrator", wp_get_current_user()->roles)){
+    if (in_array("administrator", wp_get_current_user()->roles)){
         $departement = "default";
     }
     elseif(!is_user_logged_in()){
@@ -35,14 +34,17 @@ function load_dynamic_css() {
     }
     else{
         $departmentModel = new Department();
-        $departementActuel = $departmentModel->getUserDepartment(get_current_user_id());
-        $departement = $departementActuel->getName();
-
-
+        if($departmentModel->getUserDepartment(get_current_user_id())) {
+            $departementActuel = $departmentModel->getUserDepartment(get_current_user_id());
+            $departement = $departementActuel->getName();
+        }
+        else{$departement = "default";}
     }
 
-    if(file_exists(get_template_directory_uri() . "/assets/css/global/global-".$departement.".css")){
+
+    if(file_exists( "wp-content/themes/theme-ecran-connecte/assets/css/global/global-".$departement.".css")){
         wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-".$departement.".css" );
+
     }
     else{
         wp_enqueue_style('custom_ecran_theme', get_template_directory_uri() . "/assets/css/global/global-default.css" );
@@ -133,7 +135,7 @@ function my_login_logo_url_title()
 {
     return get_bloginfo('name');
 }
-add_filter('login_headertext', 'my_login_logo_url_title');
+add_filter('login_headertitle', 'my_login_logo_url_title');
 
 // Register a new navigation menu
 function add_Main_Nav()

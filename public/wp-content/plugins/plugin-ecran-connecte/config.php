@@ -130,7 +130,6 @@ function installDatabaseEcran()
 			creation_date datetime DEFAULT NOW() NOT NULL,
 			expiration_date datetime NOT NULL,
 			author BIGINT(20) UNSIGNED NOT NULL,
-			for_everyone INT(1) DEFAULT '1' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			PRIMARY KEY (id),
 			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE
@@ -145,7 +144,9 @@ function installDatabaseEcran()
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
 			code VARCHAR (20) NOT NULL,
-			PRIMARY KEY (id)
+			dept_id INT(10),
+			PRIMARY KEY (id),
+			FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
 			) $charset_collate;";
 
     dbDelta($query);
