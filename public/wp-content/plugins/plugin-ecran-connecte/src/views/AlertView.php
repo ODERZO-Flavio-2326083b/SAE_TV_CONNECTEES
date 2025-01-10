@@ -1,5 +1,5 @@
 <?php
-// [TODO] Missing file doc comment
+// TODO : Missing file doc comment
 namespace Views;
 
 use Models\Alert;
@@ -11,7 +11,7 @@ use Models\CodeAde;
  * Gère toutes les vues liées aux alertes (formulaires, tableaux, messages).
  *
  * @package Views
- */ //[TODO] Missing @category, @author, @license, @link tags in class comment
+ */ // TODO : Missing @category, @author, @license, @link tags in class comment
 class AlertView extends View
 {
 

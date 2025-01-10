@@ -1,13 +1,13 @@
 <?php
-// [TODO] Missing file doc comment
+// TODO : Missing file doc comment
 namespace Views;
 
 use Models\Department;
 use Views\View;
 
-class CSSView extends View // [TODO] Missing doc comment for class CSSView
+class CSSView extends View // TODO : Missing doc comment for class CSSView
 {
-    public function displayCssCustomizer($listDepName) // [TODO] Missing doc comment for function displayCssCustomizer()
+    public function displayCssCustomizer($listDepName) // TODO : Missing doc comment for function displayCssCustomizer()
     {
         echo "<h1>Personnalisation du CSS</h1>";
         echo "<form method=\"POST\">
@@ -75,7 +75,7 @@ class CSSView extends View // [TODO] Missing doc comment for class CSSView
 ";
     }
 
-    public function fomulaireDep($listDepName) // [TODO] Missing doc comment for function formulaireDep()
+    public function fomulaireDep($listDepName) // TODO : Missing doc comment for function formulaireDep()
     {
         foreach ($listDepName as $dep) {
             echo "<option value=\"$dep\">$dep</option>";
