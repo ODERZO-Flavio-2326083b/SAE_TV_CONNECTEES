@@ -105,26 +105,29 @@ add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
 function loadInformationDurations() {
     $informationModel = new Information();
     $deptModel = new Department();
-    $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
-                                   ->getIdDepartment();
 
-    $informations = $informationModel->getInformationsByDeptId($currentUserDeptId,0, 1000);
+    if(is_user_logged_in()) {
+        $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
+                                       ->getIdDepartment();
 
-    $videoDurations = array();
-    $otherDurations = array();
+        $informations = $informationModel->getInformationsByDeptId($currentUserDeptId,0, 1000);
 
-    foreach ($informations as $information) {
-        if ($information->getType() === 'video') {
-            $videoDurations[] = $information->getDuration();
-        } else {
-            $otherDurations[] = $information->getDuration();
+        $videoDurations = array();
+        $otherDurations = array();
+
+        foreach ($informations as $information) {
+            if ($information->getType() === 'video') {
+                $videoDurations[] = $information->getDuration();
+            } else {
+                $otherDurations[] = $information->getDuration();
+            }
         }
-    }
 
-    wp_localize_script( 'slideshow_script_ecran', 'DURATIONS', array(
-        'videoDurations' => $videoDurations,
-        'otherDurations' => $otherDurations
-    ));
+        wp_localize_script( 'slideshow_script_ecran', 'DURATIONS', array(
+            'videoDurations' => $videoDurations,
+            'otherDurations' => $otherDurations
+        ));
+    }
 }
 
 add_action('wp_enqueue_scripts', 'loadInformationDurations');
