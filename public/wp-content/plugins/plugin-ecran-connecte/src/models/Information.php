@@ -128,15 +128,17 @@ class Information extends Model implements Entity, JsonSerializable
      */
     public function update() : int {
         $request = $this->getDatabase()->prepare("UPDATE ecran_information 
-                                                SET title = :title, 
-                                                    content = :content, 
-                                                    expiration_date = :expirationDate, 
-                                                    duration = :duration
-                                                WHERE id = :id");
+                                                    SET title = :title, 
+                                                        content = :content, 
+                                                        expiration_date = :expirationDate,
+                                                        department_id = :deptId,
+                                                        duration = :duration
+                                                    WHERE id = :id");
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
         $request->bindValue(':expirationDate', $this->getExpirationDate(), PDO::PARAM_STR);
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+		$request->bindValue(':deptId', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->bindValue(':duration', $this->getDuration(), PDO::PARAM_INT);
         $request->execute();
         return $request->rowCount();
@@ -618,6 +620,19 @@ class Information extends Model implements Entity, JsonSerializable
         $this->duration = $duration;
     }
 
+    /**
+     * Sérialise l'objet en tableau associatif pour JSON.
+     *
+     * Cette méthode convertit l'objet actuel en un tableau associatif
+     * contenant ses propriétés publiques et protégées. Cela permet une
+     * sérialisation facile de l'objet en JSON, facilitant son export ou
+     * son stockage.
+     *
+     * @return array Un tableau associatif contenant les propriétés de l'objet.
+     *
+     * @version 1.0
+     * @date 2024-01-07
+     */
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }

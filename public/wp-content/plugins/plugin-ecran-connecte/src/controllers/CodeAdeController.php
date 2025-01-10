@@ -2,7 +2,9 @@
 
 namespace controllers;
 
+use Exception;
 use models\CodeAde;
+use models\Department;
 use views\CodeAdeView;
 
 /**
@@ -51,10 +53,20 @@ class CodeAdeController extends Controller
      *
      * @return string Formulaire de création de Code
      *
+     * @throws Exception
      * @version 1.0
      * @date 2024-09-16
      */
     public function insert() : string {
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
+
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
@@ -63,6 +75,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
@@ -72,6 +85,7 @@ class CodeAdeController extends Controller
                 $this->model->setTitle($title);
                 $this->model->setCode($code);
                 $this->model->setType($type);
+                $this->model->setDeptId($dept);
 
                 // Vérifie les doublons et insère le code
                 if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
@@ -85,7 +99,7 @@ class CodeAdeController extends Controller
                 $this->view->errorCreation();
             }
         }
-        return $this->view->createForm();
+        return $this->view->createForm($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -109,6 +123,15 @@ class CodeAdeController extends Controller
             return $this->view->errorNobody();
         }
 
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = in_array("administrator", $currentUser->roles);
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
+
         $result = $codeAde = $this->model->get($id);
 
         $submit = filter_input(INPUT_POST, 'submit');
@@ -118,6 +141,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
@@ -127,9 +151,10 @@ class CodeAdeController extends Controller
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
+                $codeAde->setDeptId($dept);
 
                 // Vérifie les doublons et met à jour le code
-                if (!$this->checkDuplicateCode($codeAde) && $codeAde->update()) {
+                if ($codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
                     }
@@ -141,7 +166,7 @@ class CodeAdeController extends Controller
                 $this->view->errorModification();
             }
         }
-        return $this->view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode());
+        return $this->view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode(), $allDepts, $isAdmin, $codeAde->getDeptId());
     }
 
     /**

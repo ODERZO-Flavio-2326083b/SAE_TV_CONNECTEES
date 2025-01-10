@@ -22,14 +22,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $view;
+    private TelevisionView $view;
 
     /**
      * Contrôleur InformationController permettant d'utiliser les informations vidéos
@@ -163,6 +163,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -191,7 +192,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -221,7 +224,6 @@ class TelevisionController extends UserController implements Schedule
 
         return $this->view->displayAllTv($users, $userDeptList);
     }
-
 
     /**
      * Affiche l'emploi du temps de l'utilisateur courant.

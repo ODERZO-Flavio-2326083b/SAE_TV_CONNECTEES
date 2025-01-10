@@ -139,9 +139,9 @@ class UserView extends View
             <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
                 <h2 class="mb-3 bd-text-purple-bright">Les utilisateurs</h2>
                 <p class="lead">Vous pouvez créer ici les utilisateurs</p>
-                <p class="lead">Il y a plusieurs types d\'utilisateur : Les secrétaires, techniciens, télévisions.</p>
+                <p class="lead">Il y a plusieurs types d\'utilisateurs : Les secrétaires, agents d\'entretien, télévisions.</p>
                 <p class="lead">Les secrétaires peuvent poster des alertes et des informations. Ils peuvent aussi créer des utilisateurs.</p>
-                <p class="lead">Les techniciens ont accès aux emplois du temps des promotions.</p>
+                <p class="lead">Les agents d\'entretien ont accès aux emplois du temps des promotions.</p>
                 <p class="lead">Les télévisions sont les utilisateurs utilisés pour afficher ce site sur les téléviseurs. Les comptes télévisions peuvent afficher autant d\'emplois du temps que souhaité.</p>
             </div>
         </div>
@@ -251,7 +251,13 @@ class UserView extends View
     /**
      * Affiche un message pour sélectionner un emploi du temps
      *
+     * Cette méthode retourne un message demandant à l'utilisateur de choisir
+     * un emploi du temps à partir de la liste proposée.
+     *
      * @return string Le message à afficher
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displaySelectSchedule(): string {
         return '<p>Veuillez choisir un emploi du temps.</p>';
@@ -279,14 +285,25 @@ class UserView extends View
             </div>
             <div class="col-md-6 order-md-2 text-center text-md-left pr-md-5">
                 <h1 class="mb-3 bd-text-purple-bright">' . get_bloginfo("name") . '</h1>
-                <p class="lead">Bienvenue sur le site de l\'écran connecté !</p>
-                <p class="lead mb-4">Accédez à votre emploi du temps tant en recevant diverses informations de la part de votre département.</p>
+                <p class="lead">Bienvenue sur le site AMU des télévisions connectées !</p>
+                <p class="lead mb-4">Accédez à votre emploi du temps tant en recevant diverses informations, ou alertes de la part de votre département.</p>
             </div>
         </div>';
     }
 
     /**
      * Affiche un message pour la modification réussie du mot de passe
+     *
+     * Cette méthode génère un modal de succès pour informer l'utilisateur que
+     * la modification de son mot de passe a été effectuée avec succès.
+     *
+     * @return void
+     *
+     * Affiche un modal avec un message de confirmation indiquant que la modification
+     * du mot de passe a été réussie et redirige l'utilisateur vers la page d'accueil.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayModificationPassValidate(): void {
         $this->buildModal('Modification du mot de passe', '<div class="alert alert-success" role="alert">La modification à été réussie !</div>', home_url());
@@ -294,27 +311,59 @@ class UserView extends View
 
     /**
      * Affiche un message si le mot de passe est incorrect
+     *
+     * Cette méthode affiche un message d'erreur dans une fenêtre modale
+     * lorsque l'utilisateur entre un mot de passe incorrect.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayWrongPassword(): void {
-        $this->buildModal('Mot de passe incorrect', '<div class="alert alert-danger">Mauvais mot de passe</div>');
+        $this->buildModal('Mot de passe incorrect', '<div class="alert alert-danger">Mauvais mot de passe.</div>');
     }
 
     /**
      * Affiche un message si le mail a été envoyé
+     *
+     * Cette méthode affiche un message de succès dans une fenêtre modale
+     * lorsque le mail a été correctement envoyé à l'utilisateur avec un code de vérification.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayMailSend(): void {
-        $this->buildModal('Mail envoyé', '<div class="alert alert-success"> Un mail a été envoyé à votre adresse mail, merci de bien vouloir entrer le code reçu</div>');
+        $this->buildModal('Mail envoyé', '<div class="alert alert-success"> Un mail a été envoyé à votre adresse mail, merci de bien vouloir entrer le code reçu.</div>');
     }
 
     /**
      * Message pour prévenir qu'une inscription a échoué
+     *
+     * Cette méthode affiche un message d'erreur dans une fenêtre modale
+     * lorsque l'inscription d'un utilisateur échoue à cause d'une erreur dans les informations soumises.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayErrorCreation(): void {
-        $this->buildModal('Inscription échouée', '<div class="alert alert-danger">Il y a eu une erreur dans le formulaire, veuillez vérifier vos informations et réessayer</div>');
+        $this->buildModal('Inscription échouée', '<div class="alert alert-danger">Il y a eu une erreur dans le formulaire, veuillez vérifier vos informations et réessayer.</div>');
     }
 
     /**
      * Message pour prévenir qu'un login existe déjà
+     *
+     * Cette méthode affiche un message d'erreur dans une fenêtre modale
+     * lorsque le login soumis par un utilisateur est déjà utilisé par un autre compte.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayErrorLogin(): void {
         $this->buildModal('Inscription échouée', '<div class="alert alert-danger"> Le login est déjà utilisé ! </div>');
@@ -323,10 +372,16 @@ class UserView extends View
     /**
      * Affiche un message pour indiquer qu'il n'y a pas de cours aujourd'hui
      *
+     * Cette méthode retourne un message pour informer l'utilisateur qu'il n'y a pas de cours
+     * prévu pour la journée. Cela peut être utilisé dans un tableau de bord ou une interface de gestion.
+     *
      * @return string Le message à afficher
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function displayNoStudy(): string {
-        return '<p>Vous n\'avez pas cours!</p>';
+        return '<p>Vous n\'avez pas cours !</p>';
     }
 
     /**
@@ -347,20 +402,38 @@ class UserView extends View
         $current_user = wp_get_current_user();
         return '
         <h2>' . $current_user->user_login . '</h2>
-        <p>Vous êtes enregistré sans aucun emploi du temps, rendez-vous sur votre compte pour pouvoir vous attribuer un code afin d\'accéder à votre emploi du temps</p>';
+        <p>Vous êtes enregistré sans aucun emploi du temps, rendez-vous sur votre compte pour pouvoir vous attribuer un code afin d\'accéder à votre emploi du temps.</p>';
     }
 
     /**
      * Affiche un message de succès lors du changement de code
+     *
+     * Cette méthode génère un modal de succès qui informe l'utilisateur que
+     * le changement de groupe a bien été effectué et pris en compte.
+     *
+     * @return void
+     *
+     * Affiche un modal avec un message de confirmation sur la réussite de l'action.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function successMesageChangeCode(): void {
-        $this->buildModal('Modification validée', '<div class="alert alert-success"> Le changement de groupe a été pris en compte</div>');
+        $this->buildModal('Modification validée', '<div class="alert alert-success"> Le changement de groupe a été pris en compte.</div>');
     }
 
     /**
      * Affiche un message d'erreur lors du changement de code
+     *
+     * Cette méthode affiche un message d'erreur sous forme de modal lorsque le changement de code
+     * ou de groupe échoue. Elle informe l'utilisateur que la modification n'a pas été prise en compte.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function errorMesageChangeCode(): void {
-        $this->buildModal('Modification échouée', '<div class="alert alert-danger"> Le changement de groupe n\'a pas été pris en compte</div>');
+        $this->buildModal('Modification échouée', '<div class="alert alert-danger"> Le changement de groupe n\'a pas été pris en compte.</div>');
     }
 }
