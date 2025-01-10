@@ -25,7 +25,7 @@ class CodeAdeController extends Controller
      * Vue de CodeAdeController
      * @var CodeAdeView
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe.
@@ -38,7 +38,7 @@ class CodeAdeController extends Controller
      */
     public function __construct() {
         $this->model = new CodeAde();
-        $this->view = new CodeAdeView();
+        $this->_view = new CodeAdeView();
     }
 
     /**
@@ -75,17 +75,17 @@ class CodeAdeController extends Controller
 
                 // Vérifie les doublons et insère le code
                 if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
-                    $this->view->successCreation();
+                    $this->_view->successCreation();
                     $this->addFile($code);
-                    $this->view->refreshPage();
+                    $this->_view->refreshPage();
                 } else {
-                    $this->view->displayErrorDoubleCode();
+                    $this->_view->displayErrorDoubleCode();
                 }
             } else {
-                $this->view->errorCreation();
+                $this->_view->errorCreation();
             }
         }
-        return $this->view->createForm();
+        return $this->_view->createForm();
     }
 
     /**
@@ -106,7 +106,7 @@ class CodeAdeController extends Controller
     public function modify(): string {
         $id = $_GET['id'];
         if (is_numeric($id) && !$this->model->get($id)) {
-            return $this->view->errorNobody();
+            return $this->_view->errorNobody();
         }
 
         $result = $codeAde = $this->model->get($id);
@@ -133,15 +133,15 @@ class CodeAdeController extends Controller
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
                     }
-                    $this->view->successModification();
+                    $this->_view->successModification();
                 } else {
-                    $this->view->displayErrorDoubleCode();
+                    $this->_view->displayErrorDoubleCode();
                 }
             } else {
-                $this->view->errorModification();
+                $this->_view->errorModification();
             }
         }
-        return $this->view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode());
+        return $this->_view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode());
     }
 
     /**
@@ -161,7 +161,7 @@ class CodeAdeController extends Controller
         $groups = $this->model->getAllFromType('group');
         $halfGroups = $this->model->getAllFromType('halfGroup');
 
-        return $this->view->displayAllCode($years, $groups, $halfGroups);
+        return $this->_view->displayAllCode($years, $groups, $halfGroups);
     }
 
     /**
@@ -185,7 +185,7 @@ class CodeAdeController extends Controller
                 foreach ($checked_values as $id) {
                     $this->model = $this->model->get($id);
                     $this->model->delete();
-                    $this->view->refreshPage();
+                    $this->_view->refreshPage();
                 }
             }
         }

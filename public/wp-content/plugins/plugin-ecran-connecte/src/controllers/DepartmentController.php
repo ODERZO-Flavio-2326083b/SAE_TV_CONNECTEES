@@ -16,14 +16,14 @@ class DepartmentController extends Controller {
     /**
      * Vue département
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur basique
      */
     public function __construct() {
         $this->model = new Department();
-        $this->view = new DepartmentView();
+        $this->_view = new DepartmentView();
     }
 
     /**
@@ -43,16 +43,16 @@ class DepartmentController extends Controller {
 
                 if (!$this->checkDuplicate($this->model)) {
                     $this->model->insert();
-                    $this->view->successCreation();
+                    $this->_view->successCreation();
                 } else {
-                    $this->view->errorDuplicate();
+                    $this->_view->errorDuplicate();
                 }
             } else {
-                $this->view->errorCreation();
+                $this->_view->errorCreation();
             }
 
         }
-        return $this->view->renderAddForm();
+        return $this->_view->renderAddForm();
     }
 
     /**
@@ -64,13 +64,13 @@ class DepartmentController extends Controller {
      */
     public function modify(): string {
         if (!isset($_GET['id'])) {
-            return $this->view->errorNothing();
+            return $this->_view->errorNothing();
         }
 
         $id = $_GET['id'];
 
         if (!is_numeric($id) || !$this->model->get($id)) {
-            return $this->view->errorNothing();
+            return $this->_view->errorNothing();
         }
 
         $submit = filter_input(INPUT_POST, 'submit');
@@ -84,17 +84,17 @@ class DepartmentController extends Controller {
 
                 if (!$this->checkDuplicate($this->model)) {
                     $this->model->update();
-                    $this->view->successUpdate();
+                    $this->_view->successUpdate();
                 } else {
-                    $this->view->errorDuplicate();
+                    $this->_view->errorDuplicate();
                 }
             } else {
-                $this->view->errorUpdate();
+                $this->_view->errorUpdate();
             }
         }
 
         $name = $this->model->get($id)->getName();
-        return $this->view->renderModifForm($name);
+        return $this->_view->renderModifForm($name);
     }
 
     /**
@@ -106,7 +106,7 @@ class DepartmentController extends Controller {
     public function displayDeptTable(): string {
         $allDepts = $this->model->getAllDepts();
 
-        return $this->view->renderAllDeptsTable($allDepts);
+        return $this->_view->renderAllDeptsTable($allDepts);
     }
 
     /**
@@ -123,7 +123,7 @@ class DepartmentController extends Controller {
                 foreach ($checked_values as $id) {
                     $this->model = $this->model->get($id);
                     $this->model->delete();
-                    $this->view->refreshPage();
+                    $this->_view->refreshPage();
                 }
             }
         }

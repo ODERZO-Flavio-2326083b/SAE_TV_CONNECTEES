@@ -29,7 +29,7 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var TelevisionView
      */
-    private $view;
+    private $_view;
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -46,7 +46,7 @@ class TelevisionController extends UserController implements Schedule
     public function __construct() {
         parent::__construct();
         $this->model = new User();
-        $this->view = new TelevisionView();
+        $this->_view = new TelevisionView();
     }
 
     /**
@@ -112,12 +112,12 @@ class TelevisionController extends UserController implements Schedule
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
 
@@ -128,7 +128,7 @@ class TelevisionController extends UserController implements Schedule
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
+        return $this->_view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -174,7 +174,7 @@ class TelevisionController extends UserController implements Schedule
             $user->setCodes($codesAde);
 
             if ($user->update()) {
-                $this->view->displayModificationValidate($linkManageUser);
+                $this->_view->displayModificationValidate($linkManageUser);
             }
         }
 
@@ -183,7 +183,7 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        return $this->_view->modifyForm($user, $years, $groups, $halfGroups);
     }
 
     /**
@@ -211,7 +211,7 @@ class TelevisionController extends UserController implements Schedule
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->view->displayAllTv($users, $userDeptList);
+        return $this->_view->displayAllTv($users, $userDeptList);
     }
 
     /**
@@ -257,12 +257,12 @@ class TelevisionController extends UserController implements Schedule
                 }
                 $string .= '</div></div>';
             } else {
-                $string .= $this->view->displayStartSlide();
+                $string .= $this->_view->displayStartSlide();
                 foreach ($user->getCodes() as $code) {
                     $path = $this->getFilePath($code->getCode());
                     if (file_exists($path)) {
                         if ($this->displaySchedule($code->getCode())) {
-                            $string .= $this->view->displayMidSlide();
+                            $string .= $this->_view->displayMidSlide();
                             $string .= $this->displaySchedule($code->getCode());
                             $string .= '</div>';
                         }

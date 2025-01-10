@@ -27,7 +27,7 @@ class AlertController extends Controller
     /**
      * @var AlertView Vue pour afficher les alertes
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe AlertController
@@ -35,7 +35,7 @@ class AlertController extends Controller
      */
     public function __construct() {
         $this->model = new Alert();
-        $this->view = new AlertView();
+        $this->_view = new AlertView();
     }
 
     /**
@@ -71,7 +71,7 @@ class AlertController extends Controller
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
+                        $this->_view->errorMessageInvalidForm();
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
@@ -93,7 +93,7 @@ class AlertController extends Controller
 
                 // Insérer l'alerte
                 if ($id = $this->model->insert()) {
-                    $this->view->displayAddValidate();
+                    $this->_view->displayAddValidate();
 
                     // Envoyer la notification push
                     $oneSignalPush = new OneSignalPush();
@@ -104,10 +104,10 @@ class AlertController extends Controller
                         $oneSignalPush->sendNotification($codesAde, $this->model->getContent());
                     }
                 } else {
-                    $this->view->errorMessageCantAdd();
+                    $this->_view->errorMessageCantAdd();
                 }
             } else {
-                $this->view->errorMessageInvalidForm();
+                $this->_view->errorMessageInvalidForm();
             }
         }
 
@@ -116,7 +116,7 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->creationForm($years, $groups, $halfGroups);
+        return $this->_view->creationForm($years, $groups, $halfGroups);
     }
 
     /**
@@ -140,17 +140,17 @@ class AlertController extends Controller
         $id = $_GET['id'];
 
         if (!is_numeric($id) || !$this->model->get($id)) {
-            return $this->view->noAlert();
+            return $this->_view->noAlert();
         }
         $current_user = wp_get_current_user();
         $alert = $this->model->get($id);
         if (!in_array('administrator', $current_user->roles)
             && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
-            return $this->view->alertNotAllowed();
+            return $this->_view->alertNotAllowed();
         }
 
         if ($alert->getAdminId()) {
-            return $this->view->alertNotAllowed();
+            return $this->_view->alertNotAllowed();
         }
 
         $codeAde = new CodeAde();
@@ -168,7 +168,7 @@ class AlertController extends Controller
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
+                        $this->_view->errorMessageInvalidForm();
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
@@ -183,9 +183,9 @@ class AlertController extends Controller
             $alert->setCodes($codesAde);
 
             if ($alert->update()) {
-                $this->view->displayModifyValidate();
+                $this->_view->displayModifyValidate();
             } else {
-                $this->view->errorMessageCantAdd();
+                $this->_view->errorMessageCantAdd();
             }
         }
 
@@ -193,7 +193,7 @@ class AlertController extends Controller
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
-            $this->view->displayModifyValidate();
+            $this->_view->displayModifyValidate();
         }
 
         // Récupération des types de codes pour le formulaire
@@ -201,7 +201,7 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($alert, $years, $groups, $halfGroups);
+        return $this->_view->modifyForm($alert, $years, $groups, $halfGroups);
     }
 
 
@@ -249,12 +249,12 @@ class AlertController extends Controller
             ++$row;
             $dataList[] = [
                 $row,
-                $this->view->buildCheckbox($name, $alert->getId()),
+                $this->_view->buildCheckbox($name, $alert->getId()),
                 $alert->getContent(),
                 $alert->getCreationDate(),
                 $alert->getExpirationDate(),
                 $alert->getAuthor()->getLogin(),
-                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
+                $this->_view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
         }
 
         // Suppression d'alertes sélectionnées
@@ -266,15 +266,15 @@ class AlertController extends Controller
                     $entity = $this->model->get($id);
                     $entity->delete();
                 }
-                $this->view->refreshPage();
+                $this->_view->refreshPage();
             }
         }
         if ($pageNumber == 1) {
-            $returnString = $this->view->contextDisplayAll();
+            $returnString = $this->_view->contextDisplayAll();
         }
-        return $returnString . $this->view->displayAll(
+        return $returnString . $this->_view->displayAll(
             $name, 'Alertes', $header, $dataList) .
-            $this->view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))), $number);
+            $this->_view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))), $number);
     }
 
 
@@ -311,7 +311,7 @@ class AlertController extends Controller
         }
 
         if (isset($content)) {
-            $this->view->displayAlertMain($contentList);
+            $this->_view->displayAlertMain($contentList);
         }
     }
 

@@ -32,7 +32,7 @@ class UserController extends Controller
      *
      * @var UserView
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe UserController.
@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function __construct() {
         $this->model = new User();
-        $this->view = new UserView();
+        $this->_view = new UserView();
     }
 
     /**
@@ -151,9 +151,9 @@ class UserController extends Controller
                 $headers = array('Content-Type: text/html; charset=UTF-8');
 
                 wp_mail($to, $subject, $message, $headers);
-                $this->view->displayMailSend();
+                $this->_view->displayMailSend();
             } else {
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         } elseif (isset($actionDelete)) {
             $code = filter_input(INPUT_POST, 'codeDelete');
@@ -161,14 +161,14 @@ class UserController extends Controller
             if ($code == $userCode) {
                 $user->deleteCode();
                 $user->delete();
-                $this->view->displayModificationValidate();
+                $this->_view->displayModificationValidate();
             } else {
                 echo 'Code ' . $code;
                 echo 'User code ' . $userCode;
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         }
-        return $this->view->displayDeleteAccount() . $this->view->displayEnterCode();
+        return $this->_view->displayDeleteAccount() . $this->_view->displayEnterCode();
     }
 
     /**
@@ -189,18 +189,18 @@ class UserController extends Controller
      */
     public function chooseModif() : string {
         $current_user = wp_get_current_user();
-        $string = $this->view->displayStartMultiSelect();
+        $string = $this->_view->displayStartMultiSelect();
 
-        $string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
+        $string .= $this->_view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
 
-        $string .= $this->view->displayTitleSelect('delete', 'Supprimer mon compte') .
-            $this->view->displayEndOfTitle();
-
-
-        $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
+        $string .= $this->_view->displayTitleSelect('delete', 'Supprimer mon compte') .
+            $this->_view->displayEndOfTitle();
 
 
-        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . '</div>';
+        $string .= $this->_view->displayContentSelect('pass', $this->modifyPwd(), true);
+
+
+        $string .= $this->_view->displayContentSelect('delete', $this->deleteAccount()) . '</div>';
 
         return $string;
     }
@@ -227,12 +227,12 @@ class UserController extends Controller
             if (wp_check_password($pwd, $current_user->user_pass)) {
                 $newPwd = filter_input(INPUT_POST, 'newPwd');
                 wp_set_password($newPwd, $current_user->ID);
-                $this->view->displayModificationPassValidate();
+                $this->_view->displayModificationPassValidate();
             } else {
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         }
-        return $this->view->displayModifyPassword();
+        return $this->_view->displayModifyPassword();
     }
 
     /**
@@ -294,7 +294,7 @@ class UserController extends Controller
             }
         }
 
-        return $this->view->displaySelectSchedule();
+        return $this->_view->displaySelectSchedule();
     }
 
     /**
@@ -375,9 +375,9 @@ class UserController extends Controller
                 $this->model->setCodes($codesAde);
 
                 if ($this->model->update()) {
-                    $this->view->successMesageChangeCode();
+                    $this->_view->successMesageChangeCode();
                 } else {
-                    $this->view->errorMesageChangeCode();
+                    $this->_view->errorMesageChangeCode();
                 }
             }
         }
@@ -386,12 +386,12 @@ class UserController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->displayModifyMyCodes($this->model->getCodes(), $years, $groups, $halfGroups);
+        return $this->_view->displayModifyMyCodes($this->model->getCodes(), $years, $groups, $halfGroups);
     }
 
     public function displayAllDepartement() {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->view->buildDepartmentOptions($dept);
+        return $this->_view->buildDepartmentOptions($dept);
     }
 }

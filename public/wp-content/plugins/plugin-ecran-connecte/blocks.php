@@ -355,8 +355,8 @@ add_action( 'init', 'block_schedules' );
 function subscription_render_callback()
 {
     if(does_user_has_role(array('administrator', 'secretaire'))) {
-        $view = new UserView();
-        return $view->displayButtonSubscription();
+        $_view = new UserView();
+        return $_view->displayButtonSubscription();
     } else {
 	    echo "Désolé, vous n'avez pas la permission de voir ce contenu";
 	    exit;
@@ -498,9 +498,9 @@ function delete_account_render_callback()
 {
     if(is_page()) {
         $myAccount = new UserController();
-        $view = new UserView();
+        $_view = new UserView();
         $myAccount->deleteAccount();
-        return $view->displayDeleteAccount().$view->displayEnterCode();
+        return $_view->displayDeleteAccount().$_view->displayEnterCode();
     }
 }
 
@@ -525,9 +525,9 @@ function password_modify_render_callback()
 {
     if(is_page()) {
         $myAccount = new UserController();
-        $view = new UserView();
+        $_view = new UserView();
         $myAccount->modifyPwd();
-        return $view->displayModifyPassword();
+        return $_view->displayModifyPassword();
     }
 }
 

@@ -16,10 +16,10 @@ class CSSCustomizerController extends Controller
     /**
      * @var CSSView
      */
-    private $view;
+    private $_view;
 
     public function __construct()   {
-        $this->view = new CSSView();
+        $this->_view = new CSSView();
         $this->model = new CSSCustomizer();
     }
 
@@ -35,7 +35,7 @@ class CSSCustomizerController extends Controller
         foreach ($listDepartement as $e) {
             $listDepName[] = $e->getName(); // Ajouter le nom du département au tableau
         }
-        $this->view->displayCssCustomizer($listDepName);
+        $this->_view->displayCssCustomizer($listDepName);
     }
 
 }

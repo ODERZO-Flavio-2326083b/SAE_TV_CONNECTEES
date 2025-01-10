@@ -29,7 +29,7 @@ class TechnicianController extends UserController implements Schedule
      *
      * @var TechnicianView
      */
-    private TechnicianView $view;
+    private TechnicianView $_view;
 
     /**
      * Constructeur de la classe TechnicianController.
@@ -44,7 +44,7 @@ class TechnicianController extends UserController implements Schedule
     public function __construct() {
         parent::__construct();
         $this->model = new User();
-        $this->view = new TechnicianView();
+        $this->_view = new TechnicianView();
     }
 
     /**
@@ -94,18 +94,18 @@ class TechnicianController extends UserController implements Schedule
 
                 // Insertion dans la base de données
                 if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->view->displayFormTechnician($allDepts, $currDept, $isAdmin);
+        return $this->_view->displayFormTechnician($allDepts, $currDept, $isAdmin);
     }
 
     /**
@@ -132,7 +132,7 @@ class TechnicianController extends UserController implements Schedule
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->view->displayAllTechnicians($users, $userDeptList);
+        return $this->_view->displayAllTechnicians($users, $userDeptList);
     }
 
     /**
