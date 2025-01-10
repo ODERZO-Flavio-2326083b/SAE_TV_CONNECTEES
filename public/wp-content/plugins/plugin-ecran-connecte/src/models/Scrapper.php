@@ -6,7 +6,7 @@ class Scrapper
 {
     public function __construct()
     {
-        $this->url = 'https://www.informatiquenews.fr/news';
+        $this->url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
     }
 
     public function getHtml()
@@ -21,77 +21,75 @@ class Scrapper
         $dom = new \DOMDocument();
         @$dom->loadHTML($html);
         $xpath = new \DOMXPath($dom);
-        $articles = $xpath->query('//article');
+        $query = '//li[contains(@class, "ajax_block_product mb-4 col-6 col-lg-3")]';
+        $articles = $xpath->query($query);
         return $articles;
     }
 
     public function getArticle($article)
     {
-        $title = $article->getElementsByTagName('h2')->item(0)->nodeValue;
-        $divs = $article->getElementsByTagName('div');
-        foreach ($divs as $div) {
+        $images = $article->getElementsByTagName('img');
+        foreach ($images as $div) {
             if($div != null) {
                 $classContent = $div->getAttribute('class');
-                if ($classContent == 'post-content entry-content') {
-                    $content = $div->nodeValue;
+                if ($classContent == 'img-fluid') {
+                    $image = $div->getAttribute('src');
                     break;
                 } else {
-                    $content = "pas de contenue";
+                    $image = "pas de contenue";
                 }
             }
             else{
-                $content = "pas de contenue";
+                $image = "pas de contenue";
             }
         }
-        $link = $article->getElementsByTagName('a')->item(0)->getAttribute('href');
 
-        $image = $article->getElementsByTagName('img')->item($article->getElementsByTagName('img')->length-1)->getAttribute('src');
 
-        $footers = $article->getElementsByTagName('footer');
-        foreach ($footers as $footer) {
-            if($footer != null) {
-                $classContent = $footer->getAttribute('class');
-                if ($classContent == 'meta') {
-                    $author = $footer->nodeValue;
-                    break;
-                } else {
-                    $author = "pas de contenue";
-                }
-            }
-            else{
-                $author = "pas de contenue";
-            }
-        }
 
         return [
-            'title' => $title,
-            'content' => $content,
-            'link' => $link,
             'image' => $image,
-            'footer'=> $author
         ];
     }
 
-    public function printWebsite()  {
+    public function printWebsite()
+    {
         $articles = $this->getArticles();
-
         $html = '<div>';
-            $article = $articles->item(rand(0, $articles->length - 1));
+
+        // Récupérer le premier article
+        $article = $articles->item(0);
+
+        if ($article) {
             $varArticle = $this->getArticle($article);
-            $html .= '<div>';
-            $html .= '<h3>' . $varArticle['title'] . '</h3>';
-            $html .= '<p>' . $varArticle['content'] . '</p>';
-            $html .= '<a href="' . $varArticle['link'] . '">';
-            $html .= '<img src="' . $varArticle['image'] . '" height=190em width=100%>';
-            $html .= '</a>';
-            $html .= '<footer> <p><small>Publié' . $varArticle['footer'] . '</small></p> </footer>';
-            $html .= '</div>';
+
+            // Vérifiez si une image est disponible
+            if (!empty($varArticle['image']) && $varArticle['image'] !== 'pas de contenu') {
+                $imageContent = @file_get_contents($varArticle['image']);
+
+                if ($imageContent !== false) {
+                    // Encoder l'image en base64
+                    $base64Image = 'data:image/jpeg;base64,' . base64_encode($imageContent);
+
+                    // Générer le HTML
+                    $html .= '<div>';
+                    $html .= '<a>';
+                    $html .= '<img src="' . $base64Image . '" style="width:100%; height:auto;">';
+                    $html .= '</a>';
+                    $html .= '</div>';
+                } else {
+                    $html .= '<p>Impossible de charger l\'image.</p>';
+                }
+            } else {
+                $html .= '<p>Aucune image trouvée pour cet article.</p>';
+            }
+        } else {
+            $html .= '<p>Aucun article trouvé.</p>';
+        }
 
         $html .= '</div>';
         echo $html;
-
-
     }
+
 
 
 
