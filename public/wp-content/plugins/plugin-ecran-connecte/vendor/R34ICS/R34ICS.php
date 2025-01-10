@@ -27,14 +27,14 @@ class R34ICS extends Controller
      * Vue de R34ICS
      * @var ICSView
      */
-    private $view;
+    private $_view;
 
     public function __construct()
     {
         // Set property values
         $this->ical_path = dirname(__FILE__) . $this->ical_path;
         $this->event_path = dirname(__FILE__) . $this->event_path;
-        $this->view = new ICSView();
+        $this->_view = new ICSView();
     }
 
     public function days_of_week($format = null)
@@ -319,9 +319,9 @@ class R34ICS extends Controller
             $ics_data['description'] = ($args['description'] == 'none') ? false : $args['description'];
         }
 
-        $model = new CodeAde();
-        $title = $model->getByCode($code)->getTitle();
-        return $this->view->displaySchedule($ics_data, $title, $allDay);
+        $_model = new CodeAde();
+        $title = $_model->getByCode($code)->getTitle();
+        return $this->_view->displaySchedule($ics_data, $title, $allDay);
     }
 
     public function first_dow($date = null)

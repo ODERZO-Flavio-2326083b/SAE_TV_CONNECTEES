@@ -18,12 +18,12 @@ class SecretaryController extends UserController
     /**
      * @var User
      */
-    private User $model;
+    private User $_model;
 
     /**
      * @var SecretaryView
      */
-    private SecretaryView $view;
+    private SecretaryView $_view;
 
     /**
      * Constructor of SecretaryController.
@@ -32,8 +32,8 @@ class SecretaryController extends UserController
      */
     public function __construct() {
         parent::__construct();
-        $this->model = new User();
-        $this->view = new SecretaryView();
+        $this->_model = new User();
+        $this->_view = new SecretaryView();
     }
 
     /**
@@ -42,7 +42,7 @@ class SecretaryController extends UserController
      * @return string
      */
     public function displayMySchedule(): string {
-        return $this->view->displayWelcomeAdmin();
+        return $this->_view->displayWelcomeAdmin();
     }
 
     /**
@@ -83,25 +83,25 @@ class SecretaryController extends UserController
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
-                $this->model->setLogin($login);
-                $this->model->setPassword($password);
-                $this->model->setEmail($email);
-                $this->model->setRole('secretaire');
-                $this->model->setIdDepartment($deptId);
+                $this->_model->setLogin($login);
+                $this->_model->setPassword($password);
+                $this->_model->setEmail($email);
+                $this->_model->setRole('secretaire');
+                $this->_model->setIdDepartment($deptId);
 
-                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                if (!$this->checkDuplicateUser($this->_model) && $this->_model->insert()) {
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
         $allDepts = $deptModel->getAllDepts();
 
 
-        return $this->view->displayFormSecretary($allDepts, $isAdmin, $currDept);
+        return $this->_view->displayFormSecretary($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -118,7 +118,7 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     public function displayAllSecretary(): string {
-        $users = $this->model->getUsersByRole('secretaire');
+        $users = $this->_model->getUsersByRole('secretaire');
         $deptModel = new Department();
 
         $userDeptList = array();
@@ -126,7 +126,7 @@ class SecretaryController extends UserController
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->view->displayAllSecretary($users, $userDeptList);
+        return $this->_view->displayAllSecretary($users, $userDeptList);
     }
 
     /**
@@ -149,16 +149,16 @@ class SecretaryController extends UserController
         $television = new TelevisionController();
 
         return
-            $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Agent d\'entretien') .
-            $this->view->displayTitleSelect('television', 'Télévisions') .
-            $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
-            $this->view->displayContentSelect('technician', $technician->insert()) .
-            $this->view->displayContentSelect('television', $television->insert()) .
+            $this->_view->displayStartMultiSelect() .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayEndOfTitle() .
+            $this->_view->displayContentSelect('secretary', $secretary->insert(), true) .
+            $this->_view->displayContentSelect('technician', $technician->insert()) .
+            $this->_view->displayContentSelect('television', $television->insert()) .
             '</div>' .
-            $this->view->contextCreateUser();
+            $this->_view->contextCreateUser();
     }
 
     /**
@@ -181,14 +181,14 @@ class SecretaryController extends UserController
         $television = new TelevisionController();
 
         return
-            $this->view->displayStartMultiSelect() .
-            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Agents d\'entretiens') .
-            $this->view->displayTitleSelect('television', 'Télévisions') .
-            $this->view->displayEndOfTitle() .
-            $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
-            $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
-            $this->view->displayContentSelect('television', $television->displayAllTv()) .
+            $this->_view->displayStartMultiSelect() .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayEndOfTitle() .
+            $this->_view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
+            $this->_view->displayContentSelect('technician', $technician->displayAllTechnician()) .
+            $this->_view->displayContentSelect('television', $television->displayAllTv()) .
             '</div>';
     }
 
@@ -209,18 +209,18 @@ class SecretaryController extends UserController
      */
     public function modifyUser(): string {
         $id = $_GET['id'];
-        if (is_numeric($id) && $this->model->get($id)) {
-            $user = $this->model->get($id);
+        if (is_numeric($id) && $this->_model->get($id)) {
+            $user = $this->_model->get($id);
             $wordpressUser = get_user_by('id', $id);
 
             if (in_array("television", $wordpressUser->roles)) {
                 $controller = new TelevisionController();
                 return $controller->modify($user);
             } else {
-                return $this->view->displayNoUser();
+                return $this->_view->displayNoUser();
             }
         } else {
-            return $this->view->displayNoUser();
+            return $this->_view->displayNoUser();
         }
     }
 
@@ -271,7 +271,7 @@ class SecretaryController extends UserController
      * @date 2024-10-15
      */
     private function deleteUser(int $id): void {
-        $user = $this->model->get($id);
+        $user = $this->_model->get($id);
         $user->delete();
     }
 }

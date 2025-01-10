@@ -10,22 +10,23 @@ use views\CSSView;
  * Class CSSCustomizerController
  *
  * Contrôleur pour la personnalisation CSS.
- * Gère les interactions entre le modèle de personnalisation CSS et les vues associées.
+ * Gère les interactions entre le modèle de personnalisation CSS et
+ * les vues associées.
  * Permet aux utilisateurs de modifier les couleurs via un formulaire.
  *
- * @package controllers
+ * @package Controllers
  */
 class CSSCustomizerController extends Controller
 {
     /**
      * @var CSSCustomizer
      */
-    private $model;
+    private $_model;
 
     /**
      * @var CSSView
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe CSSCustomizerController.
@@ -35,11 +36,12 @@ class CSSCustomizerController extends Controller
      * gère les opérations de personnalisation CSS.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function __construct()   {
-        $this->view = new CSSView();
-        $this->model = new CSSCustomizer();
+    public function __construct()
+    {
+        $this->_view = new CSSView();
+        $this->_model = new CSSCustomizer();
     }
 
     /**
@@ -50,23 +52,26 @@ class CSSCustomizerController extends Controller
      * extrait leurs noms et transmet ces données à la vue pour afficher
      * l'interface de personnalisation CSS.
      *
+     * @return void
+     *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
     public function useCssCustomizer()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->model->updateColor();
+            $this->_model->updateColor();
         }
         $departement = new Department();
         $listDepartement = $departement->getAllDepts();
         $listDepName = []; // Initialiser un tableau vide
 
         foreach ($listDepartement as $e) {
-            $listDepName[] = $e->getName(); // Ajouter le nom du département au tableau
+            // Ajouter le nom du département au tableau
+            $listDepName[] = $e->getName();
         }
-        $this->view->displayContextCSS();
-        $this->view->displayCssCustomizer($listDepName);
+        $this->_view->displayContextCSS();
+        $this->_view->displayCssCustomizer($listDepName);
     }
 
 }

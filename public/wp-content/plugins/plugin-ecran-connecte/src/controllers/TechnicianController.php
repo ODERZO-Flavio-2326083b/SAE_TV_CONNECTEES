@@ -22,14 +22,14 @@ class TechnicianController extends UserController implements Schedule
      *
      * @var User
      */
-    private User $model;
+    private User $_model;
 
     /**
      * Vue de TechnicianController.
      *
      * @var TechnicianView
      */
-    private TechnicianView $view;
+    private TechnicianView $_view;
 
     /**
      * Constructeur de la classe TechnicianController.
@@ -43,8 +43,8 @@ class TechnicianController extends UserController implements Schedule
      */
     public function __construct() {
         parent::__construct();
-        $this->model = new User();
-        $this->view = new TechnicianView();
+        $this->_model = new User();
+        $this->_view = new TechnicianView();
     }
 
     /**
@@ -86,26 +86,26 @@ class TechnicianController extends UserController implements Schedule
             if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
                 is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
                 $password === $passwordConfirm && is_email($email)) {
-                $this->model->setLogin($login);
-                $this->model->setPassword($password);
-                $this->model->setEmail($email);
-                $this->model->setRole('technicien');
-                $this->model->setIdDepartment($deptId);
+                $this->_model->setLogin($login);
+                $this->_model->setPassword($password);
+                $this->_model->setEmail($email);
+                $this->_model->setRole('technicien');
+                $this->_model->setIdDepartment($deptId);
 
                 // Insertion dans la base de données
-                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                if (!$this->checkDuplicateUser($this->_model) && $this->_model->insert()) {
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->view->displayFormTechnician($allDepts, $currDept, $isAdmin);
+        return $this->_view->displayFormTechnician($allDepts, $currDept, $isAdmin);
     }
 
     /**
@@ -123,7 +123,7 @@ class TechnicianController extends UserController implements Schedule
      * @date 2024-10-15
      */
     public function displayAllTechnician(): string {
-        $users = $this->model->getUsersByRole('technicien');
+        $users = $this->_model->getUsersByRole('technicien');
 
         $deptModel = new Department();
 
@@ -132,7 +132,7 @@ class TechnicianController extends UserController implements Schedule
             $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->view->displayAllTechnicians($users, $userDeptList);
+        return $this->_view->displayAllTechnicians($users, $userDeptList);
     }
 
     /**

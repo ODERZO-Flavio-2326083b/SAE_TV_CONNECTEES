@@ -37,8 +37,8 @@ class WidgetAlert extends WP_Widget
 	 */
     public function widget($args, $instance)
     {
-        $view = new AlertController();
-        $view->alertMain();
+        $_view = new AlertController();
+        $_view->alertMain();
     }
 
 	/**

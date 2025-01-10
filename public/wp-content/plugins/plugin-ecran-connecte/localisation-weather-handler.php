@@ -11,9 +11,9 @@ use models\Localisation;
  * @return void
  */
 function injectLocVariables() {
-	$model = new Localisation();
+	$_model = new Localisation();
 
-	if($userLoc = $model->getLocFromUserId(get_current_user_id())) {
+	if($userLoc = $_model->getLocFromUserId(get_current_user_id())) {
 		$latitude = $userLoc->getLatitude();
 		$longitude = $userLoc->getLongitude();
 	} else {
@@ -72,9 +72,9 @@ add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
  * @return void
  */
 function loadLocAjaxIfUserHasNoLoc(){
-	$model = new Localisation();
+	$_model = new Localisation();
 
-	if(is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(get_current_user_id()) ){
+	if(is_user_logged_in() && is_front_page() && !$_model->getLocFromUserId(get_current_user_id()) ){
 		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
 
 		add_action('wp_enqueue_scripts', 'loadLocalisationScript');

@@ -52,9 +52,9 @@ function downloadFileICS_func()
     move_fileICS_schedule();
 
 	$controllerAde = new CodeAdeController();
-    $model = new CodeAde();
+    $_model = new CodeAde();
 
-    $codesAde = $model->getList();
+    $codesAde = $_model->getList();
     foreach ($codesAde as $codeAde) {
         $controllerAde->addFile($codeAde->getCode());
     }

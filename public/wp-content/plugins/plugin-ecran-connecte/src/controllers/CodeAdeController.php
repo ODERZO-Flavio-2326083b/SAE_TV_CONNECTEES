@@ -10,22 +10,24 @@ use views\CodeAdeView;
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
- * @package controllers
+ * @package Controllers
  */
 class CodeAdeController extends Controller
 {
 
     /**
      * Modèle de CodeAdeController
+     *
      * @var CodeAde
      */
-    private $model;
+    private $_model;
 
     /**
      * Vue de CodeAdeController
+     *
      * @var CodeAdeView
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe.
@@ -34,11 +36,12 @@ class CodeAdeController extends Controller
      * 'CodeAdeView'.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function __construct() {
-        $this->model = new CodeAde();
-        $this->view = new CodeAdeView();
+    public function __construct()
+    {
+        $this->_model = new CodeAde();
+        $this->_view = new CodeAdeView();
     }
 
     /**
@@ -52,9 +55,10 @@ class CodeAdeController extends Controller
      * @return string Formulaire de création de Code
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function insert() : string {
+    public function insert() : string
+    {
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
@@ -65,27 +69,30 @@ class CodeAdeController extends Controller
             $type = filter_input(INPUT_POST, 'type');
 
             // Validation des entrées
-            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
-                is_numeric($code) && is_string($code) && strlen($code) < 20 &&
-                in_array($type, $validType)) {
+            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
+                && is_numeric($code) && is_string($code) && strlen($code) < 20 
+                && in_array($type, $validType)
+            ) {
 
-                $this->model->setTitle($title);
-                $this->model->setCode($code);
-                $this->model->setType($type);
+                $this->_model->setTitle($title);
+                $this->_model->setCode($code);
+                $this->_model->setType($type);
 
                 // Vérifie les doublons et insère le code
-                if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
-                    $this->view->successCreation();
+                if (!$this->_checkDuplicateCode($this->_model)
+                    && $this->_model->insert()
+                ) {
+                    $this->_view->successCreation();
                     $this->addFile($code);
-                    $this->view->refreshPage();
+                    $this->_view->refreshPage();
                 } else {
-                    $this->view->displayErrorDoubleCode();
+                    $this->_view->displayErrorDoubleCode();
                 }
             } else {
-                $this->view->errorCreation();
+                $this->_view->errorCreation();
             }
         }
-        return $this->view->createForm();
+        return $this->_view->createForm();
     }
 
     /**
@@ -101,15 +108,16 @@ class CodeAdeController extends Controller
      * @return string Le rendu du formulaire de modification ou un message d'erreur.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function modify(): string {
+    public function modify(): string
+    {
         $id = $_GET['id'];
-        if (is_numeric($id) && !$this->model->get($id)) {
-            return $this->view->errorNobody();
+        if (is_numeric($id) && !$this->_model->get($id)) {
+            return $this->_view->errorNobody();
         }
 
-        $result = $codeAde = $this->model->get($id);
+        $result = $codeAde = $this->_model->get($id);
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
@@ -120,28 +128,32 @@ class CodeAdeController extends Controller
             $type = filter_input(INPUT_POST, 'type');
 
             // Validation des entrées
-            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
-                is_numeric($code) && is_string($code) && strlen($code) < 20 &&
-                in_array($type, $validType)) {
+            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
+                && is_numeric($code) && is_string($code) && strlen($code) < 20 
+                && in_array($type, $validType)
+            ) {
 
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
 
                 // Vérifie les doublons et met à jour le code
-                if (!$this->checkDuplicateCode($codeAde) && $codeAde->update()) {
+                if (!$this->_checkDuplicateCode($codeAde) && $codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
                     }
-                    $this->view->successModification();
+                    $this->_view->successModification();
                 } else {
-                    $this->view->displayErrorDoubleCode();
+                    $this->_view->displayErrorDoubleCode();
                 }
             } else {
-                $this->view->errorModification();
+                $this->_view->errorModification();
             }
         }
-        return $this->view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode());
+        return $this->_view->displayModifyCode(
+            $codeAde->getTitle(),
+            $codeAde->getType(), $codeAde->getCode()
+        );
     }
 
     /**
@@ -154,14 +166,15 @@ class CodeAdeController extends Controller
      * @return string Le rendu HTML des codes ADE classés par type.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function displayAllCodes() : string {
-        $years = $this->model->getAllFromType('year');
-        $groups = $this->model->getAllFromType('group');
-        $halfGroups = $this->model->getAllFromType('halfGroup');
+    public function displayAllCodes() : string
+    {
+        $years = $this->_model->getAllFromType('year');
+        $groups = $this->_model->getAllFromType('group');
+        $halfGroups = $this->_model->getAllFromType('halfGroup');
 
-        return $this->view->displayAllCode($years, $groups, $halfGroups);
+        return $this->_view->displayAllCode($years, $groups, $halfGroups);
     }
 
     /**
@@ -175,17 +188,18 @@ class CodeAdeController extends Controller
      * @return void
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function deleteCodes() {
+    public function deleteCodes()
+    {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         if (isset($actionDelete)) {
             if (isset($_REQUEST['checkboxStatusCode'])) {
                 $checked_values = $_REQUEST['checkboxStatusCode'];
                 foreach ($checked_values as $id) {
-                    $this->model = $this->model->get($id);
-                    $this->model->delete();
-                    $this->view->refreshPage();
+                    $this->_model = $this->_model->get($id);
+                    $this->_model->delete();
+                    $this->_view->refreshPage();
                 }
             }
         }
@@ -199,13 +213,18 @@ class CodeAdeController extends Controller
      * l'ID correspond et renvoie vrai s'il existe d'autres codes similaires.
      *
      * @param CodeAde $newCodeAde L'objet CodeAde à vérifier pour les doublons.
+     *
      * @return bool Retourne vrai si un doublon est trouvé, sinon faux.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    private function checkDuplicateCode(CodeAde $newCodeAde) {
-        $codesAde = $this->model->checkCode($newCodeAde->getTitle(), $newCodeAde->getCode());
+    private function _checkDuplicateCode(CodeAde $newCodeAde)
+    {
+        $codesAde = $this->_model->checkCode(
+            $newCodeAde->getTitle(),
+            $newCodeAde->getCode()
+        );
 
         $count = 0;
         foreach ($codesAde as $codeAde) {

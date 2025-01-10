@@ -11,7 +11,7 @@ use views\AlertView;
  *
  * Gère les alertes (création, modification, suppression, affichage)
  *
- * @package controllers
+ * @package Controllers
  */
 class AlertController extends Controller
 {
@@ -19,37 +19,40 @@ class AlertController extends Controller
     /**
      * @var Alert Modèle pour gérer les alertes
      */
-    private $model;
+    private $_model;
 
     /**
      * @var AlertView Vue pour afficher les alertes
      */
-    private $view;
+    private $_view;
 
     /**
      * Constructeur de la classe AlertController
      * Initialise le modèle et la vue des alertes.
      */
-    public function __construct() {
-        $this->model = new Alert();
-        $this->view = new AlertView();
+    public function __construct()
+    {
+        $this->_model = new Alert();
+        $this->_view = new AlertView();
     }
 
     /**
      * Insère une nouvelle alerte après validation des données du formulaire.
      *
      * Cette méthode vérifie si le formulaire d'ajout d'alerte a été soumis et valide
-     * les champs tels que les codes ADE, le contenu de l'alerte et la date d'expiration.
+     * les champs tels que les codes ADE, le contenu de l'alerte et la date
+     * d'expiration.
      * Si la validation réussit, l'alerte est insérée dans la base de données.
      * Si une erreur survient lors de l'insertion, un message d'erreur est affiché.
      *
-     * @return string Le formulaire de création d'alerte ou un message de confirmation/erreur.
-     *
+     * @return string Le formulaire de création d'alerte ou un message de
+     * confirmation/erreur.
      *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function insert(): string {
+    public function insert(): string
+    {
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'submit');
         if (isset($action)) {
@@ -61,40 +64,43 @@ class AlertController extends Controller
             $endDateString = strtotime($endDate);
             $creationDateString = strtotime(date('Y-m-d', time()));
 
-            $this->model->setForEveryone(0);
+            $this->_model->setForEveryone(0);
 
             $codesAde = array();
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
+                        $this->_view->errorMessageInvalidForm();
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
                 } elseif ($code == 'all') {
-                    $this->model->setForEveryone(1);
+                    $this->_model->setForEveryone(1);
                 }
             }
 
-            if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280
-                && $this->isRealDate($endDate) && $creationDateString < $endDateString) {
+            if (is_string($content) && strlen($content) >= 4
+                && strlen($content) <= 280
+                && $this->isRealDate($endDate)
+                && $creationDateString < $endDateString
+            ) {
                 $current_user = wp_get_current_user();
 
                 // Définir l'alerte
-                $this->model->setAuthor($current_user->ID);
-                $this->model->setContent($content);
-                $this->model->setCreationDate($creationDate);
-                $this->model->setExpirationDate($endDate);
-                $this->model->setCodes($codesAde);
+                $this->_model->setAuthor($current_user->ID);
+                $this->_model->setContent($content);
+                $this->_model->setCreationDate($creationDate);
+                $this->_model->setExpirationDate($endDate);
+                $this->_model->setCodes($codesAde);
 
                 // Insérer l'alerte
-                if ($id = $this->model->insert()) {
-                    $this->view->displayAddValidate();
+                if ($id = $this->_model->insert()) {
+                    $this->_view->displayAddValidate();
                 } else {
-                    $this->view->errorMessageCantAdd();
+                    $this->_view->errorMessageCantAdd();
                 }
             } else {
-                $this->view->errorMessageInvalidForm();
+                $this->_view->errorMessageInvalidForm();
             }
         }
 
@@ -103,41 +109,48 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->creationForm($years, $groups, $halfGroups);
+        return $this->_view->creationForm($years, $groups, $halfGroups);
     }
 
     /**
      * Modifie une alerte existante après validation des données du formulaire.
      *
-     * Cette méthode vérifie l'existence de l'alerte à partir de l'ID fourni et s'assure que
-     * l'utilisateur actuel a les permissions nécessaires (administrateur, secrétaire ou auteur de l'alerte)
-     * pour modifier l'alerte. Elle permet également de modifier le contenu, la date d'expiration et
+     * Cette méthode vérifie l'existence de l'alerte à partir de l'ID fourni et
+     * s'assure que
+     * l'utilisateur actuel a les permissions nécessaires (administrateur,
+     * secrétaire ou auteur de l'alerte)
+     * pour modifier l'alerte. Elle permet également de modifier le contenu,
+     * la date d'expiration et
      * les codes ADE associés à l'alerte. Si la modification réussit,
      * une confirmation est affichée, sinon un message d'erreur est renvoyé.
      *
-     * La méthode permet aussi de supprimer l'alerte si l'utilisateur en fait la demande.
+     * La méthode permet aussi de supprimer l'alerte si l'utilisateur
+     * en fait la demande.
      *
-     * @return string Le formulaire de modification de l'alerte ou un message de confirmation/erreur.
-     *
+     * @return string Le formulaire de modification de l'alerte ou un
+     * message de confirmation/erreur.
      *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function modify() : string {
+    public function modify() : string
+    {
         $id = $_GET['id'];
 
-        if (!is_numeric($id) || !$this->model->get($id)) {
-            return $this->view->noAlert();
+        if (!is_numeric($id) || !$this->_model->get($id)) {
+            return $this->_view->noAlert();
         }
         $current_user = wp_get_current_user();
-        $alert = $this->model->get($id);
+        $alert = $this->_model->get($id);
         if (!in_array('administrator', $current_user->roles)
-            && !in_array('secretaire', $current_user->roles) && $alert->getAuthor()->getId() != $current_user->ID) {
-            return $this->view->alertNotAllowed();
+            && !in_array('secretaire', $current_user->roles)
+            && $alert->getAuthor()->getId() != $current_user->ID
+        ) {
+            return $this->_view->alertNotAllowed();
         }
 
         if ($alert->getAdminId()) {
-            return $this->view->alertNotAllowed();
+            return $this->_view->alertNotAllowed();
         }
 
         $codeAde = new CodeAde();
@@ -146,7 +159,10 @@ class AlertController extends Controller
         if (isset($submit)) {
             // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
-            $expirationDate = filter_input(INPUT_POST, 'expirationDate');
+            $expirationDate = filter_input(
+                INPUT_POST,
+                'expirationDate'
+            );
             $codes = $_POST['selectAlert'];
 
             $alert->setForEveryone(0);
@@ -155,7 +171,7 @@ class AlertController extends Controller
             foreach ($codes as $code) {
                 if ($code != 'all' && $code != 0) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
+                        $this->_view->errorMessageInvalidForm();
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
@@ -170,9 +186,9 @@ class AlertController extends Controller
             $alert->setCodes($codesAde);
 
             if ($alert->update()) {
-                $this->view->displayModifyValidate();
+                $this->_view->displayModifyValidate();
             } else {
-                $this->view->errorMessageCantAdd();
+                $this->_view->errorMessageCantAdd();
             }
         }
 
@@ -180,7 +196,7 @@ class AlertController extends Controller
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
-            $this->view->displayModifyValidate();
+            $this->_view->displayModifyValidate();
         }
 
         // Récupération des types de codes pour le formulaire
@@ -188,26 +204,31 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($alert, $years, $groups, $halfGroups);
+        return $this->_view->modifyForm($alert, $years, $groups, $halfGroups);
     }
 
 
     /**
      * Affiche la liste paginée des alertes pour l'utilisateur actuel.
      *
-     * Cette méthode récupère et affiche une liste d'alertes en fonction des permissions de l'utilisateur connecté.
-     * Si l'utilisateur est un administrateur ou un secrétaire, toutes les alertes sont affichées.
+     * Cette méthode récupère et affiche une liste d'alertes en fonction
+     * des permissions de l'utilisateur connecté.
+     * Si l'utilisateur est un administrateur ou un secrétaire,
+     * toutes les alertes sont affichées.
      * Sinon, seules les alertes créées par l'utilisateur sont listées.
-     * Elle gère également la pagination, le nombre d'alertes par page et permet la suppression des alertes sélectionnées.
+     * Elle gère également la pagination,
+     * le nombre d'alertes par page et permet
+     * la suppression des alertes sélectionnées.
      *
-     * @return string Le contenu HTML de la liste des alertes, incluant les options de pagination et de suppression.
-     *
+     * @return string Le contenu HTML de la liste des alertes,
+     * incluant les options de pagination et de suppression.
      *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function displayAll() : string {
-        $numberAllEntity = $this->model->countAll();
+    public function displayAll() : string
+    {
+        $numberAllEntity = $this->_model->countAll();
         $url = $this->getPartOfUrl();
         $number = filter_input(INPUT_GET, 'number');
         $pageNumber = 1;
@@ -223,25 +244,40 @@ class AlertController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles)) {
-            $alertList = $this->model->getList($begin, $number);
+        if (in_array('administrator', $current_user->roles)
+            || in_array('secretaire', $current_user->roles)
+        ) {
+            $alertList = $this->_model->getList($begin, $number);
         } else {
-            $alertList = $this->model->getAuthorListAlert($current_user->ID, $begin, $number);
+            $alertList = $this->_model->getAuthorListAlert(
+                $current_user->ID,
+                $begin, $number
+            );
         }
         $name = 'Alert';
-        $header = ['Contenu', 'Date de création', 'Date d\'expiration', 'Auteur', 'Modifier'];
+        $header = ['Contenu', 'Date de création',
+            'Date d\'expiration', 'Auteur', 'Modifier'];
         $dataList = [];
         $row = $begin;
         foreach ($alertList as $alert) {
             ++$row;
             $dataList[] = [
                 $row,
-                $this->view->buildCheckbox($name, $alert->getId()),
+                $this->_view->buildCheckbox($name, $alert->getId()),
                 $alert->getContent(),
                 $alert->getCreationDate(),
                 $alert->getExpirationDate(),
                 $alert->getAuthor()->getLogin(),
-                $this->view->buildLinkForModify(esc_url(get_permalink(get_page_by_title_custom('Modifier une alerte'))) . '?id=' . $alert->getId())];
+                $this->_view->buildLinkForModify(
+                    esc_url(
+                        get_permalink(
+                            get_page_by_title_custom(
+                                'Modifier une alerte'
+                            )
+                        )
+                    )
+                    . '?id=' . $alert->getId()
+                )];
         }
 
         // Suppression d'alertes sélectionnées
@@ -250,41 +286,52 @@ class AlertController extends Controller
             if (isset($_REQUEST['checkboxStatusAlert'])) {
                 $checked_values = $_REQUEST['checkboxStatusAlert'];
                 foreach ($checked_values as $id) {
-                    $entity = $this->model->get($id);
+                    $entity = $this->_model->get($id);
                     $entity->delete();
                 }
-                $this->view->refreshPage();
+                $this->_view->refreshPage();
             }
         }
         if ($pageNumber == 1) {
-            $returnString = $this->view->contextDisplayAll();
+            $returnString = $this->_view->contextDisplayAll();
         }
-        return $returnString . $this->view->displayAll(
-            $name, 'Alertes', $header, $dataList) .
-            $this->view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des alertes'))), $number);
+        return $returnString . $this->_view->displayAll(
+            $name, 'Alertes', $header, $dataList
+        ) .
+            $this->_view->pageNumber(
+                $maxPage, $pageNumber,
+                esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des alertes')
+                    )
+                ), $number
+            );
     }
 
 
     /**
      * Affiche les alertes pertinentes pour l'utilisateur actuel.
      *
-     * Cette méthode récupère les alertes spécifiques à l'utilisateur connecté ainsi que les alertes
-     * publiques destinées à tout le monde. Elle vérifie ensuite si chaque alerte est toujours valide
-     * en comparant la date d'expiration. Enfin, elle affiche le contenu des alertes si des alertes existent.
+     * Cette méthode récupère les alertes spécifiques à l'utilisateur
+     * connecté ainsi que les alertes
+     * publiques destinées à tout le monde.
+     * Elle vérifie ensuite si chaque alerte est toujours valide
+     * en comparant la date d'expiration.
+     * Enfin, elle affiche le contenu des alertes si des alertes existent.
      *
      * @return void
      *
-     *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function alertMain() {
+    public function alertMain()
+    {
         // Récupérer les codes de l'utilisateur actuel
         $current_user = wp_get_current_user();
-        $alertsUser = $this->model->getForUser($current_user->ID);
+        $alertsUser = $this->_model->getForUser($current_user->ID);
         //$alertsUser = array_unique($alertsUser); // Supprimer les doublons
 
-        foreach ($this->model->getForEveryone() as $alert) {
+        foreach ($this->_model->getForEveryone() as $alert) {
             $alertsUser[] = $alert;
         }
 
@@ -298,29 +345,33 @@ class AlertController extends Controller
         }
 
         if (isset($content)) {
-            $this->view->displayAlertMain($contentList);
+            $this->_view->displayAlertMain($contentList);
         }
     }
 
     /**
      * Synchronise les alertes du site administrateur avec les alertes locales.
      *
-     * Cette méthode récupère les alertes provenant du site administrateur et les compare avec les alertes locales.
-     * Si une alerte existe en local mais diffère de celle du site administrateur, elle est mise à jour avec les nouvelles
-     * informations (contenu et date d'expiration). Si une alerte du site administrateur n'existe pas localement, elle est
-     * ajoutée. Les alertes qui ne sont plus présentes sur le site administrateur sont supprimées localement.
+     * Cette méthode récupère les alertes provenant du site
+     * administrateur et les compare avec les alertes locales.
+     * Si une alerte existe en local mais diffère de celle du
+     * site administrateur, elle est mise à jour avec les nouvelles
+     * informations (contenu et date d'expiration).
+     * Si une alerte du site administrateur n'existe pas localement, elle est
+     * ajoutée. Les alertes qui ne sont plus présentes
+     * sur le site administrateur sont supprimées localement.
      *
      * @return void
      *
-     *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function registerNewAlert() {
-        $alertList = $this->model->getFromAdminWebsite();
-        $myAlertList = $this->model->getAdminWebsiteAlert();
+    public function registerNewAlert()
+    {
+        $alertList = $this->_model->getFromAdminWebsite();
+        $myAlertList = $this->_model->getAdminWebsiteAlert();
         foreach ($myAlertList as $alert) {
-            if ($adminInfo = $this->model->getAlertFromAdminSite($alert->getId())) {
+            if ($adminInfo = $this->_model->getAlertFromAdminSite($alert->getId())) {
                 if ($alert->getContent() != $adminInfo->getContent()) {
                     $alert->setContent($adminInfo->getContent());
                 }
@@ -352,21 +403,24 @@ class AlertController extends Controller
     /**
      * Vérifie et supprime les alertes expirées.
      *
-     * Cette méthode compare la date d'expiration de l'alerte avec la date actuelle. Si l'alerte est expirée (date d'expiration
-     * égale ou antérieure à la date actuelle), elle est supprimée de la base de données.
+     * Cette méthode compare la date d'expiration de
+     * l'alerte avec la date actuelle. Si l'alerte est expirée (date d'expiration
+     * égale ou antérieure à la date actuelle),
+     * elle est supprimée de la base de données.
      *
-     * @param int $id L'identifiant unique de l'alerte à vérifier.
+     * @param int    $id      L'identifiant unique de l'alerte
+     *                        à vérifier.
      * @param string $endDate La date d'expiration de l'alerte au format 'Y-m-d'.
      *
      * @return void
      *
-     *
      * @version 1.0
-     * @date 16-09-2024
+     * @date    16-09-2024
      */
-    public function endDateCheckAlert($id, $endDate) {
+    public function endDateCheckAlert($id, $endDate)
+    {
         if ($endDate <= date("Y-m-d")) {
-            $alert = $this->model->get($id);
+            $alert = $this->_model->get($id);
             $alert->delete();
         }
     } // endDateCheckAlert()
