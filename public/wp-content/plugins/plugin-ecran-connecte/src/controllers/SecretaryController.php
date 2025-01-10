@@ -5,6 +5,7 @@ namespace controllers;
 use models\Department;
 use models\User;
 use views\SecretaryView;
+use views\UserView;
 
 /**
  * Class SecretaryController

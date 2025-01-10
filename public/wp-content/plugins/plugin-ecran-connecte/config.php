@@ -17,6 +17,13 @@ define('DB_HOST_VIEWER', 'localhost');
 define('DB_NAME_VIEWER', 'adminwordpress');
 define('URL_WEBSITE_VIEWER', 'http://adminwordpress/');
 
+// config.php
+
+define('DB_HOST', 'mysql-sarrazin.alwaysdata.net');  // Remplacez par l'adresse de votre serveur MySQL
+define('DB_NAME', 'sarrazin_projettv');  // Remplacez par le nom de votre base de données
+define('DB_USER', 'sarrazin');  // Remplacez par votre nom d'utilisateur MySQL
+define('DB_PASSWORD', 'Super_Pershing');  // Remplacez par votre mot de passe MySQL
+
 
 /**
  * Create all directory

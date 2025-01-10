@@ -90,6 +90,10 @@ class Alert extends Model implements Entity, JsonSerializable
         return $id;
     }
 
+    public function LOL() {
+        return $this->getDatabase();
+    }
+
     /**
      * Met à jour une alerte existante dans la base de données.
      *
