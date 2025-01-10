@@ -1,39 +1,46 @@
 <?php
-
+// TODO : Missing file doc comment
 namespace Views;
 
 use Models\Department;
 use Views\View;
 
-class DepartmentView extends View {
+class DepartmentView extends View // TODO : Missing doc comment for class DeparmentView
+{
 
     /**
      * Rendu du formulaire d'ajout de Département
      *
      * @return string
      */
-    public function renderAddForm() {
+    public function renderAddForm()
+    {
         return '
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60">
-                <small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
+                <input class="form-control" type="text" id="dept_name" 
+                name="dept_name" placeholder="Nom du département" required="" 
+                minlength="5" maxlength="60">
+                <small id="passwordHelpBlock" class="form-text text-muted">Format : 
+                Texte de 60 caractères maximum.</small>
             </div>
-              <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+              <button type="submit" class="btn button_ecran" name="submit">Ajouter
+              </button>
         </form>';
     }
 
     /**
      * Rendu du formulaire de modification d'un Département
      *
-     * @param string $name
-     * @param int $lat
-     * @param int $long
+     * @param string $name TODO : Missing parameter comment (?)
+     * @param int    $lat TODO : Missing parameter comment (?) / Superfluous parameter comment
+     * @param int    $long TODO : Missing parameter comment (?) / Superfluous parameter comment
      *
      * @return string
      */
-    public function renderModifForm(string $name) : string {
+    public function renderModifForm(string $name) : string
+    {
         $returnPage = get_page_by_title_custom('Gestion des départements');
         $linkManageCode = get_permalink($returnPage->ID);
 
@@ -42,9 +49,12 @@ class DepartmentView extends View {
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60" value="'. $name .'">
+                <input class="form-control" type="text" id="dept_name" 
+                name="dept_name" placeholder="Nom du département" required="" 
+                minlength="5" maxlength="60" value="'. $name .'">
             </div>
-          <button type="submit" class="btn button_ecran" name="submit">Modifier</button>
+          <button type="submit" class="btn button_ecran" name="submit">Modifier
+          </button>
           <a href="'. $linkManageCode .'">Annuler</a>
         </form>';
     }
@@ -52,11 +62,12 @@ class DepartmentView extends View {
     /**
      * Rendu de la table des départements et des boutons
      *
-     * @param $deptList     Department[]
+     * @param $deptList Department[]
      *
      * @return string
      */
-    public function renderAllDeptsTable($deptList): string {
+    public function renderAllDeptsTable($deptList): string
+    {
         $page = get_page_by_title_custom('Modifier un département');
         $linkModifDept = get_permalink($page->ID);
 
@@ -70,7 +81,9 @@ class DepartmentView extends View {
         foreach ($deptList as $dept) {
             $row[] = [$count,
                 $this->buildCheckbox($name, $dept->getIdDepartment()),
-                $dept->getName(), $this->buildLinkForModify($linkModifDept.'?id='.$dept->getIdDepartment())];
+                $dept->getName(), $this->buildLinkForModify(
+                    $linkModifDept.'?id='.$dept->getIdDepartment()
+                )];
             ++$count;
         }
 
@@ -82,8 +95,12 @@ class DepartmentView extends View {
      *
      * @return void
      */
-    public function successCreation() {
-        $this->buildModal("Ajout d'un département", "<p>Le département a bien été créé!</p>");
+    public function successCreation()
+    {
+        $this->buildModal(
+            "Ajout d'un département", "<p>Le département a bien été 
+créé!</p>"
+        );
     }
 
     /**
@@ -91,8 +108,12 @@ class DepartmentView extends View {
      *
      * @return void
      */
-    public function successUpdate() {
-        $this->buildModal("Modification d'un département", "<p>Le département a bien été modifié!</p>");
+    public function successUpdate()
+    {
+        $this->buildModal(
+            "Modification d'un département", "<p>Le département a bien 
+été modifié!</p>"
+        );
     }
 
     /**
@@ -101,8 +122,12 @@ class DepartmentView extends View {
      *
      * @return void
      */
-    public function errorCreation() {
-        $this->buildModal('Erreur lors de la création du département', '<p>Erreur lors de l\'ajout du département.</p>');
+    public function errorCreation()
+    {
+        $this->buildModal(
+            'Erreur lors de la création du département', '<p>Erreur 
+lors de l\'ajout du département.</p>'
+        );
     }
 
     /**
@@ -110,8 +135,12 @@ class DepartmentView extends View {
      *
      * @return void
      */
-    public function errorUpdate() {
-        $this->buildModal('Errur lors de la modification du département.', '<p>Erreur lors de la mise à jour du département.</p>');
+    public function errorUpdate()
+    {
+        $this->buildModal(
+            'Errur lors de la modification du département.', '<p>Erreur
+ lors de la mise à jour du département.</p>'
+        );
     }
 
     /**
@@ -119,13 +148,17 @@ class DepartmentView extends View {
      *
      * @return void
      */
-    public function errorDuplicate() {
-        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà </p>';
+    public function errorDuplicate()
+    {
+        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà 
+</p>';
     }
 
-    public function errorNothing(): string {
+    public function errorNothing(): string // TODO : Missing doc comment for function errorNothing()
+    {
         $page = get_page_by_title_custom("Gestion des départements");
         $returnLink = get_permalink($page->ID);
-        return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
+        return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour
+</a>';
     }
 }
