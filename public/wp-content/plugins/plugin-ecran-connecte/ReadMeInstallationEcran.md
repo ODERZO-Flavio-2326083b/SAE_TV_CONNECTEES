@@ -26,7 +26,8 @@ La première étape consiste à mettre en place WordPress.
     - Le login de l'utilisateur de la base de données.  
     - Le mot de passe de l'utilisateur de la base de données.  
 
-Après avoir validé les identifiants pour la base de données, vous serez amenés à vous créer un compte administrateur et de donner un titre à votre site.  
+Après avoir validé les identifiants pour la base de données, vous serez amenés à vous créer un compte administrateur 
+et à donner un titre à votre site.  
 
 ## Installation du plugin & du thème
 
@@ -47,8 +48,16 @@ Les plugins et le thème sont maintenant activés.
 
 Pour finir, il ne reste plus qu'à ajouter les pages du site.
 
-Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'importation. Importer le fichier XML pages.xml.
+Allez dans Outils, Importer puis sélectionner WordPress et lancez l'outil d'importation. 
+Importer le fichier XML pages.xml.
 
+
+## Création de départements
+La création de département est essentielle au bon fonctionnement du site.
+Allez sur la page "Départements" et remplissez le formulaire.
+
+Vous pourrez par la suite compléter les différents formulaires du site selon vos besoins, notamment dans les pages
+Informations, Utilisateurs, Codes ADE.
 
 ## Enregistrer des groupes
 
@@ -64,11 +73,8 @@ Récupérer la valeur dans resources=... (Dans notre lien d'exemple, il s'agit d
 
 Dans votre site WordPress, allez dans la partie "Code ADE" et remplissez le formulaire pour ajouter le code.  
 
-## Création de départements
-La création de département est essentielle au bon fonctionnement du site.
-Allez sur la page "Départements" et remplissez le formulaire.
 
-Vous pourrez par la suite compléter les différents formulaires du site selon vos besoins, notamment dans les pages Informations,
-Utilisateurs.
+
+
 
 
