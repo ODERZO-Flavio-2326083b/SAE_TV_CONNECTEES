@@ -258,7 +258,9 @@ class InformationController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
+	        $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
 
+	        $information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
 
@@ -300,7 +302,6 @@ class InformationController extends Controller
                     }
                 }
             }
-
 
             if ($information->update()) {
                 $this->view->displayModifyValidate();
@@ -634,6 +635,20 @@ class InformationController extends Controller
         echo '</div>';
     }
 
+    /**
+     * Crée un objet de type "scrapper" avec des informations par défaut.
+     *
+     * Cette méthode initialise un objet de la classe `information`, définit
+     * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
+     * département, l'auteur, la date de création, le contenu, l'identifiant
+     * administratif, le titre, le type et la date d'expiration, et retourne
+     * cet objet.
+     *
+     * @return information Retourne l'objet `information` initialisé.
+     *
+     * @version 1.0
+     * @date 2024-10-16
+     */
     public function  createScrapper(){
         $infoScrapper = new information();
         $infoScrapper->setIdDepartment(1);

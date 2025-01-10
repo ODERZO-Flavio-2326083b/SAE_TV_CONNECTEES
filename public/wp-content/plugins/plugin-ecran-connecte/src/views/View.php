@@ -146,10 +146,17 @@ class View
      * Génère une balise option pour chaque département contenant son nom.
      * La valeur est l'ID du département.
      *
-     * @param Department[] $depts Liste de tous les départements
-     * @param int|null $currDept ID du département actuel
+     * Cette méthode parcourt la liste des départements fournie et génère une balise `<option>` pour chaque département.
+     * Si l'ID du département actuel est passé en paramètre, la balise `<option>` correspondante sera marquée comme sélectionnée.
      *
-     * @return string Code HTML de selection des départements
+     * @param Department[] $depts Liste de tous les départements
+     * @param int|null $currDept ID du département actuel (optionnel)
+     *
+     * @return string
+     * Retourne le code HTML des options de sélection des départements.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function buildDepartmentOptions(array $depts, int $currDept = null): string {
         $string = "";
@@ -365,7 +372,7 @@ class View
      * @date 2024-10-15
      */
     public function displayBadPassword() {
-        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas corrects </p>');
+        $this->buildModal('Mauvais mot de passe', '<p class=\'alert alert-danger\'>Les deux mots de passe ne sont pas corrects. </p>');
     }
 
     /**
@@ -412,12 +419,21 @@ class View
     /**
      * Affiche un message lors du succès d'une modification
      *
-     * @param $redirect string|null (optionnel) URL vers laquelle rediriger l'utilisateur
+     * Cette méthode génère un message indiquant que la modification a été réussie.
+     * Si une URL de redirection est fournie, l'utilisateur sera redirigé vers cette URL après la confirmation.
+     *
+     * @param string|null $redirect (optionnel) URL vers laquelle rediriger l'utilisateur après la confirmation.
      *
      * @return void
+     *
+     * Affiche un modal de succès avec un message personnalisé.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
+
     public function displayModificationValidate(string $redirect = null): void {
-        $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée</p>', $redirect);
+        $this->buildModal('Modification réussie', '<p class="alert alert-success"> La modification a été appliquée.</p>', $redirect);
     }
 
     /**
@@ -426,7 +442,7 @@ class View
      * @return void
      */
     public function displayErrorInsertion(): void {
-        $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e) </p>');
+        $this->buildModal('Erreur lors de l\'inscription', '<p class="alert alert-danger"> Le login ou l\'adresse mail est déjà utilisé(e). </p>');
     }
 
 
@@ -447,12 +463,20 @@ class View
     public function errorMessageInvalidForm(): void {
         $this->buildModal('Le formulaire n\'a pas été correctement remplie', '<p class="alert alert-danger">Le formulaire a été mal rempli, veuillez revoir les données rentrées et réessayez.</p>');
     }
-
     /**
      * Affiche un modal d'erreur indiquant que
      * le formulaire d'information ou d'alertes a mal été rempli
      *
+     * Cette méthode génère un message d'erreur indiquant que l'ajout a échoué,
+     * en raison de données incorrectes ou manquantes dans le formulaire.
+     * Elle informe l'utilisateur de vérifier ses informations avant de soumettre à nouveau.
+     *
      * @return void
+     *
+     * Affiche un modal d'erreur avec un message détaillant le problème.
+     *
+     * @version 1.0
+     * @date 08-01-2025
      */
     public function errorMessageCantAdd(): void {
         $this->buildModal('L\'ajout a échoué', '<p class="alert alert-danger">Une erreur s\'est produite lors de l\'envoi du formulaire, veuillez réessayer après avoir vérifié vos informations.</p>');

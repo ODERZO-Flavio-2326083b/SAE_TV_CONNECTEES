@@ -388,6 +388,7 @@ class InformationView extends View
             <p class="lead">Lors de la création de votre information, celle-ci est postée directement sur tous les téléviseurs qui utilisent ce site.</p>
             <p class="lead">Les informations que vous créez seront affichées avec les informations déjà présentes.</p>
             <p class="lead">Les informations sont affichées dans un diaporama défilant les informations une par une sur la partie droite des téléviseurs.</p>
+            <p class="lead">Les vidéos sont affichées dans un diaporama par-dessus l\'emploi du temps.</p>
             <div class="text-center">
                 <figure class="figure">
                     <img src="' . TV_PLUG_PATH . 'public/img/presentation.png" class="figure-img img-fluid rounded" alt="Représentation d\'un téléviseur">
@@ -571,6 +572,7 @@ class InformationView extends View
                 <p class="lead">Les informations sont triées de la plus vieille à la plus récente.</p>
                 <p class="lead">Vous pouvez modifier une information en cliquant sur "Modifier" à la ligne correspondante à l\'information.</p>
                 <p class="lead">Vous souhaitez supprimer une / plusieurs information(s) ? Cochez les cases des informations puis cliquez sur "Supprimer" le bouton ce situe en bas du tableau.</p>
+                <p class="lead">Il faut également penser à créer un département avant afin d\'associer cette information à ce département.</p>
             </div>
         </div>
         <a href="' . esc_url(get_permalink(get_page_by_title_custom('Créer une information'))) . '">Créer une information</a>

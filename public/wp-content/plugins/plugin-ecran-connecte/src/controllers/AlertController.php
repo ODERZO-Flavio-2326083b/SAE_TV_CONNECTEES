@@ -4,6 +4,7 @@ namespace controllers;
 
 use models\Alert;
 use models\CodeAde;
+use models\Department;
 use views\AlertView;
 
 /**
@@ -53,7 +54,7 @@ class AlertController extends Controller
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'submit');
         if (isset($action)) {
-            $codes = $_POST['selectAlert'];
+	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
 
@@ -61,19 +62,15 @@ class AlertController extends Controller
             $endDateString = strtotime($endDate);
             $creationDateString = strtotime(date('Y-m-d', time()));
 
-            $this->model->setForEveryone(0);
 
             $codesAde = array();
             foreach ($codes as $code) {
-                if ($code != 'all' && $code != 0) {
-                    if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
-                    } else {
-                        $codesAde[] = $codeAde->getByCode($code);
-                    }
-                } elseif ($code == 'all') {
-                    $this->model->setForEveryone(1);
+                if (is_null($codeAde->getByCode($code)->getId())) {
+                    $this->view->errorMessageInvalidForm();
+                } else {
+                    $codesAde[] = $codeAde->getByCode($code);
                 }
+
             }
 
             if (is_string($content) && strlen($content) >= 4 && strlen($content) <= 280
@@ -88,7 +85,7 @@ class AlertController extends Controller
                 $this->model->setCodes($codesAde);
 
                 // Insérer l'alerte
-                if ($id = $this->model->insert()) {
+                if ($this->model->insert()) {
                     $this->view->displayAddValidate();
                 } else {
                     $this->view->errorMessageCantAdd();
@@ -103,7 +100,10 @@ class AlertController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->creationForm($years, $groups, $halfGroups);
+	    $deptModel = new Department();
+	    $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->creationForm($years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -124,7 +124,7 @@ class AlertController extends Controller
      * @date 16-09-2024
      */
     public function modify() : string {
-        $id = $_GET['id'];
+        $id = filter_input(INPUT_GET, 'id');
 
         if (!is_numeric($id) || !$this->model->get($id)) {
             return $this->view->noAlert();
@@ -142,29 +142,39 @@ class AlertController extends Controller
 
         $codeAde = new CodeAde();
 
+        $years = $codeAde->getAllFromType('year');
+        $groups = $codeAde->getAllFromType('group');
+        $halfGroups = $codeAde->getAllFromType('halfGroup');
+
+        $deptModel = new Department();
+        $allDepts = $deptModel->getAllDepts();
+
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
+            $error = false;
             // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
             $expirationDate = filter_input(INPUT_POST, 'expirationDate');
-            $codes = $_POST['selectAlert'];
-
-            $alert->setForEveryone(0);
+	        $codes = filter_input(INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
             $codesAde = array();
-            foreach ($codes as $code) {
-                if ($code != 'all' && $code != 0) {
+            if (!empty($codes)){
+                foreach ($codes as $code) {
                     if (is_null($codeAde->getByCode($code)->getId())) {
-                        $this->view->errorMessageInvalidForm();
+                        $error = true;
                     } else {
                         $codesAde[] = $codeAde->getByCode($code);
                     }
-                } elseif ($code == 'all') {
-                    $alert->setForEveryone(1);
                 }
+            } else {
+                $error = true;
             }
 
-            // Définir l'alerte
+            if($error) {
+                $this->view->errorMessageCantAdd();
+                return $this->view->modifyForm($alert, $years, $groups, $halfGroups, $allDepts);
+            }
+
             $alert->setContent($content);
             $alert->setExpirationDate($expirationDate);
             $alert->setCodes($codesAde);
@@ -176,19 +186,13 @@ class AlertController extends Controller
             }
         }
 
-        // Supprimer l'alerte si demandé
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $alert->delete();
             $this->view->displayModifyValidate();
         }
 
-        // Récupération des types de codes pour le formulaire
-        $years = $codeAde->getAllFromType('year');
-        $groups = $codeAde->getAllFromType('group');
-        $halfGroups = $codeAde->getAllFromType('halfGroup');
-
-        return $this->view->modifyForm($alert, $years, $groups, $halfGroups);
+        return $this->view->modifyForm($alert, $years, $groups, $halfGroups, $allDepts);
     }
 
 
@@ -284,10 +288,6 @@ class AlertController extends Controller
         $alertsUser = $this->model->getForUser($current_user->ID);
         //$alertsUser = array_unique($alertsUser); // Supprimer les doublons
 
-        foreach ($this->model->getForEveryone() as $alert) {
-            $alertsUser[] = $alert;
-        }
-
         $contentList = array();
         foreach ($alertsUser as $alert) {
             $endDate = date('Y-m-d', strtotime($alert->getExpirationDate()));
@@ -328,7 +328,6 @@ class AlertController extends Controller
                     $alert->setExpirationDate($adminInfo->getExpirationDate());
                 }
                 $alert->setCodes([]);
-                $alert->setForEveryone(1);
                 $alert->update();
             } else {
                 $alert->delete();

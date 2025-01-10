@@ -22,14 +22,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $view;
+    private TelevisionView $view;
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -155,6 +155,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -183,7 +184,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
