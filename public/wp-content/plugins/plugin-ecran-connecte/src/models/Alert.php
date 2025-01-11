@@ -80,7 +80,7 @@ class Alert extends Model implements Entity, JsonSerializable
 		foreach ( $this->getCodes() as $code ) {
 			if ( $code->getCode() != 'all' && $code->getCode() != 0 ) {
 				$request = $database->prepare( 'INSERT INTO ecran_code_alert (alert_id, code_ade_id) VALUES (:idAlert, :idCodeAde)' );
-				$request->bindParam( ':idAlert', $id, PDO::PARAM_INT );
+				$request->bindValue( ':idAlert', $id, PDO::PARAM_INT );
 				$request->bindValue( ':idCodeAde', $code->getId(), PDO::PARAM_INT );
 
 				$request->execute();
@@ -88,10 +88,6 @@ class Alert extends Model implements Entity, JsonSerializable
 		}
 
         return $id;
-    }
-
-    public function LOL() {
-        return $this->getDatabase();
     }
 
     /**
