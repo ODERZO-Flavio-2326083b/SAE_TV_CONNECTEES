@@ -11,7 +11,7 @@ use models\Department;
  * Main class View,
  * got basics functions for all views
  *
- * @package Views
+ * @package views
  */
 class View
 {
