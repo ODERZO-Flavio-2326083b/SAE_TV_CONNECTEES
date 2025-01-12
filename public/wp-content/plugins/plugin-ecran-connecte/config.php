@@ -321,7 +321,6 @@ function addNewRoles() {
 	];
 
 	$admin = get_role('administrator');
-    var_dump($admin->capabilities);
 	foreach ( $allCaps as $cap ) {
 		$admin->add_cap($cap);
 	}
