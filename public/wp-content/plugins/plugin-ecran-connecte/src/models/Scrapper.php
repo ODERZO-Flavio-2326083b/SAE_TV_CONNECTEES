@@ -16,6 +16,8 @@ namespace models;
  */
 class Scrapper
 {
+    private $url;
+
     /**
      * Classe Scrapper pour extraire des articles depuis un site web.
      *

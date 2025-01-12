@@ -234,8 +234,8 @@ name="delete" onclick="return confirm(
             <input class="form-control-file" id="contentFile" type="file" 
             name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : 
-            .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés :
+             .mp4, .webm</small>
         </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
@@ -321,7 +321,7 @@ Supprimer</button>';
             name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
             <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4,
-             .avi, .mov</small>
+             .webm</small>
             <small id="tabHelp" class="form-text text-muted">Un short est une courte 
             vidéo au format vertical.</small>
         </div>
@@ -546,7 +546,7 @@ name="delete" onclick="return confirm(
      *
      * Cette méthode génère un lien pour revenir à la page de gestion des
      * informations, puis affiche le formulaire correspondant au type d'information
-     * spécifié (texte, image, vidéo, short, tableau, PDF ou événement).
+     * spécifié (texte, image, vidéo, short, PDF ou événement).
      *
      * @param string $title   Le titre de l'information à
      *                        modifier.
@@ -554,7 +554,7 @@ name="delete" onclick="return confirm(
      *                        URL pour les images ou PDF).
      * @param string $endDate La date d'expiration de l'information.
      * @param string $type    Le type d'information à modifier (valeurs possibles :
-     *                        'text', 'img', 'video', 'short' 'tab', 'pdf', 'event').
+     *                        'text', 'img', 'video', 'short', 'pdf', 'event').
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le
      * formulaire de modification approprié pour le type d'information.
@@ -671,6 +671,57 @@ name="delete" onclick="return confirm(
         echo '<div class="slideshow-container">';
     }
 
+
+    /**
+     * Affiche le début d'un conteneur pour un diaporama de vidéos.
+     *
+     * Cette méthode génère une structure HTML pour le conteneur principal
+     * du diaporama destiné uniquement aux vidéos, positionné à gauche de l'écran.
+     *
+     * @return void
+     * @version 1.0
+     * @date 2024-12-29
+     */
+    public function displayStartSlideVideo() {
+        echo '<div class="video-slideshow-container">';
+    }
+
+    /**
+     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
+     *
+     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
+     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * sur le site d'administration et l'affichage normal.
+     *
+     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
+     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
+        echo '<div class="myVideoSlides text-center" style="display: block;">';
+
+        // If the title is empty
+        if ($title != "Sans titre") {
+            echo '<h2 class="titleInfo">' . $title . '</h2>';
+        }
+
+        $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
+
+        echo '<video class="video_container" src="' . $url . $content . '
+              " autoplay loop muted></video>';
+
+
+
+        echo '</div>';
+    }
+
     /**
      * TODO : Ajouter la doc pour le paramètre "$scrapper"
      * TODO : Mettre la doc des paramètres dans l'ordre
@@ -730,11 +781,6 @@ name="delete" onclick="return confirm(
         case 'short':
             echo '<video class="short_container" src="' . $url . $content . '" id="'
                 .$title . '" autoplay loop muted></video>';
-            break;
-
-        case 'video':
-            echo '<video class="video_container" src="' . $url . $content . '" 
-autoplay loop muted></video>';
             break;
 
         case 'text':

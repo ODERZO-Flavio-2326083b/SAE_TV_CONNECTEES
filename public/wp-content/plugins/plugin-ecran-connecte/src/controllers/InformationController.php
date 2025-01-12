@@ -2,6 +2,7 @@
 // TODO : Ajouter la doc du fichier
 namespace controllers;
 
+use getID3;
 use models\Department;
 use models\Information;
 use models\Scrapper;
@@ -13,20 +14,18 @@ use views\InformationView;
  * TODO : Ajouter les tags @author, @category, @license et @link
  * Class InformationController
  *
- * Manage information (create, update, delete, display)
+ * Gère les informations avec ces différentes fonctions (créer, mettre à jour, supprimer, afficher)
  *
  * @package controllers
  */
 class InformationController extends Controller
 {
 
-    // TODO : Ajouter une description
     /**
      * @var Information
      */
     private Information $_model;
 
-    // TODO : Ajouter une description
     /**
      * @var InformationView
      */
@@ -115,8 +114,9 @@ class InformationController extends Controller
         $information->setAuthor($userModel->get($currentUser->ID));
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
-        $information->setAdminId(null);
+        $information->setAdminId( null );
         $information->setIdDepartment($deptId ?: 0);
+        $information->setDuration(5000);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -154,7 +154,7 @@ veuillez choisir une autre image</p>'
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
                 $this->_view->buildModal(
-                    'PDF non valide', '<p>Ce fichier est un tableau non PDF, 
+                    'PDF non valide', '<p>Ce fichier est un PDF non valide, 
 veuillez choisir un autre PDF.</p>'
                 );
             }
@@ -180,24 +180,23 @@ merci de choisir d\'autres fichiers.</p>'
                 }
             }
         }
-        if (isset($actionShort) || isset($actionVideo)) {
+	    if (isset($actionShort) || isset($actionVideo)) {
                                         // Si l'information est un short ou une vidéo
-            isset($actionShort) ? $type = "short" : $type = "video";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['mp4', 'mov', 'avi'];
-                          // On définit les extensions valides pour nos vidéos/shorts
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->_view->buildModal(
-                    'Vidéo non valide', '<p>Ce fichier est une vidéo non valide, 
-veuillez choisir une autre vidéo</p>'
-                );
-            }
-        }
+		    isset($actionShort) ? $type = "short" : $type = "video";
+		    $information->setType($type);
+		    $filename = $_FILES['contentFile']['name'];
+		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
+		    $explodeName = explode('.', $filename);
+            // On définit les extensions valides pour nos vidéos/shorts
+		    $goodExtension = ['mp4', 'webm'];
+		    if (in_array(end($explodeName), $goodExtension)) {
+			    $this->registerFile($filename, $fileTmpName, $information);
+		    } else {
+			    $this->_view->buildModal(
+                    'Vidéo non valide', '<p>Ce fichier est une vidéo non valide,
+ veuillez choisir une autre vidéo</p>');
+		    }
+	    }
 
         return
             $this->_view->displayStartMultiSelect() .
@@ -294,7 +293,7 @@ veuillez choisir une autre vidéo</p>'
 
         $information = $this->_model->get($id);
 
-        if (!(current_user_can('edit_information') 
+        if (!(current_user_can('edit_information')
             || $information->getAuthor()->getId() == $currentUser->ID)
         ) {
             return $this->_view->noInformation();
@@ -358,11 +357,11 @@ valide, veuillez choisir une autre image</p>'
 valide, veuillez choisir un autre PDF</p>'
                             );
                         }
-                    } else if ($information->getType() == 'video' 
+                    } else if ($information->getType() == 'video'
                         || $information->getType() == 'short'
                     ) {
                         $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'avi', 'mov'];
+                        $goodExtension = ['mp4', 'webm'];
                         if (in_array(end($explodeName), $goodExtension)) {
                                            // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
@@ -432,10 +431,21 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
         $id = 'temporary';
         $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.'
-            . $extension_upload;
+                . $extension_upload;
+        $entity->setDuration(5000);
+
+        if($entity->getType() == 'video' || $entity->getType() == 'short') {
+            $getID3 = new getID3();
+            $fileInfo = $getID3->analyze($tmpName);
+            if (isset($fileInfo['playtime_seconds'])) {
+                $duration = $fileInfo['playtime_seconds'];
+                $entity->setDuration(floor($duration*1000));
+            }
+        }
+
 
         // Upload le fichier
-        if ($result = move_uploaded_file($tmpName, $name)) {
+        if (move_uploaded_file($tmpName, $name)) {
             $entity->setContent('temporary content');
             if ($entity->getId() == null) {
                 $id = $entity->insert();
@@ -446,7 +456,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
         } else {
             $this->_view->errorMessageCantAdd();
         }
-        // If the file upload and the upload of the information in the database works
+
         if ($id != 0) {
             $entity->setId($id);
 
@@ -474,7 +484,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
      *
      * @return void
      */
-    public function deleteFile($id)
+    public function deleteFile( int $id ): void
     {
         $this->_model = $this->_model->get($id);
         $source = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH
@@ -518,7 +528,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-        $videoExtension = ['mp4', 'avi', 'mov'];
+        $videoExtension = ['mp4', 'webm'];
 
         foreach ($informationList as $information) {
             ++$row;
@@ -649,8 +659,6 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
      *
      * Récupère la liste des informations, vérifie si leur date d'expiration est
      * dépassée, et affiche chaque information en fonction de son type.
-     * Pour les tableaux, le contenu est lu à partir d'un fichier et formaté pour
-     * l'affichage.
      *
      * @return void
      *
@@ -661,9 +669,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
     {
         $deptModel = new Department();
         $informations = $this->_model->getInformationsByDeptId(
-            $deptModel->getUserDepartment(
-                wp_get_current_user()->ID
-            )->getIdDepartment()
+            $deptModel->getUserDepartment(get_current_user_id())->getIdDepartment()
         );
         $informations[] = $this->createScrapper();
         $this->_view->displayStartSlideshow();
@@ -674,11 +680,38 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->_view->displaySlide(
-                    $information->getTitle(),
-                    $information->getContent(),
-                    $information->getType(), new Scrapper(), $adminSite
-                );
+                // Affiche les informations sauf les vidéos
+                if ($information->getType() !== 'video') {
+                    $this->_view->displaySlide(
+                        $information->getTitle(),
+                        $information->getContent(),
+                        $information->getType(),
+                        new Scrapper(),
+                        $adminSite
+                    );
+                }
+            }
+        }
+        echo '</div>';
+    }
+
+    public function displayVideo(){
+        $deptModel = new Department();
+        $informations = $this->_model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+
+        // Début du conteneur pour les vidéos
+        $this->_view->displayStartSlideVideo();
+        foreach ($informations as $information) {
+            $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
+            if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
+                $adminSite = true;
+                if (is_null($information->getAdminId())) {
+                    $adminSite = false;
+                }
+                // Affiche uniquement les vidéos
+                if ($information->getType() === 'video') {
+                    $this->_view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                }
             }
         }
         echo '</div>';
@@ -790,7 +823,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
     {
         $infoScrapper = new information();
         $infoScrapper->setIdDepartment(1);
-        $infoScrapper->setAuthor(1);
+        $infoScrapper->setAuthor(new User());
         $infoScrapper->setCreationDate(date("2024-12-18"));
         $infoScrapper->setId(27);
         $infoScrapper->setContent("scrapper");
