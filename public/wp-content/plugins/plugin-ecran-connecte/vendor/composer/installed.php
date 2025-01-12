@@ -3,7 +3,7 @@
         'name' => 'nicochoco/mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '209e8249e55ebeaa9268cc3263f80920e966ce46',
+        'reference' => '20a7b0e32c7fa1aee04ea7d426ae7e132392b520',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -58,7 +58,7 @@
         'nicochoco/mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '209e8249e55ebeaa9268cc3263f80920e966ce46',
+            'reference' => '20a7b0e32c7fa1aee04ea7d426ae7e132392b520',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

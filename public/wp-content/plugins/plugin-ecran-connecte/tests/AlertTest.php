@@ -71,6 +71,82 @@ class AlertTest extends TestCase
         $this->assertEquals(1, $result);
     }
 
+    public function testUpdate()
+    {
+        $alertMock = Mockery::mock(Alert::class)->makePartial();
+        $alertMock->shouldAllowMockingProtectedMethods();
+        $alertMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
+
+        $this->pdoMock->shouldReceive('prepare')
+            ->once()
+            ->with($this->stringContains('UPDATE ecran_alert'))
+            ->andReturn($this->pdoStatementMock);
+
+        $this->pdoStatementMock->shouldReceive('execute')
+            ->once()
+            ->andReturn(true);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with($this->anything(), $this->anything(), $this->anything())
+            ->andReturn(true);
+
+        // Simulating alert data
+        $alertMock->shouldReceive('getId')->andReturn(1);
+        $alertMock->shouldReceive('getContent')->andReturn('Updated content');
+        $alertMock->shouldReceive('getExpirationDate')->andReturn('2025-02-01');
+
+        $codeMock = Mockery::mock(CodeAde::class);
+        $codeMock->shouldReceive('getCode')->andReturn(123123);
+        $codeMock->shouldReceive('getId')->andReturn(2);
+        $alertMock->shouldReceive('getCodes')->andReturn([$codeMock]);
+
+        // Mocking the deletion of previous codes
+        $this->pdoMock->shouldReceive('prepare')
+            ->once()
+            ->with($this->stringContains('DELETE FROM ecran_code_alert'))
+            ->andReturn($this->pdoStatementMock);
+
+        $this->pdoStatementMock->shouldReceive('execute')
+            ->once()
+            ->andReturn(true);
+
+        // Simulate inserting new codes after update
+        $this->pdoMock->shouldReceive('prepare')
+            ->once()
+            ->with($this->stringContains('INSERT INTO ecran_code_alert'))
+            ->andReturn($this->pdoStatementMock);
+
+        $this->pdoStatementMock->shouldReceive('execute')
+            ->once()
+            ->andReturn(true);
+
+        $result = $alertMock->update();
+
+        $this->assertEquals(1, $result);
+    }
+
+    public function testDelete()
+    {
+        $alertMock = Mockery::mock(Alert::class)->makePartial();
+        $alertMock->shouldAllowMockingProtectedMethods();
+        $alertMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
+
+        $this->pdoMock->shouldReceive('prepare')
+            ->once()
+            ->with($this->stringContains('DELETE FROM ecran_alert'))
+            ->andReturn($this->pdoStatementMock);
+
+        $this->pdoStatementMock->shouldReceive('execute')
+            ->once()
+            ->andReturn(true);
+
+        $alertMock->shouldReceive('getId')->andReturn(1);
+
+        $result = $alertMock->delete();
+
+        $this->assertEquals(1, $result);
+    }
+
     protected function tearDown(): void
     {
         // Libération des mocks
