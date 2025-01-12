@@ -4,6 +4,7 @@ namespace controllers;
 
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\SubadminView;
 
 /**
@@ -59,9 +60,9 @@ class SubadminController extends UserController {
 				$currDept;
 
 			// Validation des données d'entrée
-			if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-			    is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-			    $password === $passwordConfirm && is_email($email)) {
+			if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm) &&
+                InputValidator::isValidEmail($email)) {
 				$this->model->setLogin($login);
 				$this->model->setPassword($password);
 				$this->model->setEmail($email);

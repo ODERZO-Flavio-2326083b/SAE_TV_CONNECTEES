@@ -5,6 +5,7 @@ namespace controllers;
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TelevisionView;
 
 /**
@@ -88,9 +89,8 @@ class TelevisionController extends UserController implements Schedule
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm)) {
                 $codesAde = array();
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {

@@ -5,6 +5,7 @@ namespace controllers;
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TechnicianView;
 
 /**
@@ -83,9 +84,9 @@ class TechnicianController extends UserController implements Schedule
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm && is_email($email)) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm) &&
+                InputValidator::isValidEmail($email)) {
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
