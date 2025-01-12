@@ -90,7 +90,6 @@ class AlertTest extends TestCase
             ->with($this->anything(), $this->anything(), $this->anything())
             ->andReturn(true);
 
-        // Simulating alert data
         $alertMock->shouldReceive('getId')->andReturn(1);
         $alertMock->shouldReceive('getContent')->andReturn('Updated content');
         $alertMock->shouldReceive('getExpirationDate')->andReturn('2025-02-01');
@@ -100,7 +99,6 @@ class AlertTest extends TestCase
         $codeMock->shouldReceive('getId')->andReturn(2);
         $alertMock->shouldReceive('getCodes')->andReturn([$codeMock]);
 
-        // Mocking the deletion of previous codes
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('DELETE FROM ecran_code_alert'))
