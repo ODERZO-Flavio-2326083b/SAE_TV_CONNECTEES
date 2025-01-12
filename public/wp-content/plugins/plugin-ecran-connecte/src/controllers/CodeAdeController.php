@@ -1,5 +1,5 @@
 <?php
-
+// TODO : Ajouter la doc du fichier
 namespace controllers;
 
 use Exception;
@@ -8,6 +8,7 @@ use models\Department;
 use views\CodeAdeView;
 
 /**
+ * TODO : Ajouter les tags @author, @category, @license et @link
  * Class CodeAdeController
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
@@ -19,15 +20,17 @@ class CodeAdeController extends Controller
 
     /**
      * Modèle de CodeAdeController
+     *
      * @var CodeAde
      */
-    private $model;
+    private CodeAde $_model;
 
     /**
      * Vue de CodeAdeController
+     *
      * @var CodeAdeView
      */
-    private $_view;
+    private CodeAdeView $_view;
 
     /**
      * Constructeur de la classe.
@@ -36,10 +39,11 @@ class CodeAdeController extends Controller
      * 'CodeAdeView'.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function __construct() {
-        $this->model = new CodeAde();
+    public function __construct()
+    {
+        $this->_model = new CodeAde();
         $this->_view = new CodeAdeView();
     }
 
@@ -53,17 +57,21 @@ class CodeAdeController extends Controller
      *
      * @return string Formulaire de création de Code
      *
-     * @throws Exception
+     * @throws  Exception
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function insert() : string {
+    public function insert() : string
+    {
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
         $isAdmin = in_array("administrator", $currentUser->roles);
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
+            $currentUser->ID
+        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
@@ -78,17 +86,21 @@ class CodeAdeController extends Controller
             $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
-            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
-                is_numeric($code) && is_string($code) && strlen($code) < 20 &&
-                in_array($type, $validType)) {
+            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
+                && is_numeric($code) && is_string($code) && strlen($code) < 20 
+                && in_array($type, $validType)
+            ) {
 
-                $this->model->setTitle($title);
-                $this->model->setCode($code);
-                $this->model->setType($type);
-                $this->model->setDeptId($dept);
+                $this->_model->setTitle($title);
+                $this->_model->setCode($code);
+                $this->_model->setType($type);
+                $this->_model->setDeptId($dept);
 
                 // Vérifie les doublons et insère le code
-                if (!$this->checkDuplicateCode($this->model) && $this->model->insert()) {
+                if (!$this->checkDuplicateCode(
+                    $this->_model
+                ) && $this->_model->insert()
+                ) {
                     $this->_view->successCreation();
                     $this->addFile($code);
                     $this->_view->refreshPage();
@@ -115,11 +127,12 @@ class CodeAdeController extends Controller
      * @return string Le rendu du formulaire de modification ou un message d'erreur.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function modify(): string {
+    public function modify(): string
+    {
         $id = $_GET['id'];
-        if (is_numeric($id) && !$this->model->get($id)) {
+        if (is_numeric($id) && !$this->_model->get($id)) {
             return $this->_view->errorNobody();
         }
 
@@ -127,12 +140,15 @@ class CodeAdeController extends Controller
         $deptModel = new Department();
 
         $isAdmin = in_array("administrator", $currentUser->roles);
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
+            $currentUser->ID
+        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
-        $result = $codeAde = $this->model->get($id);
+        $result = $codeAde = $this->_model->get($id);
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
@@ -144,9 +160,10 @@ class CodeAdeController extends Controller
             $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
-            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 &&
-                is_numeric($code) && is_string($code) && strlen($code) < 20 &&
-                in_array($type, $validType)) {
+            if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
+                && is_numeric($code) && is_string($code) && strlen($code) < 20 
+                && in_array($type, $validType)
+            ) {
 
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
@@ -166,7 +183,10 @@ class CodeAdeController extends Controller
                 $this->_view->errorModification();
             }
         }
-        return $this->_view->displayModifyCode($codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode(), $allDepts, $isAdmin, $codeAde->getDeptId());
+        return $this->_view->displayModifyCode(
+            $codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode(),
+            $allDepts, $isAdmin, $codeAde->getDeptId()
+        );
     }
 
     /**
@@ -179,12 +199,13 @@ class CodeAdeController extends Controller
      * @return string Le rendu HTML des codes ADE classés par type.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function displayAllCodes() : string {
-        $years = $this->model->getAllFromType('year');
-        $groups = $this->model->getAllFromType('group');
-        $halfGroups = $this->model->getAllFromType('halfGroup');
+    public function displayAllCodes() : string
+    {
+        $years = $this->_model->getAllFromType('year');
+        $groups = $this->_model->getAllFromType('group');
+        $halfGroups = $this->_model->getAllFromType('halfGroup');
 
         return $this->_view->displayAllCode($years, $groups, $halfGroups);
     }
@@ -200,16 +221,17 @@ class CodeAdeController extends Controller
      * @return void
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    public function deleteCodes() {
+    public function deleteCodes()
+    {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         if (isset($actionDelete)) {
             if (isset($_REQUEST['checkboxStatusCode'])) {
                 $checked_values = $_REQUEST['checkboxStatusCode'];
                 foreach ($checked_values as $id) {
-                    $this->model = $this->model->get($id);
-                    $this->model->delete();
+                    $this->_model = $this->_model->get($id);
+                    $this->_model->delete();
                     $this->_view->refreshPage();
                 }
             }
@@ -224,13 +246,17 @@ class CodeAdeController extends Controller
      * l'ID correspond et renvoie vrai s'il existe d'autres codes similaires.
      *
      * @param CodeAde $newCodeAde L'objet CodeAde à vérifier pour les doublons.
+     * 
      * @return bool Retourne vrai si un doublon est trouvé, sinon faux.
      *
      * @version 1.0
-     * @date 2024-09-16
+     * @date    2024-09-16
      */
-    private function checkDuplicateCode(CodeAde $newCodeAde) {
-        $codesAde = $this->model->checkCode($newCodeAde->getTitle(), $newCodeAde->getCode());
+    private function checkDuplicateCode(CodeAde $newCodeAde)
+    {
+        $codesAde = $this->_model->checkCode(
+            $newCodeAde->getTitle(), $newCodeAde->getCode()
+        );
 
         $count = 0;
         foreach ($codesAde as $codeAde) {

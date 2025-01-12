@@ -1,5 +1,5 @@
 <?php
-
+// TODO : Ajouter la doc du fichier
 namespace controllers;
 
 use models\CSSCustomizer;
@@ -7,6 +7,8 @@ use models\Department;
 use views\CSSView;
 
 /**
+ * TODO : Ajouter les tags @author, @category, @license et @link
+ *
  * Class CSSCustomizerController
  *
  * Contrôleur pour la personnalisation CSS.
@@ -17,15 +19,17 @@ use views\CSSView;
  */
 class CSSCustomizerController extends Controller
 {
+    // TODO : Ajouter une description
     /**
      * @var CSSCustomizer
      */
-    private $model;
+    private CSSCustomizer $_model;
 
+    // TODO : Ajouter une description
     /**
      * @var CSSView
      */
-    private $_view;
+    private CSSView $_view;
 
     /**
      * Constructeur de la classe CSSCustomizerController.
@@ -35,11 +39,12 @@ class CSSCustomizerController extends Controller
      * gère les opérations de personnalisation CSS.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function __construct()   {
+    public function __construct()
+    {
         $this->_view = new CSSView();
-        $this->model = new CSSCustomizer();
+        $this->_model = new CSSCustomizer();
     }
 
     /**
@@ -50,20 +55,23 @@ class CSSCustomizerController extends Controller
      * extrait leurs noms et transmet ces données à la vue pour afficher
      * l'interface de personnalisation CSS.
      *
+     * @return void
+     *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
     public function useCssCustomizer()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->model->updateColor();
+            $this->_model->updateColor();
         }
         $departement = new Department();
         $listDepartement = $departement->getAllDepts();
         $listDepName = []; // Initialiser un tableau vide
 
         foreach ($listDepartement as $e) {
-            $listDepName[] = $e->getName(); // Ajouter le nom du département au tableau
+            $listDepName[] = $e->getName(); // Ajouter le nom du département au
+                                            // tableau
         }
         $this->_view->displayContextCSS();
         $this->_view->displayCssCustomizer($listDepName);
