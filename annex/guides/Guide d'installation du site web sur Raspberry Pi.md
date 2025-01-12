@@ -196,7 +196,20 @@ Bertin Mathéo, Gallou Loïc, Oderzo Flavio, Tamine Cyril
    sudo apt install filezilla
    ```
 
-2. Renseignez les informations FTP de votre site distant et transférez les fichiers du dossier `wp-content`.
+Une fois FileZilla installé, ouvrez-le et entrez les informations FTP de votre site distant :
+
+    Hôte : L'adresse FTP de votre site.
+    Nom d'utilisateur : Votre nom d'utilisateur FTP.
+    Mot de passe : Le mot de passe associé à votre compte FTP.
+    Port : Laissez vide (par défaut, il est généralement 21).
+
+Cliquez sur "Connexion rapide". FileZilla va se connecter à votre serveur distant.
+
+Une fois connecté, vous verrez vos fichiers sur le serveur distant dans la fenêtre de droite, et les fichiers locaux dans la fenêtre de gauche.
+
+Important : Ne transférez que le dossier wp-content (qui contient vos thèmes, plugins et uploads) pour éviter tout conflit. Si des conflits surviennent malgré tout, transférez uniquement les fichiers ou dossiers modifiés, tels que les plugins ou thèmes personnalisés.
+
+Vous pouvez également récupérer un fichier XML de votre site si nécessaire pour une importation future via le panneau d'administration de Wordpress.
 
 ### Configuration Wordpress
 
