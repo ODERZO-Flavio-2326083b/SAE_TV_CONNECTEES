@@ -40,7 +40,7 @@ add_action('wp_enqueue_scripts', 'injectLocVariables');
  *
  * @return void
  */
-function handleMeteoAjaxData() {
+function handleMeteoAjaxData(): void {
 	check_ajax_referer('locNonce', 'nonce'); // vérification de l'authenticité de la demande
 	if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
 		$longitude = sanitize_text_field($_POST['longitude']);
@@ -49,12 +49,13 @@ function handleMeteoAjaxData() {
 
 		$locModel = new Localisation();
 
-		$locModel->setLongitude($longitude);
-		$locModel->setLatitude($latitude);
-		$locModel->setUserId($userId);
+        if (!$locModel->getLocFromUserId(get_current_user_id())) {
+            $locModel->setLongitude( $longitude );
+            $locModel->setLatitude( $latitude );
+            $locModel->setUserId( $userId );
 
-		$locModel->insert();
-
+            $locModel->insert();
+        }
 		wp_send_json_success(array(
 			'message' => 'Données reçues avec succès',
 			'currentUserId' => $userId,
@@ -76,7 +77,7 @@ add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
  *
  * @return void
  */
-function loadLocAjaxIfUserHasNoLoc(){
+function loadLocAjaxIfUserHasNoLoc(): void {
 	$model = new Localisation();
 
 	if(is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(get_current_user_id()) ){
