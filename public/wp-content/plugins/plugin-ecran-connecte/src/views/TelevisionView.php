@@ -314,4 +314,6 @@ class TelevisionView extends UserView
     public function displayMidSlide() : string {
         return '<div class="mySlides">';
     }
+
+
 }
