@@ -171,7 +171,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .webm</small>
         </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
@@ -233,7 +233,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo (short)</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .webm</small>
             <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
         </div>
         <div class="form-group">
@@ -388,6 +388,7 @@ class InformationView extends View
             <p class="lead">Lors de la création de votre information, celle-ci est postée directement sur tous les téléviseurs qui utilisent ce site.</p>
             <p class="lead">Les informations que vous créez seront affichées avec les informations déjà présentes.</p>
             <p class="lead">Les informations sont affichées dans un diaporama défilant les informations une par une sur la partie droite des téléviseurs.</p>
+            <p class="lead">Les vidéos sont affichées dans un diaporama par-dessus l\'emploi du temps.</p>
             <div class="text-center">
                 <figure class="figure">
                     <img src="' . TV_PLUG_PATH . 'public/img/presentation.png" class="figure-img img-fluid rounded" alt="Représentation d\'un téléviseur">
@@ -401,12 +402,12 @@ class InformationView extends View
      * Affiche un formulaire de modification d'informations en fonction du type d'information.
      *
      * Cette méthode génère un lien pour revenir à la page de gestion des informations, puis
-     * affiche le formulaire correspondant au type d'information spécifié (texte, image, vidéo, short, tableau, PDF ou événement).
+     * affiche le formulaire correspondant au type d'information spécifié (texte, image, vidéo, short, PDF ou événement).
      *
      * @param string $title      Le titre de l'information à modifier.
      * @param string $content    Le contenu de l'information à modifier (peut être une URL pour les images ou PDF).
      * @param string $endDate    La date d'expiration de l'information.
-     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'video', 'short' 'tab', 'pdf', 'event').
+     * @param string $type       Le type d'information à modifier (valeurs possibles : 'text', 'img', 'video', 'short', 'pdf', 'event').
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le formulaire de modification
      *                          approprié pour le type d'information.
@@ -416,35 +417,36 @@ class InformationView extends View
      * @date 2024-10-15
      */
     public function displayModifyInformationForm( string $title, string $content, string $endDate, string $type,
-	        array $allDepts, bool $isAdmin = false, int $currDept = null): string {
+                                                  array $allDepts, bool $isAdmin = false, int $currDept = null): string
+    {
 
-		switch($type) {
-			case "text":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "img":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				      $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "video":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "short":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "pdf":
-				return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
-				       $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-			case "event":
-				$extension = explode('.', $content);
-				$extension = $extension[1];
-				if ($extension == "pdf") {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-				} else {
-					return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
-				}
-			default:
-				return $this->noInformation();
-		}
+        switch ($type) {
+            case "text":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormText($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "img":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "video":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormVideo($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "short":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormShort($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "pdf":
+                return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' .
+                    $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+            case "event":
+                $extension = explode('.', $content);
+                $extension = $extension[1];
+                if ($extension == "pdf") {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormPDF($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                } else {
+                    return '<a href="' . esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))) . '">< Retour</a>' . $this->displayFormImg($allDepts, $isAdmin, $currDept, $title, $content, $endDate, 'submit');
+                }
+            default:
+                return $this->noInformation();
+        }
     }
 
     /**
@@ -462,6 +464,21 @@ class InformationView extends View
      */
     public function displayStartSlideshow() {
         echo '<div class="slideshow-container">';
+    }
+
+
+    /**
+     * Affiche le début d'un conteneur pour un diaporama de vidéos.
+     *
+     * Cette méthode génère une structure HTML pour le conteneur principal
+     * du diaporama destiné uniquement aux vidéos, positionné à gauche de l'écran.
+     *
+     * @return void
+     * @version 1.0
+     * @date 2024-12-29
+     */
+    public function displayStartSlideVideo() {
+        echo '<div class="video-slideshow-container">';
     }
 
     /**
@@ -482,10 +499,44 @@ class InformationView extends View
      * @version 1.0
      * @date 2024-10-15
      */
-    public function displaySlide($title, $content, $type, $adminSite = false) {
-        echo '<div class="myInfoSlides text-center">';
+    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
+        echo '<div class="myVideoSlides text-center" style="display: block;">';
 
         // If the title is empty
+        if ($title != "Sans titre") {
+            echo '<h2 class="titleInfo">' . $title . '</h2>';
+        }
+
+        $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
+
+        echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
+
+
+
+        echo '</div>';
+    }
+
+    /**
+     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
+     *
+     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
+     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
+     * sur le site d'administration et l'affichage normal.
+     *
+     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
+     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
+     *
+     * @return void
+     *
+     *
+     * @version 1.0
+     * @date 2024-10-15
+     */
+    public function displaySlide($title, $content, $type, $scrapper,$adminSite = false) {
+        echo '<div class="myInfoSlides text-center">';
+
         if ($title != "Sans titre") {
             echo '<h2 class="titleInfo">' . $title . '</h2>';
         }
@@ -515,12 +566,12 @@ class InformationView extends View
                 echo '<video class="short_container" src="' . $url . $content . '" id="' .$title . '" autoplay loop muted></video>';
                 break;
 
-            case 'video':
-                echo '<video class="video_container" src="' . $url . $content . '" autoplay loop muted></video>';
-                break;
-
             case 'text':
                 echo '<p class="lead">' . $content . '</p>';
+                break;
+
+            case 'scrapper':
+                $scrapper->printWebsite();
                 break;
 
             case 'special':
@@ -540,6 +591,8 @@ class InformationView extends View
 
         echo '</div>';
     }
+
+
 
 
     /**
@@ -567,6 +620,7 @@ class InformationView extends View
                 <p class="lead">Les informations sont triées de la plus vieille à la plus récente.</p>
                 <p class="lead">Vous pouvez modifier une information en cliquant sur "Modifier" à la ligne correspondante à l\'information.</p>
                 <p class="lead">Vous souhaitez supprimer une / plusieurs information(s) ? Cochez les cases des informations puis cliquez sur "Supprimer" le bouton ce situe en bas du tableau.</p>
+                <p class="lead">Il faut également penser à créer un département avant afin d\'associer cette information à ce département.</p>
             </div>
         </div>
         <a href="' . esc_url(get_permalink(get_page_by_title_custom('Créer une information'))) . '">Créer une information</a>

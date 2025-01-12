@@ -4,6 +4,7 @@ namespace controllers;
 
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\SecretaryView;
 
 /**
@@ -67,7 +68,7 @@ class SecretaryController extends UserController
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -80,9 +81,9 @@ class SecretaryController extends UserController
             // de pouvoir le changer
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm && is_email($email)) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm) &&
+                InputValidator::isValidEmail($email)) {
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
@@ -147,16 +148,27 @@ class SecretaryController extends UserController
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
+		$subadmin = new SubadminController();
+
+        $subadminTitle = $subadminContent = '';
+        if (current_user_can('subadmin_access')) {
+            $subadminTitle = $this->view->displayTitleSelect(
+                'subadmin', 'Sous-administrateurs');
+            $subadminContent = $this->view->displayContentSelect('subadmin',
+                $subadmin->insert());
+        }
 
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Technicien') .
+            $this->view->displayTitleSelect('technician', 'Agent d\'entretien') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
+            $subadminTitle .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
             $this->view->displayContentSelect('technician', $technician->insert()) .
             $this->view->displayContentSelect('television', $television->insert()) .
+            $subadminContent .
             '</div>' .
             $this->view->contextCreateUser();
     }
@@ -179,16 +191,27 @@ class SecretaryController extends UserController
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
+		$subadmin = new SubadminController();
+
+        $subadminTitle = $subadminContent = '';
+        if (current_user_can('subadmin_access')) {
+            $subadminTitle = $this->view->displayTitleSelect(
+                'subadmin', 'Sous-administrateurs');
+            $subadminContent = $this->view->displayContentSelect('subadmin',
+                $subadmin->displayAllSubadmin());
+        }
 
         return
             $this->view->displayStartMultiSelect() .
             $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->view->displayTitleSelect('technician', 'Technicien') .
+            $this->view->displayTitleSelect('technician', 'Agents d\'entretiens') .
             $this->view->displayTitleSelect('television', 'Télévisions') .
+            $subadminTitle .
             $this->view->displayEndOfTitle() .
             $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
             $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
             $this->view->displayContentSelect('television', $television->displayAllTv()) .
+            $subadminContent .
             '</div>';
     }
 
@@ -216,12 +239,10 @@ class SecretaryController extends UserController
             if (in_array("television", $wordpressUser->roles)) {
                 $controller = new TelevisionController();
                 return $controller->modify($user);
-            } else {
-                return $this->view->displayNoUser();
             }
-        } else {
-            return $this->view->displayNoUser();
         }
+        return $this->view->displayNoUser();
+
     }
 
     /**
@@ -240,7 +261,7 @@ class SecretaryController extends UserController
      */
     public function deleteUsers(): void {
         $actionDelete = filter_input(INPUT_POST, 'delete');
-        $roles = ['Tech', 'Secre', 'Tele'];
+        $roles = ['Tech', 'Secre', 'Tele', 'Subadmin'];
 
         if (isset($actionDelete)) {
             foreach ($roles as $role) {
