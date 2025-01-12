@@ -423,7 +423,7 @@ class InformationController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (current_user_can('admin_capability')) {
+        if (current_user_can('admin_perms')) {
             $informationList = $this->model->getList($begin, $number);
         } else {
             $informationList = $this->model->getInformationsByDeptId($deptModel->getUserDepartment($current_user->ID)->getIdDepartment());

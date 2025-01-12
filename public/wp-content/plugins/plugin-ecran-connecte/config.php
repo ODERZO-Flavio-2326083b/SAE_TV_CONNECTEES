@@ -101,7 +101,7 @@ function installDatabaseEcran()
     global $wpdb;
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	if (get_option('init_database') == 1) {
-		return;
+        return;
 	}
 
     $table_name = 'ecran_information';
@@ -314,7 +314,7 @@ function addNewRoles() {
                                            // existants
 
 		// Permissions diverses
-		'admin_capability',                // Permission d'accès complet pour
+		'admin_perms',                // Permission d'accès complet pour
                                            // les administrateurs
 		'edit_css',                        // Permission de modifier le CSS du site
         'schedule_access'                  // Permission d'accès à l'emploi du temps
