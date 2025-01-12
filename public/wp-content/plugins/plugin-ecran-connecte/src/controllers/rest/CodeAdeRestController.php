@@ -8,6 +8,14 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ *
+ * Cette classe étend la classe WP_REST_Controller et permet de gérer les codes ADE
+ * via l'API REST de WordPress. Elle fournit des méthodes pour récupérer, créer,
+ * mettre à jour et supprimer des codes ADE.
+ *
+ * @package controllers\rest
+ */
 class CodeAdeRestController extends WP_REST_Controller
 {
     /**
