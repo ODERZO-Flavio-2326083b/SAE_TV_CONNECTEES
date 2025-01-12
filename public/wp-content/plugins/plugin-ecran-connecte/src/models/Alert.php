@@ -578,7 +578,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setId($id)
+    public function setId($id) : void
     {
         $this->id = $id;
     }
@@ -586,7 +586,7 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * @return User
      */
-    public function getAuthor()
+    public function getAuthor() : User
     {
         return $this->author;
     }
@@ -596,7 +596,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setAuthor($author)
+    public function setAuthor($author) : void
     {
         $this->author = $author;
     }
@@ -614,7 +614,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setContent($content)
+    public function setContent($content) : void
     {
         $this->content = $content;
     }
@@ -632,7 +632,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setCreationDate($creation_date)
+    public function setCreationDate($creation_date) : void
     {
         $this->creation_date = $creation_date;
     }
@@ -650,7 +650,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setExpirationDate($expirationDate)
+    public function setExpirationDate($expirationDate) : void
     {
         $this->expirationDate = $expirationDate;
     }
@@ -668,7 +668,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setCodes($codes)
+    public function setCodes($codes) : void
     {
         $this->codes = $codes;
     }
@@ -686,7 +686,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setAdminId($adminId)
+    public function setAdminId($adminId) : void
     {
         $this->adminId = $adminId;
     }

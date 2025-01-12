@@ -248,7 +248,7 @@ class Department extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date    2024-01-07
      */
-    public function setEntityList($dataList, $adminSite = false)
+    public function setEntityList($dataList, $adminSite = false) : array
     {
         $listEntity = array();
         foreach ($dataList as $data) {

@@ -37,7 +37,7 @@ class Model
      * @version 1.0
      * @date    2024-10-15
      */
-    private static function setDatabase()
+    private static function setDatabase() : void
     {
         self::$database = new PDO(
             'mysql:host=' . DB_HOST . '; dbname=' . DB_NAME,
@@ -63,7 +63,7 @@ class Model
      * @version 1.0
      * @date    2024-10-15
      */
-    private static function setDatabaseViewer()
+    private static function setDatabaseViewer() : void
     {
         self::$database = new PDO(
             'mysql:host=' . DB_HOST_VIEWER . '; dbname='

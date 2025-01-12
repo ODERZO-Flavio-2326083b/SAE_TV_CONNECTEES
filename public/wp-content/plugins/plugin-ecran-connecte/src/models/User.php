@@ -549,7 +549,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setId($id)
+    public function setId($id) : void
     {
         $this->id = $id;
     }
@@ -567,7 +567,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setLogin($login)
+    public function setLogin($login) : void
     {
         $this->login = $login;
     }
@@ -585,7 +585,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setPassword($password)
+    public function setPassword($password) : void
     {
         $this->password = $password;
     }
@@ -603,7 +603,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @return void
      */
-    public function setEmail($email)
+    public function setEmail($email) : void
     {
         $this->email = $email;
     }

@@ -46,7 +46,7 @@ class Scrapper
      * @version 1.0
      * @date    07-01-2025
      */
-    public function getHtml()
+    public function getHtml() : string
     {
         $html = file_get_contents($this->url);
         return $html;
@@ -64,7 +64,7 @@ class Scrapper
      * @version 1.0
      * @date    07-01-2025
      */
-    public function getArticles()
+    public function getArticles() : \DOMNodeList
     {
         $html = $this->getHtml();
         $dom = new \DOMDocument();
@@ -89,7 +89,7 @@ class Scrapper
      * @version 1.0
      * @date    07-01-2025
      */
-    public function getArticle($article)
+    public function getArticle($article) : array
     {
         $title = $article->getElementsByTagName('h2')->item(0)->nodeValue;
         $divs = $article->getElementsByTagName('div');
@@ -149,7 +149,7 @@ class Scrapper
      * @version 1.0
      * @date    07-01-2025
      */
-    public function printWebsite()
+    public function printWebsite() : void
     {
         $articles = $this->getArticles();
 
