@@ -26,7 +26,6 @@ define('TV_PLUG_PATH', '/wp-content/plugins/plugin-ecran-connecte/');
 define('TV_UPLOAD_PATH', '/wp-content/uploads/media/');
 define('TV_ICSFILE_PATH', '/wp-content/uploads/fileICS/');
 
-require __DIR__ . '/autoload.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 include 'config.php';

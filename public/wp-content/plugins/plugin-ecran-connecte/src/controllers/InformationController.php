@@ -114,7 +114,7 @@ class InformationController extends Controller
         $information->setAuthor($userModel->get($currentUser->ID));
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
-        $information->setAdminId(null);
+        $information->setAdminId( null );
         $information->setIdDepartment($deptId ?: 0);
         $information->setDuration(5000);
 
@@ -456,7 +456,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
         } else {
             $this->_view->errorMessageCantAdd();
         }
-        // If the file upload and the upload of the information in the database works
+
         if ($id != 0) {
             $entity->setId($id);
 
@@ -484,7 +484,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
      *
      * @return void
      */
-    public function deleteFile($id)
+    public function deleteFile( int $id ): void
     {
         $this->_model = $this->_model->get($id);
         $source = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH
@@ -823,7 +823,7 @@ fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>'
     {
         $infoScrapper = new information();
         $infoScrapper->setIdDepartment(1);
-        $infoScrapper->setAuthor(1);
+        $infoScrapper->setAuthor(new User());
         $infoScrapper->setCreationDate(date("2024-12-18"));
         $infoScrapper->setId(27);
         $infoScrapper->setContent("scrapper");
