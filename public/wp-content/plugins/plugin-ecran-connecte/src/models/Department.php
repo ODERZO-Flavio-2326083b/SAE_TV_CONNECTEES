@@ -50,7 +50,7 @@ class Department extends Model implements Entity, JsonSerializable
         $database = $this->getDatabase();
         $request = $database->prepare(
             'INSERT INTO ecran_departement (dept_nom) 
-VALUES (:name)'
+             VALUES (:name)'
         );
         $request->bindValue(':name', $this->getName());
         $request->execute();
@@ -73,8 +73,9 @@ VALUES (:name)'
     {
         $database = $this->getDatabase();
         $request = $database->prepare(
-            'UPDATE ecran_departement SET dept_nom = :name 
-                         WHERE dept_id = :id'
+            'UPDATE ecran_departement 
+             SET dept_nom = :name 
+             WHERE dept_id = :id'
         );
         $request->bindValue(':name', $this->getName());
         $request->bindValue(':id', $this->getIdDepartment());
@@ -97,7 +98,7 @@ VALUES (:name)'
     {
         $request = $this->getDatabase()->prepare(
             'DELETE FROM ecran_departement 
-       WHERE dept_id = :id'
+             WHERE dept_id = :id'
         );
         $request->bindValue(':id', $this->getIdDepartment(), PDO::PARAM_INT);
         $request->execute();
@@ -124,7 +125,8 @@ VALUES (:name)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT dept_id, dept_nom 
-FROM ecran_departement WHERE dept_id = :id'
+             FROM ecran_departement 
+             WHERE dept_id = :id'
         );
         $request->bindValue(':id', $id, PDO::PARAM_INT);
         $request->execute();
@@ -158,7 +160,8 @@ FROM ecran_departement WHERE dept_id = :id'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT dept_id, dept_nom 
-FROM ecran_departement ORDER BY dept_id LIMIT :begin, :numberElement'
+             FROM ecran_departement 
+             ORDER BY dept_id LIMIT :begin, :numberElement'
         );
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
@@ -189,7 +192,8 @@ FROM ecran_departement ORDER BY dept_id LIMIT :begin, :numberElement'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT dept_id, dept_nom 
-FROM ecran_departement WHERE dept_nom = :name LIMIT 1'
+             FROM ecran_departement 
+             WHERE dept_nom = :name LIMIT 1'
         );
         $request->bindValue(':name', $name);
         $request->execute();
@@ -271,7 +275,8 @@ FROM ecran_departement WHERE dept_nom = :name LIMIT 1'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT dept_id, dept_nom 
-FROM ecran_departement ORDER BY dept_id'
+             FROM ecran_departement 
+             ORDER BY dept_id'
         );
         $request->execute();
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
@@ -327,12 +332,9 @@ FROM ecran_departement ORDER BY dept_id'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT d.dept_id as dept_id, d.dept_nom as dept_nom 
-                                                        FROM ecran_departement d
-                                                         JOIN 
-                                                            ecran_user_departement u 
-                                                                ON d.dept_id = u
-                                                                    .dept_id
-                                                         WHERE u.user_id = :id'
+             FROM ecran_departement d JOIN ecran_user_departement u 
+                 ON d.dept_id = u.dept_id
+             WHERE u.user_id = :id'
         );
         $request->bindValue(':id', $userId);
         $request->execute();

@@ -87,9 +87,8 @@ class User extends Model implements Entity, JsonSerializable
         if ($this->getRole() == 'television') {
             foreach ($this->getCodes() as $code) {
                 $request = $this->getDatabase()->prepare(
-                    'INSERT INTO ecran_code_user (
-                             user_id, code_ade_id
-                             ) VALUES (:userId, :codeAdeId)'
+                    'INSERT INTO ecran_code_user (user_id, code_ade_id) 
+                     VALUES (:userId, :codeAdeId)'
                 );
                 $request->bindParam(':userId', $id, PDO::PARAM_INT);
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
@@ -98,8 +97,8 @@ class User extends Model implements Entity, JsonSerializable
         }
         $database = $this->getDatabase();
         $request = $database->prepare(
-            'INSERT INTO ecran_user_departement (
-                                    dept_id, user_id) VALUES (:dept_id, :user_id)'
+            'INSERT INTO ecran_user_departement (dept_id, user_id) 
+             VALUES (:dept_id, :user_id)'
         );
         $request->bindValue(':dept_id', $this->getIdDepartment());
         $request->bindParam(':user_id', $id, PDO::PARAM_INT);
@@ -125,22 +124,24 @@ class User extends Model implements Entity, JsonSerializable
     {
         $database = $this->getDatabase();
         $request = $database->prepare(
-            'UPDATE wp_users SET user_pass = :password 
-                WHERE ID = :id'
+            'UPDATE wp_users 
+             SET user_pass = :password 
+             WHERE ID = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(':password', $this->getPassword(), PDO::PARAM_STR);
         $request->execute();
         $request = $database->prepare(
-            'DELETE FROM ecran_code_user WHERE user_id = :id'
+            'DELETE FROM ecran_code_user 
+             WHERE user_id = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
         foreach ($this->getCodes() as $code) {
             if ($code instanceof CodeAde && !is_null($code->getId())) {
                 $request = $database->prepare(
-                    'INSERT INTO ecran_code_user (user_id, 
-                             code_ade_id) VALUES (:userId, :codeAdeId)'
+                    'INSERT INTO ecran_code_user (user_id, code_ade_id) 
+                     VALUES (:userId, :codeAdeId)'
                 );
                 $request->bindValue(':userId', $this->getId(), PDO::PARAM_INT);
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
@@ -166,11 +167,13 @@ class User extends Model implements Entity, JsonSerializable
     public function delete(): int
     {
         $database = $this->getDatabase();
-        $request = $database->prepare('DELETE FROM wp_users WHERE ID = :id');
+        $request = $database->prepare('DELETE FROM wp_users 
+                                       WHERE ID = :id');
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
         $count = $request->rowCount();
-        $request = $database->prepare('DELETE FROM wp_usermeta WHERE user_id = :id');
+        $request = $database->prepare('DELETE FROM wp_usermeta 
+                                       WHERE user_id = :id');
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
         return $count;
@@ -192,13 +195,11 @@ class User extends Model implements Entity, JsonSerializable
     public function get( $id ): false|User
     {
         $request = $this->getDatabase()->prepare(
-            'SELECT wp.ID as ID, user_login, 
-       user_pass, user_email, d.dept_id as dept_id 
-                                                        FROM wp_users wp
-                                                        LEFT JOIN 
-                                                            ecran_user_departement d 
-                                                                ON d.user_id = wp.ID
-                                                        WHERE wp.ID = :id LIMIT 1'
+            'SELECT wp.ID as ID, user_login, user_pass, user_email, 
+       d.dept_id as dept_id 
+             FROM wp_users wp LEFT JOIN ecran_user_departement d 
+                 ON d.user_id = wp.ID 
+             WHERE wp.ID = :id LIMIT 1'
         );
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();
@@ -231,8 +232,8 @@ class User extends Model implements Entity, JsonSerializable
     {
         $request = $this->getDatabase()->prepare(
             'SELECT ID, user_login, user_pass, user_email 
-FROM wp_users user 
-JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement'
+             FROM wp_users user JOIN wp_usermeta meta ON user.ID = meta.user_id 
+                 LIMIT :begin, :numberElement'
         );
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
@@ -262,14 +263,11 @@ JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT wp.ID as ID, user_login, user_pass, user_email, d.dept_id 
-                                                        FROM wp_users wp
-                                                        JOIN wp_usermeta meta 
-                                                            ON wp.ID = meta.user_id
-                                                        JOIN ecran_user_departement d
-                                                            ON d.user_id = wp.ID
-                                                        AND meta.meta_value = :role 
-                                                        ORDER BY wp.user_login LIMIT 
-                                                        1000'
+             FROM wp_users wp 
+                 JOIN wp_usermeta meta ON wp.ID = meta.user_id
+                 JOIN ecran_user_departement d ON d.user_id = wp.ID 
+                                                      AND meta.meta_value = :role 
+             ORDER BY wp.user_login LIMIT 1000'
         );
         $size = strlen($role);
         $role = 'a:1:{s:' . $size . ':"' . $role . '";b:1;}';
@@ -299,15 +297,10 @@ JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement'
     {
         foreach ($users as $user) {
             $request = $this->getDatabase()->prepare(
-                'SELECT code.id, type, title, 
-       code, dept_id
-                                                            FROM ecran_code_ade code,
-                                                                 ecran_code_user user
-                                                            WHERE user.user_id = :id 
-                                                                AND user.code_ade_id 
-                                                                = code.id
-                                                            ORDER BY code.id LIMIT 
-                                                            100'
+                'SELECT code.id, type, title, code, dept_id
+                 FROM ecran_code_ade code, ecran_code_user user
+                 WHERE user.user_id = :id AND user.code_ade_id = code.id
+                 ORDER BY code.id LIMIT 100'
             );
             $id = $user->getId();
             $request->bindParam(':id', $id, PDO::PARAM_INT);
@@ -343,14 +336,12 @@ JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement'
     public function checkUser(string $login, string $email): array
     {
         $request = $this->getDatabase()->prepare(
-            'SELECT wp.ID as ID, user_login, user_pass, user_email, d.dept_id 
-    as dept_id 
-                                                        FROM wp_users wp
-                                                        JOIN ecran_user_departement d
-                                                            ON d.user_id = wp.ID
-                                                        WHERE user_login = :login 
-                                                           OR user_email = :email 
-                                                           LIMIT 2'
+            'SELECT wp.ID as ID, user_login, user_pass, user_email, 
+       d.dept_id as dept_id 
+             FROM wp_users wp
+                 JOIN ecran_user_departement d ON d.user_id = wp.ID
+             WHERE user_login = :login OR user_email = :email 
+             LIMIT 2'
         );
         $request->bindParam(':login', $login, PDO::PARAM_STR);
         $request->bindParam(':email', $email, PDO::PARAM_STR);
@@ -374,9 +365,9 @@ JOIN wp_usermeta meta ON user.ID = meta.user_id LIMIT :begin, :numberElement'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT ID, user_login, user_pass, user_email 
-FROM ecran_code_user 
-    JOIN wp_users ON ecran_code_user.user_id = wp_users.ID 
-WHERE user_id = :userId LIMIT 300'
+             FROM ecran_code_user 
+                 JOIN wp_users ON ecran_code_user.user_id = wp_users.ID 
+             WHERE user_id = :userId LIMIT 300'
         );
         $request->bindValue(':id_user', $this->getId(), PDO::PARAM_INT);
         $request->execute();
@@ -401,7 +392,7 @@ WHERE user_id = :userId LIMIT 300'
     {
         $request = $this->getDatabase()->prepare(
             'INSERT INTO ecran_code_delete_account (user_id, code) 
-VALUES (:user_id, :code)'
+             VALUES (:user_id, :code)'
         );
         $request->bindValue(':user_id', $this->getId(), PDO::PARAM_INT);
         $request->bindParam(':code', $code, PDO::PARAM_STR);
@@ -426,7 +417,8 @@ VALUES (:user_id, :code)'
     {
         $request = $this->getDatabase()->prepare(
             'UPDATE ecran_code_delete_account 
-SET code = :code WHERE user_id = :id'
+             SET code = :code 
+             WHERE user_id = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindParam(':code', $code, PDO::PARAM_STR);
@@ -447,7 +439,8 @@ SET code = :code WHERE user_id = :id'
     {
         $request = $this->getDatabase()->prepare(
             'DELETE 
-FROM ecran_code_delete_account WHERE user_id = :id'
+             FROM ecran_code_delete_account 
+             WHERE user_id = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
@@ -469,7 +462,9 @@ FROM ecran_code_delete_account WHERE user_id = :id'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT code 
-FROM ecran_code_delete_account WHERE user_id = :id LIMIT 1'
+             FROM ecran_code_delete_account 
+             WHERE user_id = :id 
+             LIMIT 1'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
@@ -503,15 +498,11 @@ FROM ecran_code_delete_account WHERE user_id = :id LIMIT 1'
         $entity->setRole(get_user_by('ID', $data['ID'])->roles[0]);
         $entity->setIdDepartment(($data['dept_id']) ?: 0);
         $request = $this->getDatabase()->prepare(
-            'SELECT id, title, code, type, 
-       dept_id
-                                                        FROM ecran_code_ade 
-                                                        JOIN ecran_code_user 
-                                                        ON ecran_code_ade.id = 
-                                                           ecran_code_user
-                                                               .code_ade_id 
-                                                        WHERE ecran_code_user.user_id
-                                                                  = :id'
+            'SELECT id, title, code, type, dept_id
+             FROM ecran_code_ade 
+                 JOIN ecran_code_user ON ecran_code_ade.id = 
+                                         ecran_code_user.code_ade_id 
+             WHERE ecran_code_user.user_id = :id'
         );
         $request->bindValue(':id', $data['ID']);
         $request->execute();

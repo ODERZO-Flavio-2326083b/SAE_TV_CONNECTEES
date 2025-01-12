@@ -65,7 +65,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
         $database = $this->getDatabase();
         $request = $database->prepare(
             'INSERT INTO ecran_code_ade (type, title, code, dept_id) 
-VALUES (:type, :title, :code, :dept_id)'
+             VALUES (:type, :title, :code, :dept_id)'
         );
 
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
@@ -95,10 +95,8 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'UPDATE ecran_code_ade 
-                                                  SET title = :title, code = :code, 
-                                                      type = :type, 
-                                                      dept_id = :dept_id 
-                                                  WHERE id = :id'
+             SET title = :title, code = :code, type = :type, dept_id = :dept_id 
+             WHERE id = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(':title', $this->getTitle(), PDO::PARAM_STR);
@@ -127,7 +125,8 @@ VALUES (:type, :title, :code, :dept_id)'
     public function delete() : int
     {
         $request = $this->getDatabase()->prepare(
-            'DELETE FROM ecran_code_ade WHERE id = :id'
+            'DELETE FROM ecran_code_ade 
+             WHERE id = :id'
         );
 
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
@@ -157,8 +156,8 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id 
-                                                  FROM ecran_code_ade 
-                                                  WHERE id = :id LIMIT 1'
+             FROM ecran_code_ade 
+             WHERE id = :id LIMIT 1'
         );
 
         $request->bindParam(':id', $id, PDO::PARAM_INT);
@@ -187,8 +186,8 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id
-                                                        FROM ecran_code_ade 
-                                                        ORDER BY id DESC LIMIT 1000'
+             FROM ecran_code_ade 
+             ORDER BY id DESC LIMIT 1000'
         );
 
         $request->execute();
@@ -217,9 +216,8 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id 
-                                                        FROM ecran_code_ade 
-                                                        WHERE title = :title 
-                                                           OR code = :code LIMIT 2'
+             FROM ecran_code_ade 
+             WHERE title = :title OR code = :code LIMIT 2'
         );
         $request->bindParam(':title', $title, PDO::PARAM_STR);
         $request->bindParam(':code', $code, PDO::PARAM_STR);
@@ -247,9 +245,9 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id
-                                                        FROM ecran_code_ade 
-                                                        WHERE type = :type 
-                                                        ORDER BY id DESC LIMIT 500'
+             FROM ecran_code_ade 
+             WHERE type = :type 
+             ORDER BY id DESC LIMIT 500'
         );
         $request->bindParam(':type', $type, PDO::PARAM_STR);
         $request->execute();
@@ -276,8 +274,8 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id
-                                                        FROM ecran_code_ade 
-                                                        WHERE code = :code LIMIT 1'
+             FROM ecran_code_ade 
+             WHERE code = :code LIMIT 1'
         );
         $request->bindParam(':code', $code, PDO::PARAM_STR);
         $request->execute();
@@ -305,13 +303,11 @@ VALUES (:type, :title, :code, :dept_id)'
     {
         $request = $this->getDatabase()->prepare(
             'SELECT id, title, code, type, dept_id
-                                                        FROM ecran_code_ade 
-                                                        JOIN ecran_code_alert 
-                                                        ON ecran_code_ade
-                                                            .id = ecran_code_alert
-                                                                .code_ade_id 
-                                                        WHERE alert_id = :id 
-                                                        LIMIT 100'
+             FROM ecran_code_ade 
+                 JOIN ecran_code_alert 
+                     ON ecran_code_ade.id = ecran_code_alert.code_ade_id 
+             WHERE alert_id = :id 
+             LIMIT 100'
         );
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();

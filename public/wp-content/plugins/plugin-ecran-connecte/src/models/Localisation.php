@@ -58,7 +58,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
         $database = $this->getDatabase();
         $request = $database->prepare(
             'INSERT INTO ecran_localisation (latitude, longitude, user_id) 
-                                       VALUES (:latitude, :longitude, :user_id)'
+             VALUES (:latitude, :longitude, :user_id)'
         );
         $request->bindValue(':latitude', $this->getLatitude());
         $request->bindValue(':longitude', $this->getLongitude());
@@ -86,11 +86,9 @@ class Localisation extends Model implements \JsonSerializable, Entity
         $database = $this->getDatabase();
         $request = $database->prepare(
             'UPDATE ecran_localisation 
-                                       SET latitude = :latitude, 
-                                           longitude = :longitude, 
-                                           adresse = :adresse, 
-                                           user_id = :user_id 
-                                       WHERE localisation_id = :id'
+             SET latitude = :latitude, longitude = :longitude, adresse = :adresse, 
+                 user_id = :user_id 
+             WHERE localisation_id = :id'
         );
         $request->bindValue(':latitude', $this->getLatitude());
         $request->bindValue(':longitude', $this->getLongitude());
@@ -117,7 +115,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
     {
         $request = $this->getDatabase()->prepare(
             'DELETE FROM ecran_localisation 
-       WHERE localisation_id = :id'
+             WHERE localisation_id = :id'
         );
         $request->bindValue(':id', $this->getLocalisationId(), PDO::PARAM_INT);
         $request->execute();
@@ -142,8 +140,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
     {
         $request = $this->getDatabase()->prepare(
             'SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation 
-                                                  WHERE localisation_id = :id'
+             FROM ecran_localisation 
+             WHERE localisation_id = :id'
         );
         $request->bindValue(':id', $id, PDO::PARAM_INT);
         $request->execute();
@@ -172,8 +170,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
     {
         $request = $this->getDatabase()->prepare(
             'SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation 
-                                                  LIMIT :begin, :numberElement'
+             FROM ecran_localisation 
+                 LIMIT :begin, :numberElement'
         );
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
@@ -251,8 +249,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
     {
         $request = $this->getDatabase()->prepare(
             'SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation 
-                                                  WHERE user_id = :id'
+             FROM ecran_localisation 
+             WHERE user_id = :id'
         );
         $request->bindValue(':id', $userId, PDO::PARAM_INT);
         $request->execute();
