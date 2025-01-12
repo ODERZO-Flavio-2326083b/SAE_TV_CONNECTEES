@@ -5,6 +5,7 @@ namespace controllers;
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TelevisionView;
 
 /**
@@ -22,14 +23,21 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private $model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private $view;
+    private TelevisionView $view;
+
+    /**
+     * Contrôleur InformationController permettant d'utiliser les informations vidéos
+     * @var InformationController
+     */
+    private $informationController;
+
 
     /**
      * Initialise une nouvelle instance de la classe.
@@ -47,6 +55,7 @@ class TelevisionController extends UserController implements Schedule
         parent::__construct();
         $this->model = new User();
         $this->view = new TelevisionView();
+        $this->informationController = new InformationController();
     }
 
     /**
@@ -74,7 +83,7 @@ class TelevisionController extends UserController implements Schedule
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -88,9 +97,8 @@ class TelevisionController extends UserController implements Schedule
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm)) {
                 $codesAde = array();
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {
@@ -155,6 +163,7 @@ class TelevisionController extends UserController implements Schedule
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
+        $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
 
@@ -183,7 +192,9 @@ class TelevisionController extends UserController implements Schedule
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->modifyForm($user, $years, $groups, $halfGroups);
+        $allDepts = $deptModel->getAllDepts();
+
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -239,9 +250,9 @@ class TelevisionController extends UserController implements Schedule
         $current_user = wp_get_current_user();
         $user = $this->model->get($current_user->ID);
         $user = $this->model->getMyCodes([$user])[0];
-
-
         $string = "";
+
+        $this->informationController->displayVideo();
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">

@@ -2,8 +2,30 @@
 
 namespace models;
 
+/**
+ * Class Scrapper
+ *
+ * Classe générique pour l'extraction de données depuis un site web.
+ * Permet de scrapper les articles du site 'https://www.informatiquenews.fr/news' et d'en extraire des informations telles que
+ * le titre, le contenu, l'image, le lien et l'auteur de chaque article. Utilise les fonctionnalités DOM et XPath de PHP pour
+ * extraire et traiter le contenu HTML.
+ *
+ * @package models
+ */
 class Scrapper
 {
+    private $url;
+
+    /**
+     * Classe Scrapper pour extraire des articles depuis un site web.
+     *
+     * Cette classe permet de récupérer des articles depuis le site web 'https://www.informatiquenews.fr/news' en scrappant
+     * son contenu HTML. Elle extrait des informations telles que le titre, le contenu, l'image, le lien et l'auteur de chaque
+     * article. Elle utilise la bibliothèque DOM de PHP pour parser le HTML et XPath pour naviguer dans la structure du DOM.
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function __construct()
     {
         $this->url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
@@ -26,6 +48,21 @@ class Scrapper
         return $articles;
     }
 
+    /**
+     * Récupère les détails d'un article spécifique.
+     *
+     * Cette méthode permet d'extraire le titre, le contenu, le lien, l'image et l'auteur de chaque article en utilisant
+     * les balises HTML correspondantes dans l'élément `<article>`.
+     *
+     * @param \DOMElement $article L'article à traiter.
+     *
+     * @return array Détails de l'article sous forme de tableau associatif avec les clés suivantes : 'title', 'content',
+     *               'link', 'image', 'footer'.
+     *
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getArticle($article)
     {
         $images = $article->getElementsByTagName('img');
@@ -44,8 +81,6 @@ class Scrapper
             }
         }
 
-
-
         return [
             'image' => $image,
         ];
@@ -53,6 +88,17 @@ class Scrapper
 
     public function printWebsite()
     {
+    /**
+     * Affiche un article aléatoire du site web.
+     *
+     * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la méthode `getArticles()`. Elle affiche ensuite
+     * cet article en HTML avec son titre, son contenu, son image, son lien et un footer contenant l'auteur de l'article.
+     *
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
+    public function printWebsite()  {
         $articles = $this->getArticles();
         $html = '<div>';
 

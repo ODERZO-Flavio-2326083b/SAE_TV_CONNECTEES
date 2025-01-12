@@ -9,6 +9,15 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Classe AlertRestController
+ *
+ * Cette classe gère l'API REST pour la gestion des alertes.
+ * Elle enregistre les routes REST, effectue des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
+ * sur les alertes, et vérifie les permissions des utilisateurs.
+ *
+ * @package controllers\rest
+ */
 class AlertRestController extends WP_REST_Controller
 {
     /**
@@ -409,13 +418,10 @@ class AlertRestController extends WP_REST_Controller
     private function find_ade_codes($alert, $codes) {
         // Trouver les codes ADE
         $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
         $ade_codes = array();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } elseif ($code != 0) {
+            if ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {

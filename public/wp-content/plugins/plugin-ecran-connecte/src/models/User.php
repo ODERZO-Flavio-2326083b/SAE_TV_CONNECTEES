@@ -83,13 +83,12 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
-        if ($this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
-            $database = $this->getDatabase();
-            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
-            $request->bindValue(':dept_id', $this->getIdDepartment());
-            $request->bindParam(':user_id', $id, PDO::PARAM_INT);
-            $request->execute();
-        }
+        $database = $this->getDatabase();
+        $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
+        $request->bindValue(':dept_id', $this->getIdDepartment());
+        $request->bindParam(':user_id', $id, PDO::PARAM_INT);
+        $request->execute();
+
         return $id;
     }
 
@@ -221,7 +220,7 @@ class User extends Model implements Entity, JsonSerializable
                                                         FROM wp_users wp
                                                         JOIN wp_usermeta meta ON wp.ID = meta.user_id
                                                         JOIN ecran_user_departement d ON d.user_id = wp.ID
-                                                        AND meta.meta_value =:role 
+                                                        AND meta.meta_value = :role 
                                                         ORDER BY wp.user_login LIMIT 1000');
         $size = strlen($role);
         $role = 'a:1:{s:' . $size . ':"' . $role . '";b:1;}';
@@ -249,7 +248,7 @@ class User extends Model implements Entity, JsonSerializable
      */
     public function getMyCodes(array $users): array {
         foreach ($users as $user) {
-            $request = $this->getDatabase()->prepare('SELECT code.id, type, title, code 
+            $request = $this->getDatabase()->prepare('SELECT code.id, type, title, code, dept_id
                                                             FROM ecran_code_ade code, ecran_code_user user
                                                             WHERE user.user_id = :id AND user.code_ade_id = code.id
                                                             ORDER BY code.id LIMIT 100');
@@ -407,7 +406,11 @@ class User extends Model implements Entity, JsonSerializable
         $entity->setEmail($data['user_email']);
         $entity->setRole(get_user_by('ID', $data['ID'])->roles[0]);
         $entity->setIdDepartment(($data['dept_id']) ?: 0);
-        $request = $this->getDatabase()->prepare('SELECT id, title, code, type FROM ecran_code_ade JOIN ecran_code_user ON ecran_code_ade.id = ecran_code_user.code_ade_id WHERE ecran_code_user.user_id = :id');
+        $request = $this->getDatabase()->prepare('SELECT id, title, code, type, dept_id
+                                                        FROM ecran_code_ade 
+                                                        JOIN ecran_code_user 
+                                                        ON ecran_code_ade.id = ecran_code_user.code_ade_id 
+                                                        WHERE ecran_code_user.user_id = :id');
         $request->bindValue(':id', $data['ID']);
         $request->execute();
         $codeAde = new CodeAde();

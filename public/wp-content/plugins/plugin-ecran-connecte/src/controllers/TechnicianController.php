@@ -5,6 +5,7 @@ namespace controllers;
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TechnicianView;
 
 /**
@@ -69,7 +70,7 @@ class TechnicianController extends UserController implements Schedule
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -83,9 +84,9 @@ class TechnicianController extends UserController implements Schedule
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm && is_email($email)) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm) &&
+                InputValidator::isValidEmail($email)) {
                 $this->model->setLogin($login);
                 $this->model->setPassword($password);
                 $this->model->setEmail($email);
@@ -152,11 +153,15 @@ class TechnicianController extends UserController implements Schedule
      */
     public function displayMySchedule(): string {
         $codeAde = new CodeAde();
+        $user = new User();
+        $techUserObj = $user->get(wp_get_current_user()->ID);
 
         $years = $codeAde->getAllFromType('year');
         $string = "";
         foreach ($years as $year) {
-            $string .= $this->displaySchedule($year->getCode());
+            if($year->getDeptId() == $techUserObj->getIdDepartment()) {
+                $string .= $this->displaySchedule( $year->getCode() );
+            }
         }
         return $string;
     }
