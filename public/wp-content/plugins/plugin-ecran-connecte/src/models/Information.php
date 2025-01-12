@@ -32,7 +32,7 @@ class Information extends Model implements Entity, JsonSerializable
     /**
      * @var User
      */
-    private $author;
+    private User $author;
 
     // TODO : Ajouter une description
     /**

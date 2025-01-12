@@ -32,13 +32,13 @@ class Localisation extends Model implements \JsonSerializable, Entity
     /**
      * @var string
      */
-    private float $adresse;
+    private string $adresse;
 
     // TODO : Ajouter une description
     /**
      * @var int
      */
-    private $user_id;
+    private int $user_id;
 
     /**
      * Insère une nouvelle localisation dans la base de données avec les valeurs
