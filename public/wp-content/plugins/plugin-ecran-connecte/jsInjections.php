@@ -15,7 +15,7 @@ use views\TelevisionView;
  *
  * @return void
  */
-function injectLocVariables() {
+function injectLocVariables(): void {
 	$model = new Localisation();
 
 	if($userLoc = $model->getLocFromUserId(get_current_user_id())) {
@@ -41,7 +41,8 @@ add_action('wp_enqueue_scripts', 'injectLocVariables');
  * @return void
  */
 function handleMeteoAjaxData(): void {
-	check_ajax_referer('locNonce', 'nonce'); // vérification de l'authenticité de la demande
+    // vérification de l'authenticité de la demande
+	check_ajax_referer('locNonce', 'nonce');
 	if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
 		$longitude = sanitize_text_field($_POST['longitude']);
 		$latitude = sanitize_text_field($_POST['latitude']);
@@ -64,7 +65,9 @@ function handleMeteoAjaxData(): void {
 		));
 	} else {
 		// si les données ne sont pas présentes, envoyer une erreur
-		wp_send_json_error('Données manquantes ; Latitude: ' . $_POST['latitude'] . ' ; Longitude: ' . $_POST['longitude']);
+		wp_send_json_error('Données manquantes ; Latitude: '
+                           . $_POST['latitude'] . ' ; Longitude: '
+                           . $_POST['longitude']);
 	}
 }
 
@@ -73,7 +76,8 @@ add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
 
 
 /**
- * Charge le script de demande de localisation si l'utilisateur n'en a pas sur la page d'accueil
+ * Charge le script de demande de localisation
+ * si l'utilisateur n'en a pas sur la page d'accueil
  *
  * @return void
  */
@@ -81,15 +85,18 @@ function loadLocAjaxIfUserHasNoLoc(): void {
 	$model = new Localisation();
 
 	if(is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(get_current_user_id()) ){
-		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH
+                          . 'public/js/retrieveLoc.js', array( 'jquery' ),
+                          '1.0', true );
 
 		add_action('wp_enqueue_scripts', 'loadLocalisationScript');
 
 		// injection de variables dans le script.
-		wp_localize_script( 'retrieve_loc_script_ecran', 'retrieveLocVars', array(
-			'ajaxUrl' => admin_url('admin-ajax.php'),
-			'ajaxNonce' => wp_create_nonce('locNonce'),
-			'currentUserId' => get_current_user_id()
+		wp_localize_script( 'retrieve_loc_script_ecran',
+            'retrieveLocVars', array(
+                'ajaxUrl' => admin_url('admin-ajax.php'),
+                'ajaxNonce' => wp_create_nonce('locNonce'),
+                'currentUserId' => get_current_user_id()
 		));
 	}
 
@@ -103,7 +110,7 @@ add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
  * des informations non vidéos.
  * @return void
  */
-function loadInformationDurations() {
+function loadInformationDurations(): void {
     $informationModel = new Information();
     $deptModel = new Department();
 
@@ -111,7 +118,8 @@ function loadInformationDurations() {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
                                        ->getIdDepartment();
 
-        $informations = $informationModel->getInformationsByDeptId($currentUserDeptId,0, 1000);
+        $informations = $informationModel->getInformationsByDeptId
+                        ($currentUserDeptId,0, 1000);
 
         $videoDurations = array();
         $otherDurations = array();
@@ -124,7 +132,8 @@ function loadInformationDurations() {
             }
         }
 
-        wp_localize_script( 'slideshow_script_ecran', 'DURATIONS', array(
+        wp_localize_script( 'slideshow_script_ecran',
+            'DURATIONS', array(
             'videoDurations' => $videoDurations,
             'otherDurations' => $otherDurations
         ));
@@ -139,7 +148,7 @@ add_action('wp_enqueue_scripts', 'loadInformationDurations');
  *
  * @return void
  */
-function injectAllCodesOnTvEdit() {
+function injectAllCodesOnTvEdit(): void {
 	$codeAde = new CodeAde();
 	$deptModel = new Department();
 
@@ -162,7 +171,7 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
  *
  * @return void
  */
-function injectAllCodesOnAlertEdit() {
+function injectAllCodesOnAlertEdit(): void {
 	$codeAde = new CodeAde();
 	$deptModel = new Department();
 
