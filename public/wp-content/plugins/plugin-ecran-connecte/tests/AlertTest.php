@@ -110,7 +110,6 @@ class AlertTest extends TestCase
             ->once()
             ->andReturn(true);
 
-        // Simulate inserting new codes after update
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('INSERT INTO ecran_code_alert'))
@@ -147,9 +146,52 @@ class AlertTest extends TestCase
         $this->assertEquals(1, $result);
     }
 
+    public function testDatabaseInteraction()
+    {
+
+        $this->pdoMock->shouldReceive('prepare')
+            ->once()
+            ->with(Mockery::type('string'))
+            ->andReturn($this->pdoStatementMock);
+
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->once()
+            ->with(Mockery::type('string'), Mockery::type('string'))
+            ->andReturnSelf();
+
+        $this->pdoStatementMock->shouldReceive('execute')
+            ->once()
+            ->andReturn(true);
+
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->once()
+            ->andReturn(1);
+
+        $this->pdoStatementMock->shouldReceive('fetch')
+            ->once()
+            ->andReturn([
+                'ID' => 123,
+                'user_login' => 'testuser',
+                'user_email' => 'test@example.com',
+                'dept_id' => 1
+            ]);
+
+
+        $result = $this->pdoMock->prepare("SELECT * FROM wp_users WHERE ID = :id");
+
+        $this->assertTrue($result->execute());
+        $this->assertEquals(1, $result->rowCount());
+        $this->assertEquals([
+            'ID' => 123,
+            'user_login' => 'testuser',
+            'user_email' => 'test@example.com',
+            'dept_id' => 1
+        ], $result->fetch());
+    }
+
     protected function tearDown(): void
     {
-        // Libération des mocks
         Mockery::close();
     }
 }

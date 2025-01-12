@@ -3,8 +3,6 @@
 use PHPUnit\Framework\TestCase;
 use models\Department;
 use Mockery\Mock;
-use PDO;
-use PDOStatement;
 
 class DepartmentTest extends TestCase
 {
@@ -23,7 +21,6 @@ class DepartmentTest extends TestCase
         $departmentMock->shouldAllowMockingProtectedMethods();
         $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
 
-        // Mocking the database query execution
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('INSERT INTO ecran_departement'))
@@ -54,7 +51,6 @@ class DepartmentTest extends TestCase
         $departmentMock->shouldAllowMockingProtectedMethods();
         $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
 
-        // Mocking the database query execution for update
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('UPDATE ecran_departement'))
@@ -68,7 +64,6 @@ class DepartmentTest extends TestCase
             ->with($this->anything(), $this->anything(), $this->anything())
             ->andReturn(true);
 
-        // Simulating department data for update
         $departmentMock->shouldReceive('getIdDepartment')->andReturn(1);
         $departmentMock->shouldReceive('getName')->andReturn('Marketing');
 
@@ -83,7 +78,6 @@ class DepartmentTest extends TestCase
         $departmentMock->shouldAllowMockingProtectedMethods();
         $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
 
-        // Mocking the database query execution for delete
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('DELETE FROM ecran_departement'))
@@ -106,7 +100,6 @@ class DepartmentTest extends TestCase
         $departmentMock->shouldAllowMockingProtectedMethods();
         $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
 
-        // Mocking the database query execution for get by name
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('SELECT dept_id, dept_nom'))
@@ -132,7 +125,6 @@ class DepartmentTest extends TestCase
         $departmentMock->shouldAllowMockingProtectedMethods();
         $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
 
-        // Mocking the database query execution for get all departments
         $this->pdoMock->shouldReceive('prepare')
             ->once()
             ->with($this->stringContains('SELECT dept_id, dept_nom'))
@@ -157,7 +149,6 @@ class DepartmentTest extends TestCase
 
     protected function tearDown(): void
     {
-        // Libération des mocks
         Mockery::close();
     }
 }
