@@ -15,22 +15,25 @@ use views\TelevisionView;
  *
  * @return void
  */
-function injectLocVariables() {
-	$model = new Localisation();
+function injectLocVariables()
+{
+    $model = new Localisation();
 
-	if($userLoc = $model->getLocFromUserId(get_current_user_id())) {
-		$latitude = $userLoc->getLatitude();
-		$longitude = $userLoc->getLongitude();
-	} else {
-		$longitude = 5.4510;
-		$latitude = 43.5156;
-	}
+    if ($userLoc = $model->getLocFromUserId(get_current_user_id())) {
+        $latitude = $userLoc->getLatitude();
+        $longitude = $userLoc->getLongitude();
+    } else {
+        $longitude = 5.4510;
+        $latitude = 43.5156;
+    }
 
-	wp_localize_script('weather_script_ecran', 'weatherVars', array(
-		'longitude' => $longitude,
-		'latitude' => $latitude,
-		'apiKey' => "ae546c64c1c36e47123b3d512efa723e"
-	));
+    wp_localize_script(
+        'weather_script_ecran', 'weatherVars', array(
+        'longitude' => $longitude,
+        'latitude' => $latitude,
+        'apiKey' => "ae546c64c1c36e47123b3d512efa723e"
+        )
+    );
 }
 add_action('wp_enqueue_scripts', 'injectLocVariables');
 
@@ -40,31 +43,38 @@ add_action('wp_enqueue_scripts', 'injectLocVariables');
  *
  * @return void
  */
-function handleMeteoAjaxData() {
-	check_ajax_referer('locNonce', 'nonce'); // vérification de l'authenticité de la demande
-	if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
-		$longitude = sanitize_text_field($_POST['longitude']);
-		$latitude = sanitize_text_field($_POST['latitude']);
-		$userId = sanitize_text_field($_POST['currentUserId']);
+function handleMeteoAjaxData()
+{
+    check_ajax_referer('locNonce', 'nonce');
+                                      // vérification de l'authenticité de la demande
+    if (isset($_POST['longitude']) && isset($_POST['latitude'])) {
+        $longitude = sanitize_text_field($_POST['longitude']);
+        $latitude = sanitize_text_field($_POST['latitude']);
+        $userId = sanitize_text_field($_POST['currentUserId']);
 
-		$locModel = new Localisation();
+        $locModel = new Localisation();
 
-		$locModel->setLongitude($longitude);
-		$locModel->setLatitude($latitude);
-		$locModel->setUserId($userId);
+        $locModel->setLongitude($longitude);
+        $locModel->setLatitude($latitude);
+        $locModel->setUserId($userId);
 
-		$locModel->insert();
+        $locModel->insert();
 
-		wp_send_json_success(array(
-			'message' => 'Données reçues avec succès',
-			'currentUserId' => $userId,
-			'longitude' => $longitude,
-			'latitude' => $latitude
-		));
-	} else {
-		// si les données ne sont pas présentes, envoyer une erreur
-		wp_send_json_error('Données manquantes ; Latitude: ' . $_POST['latitude'] . ' ; Longitude: ' . $_POST['longitude']);
-	}
+        wp_send_json_success(
+            array(
+            'message' => 'Données reçues avec succès',
+            'currentUserId' => $userId,
+            'longitude' => $longitude,
+            'latitude' => $latitude
+            )
+        );
+    } else {
+        // si les données ne sont pas présentes, envoyer une erreur
+        wp_send_json_error(
+            'Données manquantes ; Latitude: '
+            . $_POST['latitude'] . ' ; Longitude: ' . $_POST['longitude']
+        );
+    }
 }
 
 add_action('wp_ajax_handleMeteoAjaxData', 'handleMeteoAjaxData');
@@ -72,25 +82,35 @@ add_action('wp_ajax_nopriv_handleMeteoAjaxData', 'handleMeteoAjaxData');
 
 
 /**
- * Charge le script de demande de localisation si l'utilisateur n'en a pas sur la page d'accueil
+ * Charge le script de demande de localisation si l'utilisateur n'en a pas sur la
+ * page d'accueil
  *
  * @return void
  */
-function loadLocAjaxIfUserHasNoLoc(){
-	$model = new Localisation();
+function loadLocAjaxIfUserHasNoLoc()
+{
+    $model = new Localisation();
 
-	if(is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(get_current_user_id()) ){
-		wp_enqueue_script( 'retrieve_loc_script_ecran', TV_PLUG_PATH . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true );
+    if (is_user_logged_in() && is_front_page() && !$model->getLocFromUserId(
+        get_current_user_id()
+    )
+    ) {
+        wp_enqueue_script(
+            'retrieve_loc_script_ecran', TV_PLUG_PATH
+            . 'public/js/retrieveLoc.js', array( 'jquery' ), '1.0', true
+        );
 
-		add_action('wp_enqueue_scripts', 'loadLocalisationScript');
+        add_action('wp_enqueue_scripts', 'loadLocalisationScript');
 
-		// injection de variables dans le script.
-		wp_localize_script( 'retrieve_loc_script_ecran', 'retrieveLocVars', array(
-			'ajaxUrl' => admin_url('admin-ajax.php'),
-			'ajaxNonce' => wp_create_nonce('locNonce'),
-			'currentUserId' => get_current_user_id()
-		));
-	}
+        // injection de variables dans le script.
+        wp_localize_script(
+            'retrieve_loc_script_ecran', 'retrieveLocVars', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'ajaxNonce' => wp_create_nonce('locNonce'),
+            'currentUserId' => get_current_user_id()
+            )
+        );
+    }
 
 }
 
@@ -100,17 +120,21 @@ add_action('wp_enqueue_scripts', 'loadLocAjaxIfUserHasNoLoc');
  * Récupère les durées de chaque information du département de l'utilisateur
  * connecté, et les trie dans deux listes : durées des vidéos, et durées
  * des informations non vidéos.
+ *
  * @return void
  */
-function loadInformationDurations() {
+function loadInformationDurations()
+{
     $informationModel = new Information();
     $deptModel = new Department();
 
-    if(is_user_logged_in()) {
+    if (is_user_logged_in()) {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
-                                       ->getIdDepartment();
+            ->getIdDepartment();
 
-        $informations = $informationModel->getInformationsByDeptId($currentUserDeptId,0, 1000);
+        $informations = $informationModel->getInformationsByDeptId(
+            $currentUserDeptId, 0, 1000
+        );
 
         $videoDurations = array();
         $otherDurations = array();
@@ -123,10 +147,12 @@ function loadInformationDurations() {
             }
         }
 
-        wp_localize_script( 'slideshow_script_ecran', 'DURATIONS', array(
+        wp_localize_script(
+            'slideshow_script_ecran', 'DURATIONS', array(
             'videoDurations' => $videoDurations,
             'otherDurations' => $otherDurations
-        ));
+            )
+        );
     }
 }
 
@@ -138,19 +164,24 @@ add_action('wp_enqueue_scripts', 'loadInformationDurations');
  *
  * @return void
  */
-function injectAllCodesOnTvEdit() {
-	$codeAde = new CodeAde();
-	$deptModel = new Department();
+function injectAllCodesOnTvEdit()
+{
+    $codeAde = new CodeAde();
+    $deptModel = new Department();
 
-	$years = $codeAde->getAllFromType('year');
-	$groups = $codeAde->getAllFromType('group');
-	$halfGroups = $codeAde->getAllFromType('halfGroup');
+    $years = $codeAde->getAllFromType('year');
+    $groups = $codeAde->getAllFromType('group');
+    $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-	$allDepts = $deptModel->getAllDepts();
+    $allDepts = $deptModel->getAllDepts();
 
-	wp_localize_script('addCodeTv_script_ecran', 'codeHTML', array(
-		'tv' => TelevisionView::buildSelectCode($years, $groups, $halfGroups, $allDepts)
-	));
+    wp_localize_script(
+        'addCodeTv_script_ecran', 'codeHTML', array(
+        'tv' => TelevisionView::buildSelectCode(
+            $years, $groups, $halfGroups, $allDepts
+        )
+        )
+    );
 }
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
@@ -161,19 +192,24 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
  *
  * @return void
  */
-function injectAllCodesOnAlertEdit() {
-	$codeAde = new CodeAde();
-	$deptModel = new Department();
+function injectAllCodesOnAlertEdit()
+{
+    $codeAde = new CodeAde();
+    $deptModel = new Department();
 
-	$years = $codeAde->getAllFromType('year');
-	$groups = $codeAde->getAllFromType('group');
-	$halfGroups = $codeAde->getAllFromType('halfGroup');
+    $years = $codeAde->getAllFromType('year');
+    $groups = $codeAde->getAllFromType('group');
+    $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-	$allDepts = $deptModel->getAllDepts();
+    $allDepts = $deptModel->getAllDepts();
 
-	wp_localize_script('addCodeAlert_script_ecran', 'codeHTML', array(
-		'alert' => AlertView::buildSelectCode($years, $groups, $halfGroups, $allDepts)
-	));
+    wp_localize_script(
+        'addCodeAlert_script_ecran', 'codeHTML', array(
+        'alert' => AlertView::buildSelectCode(
+            $years, $groups, $halfGroups, $allDepts
+        )
+        )
+    );
 }
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
