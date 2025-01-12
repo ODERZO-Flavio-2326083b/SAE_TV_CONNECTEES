@@ -114,7 +114,7 @@ function loadInformationDurations(): void {
     $informationModel = new Information();
     $deptModel = new Department();
 
-    if(is_user_logged_in()) {
+    if(is_user_logged_in() && !current_user_can('admin_perms')) {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
                                        ->getIdDepartment();
 
