@@ -1,18 +1,17 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TelevisionView;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class TelevisionController
  *
- * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des
- * emplois du temps)
+ * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des emplois du temps)
  *
  * @package controllers
  */
@@ -24,14 +23,14 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var User
      */
-    private User $_model;
+    private User $model;
 
     /**
      * Vue de TelevisionController.
      *
      * @var TelevisionView
      */
-    private TelevisionView $_view;
+    private TelevisionView $view;
 
     /**
      * Contrôleur InformationController permettant d'utiliser les informations vidéos
@@ -50,13 +49,12 @@ class TelevisionController extends UserController implements Schedule
      * liées à la télévision.
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        $this->_model = new User();
-        $this->_view = new TelevisionView();
+        $this->model = new User();
+        $this->view = new TelevisionView();
         $this->informationController = new InformationController();
     }
 
@@ -70,16 +68,15 @@ class TelevisionController extends UserController implements Schedule
      * un message de validation est affiché. En cas d'erreur, des messages
      * d'erreur appropriés sont retournés.
      *
-     * @return string Retourne l'affichage du formulaire d'inscription à la
-     *                télévision si les données sont invalides, sinon renvoie un
-     *                message de validation ou d'erreur selon le résultat de
-     *                l'insertion.
+     * @return string Retourne l'affichage du formulaire d'inscription à la télévision
+     *                si les données sont invalides, sinon renvoie un message de validation
+     *                ou d'erreur selon le résultat de l'insertion.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function insert(): string
-    {
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'createTv');
         $codeAde = new CodeAde();
 
@@ -87,29 +84,21 @@ class TelevisionController extends UserController implements Schedule
         $deptModel = new Department();
 
         $isAdmin = current_user_can('admin_perms');
-        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
-        // département, sinon on cherche le département
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTv');
             $password = filter_input(INPUT_POST, 'pwdTv');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
-            $codes = filter_input(
-                INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
-            );
-            // les non-admins ne peuvent pas choisir le département, on empêche donc
-            // ces utilisateurs de pouvoir le changer
+            $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25
-                && is_string($password)
-                && strlen($password) >= 8 && strlen($password) <= 25
-                && $password === $passwordConfirm
-            ) {
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm)) {
                 $codesAde = array();
                 foreach ($codes as $code) {
                     if (is_numeric($code) && $code > 0) {
@@ -122,24 +111,21 @@ class TelevisionController extends UserController implements Schedule
                 }
 
                 // Configuration du modèle de télévision
-                $this->_model->setLogin($login);
-                $this->_model->setEmail($login . '@' . $login . '.fr');
-                $this->_model->setPassword($password);
-                $this->_model->setRole('television');
-                $this->_model->setCodes($codesAde);
-                $this->_model->setIdDepartment($deptId);
+                $this->model->setLogin($login);
+                $this->model->setEmail($login . '@' . $login . '.fr');
+                $this->model->setPassword($password);
+                $this->model->setRole('television');
+                $this->model->setCodes($codesAde);
+                $this->model->setIdDepartment($deptId);
 
                 // Insertion du modèle dans la base de données
-                if (!$this->checkDuplicateUser(
-                    $this->_model
-                ) && $this->_model->insert()
-                ) {
-                    $this->_view->displayInsertValidate();
+                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+                    $this->view->displayInsertValidate();
                 } else {
-                    $this->_view->displayErrorInsertion();
+                    $this->view->displayErrorInsertion();
                 }
             } else {
-                $this->_view->displayErrorCreation();
+                $this->view->displayErrorCreation();
             }
         }
 
@@ -150,10 +136,7 @@ class TelevisionController extends UserController implements Schedule
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->_view->displayFormTelevision(
-            $years, $groups, $halfGroups,
-            $allDepts, $isAdmin, $currDept
-        );
+        return $this->view->displayFormTelevision($years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -166,19 +149,17 @@ class TelevisionController extends UserController implements Schedule
      * validation est affiché. Sinon, la méthode affiche le formulaire
      * de modification avec les données actuelles de l'utilisateur.
      *
-     * @param User $user L'utilisateur de télévision dont les informations doivent
-     *                   être modifiées.
+     * @param User $user L'utilisateur de télévision dont les informations doivent être modifiées.
      *
-     * @return string Retourne le formulaire de modification avec les données
-     *                actuelles de l'utilisateur et les options disponibles pour les
-     *                années, groupes et demi-groupes, ou un message d'erreur si la
-     *                mise à jour échoue.
+     * @return string Retourne le formulaire de modification avec les données actuelles de l'utilisateur
+     *                et les options disponibles pour les années, groupes et demi-groupes,
+     *                ou un message d'erreur si la mise à jour échoue.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function modify(User $user): string
-    {
+    public function modify(User $user): string {
         $page = get_page_by_title_custom('Gestion des utilisateurs');
         $linkManageUser = get_permalink($page->ID);
 
@@ -187,10 +168,7 @@ class TelevisionController extends UserController implements Schedule
         $action = filter_input(INPUT_POST, 'modifValidate');
 
         if (isset($action)) {
-            $codes = filter_input(
-                INPUT_POST, 'selectTv', FILTER_DEFAULT,
-                FILTER_REQUIRE_ARRAY
-            );
+            $codes = filter_input(INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
             $codesAde = array();
             foreach ($codes as $code) {
@@ -205,7 +183,7 @@ class TelevisionController extends UserController implements Schedule
             $user->setCodes($codesAde);
 
             if ($user->update()) {
-                $this->_view->displayModificationValidate($linkManageUser);
+                $this->view->displayModificationValidate($linkManageUser);
             }
         }
 
@@ -216,10 +194,7 @@ class TelevisionController extends UserController implements Schedule
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->_view->modifyForm(
-            $user, $years, $groups, $halfGroups,
-            $allDepts
-        );
+        return $this->view->modifyForm($user, $years, $groups, $halfGroups, $allDepts);
     }
 
     /**
@@ -234,22 +209,20 @@ class TelevisionController extends UserController implements Schedule
      * @return string Retourne le contenu HTML généré pour afficher la liste
      *                de tous les utilisateurs de télévision.
      *
+     *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function displayAllTv(): string
-    {
-        $users = $this->_model->getUsersByRole('television');
+    public function displayAllTv(): string {
+        $users = $this->model->getUsersByRole('television');
         $deptModel = new Department();
 
         $userDeptList = array();
         foreach ($users as $user) {
-            $userDeptList[] = $deptModel->getUserDepartment(
-                $user->getId()
-            )->getName();
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->_view->displayAllTv($users, $userDeptList);
+        return $this->view->displayAllTv($users, $userDeptList);
     }
 
     /**
@@ -269,14 +242,14 @@ class TelevisionController extends UserController implements Schedule
      * @return string Retourne le contenu HTML de l'emploi du temps de l'utilisateur,
      *                ou un message indiquant qu'il n'a pas de cours.
      *
+     *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function displayMySchedule(): string
-    {
+    public function displayMySchedule(): string {
         $current_user = wp_get_current_user();
-        $user = $this->_model->get($current_user->ID);
-        $user = $this->_model->getMyCodes([$user])[0];
+        $user = $this->model->get($current_user->ID);
+        $user = $this->model->getMyCodes([$user])[0];
         $string = "";
 
         $this->informationController->displayVideo();
@@ -296,12 +269,12 @@ class TelevisionController extends UserController implements Schedule
                 }
                 $string .= '</div></div>';
             } else {
-                $string .= $this->_view->displayStartSlide();
+                $string .= $this->view->displayStartSlide();
                 foreach ($user->getCodes() as $code) {
                     $path = $this->getFilePath($code->getCode());
                     if (file_exists($path)) {
                         if ($this->displaySchedule($code->getCode())) {
-                            $string .= $this->_view->displayMidSlide();
+                            $string .= $this->view->displayMidSlide();
                             $string .= $this->displaySchedule($code->getCode());
                             $string .= '</div>';
                         }

@@ -13,9 +13,7 @@
  * GitHub Plugin URI: https://github.com/Nicolas-Rohrbach/plugin-ecran-connecte
  */
 
-use controllers\AlertController;
 use controllers\CodeAdeController;
-use controllers\InformationController;
 use models\CodeAde;
 use models\User;
 

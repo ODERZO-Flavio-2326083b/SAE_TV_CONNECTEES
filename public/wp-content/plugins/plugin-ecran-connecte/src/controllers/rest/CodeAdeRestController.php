@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers\rest;
 
 use models\CodeAde;
@@ -8,7 +8,14 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
-// TODO : Ajouter la doc de classe
+/**
+ *
+ * Cette classe étend la classe WP_REST_Controller et permet de gérer les codes ADE
+ * via l'API REST de WordPress. Elle fournit des méthodes pour récupérer, créer,
+ * mettre à jour et supprimer des codes ADE.
+ *
+ * @package controllers\rest
+ */
 class CodeAdeRestController extends WP_REST_Controller
 {
     /**
@@ -19,10 +26,9 @@ class CodeAdeRestController extends WP_REST_Controller
      * et le chemin de base REST comme 'ade'.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->namespace = 'amu-ecran-connectee/v1';
         $this->rest_base = 'ade';
     }
@@ -39,36 +45,28 @@ class CodeAdeRestController extends WP_REST_Controller
      * Routes définies :
      * - GET /amu-ecran-connectee/v1/ade : Récupère tous les codes ADE.
      * - POST /amu-ecran-connectee/v1/ade : Crée un nouveau code ADE.
-     * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE spécifique par
-     *   ID.
-     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code ADE spécifique par
-     *   ID.
-     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code ADE spécifique
-     *   par ID.
-     *
-     * @return void
+     * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE spécifique par ID.
+     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code ADE spécifique par ID.
+     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code ADE spécifique par ID.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function registerRoutes()
-    {
+    public function register_routes() {
         register_rest_route(
             $this->namespace,
             '/' . $this->rest_base,
             array(
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'getItems'),
-                    'permission_callback' => array(
-                        $this, 'getItemsPermissionsCheck'),
+                    'callback' => array($this, 'get_items'),
+                    'permission_callback' => array($this, 'get_items_permissions_check'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::CREATABLE,
-                    'callback' => array($this, 'createItem'),
-                    'permission_callback' => array(
-                        $this, 'createItemPermissionsCheck'),
+                    'callback' => array($this, 'create_item'),
+                    'permission_callback' => array($this, 'create_item_permissions_check'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -104,16 +102,14 @@ class CodeAdeRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'getItem'),
-                    'permission_callback' => array(
-                        $this, 'getItemPermissionsCheck'),
+                    'callback' => array($this, 'get_item'),
+                    'permission_callback' => array($this, 'get_item_permissions_check'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'updateItem'),
-                    'permission_callback' => array(
-                        $this, 'updateItemPermissionsCheck'),
+                    'callback' => array($this, 'update_item'),
+                    'permission_callback' => array($this, 'update_item_permissions_check'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -132,9 +128,8 @@ class CodeAdeRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::DELETABLE,
-                    'callback' => array($this, 'deleteItem'),
-                    'permission_callback' => array(
-                        $this, 'deleteItemPermissionsCheck'),
+                    'callback' => array($this, 'delete_item'),
+                    'permission_callback' => array($this, 'delete_item_permissions_check'),
                     'args' => array()
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
@@ -155,10 +150,9 @@ class CodeAdeRestController extends WP_REST_Controller
      * @return WP_REST_Response La réponse contenant la liste des codes ADE.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function getItems($request)
-    {
+    public function get_items($request) {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
 
@@ -184,10 +178,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *                          créé ou un message d'erreur.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function createItem($request)
-    {
+    public function create_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
 
@@ -197,13 +190,10 @@ class CodeAdeRestController extends WP_REST_Controller
         $ade_code->setType($request->get_param('type'));
 
         // Essayer d'insérer le code ADE
-        if (($insert_id = $ade_code->insert())) {
+        if (($insert_id = $ade_code->insert()))
             return new WP_REST_Response(array('id' => $insert_id), 200);
-        }
 
-        return new WP_REST_Response(
-            array('message' => 'Could not insert the ADE code'), 400
-        );
+        return new WP_REST_Response(array('message' => 'Could not insert the ADE code'), 400);
     }
 
     /**
@@ -225,20 +215,16 @@ class CodeAdeRestController extends WP_REST_Controller
      *                          ADE ou un message d'erreur si non trouvé.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function getItem($request)
-    {
+    public function get_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
 
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
-        if (!$requested_ade_code) {
-            return new WP_REST_Response(
-                array('message' => 'ADE code not found'), 404
-            );
-        }
+        if (!$requested_ade_code)
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         return new WP_REST_Response($requested_ade_code, 200);
     }
@@ -266,42 +252,32 @@ class CodeAdeRestController extends WP_REST_Controller
      *                          être mis à jour.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function updateItem($request)
-    {
+    public function update_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
 
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
-        if (!$requested_ade_code) {
-            return new WP_REST_Response(
-                array('message' => 'ADE code not found'), 404
-            );
-        }
+        if (!$requested_ade_code)
+            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
 
         // Mettre à jour les données
-        if (is_string($request->get_json_params()['title'])) {
+        if (is_string($request->get_json_params()['title']))
             $requested_ade_code->setTitle($request->get_json_params()['title']);
-        }
 
-        if (is_string($request->get_json_params()['code'])) {
+        if (is_string($request->get_json_params()['code']))
             $requested_ade_code->setCode($request->get_json_params()['code']);
-        }
 
-        if (is_string($request->get_json_params()['type'])) {
+        if (is_string($request->get_json_params()['type']))
             $requested_ade_code->setType($request->get_json_params()['type']);
-        }
 
         // Essayer de mettre à jour les informations
-        if ($requested_ade_code->update() > 0) {
+        if ($requested_ade_code->update() > 0)
             return new WP_REST_Response(null, 200);
-        }
 
-        return new WP_REST_Response(
-            array('message' => 'Could not update the ADE code'), 400
-        );
+        return new WP_REST_Response(array('message' => 'Could not update the ADE code'), 400);
     }
 
     /**
@@ -324,22 +300,18 @@ class CodeAdeRestController extends WP_REST_Controller
      *                          code ADE n'a pas pu être supprimé.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function deleteItem($request)
-    {
+    public function delete_item($request) {
         // Obtenir une instance du gestionnaire de code ADE
         $codeAde = new CodeAde();
 
         // Récupérer les informations de la base de données
         $requested_ade_code = $codeAde->get($request->get_param('id'));
-        if ($requested_ade_code && $requested_ade_code->delete()) {
+        if ($requested_ade_code && $requested_ade_code->delete())
             return new WP_REST_Response(null, 200);
-        }
 
-        return new WP_REST_Response(
-            array('message' => 'Could not delete the ADE code'), 400
-        );
+        return new WP_REST_Response(array('message' => 'Could not delete the ADE code'), 400);
     }
 
     /**
@@ -358,10 +330,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *              d'accéder aux éléments, sinon false.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function getItemsPermissionsCheck($request)
-    {
+    public function get_items_permissions_check($request) {
         $current_user = wp_get_current_user();
         return in_array("administrator", $current_user->roles);
     }
@@ -381,11 +352,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *              de créer un nouvel élément, sinon false.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function createItemPermissionsCheck($request)
-    {
-        return $this->getItemsPermissionsCheck($request);
+    public function create_item_permissions_check($request) {
+        return $this->get_items_permissions_check($request);
     }
 
     /**
@@ -404,11 +374,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *              de récupérer l'élément, sinon false.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function getItemPermissionsCheck($request)
-    {
-        return $this->getItemsPermissionsCheck($request);
+    public function get_item_permissions_check($request) {
+        return $this->get_items_permissions_check($request);
     }
 
     /**
@@ -427,11 +396,10 @@ class CodeAdeRestController extends WP_REST_Controller
      *              de mettre à jour l'élément, sinon false.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function updateItemPermissionsCheck($request)
-    {
-        return $this->getItemsPermissionsCheck($request);
+    public function update_item_permissions_check($request) {
+        return $this->get_items_permissions_check($request);
     }
 
     /**
@@ -449,10 +417,9 @@ class CodeAdeRestController extends WP_REST_Controller
      *              de supprimer l'élément, sinon false.
      *
      * @version 1.0
-     * @date    2024-09-16
+     * @date 2024-09-16
      */
-    public function deleteItemPermissionsCheck($request)
-    {
-        return $this->getItemsPermissionsCheck($request);
+    public function delete_item_permissions_check($request) {
+        return $this->get_items_permissions_check($request);
     }
 }

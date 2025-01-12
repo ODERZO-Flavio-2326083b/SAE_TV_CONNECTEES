@@ -1,26 +1,32 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use controllers\Controller;
 use models\Department;
 use views\DepartmentView;
 
-// TODO : Ajouter la doc de classe
-class DepartmentController extends Controller
-{
+
+/**
+ * Classe DepartmentController
+ *
+ * Cette classe gère les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) pour les départements.
+ * Elle inclut des méthodes pour insérer, modifier, supprimer et afficher les départements,
+ * ainsi que la gestion des doublons.
+ *
+ * @package controllers
+ */
+class DepartmentController extends Controller {
     /**
      * Modèle département
-     *
      * @var Department
      */
-    private Department $_model;
+    private $model;
 
-    // TODO : Ajouter @var
     /**
      * Vue département
      */
-    private $_view;
+    private $view;
 
     /**
      * Constructeur de la classe DepartmentController.
@@ -28,50 +34,48 @@ class DepartmentController extends Controller
      * Initialise le modèle et la vue associés au contrôleur des départements.
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function __construct()
-    {
-        $this->_model = new Department();
-        $this->_view = new DepartmentView();
+    public function __construct() {
+        $this->model = new Department();
+        $this->view = new DepartmentView();
     }
 
     /**
      * Insère un nouveau département dans la base de données.
      *
-     * Cette méthode traite les données POST issues du formulaire de création de
-     * département, filtre les entrées, vérifie les doublons et insère un nouveau
-     * département si aucune duplication n'est détectée. Affiche également les
-     * messages de succès ou d'erreur via la vue.
+     * Cette méthode traite les données POST issues du formulaire de création de département,
+     * filtre les entrées, vérifie les doublons et insère un nouveau département si aucune
+     * duplication n'est détectée. Affiche également les messages de succès ou d'erreur
+     * via la vue.
      *
-     * @return string Retourne le formulaire de création avec les résultats du
-     * traitement.
+     * @return string Retourne le formulaire de création avec les résultats du traitement.
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function insert(): string
-    {
+
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
             $name = filter_input(INPUT_POST, 'dept_name');
 
             if (is_string($name)) {
-                $this->_model->setName($name);
+                $this->model->setName($name);
 
-                if (!$this->checkDuplicate($this->_model)) {
-                    $this->_model->insert();
-                    $this->_view->successCreation();
+                if (!$this->checkDuplicate($this->model)) {
+                    $this->model->insert();
+                    $this->view->successCreation();
                 } else {
-                    $this->_view->errorDuplicate();
+                    $this->view->errorDuplicate();
                 }
             } else {
-                $this->_view->errorCreation();
+                $this->view->errorCreation();
             }
 
         }
-        return $this->_view->renderAddForm();
+        return $this->view->renderAddForm();
     }
 
     /**
@@ -81,22 +85,21 @@ class DepartmentController extends Controller
      * traite les données POST soumises pour changer le nom du département et vérifie
      * les doublons avant d'enregistrer les modifications.
      *
-     * @return string Retourne le formulaire de modification avec les résultats du
-     * traitement.
+     * @return string Retourne le formulaire de modification avec les résultats du traitement.
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function modify(): string
-    {
+
+    public function modify(): string {
         if (!isset($_GET['id'])) {
-            return $this->_view->errorNothing();
+            return $this->view->errorNothing();
         }
 
         $id = $_GET['id'];
 
-        if (!is_numeric($id) || !$this->_model->get($id)) {
-            return $this->_view->errorNothing();
+        if (!is_numeric($id) || !$this->model->get($id)) {
+            return $this->view->errorNothing();
         }
 
         $submit = filter_input(INPUT_POST, 'submit');
@@ -105,22 +108,22 @@ class DepartmentController extends Controller
             $nvNom = filter_input(INPUT_POST, 'dept_name');
 
             if (is_string($nvNom)) {
-                $this->_model->setIdDepartment($id);
-                $this->_model->setName($nvNom);
+                $this->model->setIdDepartment($id);
+                $this->model->setName($nvNom);
 
-                if (!$this->checkDuplicate($this->_model)) {
-                    $this->_model->update();
-                    $this->_view->successUpdate();
+                if (!$this->checkDuplicate($this->model)) {
+                    $this->model->update();
+                    $this->view->successUpdate();
                 } else {
-                    $this->_view->errorDuplicate();
+                    $this->view->errorDuplicate();
                 }
             } else {
-                $this->_view->errorUpdate();
+                $this->view->errorUpdate();
             }
         }
 
-        $name = $this->_model->get($id)->getName();
-        return $this->_view->renderModifForm($name);
+        $name = $this->model->get($id)->getName();
+        return $this->view->renderModifForm($name);
     }
 
     /**
@@ -132,13 +135,12 @@ class DepartmentController extends Controller
      * @return string Retourne le tableau affiché des départements.
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function displayDeptTable(): string
-    {
-        $allDepts = $this->_model->getAllDepts();
+    public function displayDeptTable(): string {
+        $allDepts = $this->model->getAllDepts();
 
-        return $this->_view->renderAllDeptsTable($allDepts);
+        return $this->view->renderAllDeptsTable($allDepts);
     }
 
     /**
@@ -150,18 +152,18 @@ class DepartmentController extends Controller
      * @return void
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function deleteDepts(): void
-    {
+
+    public function deleteDepts(): void {
         $action = filter_input(INPUT_POST, 'delete');
         if (isset($action)) {
             if (isset($_REQUEST['checkboxStatusDept'])) {
                 $checked_values = $_REQUEST['checkboxStatusDept'];
                 foreach ($checked_values as $id) {
-                    $this->_model = $this->_model->get($id);
-                    $this->_model->delete();
-                    $this->_view->refreshPage();
+                    $this->model = $this->model->get($id);
+                    $this->model->delete();
+                    $this->view->refreshPage();
                 }
             }
         }
@@ -179,11 +181,10 @@ class DepartmentController extends Controller
      * @return bool Retourne `true` si un doublon est trouvé, sinon `false`.
      *
      * @version 1.0
-     * @date    2024-10-16
+     * @date 2024-10-16
      */
-    public function checkDuplicate(Department $department): bool
-    {
-        $departments = $this->_model->getDepartmentByName($department->getName());
+    public function checkDuplicate(Department $department): bool {
+        $departments = $this->model->getDepartmentByName($department->getName());
 
         foreach ($departments as $d) {
             if ($department->getName() === $d->getName()) {

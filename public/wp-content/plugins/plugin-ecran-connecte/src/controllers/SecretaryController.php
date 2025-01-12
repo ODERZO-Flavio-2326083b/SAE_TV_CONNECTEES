@@ -1,44 +1,40 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\SecretaryView;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class SecretaryController
  *
- * Gère toutes les actions relatives aux secrétaires (Création, mise à jour,
- * affichage).
+ * Gère toutes les actions relatives aux secrétaires (Création, mise à jour, affichage).
  *
  * @package controllers
  */
 class SecretaryController extends UserController
 {
-    // TODO : Ajouter une description
     /**
      * @var User
      */
-    private User $_model;
+    private User $model;
 
-    // TODO : Ajouter une description
     /**
      * @var SecretaryView
      */
-    private SecretaryView $_view;
+    private SecretaryView $view;
 
     /**
      * Constructor of SecretaryController.
      *
      * Initialise le modèle et la vue pour le contrôleur des secrétaires.
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        $this->_model = new User();
-        $this->_view = new SecretaryView();
+        $this->model = new User();
+        $this->view = new SecretaryView();
     }
 
     /**
@@ -46,237 +42,198 @@ class SecretaryController extends UserController
      *
      * @return string
      */
-    public function displayMySchedule(): string
-    {
-        return $this->_view->displayWelcomeAdmin();
+    public function displayMySchedule(): string {
+        return $this->view->displayWelcomeAdmin();
     }
 
     /**
      * Insère un nouveau compte de secrétaire dans la base de données.
      *
-     * Cette méthode gère l'insertion d'un utilisateur avec le rôle "secrétaire" à
-     * partir des données soumises via un formulaire. Elle vérifie d'abord la
-     * validité des informations fournies, telles que le login, le mot de passe, et
-     * l'email, puis s'assure qu'il n'existe pas déjà un utilisateur avec ces
-     * informations. En cas de succès, l'utilisateur est inséré dans la base de
-     * données et un message de validation est affiché. En cas d'échec, un message
-     * d'erreur est affiché.
+     * Cette méthode gère l'insertion d'un utilisateur avec le rôle "secrétaire" à partir
+     * des données soumises via un formulaire. Elle vérifie d'abord la validité des
+     * informations fournies, telles que le login, le mot de passe, et l'email, puis
+     * s'assure qu'il n'existe pas déjà un utilisateur avec ces informations. En cas de
+     * succès, l'utilisateur est inséré dans la base de données et un message de validation
+     * est affiché. En cas d'échec, un message d'erreur est affiché.
      *
      * @return string Retourne le formulaire de création de secrétaire.
      *
+     *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function insert(): string
-    {
+    public function insert(): string {
         $action = filter_input(INPUT_POST, 'createSecre');
 
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
         $isAdmin = current_user_can('admin_perms');
-        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
-        // département, sinon on cherche le département
-        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
+        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
-            // les non-admins ne peuvent pas choisir le département, on empêche donc
-            // ces utilisateurs de pouvoir le changer
+            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
+            // de pouvoir le changer
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 
-                && is_string($password)
-                && strlen($password) >= 8 && strlen($password) <= 25
-                && $password === $passwordConfirm && is_email($email)
-            ) {
-                $this->_model->setLogin($login);
-                $this->_model->setPassword($password);
-                $this->_model->setEmail($email);
-                $this->_model->setRole('secretaire');
-                $this->_model->setIdDepartment($deptId);
+            if (InputValidator::isValidLogin($login) &&
+                InputValidator::isValidPassword($password, $passwordConfirm) &&
+                InputValidator::isValidEmail($email)) {
+                $this->model->setLogin($login);
+                $this->model->setPassword($password);
+                $this->model->setEmail($email);
+                $this->model->setRole('secretaire');
+                $this->model->setIdDepartment($deptId);
 
-                if (!$this->checkDuplicateUser(
-                    $this->_model
-                ) && $this->_model->insert()
-                ) {
-                    $this->_view->displayInsertValidate();
+                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
+                    $this->view->displayInsertValidate();
                 } else {
-                    $this->_view->displayErrorInsertion();
+                    $this->view->displayErrorInsertion();
                 }
             } else {
-                $this->_view->displayErrorCreation();
+                $this->view->displayErrorCreation();
             }
         }
         $allDepts = $deptModel->getAllDepts();
 
 
-        return $this->_view->displayFormSecretary($allDepts, $isAdmin, $currDept);
+        return $this->view->displayFormSecretary($allDepts, $isAdmin, $currDept);
     }
 
     /**
      * Affiche la liste de tous les secrétaires enregistrés.
      *
-     * Cette méthode récupère tous les utilisateurs ayant le rôle de "secrétaire" à
-     * partir du modèle, puis renvoie l'affichage de cette liste via la vue associée.
-     * Elle permet ainsi de lister et gérer les comptes des secrétaires enregistrés
-     * dans le système.
+     * Cette méthode récupère tous les utilisateurs ayant le rôle de "secrétaire" à partir
+     * du modèle, puis renvoie l'affichage de cette liste via la vue associée. Elle permet
+     * ainsi de lister et gérer les comptes des secrétaires enregistrés dans le système.
      *
      * @return string Retourne l'affichage HTML de la liste des secrétaires.
      *
+     *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function displayAllSecretary(): string
-    {
-        $users = $this->_model->getUsersByRole('secretaire');
+    public function displayAllSecretary(): string {
+        $users = $this->model->getUsersByRole('secretaire');
         $deptModel = new Department();
 
         $userDeptList = array();
         foreach ($users as $user) {
-            $userDeptList[] = $deptModel->getUserDepartment(
-                $user->getId()
-            )->getName();
+            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->_view->displayAllSecretary($users, $userDeptList);
+        return $this->view->displayAllSecretary($users, $userDeptList);
     }
 
     /**
-     * TODO : Refaire la doc pour tenir compte de la mise à jour des rôles
-     * Génère et affiche les formulaires de création d'utilisateurs pour différents
-     * rôles.
+     * Génère et affiche les formulaires de création d'utilisateurs pour différents rôles.
      *
-     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs
-     * (étudiants, enseignants, directeurs d'études, secrétaires, techniciens,
-     * télévisions) et affiche un ensemble d'onglets de sélection avec un formulaire
-     * d'insertion pour chaque rôle. L'utilisateur peut ainsi créer des comptes pour
-     * chaque catégorie d'utilisateurs via une interface intuitive de
-     * multi-sélection.
+     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs (étudiants, enseignants,
+     * directeurs d'études, secrétaires, techniciens, télévisions) et affiche un ensemble d'onglets de sélection
+     * avec un formulaire d'insertion pour chaque rôle. L'utilisateur peut ainsi créer des comptes pour chaque
+     * catégorie d'utilisateurs via une interface intuitive de multi-sélection.
      *
-     * @return string Retourne l'affichage HTML des formulaires de création
-     * d'utilisateurs.
+     * @return string Retourne l'affichage HTML des formulaires de création d'utilisateurs.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function createUsers(): string
-    {
+    public function createUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
-        $subadmin = new SubadminController();
+		$subadmin = new SubadminController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
-            $subadminTitle = $this->_view->displayTitleSelect(
-                'subadmin', 'Sous-administrateurs'
-            );
-            $subadminContent = $this->_view->displayContentSelect(
-                'subadmin',
-                $subadmin->insert()
-            );
+            $subadminTitle = $this->view->displayTitleSelect(
+                'subadmin', 'Sous-administrateurs');
+            $subadminContent = $this->view->displayContentSelect('subadmin',
+                $subadmin->insert());
         }
 
         return
-            $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
-            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->view->displayStartMultiSelect() .
+            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
-            $this->_view->displayEndOfTitle() .
-            $this->_view->displayContentSelect(
-                'secretary', $secretary->insert(), true
-            ) .
-            $this->_view->displayContentSelect('technician', $technician->insert()) .
-            $this->_view->displayContentSelect('television', $television->insert()) .
+            $this->view->displayEndOfTitle() .
+            $this->view->displayContentSelect('secretary', $secretary->insert(), true) .
+            $this->view->displayContentSelect('technician', $technician->insert()) .
+            $this->view->displayContentSelect('television', $television->insert()) .
             $subadminContent .
             '</div>' .
-            $this->_view->contextCreateUser();
+            $this->view->contextCreateUser();
     }
 
     /**
-     * TODO : Refaire la doc pour tenir compte de la mise à jour des rôles
      * Affiche les listes des utilisateurs par rôles.
      *
-     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs
-     * (étudiants, enseignants, directeurs d'études, secrétaires, techniciens,
-     * télévisions) et affiche une interface avec des onglets de multi-sélection
-     * permettant de consulter les utilisateurs enregistrés pour chaque catégorie.
-     * Chaque onglet affiche la liste des utilisateurs correspondants, organisée par
-     * rôle.
+     * Cette méthode instancie les contrôleurs des différents types d'utilisateurs (étudiants, enseignants,
+     * directeurs d'études, secrétaires, techniciens, télévisions) et affiche une interface avec des onglets de
+     * multi-sélection permettant de consulter les utilisateurs enregistrés pour chaque catégorie. Chaque onglet
+     * affiche la liste des utilisateurs correspondants, organisée par rôle.
      *
      * @return string Retourne l'affichage HTML des listes d'utilisateurs par rôles.
      *
+     *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function displayUsers(): string
-    {
+    public function displayUsers(): string {
         $secretary = new SecretaryController();
         $technician = new TechnicianController();
         $television = new TelevisionController();
-        $subadmin = new SubadminController();
+		$subadmin = new SubadminController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
-            $subadminTitle = $this->_view->displayTitleSelect(
-                'subadmin', 'Sous-administrateurs'
-            );
-            $subadminContent = $this->_view->displayContentSelect(
-                'subadmin',
-                $subadmin->displayAllSubadmin()
-            );
+            $subadminTitle = $this->view->displayTitleSelect(
+                'subadmin', 'Sous-administrateurs');
+            $subadminContent = $this->view->displayContentSelect('subadmin',
+                $subadmin->displayAllSubadmin());
         }
 
         return
-            $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
-            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->view->displayStartMultiSelect() .
+            $this->view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
-            $this->_view->displayEndOfTitle() .
-            $this->_view->displayContentSelect(
-                'secretary', $secretary->displayAllSecretary(), true
-            ) .
-            $this->_view->displayContentSelect(
-                'technician', $technician->displayAllTechnician()
-            ) .
-            $this->_view->displayContentSelect(
-                'television', $television->displayAllTv()
-            ) .
+            $this->view->displayEndOfTitle() .
+            $this->view->displayContentSelect('secretary', $secretary->displayAllSecretary(), true) .
+            $this->view->displayContentSelect('technician', $technician->displayAllTechnician()) .
+            $this->view->displayContentSelect('television', $television->displayAllTv()) .
             $subadminContent .
             '</div>';
     }
 
     /**
-     * TODO : Refaire la doc pour tenir compte de la mise à jour des rôles
      * Modifie les informations d'un utilisateur spécifié par son identifiant.
      *
-     * Cette méthode vérifie si l'identifiant de l'utilisateur est valide et existe
-     * dans la base de données.
-     * Si l'utilisateur est trouvé, elle détermine le rôle de l'utilisateur dans
-     * WordPress et appelle le contrôleur approprié (étudiant, enseignant, directeur
-     * d'études ou télévision) pour procéder à la modification des informations.
-     * Si l'utilisateur n'est pas trouvé ou si l'identifiant n'est pas valide, un
-     * message indiquant qu'aucun utilisateur n'a été trouvé est affiché.
+     * Cette méthode vérifie si l'identifiant de l'utilisateur est valide et existe dans la base de données.
+     * Si l'utilisateur est trouvé, elle détermine le rôle de l'utilisateur dans WordPress et appelle le
+     * contrôleur approprié (étudiant, enseignant, directeur d'études ou télévision) pour procéder à la
+     * modification des informations. Si l'utilisateur n'est pas trouvé ou si l'identifiant n'est pas valide,
+     * un message indiquant qu'aucun utilisateur n'a été trouvé est affiché.
      *
-     * @return string Retourne le contenu HTML pour modifier l'utilisateur, ou un
-     * message d'erreur si l'utilisateur n'est pas trouvé.
+     * @return string Retourne le contenu HTML pour modifier l'utilisateur, ou un message d'erreur si l'utilisateur n'est pas trouvé.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function modifyUser(): string
-    {
+    public function modifyUser(): string {
         $id = $_GET['id'];
-        if (is_numeric($id) && $this->_model->get($id)) {
-            $user = $this->_model->get($id);
+        if (is_numeric($id) && $this->model->get($id)) {
+            $user = $this->model->get($id);
             $wordpressUser = get_user_by('id', $id);
 
             if (in_array("television", $wordpressUser->roles)) {
@@ -284,30 +241,25 @@ class SecretaryController extends UserController
                 return $controller->modify($user);
             }
         }
-        return $this->_view->displayNoUser();
+        return $this->view->displayNoUser();
 
     }
 
     /**
-     * TODO : Refaire la doc pour tenir compte de la mise à jour des rôles
-     * Supprime les utilisateurs sélectionnés à partir des cases à cocher dans le
-     * formulaire.
+     * Supprime les utilisateurs sélectionnés à partir des cases à cocher dans le formulaire.
      *
-     * Cette méthode vérifie si une action de suppression a été demandée. Si c'est le
-     * cas, elle parcourt les rôles spécifiés (étudiant, enseignant, directeur,
-     * technicien, secrétaire, télévision) et vérifie si des utilisateurs
-     * correspondant à ces rôles ont été sélectionnés. Pour chaque utilisateur
-     * sélectionné, la méthode appelle 'deleteUser' pour effectuer la suppression de
-     * l'utilisateur correspondant.
+     * Cette méthode vérifie si une action de suppression a été demandée. Si c'est le cas,
+     * elle parcourt les rôles spécifiés (étudiant, enseignant, directeur, technicien, secrétaire, télévision)
+     * et vérifie si des utilisateurs correspondant à ces rôles ont été sélectionnés. Pour chaque utilisateur
+     * sélectionné, la méthode appelle 'deleteUser' pour effectuer la suppression de l'utilisateur correspondant.
      *
-     * @return void Cette méthode n'a pas de valeur de retour, elle effectue
-     * directement la suppression des utilisateurs.
+     * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression des utilisateurs.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    public function deleteUsers(): void
-    {
+    public function deleteUsers(): void {
         $actionDelete = filter_input(INPUT_POST, 'delete');
         $roles = ['Tech', 'Secre', 'Tele', 'Subadmin'];
 
@@ -326,21 +278,21 @@ class SecretaryController extends UserController
     /**
      * Supprime un utilisateur spécifié par son identifiant.
      *
-     * Cette méthode récupère l'utilisateur à partir de la base de données à l'aide
-     * de l'identifiant fourni, puis appelle la méthode 'delete' sur l'instance de
-     * l'utilisateur pour le supprimer de la base de données.
+     * Cette méthode récupère l'utilisateur à partir de la base de données à l'aide de l'identifiant
+     * fourni, puis appelle la méthode 'delete' sur l'instance de l'utilisateur pour le supprimer
+     * de la base de données.
      *
      * @param int $id L'identifiant de l'utilisateur à supprimer.
      *
-     * @return void Cette méthode n'a pas de valeur de retour, elle effectue
-     *              directement la suppression de l'utilisateur.
+     * @return void Cette méthode n'a pas de valeur de retour, elle effectue directement la suppression
+     *               de l'utilisateur.
+     *
      *
      * @version 1.0
-     * @date    2024-10-15
+     * @date 2024-10-15
      */
-    private function deleteUser(int $id): void
-    {
-        $user = $this->_model->get($id);
+    private function deleteUser(int $id): void {
+        $user = $this->model->get($id);
         $user->delete();
     }
 }
