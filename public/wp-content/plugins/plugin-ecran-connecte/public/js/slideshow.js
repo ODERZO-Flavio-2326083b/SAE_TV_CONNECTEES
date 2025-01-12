@@ -181,4 +181,8 @@ function displayOrHide(slides, slideIndex)
     if(slides.length !== 1 || totalPage !== 1) {
         setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
     }
+
+    setTimeout(function(){
+        window.location.reload(1);
+    }, 86400000);
 }

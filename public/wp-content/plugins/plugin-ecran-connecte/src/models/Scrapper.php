@@ -64,7 +64,8 @@ class Scrapper
 
             // Vérifiez si une image est disponible
             if (!empty($varArticle['image']) && $varArticle['image'] !== 'pas de contenu') {
-                $imageContent = @file_get_contents($varArticle['image']);
+                $imageLarge= str_replace('home','large',$varArticle['image']);
+                $imageContent = @file_get_contents($imageLarge);
 
                 if ($imageContent !== false) {
                     // Encoder l'image en base64
@@ -73,7 +74,7 @@ class Scrapper
                     // Générer le HTML
                     $html .= '<div>';
                     $html .= '<a>';
-                    $html .= '<img src="' . $base64Image . '" style="width:100%; height:auto;">';
+                    $html .= '<img src="' . $base64Image . '" style="height: 73vh; width: auto;">';
                     $html .= '</a>';
                     $html .= '</div>';
                 } else {
