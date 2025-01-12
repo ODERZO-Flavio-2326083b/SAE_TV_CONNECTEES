@@ -1,5 +1,5 @@
 <?php
-
+// TODO : Ajouter la doc du fichier
 namespace controllers\rest;
 
 use models\Information;
@@ -9,6 +9,8 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
+ * TODO : Ajouter les tags @author, @category, @license, @link et @package
+ *
  * @class InformationRestController
  * @brief Classe pour gérer le contrôleur REST des informations.
  *
@@ -28,7 +30,8 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->namespace = 'amu-ecran-connectee/v1';
         $this->rest_base = 'information';
     }
@@ -47,22 +50,24 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-
-    public function register_routes() {
+    public function registerRoutes()
+    {
         register_rest_route(
             $this->namespace,
             '/' . $this->rest_base,
             array(
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_items'),
-                    'permission_callback' => array($this, 'get_items_permissions_check'),
-                    'args' => $this->get_collection_params(),
+                    'callback' => array($this, 'getItems'),
+                    'permission_callback' => array(
+                        $this, 'getItemsPermissionsCheck'),
+                    'args' => $this->getCollectionParams(),
                 ),
                 array(
                     'methods' => WP_REST_Server::CREATABLE,
-                    'callback' => array($this, 'create_item'),
-                    'permission_callback' => array($this, 'create_item_permissions_check'),
+                    'callback' => array($this, 'createItems'),
+                    'permission_callback' => array(
+                        $this, 'createItemPermissionsCheck'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -97,14 +102,16 @@ class InformationRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_item'),
-                    'permission_callback' => array($this, 'get_item_permissions_check'),
+                    'callback' => array($this, 'getItem'),
+                    'permission_callback' => array(
+                        $this, 'getItemPermissionsCheck'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'update_item'),
-                    'permission_callback' => array($this, 'update_item_permissions_check'),
+                    'callback' => array($this, 'updateItem'),
+                    'permission_callback' => array(
+                        $this, 'updateItemPermissionsCheck'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -122,8 +129,9 @@ class InformationRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::DELETABLE,
-                    'callback' => array($this, 'delete_item'),
-                    'permission_callback' => array($this, 'delete_item_permissions_check'),
+                    'callback' => array($this, 'deleteItem'),
+                    'permission_callback' => array(
+                        $this, 'deleteItemPermissionsCheck'),
                     'args' => array()
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
@@ -140,14 +148,16 @@ class InformationRestController extends WP_REST_Controller
      * une réponse REST avec la liste des informations.
      *
      * @param WP_REST_Request $request L'objet de la requête REST contenant
-     *                                  les paramètres pour la récupération des éléments.
+     *                                 les paramètres pour la récupération des
+     *                                 éléments.
      *
      * @return WP_REST_Response Une réponse REST contenant la liste des informations.
      *
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_items($request) {
+    public function getItems($request)
+    {
         // Get an instance of the information manager
         $information = new Information();
 
@@ -168,7 +178,7 @@ class InformationRestController extends WP_REST_Controller
      * ou un message d'erreur en cas d'échec.
      *
      * @param WP_REST_Request $request L'objet de la requête REST contenant
-     *                                  les données pour créer l'élément.
+     *                                 les données pour créer l'élément.
      *
      * @return WP_REST_Response Une réponse REST contenant l'ID de l'élément créé
      *                          ou un message d'erreur.
@@ -176,7 +186,8 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function create_item($request) {
+    public function createItems($request)
+    {
         // Get an instance of the information manager
         $information = new Information();
 
@@ -190,10 +201,13 @@ class InformationRestController extends WP_REST_Controller
         $information->setType('text');
 
         // Try to insert the information
-        if (($insert_id = $information->insert()))
+        if (($insert_id = $information->insert())) {
             return new WP_REST_Response(array('id' => $insert_id), 200);
+        }
 
-        return new WP_REST_Response(array('message' => 'Could not insert the information'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not insert the information'), 400
+        );
     }
 
     /**
@@ -206,7 +220,7 @@ class InformationRestController extends WP_REST_Controller
      * l'élément n'est pas trouvé.
      *
      * @param WP_REST_Request $request L'objet de la requête REST contenant
-     *                                  l'ID de l'élément à récupérer.
+     *                                 l'ID de l'élément à récupérer.
      *
      * @return WP_REST_Response Une réponse REST contenant l'élément d'information
      *                          demandé ou un message d'erreur si non trouvé.
@@ -214,14 +228,18 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_item($request) {
+    public function getItem($request)
+    {
         // Get an instance of the information manager
         $information = new Information();
 
         // Grab the information from the database
         $requested_info = $information->get($request->get_param('id'));
-        if (!$requested_info)
-            return new WP_REST_Response(array('message' => 'Information not found'), 404);
+        if (!$requested_info) {
+            return new WP_REST_Response(
+                array('message' => 'Information not found'), 404
+            );
+        }
 
         return new WP_REST_Response($requested_info, 200);
     }
@@ -237,7 +255,8 @@ class InformationRestController extends WP_REST_Controller
      * elle renvoie un message d'erreur approprié.
      *
      * @param WP_REST_Request $request L'objet de la requête REST contenant
-     *                                  les données à mettre à jour et l'ID de l'élément.
+     *                                 les données à mettre à jour et l'ID de
+     *                                 l'élément.
      *
      * @return WP_REST_Response Une réponse REST indiquant le succès ou l'échec
      *                          de la mise à jour de l'élément d'information.
@@ -245,30 +264,42 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function update_item($request) {
+    public function updateItem($request)
+    {
         // Get an instance of the information manager
         $information = new Information();
 
         // Grab the information from the database
         $requested_info = $information->get($request->get_param('id'));
-        if (!$requested_info)
-            return new WP_REST_Response(array('message' => 'Information not found'), 404);
+        if (!$requested_info) {
+            return new WP_REST_Response(
+                array('message' => 'Information not found'), 404
+            );
+        }
 
         // Update the information data
-        if (is_string($request->get_json_params()['title']))
+        if (is_string($request->get_json_params()['title'])) {
             $requested_info->setTitle($request->get_json_params()['title']);
+        }
 
-        if (is_string($request->get_json_params()['content']))
+        if (is_string($request->get_json_params()['content'])) {
             $requested_info->setContent($request->get_json_params()['content']);
+        }
 
-        if (is_string($request->get_json_params()['expiration-date']))
-            $requested_info->setExpirationDate($request->get_json_params()['expiration-date']);
+        if (is_string($request->get_json_params()['expiration-date'])) {
+            $requested_info->setExpirationDate(
+                $request->get_json_params()['expiration-date']
+            );
+        }
 
         // Try to update the information
-        if ($requested_info->update() > 0)
+        if ($requested_info->update() > 0) {
             return new WP_REST_Response(null, 200);
+        }
 
-        return new WP_REST_Response(array('message' => 'Could not update the information'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not update the information'), 400
+        );
     }
 
     /**
@@ -277,11 +308,12 @@ class InformationRestController extends WP_REST_Controller
      * Cette méthode traite la requête pour supprimer un élément d'information
      * identifié par son ID. Elle tente de récupérer l'élément de la base de données
      * et, si celui-ci est trouvé, elle procède à sa suppression. En cas de succès,
-     * elle renvoie une réponse REST avec un statut 200. Si l'élément n'est pas trouvé
-     * ou si la suppression échoue, elle renvoie un message d'erreur approprié.
+     * elle renvoie une réponse REST avec un statut 200. Si l'élément n'est pas
+     * trouvé ou si la suppression échoue, elle renvoie un message d'erreur
+     * approprié.
      *
      * @param WP_REST_Request $request L'objet de la requête REST contenant
-     *                                  l'ID de l'élément à supprimer.
+     *                                 l'ID de l'élément à supprimer.
      *
      * @return WP_REST_Response Une réponse REST indiquant le succès ou l'échec
      *                          de la suppression de l'élément d'information.
@@ -289,16 +321,20 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function delete_item($request) {
+    public function deleteItem($request)
+    {
         // Get an instance of the information manager
         $information = new Information();
 
         // Grab the information from the database
         $requested_info = $information->get($request->get_param('id'));
-        if ($requested_info && $requested_info->delete())
+        if ($requested_info && $requested_info->delete()) {
             return new WP_REST_Response(null, 200);
+        }
 
-        return new WP_REST_Response(array('message' => 'Could not delete the information'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not delete the information'), 400
+        );
     }
 
     /**
@@ -307,7 +343,8 @@ class InformationRestController extends WP_REST_Controller
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
      * pour accéder à la liste des éléments d'information. Seuls les utilisateurs
      * ayant le rôle d'administrateur sont autorisés à effectuer cette action.
-     * La méthode renvoie true si l'utilisateur a les permissions requises, sinon false.
+     * La méthode renvoie true si l'utilisateur a les permissions requises, sinon
+     * false.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
      *
@@ -316,7 +353,8 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_items_permissions_check($request) {
+    public function getItemsPermissionsCheck($request)
+    {
         $current_user = wp_get_current_user();
         return in_array("administrator", $current_user->roles);
     }
@@ -336,17 +374,19 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function create_item_permissions_check($request) : bool {
-        return $this->get_items_permissions_check($request);
+    public function createItemPermissionsCheck($request) : bool
+    {
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
      * Vérifie les permissions pour récupérer un élément d'information.
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
-     * pour récupérer un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
-     * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
+     * pour récupérer un élément d'information spécifique. La vérification est
+     * effectuée en utilisant la méthode 'get_items_permissions_check', qui permet
+     * uniquement aux utilisateurs ayant le rôle d'administrateur d'effectuer cette
+     * action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
      *
@@ -355,17 +395,19 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_item_permissions_check($request) : bool {
-        return $this->get_items_permissions_check($request);
+    public function getItemPermissionsCheck($request) : bool
+    {
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
      * Vérifie les permissions pour mettre à jour un élément d'information.
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
-     * pour mettre à jour un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
-     * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
+     * pour mettre à jour un élément d'information spécifique. La vérification est
+     * effectuée en utilisant la méthode 'get_items_permissions_check', qui permet
+     * uniquement aux utilisateurs ayant le rôle d'administrateur d'effectuer cette
+     * action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
      *
@@ -374,17 +416,19 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function update_item_permissions_check($request) : bool {
-        return $this->get_items_permissions_check($request);
+    public function updateItemPermissionsCheck($request) : bool
+    {
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
      * Vérifie les permissions pour supprimer un élément d'information.
      *
      * Cette méthode détermine si l'utilisateur actuel a les droits nécessaires
-     * pour supprimer un élément d'information spécifique. La vérification est effectuée
-     * en utilisant la méthode 'get_items_permissions_check', qui permet uniquement
-     * aux utilisateurs ayant le rôle d'administrateur d'effectuer cette action.
+     * pour supprimer un élément d'information spécifique. La vérification est
+     * effectuée en utilisant la méthode 'get_items_permissions_check', qui permet
+     * uniquement aux utilisateurs ayant le rôle d'administrateur d'effectuer cette
+     * action.
      *
      * @param WP_REST_Request $request L'objet de la requête REST.
      *
@@ -393,8 +437,9 @@ class InformationRestController extends WP_REST_Controller
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function delete_item_permissions_check($request) : bool {
-        return $this->get_items_permissions_check($request);
+    public function deleteItemPermissionsCheck($request) : bool
+    {
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -405,12 +450,14 @@ class InformationRestController extends WP_REST_Controller
      * d'éléments à récupérer et l'offset à partir duquel commencer la récupération.
      *
      * @return array Un tableau associatif des paramètres de requête, incluant
-     *               'limit' et 'offset', avec des descriptions et des valeurs par défaut.
+     *               'limit' et 'offset', avec des descriptions et des valeurs par
+     *               défaut.
      *
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function get_collection_params() : array {
+    public function getCollectionParams() : array
+    {
         $query_params = [];
 
         $query_params['limit'] = array(

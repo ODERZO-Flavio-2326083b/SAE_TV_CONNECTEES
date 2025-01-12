@@ -404,14 +404,14 @@ add_action('init', 'addNewRoles');
 
 add_action('rest_api_init', function () {
     $controller = new InformationRestController();
-    $controller->register_routes();
+    $controller->registerRoutes();
 
     $controller = new CodeAdeRestController();
-    $controller->register_routes();
+    $controller->registerRoutes();
 
     $controller = new AlertRestController();
-    $controller->register_routes();
+    $controller->registerRoutes();
 
     $controller = new ProfileRestController();
-    $controller->register_routes();
+    $controller->registerRoutes();
 });
