@@ -1,9 +1,10 @@
 <?php
-
+// TODO : Ajouter la doc du fichier
 
 namespace models;
 
 /**
+ * TODO : Ajouter les tags @author, @category, @license et @link
  * Interface Entity
  *
  * Link the database tables to the PHP code
@@ -34,6 +35,7 @@ interface Entity
      */
     public function delete();
 
+    // TODO : Commenter le paramètre
     /**
      * Get an entity link to the id
      *
@@ -50,6 +52,7 @@ interface Entity
      */
     public function getList();
 
+    // TODO : Commenter le paramètre
     /**
      * Build an entity
      *
@@ -59,6 +62,7 @@ interface Entity
      */
     public function setEntity($data);
 
+    // TODO : Commenter le paramètre
     /**
      * Build a list of entity
      *
