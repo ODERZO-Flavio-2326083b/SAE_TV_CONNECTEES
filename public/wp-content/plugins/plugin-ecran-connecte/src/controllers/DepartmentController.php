@@ -6,6 +6,16 @@ use controllers\Controller;
 use models\Department;
 use views\DepartmentView;
 
+
+/**
+ * Classe DepartmentController
+ *
+ * Cette classe gère les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) pour les départements.
+ * Elle inclut des méthodes pour insérer, modifier, supprimer et afficher les départements,
+ * ainsi que la gestion des doublons.
+ *
+ * @package controllers
+ */
 class DepartmentController extends Controller {
     /**
      * Modèle département

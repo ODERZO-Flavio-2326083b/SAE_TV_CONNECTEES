@@ -9,6 +9,15 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * Class UserRestController
+ *
+ * Classe pour la gestion des routes REST dans WordPress. Permet de gérer les alertes associées aux utilisateurs,
+ * avec des fonctionnalités pour récupérer, créer, mettre à jour et supprimer les alertes via l'API REST de WordPress.
+ * Utilise WP_REST_Controller pour enregistrer et traiter les routes REST personnalisées.
+ *
+ * @package controllers\rest
+ */
 class UserRestController extends WP_REST_Controller
 {
     /**

@@ -6,6 +6,15 @@ use models\Entity;
 use models\Model;
 use PDO;
 
+/**
+ * Classe représentant une localisation géographique d'un utilisateur.
+ *
+ * Cette classe permet de gérer les opérations CRUD (Create, Read, Update, Delete)
+ * sur les localisations dans la base de données. Chaque localisation est associée
+ * à un utilisateur et contient des informations géographiques (latitude, longitude) et d'adresse.
+ *
+ * @package models
+ */
 class Localisation extends Model implements \JsonSerializable, Entity {
 
     /**
