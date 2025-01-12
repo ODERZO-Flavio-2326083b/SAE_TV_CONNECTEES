@@ -1,0 +1,50 @@
+\chapter{Architecture}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19}\index{Architecture@{Architecture}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md331}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md331}%
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md332}{}\doxysection{\texorpdfstring{Schematical}{Schematical}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md332}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md333}{}\doxysection{\texorpdfstring{Auto\+Loader}{Auto\+Loader}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md333}
+Php\+Spreadsheet relies on Composer autoloader. So before working with Php\+Spreadsheet in standalone, be sure to run {\ttfamily composer install}. Or add it to a pre-\/existing project with {\ttfamily composer require phpoffice/phpspreadsheet}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md334}{}\doxysection{\texorpdfstring{Spreadsheet in memory}{Spreadsheet in memory}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md334}
+Php\+Spreadsheet\textquotesingle{}s architecture is built in a way that it can serve as an in-\/memory spreadsheet. This means that, if one would want to create a web based view of a spreadsheet which communicates with Php\+Spreadsheet\textquotesingle{}s object model, he would only have to write the front-\/end code.
+
+Just like desktop spreadsheet software, Php\+Spreadsheet represents a spreadsheet containing one or more worksheets, which contain cells with data, formulas, images, ...\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md335}{}\doxysection{\texorpdfstring{Readers and writers}{Readers and writers}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md335}
+On its own, the {\ttfamily Spreadsheet} class does not provide the functionality to read from or write to a persisted spreadsheet (on disk or in a database). To provide that functionality, readers and writers can be used.
+
+By default, the Php\+Spreadsheet package provides some readers and writers, including one for the Open XML spreadsheet format (a.\+k.\+a. Excel 2007 file format). You are not limited to the default readers and writers, as you are free to implement the {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Reader\textbackslash{}IReader} and {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}IWriter} interface in a custom class.
+
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md336}{}\doxysection{\texorpdfstring{Fluent interfaces}{Fluent interfaces}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_8d63d41be0f97dc978cbc64ecceddf19_autotoc_md336}
+Php\+Spreadsheet supports fluent interfaces in most locations. This means that you can easily "{}chain"{} calls to specific methods without requiring a new PHP statement. For example, take the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setCreator("{}Maarten\ Balliauw"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setLastModifiedBy("{}Maarten\ Balliauw"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setTitle("{}Office\ 2007\ XLSX\ Test\ Document"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setSubject("{}Office\ 2007\ XLSX\ Test\ Document"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setDescription("{}Test\ document\ for\ Office\ 2007\ XLSX,\ generated\ using\ PHP\ classes."{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setKeywords("{}office\ 2007\ openxml\ php"{});}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()-\/>setCategory("{}Test\ result\ file"{});}
+
+\end{DoxyCode}
+
+
+This can be rewritten as\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getProperties()}
+\DoxyCodeLine{\ \ \ \ -\/>setCreator("{}Maarten\ Balliauw"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setLastModifiedBy("{}Maarten\ Balliauw"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setTitle("{}Office\ 2007\ XLSX\ Test\ Document"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setSubject("{}Office\ 2007\ XLSX\ Test\ Document"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setDescription("{}Test\ document\ for\ Office\ 2007\ XLSX,\ generated\ using\ PHP\ classes."{})}
+\DoxyCodeLine{\ \ \ \ -\/>setKeywords("{}office\ 2007\ openxml\ php"{})}
+\DoxyCodeLine{\ \ \ \ -\/>setCategory("{}Test\ result\ file"{});}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+{\bfseries{Using fluent interfaces is not required}} Fluent interfaces have been implemented to provide a convenient programming API. Use of them is not required, but can make your code easier to read and maintain. It can also improve performance, as you are reducing the overall number of calls to Php\+Spreadsheet methods\+: in the above example, the {\ttfamily get\+Properties()} method is being called only once rather than 7 times in the non-\/fluent version. \end{quote}

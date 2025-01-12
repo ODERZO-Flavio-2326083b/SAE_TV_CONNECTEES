@@ -1,0 +1,327 @@
+\doxysection{Référence de la classe Controllers\textbackslash{}Code\+Ade\+Rest\+Controller}
+\hypertarget{class_controllers_1_1_code_ade_rest_controller}{}\label{class_controllers_1_1_code_ade_rest_controller}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+Graphe d\textquotesingle{}héritage de Controllers\textbackslash{}Code\+Ade\+Rest\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_controllers_1_1_code_ade_rest_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_ad6290dcebfa1c349f12ae851a5089302}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_ac846d2dcffa393e6653a8e57f3334dd5}{register\+\_\+routes}} ()
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_a1eefb344e76cc34c0d447d82c0fbae25}{get\+\_\+items}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_ac9765a3affc007fd0e318e3f8fea79e7}{create\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_af3b64550f9e3dc267bacba4858aca2d9}{get\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_ab4c779bc5fbf30673ad6a80616923ac1}{update\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_ae7cd6f22f3015e5768c42588f57c8caa}{delete\+\_\+item}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_abb4970fb8e351ba6430a53a60749227d}{get\+\_\+items\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_af418fa623497fa3d6189d2e167b4ff61}{create\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_a675503f131dda0091e4fd9583204f07f}{get\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_af7655060a583ad9d7c08c58a30002991}{update\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\item 
+\mbox{\hyperlink{class_controllers_1_1_code_ade_rest_controller_a635bc4b61a3892c863460890ba85d9a2}{delete\+\_\+item\+\_\+permissions\+\_\+check}} (\$request)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_ad6290dcebfa1c349f12ae851a5089302}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_ad6290dcebfa1c349f12ae851a5089302} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Initialise une nouvelle instance de la classe.
+
+Ce constructeur configure le namespace et la base REST pour les opérations de l\textquotesingle{}API. Il définit le namespace comme \textquotesingle{}amu-\/ecran-\/connectee/v1\textquotesingle{} et le chemin de base REST comme \textquotesingle{}ade\textquotesingle{}.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_ac9765a3affc007fd0e318e3f8fea79e7}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!create\_item@{create\_item}}
+\index{create\_item@{create\_item}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item()}{create\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_ac9765a3affc007fd0e318e3f8fea79e7} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::create\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Crée un nouveau code ADE.
+
+Cette méthode traite la requête pour créer un nouveau code ADE en utilisant les données fournies dans la requête. Elle crée une instance du gestionnaire de code ADE, définit les propriétés du code ADE à partir des paramètres de la requête, puis essaie d\textquotesingle{}insérer le code dans la base de données. Si l\textquotesingle{}insertion est réussie, elle retourne l\textquotesingle{}ID du nouveau code ADE avec un code de statut HTTP 200 (OK). Sinon, elle retourne un message d\textquotesingle{}erreur avec un code de statut HTTP 400 (Bad Request).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les données du code ADE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse contenant l\textquotesingle{}ID du code ADE créé ou un message d\textquotesingle{}erreur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_af418fa623497fa3d6189d2e167b4ff61}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!create\_item\_permissions\_check@{create\_item\_permissions\_check}}
+\index{create\_item\_permissions\_check@{create\_item\_permissions\_check}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{create\_item\_permissions\_check()}{create\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_af418fa623497fa3d6189d2e167b4ff61} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::create\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour créer un nouvel élément.
+
+Cette méthode appelle la méthode de vérification des permissions pour obtenir les autorisations d\textquotesingle{}accès à la liste des codes ADE. Si l\textquotesingle{}utilisateur a les droits d\textquotesingle{}administrateur, il pourra créer un nouvel élément; sinon, l\textquotesingle{}accès sera refusé.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les informations de la requête actuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}utilisateur a l\textquotesingle{}autorisation de créer un nouvel élément, sinon false.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_ae7cd6f22f3015e5768c42588f57c8caa}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!delete\_item@{delete\_item}}
+\index{delete\_item@{delete\_item}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item()}{delete\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_ae7cd6f22f3015e5768c42588f57c8caa} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::delete\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Supprime un code ADE spécifique.
+
+Cette méthode traite la requête pour supprimer un code ADE existant identifié par son identifiant unique fourni dans la requête. Elle crée une instance du gestionnaire de code ADE et récupère les informations correspondantes depuis la base de données. Si le code ADE est trouvé et qu\textquotesingle{}il est supprimé avec succès, la méthode retourne une réponse HTTP avec le code statut 200 (OK). En cas d\textquotesingle{}échec, elle retourne un message d\textquotesingle{}erreur avec un code de statut approprié.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant l\textquotesingle{}identifiant du code ADE à supprimer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse indiquant le succès de la suppression ou un message d\textquotesingle{}erreur si le code ADE n\textquotesingle{}a pas pu être supprimé.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_a635bc4b61a3892c863460890ba85d9a2}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!delete\_item\_permissions\_check@{delete\_item\_permissions\_check}}
+\index{delete\_item\_permissions\_check@{delete\_item\_permissions\_check}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{delete\_item\_permissions\_check()}{delete\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_a635bc4b61a3892c863460890ba85d9a2} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::delete\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour supprimer un élément spécifique.
+
+Cette méthode appelle la méthode de vérification des permissions pour s\textquotesingle{}assurer que l\textquotesingle{}utilisateur a le droit de supprimer un code ADE spécifique. Seuls les utilisateurs disposant des droits d\textquotesingle{}administrateur peuvent procéder à la suppression.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les informations de la requête actuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}utilisateur a l\textquotesingle{}autorisation de supprimer l\textquotesingle{}élément, sinon false.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_af3b64550f9e3dc267bacba4858aca2d9}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!get\_item@{get\_item}}
+\index{get\_item@{get\_item}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item()}{get\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_af3b64550f9e3dc267bacba4858aca2d9} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::get\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère un code ADE spécifique.
+
+Cette méthode traite la requête pour obtenir les détails d\textquotesingle{}un code ADE en fonction de son identifiant unique fourni dans la requête. Elle crée une instance du gestionnaire de code ADE, puis tente de récupérer les informations correspondantes depuis la base de données. Si le code ADE est trouvé, la méthode retourne les informations avec un code de statut HTTP 200 (OK). Si le code ADE n\textquotesingle{}est pas trouvé, elle retourne un message d\textquotesingle{}erreur avec un code de statut HTTP 404 (Not Found).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant l\textquotesingle{}identifiant du code ADE à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse contenant les détails du code ADE ou un message d\textquotesingle{}erreur si non trouvé.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_a675503f131dda0091e4fd9583204f07f}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!get\_item\_permissions\_check@{get\_item\_permissions\_check}}
+\index{get\_item\_permissions\_check@{get\_item\_permissions\_check}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{get\_item\_permissions\_check()}{get\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_a675503f131dda0091e4fd9583204f07f} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::get\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour récupérer un élément spécifique.
+
+Cette méthode appelle la méthode de vérification des permissions pour s\textquotesingle{}assurer que l\textquotesingle{}utilisateur a le droit d\textquotesingle{}accéder aux informations sur un code ADE particulier. Seuls les utilisateurs disposant des droits d\textquotesingle{}administrateur peuvent récupérer les informations.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les informations de la requête actuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}utilisateur a l\textquotesingle{}autorisation de récupérer l\textquotesingle{}élément, sinon false.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_a1eefb344e76cc34c0d447d82c0fbae25}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!get\_items@{get\_items}}
+\index{get\_items@{get\_items}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items()}{get\_items()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_a1eefb344e76cc34c0d447d82c0fbae25} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::get\+\_\+items (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère tous les codes ADE.
+
+Cette méthode traite la requête pour obtenir la liste des codes ADE à partir de l\textquotesingle{}instance du gestionnaire de codes ADE. Elle renvoie une réponse au format WP\+\_\+\+REST\+\_\+\+Response contenant la liste des codes ADE avec un code de statut HTTP 200 (OK).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response La réponse contenant la liste des codes ADE.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_abb4970fb8e351ba6430a53a60749227d}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!get\_items\_permissions\_check@{get\_items\_permissions\_check}}
+\index{get\_items\_permissions\_check@{get\_items\_permissions\_check}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{get\_items\_permissions\_check()}{get\_items\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_abb4970fb8e351ba6430a53a60749227d} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::get\+\_\+items\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour accéder aux éléments.
+
+Cette méthode détermine si l\textquotesingle{}utilisateur actuel a les droits nécessaires pour accéder à la liste des codes ADE. Elle vérifie si l\textquotesingle{}utilisateur a le rôle d\textquotesingle{}administrateur. Si l\textquotesingle{}utilisateur est un administrateur, la méthode retourne true, permettant l\textquotesingle{}accès à la ressource; sinon, elle retourne false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les informations de la requête actuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}utilisateur a l\textquotesingle{}autorisation d\textquotesingle{}accéder aux éléments, sinon false.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_ac846d2dcffa393e6653a8e57f3334dd5}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!register\_routes@{register\_routes}}
+\index{register\_routes@{register\_routes}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{register\_routes()}{register\_routes()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_ac846d2dcffa393e6653a8e57f3334dd5} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::register\+\_\+routes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enregistre les routes REST pour les opérations sur les codes ADE.
+
+Cette méthode définit les routes de l\textquotesingle{}API REST sous le namespace \textquotesingle{}amu-\/ecran-\/connectee/v1\textquotesingle{} et le chemin de base \textquotesingle{}ade\textquotesingle{}. Elle configure les méthodes disponibles pour récupérer, créer, mettre à jour et supprimer les codes ADE. Les permissions nécessaires pour chaque opération sont également vérifiées.
+
+Routes définies \+:
+\begin{DoxyItemize}
+\item GET /amu-\/ecran-\/connectee/v1/ade \+: Récupère tous les codes ADE.
+\item POST /amu-\/ecran-\/connectee/v1/ade \+: Crée un nouveau code ADE.
+\item GET /amu-\/ecran-\/connectee/v1/ade/\{id\} \+: Récupère un code ADE spécifique par ID.
+\item PUT /amu-\/ecran-\/connectee/v1/ade/\{id\} \+: Met à jour un code ADE spécifique par ID.
+\item DELETE /amu-\/ecran-\/connectee/v1/ade/\{id\} \+: Supprime un code ADE spécifique par ID.
+\end{DoxyItemize}
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_ab4c779bc5fbf30673ad6a80616923ac1}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!update\_item@{update\_item}}
+\index{update\_item@{update\_item}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item()}{update\_item()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_ab4c779bc5fbf30673ad6a80616923ac1} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::update\+\_\+item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Met à jour un code ADE spécifique.
+
+Cette méthode traite la requête pour mettre à jour les détails d\textquotesingle{}un code ADE existant en fonction de son identifiant unique fourni dans la requête. Elle crée une instance du gestionnaire de code ADE et récupère les informations correspondantes depuis la base de données. Si le code ADE est trouvé, les données (titre, code et type) peuvent être mises à jour si elles sont valides. Si la mise à jour est réussie, la méthode retourne un code de statut HTTP 200 (OK). En cas d\textquotesingle{}échec ou si le code ADE n\textquotesingle{}est pas trouvé, elle retourne un message d\textquotesingle{}erreur avec un code de statut approprié.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant l\textquotesingle{}identifiant du code ADE à mettre à jour ainsi que les nouvelles valeurs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Une réponse indiquant le succès de la mise à jour ou un message d\textquotesingle{}erreur si le code ADE n\textquotesingle{}a pas pu être mis à jour.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+\Hypertarget{class_controllers_1_1_code_ade_rest_controller_af7655060a583ad9d7c08c58a30002991}\index{Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}!update\_item\_permissions\_check@{update\_item\_permissions\_check}}
+\index{update\_item\_permissions\_check@{update\_item\_permissions\_check}!Controllers\textbackslash{}CodeAdeRestController@{Controllers\textbackslash{}CodeAdeRestController}}
+\doxysubsubsection{\texorpdfstring{update\_item\_permissions\_check()}{update\_item\_permissions\_check()}}
+{\footnotesize\ttfamily \label{class_controllers_1_1_code_ade_rest_controller_af7655060a583ad9d7c08c58a30002991} 
+Controllers\textbackslash{}\+Code\+Ade\+Rest\+Controller\+::update\+\_\+item\+\_\+permissions\+\_\+check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions pour mettre à jour un élément spécifique.
+
+Cette méthode appelle la méthode de vérification des permissions pour s\textquotesingle{}assurer que l\textquotesingle{}utilisateur a le droit de mettre à jour les informations d\textquotesingle{}un code ADE particulier. Seuls les utilisateurs disposant des droits d\textquotesingle{}administrateur peuvent procéder à la mise à jour.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & La requête de l\textquotesingle{}API REST contenant les informations de la requête actuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}utilisateur a l\textquotesingle{}autorisation de mettre à jour l\textquotesingle{}élément, sinon false.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/09-\/16 
+\end{DoxyDate}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_code_ade_rest_controller_8php}{Code\+Ade\+Rest\+Controller.\+php}}\end{DoxyCompactItemize}

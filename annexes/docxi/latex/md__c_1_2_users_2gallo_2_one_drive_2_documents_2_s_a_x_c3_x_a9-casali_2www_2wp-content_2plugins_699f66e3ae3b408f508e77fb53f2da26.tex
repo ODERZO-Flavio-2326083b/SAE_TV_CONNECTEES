@@ -1,0 +1,1508 @@
+\chapter{Calculation Engine}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26}\index{Calculation Engine@{Calculation Engine}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md351}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md351}%
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md352}{}\doxysection{\texorpdfstring{Using the Php\+Spreadsheet calculation engine}{Using the Php\+Spreadsheet calculation engine}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md352}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md353}{}\doxysubsection{\texorpdfstring{Performing formula calculations}{Performing formula calculations}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md353}
+As Php\+Spreadsheet represents an in-\/memory spreadsheet, it also offers formula calculation capabilities. A cell can be of a value type (containing a number or text), or a formula type (containing a formula which can be evaluated). For example, the formula {\ttfamily =SUM(\+A1\+:\+A10)} evaluates to the sum of values in A1, A2, ..., A10.
+
+To calculate a formula, you can call the cell containing the formula’s method {\ttfamily get\+Calculated\+Value()}, for example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>getCell('E11')-\/>getCalculatedValue();}
+
+\end{DoxyCode}
+
+
+If you write the following line of code in the invoice demo included with Php\+Spreadsheet, it evaluates to the value "{}64"{}\+:
+
+
+
+Another nice feature of Php\+Spreadsheet\textquotesingle{}s formula parser, is that it can automatically adjust a formula when inserting/removing rows/columns. Here\textquotesingle{}s an example\+:
+
+
+
+You see that the formula contained in cell E11 is "{}\+SUM(\+E4\+:\+E9)"{}. Now, when I write the following line of code, two new product lines are added\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$spreadsheet-\/>getActiveSheet()-\/>insertNewRowBefore(7,\ 2);}
+
+\end{DoxyCode}
+
+
+
+
+Did you notice? The formula in the former cell E11 (now E13, as I inserted 2 new rows), changed to "{}\+SUM(\+E4\+:\+E11)"{}. Also, the inserted cells duplicate style information of the previous cell, just like Excel\textquotesingle{}s behaviour. Note that you can both insert rows and columns.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md354}{}\doxysection{\texorpdfstring{Calculation Cache}{Calculation Cache}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md354}
+Once the Calculation engine has evaluated the formula in a cell, the result will be cached, so if you call {\ttfamily get\+Calculated\+Value()} a second time for the same cell, the result will be returned from the cache rather than evaluating the formula a second time. This helps boost performance, because evaluating a formula is an expensive operation in terms of performance and speed.
+
+However, there may be times when you don\textquotesingle{}t want this, perhaps you\textquotesingle{}ve changed the underlying data and need to re-\/evaluate the same formula with that new data.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Calculation::getInstance(\$spreadsheet)-\/>disableCalculationCache();}
+
+\end{DoxyCode}
+
+
+Will disable calculation caching, and flush the current calculation cache.
+
+If you want only to flush the cache, then you can call
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Calculation::getInstance(\$spreadsheet)-\/>clearCalculationCache();}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md355}{}\doxysection{\texorpdfstring{Known limitations}{Known limitations}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md355}
+There are some known limitations to the Php\+Spreadsheet calculation engine. Most of them are due to the fact that an Excel formula is converted into PHP code before being executed. This means that Excel formula calculation is subject to PHP\textquotesingle{}s language characteristics.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md356}{}\doxysubsection{\texorpdfstring{Function that are not Supported in Xls}{Function that are not Supported in Xls}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md356}
+Not all functions are supported, for a comprehensive list, read the \doxysectlink{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_4bbf0cba14d8fea7d22abadfca5a833e}{function list by name}{0}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md357}{}\doxysubsubsection{\texorpdfstring{Operator precedence}{Operator precedence}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md357}
+In Excel {\ttfamily +} wins over {\ttfamily \&}, just like {\ttfamily \texorpdfstring{$\ast$}{*}} wins over {\ttfamily +} in ordinary algebra. The former rule is not what one finds using the calculation engine shipped with Php\+Spreadsheet.
+
+
+\begin{DoxyItemize}
+\item \href{https://support.office.com/en-us/article/Calculation-operators-and-precedence-in-Excel-48be406d-4975-4d31-b2b8-7af9e0e2878a}{\texttt{ Reference for Excel}}
+\item \href{https://php.net/manual/en/language.operators.php}{\texttt{ Reference for PHP}}
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md358}{}\doxysubsubsection{\texorpdfstring{Formulas involving numbers and text}{Formulas involving numbers and text}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md358}
+Formulas involving numbers and text may produce unexpected results or even unreadable file contents. For example, the formula {\ttfamily =3+"{}\+Hello "{}} is expected to produce an error in Excel (\#VALUE!). Due to the fact that PHP converts {\ttfamily "{}\+Hello "{}} to a numeric value (zero), the result of this formula is evaluated as 3 instead of evaluating as an error. This also causes the Excel document being generated as containing unreadable content.
+
+
+\begin{DoxyItemize}
+\item \href{https://php.net/manual/en/language.types.string.php\#language.types.string.conversion}{\texttt{ Reference for this behaviour in PHP}}
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md359}{}\doxysubsubsection{\texorpdfstring{Formulas don’t seem to be calculated in Excel2003 using compatibility pack?}{Formulas don’t seem to be calculated in Excel2003 using compatibility pack?}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md359}
+This is normal behaviour of the compatibility pack, Xlsx displays this correctly. Use {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}Xls} if you really need calculated values, or force recalculation in Excel2003.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md360}{}\doxysection{\texorpdfstring{Handling Date and Time Values}{Handling Date and Time Values}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md360}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md361}{}\doxysubsection{\texorpdfstring{Excel functions that return a Date and Time value}{Excel functions that return a Date and Time value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md361}
+Any of the Date and Time functions that return a date value in Excel can return either an Excel timestamp or a PHP timestamp or {\ttfamily Date\+Time} object.
+
+It is possible for scripts to change the data type used for returning date values by calling the {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::set\+Return\+Date\+Type()} method\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(\$returnDateType);}
+
+\end{DoxyCode}
+
+
+where the following constants can be used for {\ttfamily \$return\+Date\+Type}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+RETURNDATE\+\_\+\+PHP\+\_\+\+NUMERIC}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+RETURNDATE\+\_\+\+PHP\+\_\+\+OBJECT}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+RETURNDATE\+\_\+\+EXCEL}
+\end{DoxyItemize}
+
+The method will return a Boolean True on success, False on failure (e.\+g. if an invalid value is passed in for the return date type).
+
+The {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()} method can be used to determine the current value of this setting\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$returnDateType\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::getReturnDateType();}
+
+\end{DoxyCode}
+
+
+The default is {\ttfamily RETURNDATE\+\_\+\+PHP\+\_\+\+NUMERIC}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md362}{}\doxysubsubsection{\texorpdfstring{PHP Timestamps}{PHP Timestamps}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md362}
+If {\ttfamily RETURNDATE\+\_\+\+PHP\+\_\+\+NUMERIC} is set for the Return Date Type, then any date value returned to the calling script by any access to the Date and Time functions in Excel will be an integer value that represents the number of seconds from the PHP/\+Unix base date. The PHP/\+Unix base date (0) is 00\+:00 UST on 1st January 1970. This value can be positive or negative\+: so a value of -\/3600 would be 23\+:00 hrs on 31st December 1969; while a value of +3600 would be 01\+:00 hrs on 1st January 1970. This gives PHP a date range of between 14th December 1901 and 19th January 2038.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md363}{}\doxysubsubsection{\texorpdfstring{PHP {\ttfamily Date\+Time} Objects}{PHP {\ttfamily Date\+Time} Objects}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md363}
+If the Return Date Type is set for {\ttfamily RETURNDATE\+\_\+\+PHP\+\_\+\+OBJECT}, then any date value returned to the calling script by any access to the Date and Time functions in Excel will be a PHP {\ttfamily Date\+Time} object.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md364}{}\doxysubsubsection{\texorpdfstring{Excel Timestamps}{Excel Timestamps}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md364}
+If {\ttfamily RETURNDATE\+\_\+\+EXCEL} is set for the Return Date Type, then the returned date value by any access to the Date and Time functions in Excel will be a floating point value that represents a number of days from the Excel base date. The Excel base date is determined by which calendar Excel uses\+: the Windows 1900 or the Mac 1904 calendar. 1st January 1900 is the base date for the Windows 1900 calendar while 1st January 1904 is the base date for the Mac 1904 calendar.
+
+It is possible for scripts to change the calendar used for calculating Excel date values by calling the {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date\+::set\+Excel\+Calendar()} method\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Shared\(\backslash\)Date::setExcelCalendar(\$baseDate);}
+
+\end{DoxyCode}
+
+
+where the following constants can be used for {\ttfamily \$base\+Date}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date\+::\+CALENDAR\+\_\+\+WINDOWS\+\_\+1900}
+\item {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date\+::\+CALENDAR\+\_\+\+MAC\+\_\+1904}
+\end{DoxyItemize}
+
+The method will return a Boolean True on success, False on failure (e.\+g. if an invalid value is passed in).
+
+The {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date\+::get\+Excel\+Calendar()} method can be used to determine the current value of this setting\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$baseDate\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Shared\(\backslash\)Date::getExcelCalendar();}
+
+\end{DoxyCode}
+
+
+The default is {\ttfamily CALENDAR\+\_\+\+WINDOWS\+\_\+1900}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md365}{}\doxysubsubsection{\texorpdfstring{Functions that return a Date/\+Time Value}{Functions that return a Date/\+Time Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md365}
+
+\begin{DoxyItemize}
+\item DATE
+\item DATEVALUE
+\item EDATE
+\item EOMONTH
+\item NOW
+\item TIME
+\item TIMEVALUE
+\item TODAY
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md366}{}\doxysubsection{\texorpdfstring{Excel functions that accept Date and Time values as parameters}{Excel functions that accept Date and Time values as parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md366}
+Date values passed in as parameters to a function can be an Excel timestamp or a PHP timestamp; or {\ttfamily Date\+Time} object; or a string containing a date value (e.\+g. \textquotesingle{}1-\/Jan-\/2009\textquotesingle{}). Php\+Spreadsheet will attempt to identify their type based on the PHP datatype\+:
+
+An integer numeric value will be treated as a PHP/\+Unix timestamp. A real (floating point) numeric value will be treated as an Excel date/timestamp. Any PHP {\ttfamily Date\+Time} object will be treated as a {\ttfamily Date\+Time} object. Any string value (even one containing straight numeric data) will be converted to a {\ttfamily Date\+Time} object for validation as a date value based on the server locale settings, so passing through an ambiguous value of \textquotesingle{}07/08/2008\textquotesingle{} will be treated as 7th August 2008 if your server settings are UK, but as 8th July 2008 if your server settings are US. However, if you pass through a value such as \textquotesingle{}31/12/2008\textquotesingle{} that would be considered an error by a US-\/based server, but which is not ambiguous, then Php\+Spreadsheet will attempt to correct this to 31st December 2008. If the content of the string doesn’t match any of the formats recognised by the php {\ttfamily Date\+Time} object implementation of {\ttfamily strtotime()} (which can handle a wider range of formats than the normal {\ttfamily strtotime()} function), then the function will return a {\ttfamily \#VALUE} error. However, Excel recommends that you should always use date/timestamps for your date functions, and the recommendation for Php\+Spreadsheet is the same\+: avoid strings because the result is not predictable.
+
+The same principle applies when data is being written to Excel. Cells containing date actual values (rather than Excel functions that return a date value) are always written as Excel dates, converting where necessary. If a cell formatted as a date contains an integer or {\ttfamily Date\+Time} object value, then it is converted to an Excel value for writing\+: if a cell formatted as a date contains a real value, then no conversion is required. Note that string values are written as strings rather than converted to Excel date timestamp values.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md367}{}\doxysubsubsection{\texorpdfstring{Functions that expect a Date/\+Time Value}{Functions that expect a Date/\+Time Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md367}
+
+\begin{DoxyItemize}
+\item DATEDIF
+\item DAY
+\item DAYS360
+\item EDATE
+\item EOMONTH
+\item HOUR
+\item MINUTE
+\item MONTH
+\item NETWORKDAYS
+\item SECOND
+\item WEEKDAY
+\item WEEKNUM
+\item WORKDAY
+\item YEAR
+\item YEARFRAC
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md368}{}\doxysubsection{\texorpdfstring{Helper Methods}{Helper Methods}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md368}
+In addition to the {\ttfamily set\+Excel\+Calendar()} and {\ttfamily get\+Excel\+Calendar()} methods, a number of other methods are available in the {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}Date} class that can help when working with dates\+:\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md369}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Timestamp(\$excel\+Date)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Timestamp(\$excel\+Date)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md369}
+Converts a date/time from an Excel date timestamp to return a PHP serialized date/timestamp.
+
+Note that this method does not trap for Excel dates that fall outside of the valid range for a PHP date timestamp.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md370}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Date\+Time\+Object(\$excel\+Date)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Date\+Time\+Object(\$excel\+Date)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md370}
+Converts a date from an Excel date/timestamp to return a PHP {\ttfamily Date\+Time} object.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md371}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::\+PHPTo\+Excel(\$\+PHPDate)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::\+PHPTo\+Excel(\$\+PHPDate)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md371}
+Converts a PHP serialized date/timestamp or a PHP {\ttfamily Date\+Time} object to return an Excel date timestamp.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md372}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::formatted\+PHPTo\+Excel(\$year, \$month, \$day, \$hours=0, \$minutes=0, \$seconds=0)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::formatted\+PHPTo\+Excel(\$year, \$month, \$day, \$hours=0, \$minutes=0, \$seconds=0)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md372}
+Takes year, month and day values (and optional hour, minute and second values) and returns an Excel date timestamp value.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md373}{}\doxysubsection{\texorpdfstring{Timezone support for Excel date timestamp conversions}{Timezone support for Excel date timestamp conversions}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md373}
+The default timezone for the date functions in Php\+Spreadsheet is UST (Universal Standard Time). If a different timezone needs to be used, these methods are available\+:\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md374}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::get\+Default\+Timezone()}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::get\+Default\+Timezone()}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md374}
+Returns the current timezone value Php\+Speadsheet is using to handle dates and times.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md375}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::set\+Default\+Timezone(\$time\+Zone)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::set\+Default\+Timezone(\$time\+Zone)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md375}
+Sets the timezone for Excel date timestamp conversions to \$time\+Zone, which must be a valid PHP Date\+Time\+Zone value. The return value is a Boolean, where true is success, and false is failure (e.\+g. an invalid Date\+Time\+Zone value was passed.)\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md376}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Date\+Time\+Object(\$excel\+Date, \$time\+Zone)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Date\+Time\+Object(\$excel\+Date, \$time\+Zone)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md376}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md377}{}\doxysubsubsection{\texorpdfstring{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Time\+Stamp(\$excel\+Date, \$time\+Zone)}{\textbackslash{}\+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+Date\+::excel\+To\+Time\+Stamp(\$excel\+Date, \$time\+Zone)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md377}
+These functions support a timezone as an optional second parameter. This applies a specific timezone to that function call without affecting the default Php\+Spreadsheet Timezone.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md378}{}\doxysection{\texorpdfstring{Function Reference}{Function Reference}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md378}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md379}{}\doxysubsection{\texorpdfstring{Database Functions}{Database Functions}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md379}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md380}{}\doxysubsubsection{\texorpdfstring{DAVERAGE}{DAVERAGE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md380}
+The DAVERAGE function returns the average value of the cells in a column of a list or database that match conditions you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md381}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md381}
+\begin{DoxyVerb}DAVERAGE (database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md382}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md382}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md383}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md383}
+{\bfseries{float}} The average value of the matching cells.
+
+This is the statistical mean.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md384}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md384}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DAVERAGE(A4:E10,"{}Yield"{},A1:B2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 12}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md385}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md385}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md386}{}\doxysubsubsection{\texorpdfstring{DCOUNT}{DCOUNT}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md386}
+The DCOUNT function returns the count of cells that contain a number in a column of a list or database matching conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md387}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md387}
+\begin{DoxyVerb}DCOUNT(database, [field], criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md388}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md388}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md389}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md389}
+{\bfseries{float}} The count of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md390}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md390}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DCOUNT(A4:E10,"{}Height"{},A1:B3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ \$retVal\ =\ 3}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md391}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md391}
+In MS Excel, The field argument is optional. If field is omitted, DCOUNT counts all records in the database that match the criteria. This logic has not yet been implemented in Php\+Spreadsheet.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md392}{}\doxysubsubsection{\texorpdfstring{DCOUNTA}{DCOUNTA}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md392}
+The DCOUNT function returns the count of cells that aren’t blank in a column of a list or database and that match conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md393}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md393}
+\begin{DoxyVerb}DCOUNTA(database, [field], criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md394}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md394}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md395}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md395}
+{\bfseries{float}} The count of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md396}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md396}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DCOUNTA(A4:E10,"{}Yield"{},A1:A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ \$retVal\ =\ 5}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md397}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md397}
+In MS Excel, The field argument is optional. If field is omitted, DCOUNTA counts all records in the database that match the criteria. This logic has not yet been implemented in Php\+Spreadsheet.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md398}{}\doxysubsubsection{\texorpdfstring{DGET}{DGET}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md398}
+The DGET function extracts a single value from a column of a list or database that matches conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md399}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md399}
+\begin{DoxyVerb}DGET(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md400}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md400}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md401}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md401}
+{\bfseries{mixed}} The value from the selected column of the matching row.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md402}{}\doxysubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md402}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=GET(A4:E10,"{}Age"{},A1:F2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 14}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md403}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md403}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md404}{}\doxysubsubsection{\texorpdfstring{DMAX}{DMAX}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md404}
+The DMAX function returns the largest number in a column of a list or database that matches conditions you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md405}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md405}
+\begin{DoxyVerb}DMAX(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md406}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md406}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md407}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md407}
+{\bfseries{float}} The maximum value of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md408}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md408}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DMAX(A4:E10,"{}Profit"{},A1:B2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 105}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md409}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md409}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md410}{}\doxysubsubsection{\texorpdfstring{DMIN}{DMIN}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md410}
+The DMIN function returns the smallest number in a column of a list or database that matches conditions you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md411}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md411}
+\begin{DoxyVerb}DMIN(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md412}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md412}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md413}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md413}
+{\bfseries{float}} The minimum value of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md414}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md414}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DMIN(A4:E10,"{}Yield"{},A1:A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 6}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md415}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md415}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md416}{}\doxysubsubsection{\texorpdfstring{DPRODUCT}{DPRODUCT}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md416}
+The DPRODUCT function multiplies the values in a column of a list or database that match conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md417}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md417}
+\begin{DoxyVerb}DPRODUCT(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md418}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md418}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md419}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md419}
+{\bfseries{float}} The product of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md420}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md420}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DPRODUCT(A4:E10,"{}Yield"{},A1:B2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 140}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md421}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md421}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md422}{}\doxysubsubsection{\texorpdfstring{DSTDEV}{DSTDEV}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md422}
+The DSTDEV function estimates the standard deviation of a population based on a sample by using the numbers in a column of a list or database that match conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md423}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md423}
+\begin{DoxyVerb}DSTDEV(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md424}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md424}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md425}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md425}
+{\bfseries{float}} The estimated standard deviation of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md426}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md426}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DSTDEV(A4:E10,"{}Yield"{},A1:A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2.97}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md427}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md427}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md428}{}\doxysubsubsection{\texorpdfstring{DSTDEVP}{DSTDEVP}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md428}
+The DSTDEVP function calculates the standard deviation of a population based on the entire population by using the numbers in a column of a list or database that match conditions that you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md429}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md429}
+\begin{DoxyVerb}DSTDEVP(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md430}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md430}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md431}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md431}
+{\bfseries{float}} The estimated standard deviation of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md432}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md432}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DSTDEVP(A4:E10,"{}Yield"{},A1:A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2.65}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md433}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md433}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md434}{}\doxysubsubsection{\texorpdfstring{DSUM}{DSUM}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md434}
+The DSUM function adds the numbers in a column of a list or database that matches conditions you specify.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md435}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md435}
+\begin{DoxyVerb}DSUM(database, field, criteria)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md436}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md436}
+{\bfseries{database}} The range of cells that makes up the list or database.
+
+A database is a list of related data in which rows of related information are records, and columns of data are fields. The first row of the list contains labels for each column.
+
+{\bfseries{field}} Indicates which column of the database is used in the function.
+
+Enter the column label as a string (enclosed between double quotation marks), such as "{}\+Age"{} or "{}\+Yield,"{} or as a number (without quotation marks) that represents the position of the column within the list\+: 1 for the first column, 2 for the second column, and so on.
+
+{\bfseries{criteria}} The range of cells that contains the conditions you specify.
+
+You can use any range for the criteria argument, as long as it includes at least one column label and at least one cell below the column label in which you specify a condition for the column.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md437}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md437}
+{\bfseries{float}} The total value of the matching cells.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md438}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md438}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$database\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 18,\ \ \ \ \ \ \ 20,\ \ \ \ 14,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ 12,\ \ \ \ \ \ \ 12,\ \ \ \ 10,\ \ \ \ \ \ \ 96.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Cherry',\ 13,\ \ \ \ \ \ \ 14,\ \ \ \ \ 9,\ \ \ \ \ \ 105.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ 14,\ \ \ \ \ \ \ 15,\ \ \ \ 10,\ \ \ \ \ \ \ 75.00\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Pear',\ \ \ \ 9,\ \ \ \ \ \ \ \ 8,\ \ \ \ \ 8,\ \ \ \ \ \ \ 76.80\ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ 'Apple',\ \ \ 8,\ \ \ \ \ \ \ \ 9,\ \ \ \ \ 6,\ \ \ \ \ \ \ 45.00\ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$criteria\ =\ [}
+\DoxyCodeLine{\ \ \ \ [\ 'Tree',\ \ \ \ \ \ 'Height',\ 'Age',\ 'Yield',\ 'Profit',\ 'Height'\ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Apple"{}',\ '>10',\ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ '<16'\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ [\ '="{}=Pear"{}',\ \ NULL,\ \ \ \ \ NULL,\ \ NULL,\ \ \ \ NULL,\ \ \ \ \ NULL\ \ \ \ \ ],}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>fromArray(\ \$criteria,\ NULL,\ 'A1'\ )}
+\DoxyCodeLine{\ \ \ \ -\/>fromArray(\ \$database,\ NULL,\ 'A4'\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A12',\ '=DMIN(A4:E10,"{}Profit"{},A1:A2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('A12')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 225}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md439}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md439}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md440}{}\doxysubsubsection{\texorpdfstring{DVAR}{DVAR}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md440}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md441}{}\doxysubsubsection{\texorpdfstring{DVARP}{DVARP}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md441}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md442}{}\doxysubsection{\texorpdfstring{Date and Time Functions}{Date and Time Functions}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md442}
+Excel provides a number of functions for the manipulation of dates and times, and calculations based on date/time values. it is worth spending some time reading the section titled "{}\+Date and Time Values"{} on passing date parameters and returning date values to understand how Php\+Spreadsheet reconciles the differences between dates and times in Excel and in PHP.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md443}{}\doxysubsubsection{\texorpdfstring{DATE}{DATE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md443}
+The DATE function returns an Excel timestamp or a PHP timestamp or {\ttfamily Date\+Time} object representing the date that is referenced by the parameters.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md444}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md444}
+\begin{DoxyVerb}DATE(year, month, day)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md445}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md445}
+{\bfseries{year}} The year number.
+
+If this value is between 0 (zero) and 1899 inclusive (for the Windows 1900 calendar), or between 4 and 1903 inclusive (for the Mac 1904), then Php\+Spreadsheet adds it to the Calendar base year, so a value of 108 will interpret the year as 2008 when using the Windows 1900 calendar, or 2012 when using the Mac 1904 calendar.
+
+{\bfseries{month}} The month number.
+
+If this value is greater than 12, the DATE function adds that number of months to the first month in the year specified. For example, DATE(2008,14,2) returns a value representing February 2, 2009.
+
+If the value of {\bfseries{month}} is less than 1, then that value will be adjusted by -\/1, and that will then be subtracted from the first month of the year specified. For example, DATE(2008,0,2) returns a value representing December 2, 2007; while DATE(2008,-\/1,2) returns a value representing November 2, 2007.
+
+{\bfseries{day}} The day number.
+
+If this value is greater than the number of days in the month (and year) specified, the DATE function adds that number of days to the first day in the month. For example, DATE(2008,1,35) returns a value representing February 4, 2008.
+
+If the value of {\bfseries{day}} is less than 1, then that value will be adjusted by -\/1, and that will then be subtracted from the first month of the year specified. For example, DATE(2008,3,0) returns a value representing February 29, 2008; while DATE(2008,3,-\/2) returns a value representing February 27, 2008.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md446}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md446}
+{\bfseries{mixed}} A date/time stamp that corresponds to the given date.
+
+This could be a PHP timestamp value (integer), a PHP {\ttfamily Date\+Time} object, or an Excel timestamp value (real), depending on the value of {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md447}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md447}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Year')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ 'Month')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ 'Day');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B1',\ 2008)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B2',\ 12)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ 31);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('D1',\ '=DATE(B1,B2,B3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D1')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 1230681600}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ We're\ going\ to\ be\ calling\ the\ same\ cell\ calculation\ multiple\ times,}
+\DoxyCodeLine{//\ \ \ \ and\ expecting\ different\ return\ values,\ so\ disable\ calculation\ cacheing}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Calculation::getInstance()-\/>setCalculationCacheEnabled(FALSE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$saveFormat\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::getReturnDateType();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATE'],}
+\DoxyCodeLine{\ \ \ \ [2008,\ 12,\ 31]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 39813.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_PHP\_NUMERIC}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATE'],}
+\DoxyCodeLine{\ \ \ \ [2008,\ 12,\ 31]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 1230681600}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(\$saveFormat);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md448}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md448}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md449}{}\doxysubsubsection{\texorpdfstring{DATEDIF}{DATEDIF}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md449}
+The DATEDIF function computes the difference between two dates in a variety of different intervals, such number of years, months, or days.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md450}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md450}
+\begin{DoxyVerb}DATEDIF(date1, date2 [, unit])
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md451}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md451}
+{\bfseries{date1}} First Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{date2}} Second Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{unit}} The interval type to use for the calculation
+
+This is a string, comprising one of the values listed below\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Unit   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Meaning   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Unit   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Meaning   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+m   &Months   &Complete calendar months between the dates.    \\\cline{1-3}
+d   &Days   &Number of days between the dates.    \\\cline{1-3}
+y   &Years   &Complete calendar years between the dates.    \\\cline{1-3}
+ym   &Months Excluding Years   &Complete calendar months between the dates as if they were of the same year.    \\\cline{1-3}
+yd   &Days Excluding Years   &Complete calendar days between the dates as if they were of the same year.    \\\cline{1-3}
+md   &Days Excluding Years And Months   &Complete calendar days between the dates as if they were of the same month and same year.   \\\cline{1-3}
+\end{longtabu}
+
+
+The unit value is not case sensitive, and defaults to {\ttfamily d}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md452}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md452}
+{\bfseries{integer}} An integer value that reflects the difference between the two dates.
+
+This could be the number of full days, months or years between the two dates, depending on the interval unit value passed into the function as the third parameter.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md453}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md453}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Year')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ 'Month')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ 'Day');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B1',\ 2001)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C1',\ 2009)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B2',\ 7)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C2',\ 12)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ 1)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C3',\ 31);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('D1',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}d"{})')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D2',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}m"{})')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D3',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}y"{})')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D4',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}ym"{})')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D5',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}yd"{})')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('D6',\ '=DATEDIF(DATE(B1,B2,B3),DATE(C1,C2,C3),"{}md"{})');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D1')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 3105}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 101}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 8}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 5}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D5')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 183}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('D6')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 30}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$date1\ =\ 1193317015;\ //\ PHP\ timestamp\ for\ 25-\/Oct-\/2007}
+\DoxyCodeLine{\$date2\ =\ 1449579415;\ //\ PHP\ timestamp\ for\ 8-\/Dec-\/2015}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'd']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 2966}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'm']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 97}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'y']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 8}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'ym']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'yd']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 44}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEDIF'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ 'md']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 13}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md454}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md454}
+If Date1 is later than Date2, DATEDIF will return a \#NUM! error.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md455}{}\doxysubsubsection{\texorpdfstring{DATEVALUE}{DATEVALUE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md455}
+The DATEVALUE function returns the date represented by a date formatted as a text string. Use DATEVALUE to convert a date represented by text to a serial number.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md456}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md456}
+\begin{DoxyVerb}DATEVALUE(dateString)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md457}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md457}
+{\bfseries{date}} Date String.
+
+A string, representing a date value.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md458}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md458}
+{\bfseries{mixed}} A date/time stamp that corresponds to the given date.
+
+This could be a PHP timestamp value (integer), a PHP {\ttfamily Date\+Time} object, or an Excel timestamp value (real), depending on the value of {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md459}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md459}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String');}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '31/12/2008')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A4',\ '12-\/31-\/2008');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=DATEVALUE(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=DATEVALUE(A3)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ '=DATEVALUE(A4)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 39813.0\ for\ all\ cases}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{//\ We're\ going\ to\ be\ calling\ the\ same\ cell\ calculation\ multiple\ times,}
+\DoxyCodeLine{//\ \ \ \ and\ expecting\ different\ return\ values,\ so\ disable\ calculation\ cacheing}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Calculation::getInstance()-\/>setCalculationCacheEnabled(FALSE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$saveFormat\ =\ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::getReturnDateType();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEVALUE'],}
+\DoxyCodeLine{\ \ \ \ ['31-\/Dec-\/2008']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 39813.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_PHP\_NUMERIC}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DATEVALUE'],}
+\DoxyCodeLine{\ \ \ \ ['31-\/Dec-\/2008']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 1230681600}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(\$saveFormat);}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md460}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md460}
+DATEVALUE uses the php {\ttfamily Date\+Time} object implementation of {\ttfamily strtotime()} (which can handle a wider range of formats than the normal {\ttfamily strtotime()} function), and it is also called for any date parameter passed to other date functions (such as DATEDIF) when the parameter value is a string.
+
+{\bfseries{WARNING\+:-\/}} Php\+Spreadsheet accepts a wider range of date formats than MS Excel, so it is entirely possible that Excel will return a \#VALUE! error when passed a date string that it can’t interpret, while Php\+Spreadsheet is able to translate that same string into a correct date value.
+
+Care should be taken in workbooks that use string formatted dates in calculations when writing to Xls or Xlsx.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md461}{}\doxysubsubsection{\texorpdfstring{DAY}{DAY}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md461}
+The DAY function returns the day of a date. The day is given as an integer ranging from 1 to 31.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md462}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md462}
+\begin{DoxyVerb}DAY(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md463}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md463}
+{\bfseries{datetime}} Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md464}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md464}
+{\bfseries{integer}} An integer value that reflects the day of the month.
+
+This is an integer ranging from 1 to 31.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md465}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md465}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2008');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=DAY(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=DAY(A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 31}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 14}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DAYOFMONTH'],}
+\DoxyCodeLine{\ \ \ \ ['25-\/Dec-\/2008']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 25}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md466}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md466}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+DAYOFMONTH()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md467}{}\doxysubsubsection{\texorpdfstring{DAYS360}{DAYS360}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md467}
+The DAYS360 function computes the difference between two dates based on a 360 day year (12 equal periods of 30 days each) used by some accounting systems.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md468}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md468}
+\begin{DoxyVerb}DAYS360(date1, date2 [, method])
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md469}{}\doxysubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md469}
+{\bfseries{date1}} First Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{date2}} Second Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{method}} A boolean flag (TRUE or FALSE)
+
+This is a flag that determines which method to use in the calculation, based on the values listed below\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+FALSE   &U.\+S. (NASD) method. If the starting date is the last day of a month, it becomes equal to the 30th of the same month. If the ending date is the last day of a month and the starting date is earlier than the 30th of a month, the ending date becomes equal to the 1st of the next month; otherwise the ending date becomes equal to the 30th of the same month.    \\\cline{1-2}
+TRUE   &European method. Starting dates and ending dates that occur on the 31st of a month become equal to the 30th of the same month.   \\\cline{1-2}
+\end{longtabu}
+
+
+The method value defaults to FALSE.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md470}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md470}
+{\bfseries{integer}} An integer value that reflects the difference between the two dates.
+
+This is the number of full days between the two dates, based on a 360 day year.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md471}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md471}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B1',\ 'Start\ Date')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C1',\ 'End\ Date')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ 'Year')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ 'Month')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A4',\ 'Day');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ 2003)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ 2)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ 3);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('C2',\ 2007)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C3',\ 5)}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('C4',\ 31);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('E2',\ '=DAYS360(DATE(B2,B3,B4),DATE(C2,C3,C4))')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('E4',\ '=DAYS360(DATE(B2,B3,B4),DATE(C2,C3,C4),FALSE)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('E2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 1558}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('E4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 1557}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$date1\ =\ 37655.0;\ //\ Excel\ timestamp\ for\ 25-\/Oct-\/2007}
+\DoxyCodeLine{\$date2\ =\ 39233.0;\ //\ Excel\ timestamp\ for\ 8-\/Dec-\/2015}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DAYS360'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 1558}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'DAYS360'],}
+\DoxyCodeLine{\ \ \ \ [\$date1,\ \$date2,\ TRUE]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 1557}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md472}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md472}
+{\bfseries{WARNING\+:-\/}} This function does not currently work with the Xls Writer when a PHP Boolean is used for the third (optional) parameter (as shown in the example above), and the writer will generate and error. It will work if a numeric 0 or 1 is used for the method parameter; or if the Excel {\ttfamily TRUE()} and {\ttfamily FALSE()} functions are used instead.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md473}{}\doxysubsubsection{\texorpdfstring{EDATE}{EDATE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md473}
+The EDATE function returns an Excel timestamp or a PHP timestamp or {\ttfamily Date\+Time} object representing the date that is the indicated number of months before or after a specified date (the start\+\_\+date). Use EDATE to calculate maturity dates or due dates that fall on the same day of the month as the date of issue.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md474}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md474}
+\begin{DoxyVerb}EDATE(baseDate, months)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md475}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md475}
+{\bfseries{base\+Date}} Start Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{months}} Number of months to add.
+
+An integer value indicating the number of months before or after base\+Date. A positive value for months yields a future date; a negative value yields a past date.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md476}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md476}
+{\bfseries{mixed}} A date/time stamp that corresponds to the basedate + months.
+
+This could be a PHP timestamp value (integer), a PHP {\ttfamily Date\+Time} object, or an Excel timestamp value (real), depending on the value of {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md477}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md477}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '1-\/Jan-\/2008')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '29-\/Feb-\/2008');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=EDATE(A2,5)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=EDATE(A3,-\/12)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 39600.0\ (1-\/Jun-\/2008)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 39141.0\ (28-\/Feb-\/2007)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'EDATE'],}
+\DoxyCodeLine{\ \ \ \ ['31-\/Oct-\/2008',\ 25]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 40512.0\ (30-\/Nov-\/2010)}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md478}{}\doxysubsubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md478}
+{\bfseries{WARNING\+:-\/}} This function is currently not supported by the Xls Writer because it is not a standard function within Excel 5, but an add-\/in from the Analysis Tool\+Pak.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md479}{}\doxysubsubsection{\texorpdfstring{EOMONTH}{EOMONTH}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md479}
+The EOMONTH function returns an Excel timestamp or a PHP timestamp or {\ttfamily Date\+Time} object representing the date of the last day of the month that is the indicated number of months before or after a specified date (the start\+\_\+date). Use EOMONTH to calculate maturity dates or due dates that fall on the last day of the month.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md480}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md480}
+\begin{DoxyVerb}EOMONTH(baseDate, months)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md481}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md481}
+{\bfseries{base\+Date}} Start Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{months}} Number of months to add.
+
+An integer value indicating the number of months before or after base\+Date. A positive value for months yields a future date; a negative value yields a past date.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md482}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md482}
+{\bfseries{mixed}} A date/time stamp that corresponds to the last day of basedate
+\begin{DoxyItemize}
+\item months.
+\end{DoxyItemize}
+
+This could be a PHP timestamp value (integer), a PHP {\ttfamily Date\+Time} object, or an Excel timestamp value (real), depending on the value of {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md483}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md483}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '1-\/Jan-\/2000')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2009');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=EOMONTH(A2,5)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=EOMONTH(A3,-\/12)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 39629.0\ (30-\/Jun-\/2008)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 39507.0\ (29-\/Feb-\/2008)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::setReturnDateType(}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions::RETURNDATE\_EXCEL}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'EOMONTH'],}
+\DoxyCodeLine{\ \ \ \ ['31-\/Oct-\/2008',\ 13]}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 40147.0\ (30-\/Nov-\/2010)}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md484}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md484}
+{\bfseries{WARNING\+:-\/}} This function is currently not supported by the Xls Writer because it is not a standard function within Excel 5, but an add-\/in from the Analysis Tool\+Pak.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md485}{}\doxysubsubsection{\texorpdfstring{HOUR}{HOUR}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md485}
+The HOUR function returns the hour of a time value. The hour is given as an integer, ranging from 0 (12\+:00 A.\+M.) to 23 (11\+:00 P.\+M.).\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md486}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md486}
+\begin{DoxyVerb}HOUR(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md487}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md487}
+{\bfseries{datetime}} Time.
+
+An Excel date/time value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date/time represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md488}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md488}
+{\bfseries{integer}} An integer value that reflects the hour of the day.
+
+This is an integer ranging from 0 to 23.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md489}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md489}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Time\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008\ 17:30')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2008\ 4:20\ AM')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A4',\ '14-\/Feb-\/2008\ 4:20\ PM');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=HOUR(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=HOUR(A3)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ '=HOUR(A4)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 17}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 4}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 16}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'HOUROFDAY'],}
+\DoxyCodeLine{\ \ \ \ ['09:30']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 9}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md490}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md490}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+HOUROFDAY()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md491}{}\doxysubsubsection{\texorpdfstring{MINUTE}{MINUTE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md491}
+The MINUTE function returns the minutes of a time value. The minute is given as an integer, ranging from 0 to 59.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md492}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md492}
+\begin{DoxyVerb}MINUTE(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md493}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md493}
+{\bfseries{datetime}} Time.
+
+An Excel date/time value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date/time represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md494}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md494}
+{\bfseries{integer}} An integer value that reflects the minutes within the hour.
+
+This is an integer ranging from 0 to 59.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md495}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md495}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Time\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008\ 17:30')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2008\ 4:20\ AM')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A4',\ '14-\/Feb-\/2008\ 4:45\ PM');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=MINUTE(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=MINUTE(A3)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ '=MINUTE(A4)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 30}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 45}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'MINUTE'],}
+\DoxyCodeLine{\ \ \ \ ['09:30']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 30}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md496}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md496}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+MINUTE()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md497}{}\doxysubsubsection{\texorpdfstring{MONTH}{MONTH}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md497}
+The MONTH function returns the month of a date. The month is given as an integer ranging from 1 to 12.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md498}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md498}
+\begin{DoxyVerb}MONTH(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md499}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md499}
+{\bfseries{datetime}} Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md500}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md500}
+{\bfseries{integer}} An integer value that reflects the month of the year.
+
+This is an integer ranging from 1 to 12.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md501}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md501}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String');}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A2',\ '31-\/Dec-\/2008');}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A3',\ '14-\/Feb-\/2008');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=MONTH(A2)');}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B3',\ '=MONTH(A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 12}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'MONTHOFYEAR'],}
+\DoxyCodeLine{\ \ \ \ ['14-\/July-\/2008']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 7}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md502}{}\doxysubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md502}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+MONTHOFYEAR()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md503}{}\doxysubsubsection{\texorpdfstring{NETWORKDAYS}{NETWORKDAYS}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md503}
+The NETWORKDAYS function returns the number of whole working days between a {\itshape start date} and an {\itshape end date}. Working days exclude weekends and any dates identified in {\itshape holidays}. Use NETWORKDAYS to calculate employee benefits that accrue based on the number of days worked during a specific term.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md504}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md504}
+\begin{DoxyVerb}NETWORKDAYS(startDate, endDate [, holidays])
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md505}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md505}
+{\bfseries{start\+Date}} Start Date of the period.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{end\+Date}} End Date of the period.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{holidays}} Optional array of Holiday dates.
+
+An optional range of one or more dates to exclude from the working calendar, such as state and federal holidays and floating holidays.
+
+The list can be either a range of cells that contains the dates or an array constant of Excel date values, PHP date timestamps, PHP date objects, or dates represented as strings.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md506}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md506}
+{\bfseries{integer}} Number of working days.
+
+The number of working days between start\+Date and end\+Date.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md507}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md507}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{php}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{php}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md508}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md508}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md509}{}\doxysubsubsection{\texorpdfstring{NOW}{NOW}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md509}
+The NOW function returns the current date and time.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md510}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md510}
+\begin{DoxyVerb}NOW()
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md511}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md511}
+There are no parameters for the {\ttfamily NOW()} function.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md512}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md512}
+{\bfseries{mixed}} A date/time stamp that corresponds to the current date and time.
+
+This could be a PHP timestamp value (integer), a PHP {\ttfamily Date\+Time} object, or an Excel timestamp value (real), depending on the value of {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::get\+Return\+Date\+Type()}.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md513}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md513}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{php}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{php}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md514}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md514}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+DATETIMENOW()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md515}{}\doxysubsubsection{\texorpdfstring{SECOND}{SECOND}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md515}
+The SECOND function returns the seconds of a time value. The second is given as an integer, ranging from 0 to 59.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md516}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md516}
+\begin{DoxyVerb}SECOND(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md517}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md517}
+{\bfseries{datetime}} Time.
+
+An Excel date/time value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date/time represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md518}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md518}
+{\bfseries{integer}} An integer value that reflects the seconds within the minute.
+
+This is an integer ranging from 0 to 59.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md519}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md519}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Time\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008\ 17:30:20')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2008\ 4:20\ AM')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A4',\ '14-\/Feb-\/2008\ 4:45:59\ PM');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=SECOND(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=SECOND(A3)');}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ '=SECOND(A4)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 20}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 59}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'SECOND'],}
+\DoxyCodeLine{\ \ \ \ ['09:30:17']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 17}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md520}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md520}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+SECOND()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md521}{}\doxysubsubsection{\texorpdfstring{TIME}{TIME}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md521}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md522}{}\doxysubsubsection{\texorpdfstring{TIMEVALUE}{TIMEVALUE}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md522}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md523}{}\doxysubsubsection{\texorpdfstring{TODAY}{TODAY}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md523}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md524}{}\doxysubsubsection{\texorpdfstring{WEEKDAY}{WEEKDAY}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md524}
+The WEEKDAY function returns the day of the week for a given date. The day is given as an integer ranging from 1 to 7, although this can be modified to return a value between 0 and 6.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md525}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md525}
+\begin{DoxyVerb}WEEKDAY(datetime [, method])
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md526}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md526}
+{\bfseries{datetime}} Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.
+
+{\bfseries{method}} An integer flag (values 0, 1 or 2)
+
+This is a flag that determines which method to use in the calculation, based on the values listed below\+: \begin{DoxyVerb}method | Description
+:-----:|------------------------------------------
+0      | Returns 1 (Sunday) through 7 (Saturday).
+1      | Returns 1 (Monday) through 7 (Sunday).
+2      | Returns 0 (Monday) through 6 (Sunday).
+\end{DoxyVerb}
+
+
+The method value defaults to 1.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md527}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md527}
+{\bfseries{integer}} An integer value that reflects the day of the week.
+
+This is an integer ranging from 1 to 7, or 0 to 6, depending on the value of method.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md528}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md528}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '31-\/Dec-\/2008')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '14-\/Feb-\/2008');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=WEEKDAY(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=WEEKDAY(A3,0)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B4',\ '=WEEKDAY(A3,2)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 12}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B4')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'WEEKDAY'],}
+\DoxyCodeLine{\ \ \ \ ['14-\/July-\/2008']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 7}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md529}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md529}
+Note that the Php\+Spreadsheet function is {\ttfamily \textbackslash{}Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Calculation\textbackslash{}Functions\+::\+WEEKDAY()} when the method is called statically.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md530}{}\doxysubsubsection{\texorpdfstring{WEEKNUM}{WEEKNUM}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md530}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md531}{}\doxysubsubsection{\texorpdfstring{WORKDAY}{WORKDAY}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md531}
+Not yet documented.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md532}{}\doxysubsubsection{\texorpdfstring{YEAR}{YEAR}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md532}
+The YEAR function returns the year of a date.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md533}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md533}
+\begin{DoxyVerb}YEAR(datetime)
+\end{DoxyVerb}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md534}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md534}
+{\bfseries{datetime}} Date.
+
+An Excel date value, PHP date timestamp, PHP {\ttfamily Date\+Time} object, or a date represented as a string.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md535}{}\doxysubsubsubsection{\texorpdfstring{Return Value}{Return Value}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md535}
+{\bfseries{integer}} An integer value that reflects the month of the year.
+
+This is an integer year value.\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md536}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md536}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('A1',\ 'Date\ String')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A2',\ '17-\/Jul-\/1982')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('A3',\ '16-\/Apr-\/2009');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$worksheet-\/>setCellValue('B2',\ '=YEAR(A2)')}
+\DoxyCodeLine{\ \ \ \ -\/>setCellValue('B3',\ '=YEAR(A3)');}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B2')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 1982}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$retVal\ =\ \$worksheet-\/>getCell('B3')-\/>getCalculatedValue();}
+\DoxyCodeLine{//\ \$retVal\ =\ 2009}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ php}
+\DoxyCodeLine{\$retVal\ =\ call\_user\_func\_array(}
+\DoxyCodeLine{\ \ \ \ ['\(\backslash\)PhpOffice\(\backslash\)PhpSpreadsheet\(\backslash\)Calculation\(\backslash\)Functions',\ 'YEAR'],}
+\DoxyCodeLine{\ \ \ \ ['14-\/July-\/2001']}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \$retVal\ =\ 2001}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md537}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md537}
+There are no additional notes on this function\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md538}{}\doxysubsection{\texorpdfstring{YEARFRAC}{YEARFRAC}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_699f66e3ae3b408f508e77fb53f2da26_autotoc_md538}
+Not yet documented. 

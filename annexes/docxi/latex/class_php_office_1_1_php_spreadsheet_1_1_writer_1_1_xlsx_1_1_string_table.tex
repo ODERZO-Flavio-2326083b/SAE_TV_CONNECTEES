@@ -1,0 +1,125 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}String\+Table}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table}{}\label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+Graphe d\textquotesingle{}héritage de Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}String\+Table\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_aef213e02b85020184289a794a1f70267}{create\+String\+Table}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}} \$p\+Sheet, \$p\+Existing\+Table=null)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9aa607a0a76e4193c84f114a2abfc8ef}{write\+String\+Table}} (array \$p\+String\+Table)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ac3d23cc64caff714977fcae01f3cf26a}{write\+Rich\+Text}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_x_m_l_writer}{XMLWriter}} \$obj\+Writer, \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_rich_text_1_1_rich_text}{Rich\+Text}} \$p\+Rich\+Text, \$prefix=null)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9ab89e3ba732959140ab84a12a673bfa}{write\+Rich\+Text\+For\+Charts}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_x_m_l_writer}{XMLWriter}} \$obj\+Writer, \$p\+Rich\+Text=null, \$prefix=null)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ad3cbde8eedb233fb74319d72317d1cd4}{flip\+String\+Table}} (array \$string\+Table)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_writer_part}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+Writer\+Part}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_writer_part_a4bfe71169ce9680b075e5de84a8b11bc}{get\+Parent\+Writer}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_writer_part_a776730f25700866282c77fb873f9b892}{\+\_\+\+\_\+construct}} (\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx}{Xlsx}} \$p\+Writer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_aef213e02b85020184289a794a1f70267}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}!createStringTable@{createStringTable}}
+\index{createStringTable@{createStringTable}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+\doxysubsubsection{\texorpdfstring{createStringTable()}{createStringTable()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_aef213e02b85020184289a794a1f70267} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+String\+Table\+::create\+String\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_worksheet_1_1_worksheet}{Worksheet}}}]{\$p\+Sheet}{, }\item[{}]{\$p\+Existing\+Table}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Create worksheet stringtable.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Worksheet & {\em \$p\+Sheet} & Worksheet \\
+\hline
+string\mbox{[}$\,$\mbox{]} & {\em \$p\+Existing\+Table} & Existing table to eventually merge with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\mbox{[}\mbox{]} String table for worksheet 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ad3cbde8eedb233fb74319d72317d1cd4}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}!flipStringTable@{flipStringTable}}
+\index{flipStringTable@{flipStringTable}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+\doxysubsubsection{\texorpdfstring{flipStringTable()}{flipStringTable()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ad3cbde8eedb233fb74319d72317d1cd4} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+String\+Table\+::flip\+String\+Table (\begin{DoxyParamCaption}\item[{array}]{\$string\+Table}{}\end{DoxyParamCaption})}
+
+Flip string table (for index searching).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$string\+Table} & Stringtable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ac3d23cc64caff714977fcae01f3cf26a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}!writeRichText@{writeRichText}}
+\index{writeRichText@{writeRichText}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+\doxysubsubsection{\texorpdfstring{writeRichText()}{writeRichText()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_ac3d23cc64caff714977fcae01f3cf26a} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+String\+Table\+::write\+Rich\+Text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_x_m_l_writer}{XMLWriter}}}]{\$obj\+Writer}{, }\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_rich_text_1_1_rich_text}{Rich\+Text}}}]{\$p\+Rich\+Text}{, }\item[{}]{\$prefix}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Write Rich Text.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+XMLWriter & {\em \$obj\+Writer} & XML Writer \\
+\hline
+Rich\+Text & {\em \$p\+Rich\+Text} & Rich text \\
+\hline
+string & {\em \$prefix} & Optional Namespace prefix \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9ab89e3ba732959140ab84a12a673bfa}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}!writeRichTextForCharts@{writeRichTextForCharts}}
+\index{writeRichTextForCharts@{writeRichTextForCharts}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+\doxysubsubsection{\texorpdfstring{writeRichTextForCharts()}{writeRichTextForCharts()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9ab89e3ba732959140ab84a12a673bfa} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+String\+Table\+::write\+Rich\+Text\+For\+Charts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_x_m_l_writer}{XMLWriter}}}]{\$obj\+Writer}{, }\item[{}]{\$p\+Rich\+Text}{ = {\ttfamily null}, }\item[{}]{\$prefix}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Write Rich Text.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+XMLWriter & {\em \$obj\+Writer} & XML Writer \\
+\hline
+Rich\+Text | string & {\em \$p\+Rich\+Text} & text string or Rich text \\
+\hline
+string & {\em \$prefix} & Optional Namespace prefix \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9aa607a0a76e4193c84f114a2abfc8ef}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}!writeStringTable@{writeStringTable}}
+\index{writeStringTable@{writeStringTable}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Writer\textbackslash{}Xlsx\textbackslash{}StringTable}}
+\doxysubsubsection{\texorpdfstring{writeStringTable()}{writeStringTable()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_writer_1_1_xlsx_1_1_string_table_a9aa607a0a76e4193c84f114a2abfc8ef} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Writer\textbackslash{}\+Xlsx\textbackslash{}\+String\+Table\+::write\+String\+Table (\begin{DoxyParamCaption}\item[{array}]{\$p\+String\+Table}{}\end{DoxyParamCaption})}
+
+Write string table to XML format.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string\mbox{[}$\,$\mbox{]} & {\em \$p\+String\+Table} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Writer\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+string XML Output 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Writer/\+Xlsx/\mbox{\hyperlink{_string_table_8php}{String\+Table.\+php}}\end{DoxyCompactItemize}

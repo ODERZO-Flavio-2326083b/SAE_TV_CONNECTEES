@@ -1,0 +1,216 @@
+\doxysection{Référence de la classe Php\+Office\textbackslash{}Php\+Spreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}
+\hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition}{}\label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a387fe38080b4a16047e3dff325a55ac8}{\+\_\+\+\_\+construct}} (\$A)
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aef1fb8ef878fd9a1ee5d27256ace8d9a}{getL}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a45394f1cae25bdf2d04090bd3de7624f}{getU}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_af7a66294a4c94331fdcc6fe47028029b}{get\+Pivot}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aba607c0123dc266dab3f95f19a87dc51}{get\+Double\+Pivot}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab9e13f2883d29c35ea37cef5a53be635}{is\+Nonsingular}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab954c25566a5807c592a3552417e2f6f}{det}} ()
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a4f6283feffd87150927f5cc7d758e0fd}{solve}} (\$B)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa7f4885e22ee6e800478d7ad4bd6b2f6}{MATRIX\+\_\+\+SINGULAR\+\_\+\+EXCEPTION}} = \textquotesingle{}Can only perform operation on singular matrix.\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_abc6fac7f53254f90ec4d06c6ec7c675d}{MATRIX\+\_\+\+SQUARE\+\_\+\+EXCEPTION}} = \textquotesingle{}Mismatched Row dimension\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a85a3a6ca8a8d2424e1083f49c5331305}{\$\+LU}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa2c97695c96061e96c0f0b67bd99d1cd}{\$m}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8d978f72f5aaca19bc3845ca676bfe77}{\$n}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a60e3300a7ccc0e30f96af241533d86d6}{\$pivsign}}
+\item 
+\mbox{\hyperlink{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8c847aa92603a629a8e3adc505c08b42}{\$piv}} = \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+For an m-\/by-\/n matrix A with m \texorpdfstring{$>$}{>}= n, the LU decomposition is an m-\/by-\/n unit lower triangular matrix L, an n-\/by-\/n upper triangular matrix U, and a permutation vector piv of length m so that A(piv,\+:) = L\texorpdfstring{$\ast$}{*}U. If m \texorpdfstring{$<$}{<} n, then L is m-\/by-\/m and U is m-\/by-\/n.
+
+The LU decompostion with pivoting always exists, even if the matrix is singular, so the constructor will never fail. The primary use of the LU decomposition is in the solution of square systems of simultaneous linear equations. This will fail if is\+Nonsingular() returns false.
+
+\begin{DoxyAuthor}{Auteur}
+Paul Meagher 
+
+Bartosz Matosiuk 
+
+Michael Bommarito
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a387fe38080b4a16047e3dff325a55ac8}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a387fe38080b4a16047e3dff325a55ac8} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$A}{}\end{DoxyParamCaption})}
+
+LU Decomposition constructor.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$A} & Rectangular matrix \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab954c25566a5807c592a3552417e2f6f}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!det@{det}}
+\index{det@{det}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{det()}{det()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab954c25566a5807c592a3552417e2f6f} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::det (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Count determinants.
+
+\begin{DoxyReturn}{Renvoie}
+array d matrix deterninat 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aba607c0123dc266dab3f95f19a87dc51}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!getDoublePivot@{getDoublePivot}}
+\index{getDoublePivot@{getDoublePivot}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{getDoublePivot()}{getDoublePivot()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aba607c0123dc266dab3f95f19a87dc51} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::get\+Double\+Pivot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Alias for get\+Pivot.
+
+\begin{DoxySeeAlso}{Voir également}
+get\+Pivot 
+\end{DoxySeeAlso}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aef1fb8ef878fd9a1ee5d27256ace8d9a}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!getL@{getL}}
+\index{getL@{getL}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{getL()}{getL()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aef1fb8ef878fd9a1ee5d27256ace8d9a} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::getL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get lower triangular factor.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} Lower triangular factor 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_af7a66294a4c94331fdcc6fe47028029b}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!getPivot@{getPivot}}
+\index{getPivot@{getPivot}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{getPivot()}{getPivot()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_af7a66294a4c94331fdcc6fe47028029b} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::get\+Pivot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Return pivot permutation vector.
+
+\begin{DoxyReturn}{Renvoie}
+array Pivot vector 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a45394f1cae25bdf2d04090bd3de7624f}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!getU@{getU}}
+\index{getU@{getU}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{getU()}{getU()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a45394f1cae25bdf2d04090bd3de7624f} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::getU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get upper triangular factor.
+
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} Upper triangular factor 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab9e13f2883d29c35ea37cef5a53be635}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!isNonsingular@{isNonsingular}}
+\index{isNonsingular@{isNonsingular}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{isNonsingular()}{isNonsingular()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_ab9e13f2883d29c35ea37cef5a53be635} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::is\+Nonsingular (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Is the matrix nonsingular?
+
+\begin{DoxyReturn}{Renvoie}
+bool true if U, and hence A, is nonsingular 
+\end{DoxyReturn}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a4f6283feffd87150927f5cc7d758e0fd}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!solve@{solve}}
+\index{solve@{solve}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a4f6283feffd87150927f5cc7d758e0fd} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::solve (\begin{DoxyParamCaption}\item[{}]{\$B}{}\end{DoxyParamCaption})}
+
+Solve A\texorpdfstring{$\ast$}{*}X = B.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$B} & a \doxylink{namespace_matrix}{Matrix} with as many rows as A and any number of columns\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Calculation\+Exception} & illegal\+Argument\+Exception \doxylink{namespace_matrix}{Matrix} row dimensions must agree \\
+\hline
+{\em Calculation\+Exception} & runtime\+Exception \doxylink{namespace_matrix}{Matrix} is singular\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} X so that L\texorpdfstring{$\ast$}{*}\+U\texorpdfstring{$\ast$}{*}X = B(piv,\+:) 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a85a3a6ca8a8d2424e1083f49c5331305}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\$LU@{\$LU}}
+\index{\$LU@{\$LU}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$LU}{\$LU}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a85a3a6ca8a8d2424e1083f49c5331305} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\$\+LU = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa2c97695c96061e96c0f0b67bd99d1cd}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\$m@{\$m}}
+\index{\$m@{\$m}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$m}{\$m}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa2c97695c96061e96c0f0b67bd99d1cd} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\$m\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8d978f72f5aaca19bc3845ca676bfe77}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\$n@{\$n}}
+\index{\$n@{\$n}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$n}{\$n}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8d978f72f5aaca19bc3845ca676bfe77} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\$n\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8c847aa92603a629a8e3adc505c08b42}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\$piv@{\$piv}}
+\index{\$piv@{\$piv}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$piv}{\$piv}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a8c847aa92603a629a8e3adc505c08b42} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\$piv = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a60e3300a7ccc0e30f96af241533d86d6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!\$pivsign@{\$pivsign}}
+\index{\$pivsign@{\$pivsign}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{\$pivsign}{\$pivsign}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_a60e3300a7ccc0e30f96af241533d86d6} 
+Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\$pivsign\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa7f4885e22ee6e800478d7ad4bd6b2f6}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!MATRIX\_SINGULAR\_EXCEPTION@{MATRIX\_SINGULAR\_EXCEPTION}}
+\index{MATRIX\_SINGULAR\_EXCEPTION@{MATRIX\_SINGULAR\_EXCEPTION}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{MATRIX\_SINGULAR\_EXCEPTION}{MATRIX\_SINGULAR\_EXCEPTION}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_aa7f4885e22ee6e800478d7ad4bd6b2f6} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\+MATRIX\+\_\+\+SINGULAR\+\_\+\+EXCEPTION = \textquotesingle{}Can only perform operation on singular matrix.\textquotesingle{}}
+
+\Hypertarget{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_abc6fac7f53254f90ec4d06c6ec7c675d}\index{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}!MATRIX\_SQUARE\_EXCEPTION@{MATRIX\_SQUARE\_EXCEPTION}}
+\index{MATRIX\_SQUARE\_EXCEPTION@{MATRIX\_SQUARE\_EXCEPTION}!PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition@{PhpOffice\textbackslash{}PhpSpreadsheet\textbackslash{}Shared\textbackslash{}JAMA\textbackslash{}LUDecomposition}}
+\doxysubsubsection{\texorpdfstring{MATRIX\_SQUARE\_EXCEPTION}{MATRIX\_SQUARE\_EXCEPTION}}
+{\footnotesize\ttfamily \label{class_php_office_1_1_php_spreadsheet_1_1_shared_1_1_j_a_m_a_1_1_l_u_decomposition_abc6fac7f53254f90ec4d06c6ec7c675d} 
+const Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Shared\textbackslash{}\+JAMA\textbackslash{}\+LUDecomposition\+::\+MATRIX\+\_\+\+SQUARE\+\_\+\+EXCEPTION = \textquotesingle{}Mismatched Row dimension\textquotesingle{}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/src/\+Php\+Spreadsheet/\+Shared/\+JAMA/\mbox{\hyperlink{_l_u_decomposition_8php}{LUDecomposition.\+php}}\end{DoxyCompactItemize}

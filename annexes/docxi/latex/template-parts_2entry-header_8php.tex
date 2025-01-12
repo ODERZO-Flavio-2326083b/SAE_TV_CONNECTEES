@@ -1,0 +1,69 @@
+\doxysection{Référence du fichier C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/entry-\/header.php}
+\hypertarget{template-parts_2entry-header_8php}{}\label{template-parts_2entry-header_8php}\index{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/entry-\/header.php@{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/www/wp-\/content/themes/twentytwenty/template-\/parts/entry-\/header.php}}
+\doxysubsubsection*{Espaces de nommage}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_word_press}{Word\+Press}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{template-parts_2entry-header_8php_ae0061d3e8a400c607e201b7aef01ad2e}{\$entry\+\_\+header\+\_\+classes}} = \textquotesingle{}\textquotesingle{}
+\item 
+\mbox{\hyperlink{template-parts_2entry-header_8php_a8f7628a9a94c27d3561748214a1a546c}{if}} (is\+\_\+singular())
+\item 
+\mbox{\hyperlink{template-parts_2entry-header_8php_a004b33af6e7779e7ea773dbaa8f750a5}{\$show\+\_\+categories}} = apply\+\_\+filters( \textquotesingle{}twentytwenty\+\_\+show\+\_\+categories\+\_\+in\+\_\+entry\+\_\+header\textquotesingle{}, \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}} )
+\item 
+\mbox{\hyperlink{build_phar_8php_a037839f2243546b3f9ed157b688de656}{if}}(\mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}}===\$show\+\_\+categories \&\&has\+\_\+category()) \mbox{\hyperlink{build_phar_8php_a037839f2243546b3f9ed157b688de656}{if}}(is\+\_\+singular() \mbox{\hyperlink{template-parts_2entry-header_8php_acd1f7f9256198060d6634326c040c0ea}{else}} )
+\item 
+\mbox{\hyperlink{template-parts_2entry-header_8php_ac98fd4b4674c9893415b45943d06795f}{\$intro\+\_\+text\+\_\+width}} = \textquotesingle{}\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des variables}
+\Hypertarget{template-parts_2entry-header_8php_ae0061d3e8a400c607e201b7aef01ad2e}\index{entry-\/header.php@{entry-\/header.php}!\$entry\_header\_classes@{\$entry\_header\_classes}}
+\index{\$entry\_header\_classes@{\$entry\_header\_classes}!entry-\/header.php@{entry-\/header.php}}
+\doxysubsubsection{\texorpdfstring{\$entry\_header\_classes}{\$entry\_header\_classes}}
+{\footnotesize\ttfamily \label{template-parts_2entry-header_8php_ae0061d3e8a400c607e201b7aef01ad2e} 
+\$entry\+\_\+header\+\_\+classes = \textquotesingle{}\textquotesingle{}}
+
+\Hypertarget{template-parts_2entry-header_8php_ac98fd4b4674c9893415b45943d06795f}\index{entry-\/header.php@{entry-\/header.php}!\$intro\_text\_width@{\$intro\_text\_width}}
+\index{\$intro\_text\_width@{\$intro\_text\_width}!entry-\/header.php@{entry-\/header.php}}
+\doxysubsubsection{\texorpdfstring{\$intro\_text\_width}{\$intro\_text\_width}}
+{\footnotesize\ttfamily \label{template-parts_2entry-header_8php_ac98fd4b4674c9893415b45943d06795f} 
+\$intro\+\_\+text\+\_\+width = \textquotesingle{}\textquotesingle{}}
+
+\Hypertarget{template-parts_2entry-header_8php_a004b33af6e7779e7ea773dbaa8f750a5}\index{entry-\/header.php@{entry-\/header.php}!\$show\_categories@{\$show\_categories}}
+\index{\$show\_categories@{\$show\_categories}!entry-\/header.php@{entry-\/header.php}}
+\doxysubsubsection{\texorpdfstring{\$show\_categories}{\$show\_categories}}
+{\footnotesize\ttfamily \label{template-parts_2entry-header_8php_a004b33af6e7779e7ea773dbaa8f750a5} 
+\$show\+\_\+categories = apply\+\_\+filters( \textquotesingle{}twentytwenty\+\_\+show\+\_\+categories\+\_\+in\+\_\+entry\+\_\+header\textquotesingle{}, \mbox{\hyperlink{twentytwentyone_2footer_8php_a4148079e19f9856b5070a5d131b7887b}{true}} )}
+
+Allow child themes and plugins to filter the display of the categories in the entry header.
+
+\begin{DoxySince}{Depuis}
+Twenty Twenty 1.\+0
+\end{DoxySince}
+
+\begin{DoxyParams}{Paramètres}
+{\em bool} & Whether to show the categories in header. Default true. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{template-parts_2entry-header_8php_acd1f7f9256198060d6634326c040c0ea}\index{entry-\/header.php@{entry-\/header.php}!else@{else}}
+\index{else@{else}!entry-\/header.php@{entry-\/header.php}}
+\doxysubsubsection{\texorpdfstring{else}{else}}
+{\footnotesize\ttfamily \label{template-parts_2entry-header_8php_acd1f7f9256198060d6634326c040c0ea} 
+\mbox{\hyperlink{build_phar_8php_a037839f2243546b3f9ed157b688de656}{if}} (is\+\_\+singular()) else}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ the\_title(\ \textcolor{stringliteral}{'<h2\ class="{}entry-\/title\ heading-\/size-\/1"{}><a\ href="{}'}\ .\ \mbox{\hyperlink{themes_2twentytwentyone_2template-parts_2content_2_content_8php_a123ad1f51c0fa30ac35ef81c17c8f7fa}{esc\_url}}(\ get\_permalink()\ )\ .\ \textcolor{stringliteral}{'"{}>'},\ \textcolor{stringliteral}{'</a></h2>'}\ )}
+
+\end{DoxyCode}
+\Hypertarget{template-parts_2entry-header_8php_a8f7628a9a94c27d3561748214a1a546c}\index{entry-\/header.php@{entry-\/header.php}!if@{if}}
+\index{if@{if}!entry-\/header.php@{entry-\/header.php}}
+\doxysubsubsection{\texorpdfstring{if}{if}}
+{\footnotesize\ttfamily \label{template-parts_2entry-header_8php_a8f7628a9a94c27d3561748214a1a546c} 
+if(is\+\_\+singular()) (\begin{DoxyParamCaption}\item[{is\+\_\+singular()}]{}{}\end{DoxyParamCaption})}
+

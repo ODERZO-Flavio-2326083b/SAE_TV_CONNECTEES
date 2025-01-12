@@ -1,0 +1,106 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/views/\+Study\+Director\+View.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e5ab59fc36fa1e31bb6f1417d08d05b38}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e5ab59fc36fa1e31bb6f1417d08d05b38}Affiche le formulaire de création d\textquotesingle{}un compte directeur d\textquotesingle{}études.
+
+Cette méthode génère un formulaire HTML pour la création d\textquotesingle{}un directeur d\textquotesingle{}études. Le formulaire inclut des champs pour le login, l\textquotesingle{}email, le mot de passe, la confirmation du mot de passe et le code ADE. Des instructions sont fournies pour aider l\textquotesingle{}utilisateur à remplir correctement les champs requis.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML du formulaire de création d\textquotesingle{}un directeur d\textquotesingle{}études.
+\end{DoxyReturn}
+// Appel de la méthode pour afficher le formulaire de création \+: echo \$this-\/\texorpdfstring{$>$}{>}display\+Create\+Director();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_views}{Views}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{class_models_1_1_user}{Models\(\backslash\)User}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }StudyDirectorView\ \textcolor{keyword}{extends}\ UserView}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayCreateDirector()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>\ Compte\ directeur\ d\(\backslash\)'études</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Pour\ créer\ des\ directeurs\ d\(\backslash\)'études,\ remplissez\ ce\ formulaire\ avec\ les\ valeurs\ demandées.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <p\ class="{}lead"{}>Le\ code\ ADE\ demandé\ est\ son\ code\ provenant\ de\ l\(\backslash\)'ADE,\ pour\ avoir\ ce\ code,\ suivez\ le\ ce\ trouvant\ dans\ la\ partie\ pour\ créer\ un\ enseignant.</p>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ class="{}cadre"{}\ method="{}post"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}loginDirec"{}>Login</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ minlength="{}4"{}\ type="{}text"{}\ class="{}form-\/control"{}\ name="{}loginDirec"{}\ placeholder="{}Login"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <small\ id="{}passwordHelpBlock"{}\ class="{}form-\/text\ text-\/muted"{}>Votre\ login\ doit\ contenir\ entre\ 4\ et\ 25\ caractère</small>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}emailDirec"{}>Email</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}email"{}\ class="{}form-\/control"{}\ name="{}emailDirec"{}\ placeholder="{}Email"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}pwdDirec"{}>Mot\ de\ passe</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}password"{}\ class="{}form-\/control"{}\ id="{}pwdDirec"{}\ name="{}pwdDirec"{}\ minlength="{}8"{}\ maxlength="{}25"{}\ placeholder="{}Mot\ de\ passe"{}\ required="{}"{}\ onkeyup=checkPwd("{}Direc"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}password"{}\ class="{}form-\/control"{}\ id="{}pwdConfDirec"{}\ name="{}pwdConfirmDirec"{}\ minlength="{}8"{}\ maxlength="{}25"{}\ placeholder="{}Confirmer\ le\ Mot\ de\ passe"{}\ required="{}"{}\ onkeyup=checkPwd("{}Direc"{})>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <small\ id="{}passwordHelpBlock"{}\ class="{}form-\/text\ text-\/muted"{}>Votre\ mot\ de\ passe\ doit\ contenir\ entre\ 8\ et\ 25\ caractère</small>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}codeADEDirec"{}>\ Code\ ADE</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}text"{}\ class="{}form-\/control"{}\ placeholder="{}Code\ ADE"{}\ name="{}codeDirec"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ type="{}submit"{}\ class="{}btn\ button\_ecran"{}\ id="{}validDirec"{}\ name="{}createDirec"{}\ value="{}Créer"{}>Créer</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayAllStudyDirector(\$users)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Modifier\ un\ utilisateur'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$title\ =\ \textcolor{stringliteral}{'Directeur\ d\(\backslash\)'études'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$name\ =\ \textcolor{stringliteral}{'Direc'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$header\ =\ [\textcolor{stringliteral}{'Numéro\ Ent'},\ \textcolor{stringliteral}{'Code\ ADE'},\ \textcolor{stringliteral}{'Modifier'}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$row\ =\ array();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$count\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$users\ as\ \$user)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\$user-\/>getCodes())\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$code\ =\ \textcolor{stringliteral}{'Aucun\ code'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$code\ =\ \$user-\/>getCodes()[0]-\/>getCode();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ++\$count;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$row[]\ =\ [\$count,\ \$this-\/>buildCheckbox(\$name,\ \$user-\/>getId()),\ \$user-\/>getLogin(),\ \$code,\ \$this-\/>buildLinkForModify(\$linkManageUser\ .\ \textcolor{stringliteral}{'?id='}\ .\ \$user-\/>getId())];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayAll(\$name,\ \$title,\ \$header,\ \$row,\ \textcolor{stringliteral}{'director'});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ displayModifyStudyDirector(\$user)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$page\ =\ get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$linkManageUser\ =\ get\_permalink(\$page-\/>ID);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$code\ =\ \textcolor{stringliteral}{'Aucun\ code'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\$user-\/>getCodes())\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$code\ =\ \$user-\/>getCodes()[0]-\/>getCode();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <a\ href="{}'}\ .\ esc\_url(get\_permalink(get\_page\_by\_title(\textcolor{stringliteral}{'Gestion\ des\ utilisateurs'})))\ .\ \textcolor{stringliteral}{'"{}><\ Retour</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <h2>'}\ .\ \$user-\/>getLogin()\ .\ \textcolor{stringliteral}{'</h2>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ <form\ method="{}post"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}form-\/group"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label\ for="{}modifCode"{}>Code\ ADE</label>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type="{}text"{}\ class="{}form-\/control"{}\ id="{}modifCode"{}\ name="{}modifCode"{}\ placeholder="{}Entrer\ le\ Code\ ADE"{}\ value="{}'}\ .\ \$code\ .\ \textcolor{stringliteral}{'"{}\ required="{}"{}>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <button\ class="{}btn\ button\_ecran"{}\ name="{}modifValidate"{}\ type="{}submit"{}\ value="{}Valider"{}>Valider</button>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <a\ class="{}btn\ delete\_button\_ecran"{}\ href="{}'}\ .\ \$linkManageUser\ .\ \textcolor{stringliteral}{'"{}>Annuler</a>}}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ </form>'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

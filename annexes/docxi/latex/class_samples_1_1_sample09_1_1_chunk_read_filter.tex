@@ -1,0 +1,92 @@
+\doxysection{Référence de la classe Samples\textbackslash{}Sample09\textbackslash{}Chunk\+Read\+Filter}
+\hypertarget{class_samples_1_1_sample09_1_1_chunk_read_filter}{}\label{class_samples_1_1_sample09_1_1_chunk_read_filter}\index{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}}
+Graphe d\textquotesingle{}héritage de Samples\textbackslash{}Sample09\textbackslash{}Chunk\+Read\+Filter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_samples_1_1_sample09_1_1_chunk_read_filter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_samples_1_1_sample09_1_1_chunk_read_filter_a16c4bbca6eabb9f273e2887c768a96d6}{\+\_\+\+\_\+construct}} (\$start\+Row, \$chunk\+Size)
+\item 
+\mbox{\hyperlink{class_samples_1_1_sample09_1_1_chunk_read_filter_ae56ad53957f111c314854f3140db77f4}{read\+Cell}} (\$column, \$row, \$worksheet\+Name=\textquotesingle{}\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_reader_1_1_i_read_filter}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+IRead\+Filter}}}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_samples_1_1_sample09_1_1_chunk_read_filter_aeef407fde051190dc3aafb70fd7b70fc}{\$start\+Row}} = 0
+\item 
+\mbox{\hyperlink{class_samples_1_1_sample09_1_1_chunk_read_filter_a46bfc1d27587e410f8536fc59dbffbce}{\$end\+Row}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Define a Read Filter class implementing IRead\+Filter ~\newline
+ 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_samples_1_1_sample09_1_1_chunk_read_filter_a16c4bbca6eabb9f273e2887c768a96d6}\index{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_samples_1_1_sample09_1_1_chunk_read_filter_a16c4bbca6eabb9f273e2887c768a96d6} 
+Samples\textbackslash{}\+Sample09\textbackslash{}\+Chunk\+Read\+Filter\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$start\+Row}{, }\item[{}]{\$chunk\+Size}{}\end{DoxyParamCaption})}
+
+We expect a list of the rows that we want to read to be passed into the constructor.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$start\+Row} & \\
+\hline
+mixed & {\em \$chunk\+Size} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_samples_1_1_sample09_1_1_chunk_read_filter_ae56ad53957f111c314854f3140db77f4}\index{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}!readCell@{readCell}}
+\index{readCell@{readCell}!Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}}
+\doxysubsubsection{\texorpdfstring{readCell()}{readCell()}}
+{\footnotesize\ttfamily \label{class_samples_1_1_sample09_1_1_chunk_read_filter_ae56ad53957f111c314854f3140db77f4} 
+Samples\textbackslash{}\+Sample09\textbackslash{}\+Chunk\+Read\+Filter\+::read\+Cell (\begin{DoxyParamCaption}\item[{}]{\$column}{, }\item[{}]{\$row}{, }\item[{}]{\$worksheet\+Name}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+Should this cell be read?
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$column} & Column address (as a string value like "{}\+A"{}, or "{}\+IV"{}) \\
+\hline
+int & {\em \$row} & Row number \\
+\hline
+string & {\em \$worksheet\+Name} & Optional worksheet name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interface_php_office_1_1_php_spreadsheet_1_1_reader_1_1_i_read_filter_a943530f9b2bdc4273bc45c2b397af2a6}{Php\+Office\textbackslash{}\+Php\+Spreadsheet\textbackslash{}\+Reader\textbackslash{}\+IRead\+Filter}}.
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_samples_1_1_sample09_1_1_chunk_read_filter_a46bfc1d27587e410f8536fc59dbffbce}\index{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}!\$endRow@{\$endRow}}
+\index{\$endRow@{\$endRow}!Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}}
+\doxysubsubsection{\texorpdfstring{\$endRow}{\$endRow}}
+{\footnotesize\ttfamily \label{class_samples_1_1_sample09_1_1_chunk_read_filter_a46bfc1d27587e410f8536fc59dbffbce} 
+Samples\textbackslash{}\+Sample09\textbackslash{}\+Chunk\+Read\+Filter\+::\$end\+Row = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_samples_1_1_sample09_1_1_chunk_read_filter_aeef407fde051190dc3aafb70fd7b70fc}\index{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}!\$startRow@{\$startRow}}
+\index{\$startRow@{\$startRow}!Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter@{Samples\textbackslash{}Sample09\textbackslash{}ChunkReadFilter}}
+\doxysubsubsection{\texorpdfstring{\$startRow}{\$startRow}}
+{\footnotesize\ttfamily \label{class_samples_1_1_sample09_1_1_chunk_read_filter_aeef407fde051190dc3aafb70fd7b70fc} 
+Samples\textbackslash{}\+Sample09\textbackslash{}\+Chunk\+Read\+Filter\+::\$start\+Row = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/phpoffice/phpspreadsheet/samples/\+Reader/\mbox{\hyperlink{11___reading__a__workbook__in__chunks__using__a__configurable__read__filter___07version__1_08_8php}{11\+\_\+\+Reading\+\_\+a\+\_\+workbook\+\_\+in\+\_\+chunks\+\_\+using\+\_\+a\+\_\+configurable\+\_\+read\+\_\+filter\+\_\+(version\+\_\+1).\+php}}\end{DoxyCompactItemize}

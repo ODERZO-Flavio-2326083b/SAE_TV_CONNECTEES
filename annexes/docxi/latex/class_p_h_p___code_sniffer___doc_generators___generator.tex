@@ -1,0 +1,162 @@
+\doxysection{Référence de la classe PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator}
+\hypertarget{class_p_h_p___code_sniffer___doc_generators___generator}{}\label{class_p_h_p___code_sniffer___doc_generators___generator}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+Graphe d\textquotesingle{}héritage de PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_h_p___code_sniffer___doc_generators___generator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a66f4b37f20f5002c8ef0d3a7f8cf9944}{\+\_\+\+\_\+construct}} (\$standard, array \$sniffs=array())
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_adcb09989c3889143c5fb1bbee7635f15}{generate}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a5d9cdc0b5403e7613eafd494bde6a1ba}{get\+Title}} (DOMNode \$doc)
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a5406ef0e53aa6546cfbb97b36767e838}{get\+Standard}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a1857834910598c8fc899f6eaa7d98717}{get\+Standard\+Files}} ()
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a9fcd9fcb91ed5f84fe2782c61a4356e5}{process\+Sniff}} (DOMNode \$doc)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a7d71d7cec1d865c51771119fa2093ca9}{\$\+\_\+standard}} = \textquotesingle{}\textquotesingle{}
+\item 
+\mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___generator_a8b46494fe4465e2d6228c944550c3944}{\$\+\_\+sniffs}} = array()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a66f4b37f20f5002c8ef0d3a7f8cf9944}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a66f4b37f20f5002c8ef0d3a7f8cf9944} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$standard}{, }\item[{array}]{\$sniffs}{ = {\ttfamily array()}}\end{DoxyParamCaption})}
+
+Constructs a \doxylink{class_p_h_p___code_sniffer___doc_generators___generator}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator} object.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$standard} & The name of the coding standard to generate docs for. \\
+\hline
+array & {\em \$sniffs} & An array of sniffs that we are limiting the generated docs to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___doc_generators___generator_adcb09989c3889143c5fb1bbee7635f15}{generate()} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_adcb09989c3889143c5fb1bbee7635f15}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!generate@{generate}}
+\index{generate@{generate}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_adcb09989c3889143c5fb1bbee7635f15} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::generate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Generates the documentation for a standard.
+
+It\textquotesingle{}s probably wise for doc generators to override this method so they have control over how the docs are produced. Otherwise, the process\+Sniff method should be overridden to output content for each sniff.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___doc_generators___generator_a9fcd9fcb91ed5f84fe2782c61a4356e5}{process\+Sniff()} 
+\end{DoxySeeAlso}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___markdown_ad5936c3b80c548e5692141465ee598ba}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Markdown}}.
+
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a5406ef0e53aa6546cfbb97b36767e838}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!getStandard@{getStandard}}
+\index{getStandard@{getStandard}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{getStandard()}{getStandard()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a5406ef0e53aa6546cfbb97b36767e838} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::get\+Standard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Retrieves the name of the standard we are generating docs for.
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a1857834910598c8fc899f6eaa7d98717}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!getStandardFiles@{getStandardFiles}}
+\index{getStandardFiles@{getStandardFiles}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{getStandardFiles()}{getStandardFiles()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a1857834910598c8fc899f6eaa7d98717} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::get\+Standard\+Files (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns a list of paths to XML standard files for all sniffs in a standard.
+
+Any sniffs that do not have an XML standard file are obviously not included in the returned array. If documentation is only being generated for some sniffs (ie. \$this-\/\texorpdfstring{$>$}{>}\+\_\+sniffs is not empty) then all others sniffs will be filtered from the results as well.
+
+\begin{DoxyReturn}{Renvoie}
+string\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a5d9cdc0b5403e7613eafd494bde6a1ba}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a5d9cdc0b5403e7613eafd494bde6a1ba} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::get\+Title (\begin{DoxyParamCaption}\item[{DOMNode}]{\$doc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Retrieves the title of the sniff from the DOMNode supplied.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+DOMNode & {\em \$doc} & The DOMNode object for the sniff. It represents the "{}documentation"{} tag in the XML standard file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a9fcd9fcb91ed5f84fe2782c61a4356e5}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!processSniff@{processSniff}}
+\index{processSniff@{processSniff}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{processSniff()}{processSniff()}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a9fcd9fcb91ed5f84fe2782c61a4356e5} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::process\+Sniff (\begin{DoxyParamCaption}\item[{DOMNode}]{\$doc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}, {\ttfamily [protected]}}
+
+Process the documentation for a single sniff.
+
+Doc generators must implement this function to produce output.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+DOMNode & {\em \$doc} & The DOMNode object for the sniff. It represents the "{}documentation"{} tag in the XML standard file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{class_p_h_p___code_sniffer___doc_generators___generator_adcb09989c3889143c5fb1bbee7635f15}{generate()} 
+\end{DoxySeeAlso}
+
+
+Réimplémentée dans \mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___markdown_a578917a3d86a94eb7de004e238630cb6}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Markdown}}, et \mbox{\hyperlink{class_p_h_p___code_sniffer___doc_generators___text_a6eee45f52df35ea5f3f57a86ac416e97}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Text}}.
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a8b46494fe4465e2d6228c944550c3944}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!\$\_sniffs@{\$\_sniffs}}
+\index{\$\_sniffs@{\$\_sniffs}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{\$\_sniffs}{\$\_sniffs}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a8b46494fe4465e2d6228c944550c3944} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::\$\+\_\+sniffs = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_p_h_p___code_sniffer___doc_generators___generator_a7d71d7cec1d865c51771119fa2093ca9}\index{PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}!\$\_standard@{\$\_standard}}
+\index{\$\_standard@{\$\_standard}!PHP\_CodeSniffer\_DocGenerators\_Generator@{PHP\_CodeSniffer\_DocGenerators\_Generator}}
+\doxysubsubsection{\texorpdfstring{\$\_standard}{\$\_standard}}
+{\footnotesize\ttfamily \label{class_p_h_p___code_sniffer___doc_generators___generator_a7d71d7cec1d865c51771119fa2093ca9} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Doc\+Generators\+\_\+\+Generator\+::\$\+\_\+standard = \textquotesingle{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/squizlabs/php\+\_\+codesniffer/\+Code\+Sniffer/\+Doc\+Generators/\mbox{\hyperlink{_generator_8php}{Generator.\+php}}\end{DoxyCompactItemize}

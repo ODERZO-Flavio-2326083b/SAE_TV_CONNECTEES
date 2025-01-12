@@ -1,0 +1,223 @@
+\chapter{PHP ICS Parser}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6}{}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6}\index{PHP ICS Parser@{PHP ICS Parser}}
+\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md734}%
+\Hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md734}%
+
+
+\href{https://packagist.org/packages/johngrogg/ics-parser}{\texttt{ }} \href{https://packagist.org/packages/johngrogg/ics-parser}{\texttt{ }}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md736}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md736}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md737}{}\doxysubsection{\texorpdfstring{Requirements}{Requirements}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md737}
+
+\begin{DoxyItemize}
+\item PHP 5 (≥ 5.\+3.\+0)
+\item \href{https://icalendar.org/validator.html}{\texttt{ Valid ICS}} ({\ttfamily .ics}, {\ttfamily .ical}, {\ttfamily .ifb}) file
+\item \href{https://www.iana.org/time-zones}{\texttt{ IANA}} or \href{http://cldr.unicode.org/translation/timezones}{\texttt{ Unicode CLDR}} Time Zones
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md738}{}\doxysubsection{\texorpdfstring{Setup}{Setup}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md738}
+
+\begin{DoxyItemize}
+\item Install \href{https://getcomposer.org/}{\texttt{ Composer}}
+\begin{DoxyItemize}
+\item Add the following dependency to {\ttfamily composer.\+json}
+\begin{DoxyItemize}
+\item \+:warning\+: {\bfseries{Note with Composer the owner is {\ttfamily johngrogg} and not {\ttfamily u01jmg3}}}
+\end{DoxyItemize}
+\item To access the latest stable branch ({\ttfamily v2}) use the following
+\begin{DoxyItemize}
+\item To access new features you can require \href{https://getcomposer.org/doc/articles/aliases.md\#branch-alias}{\texttt{ {\ttfamily dev-\/master}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ "{}require"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}johngrogg/ics-\/parser"{}:\ "{}\string^2"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md739}{}\doxysection{\texorpdfstring{How to use}{How to use}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md739}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md740}{}\doxysubsection{\texorpdfstring{How to instantiate the Parser}{How to instantiate the Parser}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md740}
+
+\begin{DoxyItemize}
+\item Using the example script as a guide, \href{https://github.com/u01jmg3/ics-parser/blob/master/examples/index.php\#L1-L22}{\texttt{ refer to this code}}
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md741}{}\doxysubsubsection{\texorpdfstring{What will the parser return?}{What will the parser return?}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md741}
+
+\begin{DoxyItemize}
+\item Each key/value pair from the i\+Cal file will be parsed creating an associative array for both the calendar and every event it contains.
+\item Also injected will be content under {\ttfamily dtstart\+\_\+tz} and {\ttfamily dtend\+\_\+tz} for accessing start and end dates with time zone data applied.
+\item Where possible \href{https://secure.php.net/manual/en/class.datetime.php}{\texttt{ {\ttfamily Date\+Time}}} objects are used and returned.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ the\ whole\ calendar}}
+\DoxyCodeLine{var\_dump(\$ical-\/>cal);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ every\ event}}
+\DoxyCodeLine{var\_dump(\$ical-\/>events());}
+
+\end{DoxyCode}
+
+\item Also included are special {\ttfamily \{property\}\+\_\+array} arrays which further resolve the contents of a key/value pair.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ a\ parsed\ event's\ start\ date}}
+\DoxyCodeLine{var\_dump(\$event-\/>dtstart\_array);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ array\ (size=4)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 0\ =>}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ \ \ array\ (size=1)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ \ \ \ \ 'TZID'\ =>\ string\ 'America/Detroit'\ (length=15)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 1\ =>\ string\ '20160409T090000'\ (length=15)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 2\ =>\ int\ 1460192400}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 3\ =>\ string\ 'TZID=America/Detroit:20160409T090000'\ (length=36)}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md743}{}\doxysection{\texorpdfstring{API}{API}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md743}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md744}{}\doxysubsection{\texorpdfstring{{\ttfamily ICal} API}{{\ttfamily ICal} API}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md744}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md745}{}\doxysubsubsection{\texorpdfstring{Variables}{Variables}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md745}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Configurable   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Configurable   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value    }\\\cline{1-4}
+\endhead
+{\ttfamily \$default\+Span}   &The value in years to use for indefinite, recurring events   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily 2}    \\\cline{1-4}
+{\ttfamily \$default\+Time\+Zone}   &Enables customisation of the default time zone   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &\href{https://secure.php.net/manual/en/function.date-default-timezone-get.php}{\texttt{ System default}}    \\\cline{1-4}
+{\ttfamily \$default\+Week\+Start}   &The two letter representation of the first day of the week   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily MO}    \\\cline{1-4}
+{\ttfamily \$disable\+Character\+Replacement}   &Toggles whether to disable all character replacement   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily false}    \\\cline{1-4}
+{\ttfamily \$skip\+Recurrence}   &Toggles whether to skip the parsing of recurrence rules   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily false}    \\\cline{1-4}
+{\ttfamily \$use\+Time\+Zone\+With\+RRules}   &Toggles whether to use time zone info when parsing recurrence rules   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily false}    \\\cline{1-4}
+{\ttfamily \$alarm\+Count}   &Tracks the number of alarms in the current i\+Cal feed   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A    \\\cline{1-4}
+{\ttfamily \$cal}   &The parsed calendar   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A    \\\cline{1-4}
+{\ttfamily \$event\+Count}   &Tracks the number of events in the current i\+Cal feed   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A    \\\cline{1-4}
+{\ttfamily \$free\+Busy\+Count}   &Tracks the free/busy count in the current i\+Cal feed   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A    \\\cline{1-4}
+{\ttfamily \$todo\+Count}   &Tracks the number of todos in the current i\+Cal feed   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md746}{}\doxysubsubsection{\texorpdfstring{Methods}{Methods}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md746}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily \+\_\+\+\_\+construct}   &{\ttfamily \$files = false}, {\ttfamily \$options = array()}   &{\ttfamily public}   &Creates the \doxylink{namespace_i_cal}{ICal} object    \\\cline{1-4}
+{\ttfamily init\+File}   &{\ttfamily \$file}   &{\ttfamily protected}   &Initialises lines from a file    \\\cline{1-4}
+{\ttfamily init\+Lines}   &{\ttfamily \$lines}   &{\ttfamily protected}   &Initialises the parser using an array containing each line of i\+Cal content    \\\cline{1-4}
+{\ttfamily init\+String}   &{\ttfamily \$string}   &{\ttfamily protected}   &Initialises lines from a string    \\\cline{1-4}
+{\ttfamily init\+Url}   &{\ttfamily \$url}   &{\ttfamily protected}   &Initialises lines from a URL    \\\cline{1-4}
+{\ttfamily add\+Calendar\+Component\+With\+Key\+And\+Value}   &{\ttfamily \$component}, {\ttfamily \$keyword}, {\ttfamily \$value}   &{\ttfamily protected}   &Add one key and value pair to the {\ttfamily \$this-\/\texorpdfstring{$>$}{>}cal} array    \\\cline{1-4}
+{\ttfamily calendar\+Description}   &-\/   &{\ttfamily public}   &Returns the calendar description    \\\cline{1-4}
+{\ttfamily calendar\+Name}   &-\/   &{\ttfamily public}   &Returns the calendar name    \\\cline{1-4}
+{\ttfamily calendar\+Time\+Zone}   &{\ttfamily \$ignore\+Utc}   &{\ttfamily public}   &Returns the calendar time zone    \\\cline{1-4}
+{\ttfamily clean\+Data}   &{\ttfamily \$data}   &{\ttfamily protected}   &Replaces curly quotes and other special characters with their standard equivalents    \\\cline{1-4}
+{\ttfamily convert\+Day\+Ordinal\+To\+Positive}   &{\ttfamily \$day\+Number}, {\ttfamily \$weekday}, {\ttfamily \$timestamp}   &{\ttfamily protected}   &Converts a negative day ordinal to its equivalent positive form    \\\cline{1-4}
+{\ttfamily events\+From\+Interval}   &{\ttfamily \$interval}   &{\ttfamily public}   &Returns a sorted array of events following a given string, or {\ttfamily false} if no events exist in the range    \\\cline{1-4}
+{\ttfamily events\+From\+Range}   &{\ttfamily \$range\+Start = false}, {\ttfamily \$range\+End = false}   &{\ttfamily public}   &Returns a sorted array of events in a given range, or an empty array if no events exist in the range    \\\cline{1-4}
+{\ttfamily events}   &-\/   &{\ttfamily public}   &Returns an array of Events    \\\cline{1-4}
+{\ttfamily file\+Or\+Url}   &{\ttfamily \$filename}   &{\ttfamily protected}   &Reads an entire file or URL into an array    \\\cline{1-4}
+{\ttfamily free\+Busy\+Events}   &-\/   &{\ttfamily public}   &Returns an array of arrays with all free/busy events    \\\cline{1-4}
+{\ttfamily has\+Events}   &-\/   &{\ttfamily public}   &Returns a boolean value whether the current calendar has events or not    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+To\+Date\+Time}   &{\ttfamily \$ical\+Date}, {\ttfamily \$force\+Time\+Zone = false}, {\ttfamily \$force\+Utc = false}   &{\ttfamily public}   &Returns a {\ttfamily Date\+Time} object from an i\+Cal date time format    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+To\+Unix\+Timestamp}   &{\ttfamily \$ical\+Date}, {\ttfamily \$force\+Time\+Zone = false}, {\ttfamily \$force\+Utc = false}   &{\ttfamily public}   &Returns a Unix timestamp from an i\+Cal date time format    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+With\+Time\+Zone}   &{\ttfamily \$event}, {\ttfamily \$key}, {\ttfamily \$format = DATE\+\_\+\+TIME\+\_\+\+FORMAT}   &{\ttfamily public}   &Returns a date adapted to the calendar time zone depending on the event {\ttfamily TZID}    \\\cline{1-4}
+{\ttfamily is\+Exdate\+Match}   &{\ttfamily \$exdate}, {\ttfamily \$an\+Event}, {\ttfamily \$recurring\+Offset}   &{\ttfamily protected}   &Checks if an excluded date matches a given date by reconciling time zones    \\\cline{1-4}
+{\ttfamily is\+File\+Or\+Url}   &{\ttfamily \$filename}   &{\ttfamily protected}   &Checks if a filename exists as a file or URL    \\\cline{1-4}
+{\ttfamily is\+Valid\+Date}   &{\ttfamily \$value}   &{\ttfamily public}   &Checks if a date string is a valid date    \\\cline{1-4}
+{\ttfamily is\+Valid\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is valid (IANA or CLDR)    \\\cline{1-4}
+{\ttfamily is\+Valid\+Iana\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is a valid IANA time zone    \\\cline{1-4}
+{\ttfamily is\+Valid\+Cldr\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}, {\ttfamily do\+Conversion = false}   &{\ttfamily protected}   &Checks if a time zone is a valid CLDR time zone    \\\cline{1-4}
+{\ttfamily key\+Value\+From\+String}   &{\ttfamily \$text}   &{\ttfamily protected}   &Gets the key value pair from an i\+Cal string    \\\cline{1-4}
+{\ttfamily mb\+\_\+chr}   &{\ttfamily \$code}   &{\ttfamily protected}   &Provides a polyfill for PHP 7.\+2\textquotesingle{}s {\ttfamily mb\+\_\+chr()}, which is a multibyte safe version of {\ttfamily chr()}    \\\cline{1-4}
+{\ttfamily mb\+\_\+str\+\_\+replace}   &{\ttfamily \$search}, {\ttfamily \$replace}, {\ttfamily \$subject}, {\ttfamily \$count = 0}   &{\ttfamily protected}   &Replaces all occurrences of a search string with a given replacement string    \\\cline{1-4}
+{\ttfamily number\+Of\+Days}   &{\ttfamily \$days}, {\ttfamily \$start}, {\ttfamily \$end}   &{\ttfamily protected}   &Gets the number of days between a start and end date    \\\cline{1-4}
+{\ttfamily parse\+Duration}   &{\ttfamily \$date}, {\ttfamily \$duration}, `\$format = \textquotesingle{}U'{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Parses a duration and applies it to a date \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}parse\+Exdates{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$event{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}public{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Parses a list of excluded dates to be applied to an Event \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}process\+Date\+Conversions{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} -\/ \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Processes date conversions using the time zone \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}process\+Event\+Ical\+Date\+Time{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$event{\ttfamily ,}\$index = 3{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Extends the}\{DTSTART$|$DTEND$|$RECURRENCE-\/\+ID\}\+\_\+array{\ttfamily array to include an i\+Cal date time for each event \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}process\+Events{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} -\/ \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Performs admin tasks on all events as read from the i\+Cal file \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}process\+Recurrences{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} -\/ \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Processes recurrence rules \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}remove\+Unprintable\+Chars{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$data{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Removes unprintable ASCII and UTF-\/8 characters \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}sort\+Events\+With\+Order{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$events{\ttfamily ,}\$sort\+Order = SORT\+\_\+\+ASC{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}public{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Sorts events based on a given sort order \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}trim\+To\+Recurrence\+Count{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$rrules{\ttfamily ,}\$recurrence\+Events{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Ensures the recurrence count is enforced against generated recurrence events \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}unfold{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}\$lines{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected\`{}   &Unfolds an i\+Cal file in preparation for parsing   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md747}{}\doxysubsubsection{\texorpdfstring{Constants}{Constants}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md747}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily DATE\+\_\+\+TIME\+\_\+\+FORMAT\+\_\+\+PRETTY}   &Default pretty date time format to use    \\\cline{1-2}
+{\ttfamily DATE\+\_\+\+TIME\+\_\+\+FORMAT}   &Default date time format to use    \\\cline{1-2}
+{\ttfamily ICAL\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+TEMPLATE}   &String template to generate an i\+Cal date time    \\\cline{1-2}
+{\ttfamily RECURRENCE\+\_\+\+EVENT}   &Used to isolate generated recurrence events    \\\cline{1-2}
+{\ttfamily SECONDS\+\_\+\+IN\+\_\+\+A\+\_\+\+WEEK}   &The number of seconds in a week    \\\cline{1-2}
+{\ttfamily TIME\+\_\+\+FORMAT}   &Default time format to use    \\\cline{1-2}
+{\ttfamily TIME\+\_\+\+ZONE\+\_\+\+UTC}   &UTC time zone string    \\\cline{1-2}
+{\ttfamily UNIX\+\_\+\+FORMAT}   &Unix timestamp date format    \\\cline{1-2}
+{\ttfamily UNIX\+\_\+\+MIN\+\_\+\+YEAR}   &The year Unix time began   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md749}{}\doxysubsection{\texorpdfstring{{\ttfamily Event} API (extends {\ttfamily ICal} API)}{{\ttfamily Event} API (extends {\ttfamily ICal} API)}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md749}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md750}{}\doxysubsubsection{\texorpdfstring{Methods}{Methods}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md750}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily \+\_\+\+\_\+construct}   &{\ttfamily \$data = array()}   &{\ttfamily public}   &Creates the Event object    \\\cline{1-4}
+{\ttfamily prepare\+Data}   &{\ttfamily \$value}   &{\ttfamily protected}   &Prepares the data for output    \\\cline{1-4}
+{\ttfamily print\+Data}   &{\ttfamily \$html = HTML\+\_\+\+TEMPLATE}   &{\ttfamily public}   &Returns Event data excluding anything blank within an HTML template    \\\cline{1-4}
+{\ttfamily snake\+Case}   &{\ttfamily \$input}, `\$glue = '\+\_\+\textquotesingle{}{\ttfamily ,}\$separator = \textquotesingle{}-\/\textquotesingle{}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected\`{}   &Converts the given input to snake\+\_\+case   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md751}{}\doxysubsubsection{\texorpdfstring{Constants}{Constants}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md751}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily HTML\+\_\+\+TEMPLATE}   &String template to use when pretty printing content   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md753}{}\doxysection{\texorpdfstring{Credits}{Credits}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md753}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/u01jmg3}{\texttt{ Jonathan Goode}} (programming, bug fixing, enhancement, coding standard)
+\item \href{john.grogg@gmail.com}{\texttt{ John Grogg}} (programming, addition of event recurrence handling)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md755}{}\doxysection{\texorpdfstring{Tools for Testing}{Tools for Testing}}\label{md__c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_x_c3_x_a9-casali_2www_2wp-content_2plugins_7803a7f593e34748d9e4a509fd7478a6_autotoc_md755}
+
+\begin{DoxyItemize}
+\item \href{https://icalendar.org/validator.html}{\texttt{ i\+Cal Validator}}
+\item \href{https://jakubroztocil.github.io/rrule/}{\texttt{ Recurrence Rule Tester}}
+\item \href{https://www.unixtimestamp.com}{\texttt{ Unix Timestamp Converter}} 
+\end{DoxyItemize}

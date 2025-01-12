@@ -1,0 +1,361 @@
+\doxysection{Référence de la classe Matrix\textbackslash{}Functions}
+\hypertarget{class_matrix_1_1_functions}{}\label{class_matrix_1_1_functions}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_aa0a4d322e18bed63fc060f15d5e8dda2}{adjoint}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_aaed64c86d46979d6d64eacb7a1d8443e}{cofactors}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_af579b18e051f10ae5fda2e08c8b8027b}{determinant}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_aabbdd1ca7c2ad6990a080ac065d26c45}{diagonal}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_acfdd0a575d3e94243d43c52eab43e80c}{antidiagonal}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_ada73ad508959c0f0d3d5c8ea25f7b09c}{identity}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_a068f57f36084b05675e0c4569d407db1}{inverse}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_ab7f63647adf2deaecd072bdbbe6258f8}{minors}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_aebadd647a5281265957a25a72bacd62b}{trace}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_ab5ab467a0132d635d90d7ce5c6b34220}{transpose}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_a1034fe0e243ae66fc1b770b1bad4da8a}{get\+Minors}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_acef875e1991598a54e59907b29010d33}{get\+Adjoint}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_af739bcb97b1b26e42ceec9088a8c94d0}{get\+Cofactors}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_a5369f67f1b2e28cee71f5157e33ff37d}{get\+Determinant\+Segment}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix, \$row, \$column)
+\item 
+static \mbox{\hyperlink{class_matrix_1_1_functions_afd3aaed9bd29b4e4cce3262ebec245d5}{get\+Determinant}} (\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}} \$matrix)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_matrix_1_1_functions_aa0a4d322e18bed63fc060f15d5e8dda2}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{adjoint()}{adjoint()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_aa0a4d322e18bed63fc060f15d5e8dda2} 
+static Matrix\textbackslash{}\+Functions\+::adjoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the adjoint of this matrix The adjugate, classical adjoint, or adjunct of a square matrix is the transpose of its cofactor matrix. The adjugate has sometimes been called the "{}adjoint"{}, but today the "{}adjoint"{} of a matrix normally refers to its corresponding adjoint operator, which is its conjugate transpose.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose adjoint we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_acfdd0a575d3e94243d43c52eab43e80c}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!antidiagonal@{antidiagonal}}
+\index{antidiagonal@{antidiagonal}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{antidiagonal()}{antidiagonal()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_acfdd0a575d3e94243d43c52eab43e80c} 
+static Matrix\textbackslash{}\+Functions\+::antidiagonal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the antidiagonal of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose antidiagonal we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_aaed64c86d46979d6d64eacb7a1d8443e}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!cofactors@{cofactors}}
+\index{cofactors@{cofactors}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{cofactors()}{cofactors()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_aaed64c86d46979d6d64eacb7a1d8443e} 
+static Matrix\textbackslash{}\+Functions\+::cofactors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the cofactors of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose cofactors we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_af579b18e051f10ae5fda2e08c8b8027b}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!determinant@{determinant}}
+\index{determinant@{determinant}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_af579b18e051f10ae5fda2e08c8b8027b} 
+static Matrix\textbackslash{}\+Functions\+::determinant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the determinant of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose determinant we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_aabbdd1ca7c2ad6990a080ac065d26c45}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_aabbdd1ca7c2ad6990a080ac065d26c45} 
+static Matrix\textbackslash{}\+Functions\+::diagonal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the diagonal of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose diagonal we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_acef875e1991598a54e59907b29010d33}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!getAdjoint@{getAdjoint}}
+\index{getAdjoint@{getAdjoint}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{getAdjoint()}{getAdjoint()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_acef875e1991598a54e59907b29010d33} 
+static Matrix\textbackslash{}\+Functions\+::get\+Adjoint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Calculate the adjoint of the matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose adjoint we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_af739bcb97b1b26e42ceec9088a8c94d0}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!getCofactors@{getCofactors}}
+\index{getCofactors@{getCofactors}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{getCofactors()}{getCofactors()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_af739bcb97b1b26e42ceec9088a8c94d0} 
+static Matrix\textbackslash{}\+Functions\+::get\+Cofactors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Calculate the cofactors of the matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose cofactors we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_afd3aaed9bd29b4e4cce3262ebec245d5}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!getDeterminant@{getDeterminant}}
+\index{getDeterminant@{getDeterminant}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{getDeterminant()}{getDeterminant()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_afd3aaed9bd29b4e4cce3262ebec245d5} 
+static Matrix\textbackslash{}\+Functions\+::get\+Determinant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Calculate the determinant of the matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose determinant we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_a5369f67f1b2e28cee71f5157e33ff37d}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!getDeterminantSegment@{getDeterminantSegment}}
+\index{getDeterminantSegment@{getDeterminantSegment}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{getDeterminantSegment()}{getDeterminantSegment()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_a5369f67f1b2e28cee71f5157e33ff37d} 
+static Matrix\textbackslash{}\+Functions\+::get\+Determinant\+Segment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{, }\item[{}]{\$row}{, }\item[{}]{\$column}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & \\
+\hline
+int & {\em \$row} & \\
+\hline
+int & {\em \$column} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_a1034fe0e243ae66fc1b770b1bad4da8a}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!getMinors@{getMinors}}
+\index{getMinors@{getMinors}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{getMinors()}{getMinors()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_a1034fe0e243ae66fc1b770b1bad4da8a} 
+static Matrix\textbackslash{}\+Functions\+::get\+Minors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Calculate the minors of the matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose minors we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\mbox{[}\mbox{]}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_ada73ad508959c0f0d3d5c8ea25f7b09c}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!identity@{identity}}
+\index{identity@{identity}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{identity()}{identity()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_ada73ad508959c0f0d3d5c8ea25f7b09c} 
+static Matrix\textbackslash{}\+Functions\+::identity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the identity matrix The identity matrix, or sometimes ambiguously called a unit matrix, of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose identity we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_a068f57f36084b05675e0c4569d407db1}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!inverse@{inverse}}
+\index{inverse@{inverse}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_a068f57f36084b05675e0c4569d407db1} 
+static Matrix\textbackslash{}\+Functions\+::inverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the inverse of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose inverse we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_ab7f63647adf2deaecd072bdbbe6258f8}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!minors@{minors}}
+\index{minors@{minors}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{minors()}{minors()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_ab7f63647adf2deaecd072bdbbe6258f8} 
+static Matrix\textbackslash{}\+Functions\+::minors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the minors of the matrix The minor of a matrix A is the determinant of some smaller square matrix, cut down from A by removing one or more of its rows or columns. Minors obtained by removing just one row and one column from square matrices (first minors) are required for calculating matrix cofactors, which in turn are useful for computing both the determinant and inverse of square matrices.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose minors we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_aebadd647a5281265957a25a72bacd62b}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!trace@{trace}}
+\index{trace@{trace}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{trace()}{trace()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_aebadd647a5281265957a25a72bacd62b} 
+static Matrix\textbackslash{}\+Functions\+::trace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the trace of this matrix The trace is defined as the sum of the elements on the main diagonal (the diagonal from the upper left to the lower right) of the matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose trace we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+float 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_matrix_1_1_functions_ab5ab467a0132d635d90d7ce5c6b34220}\index{Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}!transpose@{transpose}}
+\index{transpose@{transpose}!Matrix\textbackslash{}Functions@{Matrix\textbackslash{}Functions}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily \label{class_matrix_1_1_functions_ab5ab467a0132d635d90d7ce5c6b34220} 
+static Matrix\textbackslash{}\+Functions\+::transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix_1_1_matrix}{Matrix}}}]{\$matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Return the transpose of this matrix
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{namespace_matrix}{Matrix} & {\em \$matrix} & The matrix whose transpose we wish to calculate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_matrix}{Matrix} 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/markbaker/matrix/classes/src/\mbox{\hyperlink{plugins_2plugin-ecran-connecte_2vendor_2markbaker_2matrix_2classes_2src_2_functions_8php}{Functions.\+php}}\end{DoxyCompactItemize}

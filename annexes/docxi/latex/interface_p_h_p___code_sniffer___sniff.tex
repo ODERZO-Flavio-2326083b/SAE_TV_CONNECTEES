@@ -1,0 +1,75 @@
+\doxysection{Référence de l\textquotesingle{}interface PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff}
+\hypertarget{interface_p_h_p___code_sniffer___sniff}{}\label{interface_p_h_p___code_sniffer___sniff}\index{PHP\_CodeSniffer\_Sniff@{PHP\_CodeSniffer\_Sniff}}
+Graphe d\textquotesingle{}héritage de PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.692308cm]{interface_p_h_p___code_sniffer___sniff}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff_aab1026ad367f82e567352599c3731923}{register}} ()
+\item 
+\mbox{\hyperlink{interface_p_h_p___code_sniffer___sniff_a880417eb74432aed5438df8ea605b468}{process}} (\mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}} \$phpcs\+File, \$stack\+Ptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interface_p_h_p___code_sniffer___sniff_a880417eb74432aed5438df8ea605b468}\index{PHP\_CodeSniffer\_Sniff@{PHP\_CodeSniffer\_Sniff}!process@{process}}
+\index{process@{process}!PHP\_CodeSniffer\_Sniff@{PHP\_CodeSniffer\_Sniff}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily \label{interface_p_h_p___code_sniffer___sniff_a880417eb74432aed5438df8ea605b468} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff\+::process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File}}}]{\$phpcs\+File}{, }\item[{}]{\$stack\+Ptr}{}\end{DoxyParamCaption})}
+
+Called when one of the token types that this sniff is listening for is found.
+
+The stack\+Ptr variable indicates where in the stack the token was found. A sniff can acquire information this token, along with all the other tokens within the stack by first acquiring the token stack\+:
+
+{\ttfamily  \$tokens = \$phpcs\+File-\/\texorpdfstring{$>$}{>}get\+Tokens(); echo \textquotesingle{}Encountered a \textquotesingle{}.\$tokens\mbox{[}\$stack\+Ptr\mbox{]}\mbox{[}\textquotesingle{}type\textquotesingle{}\mbox{]}.\textquotesingle{} token\textquotesingle{}; echo \textquotesingle{}token information\+: \textquotesingle{}; print\+\_\+r(\$tokens\mbox{[}\$stack\+Ptr\mbox{]}); }
+
+If the sniff discovers an anomaly in the code, they can raise an error by calling add\+Error() on the \doxylink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File} object, specifying an error message and the position of the offending token\+:
+
+{\ttfamily  \$phpcs\+File-\/\texorpdfstring{$>$}{>}add\+Error(\textquotesingle{}Encountered an error\textquotesingle{}, \$stack\+Ptr); }
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\doxylink{class_p_h_p___code_sniffer___file}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+File} & {\em \$phpcs\+File} & The \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} file where the token was found. \\
+\hline
+int & {\em \$stack\+Ptr} & The position in the \doxylink{class_p_h_p___code_sniffer}{PHP\+\_\+\+Code\+Sniffer} file\textquotesingle{}s token stack where the token was found.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void\texorpdfstring{$\vert$}{|}int Optionally returns a stack pointer. The sniff will not be called again on the current file until the returned stack pointer is reached. Return (count(\$tokens) + 1) to skip the rest of the file. 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{class_p_h_p___code_sniffer___standards___abstract_pattern_sniff_ae6438c79a0c2c91944062e4895550c88}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Standards\+\_\+\+Abstract\+Pattern\+Sniff}}, et \mbox{\hyperlink{class_p_h_p___code_sniffer___standards___abstract_scope_sniff_a35b7867229c7b1ae773e362b552a2a43}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Standards\+\_\+\+Abstract\+Scope\+Sniff}}.
+
+\Hypertarget{interface_p_h_p___code_sniffer___sniff_aab1026ad367f82e567352599c3731923}\index{PHP\_CodeSniffer\_Sniff@{PHP\_CodeSniffer\_Sniff}!register@{register}}
+\index{register@{register}!PHP\_CodeSniffer\_Sniff@{PHP\_CodeSniffer\_Sniff}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{interface_p_h_p___code_sniffer___sniff_aab1026ad367f82e567352599c3731923} 
+PHP\+\_\+\+Code\+Sniffer\+\_\+\+Sniff\+::register (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Registers the tokens that this sniff wants to listen for.
+
+An example return value for a sniff that wants to listen for whitespace and any comments would be\+:
+
+{\ttfamily  return array(            T\+\_\+\+WHITESPACE,            T\+\_\+\+DOC\+\_\+\+COMMENT,            T\+\_\+\+COMMENT,           ); }
+
+\begin{DoxyReturn}{Renvoie}
+int\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{_tokens_8php}{Tokens.\+php} 
+\end{DoxySeeAlso}
+
+
+Implémenté dans \mbox{\hyperlink{class_p_h_p___code_sniffer___standards___abstract_pattern_sniff_a6b2958cece92de203eb54d9c4292087c}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Standards\+\_\+\+Abstract\+Pattern\+Sniff}}, et \mbox{\hyperlink{class_p_h_p___code_sniffer___standards___abstract_scope_sniff_a9dd9c0df6add0e429205775cd408c2e7}{PHP\+\_\+\+Code\+Sniffer\+\_\+\+Standards\+\_\+\+Abstract\+Scope\+Sniff}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/www/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendors/ics-\/parser/vendor/squizlabs/php\+\_\+codesniffer/\+Code\+Sniffer/\mbox{\hyperlink{_sniff_8php}{Sniff.\+php}}\end{DoxyCompactItemize}
