@@ -34,6 +34,13 @@ class TelevisionController extends UserController implements Schedule
     private TelevisionView $_view;
 
     /**
+     * Contrôleur InformationController permettant d'utiliser les informations vidéos
+     * @var InformationController
+     */
+    private $informationController;
+
+
+    /**
      * Initialise une nouvelle instance de la classe.
      *
      * Ce constructeur appelle le constructeur parent pour s'assurer que
@@ -50,6 +57,7 @@ class TelevisionController extends UserController implements Schedule
         parent::__construct();
         $this->_model = new User();
         $this->_view = new TelevisionView();
+        $this->informationController = new InformationController();
     }
 
     /**
@@ -97,7 +105,7 @@ class TelevisionController extends UserController implements Schedule
             $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 
+            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25
                 && is_string($password)
                 && strlen($password) >= 8 && strlen($password) <= 25
                 && $password === $passwordConfirm
@@ -269,9 +277,9 @@ class TelevisionController extends UserController implements Schedule
         $current_user = wp_get_current_user();
         $user = $this->_model->get($current_user->ID);
         $user = $this->_model->getMyCodes([$user])[0];
-
-
         $string = "";
+
+        $this->informationController->displayVideo();
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">
