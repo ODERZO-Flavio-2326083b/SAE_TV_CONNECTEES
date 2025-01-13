@@ -1,0 +1,13 @@
+<map id="ICal\ICal\calendarTimeZone" name="ICal\ICal\calendarTimeZone">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,97,190,124"/>
+<area shape="rect" id="Node000002" href="$class_i_cal_1_1_i_cal.html#a8dd701d0e92fc6099d573e0afe42259d" title=" " alt="" coords="238,89,403,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,108,222,108,222,113,190,113"/>
+<area shape="rect" id="Node000003" href="$class_i_cal_1_1_i_cal.html#a3dba31363377e524896dea58dc074572" title=" " alt="" coords="451,5,646,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,87,401,63,450,42,471,34,472,39,452,46,403,68,360,91"/>
+<area shape="rect" id="Node000004" href="$class_i_cal_1_1_i_cal.html#a6d5481dd75c81b813a9e636ab7073279" title=" " alt="" coords="464,56,633,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="403,96,449,89,449,95,404,101"/>
+<area shape="rect" id="Node000005" href="$class_i_cal_1_1_i_cal.html#ac017b144f48454b4db20734d41ec22c9" title=" " alt="" coords="464,123,633,165"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="404,120,449,127,448,132,403,125"/>
+<area shape="rect" id="Node000006" href="$class_i_cal_1_1_i_cal.html#ae06014a4b39c06dff716f85447c44481" title=" " alt="" coords="464,189,633,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="362,130,452,175,467,181,465,186,450,180,359,135"/>
+</map>

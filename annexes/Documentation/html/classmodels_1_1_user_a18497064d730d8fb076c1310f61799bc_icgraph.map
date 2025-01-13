@@ -1,0 +1,15 @@
+<map id="models\User\setEntity" name="models\User\setEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="488,56,639,83"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_user.html#afe1376d5e63badbe33ea49302e6aad53" title=" " alt="" coords="295,31,412,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,61,413,54,413,48,473,56"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_user.html#acc0b2712ad1210939c3ef041e801c327" title=" " alt="" coords="268,81,440,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="473,83,441,87,440,82,472,78"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_user.html#ac7abde8a3485b8975738f1877a59a464" title=" " alt="" coords="31,5,194,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="285,79,267,72,243,59,219,46,182,35,184,30,221,42,245,54,269,67,287,74"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_user.html#a9a7bf3baf93adb396a2ebd3e205df8ed" title=" " alt="" coords="43,56,182,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="252,87,182,79,183,74,252,81"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1_user.html#a8247508c2f8c987298c4568f9bccd502" title=" " alt="" coords="5,107,220,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="252,108,220,111,220,106,251,103"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1_user.html#a3c1c3f30663496cc9b07b4054b9ed84e" title=" " alt="" coords="15,157,210,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="307,117,220,148,179,159,177,154,219,143,305,112"/>
+</map>

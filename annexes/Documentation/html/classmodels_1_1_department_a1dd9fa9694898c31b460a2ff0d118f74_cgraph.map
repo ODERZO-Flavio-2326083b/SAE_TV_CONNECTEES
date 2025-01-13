@@ -1,0 +1,7 @@
+<map id="models\Department\delete" name="models\Department\delete">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,180,57"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="256,5,436,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,33,240,27,240,32,180,38"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_department.html#a9255883e26fb4b8396e9218ad2277d87" title=" " alt="" coords="228,56,464,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,50,212,53,212,59,180,55"/>
+</map>

@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TV Connecté: C:/Users/gallo/OneDrive/Documents/SAé-casali/SAE_TV_CONNECTEES/public/wp-content/plugins/plugin-ecran-connecte/src/models/Scrapper.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TV Connecté
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e6d9939f514224d51805766f7ef301ec7.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">C:/Users/gallo/OneDrive/Documents/SAé-casali/SAE_TV_CONNECTEES/public/wp-content/plugins/plugin-ecran-connecte/src/models/Scrapper.php</div></div>
+</div><!--header-->
+<div class="contents">
+<p>Récupère le contenu HTML de la page d'articles.</p>
+<p>Cette méthode utilise la fonction <code>file_get_contents</code> pour récupérer le code HTML de la page d'articles depuis l'URL spécifiée dans la classe.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>string Le code HTML de la page.</dd></dl>
+<p>// Récupérer le code HTML de la page : $html = $scrapper-&gt;getHtml();</p>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>07-01-2025</dd></dl>
+<div class="fragment"><div class="line">&lt;?php</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemodels.html">models</a>;</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">class </span>Scrapper</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> __construct()</div>
+<div class="line">    {</div>
+<div class="line">        $this-&gt;url = <span class="stringliteral">&#39;https://www.informatiquenews.fr/news&#39;</span>;</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getHtml()</div>
+<div class="line">    {</div>
+<div class="line">        $html = file_get_contents($this-&gt;url);</div>
+<div class="line">        <span class="keywordflow">return</span> $html;</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getArticles()</div>
+<div class="line">    {</div>
+<div class="line">        $html = $this-&gt;getHtml();</div>
+<div class="line">        $dom = new \DOMDocument();</div>
+<div class="line">        @$dom-&gt;loadHTML($html);</div>
+<div class="line">        $xpath = new \DOMXPath($dom);</div>
+<div class="line">        $articles = $xpath-&gt;query(<span class="stringliteral">&#39;//article&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> $articles;</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getArticle($article)</div>
+<div class="line">    {</div>
+<div class="line">        $title = $article-&gt;getElementsByTagName(<span class="stringliteral">&#39;h2&#39;</span>)-&gt;item(0)-&gt;nodeValue;</div>
+<div class="line">        $divs = $article-&gt;getElementsByTagName(<span class="stringliteral">&#39;div&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">foreach</span> ($divs as $div) {</div>
+<div class="line">            <span class="keywordflow">if</span>($div != <span class="keyword">null</span>) {</div>
+<div class="line">                $classContent = $div-&gt;getAttribute(<span class="stringliteral">&#39;class&#39;</span>);</div>
+<div class="line">                <span class="keywordflow">if</span> ($classContent == <span class="stringliteral">&#39;post-content entry-content&#39;</span>) {</div>
+<div class="line">                    $content = $div-&gt;nodeValue;</div>
+<div class="line">                    <span class="keywordflow">break</span>;</div>
+<div class="line">                } <span class="keywordflow">else</span> {</div>
+<div class="line">                    $content = <span class="stringliteral">&quot;pas de contenue&quot;</span>;</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">else</span>{</div>
+<div class="line">                $content = <span class="stringliteral">&quot;pas de contenue&quot;</span>;</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">        $link = $article-&gt;getElementsByTagName(<span class="charliteral">&#39;a&#39;</span>)-&gt;item(0)-&gt;getAttribute(<span class="stringliteral">&#39;href&#39;</span>);</div>
+<div class="line"> </div>
+<div class="line">        $image = $article-&gt;getElementsByTagName(<span class="stringliteral">&#39;img&#39;</span>)-&gt;item($article-&gt;getElementsByTagName(<span class="stringliteral">&#39;img&#39;</span>)-&gt;length-1)-&gt;getAttribute(<span class="stringliteral">&#39;src&#39;</span>);</div>
+<div class="line"> </div>
+<div class="line">        $footers = $article-&gt;getElementsByTagName(<span class="stringliteral">&#39;footer&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">foreach</span> ($footers as $footer) {</div>
+<div class="line">            <span class="keywordflow">if</span>($footer != <span class="keyword">null</span>) {</div>
+<div class="line">                $classContent = $footer-&gt;getAttribute(<span class="stringliteral">&#39;class&#39;</span>);</div>
+<div class="line">                <span class="keywordflow">if</span> ($classContent == <span class="stringliteral">&#39;meta&#39;</span>) {</div>
+<div class="line">                    $author = $footer-&gt;nodeValue;</div>
+<div class="line">                    <span class="keywordflow">break</span>;</div>
+<div class="line">                } <span class="keywordflow">else</span> {</div>
+<div class="line">                    $author = <span class="stringliteral">&quot;pas de contenue&quot;</span>;</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">else</span>{</div>
+<div class="line">                $author = <span class="stringliteral">&quot;pas de contenue&quot;</span>;</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">return</span> [</div>
+<div class="line">            <span class="stringliteral">&#39;title&#39;</span> =&gt; $title,</div>
+<div class="line">            <span class="stringliteral">&#39;content&#39;</span> =&gt; $content,</div>
+<div class="line">            <span class="stringliteral">&#39;link&#39;</span> =&gt; $link,</div>
+<div class="line">            <span class="stringliteral">&#39;image&#39;</span> =&gt; $image,</div>
+<div class="line">            <span class="stringliteral">&#39;footer&#39;</span>=&gt; $author</div>
+<div class="line">        ];</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> printWebsite()  {</div>
+<div class="line">        $articles = $this-&gt;getArticles();</div>
+<div class="line"> </div>
+<div class="line">        $html = <span class="stringliteral">&#39;&lt;div&gt;&#39;</span>;</div>
+<div class="line">            $article = $articles-&gt;item(rand(0, $articles-&gt;length - 1));</div>
+<div class="line">            $varArticle = $this-&gt;getArticle($article);</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;div&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;h3&gt;&#39;</span> . $varArticle[<span class="stringliteral">&#39;title&#39;</span>] . <span class="stringliteral">&#39;&lt;/h3&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;p&gt;&#39;</span> . $varArticle[<span class="stringliteral">&#39;content&#39;</span>] . <span class="stringliteral">&#39;&lt;/p&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . $varArticle[<span class="stringliteral">&#39;link&#39;</span>] . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;img src=&quot;&#39;</span> . $varArticle[<span class="stringliteral">&#39;image&#39;</span>] . <span class="stringliteral">&#39;&quot; height=190em width=100%&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;footer&gt; &lt;p&gt;&lt;small&gt;Publié&#39;</span> . $varArticle[<span class="stringliteral">&#39;footer&#39;</span>] . <span class="stringliteral">&#39;&lt;/small&gt;&lt;/p&gt; &lt;/footer&gt;&#39;</span>;</div>
+<div class="line">            $html .= <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;</div>
+<div class="line"> </div>
+<div class="line">        $html .= <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;</div>
+<div class="line">        echo $html;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">}</div>
+<div class="ttc" id="anamespacemodels_html"><div class="ttname"><a href="namespacemodels.html">models</a></div><div class="ttdef"><b>Definition</b> Alert.php:3</div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.1 </li>
+  </ul>
+</div>
+</body>
+</html>

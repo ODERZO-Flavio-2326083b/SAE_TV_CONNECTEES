@@ -1,0 +1,242 @@
+\doxysection{Référence de la classe controllers\textbackslash{}Alert\+Controller}
+\hypertarget{classcontrollers_1_1_alert_controller}{}\label{classcontrollers_1_1_alert_controller}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}Alert\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{classcontrollers_1_1_alert_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de controllers\textbackslash{}Alert\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_alert_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_affd55cdc212e441406e074bf4a49260e}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_a36d9eaddce50b5789c22187bac809ec6}{insert}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_af2d10ec2ab412a67709712113ae6a896}{modify}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_a1f07c302c31625ef193f65b773e13629}{display\+All}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_a0ca5f022bc0d44f68ca851ef82e7c78f}{alert\+Main}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_a5563fea5601a2c4fb07a65d181e36c01}{register\+New\+Alert}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_alert_controller_a8d00d5cc768314e52339cedbaa9a474b}{end\+Date\+Check\+Alert}} (\$id, \$end\+Date)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classcontrollers_1_1_controller}{controllers\textbackslash{}\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}{get\+Part\+Of\+Url}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}{add\+Log\+Event}} (\$event)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}{get\+Url}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}{get\+File\+Path}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}{add\+File}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_alert}{Alert}} \mbox{\hyperlink{classcontrollers_1_1_alert_controller_a0d0f80a27491a3e65f8dcdaee962e9ee}{\$\+\_\+model}}
+\item 
+\mbox{\hyperlink{classviews_1_1_alert_view}{Alert\+View}} \mbox{\hyperlink{classcontrollers_1_1_alert_controller_a8b83356c7c77956809f418c241c5ce44}{\$\+\_\+view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrollers_1_1_alert_controller_affd55cdc212e441406e074bf4a49260e}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_affd55cdc212e441406e074bf4a49260e} 
+controllers\textbackslash{}\+Alert\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe Alert\+Controller Initialise le modèle et la vue des alertes. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1_alert_controller_a0ca5f022bc0d44f68ca851ef82e7c78f}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!alertMain@{alertMain}}
+\index{alertMain@{alertMain}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{alertMain()}{alertMain()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a0ca5f022bc0d44f68ca851ef82e7c78f} 
+controllers\textbackslash{}\+Alert\+Controller\+::alert\+Main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche les alertes pertinentes pour l\textquotesingle{}utilisateur actuel.
+
+Cette méthode récupère les alertes spécifiques à l\textquotesingle{}utilisateur connecté ainsi que les alertes publiques destinées à tout le monde. Elle vérifie ensuite si chaque alerte est toujours valide en comparant la date d\textquotesingle{}expiration. Enfin, elle affiche le contenu des alertes si des alertes existent.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_alert_controller_a0ca5f022bc0d44f68ca851ef82e7c78f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_alert_controller_a1f07c302c31625ef193f65b773e13629}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!displayAll@{displayAll}}
+\index{displayAll@{displayAll}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{displayAll()}{displayAll()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a1f07c302c31625ef193f65b773e13629} 
+controllers\textbackslash{}\+Alert\+Controller\+::display\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche la liste paginée des alertes pour l\textquotesingle{}utilisateur actuel.
+
+Cette méthode récupère et affiche une liste d\textquotesingle{}alertes en fonction des permissions de l\textquotesingle{}utilisateur connecté. Si l\textquotesingle{}utilisateur est un administrateur ou un secrétaire, toutes les alertes sont affichées. Sinon, seules les alertes créées par l\textquotesingle{}utilisateur sont listées. Elle gère également la pagination, le nombre d\textquotesingle{}alertes par page et permet la suppression des alertes sélectionnées.
+
+\begin{DoxyReturn}{Renvoie}
+string Le contenu HTML de la liste des alertes, incluant les options de pagination et de suppression.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classcontrollers_1_1_alert_controller_a1f07c302c31625ef193f65b773e13629_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_alert_controller_a8d00d5cc768314e52339cedbaa9a474b}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!endDateCheckAlert@{endDateCheckAlert}}
+\index{endDateCheckAlert@{endDateCheckAlert}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{endDateCheckAlert()}{endDateCheckAlert()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a8d00d5cc768314e52339cedbaa9a474b} 
+controllers\textbackslash{}\+Alert\+Controller\+::end\+Date\+Check\+Alert (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$end\+Date}{}\end{DoxyParamCaption})}
+
+Vérifie et supprime les alertes expirées.
+
+Cette méthode compare la date d\textquotesingle{}expiration de l\textquotesingle{}alerte avec la date actuelle. Si l\textquotesingle{}alerte est expirée (date d\textquotesingle{}expiration égale ou antérieure à la date actuelle), elle est supprimée de la base de données.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant unique de l\textquotesingle{}alerte à vérifier. \\
+\hline
+string & {\em \$end\+Date} & La date d\textquotesingle{}expiration de l\textquotesingle{}alerte au format \textquotesingle{}Y-\/m-\/d\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_alert_controller_a8d00d5cc768314e52339cedbaa9a474b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_alert_controller_a36d9eaddce50b5789c22187bac809ec6}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!insert@{insert}}
+\index{insert@{insert}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a36d9eaddce50b5789c22187bac809ec6} 
+controllers\textbackslash{}\+Alert\+Controller\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Insère une nouvelle alerte après validation des données du formulaire.
+
+Cette méthode vérifie si le formulaire d\textquotesingle{}ajout d\textquotesingle{}alerte a été soumis et valide les champs tels que les codes ADE, le contenu de l\textquotesingle{}alerte et la date d\textquotesingle{}expiration. Si la validation réussit, l\textquotesingle{}alerte est insérée dans la base de données. Si une erreur survient lors de l\textquotesingle{}insertion, un message d\textquotesingle{}erreur est affiché.
+
+\begin{DoxyReturn}{Renvoie}
+string Le formulaire de création d\textquotesingle{}alerte ou un message de confirmation/erreur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classcontrollers_1_1_alert_controller_a36d9eaddce50b5789c22187bac809ec6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_alert_controller_af2d10ec2ab412a67709712113ae6a896}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!modify@{modify}}
+\index{modify@{modify}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{modify()}{modify()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_af2d10ec2ab412a67709712113ae6a896} 
+controllers\textbackslash{}\+Alert\+Controller\+::modify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Modifie une alerte existante après validation des données du formulaire.
+
+Cette méthode vérifie l\textquotesingle{}existence de l\textquotesingle{}alerte à partir de l\textquotesingle{}ID fourni et s\textquotesingle{}assure que l\textquotesingle{}utilisateur actuel a les permissions nécessaires (administrateur, secrétaire ou auteur de l\textquotesingle{}alerte) pour modifier l\textquotesingle{}alerte. Elle permet également de modifier le contenu, la date d\textquotesingle{}expiration et les codes ADE associés à l\textquotesingle{}alerte. Si la modification réussit, une confirmation est affichée, sinon un message d\textquotesingle{}erreur est renvoyé.
+
+La méthode permet aussi de supprimer l\textquotesingle{}alerte si l\textquotesingle{}utilisateur en fait la demande.
+
+\begin{DoxyReturn}{Renvoie}
+string Le formulaire de modification de l\textquotesingle{}alerte ou un message de confirmation/erreur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1_alert_controller_a5563fea5601a2c4fb07a65d181e36c01}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!registerNewAlert@{registerNewAlert}}
+\index{registerNewAlert@{registerNewAlert}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{registerNewAlert()}{registerNewAlert()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a5563fea5601a2c4fb07a65d181e36c01} 
+controllers\textbackslash{}\+Alert\+Controller\+::register\+New\+Alert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Synchronise les alertes du site administrateur avec les alertes locales.
+
+Cette méthode récupère les alertes provenant du site administrateur et les compare avec les alertes locales. Si une alerte existe en local mais diffère de celle du site administrateur, elle est mise à jour avec les nouvelles informations (contenu et date d\textquotesingle{}expiration). Si une alerte du site administrateur n\textquotesingle{}existe pas localement, elle est ajoutée. Les alertes qui ne sont plus présentes sur le site administrateur sont supprimées localement.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16-\/09-\/2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classcontrollers_1_1_alert_controller_a0d0f80a27491a3e65f8dcdaee962e9ee}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!\$\_model@{\$\_model}}
+\index{\$\_model@{\$\_model}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{\$\_model}{\$\_model}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a0d0f80a27491a3e65f8dcdaee962e9ee} 
+\mbox{\hyperlink{classmodels_1_1_alert}{Alert}} controllers\textbackslash{}\+Alert\+Controller\+::\$\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcontrollers_1_1_alert_controller_a8b83356c7c77956809f418c241c5ce44}\index{controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}!\$\_view@{\$\_view}}
+\index{\$\_view@{\$\_view}!controllers\textbackslash{}AlertController@{controllers\textbackslash{}AlertController}}
+\doxysubsubsection{\texorpdfstring{\$\_view}{\$\_view}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_alert_controller_a8b83356c7c77956809f418c241c5ce44} 
+\mbox{\hyperlink{classviews_1_1_alert_view}{Alert\+View}} controllers\textbackslash{}\+Alert\+Controller\+::\$\+\_\+view\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_alert_controller_8php}{Alert\+Controller.\+php}}\end{DoxyCompactItemize}

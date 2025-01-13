@@ -1,0 +1,359 @@
+\doxysection{Référence de la classe controllers\textbackslash{}User\+Controller}
+\hypertarget{classcontrollers_1_1_user_controller}{}\label{classcontrollers_1_1_user_controller}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}User\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de controllers\textbackslash{}User\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_aa73cf3e6d0de42e50fdf0c84f874e07d}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_aa06d2726dda1dc9ea6d7f7580d9f7501}{delete}} (\$id)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_ae531240a86870fcb718cd866972e5df2}{delete\+Account}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_a88a2d860ffd94e36d882633f54e20eee}{choose\+Modif}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_ad4f5f977afd13a760f96605e3236bf27}{modify\+Pwd}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_a52764873bf9545ca63ba48f4c9f46a5a}{display\+Schedule}} (\$code, \$all\+Day=false)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_ac37c6f3214031e97d1a165a8310bcd2d}{display\+Year\+Schedule}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_a9432edc347d1c81f3f6d76e77abaffae}{check\+Duplicate\+User}} (\mbox{\hyperlink{classmodels_1_1_user}{User}} \$new\+User)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_aefe0ff305e91a29186c372a33deda1e2}{modify\+Codes}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_user_controller_a1a953c16c30d7d91150308d2cad52191}{display\+All\+Departement}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classcontrollers_1_1_controller}{controllers\textbackslash{}\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}{get\+Part\+Of\+Url}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}{add\+Log\+Event}} (\$event)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}{get\+Url}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}{get\+File\+Path}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}{add\+File}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_user}{User}} \mbox{\hyperlink{classcontrollers_1_1_user_controller_ab4c488f155d3e1bd871dfe1f9bd831b4}{\$\+\_\+model}}
+\item 
+\mbox{\hyperlink{classviews_1_1_user_view}{User\+View}} \mbox{\hyperlink{classcontrollers_1_1_user_controller_a20ecf3375a7cd1623861b1b7958dd94a}{\$\+\_\+view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrollers_1_1_user_controller_aa73cf3e6d0de42e50fdf0c84f874e07d}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_aa73cf3e6d0de42e50fdf0c84f874e07d} 
+controllers\textbackslash{}\+User\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe User\+Controller.
+
+Ce constructeur initialise le modèle d\textquotesingle{}utilisateur et la vue associée à l\textquotesingle{}interface utilisateur. Il est appelé lors de la création d\textquotesingle{}une instance de cette classe. Le modèle est utilisé pour interagir avec la base de données des utilisateurs, tandis que la vue gère l\textquotesingle{}affichage des données à l\textquotesingle{}utilisateur.
+
+
+\begin{DoxyItemize}
+\item Le modèle \textquotesingle{}User\textquotesingle{} est responsable de la logique métier liée aux utilisateurs.
+\item La vue \textquotesingle{}User\+View\textquotesingle{} est utilisée pour rendre le contenu HTML associé à l\textquotesingle{}affichage des utilisateurs.
+\end{DoxyItemize}
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+
+
+Réimplémentée dans \mbox{\hyperlink{classcontrollers_1_1_secretary_controller_aa6eaddf2fd6986b4d7e06c5b6d24c177}{controllers\textbackslash{}\+Secretary\+Controller}}, \mbox{\hyperlink{classcontrollers_1_1_subadmin_controller_a99078e2028373afe24fe6d1263e2d846}{controllers\textbackslash{}\+Subadmin\+Controller}}, \mbox{\hyperlink{classcontrollers_1_1_technician_controller_a711f7e20f7dcb56a9fd4cf644b875ddb}{controllers\textbackslash{}\+Technician\+Controller}}, et \mbox{\hyperlink{classcontrollers_1_1_television_controller_a687aa14cc31f0886c86a8d2d56a49303}{controllers\textbackslash{}\+Television\+Controller}}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1_user_controller_a9432edc347d1c81f3f6d76e77abaffae}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!checkDuplicateUser@{checkDuplicateUser}}
+\index{checkDuplicateUser@{checkDuplicateUser}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{checkDuplicateUser()}{checkDuplicateUser()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_a9432edc347d1c81f3f6d76e77abaffae} 
+controllers\textbackslash{}\+User\+Controller\+::check\+Duplicate\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmodels_1_1_user}{User}}}]{\$new\+User}{}\end{DoxyParamCaption})}
+
+Vérifie si un utilisateur avec le même login ou email existe déjà dans la base de données.
+
+Cette méthode compare les informations du nouvel utilisateur avec les utilisateurs existants pour déterminer s\textquotesingle{}il y a des doublons en fonction du login et de l\textquotesingle{}email. Si un utilisateur correspondant est trouvé, la méthode renvoie true, sinon false.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+User & {\em \$new\+User} & L\textquotesingle{}objet utilisateur à vérifier, contenant les informations de login et d\textquotesingle{}email à comparer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si un utilisateur avec le même login ou email existe, sinon false. 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_a9432edc347d1c81f3f6d76e77abaffae_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_a9432edc347d1c81f3f6d76e77abaffae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_user_controller_a88a2d860ffd94e36d882633f54e20eee}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!chooseModif@{chooseModif}}
+\index{chooseModif@{chooseModif}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{chooseModif()}{chooseModif()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_a88a2d860ffd94e36d882633f54e20eee} 
+controllers\textbackslash{}\+User\+Controller\+::choose\+Modif (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche les options de modification pour le compte utilisateur.
+
+Cette méthode génère une interface utilisateur permettant aux étudiants et aux autres types d\textquotesingle{}utilisateurs de choisir les options de modification disponibles pour leur compte. Les utilisateurs peuvent modifier leur mot de passe, leurs codes d\textquotesingle{}accès ou supprimer leur compte.
+
+
+\begin{DoxyItemize}
+\item Pour les étudiants \+:
+\begin{DoxyItemize}
+\item Options disponibles \+: Modifier mes codes, Modifier mon mot de passe, Supprimer mon compte.
+\end{DoxyItemize}
+\item Pour les autres utilisateurs \+:
+\begin{DoxyItemize}
+\item Options disponibles \+: Modifier mon mot de passe, Supprimer mon compte.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Renvoie}
+string La vue affichant les options de modification sélectionnées par l\textquotesingle{}utilisateur. 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_a88a2d860ffd94e36d882633f54e20eee_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_user_controller_aa06d2726dda1dc9ea6d7f7580d9f7501}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!delete@{delete}}
+\index{delete@{delete}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_aa06d2726dda1dc9ea6d7f7580d9f7501} 
+controllers\textbackslash{}\+User\+Controller\+::delete (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Supprime un utilisateur et toutes les données associées.
+
+Cette méthode supprime un utilisateur identifié par son ID. En plus de supprimer l\textquotesingle{}utilisateur, elle gère la suppression des alertes et des informations associées si l\textquotesingle{}utilisateur a certains rôles (enseignant, secrétaire, administrateur, directeur d\textquotesingle{}études).
+
+
+\begin{DoxyItemize}
+\item Récupère l\textquotesingle{}utilisateur à supprimer en utilisant l\textquotesingle{}ID fourni.
+\item Supprime les alertes associées à l\textquotesingle{}utilisateur si son rôle est "{}enseignant"{}, "{}secretaire"{}, "{}administrator"{} ou "{}directeuretude"{}.
+\item Supprime les informations associées à l\textquotesingle{}utilisateur si son rôle est "{}secretaire"{}, "{}administrator"{} ou "{}directeuretude"{}.
+\item Pour chaque information, si son type est "{}img"{}, "{}pdf"{}, "{}tab"{} ou "{}event"{}, le fichier associé est également supprimé.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}ID de l\textquotesingle{}utilisateur à supprimer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2à24-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1_user_controller_ae531240a86870fcb718cd866972e5df2}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!deleteAccount@{deleteAccount}}
+\index{deleteAccount@{deleteAccount}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{deleteAccount()}{deleteAccount()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_ae531240a86870fcb718cd866972e5df2} 
+controllers\textbackslash{}\+User\+Controller\+::delete\+Account (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gère la suppression du compte utilisateur.
+
+Cette méthode permet à l\textquotesingle{}utilisateur de demander la suppression de son compte en envoyant une demande de désinscription, puis de valider la suppression en utilisant un code de désinscription. La méthode suit deux étapes \+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Demande de désinscription}} \+: Lorsque l\textquotesingle{}utilisateur soumet son mot de passe pour vérifier son identité, un code de désinscription est généré et envoyé par e-\/mail à l\textquotesingle{}utilisateur.
+\item {\bfseries{Validation de la désinscription}} \+: L\textquotesingle{}utilisateur peut ensuite soumettre le code reçu pour confirmer la suppression de son compte. Si le code correspond, le compte est supprimé.
+\end{DoxyEnumerate}
+
+\begin{DoxyReturn}{Renvoie}
+string La vue pour supprimer le compte et entrer le code de désinscription. 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_ae531240a86870fcb718cd866972e5df2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_user_controller_a1a953c16c30d7d91150308d2cad52191}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!displayAllDepartement@{displayAllDepartement}}
+\index{displayAllDepartement@{displayAllDepartement}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{displayAllDepartement()}{displayAllDepartement()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_a1a953c16c30d7d91150308d2cad52191} 
+controllers\textbackslash{}\+User\+Controller\+::display\+All\+Departement (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche la liste de tous les départements sous forme d\textquotesingle{}options.
+
+Cette méthode récupère tous les départements à partir du modèle \textquotesingle{}Department\textquotesingle{}, puis les transmet à la vue pour construire une liste d\textquotesingle{}options, généralement utilisée dans un formulaire.
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le HTML généré par la vue pour les options des départements.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1_user_controller_a52764873bf9545ca63ba48f4c9f46a5a}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!displaySchedule@{displaySchedule}}
+\index{displaySchedule@{displaySchedule}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{displaySchedule()}{displaySchedule()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_a52764873bf9545ca63ba48f4c9f46a5a} 
+controllers\textbackslash{}\+User\+Controller\+::display\+Schedule (\begin{DoxyParamCaption}\item[{}]{\$code}{, }\item[{}]{\$all\+Day}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Affiche le calendrier des événements associés à un code donné.
+
+Cette méthode récupère et affiche les événements programmés pour un code spécifique, en utilisant la classe R34\+ICS pour traiter et formater les données du calendrier.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$code} & Le code associé aux événements à afficher. Ce code est utilisé pour localiser le fichier du calendrier. \\
+\hline
+bool & {\em \$all\+Day} & Indique si les événements à afficher sont des événements toute la journée. Par défaut, cette valeur est false.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le contenu HTML généré pour afficher le calendrier des événements associés au code spécifié.
+\end{DoxyReturn}
+@global R34\+ICS \$\+R34\+ICS Instance de la classe R34\+ICS utilisée pour afficher le calendrier. Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_a52764873bf9545ca63ba48f4c9f46a5a_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_a52764873bf9545ca63ba48f4c9f46a5a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_user_controller_ac37c6f3214031e97d1a165a8310bcd2d}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!displayYearSchedule@{displayYearSchedule}}
+\index{displayYearSchedule@{displayYearSchedule}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{displayYearSchedule()}{displayYearSchedule()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_ac37c6f3214031e97d1a165a8310bcd2d} 
+controllers\textbackslash{}\+User\+Controller\+::display\+Year\+Schedule (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche le calendrier des événements pour une année spécifique.
+
+Cette méthode récupère l\textquotesingle{}identifiant de l\textquotesingle{}URL de l\textquotesingle{}année, vérifie sa validité, puis affiche le calendrier des événements associés à cette année. Si l\textquotesingle{}identifiant n\textquotesingle{}est pas valide ou si aucun calendrier n\textquotesingle{}est trouvé, elle renvoie un affichage pour sélectionner un calendrier.
+
+\begin{DoxyReturn}{Renvoie}
+string Le contenu HTML généré pour afficher le calendrier de l\textquotesingle{}année spécifiée, ou un formulaire pour sélectionner un calendrier si l\textquotesingle{}identifiant est invalide ou inexistant. 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_ac37c6f3214031e97d1a165a8310bcd2d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_user_controller_aefe0ff305e91a29186c372a33deda1e2}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!modifyCodes@{modifyCodes}}
+\index{modifyCodes@{modifyCodes}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{modifyCodes()}{modifyCodes()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_aefe0ff305e91a29186c372a33deda1e2} 
+controllers\textbackslash{}\+User\+Controller\+::modify\+Codes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Modifie les codes associés à l\textquotesingle{}utilisateur actuel.
+
+Cette méthode permet à l\textquotesingle{}utilisateur de modifier ses codes d\textquotesingle{}année, de groupe et de demi-\/groupe. Elle récupère les informations soumises via un formulaire, valide les données, et met à jour les codes de l\textquotesingle{}utilisateur dans la base de données.
+
+Les étapes suivantes sont suivies \+:
+\begin{DoxyEnumerate}
+\item Vérification des données soumises (année, groupe, demi-\/groupe).
+\item Récupération des objets Code\+Ade correspondants.
+\item Validation des types de code.
+\item Mise à jour des codes de l\textquotesingle{}utilisateur et notification du succès ou de l\textquotesingle{}échec de l\textquotesingle{}opération.
+\end{DoxyEnumerate}
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le rendu HTML du formulaire de modification des codes, y compris les messages de succès ou d\textquotesingle{}erreur si applicable. 
+\end{DoxyReturn}
+\Hypertarget{classcontrollers_1_1_user_controller_ad4f5f977afd13a760f96605e3236bf27}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!modifyPwd@{modifyPwd}}
+\index{modifyPwd@{modifyPwd}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{modifyPwd()}{modifyPwd()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_ad4f5f977afd13a760f96605e3236bf27} 
+controllers\textbackslash{}\+User\+Controller\+::modify\+Pwd (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Modifie le mot de passe de l\textquotesingle{}utilisateur actuel.
+
+Cette méthode gère la logique de modification du mot de passe d\textquotesingle{}un utilisateur connecté. Elle vérifie d\textquotesingle{}abord si le mot de passe actuel fourni par l\textquotesingle{}utilisateur est correct, puis, si c\textquotesingle{}est le cas, elle met à jour le mot de passe avec le nouveau mot de passe spécifié.
+
+
+\begin{DoxyItemize}
+\item Si l\textquotesingle{}utilisateur fournit un mot de passe correct, le nouveau mot de passe est enregistré, et une confirmation de la modification est affichée.
+\item Si le mot de passe actuel est incorrect, un message d\textquotesingle{}erreur est affiché.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Renvoie}
+string La vue affichant le formulaire pour modifier le mot de passe ou un message de confirmation de modification. 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_user_controller_ad4f5f977afd13a760f96605e3236bf27_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classcontrollers_1_1_user_controller_ab4c488f155d3e1bd871dfe1f9bd831b4}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!\$\_model@{\$\_model}}
+\index{\$\_model@{\$\_model}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{\$\_model}{\$\_model}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_ab4c488f155d3e1bd871dfe1f9bd831b4} 
+\mbox{\hyperlink{classmodels_1_1_user}{User}} controllers\textbackslash{}\+User\+Controller\+::\$\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcontrollers_1_1_user_controller_a20ecf3375a7cd1623861b1b7958dd94a}\index{controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}!\$\_view@{\$\_view}}
+\index{\$\_view@{\$\_view}!controllers\textbackslash{}UserController@{controllers\textbackslash{}UserController}}
+\doxysubsubsection{\texorpdfstring{\$\_view}{\$\_view}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_user_controller_a20ecf3375a7cd1623861b1b7958dd94a} 
+\mbox{\hyperlink{classviews_1_1_user_view}{User\+View}} controllers\textbackslash{}\+User\+Controller\+::\$\+\_\+view\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_user_controller_8php}{User\+Controller.\+php}}\end{DoxyCompactItemize}

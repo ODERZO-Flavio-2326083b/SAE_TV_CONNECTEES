@@ -1,0 +1,9 @@
+<map id="models\Department\update" name="models\Department\update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,184,83"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="260,5,440,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,53,264,33,265,38,166,58"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_department.html#a9255883e26fb4b8396e9218ad2277d87" title=" " alt="" coords="232,56,468,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,67,216,67,216,72,184,72"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_department.html#a9d417afba6392a97f2a2e1e1ed7eb6a5" title=" " alt="" coords="254,107,446,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,81,265,100,264,106,165,86"/>
+</map>

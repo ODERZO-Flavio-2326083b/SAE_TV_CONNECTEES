@@ -1,0 +1,26 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="Node000000" href="$classcontrollers_1_1_controller.html" title=" " alt="" coords="5,132,147,159"/>
+<area shape="rect" id="Node000001" href="$classcontrollers_1_1_alert_controller.html" title=" " alt="" coords="215,157,384,184"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="162,152,215,158,214,164,162,158"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_c_s_s_customizer_controller.html" title=" " alt="" coords="209,208,390,251"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="122,163,196,194,228,205,226,210,194,198,120,168"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_code_ade_controller.html" title=" " alt="" coords="202,275,397,301"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="98,169,140,216,166,240,196,260,222,272,220,277,193,265,163,244,136,220,94,173"/>
+<area shape="rect" id="Node000004" href="$classcontrollers_1_1_department_controller.html" title=" " alt="" coords="195,5,404,32"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="97,119,139,79,165,59,193,42,222,30,224,35,196,46,168,63,143,83,101,122"/>
+<area shape="rect" id="Node000005" href="$classcontrollers_1_1_information_controller.html" title=" " alt="" coords="196,56,402,83"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="118,123,194,92,233,81,235,86,196,97,120,128"/>
+<area shape="rect" id="Node000006" href="$classcontrollers_1_1_user_controller.html" title=" " alt="" coords="215,107,384,133"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="162,133,214,127,215,132,162,138"/>
+<area shape="rect" id="Node000007" href="$classcontrollers_1_1_secretary_controller.html" title=" " alt="" coords="455,81,652,108"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="399,107,454,102,455,107,400,113"/>
+<area shape="rect" id="Node000008" href="$classcontrollers_1_1_subadmin_controller.html" title=" " alt="" coords="454,132,653,159"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="400,127,454,133,453,138,399,133"/>
+<area shape="rect" id="Node000009" href="$classcontrollers_1_1_technician_controller.html" title=" " alt="" coords="452,199,655,225"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="383,136,405,143,430,155,453,168,517,196,515,201,451,173,427,160,403,148,381,141"/>
+<area shape="rect" id="Node000011" href="$classcontrollers_1_1_television_controller.html" title=" " alt="" coords="454,283,653,309"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="399,139,406,143,425,166,432,189,439,212,454,236,486,261,520,280,517,284,483,266,450,239,434,214,427,190,420,168,402,147,396,143"/>
+<area shape="rect" id="Node000010" href="$interfacecontrollers_1_1_schedule.html" title=" " alt="" coords="230,325,369,352"/>
+<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="383,320,403,311,417,301,427,291,450,269,524,224,527,228,454,273,431,295,421,305,405,316,385,325"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="384,322,469,307,470,313,385,327"/>
+</map>

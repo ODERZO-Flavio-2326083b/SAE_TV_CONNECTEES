@@ -1,0 +1,9 @@
+<map id="views\DepartmentView\renderAllDeptsTable" name="views\DepartmentView\renderAllDeptsTable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,48,162,91"/>
+<area shape="rect" id="Node000002" href="$classviews_1_1_view.html#a0b4ea62c83957cfaf1f8e1254d5d14b7" title=" " alt="" coords="221,5,400,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,49,232,33,233,39,163,54"/>
+<area shape="rect" id="Node000003" href="$classviews_1_1_view.html#a0decacec17aa7984c858d1518a225475" title=" " alt="" coords="210,56,411,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="162,67,194,67,194,72,162,72"/>
+<area shape="rect" id="Node000004" href="$classviews_1_1_view.html#ae5777bd9277dcf4cc3cf537866b3e7bf" title=" " alt="" coords="236,107,384,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,84,233,100,232,105,161,89"/>
+</map>

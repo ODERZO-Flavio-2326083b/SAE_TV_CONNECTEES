@@ -1,0 +1,312 @@
+\doxysection{Répertoire de référence de C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendor/johngrogg/ics-\/parser}
+\hypertarget{dir_08e49f30b100c6ff5cb5fe6c899d7c04}{}\label{dir_08e49f30b100c6ff5cb5fe6c899d7c04}\index{Répertoire de référence de C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/R34ICS/vendor/johngrogg/ics-\/parser@{Répertoire de référence de C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/R34ICS/vendor/johngrogg/ics-\/parser}}
+Graphe des dépendances de répertoires pour ics-\/parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dir_08e49f30b100c6ff5cb5fe6c899d7c04_dep}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Répertoires}
+\begin{DoxyCompactItemize}
+\item 
+répertoire \mbox{\hyperlink{dir_56607417336af051073e5414b53cf7be}{examples}}
+\item 
+répertoire \mbox{\hyperlink{dir_42db1592dc8c65984cfc52d92af69be1}{src}}
+\item 
+répertoire \mbox{\hyperlink{dir_43a1df45abea7e9fc0eed830309595d5}{tests}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fichiers}
+\begin{DoxyCompactItemize}
+\item 
+fichier \mbox{\hyperlink{ecs_8php}{ecs.\+php}}
+\item 
+fichier \mbox{\hyperlink{rector_8php}{rector.\+php}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+\href{https://packagist.org/packages/johngrogg/ics-parser}{\texttt{ }} \href{https://packagist.org/packages/johngrogg/ics-parser}{\texttt{ }}
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md35}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{README.md_autotoc_md35}
+\hypertarget{README.md_autotoc_md36}{}\doxysubsubsection{\texorpdfstring{Requirements}{Requirements}}\label{README.md_autotoc_md36}
+
+\begin{DoxyItemize}
+\item PHP 5 (≥ 5.\+6.\+40)
+\item \href{https://icalendar.org/validator.html}{\texttt{ Valid ICS}} ({\ttfamily .ics}, {\ttfamily .ical}, {\ttfamily .ifb}) file
+\item \href{https://www.iana.org/time-zones}{\texttt{ IANA}}, \href{http://cldr.unicode.org/translation/timezones}{\texttt{ Unicode CLDR}} or \href{https://support.microsoft.com/en-ca/help/973627/microsoft-time-zone-index-values}{\texttt{ Windows}} Time Zones
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md37}{}\doxysubsubsection{\texorpdfstring{Setup}{Setup}}\label{README.md_autotoc_md37}
+
+\begin{DoxyItemize}
+\item Install \href{https://getcomposer.org/}{\texttt{ Composer}}
+\begin{DoxyItemize}
+\item Add the following dependency to {\ttfamily composer.\+json}
+\begin{DoxyItemize}
+\item \+:warning\+: {\bfseries{Note with \doxylink{namespace_composer}{Composer} the owner is {\ttfamily johngrogg} and not {\ttfamily u01jmg3}}}
+\end{DoxyItemize}
+\item To access the latest stable branch ({\ttfamily v3}) use the following
+\begin{DoxyItemize}
+\item To access new features you can require \href{https://getcomposer.org/doc/articles/aliases.md\#branch-alias}{\texttt{ {\ttfamily dev-\/master}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ "{}require"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}johngrogg/ics-\/parser"{}:\ "{}\string^3"{}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md38}{}\doxysubsection{\texorpdfstring{Running tests}{Running tests}}\label{README.md_autotoc_md38}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{composer\ test}
+
+\end{DoxyCode}
+\hypertarget{README.md_autotoc_md39}{}\doxysubsection{\texorpdfstring{How to use}{How to use}}\label{README.md_autotoc_md39}
+\hypertarget{README.md_autotoc_md40}{}\doxysubsubsection{\texorpdfstring{How to instantiate the Parser}{How to instantiate the Parser}}\label{README.md_autotoc_md40}
+
+\begin{DoxyItemize}
+\item Using the example script as a guide, \href{https://github.com/u01jmg3/ics-parser/blob/master/examples/index.php\#L1-L22}{\texttt{ refer to this code}}
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md41}{}\doxysubsubsubsection{\texorpdfstring{What will the parser return?}{What will the parser return?}}\label{README.md_autotoc_md41}
+
+\begin{DoxyItemize}
+\item Each key/value pair from the i\+Cal file will be parsed creating an associative array for both the calendar and every event it contains.
+\item Also injected will be content under {\ttfamily dtstart\+\_\+tz} and {\ttfamily dtend\+\_\+tz} for accessing start and end dates with time zone data applied.
+\item Where possible \href{https://secure.php.net/manual/en/class.datetime.php}{\texttt{ {\ttfamily Date\+Time}}} objects are used and returned.
+\begin{DoxyItemize}
+\item \+:information\+\_\+source\+: {\bfseries{Note the parser is limited to \href{https://www.php.net/manual/en/datetime.formats.relative.php}{\texttt{ relative date formats}} which can inhibit how complex recurrence rule parts are processed (e.\+g. {\ttfamily BYDAY} combined with {\ttfamily BYSETPOS})}}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ the\ whole\ calendar}}
+\DoxyCodeLine{var\_dump(\$ical-\/>cal);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ every\ event}}
+\DoxyCodeLine{var\_dump(\$ical-\/>events());}
+
+\end{DoxyCode}
+
+\item Also included are special {\ttfamily \{property\}\+\_\+array} arrays which further resolve the contents of a key/value pair.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Dump\ a\ parsed\ event's\ start\ date}}
+\DoxyCodeLine{var\_dump(\$event-\/>dtstart\_array);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ array\ (size=4)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 0\ =>}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ \ \ array\ (size=1)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ \ \ \ \ 'TZID'\ =>\ string\ 'America/Detroit'\ (length=15)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 1\ =>\ string\ '20160409T090000'\ (length=15)}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 2\ =>\ int\ 1460192400}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ \ 3\ =>\ string\ 'TZID=America/Detroit:20160409T090000'\ (length=36)}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{Are you using Outlook?}{Are you using Outlook?}}\label{README.md_autotoc_md42}
+Outlook has a quirk where it requires the User Agent string to be set in your request headers.
+
+We have done this for you by injecting a default User Agent string, if one has not been specified.
+
+If you wish to provide your own User agent string you can do so by using the {\ttfamily http\+User\+Agent} argument when creating your \doxylink{namespace_i_cal}{ICal} object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ical\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_i_cal}{ICal}}(\$url,\ array(\textcolor{stringliteral}{'httpUserAgent'}\ =>\ \textcolor{stringliteral}{'A\ Different\ User\ Agent'}));}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md44}{}\doxysubsection{\texorpdfstring{When Parsing an i\+Cal Feed}{When Parsing an i\+Cal Feed}}\label{README.md_autotoc_md44}
+Parsing \href{https://en.wikipedia.org/wiki/ICalendar}{\texttt{ i\+Cal/i\+Calendar/\+ICS}} resources can pose several challenges. One challenge is that the specification is a moving target; the original RFC has only been updated four times in ten years. The other challenge is that vendors were both liberal (read\+: creative) in interpreting the specification and productive implementing proprietary extensions.
+
+However, what impedes efficient parsing most directly are recurrence rules for events. This library parses the original calendar into an easy to work with memory model. This requires that each recurring event is expanded or exploded. Hence, a single event that occurs daily will generate a new event instance for each day as this parser processes the calendar (\`{}\$default\+Span\`{} limits this). To get an idea how this is done take a look at the \href{https://user-images.githubusercontent.com/624195/45904641-f3cd0a80-bded-11e8-925f-7bcee04b8575.png}{\texttt{ call graph}}.
+
+As a consequence the {\itshape entire} calendar is parsed line-\/by-\/line, and thus loaded into memory, first. As you can imagine large calendars tend to get huge when exploded i.\+e. with all their recurrence rules evaluated. This is exacerbated when old calendars do not remove past events as they get fatter and fatter every year.
+
+This limitation is particularly painful if you only need a window into the original calendar. It seems wasteful to parse the entire fully exploded calendar into memory if you later are going to call the \`{}events\+From\+Interval()\`{} or \`{}events\+From\+Range()\`{} on it.
+
+In late 2018 \href{https://github.com/u01jmg3/ics-parser/pull/190}{\texttt{ \#190}} added the option to drop all events outside a given range very early in the parsing process at the cost of some precision (time zone calculations are not calculated at that point). This massively reduces the total time for parsing a calendar. The same goes for memory consumption. The precondition is that you know upfront that you don\textquotesingle{}t care about events outside a given range.
+
+Let\textquotesingle{}s say you are only interested in events from yesterday, today and tomorrow. To compensate for the fact that the tricky time zone transformations and calculations have not been executed yet by the time the parser has to decide whether to keep or drop an event you can set it to filter for {\bfseries{+-\/2d}} instead of +-\/1d. Once it is done you would then call {\ttfamily events\+From\+Range()} with +-\/1d to get precisely the events in the window you are interested in. That is what the variables \`{}\$filter\+Days\+Before\`{} and \`{}\$filter\+Days\+After\`{} are for.
+
+In Q1 2019 \href{https://github.com/u01jmg3/ics-parser/pull/213}{\texttt{ \#213}} further improved the performance by immediately dropping {\itshape non-\/recurring} events once parsed if they are outside that fuzzy window. This greatly reduces the maximum memory consumption for large calendars. PHP by default does not allocate more than 128MB heap and would otherwise crash with {\ttfamily Fatal error\+: Allowed memory size of 134217728 bytes exhausted}. It goes without saying that recurring events first need to be evaluated before non-\/fitting events can be dropped.
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md46}{}\doxysubsection{\texorpdfstring{API}{API}}\label{README.md_autotoc_md46}
+\hypertarget{README.md_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{{\ttfamily ICal} API}{{\ttfamily ICal} API}}\label{README.md_autotoc_md47}
+\hypertarget{README.md_autotoc_md48}{}\doxysubsubsubsection{\texorpdfstring{Variables}{Variables}}\label{README.md_autotoc_md48}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Configurable   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Configurable   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily \$alarm\+Count}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   &Tracks the number of alarms in the current i\+Cal feed    \\\cline{1-4}
+{\ttfamily \$cal}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   &The parsed calendar    \\\cline{1-4}
+{\ttfamily \$default\+Span}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily 2}   &The value in years to use for indefinite, recurring events    \\\cline{1-4}
+{\ttfamily \$default\+Time\+Zone}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &\href{https://secure.php.net/manual/en/function.date-default-timezone-get.php}{\texttt{ System default}}   &Enables customisation of the default time zone    \\\cline{1-4}
+{\ttfamily \$default\+Week\+Start}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily MO}   &The two letter representation of the first day of the week    \\\cline{1-4}
+{\ttfamily \$disable\+Character\+Replacement}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily false}   &Toggles whether to disable all character replacement. Will replace curly quotes and other special characters with their standard equivalents if {\ttfamily false}. Can be a costly operation!    \\\cline{1-4}
+{\ttfamily \$event\+Count}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   &Tracks the number of events in the current i\+Cal feed    \\\cline{1-4}
+{\ttfamily \$filter\+Days\+After}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily null}   &When set the parser will ignore all events more than roughly this many days {\itshape after} now. To be on the safe side it is advised that you make the filter window {\ttfamily +/-\/ 1} day larger than necessary. For performance reasons this filter is applied before any date and time zone calculations are done. Hence, depending the time zone settings of the parser and the calendar the cut-\/off date is not "{}calibrated"{}. You can then use {\ttfamily \$ical-\/\texorpdfstring{$>$}{>}events\+From\+Range()} to precisely shrink the window.    \\\cline{1-4}
+{\ttfamily \$filter\+Days\+Before}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily null}   &When set the parser will ignore all events more than roughly this many days {\itshape before} now. See {\ttfamily \$filter\+Days\+After} above for more details.    \\\cline{1-4}
+{\ttfamily \$free\+Busy\+Count}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   &Tracks the free/busy count in the current i\+Cal feed    \\\cline{1-4}
+{\ttfamily \$http\+Basic\+Auth}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily array()}   &Holds the username and password for HTTP basic authentication    \\\cline{1-4}
+{\ttfamily \$http\+User\+Agent}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily null}   &Holds the custom User Agent string header    \\\cline{1-4}
+{\ttfamily \$http\+Accept\+Language}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily null}   &Holds the custom Accept Language request header, e.\+g. "{}en"{} or "{}de"{}    \\\cline{1-4}
+{\ttfamily \$http\+Protocol\+Version}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily null}   &Holds the custom HTTP Protocol version, e.\+g. "{}1.\+0"{} or "{}1.\+1"{}    \\\cline{1-4}
+{\ttfamily \$should\+Filter\+By\+Window}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily false}   &{\ttfamily true} if either {\ttfamily \$filter\+Days\+Before} or {\ttfamily \$filter\+Days\+After} are set    \\\cline{1-4}
+{\ttfamily \$skip\+Recurrence}   &\PBS\centering \+:ballot\+\_\+box\+\_\+with\+\_\+check\+:   &{\ttfamily false}   &Toggles whether to skip the parsing of recurrence rules    \\\cline{1-4}
+{\ttfamily \$todo\+Count}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &N/A   &Tracks the number of todos in the current i\+Cal feed    \\\cline{1-4}
+{\ttfamily \$window\+Max\+Timestamp}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily null}   &If {\ttfamily \$filter\+Days\+Before} or {\ttfamily \$filter\+Days\+After} are set then the events are filtered according to the window defined by this field and {\ttfamily \$window\+Min\+Timestamp}    \\\cline{1-4}
+{\ttfamily \$window\+Min\+Timestamp}   &\PBS\centering \+:heavy\+\_\+multiplication\+\_\+x\+:   &{\ttfamily null}   &If {\ttfamily \$filter\+Days\+Before} or {\ttfamily \$filter\+Days\+After} are set then the events are filtered according to the window defined by this field and {\ttfamily \$window\+Max\+Timestamp}   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{README.md_autotoc_md49}{}\doxysubsubsubsection{\texorpdfstring{Methods}{Methods}}\label{README.md_autotoc_md49}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily \+\_\+\+\_\+construct}   &{\ttfamily \$files = false}, {\ttfamily \$options = array()}   &{\ttfamily public}   &Creates the \doxylink{namespace_i_cal}{ICal} object    \\\cline{1-4}
+{\ttfamily init\+File}   &{\ttfamily \$file}   &{\ttfamily protected}   &Initialises lines from a file    \\\cline{1-4}
+{\ttfamily init\+Lines}   &{\ttfamily \$lines}   &{\ttfamily protected}   &Initialises the parser using an array containing each line of i\+Cal content    \\\cline{1-4}
+{\ttfamily init\+String}   &{\ttfamily \$string}   &{\ttfamily protected}   &Initialises lines from a string    \\\cline{1-4}
+{\ttfamily init\+Url}   &{\ttfamily \$url}, {\ttfamily \$username = null}, {\ttfamily \$password = null}, {\ttfamily \$user\+Agent = null}, {\ttfamily \$accept\+Language = null}   &{\ttfamily protected}   &Initialises lines from a URL. Accepts a username/password combination for HTTP basic authentication, a custom User Agent string and the accepted client language    \\\cline{1-4}
+{\ttfamily add\+Calendar\+Component\+With\+Key\+And\+Value}   &{\ttfamily \$component}, {\ttfamily \$keyword}, {\ttfamily \$value}   &{\ttfamily protected}   &Add one key and value pair to the {\ttfamily \$this-\/\texorpdfstring{$>$}{>}cal} array    \\\cline{1-4}
+{\ttfamily calendar\+Description}   &-\/   &{\ttfamily public}   &Returns the calendar description    \\\cline{1-4}
+{\ttfamily calendar\+Name}   &-\/   &{\ttfamily public}   &Returns the calendar name    \\\cline{1-4}
+{\ttfamily calendar\+Time\+Zone}   &{\ttfamily \$ignore\+Utc}   &{\ttfamily public}   &Returns the calendar time zone    \\\cline{1-4}
+{\ttfamily clean\+Characters}   &{\ttfamily \$data}   &{\ttfamily protected}   &Replaces curly quotes and other special characters with their standard equivalents    \\\cline{1-4}
+{\ttfamily events\+From\+Interval}   &{\ttfamily \$interval}   &{\ttfamily public}   &Returns a sorted array of events following a given string    \\\cline{1-4}
+{\ttfamily events\+From\+Range}   &{\ttfamily \$range\+Start = false}, {\ttfamily \$range\+End = false}   &{\ttfamily public}   &Returns a sorted array of events in a given range, or an empty array if no events exist in the range    \\\cline{1-4}
+{\ttfamily events}   &-\/   &{\ttfamily public}   &Returns an array of Events    \\\cline{1-4}
+{\ttfamily file\+Or\+Url}   &{\ttfamily \$filename}   &{\ttfamily protected}   &Reads an entire file or URL into an array    \\\cline{1-4}
+{\ttfamily filter\+Values\+Using\+By\+Set\+Pos\+RRule}   &{\ttfamily \$bysetpos}, {\ttfamily \$valueslist}   &{\ttfamily protected}   &Filters a provided values-\/list by applying a BYSETPOS RRule    \\\cline{1-4}
+{\ttfamily free\+Busy\+Events}   &-\/   &{\ttfamily public}   &Returns an array of arrays with all free/busy events    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Month\+Matching\+By\+Day\+RRule}   &{\ttfamily \$bydays}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a month that match the BYDAY stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Month\+Matching\+By\+Month\+Day\+RRule}   &{\ttfamily \$by\+Month\+Days}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a month that match the BYMONTHDAY stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Year\+Matching\+By\+Day\+RRule}   &{\ttfamily \$by\+Days}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a year that match the BYDAY stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Year\+Matching\+By\+Month\+Day\+RRule}   &{\ttfamily \$by\+Month\+Days}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a year that match the BYMONTHDAY stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Year\+Matching\+By\+Week\+No\+RRule}   &{\ttfamily \$by\+Week\+Nums}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a year that match the BYWEEKNO stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Days\+Of\+Year\+Matching\+By\+Year\+Day\+RRule}   &{\ttfamily \$by\+Year\+Days}, {\ttfamily \$initial\+Date\+Time}   &{\ttfamily protected}   &Find all days of a year that match the BYYEARDAY stanza of an RRULE    \\\cline{1-4}
+{\ttfamily get\+Default\+Time\+Zone}   &{\ttfamily \$force\+Return\+System\+Default}   &{\ttfamily private}   &Returns the default time zone if set or falls back to the system default if not set    \\\cline{1-4}
+{\ttfamily has\+Events}   &-\/   &{\ttfamily public}   &Returns a boolean value whether the current calendar has events or not    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+To\+Date\+Time}   &{\ttfamily \$ical\+Date}   &{\ttfamily public}   &Returns a {\ttfamily Date\+Time} object from an i\+Cal date time format    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+To\+Unix\+Timestamp}   &{\ttfamily \$ical\+Date}   &{\ttfamily public}   &Returns a Unix timestamp from an i\+Cal date time format    \\\cline{1-4}
+{\ttfamily i\+Cal\+Date\+With\+Time\+Zone}   &{\ttfamily \$event}, {\ttfamily \$key}, {\ttfamily \$format = DATE\+\_\+\+TIME\+\_\+\+FORMAT}   &{\ttfamily public}   &Returns a date adapted to the calendar time zone depending on the event {\ttfamily TZID}    \\\cline{1-4}
+{\ttfamily does\+Event\+Start\+Outside\+Window}   &{\ttfamily \$event}   &{\ttfamily protected}   &Determines whether the event start date is outside {\ttfamily \$window\+Min\+Timestamp} / {\ttfamily \$window\+Max\+Timestamp}    \\\cline{1-4}
+{\ttfamily is\+File\+Or\+Url}   &{\ttfamily \$filename}   &{\ttfamily protected}   &Checks if a filename exists as a file or URL    \\\cline{1-4}
+{\ttfamily is\+Out\+Of\+Range}   &{\ttfamily \$calendar\+Date}, {\ttfamily \$min\+Timestamp}, {\ttfamily \$max\+Timestamp}   &{\ttfamily protected}   &Determines whether a valid i\+Calendar date is within a given range    \\\cline{1-4}
+{\ttfamily is\+Valid\+Cldr\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is a valid CLDR time zone    \\\cline{1-4}
+{\ttfamily is\+Valid\+Date}   &{\ttfamily \$value}   &{\ttfamily public}   &Checks if a date string is a valid date    \\\cline{1-4}
+{\ttfamily is\+Valid\+Iana\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is a valid IANA time zone    \\\cline{1-4}
+{\ttfamily is\+Valid\+Windows\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is a recognised Windows (non-\/\+CLDR) time zone    \\\cline{1-4}
+{\ttfamily is\+Valid\+Time\+Zone\+Id}   &{\ttfamily \$time\+Zone}   &{\ttfamily protected}   &Checks if a time zone is valid (IANA, CLDR, or Windows)    \\\cline{1-4}
+{\ttfamily key\+Value\+From\+String}   &{\ttfamily \$text}   &{\ttfamily public}   &Gets the key value pair from an i\+Cal string    \\\cline{1-4}
+{\ttfamily parse\+Line}   &{\ttfamily \$line}   &{\ttfamily protected}   &Parses a line from an i\+Cal file into an array of tokens    \\\cline{1-4}
+{\ttfamily mb\+\_\+chr}   &{\ttfamily \$code}   &{\ttfamily protected}   &Provides a polyfill for PHP 7.\+2\textquotesingle{}s {\ttfamily mb\+\_\+chr()}, which is a multibyte safe version of {\ttfamily chr()}    \\\cline{1-4}
+{\ttfamily escape\+Param\+Text}   &{\ttfamily \$candidate\+Text}   &{\ttfamily protected}   &Places double-\/quotes around texts that have characters not permitted in parameter-\/texts, but are permitted in quoted-\/texts.    \\\cline{1-4}
+{\ttfamily parse\+Duration}   &{\ttfamily \$date}, {\ttfamily \$duration}   &{\ttfamily protected}   &Parses a duration and applies it to a date    \\\cline{1-4}
+{\ttfamily parse\+Exdates}   &{\ttfamily \$event}   &{\ttfamily public}   &Parses a list of excluded dates to be applied to an Event    \\\cline{1-4}
+{\ttfamily process\+Date\+Conversions}   &-\/   &{\ttfamily protected}   &Processes date conversions using the time zone    \\\cline{1-4}
+{\ttfamily process\+Events}   &-\/   &{\ttfamily protected}   &Performs admin tasks on all events as read from the i\+Cal file    \\\cline{1-4}
+{\ttfamily process\+Recurrences}   &-\/   &{\ttfamily protected}   &Processes recurrence rules    \\\cline{1-4}
+{\ttfamily reduce\+Events\+To\+Min\+Max\+Range}   &&{\ttfamily protected}   &Reduces the number of events to the defined minimum and maximum range    \\\cline{1-4}
+{\ttfamily remove\+Last\+Event\+If\+Outside\+Window\+And\+Non\+Recurring}   &&{\ttfamily protected}   &Removes the last event (i.\+e. most recently parsed) if its start date is outside the window spanned by {\ttfamily \$window\+Min\+Timestamp} / {\ttfamily \$window\+Max\+Timestamp}    \\\cline{1-4}
+{\ttfamily remove\+Unprintable\+Chars}   &{\ttfamily \$data}   &{\ttfamily protected}   &Removes unprintable ASCII and UTF-\/8 characters    \\\cline{1-4}
+{\ttfamily resolve\+Indices\+Of\+Range}   &{\ttfamily \$indexes}, {\ttfamily \$limit}   &{\ttfamily protected}   &Resolves values from indices of the range 1 -\/\texorpdfstring{$>$}{>} {\ttfamily \$limit}    \\\cline{1-4}
+{\ttfamily sort\+Events\+With\+Order}   &{\ttfamily \$events}, {\ttfamily \$sort\+Order = SORT\+\_\+\+ASC}   &{\ttfamily public}   &Sorts events based on a given sort order    \\\cline{1-4}
+{\ttfamily time\+Zone\+String\+To\+Date\+Time\+Zone}   &{\ttfamily \$time\+Zone\+String}   &{\ttfamily public}   &Returns a {\ttfamily Date\+Time\+Zone} object based on a string containing a time zone name.    \\\cline{1-4}
+{\ttfamily unfold}   &{\ttfamily \$lines}   &{\ttfamily protected}   &Unfolds an i\+Cal file in preparation for parsing   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{README.md_autotoc_md50}{}\doxysubsubsubsection{\texorpdfstring{Constants}{Constants}}\label{README.md_autotoc_md50}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily DATE\+\_\+\+TIME\+\_\+\+FORMAT\+\_\+\+PRETTY}   &Default pretty date time format to use    \\\cline{1-2}
+{\ttfamily DATE\+\_\+\+TIME\+\_\+\+FORMAT}   &Default date time format to use    \\\cline{1-2}
+{\ttfamily ICAL\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+TEMPLATE}   &String template to generate an i\+Cal date time    \\\cline{1-2}
+{\ttfamily ISO\+\_\+8601\+\_\+\+WEEK\+\_\+\+START}   &First day of the week, as defined by ISO-\/8601    \\\cline{1-2}
+{\ttfamily RECURRENCE\+\_\+\+EVENT}   &Used to isolate generated recurrence events    \\\cline{1-2}
+{\ttfamily SECONDS\+\_\+\+IN\+\_\+\+A\+\_\+\+WEEK}   &The number of seconds in a week    \\\cline{1-2}
+{\ttfamily TIME\+\_\+\+FORMAT}   &Default time format to use    \\\cline{1-2}
+{\ttfamily TIME\+\_\+\+ZONE\+\_\+\+UTC}   &UTC time zone string    \\\cline{1-2}
+{\ttfamily UNIX\+\_\+\+FORMAT}   &Unix timestamp date format    \\\cline{1-2}
+{\ttfamily UNIX\+\_\+\+MIN\+\_\+\+YEAR}   &The year Unix time began   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md52}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Event} API (extends {\ttfamily ICal} API)}{{\ttfamily Event} API (extends {\ttfamily ICal} API)}}\label{README.md_autotoc_md52}
+\hypertarget{README.md_autotoc_md53}{}\doxysubsubsubsection{\texorpdfstring{Methods}{Methods}}\label{README.md_autotoc_md53}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Visibility   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily \+\_\+\+\_\+construct}   &{\ttfamily \$data = array()}   &{\ttfamily public}   &Creates the Event object    \\\cline{1-4}
+{\ttfamily prepare\+Data}   &{\ttfamily \$value}   &{\ttfamily protected}   &Prepares the data for output    \\\cline{1-4}
+{\ttfamily print\+Data}   &{\ttfamily \$html = HTML\+\_\+\+TEMPLATE}   &{\ttfamily public}   &Returns Event data excluding anything blank within an HTML template    \\\cline{1-4}
+{\ttfamily snake\+Case}   &{\ttfamily \$input}, `\$glue = '\+\_\+\textquotesingle{}{\ttfamily ,}\$separator = \textquotesingle{}-\/\textquotesingle{}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}protected\`{}   &Converts the given input to snake\+\_\+case   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{README.md_autotoc_md54}{}\doxysubsubsubsection{\texorpdfstring{Constants}{Constants}}\label{README.md_autotoc_md54}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily HTML\+\_\+\+TEMPLATE}   &String template to use when pretty printing content   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md56}{}\doxysubsection{\texorpdfstring{Credits}{Credits}}\label{README.md_autotoc_md56}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/u01jmg3}{\texttt{ Jonathan Goode}} (programming, bug fixing, codebase enhancement, coding standard adoption)
+\item \href{https://github.com/s0600204}{\texttt{ s0600204}} (major enhancements to RRULE support, many bug fixes and other contributions)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{README.md_autotoc_md58}{}\doxysubsection{\texorpdfstring{Tools for Testing}{Tools for Testing}}\label{README.md_autotoc_md58}
+
+\begin{DoxyItemize}
+\item \href{https://icalendar.org/validator.html}{\texttt{ i\+Cal Validator}}
+\item \href{https://jkbrzt.github.io/rrule/}{\texttt{ Recurrence Rule Tester}}
+\item \href{https://www.unixtimestamp.com}{\texttt{ Unix Timestamp Converter}} 
+\end{DoxyItemize}

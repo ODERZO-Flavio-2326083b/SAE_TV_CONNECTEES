@@ -1,0 +1,7 @@
+<map id="models\Information\get" name="models\Information\get">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,35,160,61"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="208,5,388,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,35,192,30,192,36,160,40"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_information.html#a440ba26a13955dbcce620827420e773c" title=" " alt="" coords="232,56,364,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,56,216,64,216,69,160,61"/>
+</map>

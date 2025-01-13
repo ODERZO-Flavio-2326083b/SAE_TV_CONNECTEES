@@ -1,0 +1,11 @@
+<map id="controllers\rest\UserRestController\get_items_permissions_check" name="controllers\rest\UserRestController\get_items_permissions_check">
+<area shape="rect" id="Node000001" title=" " alt="" coords="304,133,561,176"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1rest_1_1_user_rest_controller.html#a7e095b5996bdbe970d138d1cf917045d" title=" " alt="" coords="47,5,214,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,129,255,78,213,63,215,58,257,74,373,124"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1rest_1_1_user_rest_controller.html#af51c94193789f4307d7b8fb4a1c59041" title=" " alt="" coords="47,88,214,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,139,214,130,215,125,288,134"/>
+<area shape="rect" id="Node000004" href="$classcontrollers_1_1rest_1_1_user_rest_controller.html#a9a3da1d1e4caf74adecf03f5c2dce587" title=" " alt="" coords="5,171,256,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="289,175,257,179,256,174,288,170"/>
+<area shape="rect" id="Node000005" href="$classcontrollers_1_1rest_1_1_user_rest_controller.html#a82db016ecaf621516a0feea40cd63f05" title=" " alt="" coords="47,237,214,296"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="366,185,257,228,216,242,214,237,255,223,364,180"/>
+</map>

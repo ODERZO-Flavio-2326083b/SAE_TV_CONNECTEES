@@ -1,0 +1,15 @@
+<map id="views\View\buildCheckbox" name="views\View\buildCheckbox">
+<area shape="rect" id="Node000001" title=" " alt="" coords="241,180,419,207"/>
+<area shape="rect" id="Node000002" href="$classviews_1_1_code_ade_view.html#ab80095a38552a0aa2d8739f570caca9c" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,170,257,116,226,87,191,62,170,51,172,46,194,58,229,83,261,112,310,166"/>
+<area shape="rect" id="Node000003" href="$classviews_1_1_secretary_view.html#a6954acbb3b99ef996190736cb095ad93" title=" " alt="" coords="27,72,171,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,175,192,129,163,118,165,113,194,124,290,170"/>
+<area shape="rect" id="Node000004" href="$classviews_1_1_subadmin_view.html#a25b3efa8479ef33850dbeb4f56d3a98c" title=" " alt="" coords="24,139,174,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,181,174,173,175,168,226,176"/>
+<area shape="rect" id="Node000005" href="$classviews_1_1_technician_view.html#ad1c062e0b3065ea5bd127a3716f3c94b" title=" " alt="" coords="24,205,174,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="226,211,175,218,174,213,225,206"/>
+<area shape="rect" id="Node000006" href="$classviews_1_1_television_view.html#a200d42e400ef9d770a863f8ebe6cf0bb" title=" " alt="" coords="26,272,172,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="290,217,194,262,165,274,163,269,192,258,288,212"/>
+<area shape="rect" id="Node000007" href="$classviews_1_1_department_view.html#a397600ed139b5ac1aaf88bcfd0cbfef6" title=" " alt="" coords="21,339,177,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="310,221,261,275,229,303,194,329,172,341,170,336,191,324,226,299,257,271,307,217"/>
+</map>

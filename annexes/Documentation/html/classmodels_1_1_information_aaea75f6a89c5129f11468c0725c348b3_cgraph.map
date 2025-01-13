@@ -1,0 +1,11 @@
+<map id="models\Information\getAuthorListInformation" name="models\Information\getAuthorListInformation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,27,173,69"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="221,5,401,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,34,205,30,206,35,174,40"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_information.html#a7cd7ae1c5678a772711704134a553c31" title=" " alt="" coords="245,56,377,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,56,230,64,229,69,173,62"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_model.html#afad375240a4794dc1e0383ec08fdd6d8" title=" " alt="" coords="449,5,629,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,16,433,16,433,21,401,21"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_information.html#a509816b44d7b8f7229e5d479ee808c9e" title=" " alt="" coords="473,56,605,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="377,75,458,75,458,80,377,80"/>
+</map>

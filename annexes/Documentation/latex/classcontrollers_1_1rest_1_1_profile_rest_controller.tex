@@ -1,0 +1,125 @@
+\doxysection{Référence de la classe controllers\textbackslash{}rest\textbackslash{}Profile\+Rest\+Controller}
+\hypertarget{classcontrollers_1_1rest_1_1_profile_rest_controller}{}\label{classcontrollers_1_1rest_1_1_profile_rest_controller}\index{controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}rest\textbackslash{}Profile\+Rest\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classcontrollers_1_1rest_1_1_profile_rest_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de controllers\textbackslash{}rest\textbackslash{}Profile\+Rest\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classcontrollers_1_1rest_1_1_profile_rest_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1rest_1_1_profile_rest_controller_af6098a6653e7d6d43c2956f56a791780}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1rest_1_1_profile_rest_controller_afa9431c9e207585866c6bd227e872b55}{register\+Routes}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1rest_1_1_profile_rest_controller_a0c04a7b031a3f2c0d8fa931b804743e3}{get\+Item}} (\$request)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1rest_1_1_profile_rest_controller_a2952a49ba9e55a772b6ec770eca5f1aa}{get\+Item\+Permissions\+Check}} (\$request)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrollers_1_1rest_1_1_profile_rest_controller_af6098a6653e7d6d43c2956f56a791780}\index{controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1rest_1_1_profile_rest_controller_af6098a6653e7d6d43c2956f56a791780} 
+controllers\textbackslash{}rest\textbackslash{}\+Profile\+Rest\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe pour l\textquotesingle{}API REST "{}\+Profile"{}.
+
+Cette méthode initialise les propriétés nécessaires pour définir le namespace et le point de terminaison de base de l\textquotesingle{}API REST qui permet de gérer les profils utilisateurs.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1rest_1_1_profile_rest_controller_a0c04a7b031a3f2c0d8fa931b804743e3}\index{controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}!getItem@{getItem}}
+\index{getItem@{getItem}!controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}}
+\doxysubsubsection{\texorpdfstring{getItem()}{getItem()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1rest_1_1_profile_rest_controller_a0c04a7b031a3f2c0d8fa931b804743e3} 
+controllers\textbackslash{}rest\textbackslash{}\+Profile\+Rest\+Controller\+::get\+Item (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Récupère les informations de l\textquotesingle{}utilisateur courant via l\textquotesingle{}API REST.
+
+Cette méthode récupère les informations du profil de l\textquotesingle{}utilisateur actuellement connecté en interrogeant la base de données. Elle renvoie les données de l\textquotesingle{}utilisateur, telles que l\textquotesingle{}ID, le login, l\textquotesingle{}email, le rôle et les codes associés. Si l\textquotesingle{}utilisateur n\textquotesingle{}est pas trouvé, une réponse HTTP 404 avec un message d\textquotesingle{}erreur est retournée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & Requête envoyée à l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+WP\+\_\+\+REST\+\_\+\+Response Réponse REST contenant les données utilisateur ou un message d\textquotesingle{}erreur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1rest_1_1_profile_rest_controller_a2952a49ba9e55a772b6ec770eca5f1aa}\index{controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}!getItemPermissionsCheck@{getItemPermissionsCheck}}
+\index{getItemPermissionsCheck@{getItemPermissionsCheck}!controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}}
+\doxysubsubsection{\texorpdfstring{getItemPermissionsCheck()}{getItemPermissionsCheck()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1rest_1_1_profile_rest_controller_a2952a49ba9e55a772b6ec770eca5f1aa} 
+controllers\textbackslash{}rest\textbackslash{}\+Profile\+Rest\+Controller\+::get\+Item\+Permissions\+Check (\begin{DoxyParamCaption}\item[{}]{\$request}{}\end{DoxyParamCaption})}
+
+Vérifie les permissions de l\textquotesingle{}utilisateur pour récupérer ses informations via l\textquotesingle{}API REST.
+
+Cette méthode s\textquotesingle{}assure que l\textquotesingle{}utilisateur est actuellement connecté avant de permettre l\textquotesingle{}accès à ses données. Si l\textquotesingle{}utilisateur est connecté, l\textquotesingle{}accès est accordé, sinon, la requête est refusée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+WP\+\_\+\+REST\+\_\+\+Request & {\em \$request} & Requête envoyée à l\textquotesingle{}API REST.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Renvoie true si l\textquotesingle{}utilisateur est connecté, false sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1rest_1_1_profile_rest_controller_afa9431c9e207585866c6bd227e872b55}\index{controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}!registerRoutes@{registerRoutes}}
+\index{registerRoutes@{registerRoutes}!controllers\textbackslash{}rest\textbackslash{}ProfileRestController@{controllers\textbackslash{}rest\textbackslash{}ProfileRestController}}
+\doxysubsubsection{\texorpdfstring{registerRoutes()}{registerRoutes()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1rest_1_1_profile_rest_controller_afa9431c9e207585866c6bd227e872b55} 
+controllers\textbackslash{}rest\textbackslash{}\+Profile\+Rest\+Controller\+::register\+Routes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Enregistre les routes pour l\textquotesingle{}API REST "{}\+Profile"{}.
+
+Cette méthode utilise \textquotesingle{}register\+\_\+rest\+\_\+route()\textquotesingle{} pour définir les routes disponibles dans l\textquotesingle{}API REST sous le namespace spécifié. Elle enregistre une route accessible en méthode "{}\+GET"{} pour récupérer des informations de profil d\textquotesingle{}utilisateur, avec une vérification des permissions et un schéma public.
+
+\begin{DoxyReturn}{Renvoie}
+void Cette méthode n\textquotesingle{}a pas de valeur de retour.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/rest/\mbox{\hyperlink{_profile_rest_controller_8php}{Profile\+Rest\+Controller.\+php}}\end{DoxyCompactItemize}

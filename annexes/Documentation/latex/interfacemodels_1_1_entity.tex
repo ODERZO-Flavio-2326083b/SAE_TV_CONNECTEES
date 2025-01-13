@@ -1,0 +1,180 @@
+\doxysection{Référence de l\textquotesingle{}interface models\textbackslash{}Entity}
+\hypertarget{interfacemodels_1_1_entity}{}\label{interfacemodels_1_1_entity}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+
+
+Graphe d\textquotesingle{}héritage de models\textbackslash{}Entity\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{interfacemodels_1_1_entity__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a135727cfa5ec5072f50f3008a35d8d10}{insert}} ()
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_aea3384137a0f2971537ce6526fffe520}{update}} ()
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_acc370fb048defb55fefe8ee788a63b69}{delete}} ()
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a15e4429d0fa178c144090e218d6d6b5c}{get}} (\$id)
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a2192e4e955329f37cab4ebc563e04957}{get\+List}} ()
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5}{set\+Entity}} (\$data)
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a16b3a6d6e43c77d61bdd47ed4a6ea226}{set\+Entity\+List}} (\$data\+List)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interfacemodels_1_1_entity_acc370fb048defb55fefe8ee788a63b69}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!delete@{delete}}
+\index{delete@{delete}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_acc370fb048defb55fefe8ee788a63b69} 
+models\textbackslash{}\+Entity\+::delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Delete an entity
+
+\begin{DoxyReturn}{Renvoie}
+mixed 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_alert_a8bf5d477290a108cf561648299f154a1}{models\textbackslash{}\+Alert}}, \mbox{\hyperlink{classmodels_1_1_code_ade_a02e46cc554788a2e5e6e404f1ddc3e1e}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_department_a1dd9fa9694898c31b460a2ff0d118f74}{models\textbackslash{}\+Department}}, \mbox{\hyperlink{classmodels_1_1_information_ad508e7585dfdd6c8f86d74c21dd2cb39}{models\textbackslash{}\+Information}}, \mbox{\hyperlink{classmodels_1_1_localisation_ab97a7f99a1ae7da6fe8e5e1a7a5baf90}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_a38626880e9c0c604ce2764891457d353}{models\textbackslash{}\+User}}.
+
+\Hypertarget{interfacemodels_1_1_entity_a15e4429d0fa178c144090e218d6d6b5c}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!get@{get}}
+\index{get@{get}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_a15e4429d0fa178c144090e218d6d6b5c} 
+models\textbackslash{}\+Entity\+::get (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Get an entity linked to the given ID.
+
+Cette méthode récupère une entité à partir de son identifiant unique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant unique de l\textquotesingle{}entité à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed L\textquotesingle{}entité associée à l\textquotesingle{}identifiant fourni, ou une valeur indiquant qu\textquotesingle{}aucune entité n\textquotesingle{}a été trouvée.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/13 
+\end{DoxyDate}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_alert_a46d25d8a2d43c25f82e6d627921f231c}{models\textbackslash{}\+Alert}}, \mbox{\hyperlink{classmodels_1_1_code_ade_a0fd4e057c02a3bade0a545287fbd6c56}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_department_a293e389cef639a82f90d6e331bc1eb40}{models\textbackslash{}\+Department}}, \mbox{\hyperlink{classmodels_1_1_information_ade007b10034c166601fe5256ce9c1f94}{models\textbackslash{}\+Information}}, \mbox{\hyperlink{classmodels_1_1_localisation_adeda8d56917948c36542a910a249e580}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_afe1376d5e63badbe33ea49302e6aad53}{models\textbackslash{}\+User}}.
+
+\Hypertarget{interfacemodels_1_1_entity_a2192e4e955329f37cab4ebc563e04957}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!getList@{getList}}
+\index{getList@{getList}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{getList()}{getList()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_a2192e4e955329f37cab4ebc563e04957} 
+models\textbackslash{}\+Entity\+::get\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Get all entity
+
+\begin{DoxyReturn}{Renvoie}
+mixed 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_code_ade_a6d12c81a736f277ca389066a4be7a320}{models\textbackslash{}\+Code\+Ade}}.
+
+\Hypertarget{interfacemodels_1_1_entity_a135727cfa5ec5072f50f3008a35d8d10}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!insert@{insert}}
+\index{insert@{insert}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_a135727cfa5ec5072f50f3008a35d8d10} 
+models\textbackslash{}\+Entity\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Create an entity
+
+\begin{DoxyReturn}{Renvoie}
+int id of the new entity 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_alert_aee648012edddf2ab38e2585961e9a1e9}{models\textbackslash{}\+Alert}}, \mbox{\hyperlink{classmodels_1_1_code_ade_ad97e8b0c98abbb3b8279aac28fed2cf9}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_department_a7da459e0bdf409d1883cc39cbd7a82e5}{models\textbackslash{}\+Department}}, \mbox{\hyperlink{classmodels_1_1_information_af4f7de1a8a316ddbfa6b43d980fb7835}{models\textbackslash{}\+Information}}, \mbox{\hyperlink{classmodels_1_1_localisation_ad326f115bbbdd6a5cb9608b0dba24253}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_a1ff4036e1a101596ba945b808ad1d00b}{models\textbackslash{}\+User}}.
+
+\Hypertarget{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!setEntity@{setEntity}}
+\index{setEntity@{setEntity}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{setEntity()}{setEntity()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5} 
+models\textbackslash{}\+Entity\+::set\+Entity (\begin{DoxyParamCaption}\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Build an entity from the provided data.
+
+Cette méthode crée une entité à partir des données fournies. Les données doivent être sous forme de tableau associatif, et cette fonction va configurer l\textquotesingle{}entité en fonction des valeurs fournies.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$data} & Les données nécessaires à la création de l\textquotesingle{}entité. Cela inclut généralement des informations comme des identifiants, des noms et d\textquotesingle{}autres attributs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed L\textquotesingle{}entité créée et configurée, généralement un objet d\textquotesingle{}une classe spécifique.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/13 
+\end{DoxyDate}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_code_ade_a647d56b768357becb817191a26c9e9d9}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836}{models\textbackslash{}\+Department}}, \mbox{\hyperlink{classmodels_1_1_localisation_a8dfeb5e087100392036d0f627f1d9e40}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_a18497064d730d8fb076c1310f61799bc}{models\textbackslash{}\+User}}.
+
+\Hypertarget{interfacemodels_1_1_entity_a16b3a6d6e43c77d61bdd47ed4a6ea226}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!setEntityList@{setEntityList}}
+\index{setEntityList@{setEntityList}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{setEntityList()}{setEntityList()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_a16b3a6d6e43c77d61bdd47ed4a6ea226} 
+models\textbackslash{}\+Entity\+::set\+Entity\+List (\begin{DoxyParamCaption}\item[{}]{\$data\+List}{}\end{DoxyParamCaption})}
+
+Build a list of entities from the provided data list.
+
+Cette méthode crée une liste d\textquotesingle{}entités à partir des données fournies. Elle itère sur un tableau de données et utilise la méthode \textquotesingle{}set\+Entity\textquotesingle{} pour créer une entité pour chaque élément du tableau. Elle retourne un tableau contenant toutes les entités créées.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$data\+List} & Un tableau contenant des données nécessaires pour créer plusieurs entités. Chaque élément doit être structuré de manière à correspondre à la création d\textquotesingle{}une entité individuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed Un tableau d\textquotesingle{}entités créées, généralement un tableau d\textquotesingle{}objets.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/13 
+\end{DoxyDate}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_localisation_a251362e49c6cccb1a463a9a3d7cb7eb2}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_acc0b2712ad1210939c3ef041e801c327}{models\textbackslash{}\+User}}.
+
+\Hypertarget{interfacemodels_1_1_entity_aea3384137a0f2971537ce6526fffe520}\index{models\textbackslash{}Entity@{models\textbackslash{}Entity}!update@{update}}
+\index{update@{update}!models\textbackslash{}Entity@{models\textbackslash{}Entity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{interfacemodels_1_1_entity_aea3384137a0f2971537ce6526fffe520} 
+models\textbackslash{}\+Entity\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Update an entity
+
+\begin{DoxyReturn}{Renvoie}
+mixed 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classmodels_1_1_alert_a8eab27349cb8234755708b507a2916e7}{models\textbackslash{}\+Alert}}, \mbox{\hyperlink{classmodels_1_1_code_ade_ac3567a2d31531a9c3311e69ef3df94fd}{models\textbackslash{}\+Code\+Ade}}, \mbox{\hyperlink{classmodels_1_1_department_a17d6c55f0158b97ed06a9b966779876c}{models\textbackslash{}\+Department}}, \mbox{\hyperlink{classmodels_1_1_information_aa0c104c2256d717045710c5e56cc0b65}{models\textbackslash{}\+Information}}, \mbox{\hyperlink{classmodels_1_1_localisation_abf1c778da5f26d13321a1748fd57fbc1}{models\textbackslash{}\+Localisation}}, et \mbox{\hyperlink{classmodels_1_1_user_ac04ced6be4698afc58458064def6d732}{models\textbackslash{}\+User}}.
+
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\mbox{\hyperlink{_entity_8php}{Entity.\+php}}\end{DoxyCompactItemize}

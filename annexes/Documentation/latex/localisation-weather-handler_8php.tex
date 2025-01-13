@@ -1,0 +1,47 @@
+\doxysection{Référence du fichier C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/localisation-\/weather-\/handler.php}
+\hypertarget{localisation-weather-handler_8php}{}\label{localisation-weather-handler_8php}\index{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/localisation-\/weather-\/handler.php@{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/localisation-\/weather-\/handler.php}}
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{localisation-weather-handler_8php_a6eec3c491ef325c02298ae27a130893f}{inject\+Loc\+Variables}} ()
+\item 
+\mbox{\hyperlink{localisation-weather-handler_8php_a1ca989db2c152ac912493aae9294fcae}{handle\+Meteo\+Ajax\+Data}} ()
+\item 
+\mbox{\hyperlink{localisation-weather-handler_8php_acfe933faa2ac3ee97cc462dddde09bcb}{load\+Loc\+Ajax\+If\+User\+Has\+No\+Loc}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{localisation-weather-handler_8php_a1ca989db2c152ac912493aae9294fcae}\index{localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}!handleMeteoAjaxData@{handleMeteoAjaxData}}
+\index{handleMeteoAjaxData@{handleMeteoAjaxData}!localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}}
+\doxysubsubsection{\texorpdfstring{handleMeteoAjaxData()}{handleMeteoAjaxData()}}
+{\footnotesize\ttfamily \label{localisation-weather-handler_8php_a1ca989db2c152ac912493aae9294fcae} 
+handle\+Meteo\+Ajax\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère les données reçues par requête AJAX et les traite pour les insérer dans la base de données.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{localisation-weather-handler_8php_a6eec3c491ef325c02298ae27a130893f}\index{localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}!injectLocVariables@{injectLocVariables}}
+\index{injectLocVariables@{injectLocVariables}!localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}}
+\doxysubsubsection{\texorpdfstring{injectLocVariables()}{injectLocVariables()}}
+{\footnotesize\ttfamily \label{localisation-weather-handler_8php_a6eec3c491ef325c02298ae27a130893f} 
+inject\+Loc\+Variables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Injecter les valeurs de localisation et de requête AJAX au script de la météo. Si l\textquotesingle{}utilisateur connecté a une localisation dans la bd, on l\textquotesingle{}utilise, sinon on remplace par la localisation par défaut (Ici, Aix-\/en-\/\+Provence)
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{localisation-weather-handler_8php_acfe933faa2ac3ee97cc462dddde09bcb}\index{localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}!loadLocAjaxIfUserHasNoLoc@{loadLocAjaxIfUserHasNoLoc}}
+\index{loadLocAjaxIfUserHasNoLoc@{loadLocAjaxIfUserHasNoLoc}!localisation-\/weather-\/handler.php@{localisation-\/weather-\/handler.php}}
+\doxysubsubsection{\texorpdfstring{loadLocAjaxIfUserHasNoLoc()}{loadLocAjaxIfUserHasNoLoc()}}
+{\footnotesize\ttfamily \label{localisation-weather-handler_8php_acfe933faa2ac3ee97cc462dddde09bcb} 
+load\+Loc\+Ajax\+If\+User\+Has\+No\+Loc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Charge le script de demande de localisation si l\textquotesingle{}utilisateur n\textquotesingle{}en a pas sur la page d\textquotesingle{}accueil
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}

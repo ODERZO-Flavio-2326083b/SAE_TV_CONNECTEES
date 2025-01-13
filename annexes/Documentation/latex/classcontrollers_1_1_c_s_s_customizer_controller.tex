@@ -1,0 +1,110 @@
+\doxysection{Référence de la classe controllers\textbackslash{}CSSCustomizer\+Controller}
+\hypertarget{classcontrollers_1_1_c_s_s_customizer_controller}{}\label{classcontrollers_1_1_c_s_s_customizer_controller}\index{controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}CSSCustomizer\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{classcontrollers_1_1_c_s_s_customizer_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de controllers\textbackslash{}CSSCustomizer\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_c_s_s_customizer_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_c_s_s_customizer_controller_afd7c44101b5dfaea799b9b8552ab6223}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_c_s_s_customizer_controller_a6257a6a1239d6db42936cf53ae0d55e0}{use\+Css\+Customizer}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classcontrollers_1_1_controller}{controllers\textbackslash{}\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}{get\+Part\+Of\+Url}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}{add\+Log\+Event}} (\$event)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}{get\+Url}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}{get\+File\+Path}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}{add\+File}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_c_s_s_customizer}{CSSCustomizer}} \mbox{\hyperlink{classcontrollers_1_1_c_s_s_customizer_controller_a8f6a52995c7858d355600456fee7af84}{\$\+\_\+model}}
+\item 
+\mbox{\hyperlink{classviews_1_1_c_s_s_view}{CSSView}} \mbox{\hyperlink{classcontrollers_1_1_c_s_s_customizer_controller_aac6d3824bf782c45dbcd40f5d9ae015b}{\$\+\_\+view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrollers_1_1_c_s_s_customizer_controller_afd7c44101b5dfaea799b9b8552ab6223}\index{controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_c_s_s_customizer_controller_afd7c44101b5dfaea799b9b8552ab6223} 
+controllers\textbackslash{}\+CSSCustomizer\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe CSSCustomizer\+Controller.
+
+Initialise les instances de vue et de modèle pour la personnalisation CSS. La vue est utilisée pour afficher l\textquotesingle{}interface utilisateur, et le modèle gère les opérations de personnalisation CSS.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1_c_s_s_customizer_controller_a6257a6a1239d6db42936cf53ae0d55e0}\index{controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}!useCssCustomizer@{useCssCustomizer}}
+\index{useCssCustomizer@{useCssCustomizer}!controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}}
+\doxysubsubsection{\texorpdfstring{useCssCustomizer()}{useCssCustomizer()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_c_s_s_customizer_controller_a6257a6a1239d6db42936cf53ae0d55e0} 
+controllers\textbackslash{}\+CSSCustomizer\+Controller\+::use\+Css\+Customizer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gère l\textquotesingle{}affichage et la personnalisation des styles CSS.
+
+Cette méthode vérifie si une requête POST a été effectuée pour mettre à jour les couleurs via le modèle. Elle récupère ensuite la liste des départements, extrait leurs noms et transmet ces données à la vue pour afficher l\textquotesingle{}interface de personnalisation CSS.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classcontrollers_1_1_c_s_s_customizer_controller_a8f6a52995c7858d355600456fee7af84}\index{controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}!\$\_model@{\$\_model}}
+\index{\$\_model@{\$\_model}!controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}}
+\doxysubsubsection{\texorpdfstring{\$\_model}{\$\_model}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_c_s_s_customizer_controller_a8f6a52995c7858d355600456fee7af84} 
+\mbox{\hyperlink{classmodels_1_1_c_s_s_customizer}{CSSCustomizer}} controllers\textbackslash{}\+CSSCustomizer\+Controller\+::\$\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcontrollers_1_1_c_s_s_customizer_controller_aac6d3824bf782c45dbcd40f5d9ae015b}\index{controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}!\$\_view@{\$\_view}}
+\index{\$\_view@{\$\_view}!controllers\textbackslash{}CSSCustomizerController@{controllers\textbackslash{}CSSCustomizerController}}
+\doxysubsubsection{\texorpdfstring{\$\_view}{\$\_view}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_c_s_s_customizer_controller_aac6d3824bf782c45dbcd40f5d9ae015b} 
+\mbox{\hyperlink{classviews_1_1_c_s_s_view}{CSSView}} controllers\textbackslash{}\+CSSCustomizer\+Controller\+::\$\+\_\+view\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_c_s_s_customizer_controller_8php}{CSSCustomizer\+Controller.\+php}}\end{DoxyCompactItemize}

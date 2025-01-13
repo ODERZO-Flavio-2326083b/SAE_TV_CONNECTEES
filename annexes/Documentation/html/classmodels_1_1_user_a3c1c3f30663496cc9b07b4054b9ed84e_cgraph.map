@@ -1,0 +1,10 @@
+<map id="models\User\getUsersByRole" name="models\User\getUsersByRole">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,201,32"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="668,5,849,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,16,653,16,653,21,201,21"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_user.html#acc0b2712ad1210939c3ef041e801c327" title=" " alt="" coords="249,31,421,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,27,233,30,233,36,201,32"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_user.html#a18497064d730d8fb076c1310f61799bc" title=" " alt="" coords="469,31,620,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="422,41,453,41,453,47,422,47"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="620,32,653,29,653,34,621,38"/>
+</map>

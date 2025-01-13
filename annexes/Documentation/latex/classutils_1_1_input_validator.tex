@@ -1,0 +1,73 @@
+\doxysection{Référence de la classe utils\textbackslash{}Input\+Validator}
+\hypertarget{classutils_1_1_input_validator}{}\label{classutils_1_1_input_validator}\index{utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classutils_1_1_input_validator_ad6e5345845c1a9674dbe8779d5b3c9ce}{is\+Valid\+Login}} (mixed \$login)
+\item 
+static \mbox{\hyperlink{classutils_1_1_input_validator_aab74d9de24b997d81f6de43fec0dc522}{is\+Valid\+Password}} (mixed \$password, mixed \$password\+Confirm)
+\item 
+static \mbox{\hyperlink{classutils_1_1_input_validator_a0d17502d3b6caeacf81cfa5a56e68b92}{is\+Valid\+Email}} (mixed \$email)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classutils_1_1_input_validator_a0d17502d3b6caeacf81cfa5a56e68b92}\index{utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}!isValidEmail@{isValidEmail}}
+\index{isValidEmail@{isValidEmail}!utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}}
+\doxysubsubsection{\texorpdfstring{isValidEmail()}{isValidEmail()}}
+{\footnotesize\ttfamily \label{classutils_1_1_input_validator_a0d17502d3b6caeacf81cfa5a56e68b92} 
+static utils\textbackslash{}\+Input\+Validator\+::is\+Valid\+Email (\begin{DoxyParamCaption}\item[{mixed}]{\$email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Vérifie la validité de l\textquotesingle{}email.
+
+Utilise la fonction native de Word\+Press \textquotesingle{}is\+\_\+email()\textquotesingle{} pour valider si l\textquotesingle{}email respecte le format attendu d\textquotesingle{}une adresse email.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$email} & L\textquotesingle{}adresse email à valider.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne \textquotesingle{}true\textquotesingle{} si l\textquotesingle{}email est valide, sinon \textquotesingle{}false\textquotesingle{}. 
+\end{DoxyReturn}
+\Hypertarget{classutils_1_1_input_validator_ad6e5345845c1a9674dbe8779d5b3c9ce}\index{utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}!isValidLogin@{isValidLogin}}
+\index{isValidLogin@{isValidLogin}!utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}}
+\doxysubsubsection{\texorpdfstring{isValidLogin()}{isValidLogin()}}
+{\footnotesize\ttfamily \label{classutils_1_1_input_validator_ad6e5345845c1a9674dbe8779d5b3c9ce} 
+static utils\textbackslash{}\+Input\+Validator\+::is\+Valid\+Login (\begin{DoxyParamCaption}\item[{mixed}]{\$login}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Valide si un login est une chaîne de caractères valide.
+
+Un login est valide s\textquotesingle{}il est une chaîne de caractères de longueur comprise entre 4 et 25 caractères inclus.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$login} & Le login à valider.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne \textquotesingle{}true\textquotesingle{} si le login est valide, sinon \textquotesingle{}false\textquotesingle{}. 
+\end{DoxyReturn}
+\Hypertarget{classutils_1_1_input_validator_aab74d9de24b997d81f6de43fec0dc522}\index{utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}!isValidPassword@{isValidPassword}}
+\index{isValidPassword@{isValidPassword}!utils\textbackslash{}InputValidator@{utils\textbackslash{}InputValidator}}
+\doxysubsubsection{\texorpdfstring{isValidPassword()}{isValidPassword()}}
+{\footnotesize\ttfamily \label{classutils_1_1_input_validator_aab74d9de24b997d81f6de43fec0dc522} 
+static utils\textbackslash{}\+Input\+Validator\+::is\+Valid\+Password (\begin{DoxyParamCaption}\item[{mixed}]{\$password}{, }\item[{mixed}]{\$password\+Confirm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Vérifie la validité des mots de passe.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$password} & mot de passe \\
+\hline
+mixed & {\em \$password\+Confirm} & confirmation du mot de passe\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool true ou false, si les mots de passes sont corrects 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/utils/\mbox{\hyperlink{_input_validator_8php}{Input\+Validator.\+php}}\end{DoxyCompactItemize}

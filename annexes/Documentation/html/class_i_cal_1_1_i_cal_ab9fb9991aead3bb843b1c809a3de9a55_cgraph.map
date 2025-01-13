@@ -1,0 +1,9 @@
+<map id="ICal\ICal\removeLastEventIfOutsideWindowAndNonRecurring" name="ICal\ICal\removeLastEventIfOutsideWindowAndNonRecurring">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,230,65"/>
+<area shape="rect" id="Node000002" href="$class_i_cal_1_1_i_cal.html#a65b6f68357a65905de430c9b016c197a" title=" " alt="" coords="278,23,445,65"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,41,262,41,262,47,230,47"/>
+<area shape="rect" id="Node000003" href="$class_i_cal_1_1_i_cal.html#abd8ecab3e25db42ab7772ebab927f84f" title=" " alt="" coords="493,5,653,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,31,477,27,478,33,446,37"/>
+<area shape="rect" id="Node000004" href="$class_i_cal_1_1_i_cal.html#af73624f84b9dc154348474e3155a3a65" title=" " alt="" coords="502,56,645,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="446,51,487,56,486,62,445,57"/>
+</map>

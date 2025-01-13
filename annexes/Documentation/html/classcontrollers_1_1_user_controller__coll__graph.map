@@ -1,0 +1,17 @@
+<map id="controllers\UserController" name="controllers\UserController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="134,172,303,199"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_controller.html" title=" " alt="" coords="5,81,147,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,114,200,169,197,174,108,119"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_user.html" title=" " alt="" coords="171,81,266,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,124,221,171,216,171,216,124"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_model.html" title=" " alt="" coords="9,5,111,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,36,193,78,191,83,100,41"/>
+<area shape="rect" id="Node000005" href="$interfacemodels_1_1_entity.html" title=" " alt="" coords="135,5,236,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="200,45,215,80,211,82,195,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="260,5,377,32"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="291,44,237,83,234,79,288,39"/>
+<area shape="rect" id="Node000007" href="$classviews_1_1_user_view.html" title=" " alt="" coords="355,81,472,108"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="373,117,248,174,245,169,371,112"/>
+<area shape="rect" id="Node000008" href="$classviews_1_1_view.html" title=" " alt="" coords="401,5,490,32"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="436,47,421,82,416,80,432,45"/>
+</map>

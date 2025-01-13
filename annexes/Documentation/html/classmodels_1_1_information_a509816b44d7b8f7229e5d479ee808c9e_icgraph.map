@@ -1,0 +1,17 @@
+<map id="models\Information\setEntity" name="models\Information\setEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="448,109,580,152"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_information.html#ade007b10034c166601fe5256ce9c1f94" title=" " alt="" coords="246,88,400,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="432,121,400,116,401,111,433,115"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_information.html#a7cd7ae1c5678a772711704134a553c31" title=" " alt="" coords="257,139,389,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="433,146,390,152,389,147,432,141"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_information.html#a068eaca644b09439778f9deb6ad212ec" title=" " alt="" coords="5,5,198,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,132,244,129,228,111,220,94,211,78,196,62,178,51,180,46,199,58,216,75,224,92,233,108,247,125,252,128"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_information.html#aaea75f6a89c5129f11468c0725c348b3" title=" " alt="" coords="18,72,185,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="242,138,174,118,176,113,243,133"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1_information.html#a040ed9d7fa49cd420b3c21b029593c38" title=" " alt="" coords="23,139,180,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="242,163,181,163,181,157,242,157"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1_information.html#a41c630ce58b24c465297294ed26c2980" title=" " alt="" coords="16,205,187,248"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="243,187,176,207,174,202,242,182"/>
+<area shape="rect" id="Node000008" href="$classmodels_1_1_information.html#a6668bfef139ca631273708f9fd80abfc" title=" " alt="" coords="20,272,183,315"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="290,194,248,229,199,262,175,274,173,269,196,258,245,225,287,190"/>
+</map>

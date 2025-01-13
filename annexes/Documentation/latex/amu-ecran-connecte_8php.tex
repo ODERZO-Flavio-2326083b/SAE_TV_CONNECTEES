@@ -1,0 +1,106 @@
+\doxysection{Référence du fichier C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/amu-\/ecran-\/connecte.php}
+\hypertarget{amu-ecran-connecte_8php}{}\label{amu-ecran-connecte_8php}\index{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/amu-\/ecran-\/connecte.php@{C:/Users/gallo/OneDrive/Documents/SAé-\/casali/SAE\_TV\_CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/amu-\/ecran-\/connecte.php}}
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vendor_2autoload_8php_a26d062d8da79dc83e81e01fd4d82c715}{if}}(isset( \$submit)) \mbox{\hyperlink{amu-ecran-connecte_8php_a01484e96b39ae2c3367949ac70d0e4de}{download\+File\+ICS\+\_\+func}} ()
+\item 
+\mbox{\hyperlink{amu-ecran-connecte_8php_a5b39be2c888546f84c21aecd014abe52}{download\+Schedule}} (\$users)
+\item 
+\mbox{\hyperlink{amu-ecran-connecte_8php_af2a2d3e09b34ad42f39ef1ba173758a9}{move\+\_\+file\+ICS\+\_\+schedule}} ()
+\item 
+\mbox{\hyperlink{amu-ecran-connecte_8php_a92af03c697a230e7651beb4925e8e397}{display\+Participant}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{amu-ecran-connecte_8php_ab09e96db888c1dc01faa37a58374e1d6}{TV\+\_\+\+PLUG\+\_\+\+PATH}} (! defined(\textquotesingle{}ABSPATH\textquotesingle{})) \textquotesingle{}/wp-\/content/plugins/plugin-\/ecran-\/connecte/\textquotesingle{}
+\item 
+const \mbox{\hyperlink{amu-ecran-connecte_8php_af4cf9bcf05f8ba7ca99a498db1929387}{TV\+\_\+\+UPLOAD\+\_\+\+PATH}} \textquotesingle{}/wp-\/content/uploads/media/\textquotesingle{}
+\item 
+const \mbox{\hyperlink{amu-ecran-connecte_8php_acd7cb11509cbe7bd9e3f6bb794b5f412}{TV\+\_\+\+ICSFILE\+\_\+\+PATH}} \textquotesingle{}/wp-\/content/uploads/file\+ICS/\textquotesingle{}
+\item 
+\mbox{\hyperlink{amu-ecran-connecte_8php_a545d2d72ba25a4bd9313a4f1c2619209}{\$submit}} = filter\+\_\+input(INPUT\+\_\+\+POST, \textquotesingle{}update\+Plugin\+Ecran\+Connecte\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{amu-ecran-connecte_8php_a92af03c697a230e7651beb4925e8e397}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!displayParticipant@{displayParticipant}}
+\index{displayParticipant@{displayParticipant}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{displayParticipant()}{displayParticipant()}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_a92af03c697a230e7651beb4925e8e397} 
+display\+Participant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Function for "{}\+Nuit de l\textquotesingle{}info"{} Give numbers of participant
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{amu-ecran-connecte_8php_a01484e96b39ae2c3367949ac70d0e4de}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!downloadFileICS\_func@{downloadFileICS\_func}}
+\index{downloadFileICS\_func@{downloadFileICS\_func}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{downloadFileICS\_func()}{downloadFileICS\_func()}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_a01484e96b39ae2c3367949ac70d0e4de} 
+\mbox{\hyperlink{vendor_2autoload_8php_a26d062d8da79dc83e81e01fd4d82c715}{if}}(isset(\$submit)) download\+File\+ICS\+\_\+func (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Function for WPCron Upload schedules Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{amu-ecran-connecte_8php_a01484e96b39ae2c3367949ac70d0e4de_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{amu-ecran-connecte_8php_a5b39be2c888546f84c21aecd014abe52}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!downloadSchedule@{downloadSchedule}}
+\index{downloadSchedule@{downloadSchedule}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{downloadSchedule()}{downloadSchedule()}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_a5b39be2c888546f84c21aecd014abe52} 
+download\+Schedule (\begin{DoxyParamCaption}\item[{}]{\$users}{}\end{DoxyParamCaption})}
+
+Upload the schedule of users
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \$users} & User\mbox{[}\mbox{]} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{amu-ecran-connecte_8php_af2a2d3e09b34ad42f39ef1ba173758a9}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!move\_fileICS\_schedule@{move\_fileICS\_schedule}}
+\index{move\_fileICS\_schedule@{move\_fileICS\_schedule}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{move\_fileICS\_schedule()}{move\_fileICS\_schedule()}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_af2a2d3e09b34ad42f39ef1ba173758a9} 
+move\+\_\+file\+ICS\+\_\+schedule (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Change place of file Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{amu-ecran-connecte_8php_af2a2d3e09b34ad42f39ef1ba173758a9_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des variables}
+\Hypertarget{amu-ecran-connecte_8php_a545d2d72ba25a4bd9313a4f1c2619209}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!\$submit@{\$submit}}
+\index{\$submit@{\$submit}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{\$submit}{\$submit}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_a545d2d72ba25a4bd9313a4f1c2619209} 
+\$submit = filter\+\_\+input(INPUT\+\_\+\+POST, \textquotesingle{}update\+Plugin\+Ecran\+Connecte\textquotesingle{})}
+
+\Hypertarget{amu-ecran-connecte_8php_acd7cb11509cbe7bd9e3f6bb794b5f412}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!TV\_ICSFILE\_PATH@{TV\_ICSFILE\_PATH}}
+\index{TV\_ICSFILE\_PATH@{TV\_ICSFILE\_PATH}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{TV\_ICSFILE\_PATH}{TV\_ICSFILE\_PATH}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_acd7cb11509cbe7bd9e3f6bb794b5f412} 
+const TV\+\_\+\+ICSFILE\+\_\+\+PATH \textquotesingle{}/wp-\/content/uploads/file\+ICS/\textquotesingle{}}
+
+\Hypertarget{amu-ecran-connecte_8php_ab09e96db888c1dc01faa37a58374e1d6}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!TV\_PLUG\_PATH@{TV\_PLUG\_PATH}}
+\index{TV\_PLUG\_PATH@{TV\_PLUG\_PATH}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{TV\_PLUG\_PATH}{TV\_PLUG\_PATH}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_ab09e96db888c1dc01faa37a58374e1d6} 
+const TV\+\_\+\+PLUG\+\_\+\+PATH(! defined( \textquotesingle{}ABSPATH\textquotesingle{})) (\begin{DoxyParamCaption}\item[{! }]{defined}{ \textquotesingle{}\+ABSPATH\textquotesingle{}}\end{DoxyParamCaption}) \textquotesingle{}/wp-\/content/plugins/plugin-\/ecran-\/connecte/\textquotesingle{}}
+
+\Hypertarget{amu-ecran-connecte_8php_af4cf9bcf05f8ba7ca99a498db1929387}\index{amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}!TV\_UPLOAD\_PATH@{TV\_UPLOAD\_PATH}}
+\index{TV\_UPLOAD\_PATH@{TV\_UPLOAD\_PATH}!amu-\/ecran-\/connecte.php@{amu-\/ecran-\/connecte.php}}
+\doxysubsubsection{\texorpdfstring{TV\_UPLOAD\_PATH}{TV\_UPLOAD\_PATH}}
+{\footnotesize\ttfamily \label{amu-ecran-connecte_8php_af4cf9bcf05f8ba7ca99a498db1929387} 
+const TV\+\_\+\+UPLOAD\+\_\+\+PATH \textquotesingle{}/wp-\/content/uploads/media/\textquotesingle{}}
+

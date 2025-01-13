@@ -1,0 +1,15 @@
+<map id="RecurrencesTest\testDailyFullDayTimeZoneBerlin" name="RecurrencesTest\testDailyFullDayTimeZoneBerlin">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,115,182,157"/>
+<area shape="rect" id="Node000002" href="$class_recurrences_test.html#ac5117a6c9b756f868d6ddf536f6db37b" title=" " alt="" coords="230,123,444,149"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,133,214,133,214,139,182,139"/>
+<area shape="rect" id="Node000003" href="$class_recurrences_test.html#ad699244e7737dabf8c464ce1783a2f30" title=" " alt="" coords="498,5,692,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,120,414,81,491,42,510,34,512,39,493,46,417,86,359,124"/>
+<area shape="rect" id="Node000004" href="$class_recurrences_test.html#a9bbc6ab921cbea8fea51455abb57a751" title=" " alt="" coords="504,56,686,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="398,119,488,99,489,104,399,125"/>
+<area shape="rect" id="Node000005" href="$class_recurrences_test.html#a6d1d3687f00c897aa56fef2974301ab1" title=" " alt="" coords="494,123,695,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="445,133,479,133,479,139,445,139"/>
+<area shape="rect" id="Node000006" href="$class_recurrences_test.html#a692ff78a88792b049a1d08c0005dab52" title=" " alt="" coords="492,173,697,200"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="409,147,509,167,508,172,408,153"/>
+<area shape="rect" id="Node000007" href="$class_recurrences_test.html#a55361f5e737237cccedcb2e4a39c050a" title=" " alt="" coords="501,224,688,251"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="363,147,421,178,493,210,515,217,513,222,491,214,419,183,361,152"/>
+</map>
