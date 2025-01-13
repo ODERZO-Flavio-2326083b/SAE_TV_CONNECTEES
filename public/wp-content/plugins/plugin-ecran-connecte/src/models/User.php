@@ -83,13 +83,12 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
-        if ($this->getRole() == 'television' || $this->getRole() == 'secretaire' || $this->getRole() == 'technicien') {
-            $database = $this->getDatabase();
-            $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
-            $request->bindValue(':dept_id', $this->getIdDepartment());
-            $request->bindParam(':user_id', $id, PDO::PARAM_INT);
-            $request->execute();
-        }
+        $database = $this->getDatabase();
+        $request = $database->prepare('INSERT INTO ecran_user_departement (dept_id, user_id) VALUES (:dept_id, :user_id)');
+        $request->bindValue(':dept_id', $this->getIdDepartment());
+        $request->bindParam(':user_id', $id, PDO::PARAM_INT);
+        $request->execute();
+
         return $id;
     }
 
@@ -221,7 +220,7 @@ class User extends Model implements Entity, JsonSerializable
                                                         FROM wp_users wp
                                                         JOIN wp_usermeta meta ON wp.ID = meta.user_id
                                                         JOIN ecran_user_departement d ON d.user_id = wp.ID
-                                                        AND meta.meta_value =:role 
+                                                        AND meta.meta_value = :role 
                                                         ORDER BY wp.user_login LIMIT 1000');
         $size = strlen($role);
         $role = 'a:1:{s:' . $size . ':"' . $role . '";b:1;}';

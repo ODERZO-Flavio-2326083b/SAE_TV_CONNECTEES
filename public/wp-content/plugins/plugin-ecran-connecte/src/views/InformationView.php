@@ -171,7 +171,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .webm</small>
         </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
@@ -233,7 +233,7 @@ class InformationView extends View
             <label for="contentFile">Ajouter une vidéo (short)</label>
             <input class="form-control-file" id="contentFile" type="file" name="contentFile"/>
             <input type="hidden" name="MAX_FILE_SIZE" value="5000000"/>
-            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .avi, .mov</small>
+            <small id="tabHelp" class="form-text text-muted">Formats acceptés : .mp4, .webm</small>
             <small id="tabHelp" class="form-text text-muted">Un short est une courte vidéo au format vertical.</small>
         </div>
         <div class="form-group">
@@ -471,7 +471,7 @@ class InformationView extends View
      * Affiche le début d'un conteneur pour un diaporama de vidéos.
      *
      * Cette méthode génère une structure HTML pour le conteneur principal
-     * du diaporama destiné uniquement aux vidéos, positionné à droite de l'écran.
+     * du diaporama destiné uniquement aux vidéos, positionné à gauche de l'écran.
      *
      * @return void
      * @version 1.0

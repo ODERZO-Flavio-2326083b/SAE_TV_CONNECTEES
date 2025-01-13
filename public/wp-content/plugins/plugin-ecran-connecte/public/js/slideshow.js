@@ -4,6 +4,11 @@ let numPage = 0; // Numéro de page courante
 let totalPage = null; // Nombre de pages
 let endPage = false;
 let stop = false;
+let videoDurations = DURATIONS.videoDurations;
+let otherDurations = DURATIONS.otherDurations;
+
+console.log(videoDurations);
+console.log(otherDurations)
 
 infoSlideShow();
 videoSlideshow();
@@ -177,8 +182,8 @@ function displayOrHide(slides, slideIndex)
     }
 
     if(slides.length !== 1 || totalPage !== 1) {
-        // On définit notre temps, ici 10 secondes
-        setTimeout(function(){displayOrHide(slides, slideIndex)} , 10000);
+        // On attend autant de temps que nécessaire pour que l'information passe assez longtemps
+        setTimeout(function(){displayOrHide(slides, slideIndex)} , otherDurations[slideIndex-1]);
     }
 }
 
@@ -199,12 +204,15 @@ function displayOrHideVideo(slides, slideIndex) {
         // Une fois que toutes les vidéos ont été passées, on cache la diapositive, laissant apparaître l'emploi du temps
         if (slideIndex === slides.length) {
             console.log("--Fin du diaporama - On cache les vidéos");
+            for (let i = 0; i < slides.length; ++i) {
+                slides[i].style.display = "none";
+            }
 
             // On attend 6 secondes, avant de refaire apparaître le diaporama
             setTimeout(function () {
                 console.log("--Reprise du diaporama après 10 secondes");
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
-            }, 15000);
+            }, 10000);
 
             return;
         }
@@ -220,6 +228,7 @@ function displayOrHideVideo(slides, slideIndex) {
                     // Si c'est une vidéo, on l'affiche
                     if (child.className === 'video_container') {
                         slides[slideIndex].style.display = "block";
+                        slides[slideIndex].style.position = "relative";
                         console.log("--Lecture de la vidéo");
 
                     }
@@ -233,7 +242,7 @@ function displayOrHideVideo(slides, slideIndex) {
             // On définit notre temps, ici 5 secondes
             setTimeout(function () {
                 displayOrHideVideo(slides, slideIndex)
-            }, 5000);
+            }, videoDurations[slideIndex-1]);
         }
     }
 }

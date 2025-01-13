@@ -50,11 +50,6 @@ class CSSCustomizer extends Model
             $button = $_POST['button'];
             $sideBar = $_POST['sideBar'];
             $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-'.$cssFileName.'.css';
-
-
-
-
-
             // Générer le contenu du nouveau CSS
             $newCss = "
 body, .container {

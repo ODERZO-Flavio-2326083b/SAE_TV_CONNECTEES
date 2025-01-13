@@ -34,6 +34,11 @@ class UserView extends View
      */
     protected function displayBaseForm(string $name, array $allDepts, bool $isAdmin = false, int $currDept = null): string {
         $disabled = $isAdmin ? '' : 'disabled';
+
+		if(empty($allDepts)) {
+			return '<h1> Il n\'y a pas de départements. <br> Merci d\'en créer un afin d\'acceder à cette page. </h1>';
+		}
+
         return '
             <form method="post" class="cadre">
                 <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use getID3;
 use models\Department;
 use models\Information;
 use models\Scrapper;
@@ -12,7 +13,7 @@ use views\InformationView;
 /**
  * Class InformationController
  *
- * Manage information (create, update, delete, display)
+ * Gère les informations avec ces différentes fonctions (créer, mettre à jour, supprimer, afficher)
  *
  * @package controllers
  */
@@ -75,7 +76,7 @@ class InformationController extends Controller
         $deptModel = new Department();
         $userModel = new User();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -103,13 +104,14 @@ class InformationController extends Controller
         }
 
         $information = $this->model;
-        $information->setContent($content);
-        $information->setTitle($title);
-        $information->setAuthor($userModel->get($currentUser->ID));
-        $information->setCreationDate($creationDate);
-        $information->setExpirationDate($endDate);
-        $information->setAdminId(null);
-        $information->setIdDepartment($deptId ?: 0);
+	    $information->setContent($content);
+	    $information->setTitle($title);
+	    $information->setAuthor($userModel->get($currentUser->ID));
+	    $information->setCreationDate($creationDate);
+	    $information->setExpirationDate($endDate);
+	    $information->setAdminId(null);
+	    $information->setIdDepartment($deptId ?: 0);
+        $information->setDuration(5000);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -142,7 +144,7 @@ class InformationController extends Controller
                 $fileTmpName = $_FILES['contentFile']['tmp_name'];
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un tableau non PDF, veuillez choisir un autre PDF.</p>');
+                $this->view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF.</p>');
             }
         }
         if (isset($actionEvent)) { // Si l'information est un événement
@@ -162,19 +164,19 @@ class InformationController extends Controller
                 }
             }
         }
-        if (isset($actionShort) || isset($actionVideo)) { // Si l'information est un short ou une vidéo
-            isset($actionShort) ? $type = "short" : $type = "video";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['mp4', 'mov', 'avi']; // On définit les extensions valides pour nos vidéos/shorts
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
-            }
-        }
+	    if (isset($actionShort) || isset($actionVideo)){ // Si l'information est un short ou une vidéo
+		    isset($actionShort) ? $type = "short" : $type = "video";
+		    $information->setType($type);
+		    $filename = $_FILES['contentFile']['name'];
+		    $fileTmpName = $_FILES['contentFile']['tmp_name'];
+		    $explodeName = explode('.', $filename);
+		    $goodExtension = ['mp4', 'webm']; // On définit les extensions valides pour nos vidéos/shorts
+		    if (in_array(end($explodeName), $goodExtension)) {
+			    $this->registerFile($filename, $fileTmpName, $information);
+		    } else {
+			    $this->view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+		    }
+	    }
 
         return
             $this->view->displayStartMultiSelect() .
@@ -236,7 +238,7 @@ class InformationController extends Controller
         $deptModel = new Department();
         $currentUser = wp_get_current_user();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
+        $isAdmin = current_user_can('admin_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département.
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
 
@@ -244,7 +246,8 @@ class InformationController extends Controller
 
         $information = $this->model->get($id);
 
-        if (!(in_array('administrator', $currentUser->roles) || in_array('secretaire', $currentUser->roles) || $information->getAuthor()->getId() == $currentUser->ID)) {
+        if (!(current_user_can('edit_information') ||
+              $information->getAuthor()->getId() == $currentUser->ID)) {
             return $this->view->noInformation();
         }
 
@@ -290,7 +293,7 @@ class InformationController extends Controller
                         }
                     } else if ($information->getType() == 'video' || $information->getType() == 'short') {
                         $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'avi', 'mov'];
+                        $goodExtension = ['mp4', 'webm'];
                         if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
                             $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
@@ -346,9 +349,19 @@ class InformationController extends Controller
         $id = 'temporary';
         $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
+        $entity->setDuration(5000);
+
+        if($entity->getType() == 'video' || $entity->getType() == 'short') {
+            $getID3 = new getID3();
+            $fileInfo = $getID3->analyze($tmpName);
+            if (isset($fileInfo['playtime_seconds'])) {
+                $duration = $fileInfo['playtime_seconds'];
+                $entity->setDuration(floor($duration*1000));
+            }
+        }
 
         // Upload le fichier
-        if ($result = move_uploaded_file($tmpName, $name)) {
+        if (move_uploaded_file($tmpName, $name)) {
             $entity->setContent('temporary content');
             if ($entity->getId() == null) {
                 $id = $entity->insert();
@@ -410,7 +423,7 @@ class InformationController extends Controller
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles)) {
+        if (current_user_can('admin_perms')) {
             $informationList = $this->model->getList($begin, $number);
         } else {
             $informationList = $this->model->getInformationsByDeptId($deptModel->getUserDepartment($current_user->ID)->getIdDepartment());
@@ -421,7 +434,7 @@ class InformationController extends Controller
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-        $videoExtension = ['mp4', 'avi', 'mov'];
+        $videoExtension = ['mp4', 'webm'];
 
         foreach ($informationList as $information) {
             ++$row;
@@ -479,7 +492,8 @@ class InformationController extends Controller
                 $checked_values = $_REQUEST['checkboxStatusInfo'];
                 foreach ($checked_values as $id) {
                     $entity = $this->model->get($id);
-                    if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $entity->getAuthor()->getId() == $current_user->ID) {
+                    if (current_user_can('edit_information')
+                        || $entity->getAuthor()->getId() == $current_user->ID) {
                         $type = $entity->getType();
                         $types = ["img", "pdf", "event"];
                         if (in_array($type, $types)) {
@@ -528,7 +542,6 @@ class InformationController extends Controller
      *
      * Récupère la liste des informations, vérifie si leur date d'expiration est dépassée,
      * et affiche chaque information en fonction de son type.
-     * Pour les tableaux, le contenu est lu à partir d'un fichier et formaté pour l'affichage.
      *
      * @return void
      *
@@ -538,7 +551,8 @@ class InformationController extends Controller
     public function informationMain()
     {
         $deptModel = new Department();
-        $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+        $informations = $this->model->getInformationsByDeptId(
+            $deptModel->getUserDepartment(get_current_user_id())->getIdDepartment());
         $informations[] = $this->createScrapper();
         $this->view->displayStartSlideshow();
         foreach ($informations as $information) {
@@ -548,7 +562,34 @@ class InformationController extends Controller
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
+                // Affiche les informations sauf les vidéos
+                if ($information->getType() !== 'video') {
+                    $this->view->displaySlide($information->getTitle(),
+                        $information->getContent(), $information->getType(), new
+                        Scrapper(), $adminSite);
+                }
+            }
+        }
+        echo '</div>';
+    }
+
+    public function displayVideo(){
+        $deptModel = new Department();
+        $informations = $this->model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+
+        // Début du conteneur pour les vidéos
+        $this->view->displayStartSlideVideo();
+        foreach ($informations as $information) {
+            $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
+            if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
+                $adminSite = true;
+                if (is_null($information->getAdminId())) {
+                    $adminSite = false;
+                }
+                // Affiche uniquement les vidéos
+                if ($information->getType() === 'video') {
+                    $this->view->displaySlideVideo($information->getTitle(), $information->getContent(), $information->getType(), $adminSite);
+                }
             }
         }
         echo '</div>';
