@@ -11,4 +11,7 @@ return array(
     'models\\' => array($baseDir . '/src/models'),
     'controllers\\rest\\' => array($baseDir . '/src/controllers/rest'),
     'controllers\\' => array($baseDir . '/src/controllers'),
+    'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

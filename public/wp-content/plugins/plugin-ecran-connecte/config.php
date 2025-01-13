@@ -17,7 +17,6 @@ define('DB_HOST_VIEWER', 'localhost');
 define('DB_NAME_VIEWER', 'adminwordpress');
 define('URL_WEBSITE_VIEWER', 'http://adminwordpress/');
 
-
 /**
  * Create all directory
  * (For ICS file and media)

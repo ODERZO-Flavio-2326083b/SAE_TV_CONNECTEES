@@ -116,8 +116,8 @@ class Controller
                                         // dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
         $end = date('Y-m-d', $str2); // Date de fin (dans 6 jours)
-        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/
-        anonymous_cal.jsp?projectId=8&resources=' . $code
+        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/'.
+        'anonymous_cal.jsp?projectId=8&resources=' . $code
             . '&calType=ical&firstDate=' . $start . '&lastDate='
             . $end; // Génère l'URL
         return $url; // Retourne l'URL
