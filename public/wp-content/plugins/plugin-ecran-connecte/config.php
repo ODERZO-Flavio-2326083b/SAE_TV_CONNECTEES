@@ -514,7 +514,7 @@ add_action(
         $controller->register_routes();
 
         $controller = new CodeAdeRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
 
         $controller = new AlertRestController();
         $controller->registerRoutes();

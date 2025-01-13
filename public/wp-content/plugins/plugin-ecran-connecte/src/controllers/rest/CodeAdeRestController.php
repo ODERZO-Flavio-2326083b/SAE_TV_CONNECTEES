@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier AdeCodeRestController.php
+ *
+ * Ce fichier contient la classe `AdeCodeRestController`, qui étend la classe
+ * `WP_REST_Controller` pour gérer les codes ADE via l'API REST de WordPress.
+ * Elle fournit des méthodes pour récupérer, créer, mettre à jour et supprimer
+ * des codes ADE.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/AdeCodeRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\CodeAde;
@@ -8,12 +26,22 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+
 /**
+ * Classe AdeCodeRestController
+ *
  * Cette classe étend la classe WP_REST_Controller et permet de gérer les codes ADE
  * via l'API REST de WordPress. Elle fournit des méthodes pour récupérer, créer,
  * mettre à jour et supprimer des codes ADE.
  *
- * @package controllers\rest
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/AdeCodeRestController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class CodeAdeRestController extends WP_REST_Controller
 {
@@ -45,14 +73,19 @@ class CodeAdeRestController extends WP_REST_Controller
      * Routes définies :
      * - GET /amu-ecran-connectee/v1/ade : Récupère tous les codes ADE.
      * - POST /amu-ecran-connectee/v1/ade : Crée un nouveau code ADE.
-     * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE spécifique par ID.
-     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code ADE spécifique par ID.
-     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code ADE spécifique par ID.
+     * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE
+     * spécifique par ID.
+     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code
+     * ADE spécifique par ID.
+     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code
+     * ADE spécifique par ID.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    2024-09-16
      */
-    public function register_routes()
+    public function registerRoutes()
     {
         register_rest_route(
             $this->namespace,
@@ -60,14 +93,16 @@ class CodeAdeRestController extends WP_REST_Controller
             array(
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_items'),
-                    'permission_callback' => array($this, 'get_items_permissions_check'),
+                    'callback' => array($this, 'getItems'),
+                    'permission_callback' => array($this,
+                        'getItemsPermissionsCheck'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::CREATABLE,
-                    'callback' => array($this, 'create_item'),
-                    'permission_callback' => array($this, 'create_item_permissions_check'),
+                    'callback' => array($this, 'createItem'),
+                    'permission_callback' => array($this,
+                        'createItemPermissionsCheck'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -103,14 +138,16 @@ class CodeAdeRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_item'),
-                    'permission_callback' => array($this, 'get_item_permissions_check'),
+                    'callback' => array($this, 'getItem'),
+                    'permission_callback' => array($this,
+                        'getItemPermissionsCheck'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'update_item'),
-                    'permission_callback' => array($this, 'update_item_permissions_check'),
+                    'callback' => array($this, 'updateItem'),
+                    'permission_callback' => array($this,
+                        'updateItemPermissionsCheck'),
                     'args' => array(
                         'title' => array(
                             'type' => 'string',
@@ -129,8 +166,9 @@ class CodeAdeRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::DELETABLE,
-                    'callback' => array($this, 'delete_item'),
-                    'permission_callback' => array($this, 'delete_item_permissions_check'),
+                    'callback' => array($this, 'deleteItem'),
+                    'permission_callback' => array($this,
+                        'deleteItemPermissionsCheck'),
                     'args' => array()
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
@@ -153,7 +191,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function get_items($request)
+    public function getItems($request)
     {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
@@ -182,7 +220,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function create_item($request)
+    public function createItem($request)
     {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
@@ -197,7 +235,9 @@ class CodeAdeRestController extends WP_REST_Controller
             return new WP_REST_Response(array('id' => $insert_id), 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not insert the ADE code'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not insert the ADE code'), 400
+        );
     }
 
     /**
@@ -221,7 +261,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function get_item($request)
+    public function getItem($request)
     {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
@@ -229,7 +269,9 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code) {
-            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
+            return new WP_REST_Response(
+                array('message' => 'ADE code not found'), 404
+            );
         }
 
         return new WP_REST_Response($requested_ade_code, 200);
@@ -260,7 +302,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function update_item($request)
+    public function updateItem($request)
     {
         // Obtenir une instance du gestionnaire de code ADE
         $ade_code = new CodeAde();
@@ -268,7 +310,9 @@ class CodeAdeRestController extends WP_REST_Controller
         // Récupérer les informations de la base de données
         $requested_ade_code = $ade_code->get($request->get_param('id'));
         if (!$requested_ade_code) {
-            return new WP_REST_Response(array('message' => 'ADE code not found'), 404);
+            return new WP_REST_Response(
+                array('message' => 'ADE code not found'), 404
+            );
         }
 
         // Mettre à jour les données
@@ -289,7 +333,9 @@ class CodeAdeRestController extends WP_REST_Controller
             return new WP_REST_Response(null, 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not update the ADE code'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not update the ADE code'), 400
+        );
     }
 
     /**
@@ -314,7 +360,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function delete_item($request)
+    public function deleteItem($request)
     {
         // Obtenir une instance du gestionnaire de code ADE
         $codeAde = new CodeAde();
@@ -325,7 +371,9 @@ class CodeAdeRestController extends WP_REST_Controller
             return new WP_REST_Response(null, 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not delete the ADE code'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not delete the ADE code'), 400
+        );
     }
 
     /**
@@ -346,7 +394,7 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function get_items_permissions_check($request)
+    public function getItemsPermissionsCheck($request)
     {
         $current_user = wp_get_current_user();
         return in_array("administrator", $current_user->roles);
@@ -369,9 +417,9 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function create_item_permissions_check($request)
+    public function createItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -392,9 +440,9 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function get_item_permissions_check($request)
+    public function getItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -415,9 +463,9 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function update_item_permissions_check($request)
+    public function updateItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -437,8 +485,8 @@ class CodeAdeRestController extends WP_REST_Controller
      * @version 1.0
      * @date    2024-09-16
      */
-    public function delete_item_permissions_check($request)
+    public function deleteItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 }
