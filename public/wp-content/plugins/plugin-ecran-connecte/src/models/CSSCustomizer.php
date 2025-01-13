@@ -4,8 +4,32 @@ namespace models;
 
 use models\Model;
 
+/**
+ * Classe CSSCustomizer
+ *
+ * Cette classe gère la personnalisation du fichier CSS global en fonction
+ * des données soumises par l'utilisateur via un formulaire. Elle permet
+ * de mettre à jour les couleurs, les mises en page et les autres éléments
+ * de style sur la base des choix de l'utilisateur, et d'enregistrer ces
+ * modifications dans un fichier CSS spécifique.
+ *
+ * @package models
+ */
 class CSSCustomizer extends Model
 {
+    /**
+     * Met à jour le fichier CSS avec les valeurs soumises par le formulaire.
+     *
+     * Cette méthode récupère les valeurs envoyées par le formulaire via
+     * la méthode POST et génère un nouveau contenu CSS en fonction de ces
+     * valeurs. Elle écrit ensuite ce nouveau contenu dans le fichier CSS
+     * spécifié.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date    2024-12-18
+     */
     public function updateColor()
     {
 
@@ -25,7 +49,9 @@ class CSSCustomizer extends Model
             $buttonBorder = $_POST['buttonBorder'];
             $button = $_POST['button'];
             $sideBar = $_POST['sideBar'];
-            $cssFile =WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-'.$cssFileName.'.css';
+            $cssFile =WP_CONTENT_DIR
+                .'/themes/theme-ecran-connecte/assets/css/global/global-'
+                .$cssFileName.'.css';
 
 
 
@@ -63,9 +89,9 @@ a, a:hover, a:link, a:active {
 
             // Écrire le nouveau contenu dans le fichier CSS
             if (!file_put_contents($cssFile, $newCss)) {
-				echo "Erreur lors de la modification du fichier CSS.";
+                echo "Erreur lors de la modification du fichier CSS.";
             }
-}
+        }
 
 
     }

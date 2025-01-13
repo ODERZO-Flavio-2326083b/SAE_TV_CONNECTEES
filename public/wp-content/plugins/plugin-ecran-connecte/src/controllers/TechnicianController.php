@@ -5,12 +5,14 @@ namespace controllers;
 use models\CodeAde;
 use models\Department;
 use models\User;
+use utils\InputValidator;
 use views\TechnicianView;
 
 /**
  * Class TechnicianController
  *
- * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de l'emploi du temps)
+ * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de
+ * l'emploi du temps)
  *
  * @package controllers
  */
@@ -22,14 +24,14 @@ class TechnicianController extends UserController implements Schedule
      *
      * @var User
      */
-    private User $model;
+    private User $_model;
 
     /**
      * Vue de TechnicianController.
      *
      * @var TechnicianView
      */
-    private TechnicianView $view;
+    private TechnicianView $_view;
 
     /**
      * Constructeur de la classe TechnicianController.
@@ -39,12 +41,13 @@ class TechnicianController extends UserController implements Schedule
      * les propriétés héritées sont correctement initialisées.
      *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        $this->model = new User();
-        $this->view = new TechnicianView();
+        $this->_model = new User();
+        $this->_view = new TechnicianView();
     }
 
     /**
@@ -61,51 +64,61 @@ class TechnicianController extends UserController implements Schedule
      *                de l'insertion.
      *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function insert(): string {
+    public function insert(): string
+    {
         $action = filter_input(INPUT_POST, 'createTech');
 
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
-        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun département, sinon on cherche le département
-        $currDept = $isAdmin ? -1 : $deptModel->getUserDepartment($currentUser->ID)->getIdDepartment();
+        $isAdmin = current_user_can('admin_perms');
+        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
+        $currDept
+            = $isAdmin ? -1 : $deptModel->getUserDepartment(
+                $currentUser->ID
+            )->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTech');
             $password = filter_input(INPUT_POST, 'pwdTech');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTech');
             $email = filter_input(INPUT_POST, 'emailTech');
-            // les non-admins ne peuvent pas choisir le département, on empêche donc ces utilisateurs
-            // de pouvoir le changer
-            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
+            // les non-admins ne peuvent pas choisir le département, on empêche donc
+            // ces utilisateurs de pouvoir le changer
+            $deptId
+                = $isAdmin ? filter_input(INPUT_POST, 'deptIdTech') : $currDept;
 
             // Validation des données d'entrée
-            if (is_string($login) && strlen($login) >= 4 && strlen($login) <= 25 &&
-                is_string($password) && strlen($password) >= 8 && strlen($password) <= 25 &&
-                $password === $passwordConfirm && is_email($email)) {
-                $this->model->setLogin($login);
-                $this->model->setPassword($password);
-                $this->model->setEmail($email);
-                $this->model->setRole('technicien');
-                $this->model->setIdDepartment($deptId);
+            if (InputValidator::isValidLogin($login) 
+                && InputValidator::isValidPassword($password, $passwordConfirm) 
+                && InputValidator::isValidEmail($email)
+            ) {
+                $this->_model->setLogin($login);
+                $this->_model->setPassword($password);
+                $this->_model->setEmail($email);
+                $this->_model->setRole('technicien');
+                $this->_model->setIdDepartment($deptId);
 
                 // Insertion dans la base de données
-                if (!$this->checkDuplicateUser($this->model) && $this->model->insert()) {
-                    $this->view->displayInsertValidate();
+                if (!$this->checkDuplicateUser(
+                    $this->_model
+                ) && $this->_model->insert()
+                ) {
+                    $this->_view->displayInsertValidate();
                 } else {
-                    $this->view->displayErrorInsertion();
+                    $this->_view->displayErrorInsertion();
                 }
             } else {
-                $this->view->displayErrorCreation();
+                $this->_view->displayErrorCreation();
             }
         }
 
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->view->displayFormTechnician($allDepts, $currDept, $isAdmin);
+        return $this->_view->displayFormTechnician($allDepts, $currDept, $isAdmin);
     }
 
     /**
@@ -118,21 +131,23 @@ class TechnicianController extends UserController implements Schedule
      *
      * @return string Retourne le rendu de l'affichage de tous les techniciens.
      *
-     *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function displayAllTechnician(): string {
-        $users = $this->model->getUsersByRole('technicien');
+    public function displayAllTechnician(): string
+    {
+        $users = $this->_model->getUsersByRole('technicien');
 
         $deptModel = new Department();
 
         $userDeptList = array();
         foreach ($users as $user) {
-            $userDeptList[] = $deptModel->getUserDepartment($user->getId())->getName();
+            $userDeptList[] = $deptModel->getUserDepartment(
+                $user->getId()
+            )->getName();
         }
 
-        return $this->view->displayAllTechnicians($users, $userDeptList);
+        return $this->_view->displayAllTechnicians($users, $userDeptList);
     }
 
     /**
@@ -146,17 +161,21 @@ class TechnicianController extends UserController implements Schedule
      * @return string Retourne une chaîne contenant tous les emplois du temps pour
      *                chaque année associée à l'utilisateur.
      *
-     *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function displayMySchedule(): string {
+    public function displayMySchedule(): string
+    {
         $codeAde = new CodeAde();
+        $user = new User();
+        $techUserObj = $user->get(wp_get_current_user()->ID);
 
         $years = $codeAde->getAllFromType('year');
         $string = "";
         foreach ($years as $year) {
-            $string .= $this->displaySchedule($year->getCode());
+            if ($year->getDeptId() == $techUserObj->getIdDepartment()) {
+                $string .= $this->displaySchedule($year->getCode());
+            }
         }
         return $string;
     }

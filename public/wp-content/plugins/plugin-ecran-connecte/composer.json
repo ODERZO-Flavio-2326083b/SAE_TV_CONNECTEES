@@ -9,14 +9,16 @@
     }
   ],
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "james-heinrich/getid3": "^1.9"
   },
   "autoload": {
     "psr-4": {
       "controllers\\": "src/controllers/",
       "controllers\\rest\\": "src/controllers/rest",
       "models\\": "src/models/",
-      "views\\": "src/views/"
+      "views\\": "src/views/",
+      "utils\\": "src/utils/"
     }
   }
 }

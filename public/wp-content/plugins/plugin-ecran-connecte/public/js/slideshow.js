@@ -4,13 +4,22 @@ let numPage = 0; // Numéro de page courante
 let totalPage = null; // Nombre de pages
 let endPage = false;
 let stop = false;
+let videoDurations = DURATIONS.videoDurations;
+let otherDurations = DURATIONS.otherDurations;
+
+console.log(videoDurations);
+console.log(otherDurations)
 
 infoSlideShow();
+videoSlideshow();
 scheduleSlideshow();
 
+
+
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama s'il existe des informations
  */
+
 function infoSlideShow()
 {
     if(document.getElementsByClassName("myInfoSlides").length > 0) {
@@ -20,8 +29,19 @@ function infoSlideShow()
 }
 
 /**
- * Begin a slideshow if there is some informations
+ * Lance le diaporama s'il existe des vidéos
  */
+function videoSlideshow(){
+    if (document.getElementsByClassName("myVideoSlides").length > 0){
+        console.log("-Début du diaporama vidéo");
+        displayOrHideVideo(document.getElementsByClassName("myVideoSlides"), 0);
+    }
+}
+
+/**
+ * Lance le diaporama s'il existe des informations
+ */
+
 function scheduleSlideshow()
 {
     if(document.getElementsByClassName("mySlides").length > 0) {
@@ -31,7 +51,7 @@ function scheduleSlideshow()
 }
 
 /**
- * Display a slideshow
+ * Affiche un diaporama
  */
 function displayOrHide(slides, slideIndex)
 {
@@ -41,49 +61,29 @@ function displayOrHide(slides, slideIndex)
                 slides[i].style.display = "none";
             }
         }
-
-
-
         if(slideIndex === slides.length) {
             console.log("-Fin du diaporama - On recommence");
             slideIndex = 0;
         }
 
-        if (slides[slideIndex].querySelector('.video_container')){
-            console.log("--Vidéo ignorée");
-            ++slideIndex;
-            if (slideIndex === slides.length){
-                console.log("-Fin du diaporama - On recommence");
-                slideIndex = 0;
-            }
-
-        }
-
-        // Check if the slide exist
+        // On vérifie qu'il existe une dernière slide
         if(slides[slideIndex] !== undefined) {
 
             console.log("--Slide n°"+ slideIndex);
 
             slides[slideIndex].style.display = "block";
-            // Check child
-
-
-
-
-
+            // On vérifie qu'un enfant existe
             if(slides[slideIndex].childNodes) {
                 let count = 0;
-                // Try to find if it's a PDF
                 for(let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
                     let child = slides[slideIndex].childNodes[i];
-                    // If is a PDF
+                    // Si c'est un PDF
                     if(child.className === 'canvas_pdf') {
 
                         console.log("--Lecture de PDF");
+                        count++;
 
-                        count = count + 1;
-
-                        // Generate the url
+                        // On génère l'URL
                         let pdfLink = slides[slideIndex].childNodes[i].id;
                         pdfUrl = urlUpload + pdfLink;
 
@@ -128,7 +128,7 @@ function displayOrHide(slides, slideIndex)
                                         viewport: viewport
                                     };
 
-                                    // Give the CSS to the canvas
+                                    // On donne à notre page un CSS
                                     if(slides === document.getElementsByClassName("mySlides")) {
                                         canvas.style.maxHeight = "99vh";
                                         canvas.style.maxWidth = "100%";
@@ -155,16 +155,19 @@ function displayOrHide(slides, slideIndex)
                                     totalPage = null;
                                     numPage = 0;
                                     endPage = true;
+                                    // Aller à la prochaine slide.
                                     ++slideIndex;
-                                    // Go to the next slide
+
                                 }
                             }
                         });
                     }
 
+                    // Si c'est un short
                     if (child.className === 'short_container') {
                         console.log("--Lecture short");
                     }
+
                 }
 
                 if(count === 0) {
@@ -172,13 +175,81 @@ function displayOrHide(slides, slideIndex)
                     ++slideIndex;
                 }
             } else {
-                // Go to the next slide
+                // Aller à la prochaine slide
                 ++slideIndex;
             }
         }
     }
 
     if(slides.length !== 1 || totalPage !== 1) {
-        setTimeout(function(){displayOrHide(slides, slideIndex)} , 4000);
+        // On attend autant de temps que nécessaire pour que l'information passe assez longtemps
+        setTimeout(function(){displayOrHide(slides, slideIndex)} , otherDurations[slideIndex-1]);
+    }
+
+    setTimeout(function(){
+        window.location.reload(1);
+    }, 86400000);
+}
+
+
+
+
+/**
+ * Affiche un diaporama en n'affichant que les vidéos, qu'on utilisera donc à droite dans notre télévision
+ */
+function displayOrHideVideo(slides, slideIndex) {
+    if (slides.length > 0) {
+        if (slides.length > 1) {
+            for (let i = 0; i < slides.length; ++i) {
+                slides[i].style.display = "none";
+            }
+        }
+
+        // Une fois que toutes les vidéos ont été passées, on cache la diapositive, laissant apparaître l'emploi du temps
+        if (slideIndex === slides.length) {
+            console.log("--Fin du diaporama - On cache les vidéos");
+            for (let i = 0; i < slides.length; ++i) {
+                slides[i].style.display = "none";
+            }
+
+            // On attend 6 secondes, avant de refaire apparaître le diaporama
+            setTimeout(function () {
+                console.log("--Reprise du diaporama après 10 secondes");
+                displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
+            }, 10000);
+
+            return;
+        }
+
+        // On vérifie qu'il existe une dernière slide
+        if (slides[slideIndex] !== undefined) {
+            console.log("--Slide n°" + slideIndex);
+
+            // On vérifie qu'un enfant existe et que c'est bien une vidéo
+            if (slides[slideIndex].childNodes) {
+                for (let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
+                    let child = slides[slideIndex].childNodes[i];
+                    // Si c'est une vidéo, on l'affiche
+                    if (child.className === 'video_container') {
+                        slides[slideIndex].style.display = "block";
+                        slides[slideIndex].style.position = "relative";
+                        console.log("--Lecture de la vidéo");
+
+                    }
+                }
+                // On passe à la slide suivante
+                ++slideIndex;
+            }
+        }
+
+        if (slides.length !== 1 || totalPage !== 1) {
+            // On définit notre temps, ici 5 secondes
+            setTimeout(function () {
+                displayOrHideVideo(slides, slideIndex)
+            }, videoDurations[slideIndex-1]);
+        }
     }
 }
+
+
+

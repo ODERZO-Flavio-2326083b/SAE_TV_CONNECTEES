@@ -37,7 +37,7 @@ if((in_array('television', $current_user->roles)) && is_front_page()) :
 
 <?php else: ?>
     <footer class="footer_ecran">
-        <p class="text-center">© 2024 - Aix-Marseille Université</p>
+        <p class="text-center">© 2025 - Aix-Marseille Université</p>
 <?php endif; ?>
 </footer>
 <?php wp_footer(); ?>

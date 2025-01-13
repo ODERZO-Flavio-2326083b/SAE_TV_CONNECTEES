@@ -25,14 +25,14 @@ class UserController extends Controller
      *
      * @var User
      */
-    private $model;
+    private User $_model;
 
     /**
      * Vue d'utilisateur.
      *
      * @var UserView
      */
-    private $view;
+    private UserView $_view;
 
     /**
      * Constructeur de la classe UserController.
@@ -48,11 +48,12 @@ class UserController extends Controller
      *   à l'affichage des utilisateurs.
      *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function __construct() {
-        $this->model = new User();
-        $this->view = new UserView();
+    public function __construct()
+    {
+        $this->_model = new User();
+        $this->_view = new UserView();
     }
 
     /**
@@ -74,29 +75,39 @@ class UserController extends Controller
      * @param int $id L'ID de l'utilisateur à supprimer.
      *
      * @return void
+     *
+     * @version 1.0
+     * @date    2à24-10-16
      */
-    public function delete($id) {
-        $user = $this->model->get($id);
+    public function delete($id)
+    {
+        $user = $this->_model->get($id);
         $userData = get_userdata($id);
         $user->delete();
-        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles)) {
-            $modelAlert = new Alert();
-            $alerts = $modelAlert->getAuthorListAlert($user->getLogin());
+        if (in_array(
+            "secretaire", $userData->roles
+        ) || in_array("administrator", $userData->roles)
+        ) {
+            $_modelAlert = new Alert();
+            $alerts = $_modelAlert->getAuthorListAlert($user->getLogin());
             foreach ($alerts as $alert) {
                 $alert->delete();
             }
         }
 
-        if (in_array("secretaire", $userData->roles) || in_array("administrator", $userData->roles)) {
-            $modelInfo = new Information();
-            $infos = $modelInfo->getAuthorListInformation($user->getId());
+        if (in_array(
+            "secretaire", $userData->roles
+        ) || in_array("administrator", $userData->roles)
+        ) {
+            $_modelInfo = new Information();
+            $infos = $_modelInfo->getAuthorListInformation($user->getId());
             foreach ($infos as $info) {
                 $goodType = ['img', 'pdf', 'event'];
                 if (in_array($info->getType(), $goodType)) {
                     $infoController = new InformationController();
                     $infoController->deleteFile($info->getId());
                 }
-                $modelInfo->delete();
+                $_modelInfo->delete();
             }
         }
     }
@@ -116,13 +127,15 @@ class UserController extends Controller
      *    le code reçu pour confirmer la suppression de son compte. Si le code
      *    correspond, le compte est supprimé.
      *
-     * @return string La vue pour supprimer le compte et entrer le code de désinscription.
+     * @return string La vue pour supprimer le compte et entrer le code de
+     * désinscription.
      */
-    public function deleteAccount() {
+    public function deleteAccount()
+    {
         $action = filter_input(INPUT_POST, 'deleteMyAccount');
         $actionDelete = filter_input(INPUT_POST, 'deleteAccount');
         $current_user = wp_get_current_user();
-        $user = $this->model->get($current_user->ID);
+        $user = $this->_model->get($current_user->ID);
         if (isset($action)) {
             $password = filter_input(INPUT_POST, 'verifPwd');
             if (wp_check_password($password, $current_user->user_pass)) {
@@ -139,21 +152,27 @@ class UserController extends Controller
                 $message = ' <!DOCTYPE html>
                              <html lang="fr">
                                  <head>
-                                       <title>Désnscription à la télé-connecté</title>
+                                       <title>Désnscription à la télé-connecté
+                                       </title>
                                   </head>
                                   <body>
-                                       <p>Bonjour, vous avez décidé de vous désinscrire sur le site de la Télé Connecté</p>
-                                       <p> Votre code de désinscription est : ' . $code . '.</p>
-                                       <p> Pour vous désinscrire, rendez-vous sur le site : <a href="' . home_url() . '/mon-compte/"> Tv Connectée.</p>
+                                       <p>Bonjour, vous avez décidé de vous 
+                                       désinscrire sur le site de la Télé Connecté
+                                       </p>
+                                       <p> Votre code de désinscription est : '
+                    . $code . '.</p>
+                                       <p> Pour vous désinscrire, rendez-vous sur le 
+                                       site : <a href="' . home_url()
+                    . '/mon-compte/"> Tv Connectée.</p>
                                   </body>
                              </html>';
 
                 $headers = array('Content-Type: text/html; charset=UTF-8');
 
                 wp_mail($to, $subject, $message, $headers);
-                $this->view->displayMailSend();
+                $this->_view->displayMailSend();
             } else {
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         } elseif (isset($actionDelete)) {
             $code = filter_input(INPUT_POST, 'codeDelete');
@@ -161,46 +180,58 @@ class UserController extends Controller
             if ($code == $userCode) {
                 $user->deleteCode();
                 $user->delete();
-                $this->view->displayModificationValidate();
+                $this->_view->displayModificationValidate();
             } else {
                 echo 'Code ' . $code;
                 echo 'User code ' . $userCode;
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         }
-        return $this->view->displayDeleteAccount() . $this->view->displayEnterCode();
+        return $this->_view->displayDeleteAccount()
+            . $this->_view->displayEnterCode();
     }
 
     /**
      * Affiche les options de modification pour le compte utilisateur.
      *
-     * Cette méthode génère une interface utilisateur permettant aux étudiants et aux autres
-     * types d'utilisateurs de choisir les options de modification disponibles pour leur
-     * compte. Les utilisateurs peuvent modifier leur mot de passe, leurs codes
-     * d'accès ou supprimer leur compte.
+     * Cette méthode génère une interface utilisateur permettant aux étudiants et aux
+     * autres types d'utilisateurs de choisir les options de modification disponibles
+     * pour leur compte. Les utilisateurs peuvent modifier leur mot de passe, leurs
+     * codes d'accès ou supprimer leur compte.
      *
      * - Pour les étudiants :
-     *   - Options disponibles : Modifier mes codes, Modifier mon mot de passe, Supprimer mon compte.
+     *   - Options disponibles : Modifier mes codes, Modifier mon mot de passe,
+     *     Supprimer mon compte.
      *
      * - Pour les autres utilisateurs :
      *   - Options disponibles : Modifier mon mot de passe, Supprimer mon compte.
      *
-     * @return string La vue affichant les options de modification sélectionnées par l'utilisateur.
+     * @return string La vue affichant les options de modification sélectionnées par
+     * l'utilisateur.
      */
-    public function chooseModif() : string {
+    public function chooseModif() : string
+    {
         $current_user = wp_get_current_user();
-        $string = $this->view->displayStartMultiSelect();
+        $string = $this->_view->displayStartMultiSelect();
 
-        $string .= $this->view->displayTitleSelect('pass', 'Modifier mon mot de passe', true);
+        $string .= $this->_view->displayTitleSelect(
+            'pass', 'Modifier mon mot de passe', true
+        );
 
-        $string .= $this->view->displayTitleSelect('delete', 'Supprimer mon compte') .
-            $this->view->displayEndOfTitle();
+        $string .= $this->_view->displayTitleSelect(
+            'delete', 'Supprimer mon compte'
+        ) .
+            $this->_view->displayEndOfTitle();
 
 
-        $string .= $this->view->displayContentSelect('pass', $this->modifyPwd(), true);
+        $string .= $this->_view->displayContentSelect(
+            'pass', $this->modifyPwd(), true
+        );
 
 
-        $string .= $this->view->displayContentSelect('delete', $this->deleteAccount()) . '</div>';
+        $string .= $this->_view->displayContentSelect(
+            'delete', $this->deleteAccount()
+        ) . '</div>';
 
         return $string;
     }
@@ -208,18 +239,21 @@ class UserController extends Controller
     /**
      * Modifie le mot de passe de l'utilisateur actuel.
      *
-     * Cette méthode gère la logique de modification du mot de passe d'un utilisateur connecté.
-     * Elle vérifie d'abord si le mot de passe actuel fourni par l'utilisateur est correct,
-     * puis, si c'est le cas, elle met à jour le mot de passe avec le nouveau mot de passe spécifié.
+     * Cette méthode gère la logique de modification du mot de passe d'un utilisateur
+     * connecté.
+     * Elle vérifie d'abord si le mot de passe actuel fourni par l'utilisateur est
+     * correct, puis, si c'est le cas, elle met à jour le mot de passe avec le
+     * nouveau mot de passe spécifié.
      *
-     * - Si l'utilisateur fournit un mot de passe correct, le nouveau mot de passe est enregistré,
-     *   et une confirmation de la modification est affichée.
+     * - Si l'utilisateur fournit un mot de passe correct, le nouveau mot de passe
+     *   est enregistré, et une confirmation de la modification est affichée.
      * - Si le mot de passe actuel est incorrect, un message d'erreur est affiché.
      *
      * @return string La vue affichant le formulaire pour modifier le mot de passe
      *                ou un message de confirmation de modification.
      */
-    public function modifyPwd() : string {
+    public function modifyPwd() : string
+    {
         $action = filter_input(INPUT_POST, 'modifyMyPwd');
         $current_user = wp_get_current_user();
         if (isset($action)) {
@@ -227,31 +261,36 @@ class UserController extends Controller
             if (wp_check_password($pwd, $current_user->user_pass)) {
                 $newPwd = filter_input(INPUT_POST, 'newPwd');
                 wp_set_password($newPwd, $current_user->ID);
-                $this->view->displayModificationPassValidate();
+                $this->_view->displayModificationPassValidate();
             } else {
-                $this->view->displayWrongPassword();
+                $this->_view->displayWrongPassword();
             }
         }
-        return $this->view->displayModifyPassword();
+        return $this->_view->displayModifyPassword();
     }
 
     /**
      * Affiche le calendrier des événements associés à un code donné.
      *
-     * Cette méthode récupère et affiche les événements programmés pour un code spécifique,
-     * en utilisant la classe R34ICS pour traiter et formater les données du calendrier.
+     * Cette méthode récupère et affiche les événements programmés pour un code
+     * spécifique, en utilisant la classe R34ICS pour traiter et formater les données
+     * du calendrier.
      *
-     * @param string $code Le code associé aux événements à afficher.
-     *                     Ce code est utilisé pour localiser le fichier du calendrier.
-     * @param bool $allDay Indique si les événements à afficher sont des événements
-     *                     toute la journée. Par défaut, cette valeur est false.
+     * @param string $code   Le code associé aux événements à
+     *                       afficher. Ce code est utilisé pour
+     *                       localiser le fichier du calendrier.
+     * @param bool   $allDay Indique si les événements à afficher sont des
+     *                       événements toute la journée. Par défaut, cette
+     *                       valeur est false.
      *
-     * @return string Le contenu HTML généré pour afficher le calendrier des événements
-     *                associés au code spécifié.
+     * @return string Le contenu HTML généré pour afficher le calendrier des
+     * événements associés au code spécifié.
      *
-     * @global R34ICS $R34ICS Instance de la classe R34ICS utilisée pour afficher le calendrier.
+     * @global R34ICS $R34ICS Instance de la classe R34ICS utilisée pour afficher le
+     * calendrier.
      */
-    public function displaySchedule($code, $allDay = false) : string {
+    public function displaySchedule($code, $allDay = false) : string
+    {
         global $R34ICS;
         $R34ICS = new R34ICS();
 
@@ -280,9 +319,9 @@ class UserController extends Controller
      * @return string Le contenu HTML généré pour afficher le calendrier
      *                de l'année spécifiée, ou un formulaire pour sélectionner
      *                un calendrier si l'identifiant est invalide ou inexistant.
-     *
      */
-    function displayYearSchedule() : string {
+    function displayYearSchedule() : string
+    {
         $id = $this->getMyIdUrl();
 
         $codeAde = new CodeAde();
@@ -294,25 +333,31 @@ class UserController extends Controller
             }
         }
 
-        return $this->view->displaySelectSchedule();
+        return $this->_view->displaySelectSchedule();
     }
 
     /**
-     * Vérifie si un utilisateur avec le même login ou email existe déjà dans la base de données.
+     * Vérifie si un utilisateur avec le même login ou email existe déjà dans la base
+     * de données.
      *
-     * Cette méthode compare les informations du nouvel utilisateur avec les utilisateurs existants
-     * pour déterminer s'il y a des doublons en fonction du login et de l'email.
-     * Si un utilisateur correspondant est trouvé, la méthode renvoie true, sinon false.
+     * Cette méthode compare les informations du nouvel utilisateur avec les
+     * utilisateurs existants pour déterminer s'il y a des doublons en fonction du
+     * login et de l'email.
+     * Si un utilisateur correspondant est trouvé, la méthode renvoie true, sinon
+     * false.
      *
-     * @param User $newUser L'objet utilisateur à vérifier, contenant les informations
+     * @param User $newUser L'objet utilisateur à vérifier, contenant les
+     *                      informations
      *                      de login et d'email à comparer.
      *
-     * @return bool Retourne true si un utilisateur avec le même login ou email existe,
-     *              sinon false.
-     *
+     * @return bool Retourne true si un utilisateur avec le même login ou email
+     *              existe, sinon false.
      */
-    public function checkDuplicateUser(User $newUser) : bool {
-        $codesAde = $this->model->checkUser($newUser->getLogin(), $newUser->getEmail());
+    public function checkDuplicateUser(User $newUser) : bool
+    {
+        $codesAde = $this->_model->checkUser(
+            $newUser->getLogin(), $newUser->getEmail()
+        );
 
         if (sizeof($codesAde) > 0) {
             return true;
@@ -326,22 +371,24 @@ class UserController extends Controller
      *
      * Cette méthode permet à l'utilisateur de modifier ses codes d'année, de groupe
      * et de demi-groupe. Elle récupère les informations soumises via un formulaire,
-     * valide les données, et met à jour les codes de l'utilisateur dans la base de données.
+     * valide les données, et met à jour les codes de l'utilisateur dans la base de
+     * données.
      *
      * Les étapes suivantes sont suivies :
      * 1. Vérification des données soumises (année, groupe, demi-groupe).
      * 2. Récupération des objets CodeAde correspondants.
      * 3. Validation des types de code.
-     * 4. Mise à jour des codes de l'utilisateur et notification du succès ou de l'échec de l'opération.
+     * 4. Mise à jour des codes de l'utilisateur et notification du succès ou de
+     *    l'échec de l'opération.
      *
      * @return string Retourne le rendu HTML du formulaire de modification des codes,
      *                y compris les messages de succès ou d'erreur si applicable.
-     *
      */
-    public function modifyCodes() : string {
+    public function modifyCodes() : string
+    {
         $current_user = wp_get_current_user();
         $codeAde = new CodeAde();
-        $this->model = $this->model->get($current_user->ID);
+        $this->_model = $this->_model->get($current_user->ID);
 
         $action = filter_input(INPUT_POST, 'modifvalider');
 
@@ -372,12 +419,12 @@ class UserController extends Controller
                     $codesAde[2] = 0;
                 }
 
-                $this->model->setCodes($codesAde);
+                $this->_model->setCodes($codesAde);
 
-                if ($this->model->update()) {
-                    $this->view->successMesageChangeCode();
+                if ($this->_model->update()) {
+                    $this->_view->successMesageChangeCode();
                 } else {
-                    $this->view->errorMesageChangeCode();
+                    $this->_view->errorMesageChangeCode();
                 }
             }
         }
@@ -386,12 +433,29 @@ class UserController extends Controller
         $groups = $codeAde->getAllFromType('group');
         $halfGroups = $codeAde->getAllFromType('halfGroup');
 
-        return $this->view->displayModifyMyCodes($this->model->getCodes(), $years, $groups, $halfGroups);
+        return $this->_view->displayModifyMyCodes(
+            $this->_model->getCodes(), $years,
+            $groups, $halfGroups
+        );
     }
 
-    public function displayAllDepartement() {
+    /**
+     * Affiche la liste de tous les départements sous forme d'options.
+     *
+     * Cette méthode récupère tous les départements à partir du modèle `Department`,
+     * puis les transmet à la vue pour construire une liste d'options,
+     * généralement utilisée dans un formulaire.
+     *
+     * @return string Retourne le HTML généré par la vue pour les options des
+     * départements.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
+    public function displayAllDepartement()
+    {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->view->buildDepartmentOptions($dept);
+        return $this->_view->buildDepartmentOptions($dept);
     }
 }
