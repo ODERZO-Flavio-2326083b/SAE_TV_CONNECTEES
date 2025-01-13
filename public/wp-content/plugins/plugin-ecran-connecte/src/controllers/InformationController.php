@@ -1,5 +1,21 @@
 <?php
-
+/**
+ * Fichier InformationController.php
+ *
+ * Ce fichier contient la classe 'InformationController', qui gère les informations
+ * avec ses différentes fonctions (créer, mettre à jour, supprimer, afficher).
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/InformationController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use getID3;
@@ -13,20 +29,31 @@ use views\InformationView;
 /**
  * Class InformationController
  *
- * Gère les informations avec ces différentes fonctions (créer, mettre à jour,
- * supprimer, afficher)
+ * Gère les informations avec ces différentes fonctions : créer, mettre à jour,
+ * supprimer, afficher.
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/InformationController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class InformationController extends Controller
 {
 
     /**
+     * Permet d'utiliser le model de l'Information
+     *
      * @var Information
      */
     private $_model;
 
     /**
+     * Permet d'utiliser la vue de l'Information
+     *
      * @var InformationView
      */
     private $_view;
@@ -101,8 +128,10 @@ class InformationController extends Controller
         $creationDate = date('Y-m-d');
         // Si l'utilisateur est un admin, il peut choisir un département, sinon on
         // prend le dpt de l'utilisateur
-        $deptId = $isAdmin ? filter_input(INPUT_POST,
-            'informationDept') : $currDept;
+        $deptId = $isAdmin ? filter_input(
+            INPUT_POST,
+            'informationDept'
+        ) : $currDept;
 
         // Si le titre est vide
         if ($title == '') {
@@ -434,8 +463,11 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         Information $entity
     ): void {
         $id = 'temporary';
-        $extension_upload = strtolower(substr(
-            strrchr($filename, '.'), 1));
+        $extension_upload = strtolower(
+            substr(
+                strrchr($filename, '.'), 1
+            )
+        );
         $name = $_SERVER['DOCUMENT_ROOT']
             . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
         $entity->setDuration(5000);
@@ -486,6 +518,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      * Supprime le fichier qui est lié à l'identifiant
      *
      * @param $id int Code
+     *
+     * @return void
      */
     public function deleteFile($id)
     {
@@ -495,6 +529,26 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         wp_delete_file($source);
     }
 
+    /**
+     * Affiche toutes les informations avec pagination et gestion des
+     * permissions utilisateur.
+     *
+     * Cette fonction récupère toutes les informations en fonction des
+     * permissions de l'utilisateur
+     * (administrateur ou utilisateur d'un département spécifique).
+     * Elle génère également une table paginée
+     * avec les informations à afficher, permettant de modifier ou
+     * de supprimer des informations.
+     * La suppression d'informations vérifie les droits de l'utilisateur
+     * avant d'effectuer une suppression,
+     * y compris la suppression des fichiers associés.
+     *
+     * @return string Le code HTML généré pour afficher la liste
+     * des informations avec pagination.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function displayAll()
     {
         $numberAllEntity = $this->_model->countAll();
@@ -587,8 +641,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 $this->_view->buildLinkForModify(
                     esc_url(
                         get_permalink(
-                            get_page_by_title_custom
-                                ('Modifier une information')
+                            get_page_by_title_custom('Modifier une information')
                         )
                     ) . '?id=' . $information->getId()
                 )
@@ -626,8 +679,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             . $this->_view->pageNumber(
                 $maxPage, $pageNumber, esc_url(
                     get_permalink(
-                        get_page_by_title_custom
-                            ('Gestion des informations')
+                        get_page_by_title_custom('Gestion des informations')
                     )
                 ), $number
             );
@@ -698,6 +750,24 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         echo '</div>';
     }
 
+    /**
+     * Affiche les vidéos associées aux informations d'un département.
+     *
+     * Cette fonction récupère les informations d'un utilisateur
+     * en fonction de son département,
+     * vérifie que la date d'expiration de chaque information
+     * n'est pas dépassée, et affiche
+     * uniquement les vidéos sous forme de diaporama. Si
+     * l'information n'a pas de date d'expiration valide,
+     * elle est ignorée. De plus, la fonction vérifie si
+     * l'utilisateur est un administrateur pour afficher
+     * des informations spécifiques en fonction de son rôle.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function displayVideo()
     {
         $deptModel = new Department();
@@ -710,8 +780,11 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         // Début du conteneur pour les vidéos
         $this->_view->displayStartSlideVideo();
         foreach ($informations as $information) {
-            $endDate = date('Y-m-d', strtotime(
-                $information->getExpirationDate()));
+            $endDate = date(
+                'Y-m-d', strtotime(
+                    $information->getExpirationDate()
+                )
+            );
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
                 $adminSite = true;
                 if (is_null($information->getAdminId())) {
@@ -820,13 +893,13 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
     /**
      * Crée un objet de type "scrapper" avec des informations par défaut.
      *
-     * Cette méthode initialise un objet de la classe `information`, définit
+     * Cette méthode initialise un objet de la classe 'information', définit
      * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
      * département, l'auteur, la date de création, le contenu, l'identifiant
      * administratif, le titre, le type et la date d'expiration, et retourne
      * cet objet.
      *
-     * @return information Retourne l'objet `information` initialisé.
+     * @return information Retourne l'objet 'information' initialisé.
      *
      * @version 1.0
      * @date    2024-10-16

@@ -1,5 +1,26 @@
 <?php
-
+/**
+ * Fichier TelevisionView.php
+ *
+ * Ce fichier contient la classe 'TelevisionView',
+ * qui est responsable de l'affichage des vues
+ * liées à la gestion des comptes télévision dans
+ * l'application. Cette classe génère des formulaires
+ * permettant de créer des comptes télévision,
+ * ainsi que des tableaux et des messages pour gérer et afficher
+ * ces comptes.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TelevisionView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
 namespace views;
 
 use models\CodeAde;
@@ -7,11 +28,20 @@ use models\Department;
 use models\User;
 
 /**
- * Class TelevisionView
+ * Classe TelevisionView
  *
- * Contient toutes les vues liées à la télévision (Formulaires, tableaux)
+ * Cette classe gère l'affichage des vues liées à la gestion des comptes télévision.
+ * Elle fournit des formulaires permettant
+ * de créer des comptes télévision, ainsi que des tableaux
+ * pour afficher les informations des comptes créés.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/TelevisionView Documentation de la classe
+ * @since    2025-01-13
  */
 class TelevisionView extends UserView
 {

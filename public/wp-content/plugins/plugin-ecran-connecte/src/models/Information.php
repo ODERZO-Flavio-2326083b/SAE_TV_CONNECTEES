@@ -1,5 +1,24 @@
 <?php
-
+/**
+ * Fichier Information.php
+ *
+ * Ce fichier contient la classe 'Information', qui représente une entité
+ * d'information dans l'application. Cette classe est utilisée pour gérer
+ * les informations relatives à l'application, telles que la récupération,
+ * l'insertion, la mise à jour et la suppression des données dans la base
+ * de données.
+ *
+ * PHP version 8.3
+ *
+ * @category Entity
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Information
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use JsonSerializable;
@@ -8,62 +27,95 @@ use PDO;
 /**
  * Class Information
  *
- * Information entity
+ * Représente une entité d'information dans l'application. Cette classe est
+ * utilisée pour gérer les informations (récupérer, insérer, mettre à jour
+ * et supprimer des données) dans la base de données.
  *
- * @package models
+ * @category Entity
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Information Documentation de la classe
+ * @since    2025-01-07
  */
 class Information extends Model implements Entity, JsonSerializable
 {
-    
-    /**
-     * @var ?int
-     */
-    private ?int $id = null;
 
     /**
-     * @var ?string
+     * Identifiant unique de l'entité.
+     *
+     * @var ?int L'identifiant, ou null si non défini.
      */
-    private ?string $title;
-    
+    private ?int $_id = null;
+
     /**
-     * @var ?User
+     * Titre de l'entité.
+     *
+     * @var ?string Le titre de l'entité, ou null si non défini.
      */
-    private ?User $author;
-    
+    private ?string $_title;
+
     /**
-     * @var ?string
+     * Auteur de l'entité.
+     *
+     * @var ?User L'auteur de l'entité, ou null si non défini.
+     * Il s'agit d'un objet de la classe 'User'.
      */
-    private ?string $creationDate;
-    
+    private ?User $_author;
+
     /**
-     * @var ?string
+     * Date de création de l'entité.
+     *
+     * @var ?string La date de création sous forme de
+     * chaîne (format "YYYY-MM-DD"), ou null si non définie.
      */
-    private ?string $expirationDate;
-    
+    private ?string $_creationDate;
+
     /**
-     * @var ?string
+     * Date d'expiration de l'entité.
+     *
+     * @var ?string La date d'expiration sous forme
+     * de chaîne (format "YYYY-MM-DD"), ou null si non définie.
      */
-    private ?string $content;
-    
+    private ?string $_expirationDate;
+
     /**
-     * @var ?string (Text | Image | PDF | Event | Video | Short)
+     * Contenu de l'entité.
+     *
+     * @var ?string Le contenu de l'entité, ou null si non défini.
      */
-    private ?string $type;
-    
+    private ?string $_content;
+
     /**
-     * @var ?int
+     * Type de l'entité.
+     *
+     * @var ?string Le type de l'entité (par exemple "Text",
+     * "Image", "PDF", "Event", "Video", "Short"), ou null si non défini.
      */
-    private ?int $adminId;
-    
+    private ?string $_type;
+
     /**
-     * @var ?int
+     * Identifiant de l'administrateur associé à l'entité.
+     *
+     * @var ?int L'identifiant de l'administrateur, ou null si non défini.
      */
-    private ?int $idDepartment;
-    
+    private ?int $_adminId;
+
     /**
-     * @var ?int
+     * Identifiant du département associé à l'entité.
+     *
+     * @var ?int L'identifiant du département, ou null si non défini.
      */
-    private ?int $duration;
+    private ?int $_idDepartment;
+
+    /**
+     * Durée associée à l'entité.
+     *
+     * @var ?int La durée de l'entité en heures, ou null si non définie.
+     */
+    private ?int $_duration;
+
 
     /**
      * Insère un nouvel enregistrement d'information dans la base de données.
@@ -626,183 +678,231 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
 
 
     /**
-     * @return int|null
+     * Retourne l'identifiant de l'entité.
+     *
+     * @return int|null L'identifiant de l'entité, ou null si non défini.
      */
     public function getId() : ?int
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
-     * @param int|null $id
+     * Définit l'identifiant de l'entité.
+     *
+     * @param int|null $_id L'identifiant à définir pour l'entité.
      *
      * @return void
      */
-    public function setId(?int $id): void
+    public function setId(?int $_id): void
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
     /**
-     * @return string|null
+     * Retourne le titre de l'entité.
+     *
+     * @return string|null Le titre de l'entité, ou null si non défini.
      */
     public function getTitle() : ?string
     {
-        return $this->title;
+        return $this->_title;
     }
 
     /**
-     * @param string|null $title
+     * Définit le titre de l'entité.
+     *
+     * @param string|null $_title Le titre à définir pour l'entité.
      *
      * @return void
      */
-    public function setTitle(?string $title): void
+    public function setTitle(?string $_title): void
     {
-        $this->title = $title;
+        $this->_title = $_title;
     }
 
     /**
-     * @return User|null
+     * Retourne l'auteur de l'entité.
+     *
+     * @return User|null L'auteur de l'entité, ou null si non défini.
      */
     public function getAuthor() : ?User
     {
-        return $this->author;
+        return $this->_author;
     }
 
     /**
-     * @param User|null $author
+     * Définit l'auteur de l'entité.
+     *
+     * @param User|null $_author L'auteur à définir pour l'entité.
      *
      * @return void
      */
-    public function setAuthor(?User $author): void
+    public function setAuthor(?User $_author): void
     {
-        $this->author = $author;
+        $this->_author = $_author;
     }
 
     /**
-     * @return string
+     * Retourne la date de création de l'entité.
+     *
+     * @return string La date de création sous forme de chaîne.
      */
     public function getCreationDate() : string
     {
-        return $this->creationDate;
-    }
-    /**
-     * @param null|string $creationDate
-     *
-     * @return void
-     */
-    public function setCreationDate( ?string $creationDate ): void
-    {
-        $this->creationDate = $creationDate;
+        return $this->_creationDate;
     }
 
     /**
-     * @return string|null
+     * Définit la date de création de l'entité.
+     *
+     * @param null|string $_creationDate La date de création à définir,
+     *                                   ou null si non défini.
+     *
+     * @return void
+     */
+    public function setCreationDate( ?string $_creationDate ): void
+    {
+        $this->_creationDate = $_creationDate;
+    }
+
+    /**
+     * Retourne la date d'expiration de l'entité.
+     *
+     * @return string|null La date d'expiration sous forme de chaîne,
+     * ou null si non définie.
      */
     public function getExpirationDate() : ?string
     {
-        return $this->expirationDate;
+        return $this->_expirationDate;
     }
 
     /**
-     * @param string|null $expirationDate
+     * Définit la date d'expiration de l'entité.
+     *
+     * @param string|null $_expirationDate La date d'expiration à définir,
+     *                                     ou null si non défini.
      *
      * @return void
      */
-    public function setExpirationDate(?string $expirationDate): void
+    public function setExpirationDate(?string $_expirationDate): void
     {
-        $this->expirationDate = $expirationDate;
+        $this->_expirationDate = $_expirationDate;
     }
 
     /**
-     * @return string|null
+     * Retourne le contenu de l'entité.
+     *
+     * @return string|null Le contenu de l'entité, ou null si non défini.
      */
     public function getContent() : ?string
     {
-        return $this->content;
+        return $this->_content;
     }
 
     /**
-     * @param string|null $content
+     * Définit le contenu de l'entité.
+     *
+     * @param string|null $_content Le contenu à définir pour l'entité.
      *
      * @return void
      */
-    public function setContent(?string $content): void
+    public function setContent(?string $_content): void
     {
-        $this->content = $content;
+        $this->_content = $_content;
     }
 
     /**
-     * @return string
+     * Retourne le type de l'entité.
+     *
+     * @return string Le type de l'entité (ex : 'video', 'article', etc.).
      */
     public function getType() : string
     {
-        return $this->type;
+        return $this->_type;
     }
 
     /**
-     * @param string|null $type
+     * Définit le type de l'entité.
+     *
+     * @param string|null $_type Le type à définir pour l'entité.
      *
      * @return void
      */
-    public function setType(?string $type): void
+    public function setType(?string $_type): void
     {
-        $this->type = $type;
+        $this->_type = $_type;
     }
 
     /**
-     * @return ?int
+     * Retourne l'identifiant de l'administrateur associé à l'entité.
+     *
+     * @return ?int L'identifiant de l'administrateur, ou null si non défini.
      */
     public function getAdminId() : null|int
     {
-        return $this->adminId;
+        return $this->_adminId;
     }
 
     /**
-     * @param int|null $adminId
+     * Définit l'identifiant de l'administrateur associé à l'entité.
+     *
+     * @param int|null $_adminId L'identifiant de l'administrateur à définir,
+     *                           ou null si non défini.
      *
      * @return void
      */
-    public function setAdminId( ?int $adminId ): void
+    public function setAdminId( ?int $_adminId ): void
     {
-        $this->adminId = $adminId;
+        $this->_adminId = $_adminId;
     }
 
     /**
-     * @return int|null
+     * Retourne l'identifiant du département associé à l'entité.
+     *
+     * @return int|null L'identifiant du département, ou null si non défini.
      */
     public function getIdDepartment(): ?int
     {
-        return $this->idDepartment;
+        return $this->_idDepartment;
     }
 
     /**
-     * @param int|null $idDepartment
+     * Définit l'identifiant du département associé à l'entité.
+     *
+     * @param int|null $_idDepartment L'identifiant du département à définir,
+     *                                ou null si non défini.
      *
      * @return void
      */
-    public function setIdDepartment(?int $idDepartment): void
+    public function setIdDepartment(?int $_idDepartment): void
     {
-        $this->idDepartment = $idDepartment;
+        $this->_idDepartment = $_idDepartment;
     }
 
     /**
-     * @return int|null
+     * Retourne la durée associée à l'entité.
+     *
+     * @return int|null La durée de l'entité, ou null si non définie.
      */
     public function getDuration(): ?int
     {
-        return $this->duration;
+        return $this->_duration;
     }
 
     /**
-     * @param int|null $duration
+     * Définit la durée associée à l'entité.
+     *
+     * @param int|null $_duration La durée à définir pour l'entité,
+     *                            ou null si non défini.
      *
      * @return void
      */
-    public function setDuration(?int $duration): void
+    public function setDuration(?int $_duration): void
     {
-        $this->duration = $duration;
+        $this->_duration = $_duration;
     }
+
 
     /**
      * Sérialise l'objet en tableau associatif pour JSON.

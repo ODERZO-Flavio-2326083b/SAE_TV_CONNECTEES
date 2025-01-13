@@ -1,5 +1,22 @@
 <?php
-
+/**
+ * Fichier Alert.php
+ *
+ * Ce fichier contient la classe 'Alert', qui représente une entité d'alerte
+ * dans l'application. Cette classe permet de manipuler
+ * les données liées aux alertes.
+ *
+ * PHP version 8.3
+ *
+ * @category Model
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Alert
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use JsonSerializable;
@@ -8,54 +25,69 @@ use PDO;
 /**
  * Class Alert
  *
- * Alert entity
+ * Entité représentant une alerte.
  *
- * @package models
+ * @category Model
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Alert Documentation de la classe
+ * @since    2025-01-07
  */
 class Alert extends Model implements Entity, JsonSerializable
 {
 
-
     /**
+     * L'identifiant unique de l'entité.
+     *
      * @var int
      */
-    private int $id;
-
+    private int $_id;
 
     /**
-     * @var int|User|null
+     *  L'auteur de l'entité, représenté par un objet de la classe 'User'.
+     *
+     * @var null|User|int
      */
-    private int|User|null $author;
-
+    private null|User|int $_author;
 
     /**
+     *  Le contenu associé à l'entité, généralement un texte ou un fichier.
+     *
      * @var string
      */
-    private string $content;
-
+    private string $_content;
 
     /**
+     *  La date de création de l'entité, au format 'Y-m-d H:i:s'.
+     *
      * @var string
      */
-    private string $creation_date;
-
+    private string $_creation_date;
 
     /**
+     *  La date d'expiration de l'entité, au format 'Y-m-d H:i:s'.
+     *
      * @var string
      */
-    private string $expirationDate;
-
+    private string $_expirationDate;
 
     /**
+     *  Un tableau d'objets 'CodeAde', qui représente les codes associés à l'entité.
+     *
      * @var CodeAde[]
      */
-    private array $codes;
-
+    private array $_codes;
 
     /**
+     *  L'identifiant de l'administrateur associé à l'entité.
+     *  Peut être 'null' si l'entité n'a pas d'administrateur.
+     *
      * @var int
      */
-    private int $adminId;
+    private int $_adminId;
+
 
 
     /**
@@ -77,8 +109,10 @@ class Alert extends Model implements Entity, JsonSerializable
     {
         $database = $this->getDatabase();
         $request = $database->prepare(
-        'INSERT INTO ecran_alert (author, content, creation_date, expiration_date)
-               VALUES (:author, :content, :creation_date, :expirationDate)'
+            'INSERT INTO ecran_alert 
+                        (author, content, creation_date, expiration_date)
+                    VALUES
+                        (:author, :content, :creation_date, :expirationDate)'
         );
         $request->bindValue(':author', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
@@ -566,137 +600,267 @@ class Alert extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int
+     * Récupère l'identifiant de l'entité.
+     *
+     * Cette méthode permet d'obtenir l'identifiant unique de l'entité,
+     * représenté par un nombre entier.
+     *
+     * @return int L'identifiant unique de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getId() : int
     {
-        return $this->id;
+        return $this->_id;
     }
 
+
     /**
-     * @param $id
+     * Définit l'identifiant de l'entité.
+     *
+     * Cette méthode permet de définir l'identifiant de l'entité
+     * en attribuant une nouvelle valeur
+     * à la propriété '$id'. L'identifiant doit être un entier.
+     *
+     * @param int $_id L'identifiant à attribuer à l'entité.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setId($id) : void
+    public function setId($_id) : void
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
     /**
-     * @return User
+     * Récupère l'auteur de l'entité.
+     *
+     * Cette méthode retourne l'objet 'User' représentant l'auteur de l'entité.
+     * L'auteur peut être un utilisateur, un administrateur,
+     * ou toute autre personne ayant créé l'entité.
+     *
+     * @return User L'objet 'User' représentant l'auteur de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function getAuthor() : User
+    public function getAuthor() : null|User|int
     {
-        return $this->author;
+        return $this->_author;
     }
 
     /**
-     * @param $author
+     * Définit l'auteur de l'entité.
+     *
+     * Cette méthode permet d'attribuer un auteur
+     * à l'entité en affectant un objet 'User'
+     * à la propriété '$author'. Cela permet de
+     * spécifier qui a créé ou est responsable
+     * de l'entité.
+     *
+     * @param null|User|int $_author L'objet 'User' représentant
+     *                               l'auteur à attribuer à l'entité.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setAuthor($author) : void
+    public function setAuthor(null|User|int $_author) : void
     {
-        $this->author = $author;
+        $this->_author = $_author;
     }
 
     /**
-     * @return string
+     * Récupère le contenu de l'entité.
+     *
+     * Cette méthode retourne le contenu de
+     * l'entité sous forme de chaîne de caractères.
+     * Le contenu peut être un texte, un lien, ou tout autre type de donnée associée.
+     *
+     * @return string Le contenu de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getContent() : string
     {
-        return $this->content;
+        return $this->_content;
     }
 
     /**
-     * @param $content
+     * Définit le contenu de l'entité.
+     *
+     * Cette méthode permet d'attribuer un contenu
+     * à l'entité en affectant une chaîne de caractères.
+     *
+     * @param string $_content Le contenu à attribuer à l'entité.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setContent($content) : void
+    public function setContent(string $_content) : void
     {
-        $this->content = $content;
+        $this->_content = $_content;
     }
 
     /**
-     * @return string
+     * Récupère la date de création de l'entité.
+     *
+     * Cette méthode retourne la date de création
+     * de l'entité sous forme de chaîne de caractères.
+     * La date est généralement au format 'Y-m-d' (année-mois-jour).
+     *
+     * @return string La date de création de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getCreationDate() : string
     {
-        return $this->creation_date;
+        return $this->_creation_date;
     }
 
     /**
-     * @param $creation_date
+     * Définit la date de création de l'entité.
+     *
+     * Cette méthode permet d'attribuer une date de création
+     * à l'entité en affectant une chaîne de caractères.
+     *
+     * @param string $_creation_date La date de création
+     *                               à attribuer à l'entité (au format 'Y-m-d').
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setCreationDate($creation_date) : void
+    public function setCreationDate(string $_creation_date) : void
     {
-        $this->creation_date = $creation_date;
+        $this->_creation_date = $_creation_date;
     }
 
     /**
-     * @return string
+     * Récupère la date d'expiration de l'entité.
+     *
+     * Cette méthode retourne la date d'expiration de l'entité sous
+     * forme de chaîne de caractères.
+     * La date est généralement au format 'Y-m-d' (année-mois-jour).
+     *
+     * @return string La date d'expiration de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getExpirationDate() : string
     {
-        return $this->expirationDate;
+        return $this->_expirationDate;
     }
 
     /**
-     * @param $expirationDate
+     * Définit la date d'expiration de l'entité.
+     *
+     * Cette méthode permet d'attribuer une date d'expiration à l'entité
+     * en affectant une chaîne de caractères.
+     *
+     * @param string $_expirationDate La date d'expiration
+     *                                à attribuer à l'entité (au format 'Y-m-d').
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setExpirationDate($expirationDate) : void
+    public function setExpirationDate(string $_expirationDate) : void
     {
-        $this->expirationDate = $expirationDate;
+        $this->_expirationDate = $_expirationDate;
     }
 
+
     /**
-     * @return CodeAde[]
+     * Récupère les codes associés à l'entité.
+     *
+     * Cette méthode retourne un tableau d'objets 'CodeAde' représentant les codes
+     * associés à l'entité. Ces codes peuvent être utilisés pour diverses
+     * fonctionnalités.
+     *
+     * @return CodeAde[] Un tableau d'objets 'CodeAde'
+     * représentant les codes associés.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getCodes()
     {
-        return $this->codes;
+        return $this->_codes;
     }
 
     /**
-     * @param CodeAde[] $codes
+     * Définit les codes associés à l'entité.
+     *
+     * Cette méthode permet d'attribuer un tableau d'objets 'CodeAde' à l'entité.
+     * Les codes peuvent être utilisés pour divers traitements ou fonctionnalités.
+     *
+     * @param CodeAde[] $_codes Un tableau d'objets 'CodeAde'
+     *                          représentant les codes à associer.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setCodes($codes) : void
+    public function setCodes(array $_codes) : void
     {
-        $this->codes = $codes;
+        $this->_codes = $_codes;
     }
 
     /**
-     * @return int|null
+     * Récupère l'identifiant de l'administrateur associé à l'entité.
+     *
+     * Cette méthode retourne l'identifiant de
+     * l'administrateur qui est lié à l'entité.
+     * Elle retourne 'null' si aucun administrateur n'est associé.
+     *
+     * @return int|null L'identifiant de l'administrateur ou
+     * 'null' si aucun administrateur n'est défini.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getAdminId() : ?int
     {
-        return $this->adminId;
+        return $this->_adminId;
     }
 
     /**
-     * @param int $adminId
+     * Définit l'identifiant de l'administrateur associé à l'entité.
+     *
+     * Cette méthode permet d'attribuer un identifiant d'administrateur à l'entité.
+     *
+     * @param int $_adminId L'identifiant de l'administrateur à associer à l'entité.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setAdminId($adminId) : void
+    public function setAdminId(int $_adminId) : void
     {
-        $this->adminId = $adminId;
+        $this->_adminId = $_adminId;
     }
+
 
     /**
      * Sérialise l'objet en un tableau associatif pour le format JSON.
      *
-     * Implémente l'interface `JsonSerializable` afin de permettre la conversion
+     * Implémente l'interface 'JsonSerializable' afin de permettre la conversion
      * de l'objet en une structure de données JSON. Cette méthode utilise
-     * `get_object_vars` pour récupérer les propriétés accessibles de l'objet
+     * 'get_object_vars' pour récupérer les propriétés accessibles de l'objet
      * sous forme de tableau associatif.
      *
      * @return array Tableau associatif représentant les propriétés de l'objet.

@@ -1,12 +1,39 @@
 <?php
-
+/**
+ * Fichier ScheduleManager.php
+ *
+ * Ce fichier contient la classe 'ScheduleManager', qui gère les horaires.
+ * Pour afficher un emploi du temps, elle utilise R34ICS, une interface pour
+ * récupérer et afficher les informations de l'emploi du temps.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/ScheduleManager
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license, @link et @package
- * Manage schedules,
- * For display a schedule we use R34ICS
- * Interface Schedule
+ * Class ScheduleManager
+ *
+ * Gère les horaires. Pour afficher un emploi du temps, elle utilise R34ICS.
+ * L'interface Schedule permet de récupérer et d'afficher les informations
+ * de l'emploi du temps.
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/ScheduleManager Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 interface Schedule
 {

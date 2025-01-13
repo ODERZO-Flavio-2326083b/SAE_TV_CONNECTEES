@@ -1,5 +1,25 @@
 <?php
-
+/**
+ * Fichier DepartmentController.php
+ *
+ * Ce fichier contient la classe 'DepartmentController', qui gère les
+ * opérations CRUD
+ * (Créer, Lire, Mettre à jour, Supprimer) pour les départements.
+ * Elle inclut des méthodes pour insérer, modifier, supprimer et
+ * afficher les départements,
+ * ainsi que la gestion des doublons.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/DepartmentController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use controllers\Controller;
@@ -11,11 +31,18 @@ use views\DepartmentView;
  * Classe DepartmentController
  *
  * Cette classe gère les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) pour
- * les départements.
- * Elle inclut des méthodes pour insérer, modifier, supprimer et afficher les
+ * les départements. Elle inclut des méthodes pour insérer, modifier,
+ * supprimer et afficher les
  * départements, ainsi que la gestion des doublons.
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/DepartmentController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class DepartmentController extends Controller
 {
@@ -185,7 +212,7 @@ class DepartmentController extends Controller
      *
      * @param Department $department Objet représentant le département à vérifier.
      *
-     * @return bool Retourne `true` si un doublon est trouvé, sinon `false`.
+     * @return bool Retourne 'true' si un doublon est trouvé, sinon 'false'.
      *
      * @version 1.0
      * @date    2024-10-16

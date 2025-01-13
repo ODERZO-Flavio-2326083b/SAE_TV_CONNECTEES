@@ -1,15 +1,40 @@
 <?php
-
+/**
+ * Fichier Controller.php
+ *
+ * Ce fichier contient la classe 'Controller', qui est le contrôleur principal
+ * dans l'application. Elle regroupe toutes les fonctions de base utilisées
+ * par les autres contrôleurs pour gérer les opérations courantes.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Controller
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use Exception;
+
 
 /**
  * Class Controller
  *
  * Contrôleur principal contenant toutes les fonctions de base.
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Controller Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class Controller
 {
@@ -83,8 +108,10 @@ class Controller
     public function getUrl($code) : string
     {
         $str = strtotime("now"); // Récupère le timestamp actuel
-        $str2 = strtotime(date("Y-m-d", strtotime('now'))
-                          . " +6 day"); // Timestamp
+        $str2 = strtotime(
+            date("Y-m-d", strtotime('now'))
+            . " +6 day"
+        ); // Timestamp
                                         // pour 6 jours
                                         // dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)

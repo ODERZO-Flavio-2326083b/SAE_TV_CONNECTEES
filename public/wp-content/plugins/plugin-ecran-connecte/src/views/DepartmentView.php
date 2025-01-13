@@ -1,22 +1,60 @@
 <?php
-
+/**
+ * Fichier DepartmentView.php
+ *
+ * Ce fichier contient la classe 'DepartmentView',
+ * responsable de la gestion de l'affichage
+ * des départements dans l'application.
+ * Elle génère les formulaires pour ajouter, modifier
+ * et afficher les départements,
+ * ainsi que des messages de confirmation ou d'erreur en
+ * fonction des actions effectuées.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/DepartmentView Documentation de la classe
+ * @since    2025-01-08
+ */
 namespace views;
 
 use models\Department;
 use views\View;
-
+/**
+ * Classe DepartmentView
+ *
+ * Cette classe gère l'affichage des départements dans l'application. Elle contient
+ * des méthodes pour afficher des formulaires permettant d'ajouter, de modifier
+ * des départements, ainsi que pour afficher des messages de confirmation ou
+ * d'erreur relatifs aux actions effectuées.
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/DepartmentView Documentation de la classe
+ * @since    2025-01-08
+ */
 class DepartmentView extends View
 {
 
     /**
      * Vue pour la gestion des départements.
      *
-     * Cette classe fait partie du package `views`, qui contient toutes les vues
+     * Cette classe fait partie du package 'views', qui contient toutes les vues
      * utilisées dans l'application pour afficher les données de manière appropriée à
      * l'utilisateur.
      * La vue des départements permet de rendre les formulaires pour ajouter ou
      * modifier des départements, de gérer l'affichage des départements existants,
      * ainsi que d'afficher des messages de confirmation ou d'erreur.
+     *
+     * @return void
+     * Cette méthode retourne le code HTML du formulaire d'ajout de département.
      *
      * @package views
      */

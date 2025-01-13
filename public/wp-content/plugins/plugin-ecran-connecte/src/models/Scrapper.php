@@ -1,5 +1,25 @@
 <?php
-
+/**
+ * Fichier Scrapper.php
+ *
+ * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
+ * de données depuis un site web. La classe permet de scrapper des articles
+ * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
+ * informations telles que le titre, le contenu, l'image, le lien et l'auteur
+ * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
+ * pour extraire et traiter le contenu HTML.
+ *
+ * PHP version 8.3
+ *
+ * @category Web_Scraping
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Scrapper
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use DOMDocument;
@@ -11,16 +31,23 @@ use DOMXPath;
  * Class Scrapper
  *
  * Classe générique pour l'extraction de données depuis un site web.
- * Permet de scrapper les articles du site 'https://www.informatiquenews.fr/news' et
- * d'en extraire des informations telles que le titre, le contenu, l'image, le lien
- * et l'auteur de chaque article. Utilise les fonctionnalités DOM et XPath de PHP
- * pour extraire et traiter le contenu HTML.
+ * Cette classe permet de scrapper les
+ * articles du site 'https://www.informatiquenews.fr/news'
+ * et d'en extraire des informations telles que le titre, le contenu, l'image,
+ * le lien et l'auteur de chaque article. Elle utilise les fonctionnalités DOM
+ * et XPath de PHP pour extraire et traiter le contenu HTML.
  *
- * @package models
+ * @category Web_Scraping
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/Scrapper Documentation de la classe
+ * @since    2025-01-07
  */
 class Scrapper
 {
-    private string $url;
+    private string $_url;
 
     /**
      * Classe Scrapper pour extraire des articles depuis un site web.
@@ -37,12 +64,12 @@ class Scrapper
      */
     public function __construct()
     {
-        $this->url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
+        $this->_url = 'https://www.informatiquenews.fr/news';
     }
     /**
      * Récupère le contenu HTML de la page d'articles.
      *
-     * Cette méthode utilise la fonction `file_get_contents` pour récupérer le code
+     * Cette méthode utilise la fonction 'file_get_contents' pour récupérer le code
      * HTML de la page d'articles depuis l'URL spécifiée dans la classe.
      *
      * @return string Le code HTML de la page.
@@ -52,14 +79,14 @@ class Scrapper
      */
     public function getHtml() : string
     {
-        return file_get_contents($this->url);
+        return file_get_contents($this->_url);
     }
 
     /**
      * Récupère tous les articles présents sur la page.
      *
-     * Cette méthode charge le HTML récupéré avec `getHtml()` et utilise DOMXPath
-     * pour naviguer dans le DOM et extraire tous les éléments `<article>` présents
+     * Cette méthode charge le HTML récupéré avec 'getHtml()' et utilise DOMXPath
+     * pour naviguer dans le DOM et extraire tous les éléments '<article>' présents
      * sur la page. Ces éléments sont ensuite retournés sous forme d'une liste.
      *
      * @return DOMNodeList Liste des articles trouvés dans la page.
@@ -83,7 +110,7 @@ class Scrapper
      *
      * Cette méthode permet d'extraire le titre, le contenu, le lien, l'image et
      * l'auteur de chaque article en utilisant les balises HTML correspondantes dans
-     * l'élément `<article>`.
+     * l'élément '<article>'.
      *
      * @param DOMElement $article L'article à traiter.
      *
@@ -97,7 +124,7 @@ class Scrapper
     {
         $images = $article->getElementsByTagName('img');
         foreach ($images as $div) {
-            if($div != null) {
+            if ($div != null) {
                 $classContent = $div->getAttribute('class');
                 if ($classContent == 'img-fluid') {
                     $image = $div->getAttribute('src');
@@ -105,8 +132,7 @@ class Scrapper
                 } else {
                     $image = "Pas de contenu.";
                 }
-            }
-            else{
+            } else {
                 $image = "Pas de contenu.";
             }
         }
@@ -121,7 +147,7 @@ class Scrapper
      * Affiche un article aléatoire du site web.
      *
      * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la
-     * méthode `getArticles()`. Elle affiche ensuite cet article en HTML avec son
+     * méthode 'getArticles()'. Elle affiche ensuite cet article en HTML avec son
      * titre, son contenu, son image, son lien et un footer contenant l'auteur de
      * l'article.
      *
@@ -143,9 +169,12 @@ class Scrapper
 
             // Vérifiez si une image est disponible
             if (!empty($varArticle['image'])
-                && $varArticle['image'] !== 'pas de contenu') {
-                $imageLarge= str_replace('home','large',
-                                            $varArticle['image']);
+                && $varArticle['image'] !== 'pas de contenu'
+            ) {
+                $imageLarge= str_replace(
+                    'home', 'large',
+                    $varArticle['image']
+                );
                 $imageContent = @file_get_contents($imageLarge);
 
                 if ($imageContent !== false) {

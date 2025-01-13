@@ -1,5 +1,22 @@
 <?php
-
+/**
+ * Fichier UserController.php
+ *
+ * Ce fichier contient la classe 'UserController', qui gère les opérations
+ * relatives aux utilisateurs, telles que la création, la mise à jour, et
+ * la suppression des utilisateurs.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/UserController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\Alert;
@@ -15,7 +32,14 @@ use views\UserView;
  *
  * Gère tous les utilisateurs (Création, mise à jour, suppression)
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/UserController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class UserController extends Controller
 {
@@ -442,7 +466,7 @@ class UserController extends Controller
     /**
      * Affiche la liste de tous les départements sous forme d'options.
      *
-     * Cette méthode récupère tous les départements à partir du modèle `Department`,
+     * Cette méthode récupère tous les départements à partir du modèle 'Department',
      * puis les transmet à la vue pour construire une liste d'options,
      * généralement utilisée dans un formulaire.
      *

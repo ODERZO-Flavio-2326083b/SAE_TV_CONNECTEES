@@ -1,13 +1,45 @@
 <?php
-
+/**
+ * Fichier SubadminView.php
+ *
+ * Ce fichier contient la classe 'SubadminView',
+ * qui est responsable de l'affichage des vues
+ * liées à la gestion des sous-administrateurs dans
+ * l'application. Cette classe génère des formulaires
+ * permettant de créer des comptes pour des
+ * sous-administrateurs, ainsi que des tableaux et des messages
+ * pour gérer et afficher ces comptes.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/SubadminView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
 namespace views;
 
 /**
- * Class TechnicianView
+ * Classe SubadminView
  *
- * Contient toutes les vues liées aux techniciens (Formulaires, tableaux)
+ * Cette classe gère l'affichage des vues liées à
+ * la gestion des comptes sous-administrateurs.
+ * Elle fournit des formulaires permettant de
+ * créer et de gérer les comptes des sous-administrateurs,
+ * ainsi que des tableaux pour afficher
+ * les sous-administrateurs existants et leurs informations.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/SubadminView Documentation de la classe
+ * @since    2025-01-13
  */
 class TechnicianView extends UserView
 {

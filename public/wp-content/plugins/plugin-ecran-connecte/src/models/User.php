@@ -1,5 +1,25 @@
 <?php
-
+/**
+ * Fichier Scrapper.php
+ *
+ * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
+ * de données depuis un site web. La classe permet de scrapper des articles
+ * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
+ * informations telles que le titre, le contenu, l'image, le lien et l'auteur
+ * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
+ * pour extraire et traiter le contenu HTML.
+ *
+ * PHP version 8.3
+ *
+ * @category Web_Scraping
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Scrapper
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use JsonSerializable;
@@ -7,56 +27,97 @@ use PDO;
 use WP_User;
 
 /**
- * Class User
+ * Class Scrapper
  *
- * User entity
+ * Classe générique pour l'extraction de données depuis un site web.
+ * Cette classe permet de scrapper
+ * les articles du site 'https://www.informatiquenews.fr/news'
+ * et d'en extraire des informations telles que le titre, le contenu, l'image,
+ * le lien et l'auteur de chaque article. Elle utilise les fonctionnalités DOM
+ * et XPath de PHP pour extraire et traiter le contenu HTML.
  *
- * @package models
+ * @category Web_Scraping
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/Scrapper Documentation de la classe
+ * @since    2025-01-07
  */
 class User extends Model implements Entity, JsonSerializable
 {
 
-    
+
     /**
+     * Identifiant unique de l'utilisateur.
+     *
+     * Cette propriété contient l'ID unique de l'utilisateur dans la base de données.
+     *
      * @var int
      */
-    private int $id;
+    private int $_id;
 
-    
     /**
+     * Identifiant de connexion de l'utilisateur.
+     *
+     * Cette propriété contient le nom d'utilisateur
+     * utilisé pour se connecter à l'application.
+     *
      * @var string
      */
-    private string $login;
+    private string $_login;
 
-    
     /**
+     * Mot de passe de l'utilisateur.
+     *
+     * Cette propriété contient le mot de passe crypté
+     * de l'utilisateur pour l'authentification.
+     *
      * @var string
      */
-    private string $password;
+    private string $_password;
 
-    
     /**
+     * Adresse e-mail de l'utilisateur.
+     *
+     * Cette propriété contient l'adresse e-mail associée à l'utilisateur.
+     *
      * @var string
      */
-    private string $email;
+    private string $_email;
 
-    
     /**
+     * Rôle de l'utilisateur dans l'application.
+     *
+     * Cette propriété définit le rôle de l'utilisateur parmi les valeurs possibles :
+     * 'television', 'secretaire', ou 'technicien'.
+     * Chaque rôle a des permissions spécifiques dans l'application.
+     *
      * @var string (television | secretaire | technicien)
      */
-    private string $role;
+    private string $_role;
 
-    
     /**
+     * Liste des codes associés à l'utilisateur.
+     *
+     * Cette propriété contient un tableau d'objets
+     * 'CodeAde', qui représentent les codes associés
+     * à l'utilisateur pour des actions spécifiques.
+     *
      * @var CodeAde[]
      */
-    private array $codes;
+    private array $_codes;
 
-    
     /**
+     * Identifiant du département auquel l'utilisateur appartient.
+     *
+     * Cette propriété contient l'ID du département assigné à l'utilisateur.
+     * L'ID est utilisé pour lier l'utilisateur à un département dans l'application.
+     *
      * @var int
      */
-    private int $id_department;
+    private int $_id_department;
+
 
     /**
      * Insère un nouvel utilisateur avec un rôle spécifique et, le cas échéant,
@@ -540,137 +601,203 @@ class User extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int
+     * Récupère l'identifiant de l'utilisateur.
+     *
+     * Cette méthode retourne l'ID unique de l'utilisateur dans la base de données.
+     *
+     * @return int L'ID de l'utilisateur.
      */
     public function getId() : int
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
-     * @param $id
+     * Définit l'identifiant de l'utilisateur.
+     *
+     * Cette méthode permet de définir l'ID de l'utilisateur.
+     *
+     * @param int $_id L'identifiant de l'utilisateur.
      *
      * @return void
      */
-    public function setId($id) : void
+    public function setId($_id) : void
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
     /**
-     * @return string
+     * Récupère le nom d'utilisateur (login).
+     *
+     * Cette méthode retourne le nom d'utilisateur de l'utilisateur.
+     *
+     * @return string Le nom d'utilisateur.
      */
     public function getLogin() : string
     {
-        return $this->login;
+        return $this->_login;
     }
 
     /**
-     * @param $login
+     * Définit le nom d'utilisateur (login).
+     *
+     * Cette méthode permet de définir le nom d'utilisateur pour l'utilisateur.
+     *
+     * @param string $_login Le nom d'utilisateur.
      *
      * @return void
      */
-    public function setLogin($login) : void
+    public function setLogin($_login) : void
     {
-        $this->login = $login;
+        $this->_login = $_login;
     }
 
     /**
-     * @return string
+     * Récupère le mot de passe de l'utilisateur.
+     *
+     * Cette méthode retourne le mot de passe de l'utilisateur, généralement crypté.
+     *
+     * @return string Le mot de passe de l'utilisateur.
      */
     public function getPassword() : string
     {
-        return $this->password;
+        return $this->_password;
     }
 
     /**
-     * @param $password
+     * Définit le mot de passe de l'utilisateur.
+     *
+     * Cette méthode permet de définir le mot de passe de l'utilisateur.
+     *
+     * @param string $_password Le mot de passe de l'utilisateur.
      *
      * @return void
      */
-    public function setPassword($password) : void
+    public function setPassword($_password) : void
     {
-        $this->password = $password;
+        $this->_password = $_password;
     }
 
     /**
-     * @return string
+     * Récupère l'adresse e-mail de l'utilisateur.
+     *
+     * Cette méthode retourne l'adresse e-mail de l'utilisateur.
+     *
+     * @return string L'adresse e-mail de l'utilisateur.
      */
     public function getEmail() : string
     {
-        return $this->email;
+        return $this->_email;
     }
 
     /**
-     * @param $email
+     * Définit l'adresse e-mail de l'utilisateur.
+     *
+     * Cette méthode permet de définir l'adresse e-mail de l'utilisateur.
+     *
+     * @param string $_email L'adresse e-mail de l'utilisateur.
      *
      * @return void
      */
-    public function setEmail($email) : void
+    public function setEmail($_email) : void
     {
-        $this->email = $email;
+        $this->_email = $_email;
     }
 
     /**
-     * @return string
+     * Récupère le rôle de l'utilisateur.
+     *
+     * Cette méthode retourne le rôle de l'utilisateur.
+     * Le rôle détermine les permissions de l'utilisateur.
+     *
+     * @return string Le rôle de l'utilisateur.
      */
     public function getRole() : string
     {
-        return $this->role;
+        return $this->_role;
     }
 
     /**
-     * @param $role string
+     * Définit le rôle de l'utilisateur.
+     *
+     * Cette méthode permet de définir le rôle de l'utilisateur,
+     * qui peut être 'television', 'secretaire', ou 'technicien'.
+     *
+     * @param string $_role Le rôle de l'utilisateur.
      *
      * @return void
      */
-    public function setRole(string $role): void
+    public function setRole(string $_role): void
     {
-        $this->role = $role;
+        $this->_role = $_role;
     }
 
     /**
-     * @return CodeAde[]
+     * Récupère les codes associés à l'utilisateur.
+     *
+     * Cette méthode retourne un tableau d'objets 'CodeAde' associés à l'utilisateur.
+     *
+     * @return CodeAde[] Un tableau de codes associés à l'utilisateur.
      */
     public function getCodes(): array
     {
-        return $this->codes;
+        return $this->_codes;
     }
 
     /**
-     * @param CodeAde[] $codes
+     * Définit les codes associés à l'utilisateur.
+     *
+     * Cette méthode permet de définir un tableau de codes associés à l'utilisateur.
+     *
+     * @param CodeAde[] $_codes Un tableau d'objets 'CodeAde'.
      *
      * @return void
      */
-    public function setCodes(array $codes): void
+    public function setCodes(array $_codes): void
     {
-        $this->codes = $codes;
+        $this->_codes = $_codes;
     }
 
     /**
-     * @return int
+     * Récupère l'identifiant du département auquel l'utilisateur appartient.
+     *
+     * Cette méthode retourne l'ID du département de l'utilisateur.
+     *
+     * @return int L'ID du département de l'utilisateur.
      */
     public function getIdDepartment(): int
     {
-        return $this->id_department;
+        return $this->_id_department;
     }
 
     /**
-     * @param int $id_department
+     * Définit l'identifiant du département auquel l'utilisateur appartient.
+     *
+     * Cette méthode permet de définir l'ID du département de l'utilisateur.
+     *
+     * @param int $id_department L'identifiant du département.
      *
      * @return void
      */
     public function setIdDepartment(int $id_department): void
     {
-        $this->id_department = $id_department;
+        $this->_id_department = $id_department;
     }
 
-    // TODO : Ajouter la doc pour la fonction
+
+    /**
+     * Convertit l'objet en un tableau associatif pour la sérialisation JSON.
+     *
+     * Cette méthode définit quelles propriétés de l'objet doivent être incluses dans
+     * la sortie JSON lorsqu'on utilise json_encode().
+     *
+     * @return array Un tableau associatif des propriétés à inclure dans le JSON.
+     */
     public function jsonSerialize(): array
     {
         return array(
-            'id' => $this->id,
-            'name' => $this->login
+            'id' => $this->_id,
+            'name' => $this->_login
         );
     }
 }

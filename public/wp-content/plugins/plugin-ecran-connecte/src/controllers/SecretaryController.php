@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier SecretaryController.php
+ *
+ * Ce fichier contient la classe 'SecretaryController', qui gère toutes les actions
+ * relatives aux secrétaires. Elle permet la création, la mise à jour, ainsi
+ * que l'affichage
+ * des informations liées aux secrétaires.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/SecretaryController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\Department;
@@ -14,16 +32,27 @@ use views\UserView;
  * Gère toutes les actions relatives aux secrétaires (Création, mise à jour,
  * affichage).
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/SecretaryController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class SecretaryController extends UserController
 {
     /**
+     * Permet d'utiliser le model de User
+     *
      * @var User
      */
     private User $_model;
 
     /**
+     *  Permet d'utiliser la vue de User
+     *
      * @var SecretaryView
      */
     private SecretaryView $_view;
@@ -83,13 +112,11 @@ class SecretaryController extends UserController
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
-            $passwordConfirm = filter_input
-                (INPUT_POST, 'pwdConfirmSecre');
+            $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
             // les non-admins ne peuvent pas choisir le département, on empêche donc
             // ces utilisateurs de pouvoir le changer
-            $deptId = $isAdmin ? filter_input
-                (INPUT_POST, 'deptIdSecre') : $currDept;
+            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (InputValidator::isValidLogin($login) 
                 && InputValidator::isValidPassword($password, $passwordConfirm) 
@@ -184,21 +211,16 @@ class SecretaryController extends UserController
 
         return
             $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect
-                ('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect
-                ('technician', 'Agent d\'entretien') .
-            $this->_view->displayTitleSelect
-                ('television', 'Télévisions') .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'secretary', $secretary->insert(), true
             ) .
-            $this->_view->displayContentSelect
-                ('technician', $technician->insert()) .
-            $this->_view->displayContentSelect
-                ('television', $television->insert()) .
+            $this->_view->displayContentSelect('technician', $technician->insert()) .
+            $this->_view->displayContentSelect('television', $television->insert()) .
             $subadminContent .
             '</div>' .
             $this->_view->contextCreateUser();
@@ -239,12 +261,9 @@ class SecretaryController extends UserController
 
         return
             $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect
-                ('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect
-                ('technician', 'Agents d\'entretiens') .
-            $this->_view->displayTitleSelect
-                ('television', 'Télévisions') .
+            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
@@ -320,7 +339,7 @@ class SecretaryController extends UserController
                 if (isset($_REQUEST['checkboxStatus' . $role])) {
                     $checked_values = $_REQUEST['checkboxStatus' . $role];
                     foreach ($checked_values as $id) {
-                        $this->deleteUser($id);
+                        $this->_deleteUser($id);
                     }
                 }
             }
@@ -342,7 +361,7 @@ class SecretaryController extends UserController
      * @version 1.0
      * @date    2024-10-15
      */
-    private function deleteUser(int $id): void
+    private function _deleteUser(int $id): void
     {
         $user = $this->_model->get($id);
         $user->delete();

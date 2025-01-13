@@ -1,15 +1,46 @@
 <?php
+/**
+ * Fichier ICSView.php
+ *
+ * Ce fichier contient la classe 'ICSView',
+ * qui est responsable de l'affichage de l'emploi du temps.
+ * Cette classe génère l'affichage d'un emploi du temps,
+ * permettant à l'utilisateur de visualiser
+ * ses horaires, les événements programmés et d'autres
+ * informations liées à l'organisation du temps.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/ICSView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
 
 namespace views;
 
 use WP_User;
 
 /**
- * Class ICSView
+ * Classe ICSView
  *
- * Affiche l'emploi du temps.
+ * Cette classe gère l'affichage des vues liées à
+ * l'emploi du temps. Elle génère le HTML nécessaire
+ * pour afficher un emploi du temps contenant
+ * les différents événements ou activités planifiés.
+ * L'utilisateur peut ainsi visualiser ses horaires de manière organisée et claire.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/ICSView Documentation de la classe
+ * @since    2025-01-13
  */
 class ICSView extends View
 {

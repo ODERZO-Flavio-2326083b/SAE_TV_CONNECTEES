@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier CodeAdeView.php
+ *
+ * Ce fichier contient la classe 'CodeAdeView', qui est responsable de la gestion
+ * des vues liées aux codes ADE dans l'application. Cela inclut la gestion des
+ * formulaires de création et de modification des codes ADE, l'affichage des tableaux
+ * des codes ADE, et la gestion des messages d'erreur ou de succès.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CodeAdeView
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace views;
 
 use models\CodeAde;
@@ -8,9 +26,19 @@ use models\Department;
 /**
  * Class CodeAdeView
  *
- * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
+ * Gère toutes les vues liées aux codes ADE dans l'application.
+ * Cela comprend les formulaires
+ * de création et de modification des codes ADE,
+ * l'affichage des codes ADE dans un tableau,
+ * ainsi que les messages d'information, d'erreur ou de succès.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/CodeAdeView Documentation de la classe
+ * @since    2025-01-07
  */
 class CodeAdeView extends View
 {
@@ -160,7 +188,7 @@ class CodeAdeView extends View
     /**
      * Affiche les options pour sélectionner un type de code.
      *
-     * Cette méthode génère les options HTML pour un élément `<select>`, permettant
+     * Cette méthode génère les options HTML pour un élément '<select>', permettant
      * à l'utilisateur de choisir un type de code parmi les options disponibles
      * (Année, Groupe, Demi-Groupe). Elle met en surbrillance l'option qui est
      * actuellement sélectionnée, basée sur le type passé en paramètre.
