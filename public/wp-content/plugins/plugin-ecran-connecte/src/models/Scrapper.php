@@ -30,13 +30,36 @@ class Scrapper
     {
         $this->url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
     }
-
+    /**
+     * Récupère le contenu HTML de la page d'articles.
+     *
+     * Cette méthode utilise la fonction `file_get_contents` pour récupérer le code HTML de la page d'articles depuis
+     * l'URL spécifiée dans la classe.
+     *
+     * @return string Le code HTML de la page.
+     *
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getHtml()
     {
         $html = file_get_contents($this->url);
         return $html;
     }
 
+    /**
+     * Récupère tous les articles présents sur la page.
+     *
+     * Cette méthode charge le HTML récupéré avec `getHtml()` et utilise DOMXPath pour naviguer dans le DOM et extraire
+     * tous les éléments `<article>` présents sur la page. Ces éléments sont ensuite retournés sous forme d'une liste.
+     *
+     * @return \DOMNodeList Liste des articles trouvés dans la page.
+     *
+     *
+     * @version 1.0
+     * @date 07-01-2025
+     */
     public function getArticles()
     {
         $html = $this->getHtml();
@@ -73,11 +96,11 @@ class Scrapper
                     $image = $div->getAttribute('src');
                     break;
                 } else {
-                    $image = "pas de contenue";
+                    $image = "Pas de contenu.";
                 }
             }
             else{
-                $image = "pas de contenue";
+                $image = "Pas de contenu.e";
             }
         }
 
