@@ -109,8 +109,7 @@ class Scrapper
         ];
     }
 
-    public function printWebsite()
-    {
+
     /**
      * Affiche un article aléatoire du site web.
      *
