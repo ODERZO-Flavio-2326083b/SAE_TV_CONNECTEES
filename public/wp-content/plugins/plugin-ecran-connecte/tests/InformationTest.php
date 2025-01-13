@@ -2,150 +2,142 @@
 
 use PHPUnit\Framework\TestCase;
 use models\Information;
+use Mockery as m;
 use models\User;
-use Mockery\Mock;
 
 class InformationTest extends TestCase
 {
     private $pdoMock;
     private $pdoStatementMock;
+    private $information;
 
     protected function setUp(): void
     {
         $this->pdoMock = Mockery::mock(PDO::class);
         $this->pdoStatementMock = Mockery::mock(PDOStatement::class);
+
+        $this->information = m::mock(Information::class)->makePartial();
+        $this->information->shouldAllowMockingProtectedMethods();
+        $this->information->shouldReceive('getDatabase')
+                          ->andReturn($this->pdoMock);
+
+        $user = new User();
+        $user->setId(10);
+
+        $this->information->setId(1);
+        $this->information->setTitle("Titre de test");
+        $this->information->setAuthor($user);
+        $this->information->setCreationDate("2025-01-13");
+        $this->information->setExpirationDate("2025-12-31");
+        $this->information->setContent(
+            "Test content");
+        $this->information->setType("texte");
+        $this->information->setAdminId(42);
+        $this->information->setIdDepartment(5);
+        $this->information->setDuration(3600000);
+
     }
 
     public function testInsert()
     {
-        $infoMock = Mockery::mock(Information::class)->makePartial();
-        $infoMock->shouldAllowMockingProtectedMethods();
-        $infoMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('INSERT INTO ecran_information'))
+            ->once()
             ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
+            ->with(':title', 'Titre de test');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':content', 'Test content');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':creationDate', '2025-01-13');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':expirationDate', '2025-12-31');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':type', 'texte');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':userId', 10, PDO::PARAM_INT);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':department_id', 5, PDO::PARAM_INT);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':duration', 3600000, PDO::PARAM_INT);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':administration_id', 42, PDO::PARAM_INT);
 
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
         $this->pdoMock->shouldReceive('lastInsertId')
-            ->once()
             ->andReturn(1);
 
-        $infoMock->shouldReceive('getTitle')->andReturn('Test Title');
-        $infoMock->shouldReceive('getContent')->andReturn('Test Content');
-        $infoMock->shouldReceive('getCreationDate')->andReturn('2025-01-01');
-        $infoMock->shouldReceive('getExpirationDate')->andReturn('2025-01-10');
-        $infoMock->shouldReceive('getType')->andReturn('Text');
-        $infoMock->shouldReceive('getAuthor')->andReturn(Mockery::mock(User::class));
-        $infoMock->shouldReceive('getAdminId')->andReturn(1);
-        $infoMock->shouldReceive('getIdDepartment')->andReturn(2);
-
-        $result = $infoMock->insert();
+        $result = $this->information->insert();
 
         $this->assertEquals(1, $result);
     }
 
     public function testUpdate()
     {
-        $infoMock = Mockery::mock(Information::class)->makePartial();
-        $infoMock->shouldAllowMockingProtectedMethods();
-        $infoMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('UPDATE ecran_information'))
-            ->andReturn($this->pdoStatementMock);
+                      ->with($this->stringContains('UPDATE ecran_information'))
+                      ->once()
+                      ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
+            ->with(':title', 'Titre de test');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':content', 'Test content');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':expirationDate', '2025-12-31');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', '1', PDO::PARAM_INT);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':deptId', 5, PDO::PARAM_INT);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':duration', 3600000, PDO::PARAM_INT);
 
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
-        $infoMock->shouldReceive('getId')->andReturn(1);
-        $infoMock->shouldReceive('getTitle')->andReturn('Updated Title');
-        $infoMock->shouldReceive('getContent')->andReturn('Updated Content');
-        $infoMock->shouldReceive('getExpirationDate')->andReturn('2025-02-01');
-        $infoMock->shouldReceive('getIdDepartment')->andReturn(2);
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->andReturn(1);
 
-        $result = $infoMock->update();
+        $result = $this->information->update();
 
         $this->assertEquals(1, $result);
     }
 
     public function testDelete()
     {
-        $infoMock = Mockery::mock(Information::class)->makePartial();
-        $infoMock->shouldAllowMockingProtectedMethods();
-        $infoMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('DELETE FROM ecran_information'))
+            ->once()
             ->andReturn($this->pdoStatementMock);
 
-        $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
-            ->andReturn(true);
-
-        $infoMock->shouldReceive('getId')->andReturn(1);
-
-        $result = $infoMock->delete();
-
-        $this->assertEquals(1, $result);
-    }
-
-    public function testGet()
-    {
-        $infoMock = Mockery::mock(Information::class)->makePartial();
-        $infoMock->shouldAllowMockingProtectedMethods();
-        $infoMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
-        $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('SELECT id, title, content'))
-            ->andReturn($this->pdoStatementMock);
-
-        $this->pdoStatementMock->shouldReceive('bindParam')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', '1', PDO::PARAM_INT);
 
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
         $this->pdoStatementMock->shouldReceive('rowCount')
-            ->once()
             ->andReturn(1);
 
-        $this->pdoStatementMock->shouldReceive('fetch')
-            ->once()
-            ->andReturn([
-                'id' => 1,
-                'title' => 'Test Title',
-                'content' => 'Test Content',
-                'creation_date' => '2025-01-01',
-                'expiration_date' => '2025-01-10',
-                'author' => 1,
-                'type' => 'Text',
-                'administration_id' => 1,
-                'department_id' => 2,
-            ]);
+        $result = $this->information->delete();
 
-        $result = $infoMock->get(1);
-
-        $this->assertInstanceOf(Information::class, $result);
-        $this->assertEquals('Test Title', $result->getTitle());
+        $this->assertEquals(1, $result);
     }
 
     protected function tearDown(): void

@@ -23,9 +23,9 @@ class Alert extends Model implements Entity, JsonSerializable
 
 
     /**
-     * @var User
+     * @var int|User|null
      */
-    private User $author;
+    private int|User|null $author;
 
 
     /**

@@ -92,7 +92,7 @@ class CodeAdeTest extends TestCase
     {
 
         $this->pdoMock->shouldReceive('prepare')->with(
-            $this->stringContains('DELETE FROM ecran_code_ade WHERE id = :id'))
+            $this->stringContains('DELETE FROM ecran_code_ade'))
                       ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')

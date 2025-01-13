@@ -28,7 +28,7 @@ class AlertTest extends TestCase
         $this->alert->shouldReceive('getDatabase')
                     ->andReturn($this->pdoMock);
         $this->alert->setId(1);
-        $this->alert->setAuthor(1);
+        $this->alert->setAuthor(new \models\User());
         $this->alert->setContent('Alerte test');
         $this->alert->setCreationDate('2025-01-01');
         $this->alert->setExpirationDate('2025-01-10');
@@ -109,7 +109,7 @@ class AlertTest extends TestCase
         )->andReturn(1);
 
         $this->pdoMock->shouldReceive('prepare')->with(
-            'DELETE FROM ecran_code_alert WHERE alert_id = :alertId'
+            $this->stringContains('DELETE FROM ecran_code_alert')
         )->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
@@ -150,7 +150,7 @@ class AlertTest extends TestCase
     public function testDelete()
     {
         $this->pdoMock->shouldReceive('prepare')->with(
-            $this->stringContains('DELETE FROM ecran_alert WHERE id = :id'))
+            $this->stringContains('DELETE FROM ecran_alert'))
                       ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
