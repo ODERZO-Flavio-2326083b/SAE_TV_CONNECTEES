@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier InformationRestController.php
+ *
+ * Ce fichier contient la classe `InformationRestController`, qui gère
+ * les requêtes REST concernant les informations dans l'application.
+ * Elle permet la création, la récupération, la mise à jour et la
+ * suppression d'informations via l'API REST de WordPress.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/InformationRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\Information;
@@ -9,14 +27,20 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license, @link et @package
- *
- * @class InformationRestController
- * @brief Classe pour gérer le contrôleur REST des informations.
+ * Classe InformationRestController
  *
  * Cette classe permet de gérer les requêtes REST concernant les
- * informations dans l'application, notamment la création,
- * la récupération, la mise à jour et la suppression d'informations.
+ * informations dans l'application. Elle fournit des méthodes pour
+ * créer, récupérer, mettre à jour et supprimer des informations.
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/InformationRestController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class InformationRestController extends WP_REST_Controller
 {
