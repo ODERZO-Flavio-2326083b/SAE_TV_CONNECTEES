@@ -1,18 +1,12 @@
 # SAE S3.01 TV Connectés
 Cette SAE S3.01 consiste en l'amélioration des TV connectées présentes dans les départements de l'IUT d'Aix-Marseille. 
-Nous devons améliorer l'interface graphique, mais également améliorer ou optimiser diverses spécificités techniques.
-Le site est basé sur un plugin et un thème WordPress,  
+Le but principal de ce projet était de rendre le site centralisable, pour faciliter sa gestion, ainsi que d'améliorer l'interface graphique, ajouter des fonctionnalités, et corriger quelques bugs présents dans la précédente version.
+Le site est basé sur un plugin et un thème WordPress, tous deux nécessaires au bon fonctionnement de l'application.
 
-# Installation du plugin
+Un guide d'installation et d'utilisation est décrit dans ce [Readme](ReadMeInstallationEcran.md).
 
-Prérequis à l'installation :
-  - Un serveur web fonctionnel, en PHP 5.3, avec une base de données.
-  - Une installation WordPress (si vous n'avez aucune idée de comment s'y prendre, merci de suivre ce lien : [Tutoriel d'installation WordPress](https://fr.wordpress.org/support/article/how-to-install-wordpress/)
-  - Une release du plugin, qui se trouve dans le menu des Releases sur GitHub, à droite de l'écran.
-  - Un peu de patience.
+Une brève introduction au code du programme se trouve dans ce [Readme](ReadMeCodeEcran.md), ainsi qu'une introduction moins technique à son fonctionnement dans ce [Readme](ReadMeEcranConnecte.md).
 
-// TODO A FINIR
-
-Un guide d'installation sur Raspberry est contenu dans le dossier `annexe`, et en lisant les différents `README.md` dans le plugin.
+Notez que des guides plus détaillés se trouvent dans le dossier `/annexes`, notamment le guide d'utilisation. S'y trouvent aussi le rapport du projet et la documentation Doxygen du programme.
 
 Réalisé par BERTIN Mathéo, GALLOU Loïc, ODERZO Flavio, SARRAZIN Valentin et TAMINE Cyril dans le cadre de la SAE.S3 en BUT Informatique 2024-2025.
