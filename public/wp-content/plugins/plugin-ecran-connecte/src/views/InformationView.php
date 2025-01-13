@@ -5,6 +5,7 @@ namespace views;
 
 use controllers\InformationController;
 use models\Information;
+use models\Scrapper;
 
 /**
  * Class InformationView

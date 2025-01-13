@@ -82,11 +82,13 @@ class SecretaryController extends UserController
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginSecre');
             $password = filter_input(INPUT_POST, 'pwdSecre');
-            $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmSecre');
+            $passwordConfirm = filter_input
+                (INPUT_POST, 'pwdConfirmSecre');
             $email = filter_input(INPUT_POST, 'emailSecre');
             // les non-admins ne peuvent pas choisir le département, on empêche donc
             // ces utilisateurs de pouvoir le changer
-            $deptId = $isAdmin ? filter_input(INPUT_POST, 'deptIdSecre') : $currDept;
+            $deptId = $isAdmin ? filter_input
+                (INPUT_POST, 'deptIdSecre') : $currDept;
 
             if (InputValidator::isValidLogin($login) 
                 && InputValidator::isValidPassword($password, $passwordConfirm) 
@@ -181,16 +183,21 @@ class SecretaryController extends UserController
 
         return
             $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
-            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayTitleSelect
+                ('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect
+                ('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect
+                ('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'secretary', $secretary->insert(), true
             ) .
-            $this->_view->displayContentSelect('technician', $technician->insert()) .
-            $this->_view->displayContentSelect('television', $television->insert()) .
+            $this->_view->displayContentSelect
+                ('technician', $technician->insert()) .
+            $this->_view->displayContentSelect
+                ('television', $television->insert()) .
             $subadminContent .
             '</div>' .
             $this->_view->contextCreateUser();
@@ -231,9 +238,12 @@ class SecretaryController extends UserController
 
         return
             $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
-            $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
-            $this->_view->displayTitleSelect('television', 'Télévisions') .
+            $this->_view->displayTitleSelect
+                ('secretary', 'Secrétaires', true) .
+            $this->_view->displayTitleSelect
+                ('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect
+                ('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(

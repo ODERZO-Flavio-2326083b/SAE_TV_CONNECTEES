@@ -83,9 +83,10 @@ class Controller
     public function getUrl($code) : string
     {
         $str = strtotime("now"); // Récupère le timestamp actuel
-        $str2 = strtotime(date("Y-m-d", strtotime('now')) . " +6 day"); // Timestamp
-                                                                    // pour 6 jours
-                                                                    // dans le futur
+        $str2 = strtotime(date("Y-m-d", strtotime('now'))
+                          . " +6 day"); // Timestamp
+                                        // pour 6 jours
+                                        // dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
         $end = date('Y-m-d', $str2); // Date de fin (dans 6 jours)
         $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/

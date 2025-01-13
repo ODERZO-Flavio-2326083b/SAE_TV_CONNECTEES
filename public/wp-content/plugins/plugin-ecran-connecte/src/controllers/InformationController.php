@@ -101,7 +101,8 @@ class InformationController extends Controller
         $creationDate = date('Y-m-d');
         // Si l'utilisateur est un admin, il peut choisir un département, sinon on
         // prend le dpt de l'utilisateur
-        $deptId = $isAdmin ? filter_input(INPUT_POST, 'informationDept') : $currDept;
+        $deptId = $isAdmin ? filter_input(INPUT_POST,
+            'informationDept') : $currDept;
 
         // Si le titre est vide
         if ($title == '') {
@@ -338,8 +339,9 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                             );
                         } else {
                             $this->_view->buildModal(
-                                'Image non valide', '<p>Ce fichier est une image non 
-valide, veuillez choisir une autre image</p>'
+                                'Image non valide',
+                                '<p>Ce fichier est une image non 
+                                valide, veuillez choisir une autre image</p>'
                             );
                         }
                     } else if ($information->getType() == 'pdf') {
@@ -354,8 +356,9 @@ valide, veuillez choisir une autre image</p>'
                             );
                         } else {
                             $this->_view->buildModal(
-                                'PDF non valide', '<p>Ce fichier est un PDF non 
-valide, veuillez choisir un autre PDF</p>'
+                                'PDF non valide',
+                                '<p>Ce fichier est un PDF non 
+                                valide, veuillez choisir un autre PDF</p>'
                             );
                         }
                     } else if ($information->getType() == 'video'
@@ -373,8 +376,9 @@ valide, veuillez choisir un autre PDF</p>'
 
                         } else {
                             $this->_view->buildModal(
-                                'Vidéo non valide', '<p>Ce fichier est une vidéo non 
-valide, veuillez choisir une autre vidéo</p>'
+                                'Vidéo non valide',
+                                '<p>Ce fichier est une vidéo non 
+                                valide, veuillez choisir une autre vidéo</p>'
                             );
                         }
                     }
@@ -430,7 +434,8 @@ valide, veuillez choisir une autre vidéo</p>'
         Information $entity
     ): void {
         $id = 'temporary';
-        $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
+        $extension_upload = strtolower(substr(
+            strrchr($filename, '.'), 1));
         $name = $_SERVER['DOCUMENT_ROOT']
             . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
         $entity->setDuration(5000);
@@ -582,7 +587,8 @@ valide, veuillez choisir une autre vidéo</p>'
                 $this->_view->buildLinkForModify(
                     esc_url(
                         get_permalink(
-                            get_page_by_title_custom('Modifier une information')
+                            get_page_by_title_custom
+                                ('Modifier une information')
                         )
                     ) . '?id=' . $information->getId()
                 )
@@ -620,7 +626,8 @@ valide, veuillez choisir une autre vidéo</p>'
             . $this->_view->pageNumber(
                 $maxPage, $pageNumber, esc_url(
                     get_permalink(
-                        get_page_by_title_custom('Gestion des informations')
+                        get_page_by_title_custom
+                            ('Gestion des informations')
                     )
                 ), $number
             );
@@ -703,7 +710,8 @@ valide, veuillez choisir une autre vidéo</p>'
         // Début du conteneur pour les vidéos
         $this->_view->displayStartSlideVideo();
         foreach ($informations as $information) {
-            $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
+            $endDate = date('Y-m-d', strtotime(
+                $information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
                 $adminSite = true;
                 if (is_null($information->getAdminId())) {

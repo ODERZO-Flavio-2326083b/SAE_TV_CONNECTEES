@@ -77,7 +77,8 @@ class CSSCustomizerController extends Controller
                 $cssDefault = file_get_contents(
                     WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/
                     css/global/global-default.css');
-                file_put_contents(WP_CONTENT_DIR.'/themes/theme-ecran-connecte
+                file_put_contents(
+                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte
                 /assets/css/global/global-'.$e->getName().'.css',$cssDefault);
             }
         }

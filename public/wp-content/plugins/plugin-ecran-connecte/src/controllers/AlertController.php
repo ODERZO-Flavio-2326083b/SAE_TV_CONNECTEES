@@ -60,7 +60,8 @@ class AlertController extends Controller
         $action = filter_input(INPUT_POST, 'submit');
         if (isset($action)) {
             $codes = filter_input(
-                INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+                INPUT_POST, 'selectAlert', FILTER_DEFAULT,
+                FILTER_REQUIRE_ARRAY
             );
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
@@ -173,9 +174,12 @@ class AlertController extends Controller
             $error = false;
             // Récupérer les valeurs
             $content = filter_input(INPUT_POST, 'content');
-            $expirationDate = filter_input(INPUT_POST, 'expirationDate');
+            $expirationDate = filter_input(
+                INPUT_POST,
+                'expirationDate');
             $codes = filter_input(
-                INPUT_POST, 'selectAlert', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+                INPUT_POST, 'selectAlert', FILTER_DEFAULT,
+                FILTER_REQUIRE_ARRAY
             );
 
             $codesAde = array();
