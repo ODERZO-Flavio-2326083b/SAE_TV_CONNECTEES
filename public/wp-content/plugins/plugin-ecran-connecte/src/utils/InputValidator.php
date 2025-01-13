@@ -1,45 +1,43 @@
 <?php
 /**
- * Fichier User.php
+ * Fichier InputValidator.php
  *
- * Ce fichier contient la classe 'User', qui représente une entité utilisateur
- * dans l'application.
- * Cette classe permet de gérer les informations de l'utilisateur,
- * telles que son identifiant,
- * son nom, son email, et d'autres informations pertinentes.
- * Elle fournit également des méthodes pour insérer,
- * mettre à jour, supprimer et récupérer
- * des utilisateurs dans la base de données.
+ * Ce fichier contient la classe 'InputValidator', qui est responsable
+ * de la validation des entrées utilisateur dans les formulaires.
+ * Elle permet de vérifier si les valeurs saisies respectent certains critères
+ * (comme la validité d'une adresse email, un mot de passe assez complexe, etc.).
+ * Cette classe facilite la gestion de la validation des formulaires et assure
+ * que les données envoyées sont sécurisées avant d'être traitées.
  *
- * PHP version 8.3
+ * PHP version 7.4 or later
  *
- * @category Entity
- * @package  Models
+ * @category Util
+ * @package  Utils
  * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
- * @link     https://www.example.com/docs/User
+ * @link     https://www.example.com/docs/InputValidator
  * Documentation de la classe
  * @since    2025-01-07
  */
+
 namespace utils;
 
-
 /**
- * Class User
+ * Class InputValidator
  *
- * Représente une entité utilisateur dans l'application. Cette classe permet
- * de gérer les informations de l'utilisateur, telles que son identifiant,
- * son nom, son email et d'autres informations pertinentes. Elle fournit
- * des méthodes pour insérer, mettre à jour, supprimer et récupérer des utilisateurs
- * dans la base de données.
+ * Classe permettant de vérifier la validité de certains inputs utilisateur
+ * dans les formulaires. Elle fournit des méthodes pour valider les données,
+ * comme les emails, les mots de passe, les noms, etc. Ces validations garantissent
+ * que les données envoyées par les utilisateurs sont sécurisées et conformes aux
+ * exigences du système.
  *
- * @category Entity
- * @package  Models
+ * @category Util
+ * @package  Utils
  * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
- * @link     https://www.example.com/docs/User Documentation de la classe
+ * @link     https://www.example.com/docs/InputValidator Documentation de la classe
  * @since    2025-01-07
  */
 class InputValidator
