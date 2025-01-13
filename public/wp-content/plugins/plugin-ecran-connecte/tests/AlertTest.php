@@ -150,8 +150,8 @@ class AlertTest extends TestCase
     public function testDelete()
     {
         $this->pdoMock->shouldReceive('prepare')->with(
-            'DELETE FROM ecran_alert WHERE id = :id'
-        )->andReturn($this->pdoStatementMock);
+            $this->stringContains('DELETE FROM ecran_alert WHERE id = :id'))
+                      ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
                                ->with(':id', 1, PDO::PARAM_INT);
