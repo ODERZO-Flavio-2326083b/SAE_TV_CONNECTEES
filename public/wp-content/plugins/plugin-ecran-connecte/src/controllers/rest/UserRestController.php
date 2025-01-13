@@ -2,17 +2,17 @@
 /**
  * Fichier UserRestController.php
  *
- * Ce fichier contient la classe `UserRestController`, qui gère
+ * Ce fichier contient la classe 'UserRestController', qui gère
  * les routes REST pour la gestion des alertes associées aux utilisateurs.
  * Elle permet de récupérer, créer, mettre à jour et supprimer des alertes
- * via l'API REST de WordPress. Elle utilise `WP_REST_Controller` pour
+ * via l'API REST de WordPress. Elle utilise 'WP_REST_Controller' pour
  * enregistrer et traiter les routes REST personnalisées.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/UserRestController
@@ -34,12 +34,12 @@ use WP_REST_Server;
  * Cette classe gère les routes REST pour la gestion des alertes
  * associées aux utilisateurs. Elle permet de récupérer, créer,
  * mettre à jour et supprimer des alertes via l'API REST de WordPress.
- * Elle utilise `WP_REST_Controller` pour enregistrer et traiter
+ * Elle utilise 'WP_REST_Controller' pour enregistrer et traiter
  * les routes REST personnalisées.
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/UserRestController Documentation

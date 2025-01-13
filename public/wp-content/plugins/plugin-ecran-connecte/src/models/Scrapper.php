@@ -2,18 +2,18 @@
 /**
  * Fichier Scrapper.php
  *
- * Ce fichier contient la classe `Scrapper`, qui est utilisée pour l'extraction
+ * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
  * de données depuis un site web. La classe permet de scrapper des articles
  * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
  * informations telles que le titre, le contenu, l'image, le lien et l'auteur
  * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
  * pour extraire et traiter le contenu HTML.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Web_Scraping
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Scrapper
@@ -39,7 +39,7 @@ use DOMXPath;
  *
  * @category Web_Scraping
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/Scrapper Documentation de la classe
@@ -69,7 +69,7 @@ class Scrapper
     /**
      * Récupère le contenu HTML de la page d'articles.
      *
-     * Cette méthode utilise la fonction `file_get_contents` pour récupérer le code
+     * Cette méthode utilise la fonction 'file_get_contents' pour récupérer le code
      * HTML de la page d'articles depuis l'URL spécifiée dans la classe.
      *
      * @return string Le code HTML de la page.
@@ -85,8 +85,8 @@ class Scrapper
     /**
      * Récupère tous les articles présents sur la page.
      *
-     * Cette méthode charge le HTML récupéré avec `getHtml()` et utilise DOMXPath
-     * pour naviguer dans le DOM et extraire tous les éléments `<article>` présents
+     * Cette méthode charge le HTML récupéré avec 'getHtml()' et utilise DOMXPath
+     * pour naviguer dans le DOM et extraire tous les éléments '<article>' présents
      * sur la page. Ces éléments sont ensuite retournés sous forme d'une liste.
      *
      * @return DOMNodeList Liste des articles trouvés dans la page.
@@ -110,7 +110,7 @@ class Scrapper
      *
      * Cette méthode permet d'extraire le titre, le contenu, le lien, l'image et
      * l'auteur de chaque article en utilisant les balises HTML correspondantes dans
-     * l'élément `<article>`.
+     * l'élément '<article>'.
      *
      * @param DOMElement $article L'article à traiter.
      *
@@ -148,7 +148,7 @@ class Scrapper
      * Affiche un article aléatoire du site web.
      *
      * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la
-     * méthode `getArticles()`. Elle affiche ensuite cet article en HTML avec son
+     * méthode 'getArticles()'. Elle affiche ensuite cet article en HTML avec son
      * titre, son contenu, son image, son lien et un footer contenant l'auteur de
      * l'article.
      *
@@ -170,9 +170,12 @@ class Scrapper
 
             // Vérifiez si une image est disponible
             if (!empty($varArticle['image'])
-                && $varArticle['image'] !== 'pas de contenu') {
-                $imageLarge= str_replace('home','large',
-                                            $varArticle['image']);
+                && $varArticle['image'] !== 'pas de contenu'
+            ) {
+                $imageLarge= str_replace(
+                    'home', 'large',
+                    $varArticle['image']
+                );
                 $imageContent = @file_get_contents($imageLarge);
 
                 if ($imageContent !== false) {

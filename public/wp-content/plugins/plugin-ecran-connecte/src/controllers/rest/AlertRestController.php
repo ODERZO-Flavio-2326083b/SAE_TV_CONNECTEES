@@ -2,16 +2,16 @@
 /**
  * Fichier AlertRestController.php
  *
- * Ce fichier contient la classe `AlertRestController`, qui gère l'API REST
+ * Ce fichier contient la classe 'AlertRestController', qui gère l'API REST
  * pour la gestion des alertes. Elle enregistre les routes REST, effectue des
  * opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur les alertes,
  * et vérifie les permissions des utilisateurs.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/AlertRestController
@@ -39,7 +39,7 @@ use WP_REST_Server;
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/AlertRestController Documentation de

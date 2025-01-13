@@ -2,7 +2,7 @@
 /**
  * Fichier SubadminView.php
  *
- * Ce fichier contient la classe `SubadminView`,
+ * Ce fichier contient la classe 'SubadminView',
  * qui est responsable de l'affichage des vues
  * liées à la gestion des sous-administrateurs dans
  * l'application. Cette classe génère des formulaires
@@ -10,11 +10,11 @@
  * ainsi que des tableaux et des messages
  * pour gérer et afficher ces comptes.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/SubadminView
@@ -35,7 +35,7 @@ namespace views;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/SubadminView Documentation de la classe
@@ -82,12 +82,12 @@ class SubadminView extends UserView
      *
      * @param array $users        Liste des utilisateurs à afficher.
      *                            Chaque utilisateur
-     *                            doit avoir une méthode `getId()` et `getLogin()`.
+     *                            doit avoir une méthode 'getId()' et 'getLogin()'.
      * @param array $userDeptList Liste des départements
      *                            associés à chaque utilisateur.
      *                            Le nombre d'éléments
      *                            doit correspondre à la taille de
-     *                            `$users`.
+     *                            '$users'.
      *
      * @return string Retourne le code HTML complet du
      * tableau avec les utilisateurs et

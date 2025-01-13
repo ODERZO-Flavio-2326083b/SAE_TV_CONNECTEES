@@ -2,7 +2,7 @@
 /**
  * Fichier HelpMapView.php
  *
- * Ce fichier contient la classe `HelpMapView`,
+ * Ce fichier contient la classe 'HelpMapView',
  * qui est responsable de l'affichage des vues liées
  * à la carte interactive montrant les lieux intéressants
  * à proximité. Cette classe génère
@@ -10,11 +10,11 @@
  * à l'utilisateur de visualiser les points d'intérêt
  * à proximité de sa localisation ou d'une autre localisation spécifiée.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/HelpMapView
@@ -38,7 +38,7 @@ namespace views;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/HelpMapView Documentation de la classe

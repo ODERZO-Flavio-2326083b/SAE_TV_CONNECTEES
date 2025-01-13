@@ -2,16 +2,16 @@
 /**
  * Fichier CodeAdeView.php
  *
- * Ce fichier contient la classe `CodeAdeView`, qui est responsable de la gestion
+ * Ce fichier contient la classe 'CodeAdeView', qui est responsable de la gestion
  * des vues liées aux codes ADE dans l'application. Cela inclut la gestion des
  * formulaires de création et de modification des codes ADE, l'affichage des tableaux
  * des codes ADE, et la gestion des messages d'erreur ou de succès.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/CodeAdeView
@@ -34,7 +34,7 @@ use models\Department;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/CodeAdeView Documentation de la classe
@@ -188,7 +188,7 @@ class CodeAdeView extends View
     /**
      * Affiche les options pour sélectionner un type de code.
      *
-     * Cette méthode génère les options HTML pour un élément `<select>`, permettant
+     * Cette méthode génère les options HTML pour un élément '<select>', permettant
      * à l'utilisateur de choisir un type de code parmi les options disponibles
      * (Année, Groupe, Demi-Groupe). Elle met en surbrillance l'option qui est
      * actuellement sélectionnée, basée sur le type passé en paramètre.

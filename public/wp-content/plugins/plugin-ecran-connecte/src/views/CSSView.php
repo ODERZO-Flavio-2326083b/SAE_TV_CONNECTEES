@@ -2,7 +2,7 @@
 /**
  * Fichier CSSView.php
  *
- * Ce fichier contient la classe `CSSView`,
+ * Ce fichier contient la classe 'CSSView',
  * qui est responsable de l'affichage des vues liées
  * à la personnalisation du CSS dans l'application.
  * Cette classe génère des formulaires permettant
@@ -12,11 +12,11 @@
  * etc. Elle permet également l'affichage dynamique
  * des options disponibles pour la personnalisation du CSS.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/CSSView
@@ -43,7 +43,7 @@ use views\View;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/CSSView Documentation de la classe

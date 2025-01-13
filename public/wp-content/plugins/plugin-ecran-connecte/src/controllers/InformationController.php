@@ -2,14 +2,14 @@
 /**
  * Fichier InformationController.php
  *
- * Ce fichier contient la classe `InformationController`, qui gère les informations
+ * Ce fichier contient la classe 'InformationController', qui gère les informations
  * avec ses différentes fonctions (créer, mettre à jour, supprimer, afficher).
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/InformationController
@@ -34,7 +34,7 @@ use views\InformationView;
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/InformationController Documentation de
@@ -893,13 +893,13 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
     /**
      * Crée un objet de type "scrapper" avec des informations par défaut.
      *
-     * Cette méthode initialise un objet de la classe `information`, définit
+     * Cette méthode initialise un objet de la classe 'information', définit
      * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
      * département, l'auteur, la date de création, le contenu, l'identifiant
      * administratif, le titre, le type et la date d'expiration, et retourne
      * cet objet.
      *
-     * @return information Retourne l'objet `information` initialisé.
+     * @return information Retourne l'objet 'information' initialisé.
      *
      * @version 1.0
      * @date    2024-10-16

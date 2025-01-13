@@ -2,17 +2,17 @@
 /**
  * Fichier Entity.php
  *
- * Ce fichier contient l'interface `Entity`, qui établit le lien entre
+ * Ce fichier contient l'interface 'Entity', qui établit le lien entre
  * les tables de la base de données et le code PHP. Cette interface définit
  * les méthodes nécessaires pour que les entités (modèles) interagissent avec
  * la base de données, en permettant l'insertion, la mise à jour, la suppression
  * et la récupération des données.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Interface
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Entity
@@ -30,7 +30,7 @@ namespace models;
  *
  * @category Interface
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/Entity Documentation de l'interface
@@ -110,7 +110,7 @@ interface Entity
      *
      * Cette méthode crée une liste d'entités à partir des données
      * fournies. Elle itère
-     * sur un tableau de données et utilise la méthode `setEntity`
+     * sur un tableau de données et utilise la méthode 'setEntity'
      * pour créer une entité
      * pour chaque élément du tableau. Elle retourne un tableau
      * contenant toutes les entités créées.

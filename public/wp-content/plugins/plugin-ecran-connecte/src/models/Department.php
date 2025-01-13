@@ -2,18 +2,18 @@
 /**
  * Fichier CSSCustomizer.php
  *
- * Ce fichier contient la classe `CSSCustomizer`,
+ * Ce fichier contient la classe 'CSSCustomizer',
  * qui gère la personnalisation du fichier
  * CSS global en fonction des données soumises par l'utilisateur via un formulaire.
  * Cette classe permet de mettre à jour les couleurs,
  * les mises en page et les autres éléments
  * de style, et d'enregistrer ces modifications dans un fichier CSS spécifique.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/CSSCustomizer
@@ -36,7 +36,7 @@ use PDO;
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/CSSCustomizer Documentation de la classe
@@ -75,7 +75,7 @@ class Department extends Model implements Entity, JsonSerializable
      * Insère un département dans la base de données selon les attributs actuels.
      *
      * Cette méthode prépare et exécute une requête SQL pour insérer un
-     * nouveau département dans la table `ecran_departement` en utilisant
+     * nouveau département dans la table 'ecran_departement' en utilisant
      * le nom du département. Le département est ajouté avec les données
      * actuellement définies dans l'objet.
      *
@@ -100,7 +100,7 @@ class Department extends Model implements Entity, JsonSerializable
      * Met à jour un département de la base de données selon les attributs actuels.
      *
      * Cette méthode prépare et exécute une requête SQL pour mettre à jour
-     * les informations d'un département dans la table `ecran_departement`.
+     * les informations d'un département dans la table 'ecran_departement'.
      * Elle met à jour le nom du département en fonction de l'ID spécifié.
      *
      * @return int Le nombre de lignes affectées par la requête de mise à jour.
@@ -126,7 +126,7 @@ class Department extends Model implements Entity, JsonSerializable
      * Supprime un département de la base de données selon les attributs actuels.
      *
      * Cette méthode prépare et exécute une requête SQL pour supprimer un département
-     * de la table `ecran_departement` en fonction de l'ID spécifié.
+     * de la table 'ecran_departement' en fonction de l'ID spécifié.
      *
      * @return int Le nombre de lignes affectées par la requête de suppression.
      *
@@ -149,13 +149,13 @@ class Department extends Model implements Entity, JsonSerializable
      *
      * Cette méthode prépare et exécute une requête SQL pour récupérer les
      * informations d'un département spécifique à partir de son ID. Elle retourne un
-     * objet `Department` si le département est trouvé, ou `false` si aucune donnée
+     * objet 'Department' si le département est trouvé, ou 'false' si aucune donnée
      * n'est trouvée.
      *
      * @param int $id L'ID du département à récupérer.
      *
-     * @return bool|Department Un objet `Department` si le département existe, sinon
-     * `false`.
+     * @return bool|Department Un objet 'Department' si le département existe, sinon
+     * 'false'.
      *
      * @version 1.0
      * @date    2024-01-07
@@ -182,14 +182,14 @@ class Department extends Model implements Entity, JsonSerializable
      * Cette méthode prépare et exécute une requête SQL pour récupérer une liste de
      * départements depuis la base de données, avec un nombre limité de résultats en
      * fonction des paramètres de pagination fournis. Elle retourne un tableau
-     * d'objets `Department` correspondant aux départements dans la plage spécifiée.
+     * d'objets 'Department' correspondant aux départements dans la plage spécifiée.
      *
      * @param int $begin         Le point de départ (index) pour la récupération des
      *                           départements (par défaut 0).
      * @param int $numberElement Le nombre de départements à récupérer (par défaut
      *                           25).
      *
-     * @return array Un tableau d'objets `Department` correspondant aux départements
+     * @return array Un tableau d'objets 'Department' correspondant aux départements
      * récupérés.
      *
      * @version 1.0
@@ -220,8 +220,8 @@ class Department extends Model implements Entity, JsonSerializable
      *
      * @param string $name Le nom du département à rechercher.
      *
-     * @return array|Department Un tableau d'objets `Department` correspondant aux
-     *                          départements trouvés, ou un seul objet `Department`
+     * @return array|Department Un tableau d'objets 'Department' correspondant aux
+     *                          départements trouvés, ou un seul objet 'Department'
      *                          si un seul résultat est trouvé.
      *
      * @version 1.0
@@ -242,7 +242,7 @@ class Department extends Model implements Entity, JsonSerializable
     /**
      * Définit une entité département à partir des données fournies.
      *
-     * Cette méthode crée une instance de l'entité `Department`, assigne les valeurs
+     * Cette méthode crée une instance de l'entité 'Department', assigne les valeurs
      * des propriétés de cette entité à partir des données passées en paramètre,
      * puis retourne l'entité configurée.
      *
@@ -250,7 +250,7 @@ class Department extends Model implements Entity, JsonSerializable
      *                    Doit contenir les clés 'dept_id' (int) et 'dept_nom'
      *                    (string).
      *
-     * @return Department L'entité `Department` créée et configurée avec les données.
+     * @return Department L'entité 'Department' créée et configurée avec les données.
      *
      * @version 1.0.0
      * @date    2025-01-13
@@ -267,10 +267,10 @@ class Department extends Model implements Entity, JsonSerializable
      * Crée une liste d'entités à partir des données fournies.
      *
      * Cette méthode itère sur un tableau
-     * de données et utilise la méthode `setEntity`
-     * pour créer une entité `Department`
+     * de données et utilise la méthode 'setEntity'
+     * pour créer une entité 'Department'
      * pour chaque élément. Elle retourne un tableau
-     * d'entités `Department` créées et configurées à partir des données.
+     * d'entités 'Department' créées et configurées à partir des données.
      *
      * @param array $dataList  Un tableau de
      *                         données, chaque
@@ -282,9 +282,9 @@ class Department extends Model implements Entity, JsonSerializable
      *                         'dept_id' et
      *                         'dept_nom'.
      * @param bool  $adminSite Indique si l'entité est pour un site administrateur.
-     *                         Par défaut, la valeur est `false`.
+     *                         Par défaut, la valeur est 'false'.
      *
-     * @return Department[] Un tableau d'entités `Department` créées et configurées.
+     * @return Department[] Un tableau d'entités 'Department' créées et configurées.
      *
      * @version 1.0.0
      * @date    2025-01-13
@@ -302,11 +302,11 @@ class Department extends Model implements Entity, JsonSerializable
      * Renvoie tous les départements stockés dans la base de données.
      *
      * Cette méthode interroge la base de données pour récupérer tous les
-     * départements enregistrés, puis utilise la méthode `setEntityList` pour
-     * convertir les résultats en une liste d'objets `Department`.
+     * départements enregistrés, puis utilise la méthode 'setEntityList' pour
+     * convertir les résultats en une liste d'objets 'Department'.
      * La liste complète des départements est ensuite retournée.
      *
-     * @return Department[] Tableau d'objets `Department` représentant tous les
+     * @return Department[] Tableau d'objets 'Department' représentant tous les
      *                      départements stockés dans la base de données.
      *
      * @version 1.0
@@ -358,12 +358,12 @@ class Department extends Model implements Entity, JsonSerializable
      * table des relations utilisateur-département pour récupérer le département de
      * l'utilisateur spécifié par son ID.
      * Le département correspondant est ensuite renvoyé sous forme d'un objet
-     * `Department`.
+     * 'Department'.
      *
      * @param int $userId L'ID de l'utilisateur dont on souhaite récupérer le
      *                    département.
      *
-     * @return Department L'objet `Department` représentant le département associé à
+     * @return Department L'objet 'Department' représentant le département associé à
      * l'utilisateur.
      *
      * @version 1.0

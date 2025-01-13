@@ -2,18 +2,18 @@
 /**
  * Fichier Location.php
  *
- * Ce fichier contient la classe `Location`, qui représente une localisation
+ * Ce fichier contient la classe 'Location', qui représente une localisation
  * géographique associée à un utilisateur dans l'application. Cette classe
  * permet de gérer les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
  * sur les localisations dans la base de données. Chaque localisation est
  * liée à un utilisateur et contient des informations géographiques telles
  * que la latitude, la longitude et l'adresse.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Location
@@ -37,7 +37,7 @@ use PDO;
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/Location Documentation de la classe
@@ -173,8 +173,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * Récupère une localisation en fonction de son identifiant.
      *
      * Cette méthode récupère une localisation spécifique en fonction de l'ID fourni
-     * et renvoie un objet `Localisation` avec les données correspondantes.
-     * Si aucune localisation n'est trouvée, la méthode retourne `false`.
+     * et renvoie un objet 'Localisation' avec les données correspondantes.
+     * Si aucune localisation n'est trouvée, la méthode retourne 'false'.
      *
      * @param int $id Identifiant de la localisation à récupérer.
      *
@@ -203,7 +203,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
      *
      * Cette méthode récupère une liste de localisations en fonction des paramètres
      * de pagination (début et nombre d'éléments).
-     * Elle retourne une liste d'objets `Localisation`.
+     * Elle retourne une liste d'objets 'Localisation'.
      *
      * @param int $begin         Début de la
      *                           liste.
@@ -235,7 +235,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * données.
      *
      * Cette méthode prend les résultats d'une requête SQL et crée un objet
-     * `Localisation` avec les données associées à chaque attribut de la classe.
+     * 'Localisation' avec les données associées à chaque attribut de la classe.
      *
      * @param mixed $data Données de la base de données.
      *
@@ -259,7 +259,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * Crée une liste d'objets Localisation à partir des résultats d'une requête SQL.
      *
      * Cette méthode transforme une liste de données de la base de données en une
-     * liste d'objets `Localisation`.
+     * liste d'objets 'Localisation'.
      *
      * @param mixed $dataList Liste des données de la base de données.
      *

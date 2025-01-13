@@ -2,7 +2,7 @@
 /**
  * Fichier User.php
  *
- * Ce fichier contient la classe `User`, qui représente une entité utilisateur
+ * Ce fichier contient la classe 'User', qui représente une entité utilisateur
  * dans l'application.
  * Cette classe permet de gérer les informations de l'utilisateur,
  * telles que son identifiant,
@@ -11,11 +11,11 @@
  * mettre à jour, supprimer et récupérer
  * des utilisateurs dans la base de données.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/User
@@ -36,7 +36,7 @@ namespace utils;
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/User Documentation de la classe
@@ -54,7 +54,7 @@ class InputValidator
      *
      * @param mixed $login Le login à valider.
      *
-     * @return bool Retourne `true` si le login est valide, sinon `false`.
+     * @return bool Retourne 'true' si le login est valide, sinon 'false'.
      */
     public static function isValidLogin( mixed $login ): bool
     {
@@ -83,12 +83,12 @@ class InputValidator
     /**
      * Vérifie la validité de l'email.
      *
-     * Utilise la fonction native de WordPress `is_email()` pour valider si
+     * Utilise la fonction native de WordPress 'is_email()' pour valider si
      * l'email respecte le format attendu d'une adresse email.
      *
      * @param mixed $email L'adresse email à valider.
      *
-     * @return bool Retourne `true` si l'email est valide, sinon `false`.
+     * @return bool Retourne 'true' si l'email est valide, sinon 'false'.
      */
     public static function isValidEmail( mixed $email ): bool
     {

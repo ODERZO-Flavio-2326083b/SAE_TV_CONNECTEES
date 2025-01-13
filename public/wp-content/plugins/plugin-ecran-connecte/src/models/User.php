@@ -2,18 +2,18 @@
 /**
  * Fichier Scrapper.php
  *
- * Ce fichier contient la classe `Scrapper`, qui est utilisée pour l'extraction
+ * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
  * de données depuis un site web. La classe permet de scrapper des articles
  * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
  * informations telles que le titre, le contenu, l'image, le lien et l'auteur
  * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
  * pour extraire et traiter le contenu HTML.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Web_Scraping
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Scrapper
@@ -38,7 +38,7 @@ use WP_User;
  *
  * @category Web_Scraping
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/Scrapper Documentation de la classe
@@ -101,7 +101,7 @@ class User extends Model implements Entity, JsonSerializable
      * Liste des codes associés à l'utilisateur.
      *
      * Cette propriété contient un tableau d'objets
-     * `CodeAde`, qui représentent les codes associés
+     * 'CodeAde', qui représentent les codes associés
      * à l'utilisateur pour des actions spécifiques.
      *
      * @var CodeAde[]
@@ -735,7 +735,7 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Récupère les codes associés à l'utilisateur.
      *
-     * Cette méthode retourne un tableau d'objets `CodeAde` associés à l'utilisateur.
+     * Cette méthode retourne un tableau d'objets 'CodeAde' associés à l'utilisateur.
      *
      * @return CodeAde[] Un tableau de codes associés à l'utilisateur.
      */
@@ -749,7 +749,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * Cette méthode permet de définir un tableau de codes associés à l'utilisateur.
      *
-     * @param CodeAde[] $_codes Un tableau d'objets `CodeAde`.
+     * @param CodeAde[] $_codes Un tableau d'objets 'CodeAde'.
      *
      * @return void
      */

@@ -2,15 +2,15 @@
 /**
  * Fichier AlertController.php
  *
- * Ce fichier contient la classe `AlertController`, qui gère les alertes
+ * Ce fichier contient la classe 'AlertController', qui gère les alertes
  * dans l'application, y compris les fonctionnalités pour la création,
  * modification, suppression et affichage des alertes.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/AlertController
@@ -31,7 +31,7 @@ use views\AlertView;
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/AlertController Documentation

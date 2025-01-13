@@ -2,16 +2,16 @@
 /**
  * Fichier AlertView.php
  *
- * Ce fichier contient la classe `AlertView`, qui est responsable de la gestion
+ * Ce fichier contient la classe 'AlertView', qui est responsable de la gestion
  * des vues liées aux alertes dans l'application. Cela inclut la gestion des
  * formulaires de création et de modification des alertes, l'affichage des tableaux
  * des alertes et la gestion des messages d'erreur ou de succès.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/AlertView
@@ -34,7 +34,7 @@ use models\CodeAde;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/AlertView Documentation de la classe
@@ -336,19 +336,19 @@ onclick="addButtonAlert()" value="+">
      * Construit un élément select HTML contenant les codes ADE organisés par
      * catégories.
      *
-     * Cette méthode génère un menu déroulant HTML (`<select>`) permettant de
+     * Cette méthode génère un menu déroulant HTML ('<select>') permettant de
      * sélectionner parmi les codes ADE regroupés en catégories : années, groupes et
      * demi-groupes. Elle prend en charge la présélection d'un code ou l'affichage de
      * l'option "Tous" lorsque l'alerte est destinée à tout le monde.
      *
      * @param CodeAde[]    $years      Liste des années disponibles,
      *                                 chaque entrée étant une instance
-     *                                 de `CodeAde`.
+     *                                 de 'CodeAde'.
      * @param CodeAde[]    $groups     Liste des groupes disponibles, chaque
      *                                 entrée étant une instance de
-     *                                 `CodeAde`.
+     *                                 'CodeAde'.
      * @param CodeAde[]    $halfGroups Liste des demi-groupes disponibles, chaque
-     *                                 entrée étant une instance de `CodeAde`.
+     *                                 entrée étant une instance de 'CodeAde'.
      * @param array        $allDepts   Une liste de tous les
      *                                 départements présents dans la
      *                                 base de données.
@@ -357,9 +357,9 @@ onclick="addButtonAlert()" value="+">
      *                                 n'est requise.
      * @param int          $count      Compteur unique utilisé pour
      *                                 générer un identifiant unique pour
-     *                                 l'élément `<select>`.
+     *                                 l'élément '<select>'.
      *
-     * @return string Retourne le code HTML complet de l'élément `<select>`, incluant
+     * @return string Retourne le code HTML complet de l'élément '<select>', incluant
      * les options organisées par catégories.
      *
      * @version 1.0

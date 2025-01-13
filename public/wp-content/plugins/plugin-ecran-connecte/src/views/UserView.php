@@ -2,7 +2,7 @@
 /**
  * Fichier UserView.php
  *
- * Ce fichier contient la classe `UserView`,
+ * Ce fichier contient la classe 'UserView',
  * qui est responsable de l'affichage des vues
  * liées aux utilisateurs. Cette classe
  * génère des formulaires pour la création de comptes
@@ -10,11 +10,11 @@
  * d'aide et des validations pour assurer une saisie correcte
  * des informations nécessaires.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/UserView
@@ -38,7 +38,7 @@ use models\Department;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/UserView Documentation de la classe

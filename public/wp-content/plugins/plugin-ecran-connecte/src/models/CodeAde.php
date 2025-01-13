@@ -2,16 +2,16 @@
 /**
  * Fichier CodeAde.php
  *
- * Ce fichier contient la classe `CodeAde`, qui représente une entité de code ADE
+ * Ce fichier contient la classe 'CodeAde', qui représente une entité de code ADE
  * dans l'application. Cette classe permet de
  * manipuler les données liées aux
  * codes ADE.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/CodeAde
@@ -30,7 +30,7 @@ use PDO;
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/CodeAde Documentation de la classe
@@ -610,7 +610,7 @@ class CodeAde extends Model implements Entity, JsonSerializable
     /**
      * Sérialise l'objet en un tableau associatif compatible JSON.
      *
-     * Implémente l'interface `JsonSerializable`, permettant la conversion
+     * Implémente l'interface 'JsonSerializable', permettant la conversion
      * de l'objet en une structure JSON. Cette méthode retourne un tableau
      * associatif contenant toutes les propriétés accessibles de l'objet.
      *

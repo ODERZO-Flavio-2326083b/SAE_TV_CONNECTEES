@@ -2,17 +2,17 @@
 /**
  * Fichier CSSCustomizerController.php
  *
- * Ce fichier contient la classe `CSSCustomizerController`, qui permet de gérer
+ * Ce fichier contient la classe 'CSSCustomizerController', qui permet de gérer
  * la personnalisation CSS.
  * Cette classe fait le lien entre le modèle de personnalisation CSS et
  * les vues associées,
  * permettant aux utilisateurs de modifier les couleurs via un formulaire.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/CSSCustomizerController
@@ -35,7 +35,7 @@ use views\CSSView;
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/CSSCustomizerController Documentation de
@@ -107,12 +107,12 @@ class CSSCustomizerController extends Controller
             )
             ) {
                 $cssDefault = file_get_contents(
-                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/
-                    css/global/global-default.css'
+                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/'
+                    .'css/global/global-default.css'
                 );
                 file_put_contents(
-                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte
-                /assets/css/global/global-'.$e->getName().'.css', $cssDefault
+                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte'
+                    .'/assets/css/global/global-'.$e->getName().'.css', $cssDefault
                 );
             }
         }

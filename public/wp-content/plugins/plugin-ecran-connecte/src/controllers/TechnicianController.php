@@ -2,16 +2,16 @@
 /**
  * Fichier TechnicianController.php
  *
- * Ce fichier contient la classe `TechnicianController`, qui gère les opérations
+ * Ce fichier contient la classe 'TechnicianController', qui gère les opérations
  * relatives aux techniciens, telles que la création, la mise à jour, la suppression,
  * l'affichage des techniciens, ainsi que
  * l'affichage de l'emploi du temps des techniciens.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/TechnicianController
@@ -34,7 +34,7 @@ use views\TechnicianView;
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/TechnicianController Documentation de

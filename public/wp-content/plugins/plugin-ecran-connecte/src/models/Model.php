@@ -2,17 +2,17 @@
 /**
  * Fichier Model.php
  *
- * Ce fichier contient la classe `Model`, qui représente une classe générique
+ * Ce fichier contient la classe 'Model', qui représente une classe générique
  * pour la gestion des modèles dans l'application. Cette classe fournit des
  * fonctions de base pour la gestion des données et la connexion à la base
  * de données, permettant d'établir une base commune pour toutes les autres
  * classes de modèle.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Model
@@ -33,7 +33,7 @@ use PDO;
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/Model Documentation de la classe

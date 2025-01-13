@@ -2,17 +2,17 @@
 /**
  * Fichier Information.php
  *
- * Ce fichier contient la classe `Information`, qui représente une entité
+ * Ce fichier contient la classe 'Information', qui représente une entité
  * d'information dans l'application. Cette classe est utilisée pour gérer
  * les informations relatives à l'application, telles que la récupération,
  * l'insertion, la mise à jour et la suppression des données dans la base
  * de données.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Information
@@ -33,7 +33,7 @@ use PDO;
  *
  * @category Entity
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/Information Documentation de la classe
@@ -60,7 +60,7 @@ class Information extends Model implements Entity, JsonSerializable
      * Auteur de l'entité.
      *
      * @var ?User L'auteur de l'entité, ou null si non défini.
-     * Il s'agit d'un objet de la classe `User`.
+     * Il s'agit d'un objet de la classe 'User'.
      */
     private ?User $_author;
 

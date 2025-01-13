@@ -2,15 +2,15 @@
 /**
  * Fichier TechnicianController.php
  *
- * Ce fichier contient la classe `TechnicianController`, qui gère les opérations
+ * Ce fichier contient la classe 'TechnicianController', qui gère les opérations
  * relatives aux techniciens, telles que la création, la mise à jour, la suppression
  * et l'affichage des techniciens.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/TechnicianController
@@ -31,7 +31,7 @@ use views\SubadminView;
  *
  * @category API
  * @package  Controllers
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/TechnicianController Documentation de
@@ -59,8 +59,8 @@ class SubadminController extends UserController
      * Initialise un nouvel objet et configure le modèle et la vue associés.
      *
      * Ce constructeur appelle le constructeur parent et initialise les propriétés
-     * `_model` et `_view`. Le modèle est une instance de la classe `User`, et la vue
-     * est une instance de la classe `SubadminView`.
+     * '_model' et '_view'. Le modèle est une instance de la classe 'User', et la vue
+     * est une instance de la classe 'SubadminView'.
      * Cela permet de lier le modèle et la vue
      * pour une gestion et un affichage des données
      * dans les opérations suivantes de l'objet.

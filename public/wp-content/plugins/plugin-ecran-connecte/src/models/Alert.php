@@ -2,15 +2,15 @@
 /**
  * Fichier Alert.php
  *
- * Ce fichier contient la classe `Alert`, qui représente une entité d'alerte
+ * Ce fichier contient la classe 'Alert', qui représente une entité d'alerte
  * dans l'application. Cette classe permet de manipuler
  * les données liées aux alertes.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/Alert
@@ -29,7 +29,7 @@ use PDO;
  *
  * @category Model
  * @package  Models
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/Alert Documentation de la classe
@@ -46,7 +46,7 @@ class Alert extends Model implements Entity, JsonSerializable
     private int $_id;
 
     /**
-     *  L'auteur de l'entité, représenté par un objet de la classe `User`.
+     *  L'auteur de l'entité, représenté par un objet de la classe 'User'.
      *
      * @var User
      */
@@ -74,7 +74,7 @@ class Alert extends Model implements Entity, JsonSerializable
     private string $_expirationDate;
 
     /**
-     *  Un tableau d'objets `CodeAde`, qui représente les codes associés à l'entité.
+     *  Un tableau d'objets 'CodeAde', qui représente les codes associés à l'entité.
      *
      * @var CodeAde[]
      */
@@ -82,7 +82,7 @@ class Alert extends Model implements Entity, JsonSerializable
 
     /**
      *  L'identifiant de l'administrateur associé à l'entité.
-     *  Peut être `null` si l'entité n'a pas d'administrateur.
+     *  Peut être 'null' si l'entité n'a pas d'administrateur.
      *
      * @var int
      */
@@ -620,7 +620,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * Cette méthode permet de définir l'identifiant de l'entité
      * en attribuant une nouvelle valeur
-     * à la propriété `$id`. L'identifiant doit être un entier.
+     * à la propriété '$id'. L'identifiant doit être un entier.
      *
      * @param int $_id L'identifiant à attribuer à l'entité.
      *
@@ -637,11 +637,11 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * Récupère l'auteur de l'entité.
      *
-     * Cette méthode retourne l'objet `User` représentant l'auteur de l'entité.
+     * Cette méthode retourne l'objet 'User' représentant l'auteur de l'entité.
      * L'auteur peut être un utilisateur, un administrateur,
      * ou toute autre personne ayant créé l'entité.
      *
-     * @return User L'objet `User` représentant l'auteur de l'entité.
+     * @return User L'objet 'User' représentant l'auteur de l'entité.
      *
      * @version 1.0.0
      * @date    2025-01-13
@@ -655,12 +655,12 @@ class Alert extends Model implements Entity, JsonSerializable
      * Définit l'auteur de l'entité.
      *
      * Cette méthode permet d'attribuer un auteur
-     * à l'entité en affectant un objet `User`
-     * à la propriété `$author`. Cela permet de
+     * à l'entité en affectant un objet 'User'
+     * à la propriété '$author'. Cela permet de
      * spécifier qui a créé ou est responsable
      * de l'entité.
      *
-     * @param User $_author L'objet `User` représentant
+     * @param User $_author L'objet 'User' représentant
      *                      l'auteur à attribuer à l'entité.
      *
      * @return void
@@ -713,7 +713,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * Cette méthode retourne la date de création
      * de l'entité sous forme de chaîne de caractères.
-     * La date est généralement au format `Y-m-d` (année-mois-jour).
+     * La date est généralement au format 'Y-m-d' (année-mois-jour).
      *
      * @return string La date de création de l'entité.
      *
@@ -732,7 +732,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * à l'entité en affectant une chaîne de caractères.
      *
      * @param string $_creation_date La date de création
-     *                               à attribuer à l'entité (au format `Y-m-d`).
+     *                               à attribuer à l'entité (au format 'Y-m-d').
      *
      * @return void
      *
@@ -749,7 +749,7 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * Cette méthode retourne la date d'expiration de l'entité sous
      * forme de chaîne de caractères.
-     * La date est généralement au format `Y-m-d` (année-mois-jour).
+     * La date est généralement au format 'Y-m-d' (année-mois-jour).
      *
      * @return string La date d'expiration de l'entité.
      *
@@ -768,7 +768,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * en affectant une chaîne de caractères.
      *
      * @param string $_expirationDate La date d'expiration
-     *                                à attribuer à l'entité (au format `Y-m-d`).
+     *                                à attribuer à l'entité (au format 'Y-m-d').
      *
      * @return void
      *
@@ -784,11 +784,11 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * Récupère les codes associés à l'entité.
      *
-     * Cette méthode retourne un tableau d'objets `CodeAde` représentant les codes
+     * Cette méthode retourne un tableau d'objets 'CodeAde' représentant les codes
      * associés à l'entité. Ces codes peuvent être utilisés pour diverses
      * fonctionnalités.
      *
-     * @return CodeAde[] Un tableau d'objets `CodeAde`
+     * @return CodeAde[] Un tableau d'objets 'CodeAde'
      * représentant les codes associés.
      *
      * @version 1.0.0
@@ -802,10 +802,10 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * Définit les codes associés à l'entité.
      *
-     * Cette méthode permet d'attribuer un tableau d'objets `CodeAde` à l'entité.
+     * Cette méthode permet d'attribuer un tableau d'objets 'CodeAde' à l'entité.
      * Les codes peuvent être utilisés pour divers traitements ou fonctionnalités.
      *
-     * @param CodeAde[] $_codes Un tableau d'objets `CodeAde`
+     * @param CodeAde[] $_codes Un tableau d'objets 'CodeAde'
      *                          représentant les codes à associer.
      *
      * @return void
@@ -823,10 +823,10 @@ class Alert extends Model implements Entity, JsonSerializable
      *
      * Cette méthode retourne l'identifiant de
      * l'administrateur qui est lié à l'entité.
-     * Elle retourne `null` si aucun administrateur n'est associé.
+     * Elle retourne 'null' si aucun administrateur n'est associé.
      *
      * @return int|null L'identifiant de l'administrateur ou
-     * `null` si aucun administrateur n'est défini.
+     * 'null' si aucun administrateur n'est défini.
      *
      * @version 1.0.0
      * @date    2025-01-13
@@ -857,9 +857,9 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      * Sérialise l'objet en un tableau associatif pour le format JSON.
      *
-     * Implémente l'interface `JsonSerializable` afin de permettre la conversion
+     * Implémente l'interface 'JsonSerializable' afin de permettre la conversion
      * de l'objet en une structure de données JSON. Cette méthode utilise
-     * `get_object_vars` pour récupérer les propriétés accessibles de l'objet
+     * 'get_object_vars' pour récupérer les propriétés accessibles de l'objet
      * sous forme de tableau associatif.
      *
      * @return array Tableau associatif représentant les propriétés de l'objet.

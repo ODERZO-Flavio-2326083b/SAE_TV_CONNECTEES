@@ -2,7 +2,7 @@
 /**
  * Fichier View.php
  *
- * Ce fichier contient la classe `View`,
+ * Ce fichier contient la classe 'View',
  * qui est la classe principale pour toutes les vues.
  * Elle fournit des fonctions de base qui
  * sont utilisées dans les autres classes de vues.
@@ -10,11 +10,11 @@
  * permettant de générer des composants d'interface utilisateur
  * comme des tableaux HTML, des formulaires, et des messages d'alerte.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/View
@@ -28,7 +28,7 @@ use models\Department;
 /**
  * Classe View
  *
- * La classe `View` est la classe
+ * La classe 'View' est la classe
  * de base pour toutes les vues dans l'application.
  * Elle contient des méthodes de base
  * pour générer des composants d'interface utilisateur
@@ -40,7 +40,7 @@ use models\Department;
  *
  * @category View
  * @package  Views
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
  * @link     https://www.example.com/docs/View Documentation de la classe
@@ -210,8 +210,8 @@ class View
      * La valeur est l'ID du département.
      *
      * Cette méthode parcourt la liste des départements fournie et génère une balise
-     * `<option>` pour chaque département.
-     * Si l'ID du département actuel est passé en paramètre, la balise `<option>`
+     * '<option>' pour chaque département.
+     * Si l'ID du département actuel est passé en paramètre, la balise '<option>'
      * correspondante sera marquée comme sélectionnée.
      *
      * @param Department[] $depts    Liste de tous les

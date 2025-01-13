@@ -2,15 +2,15 @@
 /**
  * Fichier ProfileRestController.php
  *
- * Ce fichier contient la classe `ProfileRestController`, qui gère
+ * Ce fichier contient la classe 'ProfileRestController', qui gère
  * les requêtes REST pour récupérer les informations du profil de
  * l'utilisateur actuellement connecté.
  *
- * PHP version 7.4 or later
+ * PHP version 8.3
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
  * @link     https://www.example.com/docs/ProfileRestController
@@ -33,7 +33,7 @@ use WP_REST_Server;
  *
  * @category API
  * @package  Controllers\Rest
- * @author   John Doe <johndoe@example.com>
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 2.0.0
  * @link     https://www.example.com/docs/ProfileRestController Documentation
