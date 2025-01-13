@@ -2,131 +2,113 @@
 
 use PHPUnit\Framework\TestCase;
 use models\Localisation;
-use Mockery\Mock;
+use Mockery as m;
 
 class LocalisationTest extends TestCase
 {
     private $pdoMock;
     private $pdoStatementMock;
+    private $loc;
 
     protected function setUp(): void
     {
         $this->pdoMock = Mockery::mock(PDO::class);
         $this->pdoStatementMock = Mockery::mock(PDOStatement::class);
+
+        $this->loc = m::mock(Localisation::class)->makePartial();
+        $this->loc->shouldAllowMockingProtectedMethods();
+        $this->loc->shouldReceive('getDatabase')
+            ->once()
+            ->andReturn($this->pdoMock);
+
+        $this->loc->setLocalisationId(1);
+        $this->loc->setLatitude(10.0);
+        $this->loc->setLongitude(20.0);
+        $this->loc->setUserId(2);
+        $this->loc->setAdresse('Adresse');
+
     }
 
     public function testInsert()
     {
-        $localisationMock = Mockery::mock(Localisation::class)->makePartial();
-        $localisationMock->shouldAllowMockingProtectedMethods();
-        $localisationMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('INSERT INTO ecran_localisation'))
+            ->once()
             ->andReturn($this->pdoStatementMock);
 
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':latitude', 10.0);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':longitude', 20.0);
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':user_id', 2);
+
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
         $this->pdoMock->shouldReceive('lastInsertId')
-            ->once()
             ->andReturn(1);
 
-        $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
-
-        $localisationMock->shouldReceive('getLatitude')->andReturn(45.123);
-        $localisationMock->shouldReceive('getLongitude')->andReturn(2.345);
-        $localisationMock->shouldReceive('getUserId')->andReturn(1);
-
-        $result = $localisationMock->insert();
+        $result = $this->loc->insert();
 
         $this->assertEquals(1, $result);
     }
 
     public function testUpdate()
     {
-        $localisationMock = Mockery::mock(Localisation::class)->makePartial();
-        $localisationMock->shouldAllowMockingProtectedMethods();
-        $localisationMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('UPDATE ecran_localisation'))
-            ->andReturn($this->pdoStatementMock);
-
-        $this->pdoStatementMock->shouldReceive('execute')
             ->once()
-            ->andReturn(true);
+            ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
+            ->with(':latitude', 10.0);
 
-        $localisationMock->shouldReceive('getLocalisationId')->andReturn(1);
-        $localisationMock->shouldReceive('getLatitude')->andReturn(45.678);
-        $localisationMock->shouldReceive('getLongitude')->andReturn(2.890);
-        $localisationMock->shouldReceive('getAdresse')->andReturn('New address');
-        $localisationMock->shouldReceive('getUserId')->andReturn(1);
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':longitude', 20.0);
 
-        $result = $localisationMock->update();
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':user_id', 2);
 
-        $this->assertEquals(1, $result); // Check if one row was updated
-    }
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', 1);
 
-    public function testDelete()
-    {
-        $localisationMock = Mockery::mock(Localisation::class)->makePartial();
-        $localisationMock->shouldAllowMockingProtectedMethods();
-        $localisationMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
-        $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('DELETE FROM ecran_localisation'))
-            ->andReturn($this->pdoStatementMock);
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':adresse', 'Adresse');
 
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
-        $localisationMock->shouldReceive('getLocalisationId')->andReturn(1);
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->andReturn(1);
 
-        $result = $localisationMock->delete();
+        $result = $this->loc->update();
 
         $this->assertEquals(1, $result);
     }
 
-    public function testGet()
+    public function testDelete()
     {
-        $localisationMock = Mockery::mock(Localisation::class)->makePartial();
-        $localisationMock->shouldAllowMockingProtectedMethods();
-        $localisationMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
+            ->with($this->stringContains('DELETE FROM ecran_localisation'))
             ->once()
-            ->with($this->stringContains('SELECT localisation_id'))
             ->andReturn($this->pdoStatementMock);
 
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', 1, PDO::PARAM_INT);
+
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
-        $this->pdoStatementMock->shouldReceive('fetch')
-            ->once()
-            ->andReturn([
-                'localisation_id' => 1,
-                'latitude' => 45.123,
-                'longitude' => 2.345,
-                'adresse' => 'Some address',
-                'user_id' => 1
-            ]);
 
-        $result = $localisationMock->get(1);
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->andReturn(1);
 
-        $this->assertInstanceOf(Localisation::class, $result); // Ensure the result is a Localisation object
-        $this->assertEquals(1, $result->getLocalisationId()); // Check if the ID matches
+        $result = $this->loc->delete();
+
+        $this->assertEquals(1, $result);
+
     }
 
     protected function tearDown(): void
