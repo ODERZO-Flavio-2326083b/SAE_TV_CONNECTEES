@@ -3,7 +3,7 @@
         'name' => 'nicochoco/mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '20a7b0e32c7fa1aee04ea7d426ae7e132392b520',
+        'reference' => 'acdf1948bb9e53ac9ebf4ddc9fa298de3e0357bf',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -30,6 +30,15 @@
             'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'james-heinrich/getid3' => array(
+            'pretty_version' => 'v1.9.23',
+            'version' => '1.9.23.0',
+            'reference' => '06c7482532ff2b3f9111b011d880ca6699c8542b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../james-heinrich/getid3',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
@@ -58,7 +67,7 @@
         'nicochoco/mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '20a7b0e32c7fa1aee04ea7d426ae7e132392b520',
+            'reference' => 'acdf1948bb9e53ac9ebf4ddc9fa298de3e0357bf',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
