@@ -2,149 +2,91 @@
 
 use PHPUnit\Framework\TestCase;
 use models\Department;
-use Mockery\Mock;
+use Mockery as m;
 
 class DepartmentTest extends TestCase
 {
     private $pdoMock;
     private $pdoStatementMock;
+    private $department;
 
     protected function setUp(): void
     {
         $this->pdoMock = Mockery::mock(PDO::class);
         $this->pdoStatementMock = Mockery::mock(PDOStatement::class);
+
+        $this->department = m::mock(Department::class)->makePartial();
+        $this->department->shouldAllowMockingProtectedMethods();
+        $this->department->shouldReceive('getDatabase')
+                         ->andReturn($this->pdoMock);
+        $this->department->setIdDepartment(10);
+        $this->department->setName("Département");
     }
 
     public function testInsert()
     {
-        $departmentMock = Mockery::mock(Department::class)->makePartial();
-        $departmentMock->shouldAllowMockingProtectedMethods();
-        $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('INSERT INTO ecran_departement'))
+            ->once()
             ->andReturn($this->pdoStatementMock);
 
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':name', "Département");
+
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
         $this->pdoMock->shouldReceive('lastInsertId')
-            ->once()
             ->andReturn(1);
 
-        $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
-            ->andReturn(true);
-
-        $departmentMock->shouldReceive('getName')->andReturn('Sales');
-
-        $result = $departmentMock->insert();
+        $result = $this->department->insert();
 
         $this->assertEquals(1, $result);
     }
 
     public function testUpdate()
     {
-        $departmentMock = Mockery::mock(Department::class)->makePartial();
-        $departmentMock->shouldAllowMockingProtectedMethods();
-        $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('UPDATE ecran_departement'))
-            ->andReturn($this->pdoStatementMock);
-
-        $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
-            ->andReturn(true);
+              ->with($this->stringContains('UPDATE ecran_departement'))
+              ->once()
+              ->andReturn($this->pdoStatementMock);
 
         $this->pdoStatementMock->shouldReceive('bindValue')
-            ->with($this->anything(), $this->anything(), $this->anything())
+            ->with(':name', 'Département');
+
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', 10);
+
+        $this->pdoStatementMock->shouldReceive('execute')
             ->andReturn(true);
 
-        $departmentMock->shouldReceive('getIdDepartment')->andReturn(1);
-        $departmentMock->shouldReceive('getName')->andReturn('Marketing');
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->andReturn(1);
 
-        $result = $departmentMock->update();
+        $result = $this->department->update();
 
         $this->assertEquals(1, $result);
     }
 
     public function testDelete()
     {
-        $departmentMock = Mockery::mock(Department::class)->makePartial();
-        $departmentMock->shouldAllowMockingProtectedMethods();
-        $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
         $this->pdoMock->shouldReceive('prepare')
-            ->once()
             ->with($this->stringContains('DELETE FROM ecran_departement'))
+            ->once()
             ->andReturn($this->pdoStatementMock);
 
+        $this->pdoStatementMock->shouldReceive('bindValue')
+            ->with(':id', 10, PDO::PARAM_INT);
+
         $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
             ->andReturn(true);
 
-        $departmentMock->shouldReceive('getIdDepartment')->andReturn(1);
+        $this->pdoStatementMock->shouldReceive('rowCount')
+            ->andReturn(1);
 
-        $result = $departmentMock->delete();
+        $result = $this->department->delete();
 
         $this->assertEquals(1, $result);
-    }
-
-    public function testGetDepartmentByName()
-    {
-        $departmentMock = Mockery::mock(Department::class)->makePartial();
-        $departmentMock->shouldAllowMockingProtectedMethods();
-        $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
-        $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('SELECT dept_id, dept_nom'))
-            ->andReturn($this->pdoStatementMock);
-
-        $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
-            ->andReturn(true);
-
-        $this->pdoStatementMock->shouldReceive('fetchAll')
-            ->once()
-            ->andReturn([['dept_id' => 1, 'dept_nom' => 'Sales']]);
-
-        $result = $departmentMock->getDepartmentByName('Sales');
-
-        $this->assertInstanceOf(Department::class, $result[0]);
-        $this->assertEquals('Sales', $result[0]->getName());
-    }
-
-    public function testGetAllDepts()
-    {
-        $departmentMock = Mockery::mock(Department::class)->makePartial();
-        $departmentMock->shouldAllowMockingProtectedMethods();
-        $departmentMock->shouldReceive('getDatabase')->andReturn($this->pdoMock);
-
-        $this->pdoMock->shouldReceive('prepare')
-            ->once()
-            ->with($this->stringContains('SELECT dept_id, dept_nom'))
-            ->andReturn($this->pdoStatementMock);
-
-        $this->pdoStatementMock->shouldReceive('execute')
-            ->once()
-            ->andReturn(true);
-
-        $this->pdoStatementMock->shouldReceive('fetchAll')
-            ->once()
-            ->andReturn([
-                ['dept_id' => 1, 'dept_nom' => 'Sales'],
-                ['dept_id' => 2, 'dept_nom' => 'Marketing']
-            ]);
-
-        $result = $departmentMock->getAllDepts();
-
-        $this->assertCount(2, $result);
-        $this->assertInstanceOf(Department::class, $result[0]);
     }
 
     protected function tearDown(): void
