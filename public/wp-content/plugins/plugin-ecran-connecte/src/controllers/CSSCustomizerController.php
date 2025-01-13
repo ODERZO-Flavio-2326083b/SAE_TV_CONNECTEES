@@ -17,13 +17,13 @@ use views\CSSView;
  */
 class CSSCustomizerController extends Controller
 {
-    
+
     /**
      * @var CSSCustomizer
      */
     private CSSCustomizer $_model;
 
-    
+
     /**
      * @var CSSView
      */
@@ -58,7 +58,7 @@ class CSSCustomizerController extends Controller
      * @version 1.0
      * @date    2024-10-16
      */
-    public function useCssCustomizer()
+    public function useCssCustomizer(): void
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->_model->updateColor();
@@ -68,8 +68,17 @@ class CSSCustomizerController extends Controller
         $listDepName = []; // Initialiser un tableau vide
 
         foreach ($listDepartement as $e) {
-            $listDepName[] = $e->getName(); // Ajouter le nom du département au
-                                            // tableau
+            // Ajouter le nom du département au tableau
+            $listDepName[] = $e->getName();
+            if(!file_exists(WP_CONTENT_DIR
+                            .'/themes/theme-ecran-connecte/assets/css/global/global-'
+                            .$e->getName().'.css')){
+                $cssDefault = file_get_contents(
+                    WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/
+                    css/global/global-default.css');
+                file_put_contents(WP_CONTENT_DIR.'/themes/theme-ecran-connecte
+                /assets/css/global/global-'.$e->getName().'.css',$cssDefault);
+            }
         }
         $this->_view->displayContextCSS();
         $this->_view->displayCssCustomizer($listDepName);
