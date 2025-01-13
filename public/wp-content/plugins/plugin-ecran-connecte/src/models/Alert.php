@@ -109,8 +109,10 @@ class Alert extends Model implements Entity, JsonSerializable
     {
         $database = $this->getDatabase();
         $request = $database->prepare(
-        'INSERT INTO ecran_alert (author, content, creation_date, expiration_date)
-               VALUES (:author, :content, :creation_date, :expirationDate)'
+            'INSERT INTO ecran_alert 
+                        (author, content, creation_date, expiration_date)
+                    VALUES
+                        (:author, :content, :creation_date, :expirationDate)'
         );
         $request->bindValue(':author', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
@@ -660,7 +662,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * de l'entité.
      *
      * @param null|User|int $_author L'objet 'User' représentant
-     *                      l'auteur à attribuer à l'entité.
+     *                               l'auteur à attribuer à l'entité.
      *
      * @return void
      *
