@@ -200,13 +200,23 @@ function installDatabaseEcran() : void
 {
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
     if (get_option('init_database') == 1) {
         return;
     }
 
-    $table_name = 'ecran_information';
-
     $charset_collate = $wpdb->get_charset_collate();
+
+    $table_name = 'ecran_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            dept_id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_nom VARCHAR (60) NOT NULL,
+            PRIMARY KEY (dept_id)) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_information';
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
 			id INT(10) NOT NULL AUTO_INCREMENT,
@@ -297,14 +307,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_departement';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-            dept_id INT(10) NOT NULL AUTO_INCREMENT,
-            dept_nom VARCHAR (60) NOT NULL,
-            PRIMARY KEY (dept_id)) $charset_collate;";
-
-    dbDelta($sql);
 
     $table_name = 'ecran_user_departement';
 

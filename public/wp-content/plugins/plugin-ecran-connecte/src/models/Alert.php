@@ -48,9 +48,9 @@ class Alert extends Model implements Entity, JsonSerializable
     /**
      *  L'auteur de l'entité, représenté par un objet de la classe 'User'.
      *
-     * @var User
+     * @var null|User|int
      */
-    private User $_author;
+    private null|User|int $_author;
 
     /**
      *  Le contenu associé à l'entité, généralement un texte ou un fichier.
@@ -646,7 +646,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @version 1.0.0
      * @date    2025-01-13
      */
-    public function getAuthor() : User
+    public function getAuthor() : null|User|int
     {
         return $this->_author;
     }
@@ -660,7 +660,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * spécifier qui a créé ou est responsable
      * de l'entité.
      *
-     * @param User $_author L'objet 'User' représentant
+     * @param null|User|int $_author L'objet 'User' représentant
      *                      l'auteur à attribuer à l'entité.
      *
      * @return void
@@ -668,7 +668,7 @@ class Alert extends Model implements Entity, JsonSerializable
      * @version 1.0.0
      * @date    2025-01-13
      */
-    public function setAuthor($_author) : void
+    public function setAuthor(null|User|int $_author) : void
     {
         $this->_author = $_author;
     }
