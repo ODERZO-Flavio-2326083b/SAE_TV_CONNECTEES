@@ -124,7 +124,7 @@ class Scrapper
     {
         $images = $article->getElementsByTagName('img');
         foreach ($images as $div) {
-            if($div != null) {
+            if ($div != null) {
                 $classContent = $div->getAttribute('class');
                 if ($classContent == 'img-fluid') {
                     $image = $div->getAttribute('src');
@@ -132,8 +132,7 @@ class Scrapper
                 } else {
                     $image = "Pas de contenu.";
                 }
-            }
-            else{
+            } else {
                 $image = "Pas de contenu.";
             }
         }
