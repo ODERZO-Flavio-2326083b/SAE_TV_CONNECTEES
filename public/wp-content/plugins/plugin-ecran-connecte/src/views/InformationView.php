@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Fichier InformationView.php
+ *
+ * Ce fichier contient la classe `InformationView`, qui est responsable de l'affichage des vues
+ * liées aux informations dans l'application. Cette classe génère des formulaires permettant de créer
+ * ou de modifier des textes avec un titre, un contenu et une date d'expiration. Elle permet également
+ * d'afficher des messages d'alerte et des tableaux pour gérer les informations.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/InformationView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
+
 namespace views;
 
 
@@ -8,11 +28,21 @@ use models\Information;
 use models\Scrapper;
 
 /**
- * Class InformationView
+ * Classe InformationView
  *
- * All view for Information (Forms, tables, messages)
+ * Cette classe gère l'affichage des vues liées à la gestion des informations.
+ * Elle permet de créer, de modifier et d'afficher des informations, y compris les
+ * titres, le contenu et la date d'expiration. Elle génère également des messages
+ * d'alerte et des tableaux pour aider les utilisateurs à visualiser et gérer les
+ * informations.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/InformationView Documentation de la classe
+ * @since    2025-01-13
  */
 class InformationView extends View
 {

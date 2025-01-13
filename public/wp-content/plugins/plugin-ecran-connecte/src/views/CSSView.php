@@ -1,5 +1,28 @@
 <?php
-
+/**
+ * Fichier CSSView.php
+ *
+ * Ce fichier contient la classe `CSSView`,
+ * qui est responsable de l'affichage des vues liées
+ * à la personnalisation du CSS dans l'application.
+ * Cette classe génère des formulaires permettant
+ * aux utilisateurs de modifier les couleurs des éléments
+ * de la page web tels que l'arrière-plan,
+ * la mise en page, les titres, les liens, les boutons,
+ * etc. Elle permet également l'affichage dynamique
+ * des options disponibles pour la personnalisation du CSS.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CSSView
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace views;
 
 use models\Department;
@@ -8,13 +31,23 @@ use views\View;
 /**
  * Classe CSSView
  *
- * Cette classe gère l'affichage des vues liées à la personnalisation du CSS, y
- * compris les formulaires permettant de modifier les couleurs des éléments de la
- * page web (arrière-plan, mise en page, titres, liens, boutons, etc.).
- * Elle est utilisée pour générer le HTML des formulaires de personnalisation CSS et
- * gérer l'affichage dynamique des options disponibles.
+ * Cette classe gère l'affichage
+ * des vues liées à la personnalisation du CSS. Elle inclut
+ * des formulaires pour modifier les couleurs
+ * des éléments sur la page web (comme les titres,
+ * les arrière-plans, les liens, les boutons, etc.)
+ * et génère le HTML nécessaire pour ces
+ * personnalisations. Elle permet également de gérer
+ * l'affichage dynamique des options disponibles
+ * pour la personnalisation du CSS.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/CSSView Documentation de la classe
+ * @since    2025-01-07
  */
 class CSSView extends View
 {

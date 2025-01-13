@@ -1,15 +1,47 @@
 <?php
-
+/**
+ * Fichier SecretaryView.php
+ *
+ * Ce fichier contient la classe `SecretaryView`,
+ * qui est responsable de l'affichage des vues
+ * liées à la gestion des secrétaires dans l'application.
+ * Cette classe génère des formulaires
+ * permettant de créer des comptes pour des secrétaires,
+ * ainsi que des tableaux et des messages
+ * pour gérer et afficher ces comptes.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/SecretaryView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
 namespace views;
 
 use models\User;
 
 /**
- * Class SecretaryView
+ * Classe SecretaryView
  *
- * All view for secretary (Forms, tables, messages)
+ * Cette classe gère l'affichage des vues
+ * liées à la gestion des comptes secrétaires.
+ * Elle fournit des formulaires permettant de créer et de gérer les comptes des
+ * secrétaires,
+ * ainsi que des tableaux pour afficher
+ * les secrétaires existants et leurs informations.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/SecretaryView Documentation de la classe
+ * @since    2025-01-13
  */
 class SecretaryView extends UserView
 {

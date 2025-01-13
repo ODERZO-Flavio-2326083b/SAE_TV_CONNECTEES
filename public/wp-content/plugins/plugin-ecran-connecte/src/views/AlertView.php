@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier AlertView.php
+ *
+ * Ce fichier contient la classe `AlertView`, qui est responsable de la gestion
+ * des vues liées aux alertes dans l'application. Cela inclut la gestion des
+ * formulaires de création et de modification des alertes, l'affichage des tableaux
+ * des alertes et la gestion des messages d'erreur ou de succès.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/AlertView
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace views;
 
 use models\Alert;
@@ -8,9 +26,19 @@ use models\CodeAde;
 /**
  * Class AlertView
  *
- * Gère toutes les vues liées aux alertes (formulaires, tableaux, messages).
+ * Gère toutes les vues liées aux alertes
+ * dans l'application. Cela comprend les formulaires
+ * de création et de modification des alertes,
+ * l'affichage des alertes dans un tableau,
+ * ainsi que les messages d'information, d'erreur ou de succès.
  *
- * @package views
+ * @category View
+ * @package  Views
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/AlertView Documentation de la classe
+ * @since    2025-01-07
  */
 class AlertView extends View
 {
@@ -313,22 +341,23 @@ onclick="addButtonAlert()" value="+">
      * demi-groupes. Elle prend en charge la présélection d'un code ou l'affichage de
      * l'option "Tous" lorsque l'alerte est destinée à tout le monde.
      *
-     * @param CodeAde[]    $years       Liste des années disponibles, chaque
-     *                                  entrée étant une instance de `CodeAde`.
-     * @param CodeAde[]    $groups      Liste des groupes disponibles, chaque
-     *                                  entrée étant une instance de `CodeAde`.
-     * @param CodeAde[]    $halfGroups  Liste des demi-groupes disponibles, chaque
-     *                                  entrée étant une instance de `CodeAde`.
-     * @param array        $allDepts    Une liste de tous les départements
-     *                                  présents dans la base de données.
-     * @param CodeAde|null $code        Code ADE présélectionné (optionnel). Peut
-     *                                  être null si aucune présélection n'est
-     *                                  requise.
-     * @param int          $count       Compteur unique utilisé pour générer un
-     *                                  identifiant unique pour l'élément `<select>`.
-     * @param int          $forEveryone Indicateur permettant de savoir si l'option
-     *                                  "Tous" doit être sélectionnée par défaut.
-     *                                  Valeur 1 : "Tous" est sélectionné, 0 sinon.
+     * @param CodeAde[]    $years      Liste des années disponibles,
+     *                                 chaque entrée étant une instance
+     *                                 de `CodeAde`.
+     * @param CodeAde[]    $groups     Liste des groupes disponibles, chaque
+     *                                 entrée étant une instance de
+     *                                 `CodeAde`.
+     * @param CodeAde[]    $halfGroups Liste des demi-groupes disponibles, chaque
+     *                                 entrée étant une instance de `CodeAde`.
+     * @param array        $allDepts   Une liste de tous les
+     *                                 départements présents dans la
+     *                                 base de données.
+     * @param CodeAde|null $code       Code ADE présélectionné (optionnel).
+     *                                 Peut être null si aucune présélection
+     *                                 n'est requise.
+     * @param int          $count      Compteur unique utilisé pour
+     *                                 générer un identifiant unique pour
+     *                                 l'élément `<select>`.
      *
      * @return string Retourne le code HTML complet de l'élément `<select>`, incluant
      * les options organisées par catégories.
