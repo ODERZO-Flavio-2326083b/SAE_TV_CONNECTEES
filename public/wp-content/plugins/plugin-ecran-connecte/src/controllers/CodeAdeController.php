@@ -1,5 +1,22 @@
 <?php
-
+/**
+ * Fichier CodeAdeController.php
+ *
+ * Ce fichier contient la classe `CodeAdeController`, qui gère les codes ADE
+ * dans l'application, y compris les fonctionnalités pour la création, mise à jour,
+ * suppression et affichage des codes ADE.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CodeAdeController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use Exception;
@@ -12,7 +29,14 @@ use views\CodeAdeView;
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/CodeAdeController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class CodeAdeController extends Controller
 {
@@ -96,7 +120,7 @@ class CodeAdeController extends Controller
                 $this->_model->setDeptId($dept);
 
                 // Vérifie les doublons et insère le code
-                if (!$this->checkDuplicateCode(
+                if (!$this->_checkDuplicateCode(
                     $this->_model
                 ) && $this->_model->insert()
                 ) {
@@ -244,13 +268,14 @@ class CodeAdeController extends Controller
      * existants dans la base de données. Elle exclut l'enregistrement actuel si
      * l'ID correspond et renvoie vrai s'il existe d'autres codes similaires.
      *
-     * @param  CodeAde $newCodeAde L'objet CodeAde à vérifier pour les doublons.
+     * @param CodeAde $newCodeAde L'objet CodeAde à vérifier pour les doublons.
+     *
      * @return bool Retourne vrai si un doublon est trouvé, sinon faux.
      *
      * @version 1.0
      * @date    2024-09-16
      */
-    private function checkDuplicateCode(CodeAde $newCodeAde)
+    private function _checkDuplicateCode(CodeAde $newCodeAde)
     {
         $codesAde = $this->_model->checkCode(
             $newCodeAde->getTitle(),

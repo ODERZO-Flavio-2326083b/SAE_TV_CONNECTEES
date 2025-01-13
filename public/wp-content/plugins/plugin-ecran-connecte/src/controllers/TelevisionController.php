@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier TechnicianController.php
+ *
+ * Ce fichier contient la classe `TechnicianController`, qui gère les opérations
+ * relatives aux techniciens, telles que la création, la mise à jour, la suppression,
+ * l'affichage des techniciens, ainsi
+ * que l'affichage de l'emploi du temps des techniciens.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TechnicianController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\CodeAde;
@@ -9,12 +27,19 @@ use utils\InputValidator;
 use views\TelevisionView;
 
 /**
- * Class TelevisionController
+ * Class TechnicianController
  *
- * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage des
- * emplois du temps)
+ * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de
+ * l'emploi du temps)
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/TechnicianController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class TelevisionController extends UserController implements Schedule
 {
@@ -38,7 +63,7 @@ class TelevisionController extends UserController implements Schedule
      *
      * @var InformationController
      */
-    private $informationController;
+    private $_informationController;
 
 
     /**
@@ -58,7 +83,7 @@ class TelevisionController extends UserController implements Schedule
         parent::__construct();
         $this->_model = new User();
         $this->_view = new TelevisionView();
-        $this->informationController = new InformationController();
+        $this->_informationController = new InformationController();
     }
 
     /**
@@ -92,14 +117,16 @@ class TelevisionController extends UserController implements Schedule
         // département, sinon on cherche le département
         $currDept
             = $isAdmin ? null : $deptModel->getUserDepartment(
-                $currentUser->ID)->getIdDepartment();
+                $currentUser->ID
+            )->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTv');
             $password = filter_input(INPUT_POST, 'pwdTv');
             $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTv');
             $codes = filter_input(
-                INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+                INPUT_POST, 'selectTv', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+            );
             // les non-admins ne peuvent pas choisir le département, on empêche donc
             // ces utilisateurs de pouvoir le changer
             $deptId
@@ -130,7 +157,9 @@ class TelevisionController extends UserController implements Schedule
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(
-                    $this->_model) && $this->_model->insert()) {
+                    $this->_model
+                ) && $this->_model->insert()
+                ) {
                     $this->_view->displayInsertValidate();
                 } else {
                     $this->_view->displayErrorInsertion();
@@ -163,7 +192,7 @@ class TelevisionController extends UserController implements Schedule
      * de modification avec les données actuelles de l'utilisateur.
      *
      * @param User $user L'utilisateur de télévision dont les informations doivent
-     * être modifiées.
+     *                   être modifiées.
      *
      * @return string Retourne le formulaire de modification avec les données
      *                actuelles de l'utilisateur
@@ -212,7 +241,8 @@ class TelevisionController extends UserController implements Schedule
         $allDepts = $deptModel->getAllDepts();
 
         return $this->_view->modifyForm(
-            $user, $years, $groups, $halfGroups, $allDepts);
+            $user, $years, $groups, $halfGroups, $allDepts
+        );
     }
 
     /**
@@ -238,7 +268,8 @@ class TelevisionController extends UserController implements Schedule
         $userDeptList = array();
         foreach ($users as $user) {
             $userDeptList[] = $deptModel->getUserDepartment(
-                $user->getId())->getName();
+                $user->getId()
+            )->getName();
         }
 
         return $this->_view->displayAllTv($users, $userDeptList);
@@ -271,7 +302,7 @@ class TelevisionController extends UserController implements Schedule
         $user = $this->_model->getMyCodes([$user])[0];
         $string = "";
 
-        $this->informationController->displayVideo();
+        $this->_informationController->displayVideo();
         if (sizeof($user->getCodes()) > 1) {
             if (get_theme_mod('ecran_connecte_schedule_scroll', 'vert') == 'vert') {
                 $string .= '<div class="ticker1">

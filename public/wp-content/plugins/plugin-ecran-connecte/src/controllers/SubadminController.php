@@ -1,5 +1,22 @@
 <?php
-
+/**
+ * Fichier TechnicianController.php
+ *
+ * Ce fichier contient la classe `TechnicianController`, qui gère les opérations
+ * relatives aux techniciens, telles que la création, la mise à jour, la suppression
+ * et l'affichage des techniciens.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TechnicianController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\Department;
@@ -12,7 +29,14 @@ use views\SubadminView;
  *
  * Gère les techniciens (Création, mise à jour, suppression, affichage)
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/TechnicianController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class SubadminController extends UserController
 {
@@ -31,6 +55,21 @@ class SubadminController extends UserController
      */
     private SubadminView $_view;
 
+    /**
+     * Initialise un nouvel objet et configure le modèle et la vue associés.
+     *
+     * Ce constructeur appelle le constructeur parent et initialise les propriétés
+     * `_model` et `_view`. Le modèle est une instance de la classe `User`, et la vue
+     * est une instance de la classe `SubadminView`.
+     * Cela permet de lier le modèle et la vue
+     * pour une gestion et un affichage des données
+     * dans les opérations suivantes de l'objet.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function __construct()
     {
         parent::__construct();
@@ -38,6 +77,26 @@ class SubadminController extends UserController
         $this->_view = new SubadminView();
     }
 
+    /**
+     * Insère un nouvel administrateur ou sous-administrateur dans
+     * la base de données.
+     *
+     * Cette fonction récupère les données envoyées via un formulaire
+     * de création de sous-administrateur
+     * (login, mot de passe, email, département) et
+     * effectue une série de validations avant de procéder à
+     * l'insertion dans la base de données. Si les
+     * données sont valides et qu'il n'y a pas d'utilisateur en double,
+     * un nouvel utilisateur avec le rôle de sous-administrateur
+     * est créé. En cas d'erreur, des messages appropriés
+     * sont affichés pour informer l'utilisateur.
+     *
+     * @return string Le code HTML généré pour afficher le
+     * formulaire de création ou un message de validation/erreur.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function insert(): string
     {
         $action = filter_input(INPUT_POST, 'createSubadmin');
@@ -91,6 +150,23 @@ class SubadminController extends UserController
         return $this->_view->displayFormSubadmin($allDepts, $currDept, $isAdmin);
     }
 
+    /**
+     * Affiche la liste de tous les sous-administrateurs avec leur département.
+     *
+     * Cette fonction récupère tous les utilisateurs ayant le rôle de
+     * sous-administrateur, puis
+     * pour chaque utilisateur, elle obtient le nom de son département.
+     * Elle renvoie ensuite un
+     * code HTML qui affiche la liste des sous-administrateurs et les
+     * départements auxquels ils
+     * appartiennent via une vue spécifique.
+     *
+     * @return string Le code HTML généré pour afficher la liste des
+     * sous-administrateurs et leurs départements.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function displayAllSubadmin(): string
     {
         $users = $this->_model->getUsersByRole('subadmin');

@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier TechnicianController.php
+ *
+ * Ce fichier contient la classe `TechnicianController`, qui gère les opérations
+ * relatives aux techniciens, telles que la création, la mise à jour, la suppression,
+ * l'affichage des techniciens, ainsi que
+ * l'affichage de l'emploi du temps des techniciens.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TechnicianController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\CodeAde;
@@ -14,7 +32,14 @@ use views\TechnicianView;
  * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de
  * l'emploi du temps)
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/TechnicianController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class TechnicianController extends UserController implements Schedule
 {

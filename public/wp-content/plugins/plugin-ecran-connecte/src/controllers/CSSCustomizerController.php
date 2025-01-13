@@ -1,5 +1,24 @@
 <?php
-
+/**
+ * Fichier CSSCustomizerController.php
+ *
+ * Ce fichier contient la classe `CSSCustomizerController`, qui permet de gérer
+ * la personnalisation CSS.
+ * Cette classe fait le lien entre le modèle de personnalisation CSS et
+ * les vues associées,
+ * permettant aux utilisateurs de modifier les couleurs via un formulaire.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CSSCustomizerController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use models\CSSCustomizer;
@@ -14,19 +33,29 @@ use views\CSSView;
  * associées.
  * Permet aux utilisateurs de modifier les couleurs via un formulaire.
  *
- * @package controllers
+ * @category API
+ * @package  Controllers
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/CSSCustomizerController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class CSSCustomizerController extends Controller
 {
 
     /**
+     * Permet d'utiliser le model CSSCustomizer
+     *
      * @var CSSCustomizer
      */
     private CSSCustomizer $_model;
 
 
     /**
-     * @var CSSView
+     *  Permet d'utiliser la vue CSSCustomizer
+     *  * @var CSSView
      */
     private CSSView $_view;
 
@@ -71,10 +100,10 @@ class CSSCustomizerController extends Controller
         foreach ($listDepartement as $e) {
             // Ajouter le nom du département au tableau
             $listDepName[] = $e->getName();
-            if(!file_exists(
-                WP_CONTENT_DIR
-                            .'/themes/theme-ecran-connecte/assets/css/global/global-'
-                .$e->getName().'.css'
+            if (! file_exists(
+                WP_CONTENT_DIR .
+                '/themes/theme-ecran-connecte/assets/css/global/global-' .
+                $e->getName() . '.css'
             )
             ) {
                 $cssDefault = file_get_contents(
