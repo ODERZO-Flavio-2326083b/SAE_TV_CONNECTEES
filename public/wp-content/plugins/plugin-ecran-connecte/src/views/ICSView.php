@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use WP_User;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class ICSView
  *
  * Affiche l'emploi du temps.

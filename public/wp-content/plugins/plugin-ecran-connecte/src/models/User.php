@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use JsonSerializable;
@@ -7,7 +7,6 @@ use PDO;
 use WP_User;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class User
  *
  * User entity
@@ -17,43 +16,43 @@ use WP_User;
 class User extends Model implements Entity, JsonSerializable
 {
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */
     private int $id;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $login;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $password;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $email;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string (television | secretaire | technicien)
      */
     private string $role;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var CodeAde[]
      */
     private array $codes;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */
@@ -167,13 +166,17 @@ class User extends Model implements Entity, JsonSerializable
     public function delete(): int
     {
         $database = $this->getDatabase();
-        $request = $database->prepare('DELETE FROM wp_users 
-                                       WHERE ID = :id');
+        $request = $database->prepare(
+            'DELETE FROM wp_users 
+                                       WHERE ID = :id'
+        );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
         $count = $request->rowCount();
-        $request = $database->prepare('DELETE FROM wp_usermeta 
-                                       WHERE user_id = :id');
+        $request = $database->prepare(
+            'DELETE FROM wp_usermeta 
+                                       WHERE user_id = :id'
+        );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
         return $count;

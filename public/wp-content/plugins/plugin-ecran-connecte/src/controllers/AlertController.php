@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use models\Alert;
@@ -8,7 +8,6 @@ use models\Department;
 use views\AlertView;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class AlertController
  *
  * Gère les alertes (création, modification, suppression, affichage)
@@ -18,13 +17,13 @@ use views\AlertView;
 class AlertController extends Controller
 {
 
-    // TODO : Ajouter une description
+    
     /**
      * @var Alert Modèle pour gérer les alertes
      */
     private Alert $_model;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var AlertView Vue pour afficher les alertes
      */

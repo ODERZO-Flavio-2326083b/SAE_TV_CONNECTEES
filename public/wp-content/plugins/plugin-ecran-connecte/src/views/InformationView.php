@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 
@@ -7,7 +7,6 @@ use controllers\InformationController;
 use models\Information;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class InformationView
  *
  * All view for Information (Forms, tables, messages)
@@ -18,8 +17,6 @@ class InformationView extends View
 {
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier un texte avec des champs pour le
      * titre, le contenu, et la date d'expiration.
      *
@@ -27,15 +24,22 @@ class InformationView extends View
      * (minimum 4 caractères), que le contenu est requis (maximum 280 caractères),
      * et que la date d'expiration ne peut pas être antérieure à la date actuelle.
      *
-     * @param string|null $title   Le titre du texte à afficher dans le champ
-     *                             (optionnel).
-     * @param string|null $content Le contenu à afficher dans la zone de texte
-     *                             (optionnel).
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par défaut
-     *                             "createText". Peut être "submit" pour soumettre le
-     *                             formulaire.
+     * @param array       $allDepts Une liste de tous les départements
+     *                              présents dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du
+     *                              département actuel.
+     * @param string|null $title    Le titre du texte à afficher dans le
+     *                              champ (optionnel).
+     * @param string|null $content  Le contenu à afficher dans la zone de
+     *                              texte (optionnel).
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer, par
+     *                              défaut "createText". Peut être
+     *                              "submit" pour soumettre le formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
@@ -91,8 +95,6 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier une image avec des champs pour le
      * titre, le fichier image, et la date d'expiration.
      *
@@ -102,15 +104,23 @@ name="delete" onclick="return confirm(
      * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
      * date actuelle.
      *
-     * @param string|null $title   Le titre de l'image à afficher dans le champ
-     *                             (optionnel).
-     * @param string|null $content Le nom du fichier image à afficher
-     *                             (optionnel).
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par
-     *                             défaut "createImg". Peut être "submit"
-     *                             pour soumettre le formulaire.
+     * @param array       $allDepts Une liste de tous les départements présents
+     *                              dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du département
+     *                              actuel.
+     * @param string|null $title    Le titre de l'image à afficher dans le
+     *                              champ (optionnel).
+     * @param string|null $content  Le nom du fichier image à
+     *                              afficher (optionnel).
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer,
+     *                              par défaut "createImg". Peut
+     *                              être "submit" pour soumettre le
+     *                              formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
@@ -178,8 +188,6 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le
      * titre, le fichier video, et la date d'expiration.
      *
@@ -189,15 +197,23 @@ name="delete" onclick="return confirm(
      * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
      * date actuelle.
      *
-     * @param string|null $title   Le titre de la video à afficher dans le champ
-     *                             (optionnel).
-     * @param string|null $content Le nom du fichier video à afficher
-     *                             (optionnel).
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par
-     *                             défaut "createVideo". Peut être "submit" pour
-     *                             soumettre le formulaire.
+     * @param array       $allDepts Une liste de tous les départements présents
+     *                              dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du département
+     *                              actuel.
+     * @param string|null $title    Le titre de la video à afficher dans le
+     *                              champ (optionnel).
+     * @param string|null $content  Le nom du fichier video à
+     *                              afficher (optionnel).
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer,
+     *                              par défaut "createVideo". Peut
+     *                              être "submit" pour soumettre le
+     *                              formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
@@ -264,8 +280,6 @@ Supprimer</button>';
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le
      * titre, le fichier video, et la date d'expiration.
      *
@@ -275,15 +289,23 @@ Supprimer</button>';
      * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
      * date actuelle.
      *
-     * @param string|null $title   Le titre du short à afficher dans le champ
-     *                             (optionnel).
-     * @param string|null $content Le nom du fichier video à afficher
-     *                             (optionnel).
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par
-     *                             défaut "createShort". Peut être "submit" pour
-     *                             soumettre le formulaire.
+     * @param array       $allDepts Une liste de tous les départements présents
+     *                              dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du département
+     *                              actuel.
+     * @param string|null $title    Le titre du short à afficher dans le
+     *                              champ (optionnel).
+     * @param string|null $content  Le nom du fichier video à
+     *                              afficher (optionnel).
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer,
+     *                              par défaut "createShort". Peut
+     *                              être "submit" pour soumettre le
+     *                              formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
@@ -352,8 +374,6 @@ Supprimer</button>';
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier un document PDF avec des champs
      * pour le titre, le fichier à télécharger et la date d'expiration.
      *
@@ -363,15 +383,22 @@ Supprimer</button>';
      * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
      * date actuelle.
      *
-     * @param string|null $title   Le titre du document PDF à afficher dans le champ
-     *                             (optionnel).
-     * @param string|null $content Le nom du fichier PDF à afficher
-     *                             (optionnel).
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par défaut
-     *                             "createPDF". Peut être "submit" pour soumettre le
-     *                             formulaire.
+     * @param array       $allDepts Une liste de tous les départements présents
+     *                              dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du département
+     *                              actuel.
+     * @param string|null $title    Le titre du document PDF à afficher dans le
+     *                              champ (optionnel).
+     * @param string|null $content  Le nom du fichier PDF à
+     *                              afficher (optionnel).
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer, par
+     *                              défaut "createPDF". Peut être "submit"
+     *                              pour soumettre le formulaire.
      *
      * @return string                 Une chaîne HTML contenant le formulaire.
      *
@@ -433,8 +460,6 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour créer ou modifier un événement, permettant de
      * télécharger des fichiers et de spécifier une date d'expiration.
      *
@@ -443,11 +468,18 @@ name="delete" onclick="return confirm(
      * La date d'expiration est requise et ne peut pas être antérieure à la date
      * actuelle.
      *
-     * @param string|null $endDate La date d'expiration à afficher
-     *                             (optionnel).
-     * @param string      $type    Le type d'action à effectuer, par défaut
-     *                             "createEvent". Peut être "submit" pour soumettre
-     *                             le formulaire.
+     * @param array       $allDepts Une liste de tous les départements présents
+     *                              dans la base de données.
+     * @param bool        $isAdmin  Un booléen correspondant à "true"
+     *                              si l'utilisateur est un
+     *                              administrateur, et "false" sinon.
+     * @param int|null    $currDept Le numéro du département
+     *                              actuel.
+     * @param string|null $endDate  La date d'expiration à
+     *                              afficher (optionnel).
+     * @param string      $type     Le type d'action à effectuer, par
+     *                              défaut "createEvent". Peut être
+     *                              "submit" pour soumettre le formulaire.
      *
      * @return string                Une chaîne HTML contenant le formulaire.
      *
@@ -539,8 +571,6 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire de modification d'informations en fonction du type
      * d'information.
      *
@@ -548,13 +578,20 @@ name="delete" onclick="return confirm(
      * informations, puis affiche le formulaire correspondant au type d'information
      * spécifié (texte, image, vidéo, short, PDF ou événement).
      *
-     * @param string $title   Le titre de l'information à
-     *                        modifier.
-     * @param string $content Le contenu de l'information à modifier (peut être une
-     *                        URL pour les images ou PDF).
-     * @param string $endDate La date d'expiration de l'information.
-     * @param string $type    Le type d'information à modifier (valeurs possibles :
-     *                        'text', 'img', 'video', 'short', 'pdf', 'event').
+     * @param string   $title    Le titre de l'information
+     *                           à modifier.
+     * @param string   $content  Le contenu de l'information à modifier (peut
+     *                           être une URL pour les images ou PDF).
+     * @param string   $endDate  La date d'expiration de l'information.
+     * @param string   $type     Le type d'information à modifier (valeurs
+     *                           possibles : 'text', 'img', 'video', 'short', 'pdf',
+     *                           'event').
+     * @param array    $allDepts Une liste de tous les départements présents
+     *                           dans la base de données.
+     * @param bool     $isAdmin  Un booléen correspondant à "true"
+     *                           si l'utilisateur est un
+     *                           administrateur, et "false" sinon.
+     * @param int|null $currDept Le numéro du département actuel.
      *
      * @return string           Une chaîne HTML contenant le lien de retour et le
      * formulaire de modification approprié pour le type d'information.
@@ -678,33 +715,40 @@ name="delete" onclick="return confirm(
      * Cette méthode génère une structure HTML pour le conteneur principal
      * du diaporama destiné uniquement aux vidéos, positionné à gauche de l'écran.
      *
-     * @return void
+     * @return  void
      * @version 1.0
-     * @date 2024-12-29
+     * @date    2024-12-29
      */
-    public function displayStartSlideVideo() {
+    public function displayStartSlideVideo()
+    {
         echo '<div class="video-slideshow-container">';
     }
 
     /**
-     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type spécifié.
+     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type
+     * spécifié.
      *
-     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir différents types de contenu
-     * tels que du texte, des images, des vidéos ou des fichiers PDF. Elle gère également la distinction entre l'affichage
-     * sur le site d'administration et l'affichage normal.
+     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir
+     * différents types de contenu tels que du texte, des images, des vidéos ou des
+     * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
+     * d'administration et l'affichage normal.
      *
-     * @param string $title     Le titre de la diapositive, affiché en tant que en-tête si non vide.
-     * @param string $content   Le contenu à afficher dans la diapositive (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher ('text', 'img', 'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site d'administration.
+     * @param string $title     Le titre de la diapositive, affiché en tant que
+     *                          en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la diapositive
+     *                          (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher
+     *                          ('text', 'img', 'video', 'short', 'pdf', 'event').
+     * @param bool   $adminSite Indique si la diapositive est affichée sur le site
+     *                          d'administration.
      *
      * @return void
      *
-     *
      * @version 1.0
-     * @date 2024-10-15
+     * @date    2024-10-15
      */
-    public function displaySlideVideo($title, $content, $type, $adminSite = false) {
+    public function displaySlideVideo($title, $content, $type, $adminSite = false)
+    {
         echo '<div class="myVideoSlides text-center" style="display: block;">';
 
         // If the title is empty
@@ -723,8 +767,6 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * TODO : Ajouter la doc pour le paramètre "$scrapper"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type
      * spécifié.
      *
@@ -733,14 +775,16 @@ name="delete" onclick="return confirm(
      * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
      * d'administration et l'affichage normal.
      *
-     * @param string $title     Le titre de la diapositive, affiché en tant que
-     *                          en-tête si non vide.
-     * @param string $content   Le contenu à afficher dans la diapositive (texte,
-     *                          image ou PDF).
-     * @param string $type      Le type de contenu à afficher ('text', 'img',
-     *                          'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site
-     *                          d'administration.
+     * @param string   $title     Le titre de la diapositive, affiché en tant
+     *                            que en-tête si non vide.
+     * @param string   $content   Le contenu à afficher dans la diapositive
+     *                            (texte, image ou PDF).
+     * @param string   $type      Le type de contenu à afficher ('text',
+     *                            'img', 'video', 'short', 'pdf', 'event').
+     * @param Scrapper $scrapper  Un objet 'Scrapper' permettant de scraper du
+     *                            contenu depuis un site web.
+     * @param bool     $adminSite Indique si la diapositive est affichée sur le
+     *                            site d'administration.
      *
      * @return void
      *

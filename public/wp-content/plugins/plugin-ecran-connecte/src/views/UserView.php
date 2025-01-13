@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\Department;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class UserView
  *
  * Contient les méthodes pour afficher les vues liées aux utilisateurs.
@@ -16,7 +15,6 @@ class UserView extends View
 {
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin" et "$currDept"
      * Génère un formulaire de base pour la création d'un compte utilisateur.
      *
      * Cette méthode crée un formulaire HTML standard contenant des champs pour
@@ -30,6 +28,12 @@ class UserView extends View
      *                               IDs et les noms des champs.
      * @param Department[] $allDepts Tous les Départements, pour le menu déroulant de
      *                               sélection
+     *                               la base de données.
+     * @param bool         $isAdmin  Un booléen correspondant à "true"
+     *                               si l'utilisateur est un
+     *                               administrateur, et "false" sinon.
+     * @param int|null     $currDept Le numéro du département
+     *                               actuel.
      *
      * @return string Le code HTML du formulaire.
      *

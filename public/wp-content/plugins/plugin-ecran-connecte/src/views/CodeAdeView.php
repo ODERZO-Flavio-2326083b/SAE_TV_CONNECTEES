@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\CodeAde;
 use models\Department;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class CodeAdeView
  *
  * Gère toutes les vues liées aux codes ADE (formulaires, tableaux, messages).
@@ -17,8 +16,6 @@ class CodeAdeView extends View
 {
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche le formulaire pour créer un code ADE.
      *
      * Cette méthode génère un formulaire HTML pour la création d'un code ADE. Le
@@ -26,6 +23,13 @@ class CodeAdeView extends View
      * code (Année, Groupe, Demi-groupe).
      * Les champs sont soumis à des validations basiques comme des contraintes de
      * longueur et de type pour les champs texte.
+     *
+     * @param array    $allDepts Une liste de tous les départements présents
+     *                           dans la base de données.
+     * @param bool     $isAdmin  Un booléen correspondant à "true"
+     *                           si l'utilisateur est un
+     *                           administrateur, et "false" sinon.
+     * @param int|null $currDept Le numéro du département actuel.
      *
      * @return string
      * Retourne le code HTML du formulaire de création de code ADE.
@@ -80,8 +84,6 @@ class CodeAdeView extends View
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche un formulaire pour modifier un code ADE.
      *
      * Cette méthode génère un formulaire HTML permettant de modifier un code ADE
@@ -90,12 +92,19 @@ class CodeAdeView extends View
      * le formulaire pour effectuer les modifications. Un lien de retour vers la page
      * de gestion des codes ADE est également fourni.
      *
-     * @param string $title Titre du code ADE à
-     *                      modifier.
-     * @param string $type  Type du code ADE à
-     *                      modifier.
-     * @param int    $code  Code ADE à
-     *                      modifier.
+     * @param string   $title    Titre du code ADE
+     *                           à modifier.
+     * @param string   $type     Type du code ADE
+     *                           à modifier.
+     * @param int      $code     Code ADE
+     *                           à
+     *                           modifier.
+     * @param array    $allDepts Une liste de tous les départements présents
+     *                           dans la base de données.
+     * @param bool     $isAdmin  Un booléen correspondant à "true"
+     *                           si l'utilisateur est un
+     *                           administrateur, et "false" sinon.
+     * @param int|null $currDept Le numéro du département actuel.
      *
      * @return string
      * Retourne le code HTML du formulaire de modification de code ADE.

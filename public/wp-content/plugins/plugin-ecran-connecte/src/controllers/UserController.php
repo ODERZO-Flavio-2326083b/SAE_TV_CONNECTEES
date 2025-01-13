@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use models\Alert;
@@ -11,7 +11,6 @@ use R34ICS;
 use views\UserView;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class UserController
  *
  * Gère tous les utilisateurs (Création, mise à jour, suppression)
@@ -89,8 +88,8 @@ class UserController extends Controller
             "secretaire", $userData->roles
         ) || in_array("administrator", $userData->roles)
         ) {
-            $modelAlert = new Alert();
-            $alerts = $modelAlert->getAuthorListAlert($user->getLogin());
+            $_modelAlert = new Alert();
+            $alerts = $_modelAlert->getAuthorListAlert($user->getLogin());
             foreach ($alerts as $alert) {
                 $alert->delete();
             }
@@ -100,15 +99,15 @@ class UserController extends Controller
             "secretaire", $userData->roles
         ) || in_array("administrator", $userData->roles)
         ) {
-            $modelInfo = new Information();
-            $infos = $modelInfo->getAuthorListInformation($user->getId());
+            $_modelInfo = new Information();
+            $infos = $_modelInfo->getAuthorListInformation($user->getId());
             foreach ($infos as $info) {
                 $goodType = ['img', 'pdf', 'event'];
                 if (in_array($info->getType(), $goodType)) {
                     $infoController = new InformationController();
                     $infoController->deleteFile($info->getId());
                 }
-                $modelInfo->delete();
+                $_modelInfo->delete();
             }
         }
     }

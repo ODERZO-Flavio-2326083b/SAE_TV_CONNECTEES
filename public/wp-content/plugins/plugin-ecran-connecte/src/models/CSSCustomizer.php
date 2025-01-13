@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use models\Model;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Classe CSSCustomizer
  *
  * Cette classe gère la personnalisation du fichier CSS global en fonction

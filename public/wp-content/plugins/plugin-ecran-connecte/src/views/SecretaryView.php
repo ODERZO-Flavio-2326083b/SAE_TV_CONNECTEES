@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\User;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class SecretaryView
  *
  * All view for secretary (Forms, tables, messages)
@@ -16,13 +15,18 @@ class SecretaryView extends UserView
 {
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$isAdmin", "$currDept" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche le formulaire pour créer un compte secrétaire.
      *
      * Cette méthode génère un formulaire HTML permettant de créer des comptes pour
      * des secrétaires. Elle fournit une brève description et appelle une méthode
      * auxiliaire pour afficher le formulaire de base.
+     *
+     * @param array    $allDepts Une liste de tous les départements présents
+     *                           dans la base de données.
+     * @param bool     $isAdmin  Un booléen correspondant à "true"
+     *                           si l'utilisateur est un
+     *                           administrateur, et "false" sinon.
+     * @param int|null $currDept Le numéro du département actuel.
      *
      * @return string Retourne le code HTML du formulaire de création de compte
      *                secrétaire.

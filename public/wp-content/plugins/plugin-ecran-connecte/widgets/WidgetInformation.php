@@ -1,17 +1,15 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 use controllers\InformationController;
 
 add_action('widgets_init', 'information_register_widget');
 
-// TODO : Ajouter une doc pour la fonction
 function information_register_widget()
 {
     register_widget('WidgetInformation');
 }
 
 /**
- * TODO : Ajouter les tags @author, @category, @license, @link et @package
  * Class WidgetInformation
  *
  * Widget for information

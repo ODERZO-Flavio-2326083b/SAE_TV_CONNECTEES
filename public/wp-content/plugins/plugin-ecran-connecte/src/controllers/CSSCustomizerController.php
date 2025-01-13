@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use models\CSSCustomizer;
@@ -7,8 +7,6 @@ use models\Department;
 use views\CSSView;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
- *
  * Class CSSCustomizerController
  *
  * Contrôleur pour la personnalisation CSS.
@@ -19,13 +17,13 @@ use views\CSSView;
  */
 class CSSCustomizerController extends Controller
 {
-    // TODO : Ajouter une description
+    
     /**
      * @var CSSCustomizer
      */
     private CSSCustomizer $_model;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var CSSView
      */

@@ -1,9 +1,8 @@
 <?php
-// TODO : Ajouter la doc du fichier
+//
 namespace views;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class HelpMapView
  *
  * Vue pour la carte affichant les lieux intéressants à proximité.

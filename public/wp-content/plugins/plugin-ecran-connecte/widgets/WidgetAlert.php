@@ -1,17 +1,15 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 use controllers\AlertController;
 
 add_action('widgets_init', 'alert_register_widget');
 
-// TODO : Ajouter la doc pour la fonction
 function alert_register_widget()
 {
     register_widget('WidgetAlert');
 }
 
 /**
- * TODO : Ajouter les tags @author, @category, @license, @link et @package
  * Class WidgetAlert
  *
  * Widget for Alert
@@ -52,7 +50,7 @@ class WidgetAlert extends WP_Widget
         $_view->alertMain();
     }
 
-    // TODO : Ajouter une description
+    
     /**
      * @param array $instance
      *

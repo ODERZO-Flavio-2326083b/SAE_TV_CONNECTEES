@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\Alert;
 use models\CodeAde;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class AlertView
  *
  * Gère toutes les vues liées aux alertes (formulaires, tableaux, messages).
@@ -111,8 +110,6 @@ class AlertView extends View
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Affiche le formulaire pour modifier une alerte existante.
      *
      * Cette méthode génère le code HTML du formulaire permettant à un utilisateur de
@@ -130,6 +127,8 @@ class AlertView extends View
      * @param array $years      Liste des années disponibles pour l'alerte.
      * @param array $groups     Liste des groupes disponibles pour l'alerte.
      * @param array $halfGroups Liste des demi-groupes disponibles pour l'alerte.
+     * @param array $allDepts   Une liste de tous les départements présents
+     *                          dans la base de données.
      *
      * @return string Le code HTML du formulaire de modification d'alerte, prêt à
      * être affiché.
@@ -306,8 +305,6 @@ onclick="addButtonAlert()" value="+">
     }
 
     /**
-     * TODO : Ajouter la doc pour les paramètres "$years" et "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Construit un élément select HTML contenant les codes ADE organisés par
      * catégories.
      *
@@ -316,12 +313,14 @@ onclick="addButtonAlert()" value="+">
      * demi-groupes. Elle prend en charge la présélection d'un code ou l'affichage de
      * l'option "Tous" lorsque l'alerte est destinée à tout le monde.
      *
-     * @param CodeAde[]    $year        Liste des années disponibles, chaque entrée
-     *                                  étant une instance de `CodeAde`.
+     * @param CodeAde[]    $years       Liste des années disponibles, chaque
+     *                                  entrée étant une instance de `CodeAde`.
      * @param CodeAde[]    $groups      Liste des groupes disponibles, chaque
      *                                  entrée étant une instance de `CodeAde`.
      * @param CodeAde[]    $halfGroups  Liste des demi-groupes disponibles, chaque
      *                                  entrée étant une instance de `CodeAde`.
+     * @param array        $allDepts    Une liste de tous les départements
+     *                                  présents dans la base de données.
      * @param CodeAde|null $code        Code ADE présélectionné (optionnel). Peut
      *                                  être null si aucune présélection n'est
      *                                  requise.

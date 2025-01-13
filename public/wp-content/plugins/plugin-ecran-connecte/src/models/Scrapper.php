@@ -1,9 +1,8 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class Scrapper
  *
  * Classe générique pour l'extraction de données depuis un site web.

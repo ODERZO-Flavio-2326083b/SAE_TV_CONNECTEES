@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use JsonSerializable;
 use PDO;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class Alert
  *
  * Alert entity
@@ -16,43 +15,43 @@ use PDO;
 class Alert extends Model implements Entity, JsonSerializable
 {
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */
     private int $id;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var User
      */
     private User $author;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $content;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $creation_date;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $expirationDate;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var CodeAde[]
      */
     private array $codes;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */
@@ -450,8 +449,10 @@ class Alert extends Model implements Entity, JsonSerializable
      */
     public function countAll() : int
     {
-        $request = $this->getDatabase()->prepare("SELECT COUNT(*) 
-                                                  FROM ecran_alert");
+        $request = $this->getDatabase()->prepare(
+            "SELECT COUNT(*) 
+                                                  FROM ecran_alert"
+        );
 
         $request->execute();
 

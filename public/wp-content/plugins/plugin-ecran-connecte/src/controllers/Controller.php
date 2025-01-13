@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace controllers;
 
 use Exception;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class Controller
  *
  * Contrôleur principal contenant toutes les fonctions de base.

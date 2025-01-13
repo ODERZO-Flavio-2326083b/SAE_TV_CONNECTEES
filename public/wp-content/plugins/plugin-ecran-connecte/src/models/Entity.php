@@ -1,10 +1,9 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 
 namespace models;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Interface Entity
  *
  * Link the database tables to the PHP code

@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use JsonSerializable;
 use PDO;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class CodeAde
  *
  * Code ADE entity
@@ -16,31 +15,31 @@ use PDO;
 class CodeAde extends Model implements Entity, JsonSerializable
 {
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */
     private int $id;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string (year | group | halfGroup)
      */
     private string $type;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string
      */
     private string $title;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var string | int
      */
     private $code;
 
-    // TODO : Ajouter une description
+    
     /**
      * @var int
      */

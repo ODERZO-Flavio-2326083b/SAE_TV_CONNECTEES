@@ -1,5 +1,5 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\CodeAde;
@@ -7,7 +7,6 @@ use models\Department;
 use models\User;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class TelevisionView
  *
  * Contient toutes les vues liées à la télévision (Formulaires, tableaux)
@@ -230,8 +229,6 @@ class TelevisionView extends UserView
     }
 
     /**
-     * TODO : Ajouter la doc pour le paramètre "$allDepts"
-     * TODO : Mettre la doc des paramètres dans l'ordre
      * Génère un élément '<select>' HTML pour sélectionner des emplois du temps.
      *
      * Cette méthode crée un menu déroulant contenant des options pour les années,
@@ -244,6 +241,8 @@ class TelevisionView extends UserView
      *                                   disponibles.
      * @param array<CodeAde> $halfGroups Un tableau d'objets représentant les
      *                                   demi-groupes disponibles.
+     * @param array          $allDepts   Une liste de tous les départements
+     *                                   présents dans la base de données.
      * @param CodeAde|null   $code       Un objet représentant le code d'emploi du
      *                                   temps à pré-sélectionner (facultatif).
      * @param int            $count      Un compteur utilisé pour générer un ID

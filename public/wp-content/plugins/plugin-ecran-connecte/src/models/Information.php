@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use JsonSerializable;
 use PDO;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class Information
  *
  * Information entity
@@ -82,7 +81,8 @@ class Information extends Model implements Entity, JsonSerializable
     public function insert() : int
     {
         $database = $this->getDatabase();
-        $request = $database->prepare("
+        $request = $database->prepare(
+            "
         INSERT INTO ecran_information 
             (title,
              content,
@@ -102,7 +102,8 @@ class Information extends Model implements Entity, JsonSerializable
              :userId,
              :administration_id,
              :department_id,
-             :duration) ");
+             :duration) "
+        );
         $request->bindValue(':title', $this->getTitle());
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(
@@ -145,15 +146,18 @@ class Information extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date    2024-10-15
      */
-    public function update() : int {
-        $request = $this->getDatabase()->prepare("
+    public function update() : int
+    {
+        $request = $this->getDatabase()->prepare(
+            "
         UPDATE ecran_information 
         SET title = :title, 
             content = :content, 
             expiration_date = :expirationDate,
             department_id = :deptId,
             duration = :duration
-        WHERE id = :id");
+        WHERE id = :id"
+        );
         $request->bindValue(':title', $this->getTitle());
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(':expirationDate', $this->getExpirationDate());
@@ -212,8 +216,10 @@ class Information extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date    2024-10-15
      */
-    public function get($id) : false|Information {
-        $request = $this->getDatabase()->prepare("
+    public function get($id) : false|Information
+    {
+        $request = $this->getDatabase()->prepare(
+            "
         SELECT 
             id, 
             title, 
@@ -227,7 +233,8 @@ class Information extends Model implements Entity, JsonSerializable
             duration
         FROM 
             ecran_information
-        WHERE id = :id LIMIT 1");
+        WHERE id = :id LIMIT 1"
+        );
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();
         if ($request->rowCount() > 0) {
@@ -256,8 +263,10 @@ class Information extends Model implements Entity, JsonSerializable
      * @version 1.0
      * @date    2024-10-15
      */
-    public function getList(int $begin = 0, int $numberElement = 25) : array {
-        $request = $this->getDatabase()->prepare("
+    public function getList(int $begin = 0, int $numberElement = 25) : array
+    {
+        $request = $this->getDatabase()->prepare(
+            "
         SELECT 
             id, 
             title,
@@ -273,7 +282,8 @@ class Information extends Model implements Entity, JsonSerializable
         ORDER BY id 
         LIMIT 
             :begin,
-            :numberElement");
+            :numberElement"
+        );
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(
             ':numberElement', $numberElement,
@@ -356,8 +366,10 @@ class Information extends Model implements Entity, JsonSerializable
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
     public function getInformationsByDeptId(
-        int $idDept, int $begin = 0, int $numberElement = 25): array {
-        $request = $this->getDatabase()->prepare('
+        int $idDept, int $begin = 0, int $numberElement = 25
+    ): array {
+        $request = $this->getDatabase()->prepare(
+            '
         SELECT 
             id, 
             title, 
@@ -375,7 +387,8 @@ class Information extends Model implements Entity, JsonSerializable
             department_id = :id 
         ORDER BY 
             expiration_date 
-        LIMIT :begin, :numberElement');
+        LIMIT :begin, :numberElement'
+        );
         $request->bindParam(':id', $idDept, PDO::PARAM_INT);
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(
@@ -495,8 +508,10 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      * @version 1.0
      * @date    2024-10-15
      */
-    public function getInformationFromAdminSite( int $id ) : false|Information {
-        $request = $this->getDatabaseViewer()->prepare('
+    public function getInformationFromAdminSite( int $id ) : false|Information
+    {
+        $request = $this->getDatabaseViewer()->prepare(
+            '
         SELECT 
             id, 
             title, 
@@ -507,7 +522,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
             creation_date,
             duration 
         FROM ecran_information 
-        WHERE id = :id LIMIT 1');
+        WHERE id = :id LIMIT 1'
+        );
 
         $request->bindValue(':id', $id, PDO::PARAM_INT);
         $request->execute();
@@ -527,8 +543,9 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @param array $dataList  La liste des données à convertir en
      *                         entités.
-     * @param bool $adminSite Indique si les entités sont pour un site
-     *                         d'administration (par défaut : faux).
+     * @param bool  $adminSite Indique si les entités sont pour un
+     *                         site d'administration (par défaut :
+     *                         faux).
      *
      * @return array La liste d'entités créée à partir des données fournies.
      *
@@ -565,8 +582,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *                         - administration_id (int|null): L'identifiant de
      *                         l'administration, s'il existe.
      *                         - author (int): L'identifiant de l'auteur.
-     * @param bool $adminSite Indique si l'entité est pour un site d'administration
-     *                         (par défaut : faux).
+     * @param bool  $adminSite Indique si l'entité est pour un site
+     *                         d'administration (par défaut : faux).
      *
      * @return Information L'instance d'entité 'Information' créée et initialisée
      *                     avec les données fournies.
@@ -581,8 +598,12 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $entity->setId($data['id']);
         $entity->setTitle($data['title']);
         $entity->setContent($data['content']);
-        $entity->setCreationDate(date('Y-m-d',
-            strtotime($data['creation_date'])));
+        $entity->setCreationDate(
+            date(
+                'Y-m-d',
+                strtotime($data['creation_date'])
+            )
+        );
         $entity->setExpirationDate(
             date('Y-m-d', strtotime($data['expiration_date']))
         );
@@ -617,7 +638,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setId(?int $id): void {
+    public function setId(?int $id): void
+    {
         $this->id = $id;
     }
 
@@ -634,7 +656,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setTitle(?string $title): void {
+    public function setTitle(?string $title): void
+    {
         $this->title = $title;
     }
 
@@ -651,7 +674,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setAuthor(?User $author): void {
+    public function setAuthor(?User $author): void
+    {
         $this->author = $author;
     }
 
@@ -667,7 +691,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setCreationDate( ?string $creationDate ): void {
+    public function setCreationDate( ?string $creationDate ): void
+    {
         $this->creationDate = $creationDate;
     }
 
@@ -684,7 +709,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setExpirationDate(?string $expirationDate): void {
+    public function setExpirationDate(?string $expirationDate): void
+    {
         $this->expirationDate = $expirationDate;
     }
 
@@ -737,7 +763,8 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
      *
      * @return void
      */
-    public function setAdminId( ?int $adminId ): void {
+    public function setAdminId( ?int $adminId ): void
+    {
         $this->adminId = $adminId;
     }
 

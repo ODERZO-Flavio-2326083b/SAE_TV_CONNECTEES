@@ -1,12 +1,11 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace views;
 
 use models\Department;
 use views\View;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Classe CSSView
  *
  * Cette classe gère l'affichage des vues liées à la personnalisation du CSS, y

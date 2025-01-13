@@ -1,11 +1,10 @@
 <?php
-// TODO : Ajouter la doc du fichier
+
 namespace models;
 
 use PDO;
 
 /**
- * TODO : Ajouter les tags @author, @category, @license et @link
  * Class Model
  *
  * Generic class for Model
@@ -16,7 +15,7 @@ use PDO;
 class Model
 {
 
-    // TODO : Ajouter une description
+    
     /**
      * @var PDO
      */
