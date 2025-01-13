@@ -1,5 +1,24 @@
 <?php
-
+/**
+ * Fichier UserRestController.php
+ *
+ * Ce fichier contient la classe `UserRestController`, qui gère
+ * les routes REST pour la gestion des alertes associées aux utilisateurs.
+ * Elle permet de récupérer, créer, mettre à jour et supprimer des alertes
+ * via l'API REST de WordPress. Elle utilise `WP_REST_Controller` pour
+ * enregistrer et traiter les routes REST personnalisées.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/UserRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\Alert;
@@ -12,19 +31,30 @@ use WP_REST_Server;
 /**
  * Class UserRestController
  *
- * Classe pour la gestion des routes REST dans WordPress. Permet de gérer les alertes associées aux utilisateurs,
- * avec des fonctionnalités pour récupérer, créer, mettre à jour et supprimer les alertes via l'API REST de WordPress.
- * Utilise WP_REST_Controller pour enregistrer et traiter les routes REST personnalisées.
+ * Cette classe gère les routes REST pour la gestion des alertes
+ * associées aux utilisateurs. Elle permet de récupérer, créer,
+ * mettre à jour et supprimer des alertes via l'API REST de WordPress.
+ * Elle utilise `WP_REST_Controller` pour enregistrer et traiter
+ * les routes REST personnalisées.
  *
- * @package controllers\rest
+ * @category API
+ * @package  Controllers\Rest
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/UserRestController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class UserRestController extends WP_REST_Controller
 {
     /**
      * Constructeur de la classe.
      *
-     * Initialise le namespace et la base REST pour les opérations liées à l'utilisateur.
-     * Ce constructeur est utilisé pour configurer les propriétés essentielles de la classe
+     * Initialise le namespace et la base REST pour les opérations
+     * liées à l'utilisateur.
+     * Ce constructeur est utilisé pour configurer les propriétés
+     * essentielles de la classe
      * lors de sa création.
      *
      * @return void
@@ -38,7 +68,8 @@ class UserRestController extends WP_REST_Controller
     /**
      * Enregistre les routes REST pour les opérations sur les alertes.
      *
-     * Cette méthode utilise la classe 'WP_REST_Server' pour définir les routes REST
+     * Cette méthode utilise la classe 'WP_REST_Server'
+     * pour définir les routes REST
      * qui permettent de créer, lire, mettre à jour et supprimer des alertes.
      * Les routes sont accessibles via le namespace spécifié dans la classe et
      * incluent des vérifications de permission pour chaque opération.
@@ -47,12 +78,14 @@ class UserRestController extends WP_REST_Controller
      * - GET /{namespace}/{rest_base} : Récupère une liste d'alertes.
      * - POST /{namespace}/{rest_base} : Crée une nouvelle alerte.
      * - GET /{namespace}/{rest_base}/{id} : Récupère une alerte spécifique par ID.
-     * - PUT/PATCH /{namespace}/{rest_base}/{id} : Met à jour une alerte spécifique par ID.
-     * - DELETE /{namespace}/{rest_base}/{id} : Supprime une alerte spécifique par ID.
+     * - PUT/PATCH /{namespace}/{rest_base}/{id} : Met à jour une
+     * alerte spécifique par ID.
+     * - DELETE /{namespace}/{rest_base}/{id} : Supprime
+     * une alerte spécifique par ID.
      *
      * @return void
      */
-    public function register_routes()
+    public function registerRoutes()
     {
         register_rest_route(
             $this->namespace,
@@ -60,14 +93,16 @@ class UserRestController extends WP_REST_Controller
             array(
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_items'),
-                    'permission_callback' => array($this, 'get_items_permissions_check'),
+                    'callback' => array($this, 'getItems'),
+                    'permission_callback' => array($this,
+                        'getItemsPermissionsCheck'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::CREATABLE,
-                    'callback' => array($this, 'create_item'),
-                    'permission_callback' => array($this, 'create_item_permissions_check'),
+                    'callback' => array($this, 'createItem'),
+                    'permission_callback' => array($this,
+                        'createItemPermissionsCheck'),
                     'args' => array(
                         'content' => array(
                             'type' => 'string',
@@ -103,14 +138,16 @@ class UserRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_item'),
-                    'permission_callback' => array($this, 'get_item_permissions_check'),
+                    'callback' => array($this, 'getItem'),
+                    'permission_callback' => array($this,
+                        'getItemPermissionsCheck'),
                     'args' => array(),
                 ),
                 array(
                     'methods' => WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'update_item'),
-                    'permission_callback' => array($this, 'update_item_permissions_check'),
+                    'callback' => array($this, 'updateItem'),
+                    'permission_callback' => array($this,
+                        'updateItemPermissionsCheck'),
                     'args' => array(
                         'content' => array(
                             'type' => 'string',
@@ -129,8 +166,9 @@ class UserRestController extends WP_REST_Controller
                 ),
                 array(
                     'methods' => WP_REST_Server::DELETABLE,
-                    'callback' => array($this, 'delete_item'),
-                    'permission_callback' => array($this, 'delete_item_permissions_check'),
+                    'callback' => array($this, 'deleteItem'),
+                    'permission_callback' => array($this,
+                        'deleteItemPermissionsCheck'),
                     'args' => array()
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
@@ -152,7 +190,7 @@ class UserRestController extends WP_REST_Controller
      * @return WP_REST_Response La réponse REST contenant la liste des alertes
      *                          ainsi qu'un code de statut HTTP 200.
      */
-    public function get_items($request)
+    public function getItems($request)
     {
         // Get an instance of the ADE code manager
         $alert = new Alert();
@@ -172,13 +210,14 @@ class UserRestController extends WP_REST_Controller
      * message d'erreur est renvoyé.
      *
      * @param WP_REST_Request $request L'objet de requête contenant les paramètres
-     *                                 et informations nécessaires pour créer l'alerte.
+     *                                 et informations nécessaires
+     *                                 pour créer l'alerte.
      *
      * @return WP_REST_Response La réponse REST contenant l'ID de l'alerte créée
      *                          si l'insertion réussit, ou un message d'erreur
      *                          avec le code de statut 400 en cas d'échec.
      */
-    public function create_item($request)
+    public function createItem($request)
     {
         // Get an instance of the alert manager
         $alert = new Alert();
@@ -190,10 +229,15 @@ class UserRestController extends WP_REST_Controller
         $alert->setExpirationDate($request->get_param('expiration-date'));
 
         // Set ADE codes to the alert
-        $ade_codes = $this->find_ade_codes($alert, $request->get_json_params()['codes']);
+        $ade_codes = $this->_findAdeCodes(
+            $alert,
+            $request->get_json_params()['codes']
+        );
 
         if (is_null($ade_codes)) {
-            return new WP_REST_Response(array('message' => 'An invalid code was specified'), 400);
+            return new WP_REST_Response(
+                array('message' => 'An invalid code was specified'), 400
+            );
         }
 
         $alert->setCodes($ade_codes);
@@ -203,7 +247,9 @@ class UserRestController extends WP_REST_Controller
             return new WP_REST_Response(array('id' => $insert_id), 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not insert the alert'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not insert the alert'), 400
+        );
     }
 
     /**
@@ -223,7 +269,7 @@ class UserRestController extends WP_REST_Controller
      *                          si trouvée, ou un message d'erreur avec le
      *                          code de statut 404 si l'alerte n'existe pas.
      */
-    public function get_item($request)
+    public function getItem($request)
     {
         // Get an instance of the alert manager
         $alert = new Alert();
@@ -249,12 +295,13 @@ class UserRestController extends WP_REST_Controller
      * sinon, elle renvoie un message d'erreur avec le code de statut 400.
      *
      * @param WP_REST_Request $request L'objet de requête contenant l'ID de l'alerte
-     *                                 à mettre à jour ainsi que les nouvelles données.
+     *                                 à mettre à jour ainsi que les nouvelles
+     *                                 données.
      *
      * @return WP_REST_Response La réponse REST indiquant le succès ou l'échec de
      *                          la mise à jour, avec un code de statut approprié.
      */
-    public function update_item($request)
+    public function updateItem($request)
     {
         // Get an instance of the alert manager
         $alert = new Alert();
@@ -271,14 +318,20 @@ class UserRestController extends WP_REST_Controller
         }
 
         if (is_string($request->get_json_params()['expiration-date'])) {
-            $requested_alert->setExpirationDate($request->get_json_params()['expiration-date']);
+            $requested_alert->setExpirationDate(
+                $request->get_json_params()['expiration-date']
+            );
         }
 
         if (is_array($request->get_json_params()['codes'])) {
-            $ade_codes = $this->find_ade_codes($requested_alert, $request->get_json_params()['codes']);
+            $ade_codes = $this->_findAdeCodes(
+                $requested_alert, $request->get_json_params()['codes']
+            );
 
             if (is_null($ade_codes)) {
-                return new WP_REST_Response(array('message' => 'An invalid code was specified'), 400);
+                return new WP_REST_Response(
+                    array('message' => 'An invalid code was specified'), 400
+                );
             }
 
             $requested_alert->setCodes($ade_codes);
@@ -289,7 +342,9 @@ class UserRestController extends WP_REST_Controller
             return new WP_REST_Response(null, 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not update the alert'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not update the alert'), 400
+        );
     }
 
     /**
@@ -308,7 +363,7 @@ class UserRestController extends WP_REST_Controller
      * @return WP_REST_Response La réponse REST indiquant le succès ou l'échec de
      *                          la suppression, avec un code de statut approprié.
      */
-    public function delete_item($request)
+    public function deleteItem($request)
     {
         // Get an instance of the alert manager
         $alert = new Alert();
@@ -319,7 +374,9 @@ class UserRestController extends WP_REST_Controller
             return new WP_REST_Response(null, 200);
         }
 
-        return new WP_REST_Response(array('message' => 'Could not delete the alert'), 400);
+        return new WP_REST_Response(
+            array('message' => 'Could not delete the alert'), 400
+        );
     }
 
     /**
@@ -334,7 +391,7 @@ class UserRestController extends WP_REST_Controller
      *
      * @return bool True si l'utilisateur a les permissions requises, sinon false.
      */
-    public function get_items_permissions_check($request)
+    public function getItemsPermissionsCheck($request)
     {
         $current_user = wp_get_current_user();
         return in_array("administrator", $current_user->roles);
@@ -353,9 +410,9 @@ class UserRestController extends WP_REST_Controller
      *
      * @return bool True si l'utilisateur a les permissions requises, sinon false.
      */
-    public function create_item_permissions_check($request)
+    public function createItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -363,7 +420,8 @@ class UserRestController extends WP_REST_Controller
      *
      * Cette méthode utilise la vérification des permissions existantes pour
      * déterminer si l'utilisateur actuel a les droits nécessaires pour
-     * accéder aux détails d'un élément dans l'API REST. Elle renvoie true si l'utilisateur
+     * accéder aux détails d'un élément dans l'API REST. Elle renvoie
+     * true si l'utilisateur
      * a le rôle d'administrateur, sinon elle renvoie false.
      *
      * @param WP_REST_Request $request L'objet de requête contenant les informations
@@ -371,9 +429,9 @@ class UserRestController extends WP_REST_Controller
      *
      * @return bool True si l'utilisateur a les permissions requises, sinon false.
      */
-    public function get_item_permissions_check($request)
+    public function getItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -387,12 +445,13 @@ class UserRestController extends WP_REST_Controller
      * @param WP_REST_Request $request L'objet de requête contenant les informations
      *                                 sur la requête de l'API REST.
      *
-     * @return bool True si l'utilisateur a les permissions requises pour mettre à jour
+     * @return bool True si l'utilisateur a les permissions requises pour
+     * mettre à jour
      *              l'élément, sinon false.
      */
-    public function update_item_permissions_check($request)
+    public function updateItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -409,9 +468,9 @@ class UserRestController extends WP_REST_Controller
      * @return bool True si l'utilisateur a les permissions requises pour supprimer
      *              l'élément, sinon false.
      */
-    public function delete_item_permissions_check($request)
+    public function deleteItemPermissionsCheck($request)
     {
-        return $this->get_items_permissions_check($request);
+        return $this->getItemsPermissionsCheck($request);
     }
 
     /**
@@ -431,7 +490,7 @@ class UserRestController extends WP_REST_Controller
      *                         codes valides, ou null si un code invalide
      *                         est rencontré.
      */
-    private function find_ade_codes($alert, $codes)
+    private function _findAdeCodes($alert, $codes)
     {
         // Find the ADE codes
         $ade_code = new CodeAde();
