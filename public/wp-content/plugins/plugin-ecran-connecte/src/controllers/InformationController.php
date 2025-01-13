@@ -904,18 +904,15 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      * @version 1.0
      * @date    2024-10-16
      */
-    public function createScrapper()
+    public function createScrapper(): Information
     {
         $infoScrapper = new information();
-        $infoScrapper->setIdDepartment(1);
-        $infoScrapper->setAuthor(1);
-        $infoScrapper->setCreationDate(date("2024-12-18"));
-        $infoScrapper->setId(27);
-        $infoScrapper->setContent("scrapper");
-        $infoScrapper->setAdminId(1);
-        $infoScrapper->setTitle("Sans titre");
         $infoScrapper->setType("scrapper");
-        $infoScrapper->setExpirationDate("2028-12-18");
+        $infoScrapper->setTitle("Sans titre");
+        $infoScrapper->setId(1);
+        $infoScrapper->setAdminId(1);
+        $infoScrapper->setContent("content");
+        $infoScrapper->setExpirationDate(date("Y-m-d", strtotime('tomorrow')));
         return $infoScrapper;
     }
 

@@ -185,6 +185,10 @@ function displayOrHide(slides, slideIndex)
         // On attend autant de temps que nécessaire pour que l'information passe assez longtemps
         setTimeout(function(){displayOrHide(slides, slideIndex)} , otherDurations[slideIndex-1]);
     }
+
+    setTimeout(function(){
+        window.location.reload(1);
+    }, 86400000);
 }
 
 
