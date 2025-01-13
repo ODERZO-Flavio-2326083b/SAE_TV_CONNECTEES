@@ -15,43 +15,43 @@ use PDO;
 class Alert extends Model implements Entity, JsonSerializable
 {
 
-    
+
     /**
      * @var int
      */
     private int $id;
 
-    
-    /**
-     * @var User
-     */
-    private User $author;
 
-    
+    /**
+     * @var int|User|null
+     */
+    private int|User|null $author;
+
+
     /**
      * @var string
      */
     private string $content;
 
-    
+
     /**
      * @var string
      */
     private string $creation_date;
 
-    
+
     /**
      * @var string
      */
     private string $expirationDate;
 
-    
+
     /**
      * @var CodeAde[]
      */
     private array $codes;
 
-    
+
     /**
      * @var int
      */
@@ -77,9 +77,8 @@ class Alert extends Model implements Entity, JsonSerializable
     {
         $database = $this->getDatabase();
         $request = $database->prepare(
-            '
-            INSERT INTO ecran_alert (author, content, creation_date, expiration_date)
-                   VALUES (:author, :content, :creation_date, :expirationDate)'
+        'INSERT INTO ecran_alert (author, content, creation_date, expiration_date)
+               VALUES (:author, :content, :creation_date, :expirationDate)'
         );
         $request->bindValue(':author', $this->getAuthor(), PDO::PARAM_INT);
         $request->bindValue(':content', $this->getContent(), PDO::PARAM_STR);
@@ -102,7 +101,7 @@ class Alert extends Model implements Entity, JsonSerializable
                     'INSERT INTO ecran_code_alert (alert_id, code_ade_id) 
                             VALUES (:idAlert, :idCodeAde)'
                 );
-                $request->bindParam(':idAlert', $id, PDO::PARAM_INT);
+                $request->bindValue(':idAlert', $id, PDO::PARAM_INT);
                 $request->bindValue(':idCodeAde', $code->getId(), PDO::PARAM_INT);
 
                 $request->execute();

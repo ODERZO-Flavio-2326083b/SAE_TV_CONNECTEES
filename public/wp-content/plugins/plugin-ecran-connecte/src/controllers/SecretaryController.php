@@ -6,6 +6,7 @@ use models\Department;
 use models\User;
 use utils\InputValidator;
 use views\SecretaryView;
+use views\UserView;
 
 /**
  * Class SecretaryController
