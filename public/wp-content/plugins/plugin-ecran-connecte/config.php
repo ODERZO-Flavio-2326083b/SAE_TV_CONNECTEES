@@ -517,7 +517,7 @@ add_action(
         $controller->register_routes();
 
         $controller = new AlertRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
 
         $controller = new ProfileRestController();
         $controller->register_routes();
