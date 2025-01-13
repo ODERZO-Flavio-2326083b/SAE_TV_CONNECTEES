@@ -1,0 +1,17 @@
+<map id="SingleEventsTest\testFullDayTimeZoneBerlin" name="SingleEventsTest\testFullDayTimeZoneBerlin">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,156,176,199"/>
+<area shape="rect" id="Node000002" href="$class_single_events_test.html#a98c8516c3fa32b062d9d7d933ea85bcc" title=" " alt="" coords="224,164,441,191"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,175,208,175,208,180,176,180"/>
+<area shape="rect" id="Node000003" href="$class_single_events_test.html#a2ad20bc9791f55c7fe9873f78e0e2e0c" title=" " alt="" coords="489,5,686,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,162,401,104,443,70,488,42,501,35,504,40,490,46,446,75,405,108,347,166"/>
+<area shape="rect" id="Node000004" href="$class_single_events_test.html#a681d0cdfac180d16da2ab7eba526c132" title=" " alt="" coords="495,56,680,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="363,161,488,108,505,102,507,107,490,113,365,166"/>
+<area shape="rect" id="Node000005" href="$class_single_events_test.html#aa94bf50762412b573c58bbb64fc937b2" title=" " alt="" coords="504,123,671,165"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="439,161,488,154,489,160,440,166"/>
+<area shape="rect" id="Node000006" href="$class_single_events_test.html#a86fe58ac70f6435bafccc6f614a53f44" title=" " alt="" coords="504,189,671,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="440,189,489,195,488,200,439,194"/>
+<area shape="rect" id="Node000007" href="$class_single_events_test.html#a16ba9dcfaf255a8fb82cae482e170099" title=" " alt="" coords="504,256,671,299"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="365,189,490,242,507,248,505,253,488,246,363,194"/>
+<area shape="rect" id="Node000008" href="$class_single_events_test.html#a3ab74e955370b2fc1e1d299404276cee" title=" " alt="" coords="492,323,683,349"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="347,189,405,247,446,280,490,308,504,314,501,319,488,313,443,284,401,251,344,193"/>
+</map>

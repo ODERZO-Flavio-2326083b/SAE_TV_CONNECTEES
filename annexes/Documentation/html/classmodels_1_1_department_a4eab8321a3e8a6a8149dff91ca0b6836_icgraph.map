@@ -1,0 +1,17 @@
+<map id="models\Department\setEntity" name="models\Department\setEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="539,64,730,91"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_department.html#a293e389cef639a82f90d6e331bc1eb40" title=" " alt="" coords="306,5,464,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="559,63,444,35,445,30,561,57"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_department.html#a6138e09b6cd110ad3749652b7ae25f2e" title=" " alt="" coords="292,56,478,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="523,80,478,80,478,75,523,75"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_department.html#af08e24f4f7090c0826df1ad7bee4c30a" title=" " alt="" coords="279,123,491,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="561,97,445,125,444,120,559,92"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_department.html#ac9475a6ce15101424d568110e120186b" title=" " alt="" coords="32,15,204,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="292,119,277,113,262,103,253,92,243,82,229,72,204,60,206,55,232,67,247,78,257,88,266,99,280,108,294,115"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1_department.html#a9e71ef5e0b84dd7514177ce6c8cf4ba8" title=" " alt="" coords="32,81,204,124"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="263,123,204,116,205,111,264,118"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1_department.html#a15af4b652f30df48ab29f77cf72a0595" title=" " alt="" coords="5,148,231,191"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="264,154,231,158,231,153,263,149"/>
+<area shape="rect" id="Node000008" href="$classmodels_1_1_department.html#ac353671f79a26af32575c7c558edbaa5" title=" " alt="" coords="29,215,207,241"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="344,159,291,183,232,205,191,217,189,211,230,200,289,178,341,154"/>
+</map>

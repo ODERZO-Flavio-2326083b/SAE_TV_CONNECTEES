@@ -1,0 +1,19 @@
+<map id="models\Alert\setEntity" name="models\Alert\setEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="475,80,625,107"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_alert.html#a46d25d8a2d43c25f82e6d627921f231c" title=" " alt="" coords="282,21,398,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="485,78,390,51,391,46,486,73"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_alert.html#ac5803139d6effe49a00f619f86b3ccd4" title=" " alt="" coords="254,72,427,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="459,96,427,96,427,91,459,91"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_alert.html#a69abb011ae217e74f9e03b287b3c26c9" title=" " alt="" coords="255,139,426,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="486,114,391,141,390,136,485,109"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_alert.html#a2f1fb088dbc7d01fafb650afb1879001" title=" " alt="" coords="5,5,206,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="260,134,252,129,236,112,227,95,219,78,204,62,185,51,188,46,207,58,224,75,232,92,240,109,255,125,263,129"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1_alert.html#a21862197b1164bdb924e3a35946726d3" title=" " alt="" coords="22,72,189,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="269,137,189,117,190,112,270,132"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1_alert.html#ae300809a48d89c137bfbe74209a6f634" title=" " alt="" coords="24,139,187,165"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="240,155,188,155,188,149,240,149"/>
+<area shape="rect" id="Node000008" href="$classmodels_1_1_alert.html#aa279e14a44b3658a16956144c7a87ef7" title=" " alt="" coords="14,189,197,232"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="270,172,194,191,193,186,269,167"/>
+<area shape="rect" id="Node000009" href="$classmodels_1_1_alert.html#a368d0cf75c98369a2a3f3cefd78c0ba2" title=" " alt="" coords="37,256,174,283"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="313,178,265,213,207,246,175,258,173,253,205,242,262,209,310,173"/>
+</map>

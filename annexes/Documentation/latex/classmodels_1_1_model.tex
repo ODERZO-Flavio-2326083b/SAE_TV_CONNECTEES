@@ -1,0 +1,130 @@
+\doxysection{Référence de la classe models\textbackslash{}Model}
+\hypertarget{classmodels_1_1_model}{}\label{classmodels_1_1_model}\index{models\textbackslash{}Model@{models\textbackslash{}Model}}
+
+
+Graphe d\textquotesingle{}héritage de models\textbackslash{}Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classmodels_1_1_model__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_model_a640726f66afc95116ee8e51ab488c38d}{get\+Database}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_model_a0585c4cfb717f7456df08e3319929774}{get\+Database\+Viewer}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classmodels_1_1_model_a98d9e383e283679a5c8075f4fa7da55e}{\+\_\+set\+Database}} ()
+\item 
+static \mbox{\hyperlink{classmodels_1_1_model_a3e6e426abded21a04ddae27ae8311834}{\+\_\+set\+Database\+Viewer}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static PDO \mbox{\hyperlink{classmodels_1_1_model_a8721cb72f38111ff92bd32d900998237}{\$\+\_\+database}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classmodels_1_1_model_a98d9e383e283679a5c8075f4fa7da55e}\index{models\textbackslash{}Model@{models\textbackslash{}Model}!\_setDatabase@{\_setDatabase}}
+\index{\_setDatabase@{\_setDatabase}!models\textbackslash{}Model@{models\textbackslash{}Model}}
+\doxysubsubsection{\texorpdfstring{\_setDatabase()}{\_setDatabase()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_model_a98d9e383e283679a5c8075f4fa7da55e} 
+static models\textbackslash{}\+Model\+::\+\_\+set\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Initialise la connexion à la base de données en utilisant PDO.
+
+Cette méthode crée une nouvelle instance de PDO pour établir une connexion à la base de données My\+SQL spécifiée par les constantes \textquotesingle{}DB\+\_\+\+HOST\textquotesingle{}, \textquotesingle{}DB\+\_\+\+NAME\textquotesingle{}, \textquotesingle{}DB\+\_\+\+USER\textquotesingle{} et \textquotesingle{}DB\+\_\+\+PASSWORD\textquotesingle{}. Le mode d\textquotesingle{}erreur est configuré pour être silencieux, ce qui signifie que les erreurs ne seront pas rapportées par des exceptions mais peuvent toujours être récupérées par des méthodes PDO appropriées.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_model_a3e6e426abded21a04ddae27ae8311834}\index{models\textbackslash{}Model@{models\textbackslash{}Model}!\_setDatabaseViewer@{\_setDatabaseViewer}}
+\index{\_setDatabaseViewer@{\_setDatabaseViewer}!models\textbackslash{}Model@{models\textbackslash{}Model}}
+\doxysubsubsection{\texorpdfstring{\_setDatabaseViewer()}{\_setDatabaseViewer()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_model_a3e6e426abded21a04ddae27ae8311834} 
+static models\textbackslash{}\+Model\+::\+\_\+set\+Database\+Viewer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Initialise la connexion à la base de données pour le mode visualiseur en utilisant PDO.
+
+Cette méthode crée une nouvelle instance de PDO pour établir une connexion à la base de données My\+SQL spécifiée par les constantes \textquotesingle{}DB\+\_\+\+HOST\+\_\+\+VIEWER\textquotesingle{}, \textquotesingle{}DB\+\_\+\+NAME\+\_\+\+VIEWER\textquotesingle{}, \textquotesingle{}DB\+\_\+\+USER\+\_\+\+VIEWER\textquotesingle{} et \textquotesingle{}DB\+\_\+\+PASSWORD\+\_\+\+VIEWER\textquotesingle{}. Le mode d\textquotesingle{}erreur est configuré pour être silencieux, ce qui signifie que les erreurs ne seront pas rapportées par des exceptions, mais peuvent être récupérées par les méthodes appropriées de PDO.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_model_a640726f66afc95116ee8e51ab488c38d}\index{models\textbackslash{}Model@{models\textbackslash{}Model}!getDatabase@{getDatabase}}
+\index{getDatabase@{getDatabase}!models\textbackslash{}Model@{models\textbackslash{}Model}}
+\doxysubsubsection{\texorpdfstring{getDatabase()}{getDatabase()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_model_a640726f66afc95116ee8e51ab488c38d} 
+models\textbackslash{}\+Model\+::get\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Récupère une instance de la connexion à la base de données.
+
+Cette méthode initialise la connexion à la base de données en appelant la méthode \textquotesingle{}set\+Database()\textquotesingle{}, puis retourne l\textquotesingle{}instance de PDO de la base de données. Cela permet d\textquotesingle{}accéder à la base de données pour exécuter des requêtes SQL.
+
+\begin{DoxyReturn}{Renvoie}
+PDO L\textquotesingle{}instance de connexion à la base de données.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_model_a0585c4cfb717f7456df08e3319929774}\index{models\textbackslash{}Model@{models\textbackslash{}Model}!getDatabaseViewer@{getDatabaseViewer}}
+\index{getDatabaseViewer@{getDatabaseViewer}!models\textbackslash{}Model@{models\textbackslash{}Model}}
+\doxysubsubsection{\texorpdfstring{getDatabaseViewer()}{getDatabaseViewer()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_model_a0585c4cfb717f7456df08e3319929774} 
+models\textbackslash{}\+Model\+::get\+Database\+Viewer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Récupère une instance de la connexion à la base de données pour les utilisateurs.
+
+Cette méthode initialise la connexion à la base de données en appelant la méthode \textquotesingle{}set\+Database\+Viewer()\textquotesingle{}, puis retourne l\textquotesingle{}instance de PDO de la base de données. Cette connexion est généralement utilisée pour les opérations de lecture et d\textquotesingle{}affichage des données accessibles aux utilisateurs.
+
+\begin{DoxyReturn}{Renvoie}
+PDO L\textquotesingle{}instance de connexion à la base de données pour les utilisateurs.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/15 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_model_a0585c4cfb717f7456df08e3319929774_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classmodels_1_1_model_a8721cb72f38111ff92bd32d900998237}\index{models\textbackslash{}Model@{models\textbackslash{}Model}!\$\_database@{\$\_database}}
+\index{\$\_database@{\$\_database}!models\textbackslash{}Model@{models\textbackslash{}Model}}
+\doxysubsubsection{\texorpdfstring{\$\_database}{\$\_database}}
+{\footnotesize\ttfamily \label{classmodels_1_1_model_a8721cb72f38111ff92bd32d900998237} 
+PDO models\textbackslash{}\+Model\+::\$\+\_\+database\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\mbox{\hyperlink{_model_8php}{Model.\+php}}\end{DoxyCompactItemize}

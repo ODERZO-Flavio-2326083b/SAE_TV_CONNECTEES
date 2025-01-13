@@ -1,0 +1,15 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,132,83,159"/>
+<area shape="rect" id="Node000001" href="$class_clean_character_test.html" title=" " alt="" coords="143,5,280,32"/>
+<area shape="poly" id="edge32_Node000000_Node000001" title=" " alt="" coords="60,117,89,78,129,42,152,30,154,35,132,46,93,82,64,120"/>
+<area shape="rect" id="Node000002" href="$class_dynamic_properties_test.html" title=" " alt="" coords="133,56,290,83"/>
+<area shape="poly" id="edge33_Node000000_Node000002" title=" " alt="" coords="77,121,130,92,159,81,161,86,132,97,80,126"/>
+<area shape="rect" id="Node000003" href="$class_key_value_test.html" title=" " alt="" coords="161,107,262,133"/>
+<area shape="poly" id="edge34_Node000000_Node000003" title=" " alt="" coords="98,135,160,125,161,130,98,140"/>
+<area shape="rect" id="Node000004" href="$class_recurrences_test.html" title=" " alt="" coords="152,157,272,184"/>
+<area shape="poly" id="edge35_Node000000_Node000004" title=" " alt="" coords="99,151,152,159,151,164,98,156"/>
+<area shape="rect" id="Node000005" href="$class_rfc5545_recurrence_test.html" title=" " alt="" coords="131,208,293,235"/>
+<area shape="poly" id="edge36_Node000000_Node000005" title=" " alt="" coords="80,165,132,194,161,205,159,210,130,198,77,170"/>
+<area shape="rect" id="Node000006" href="$class_single_events_test.html" title=" " alt="" coords="150,259,274,285"/>
+<area shape="poly" id="edge37_Node000000_Node000006" title=" " alt="" coords="64,171,93,209,132,244,154,256,152,260,129,249,89,212,60,174"/>
+</map>

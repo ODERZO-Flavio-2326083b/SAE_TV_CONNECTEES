@@ -1,0 +1,9 @@
+<map id="RecurrencesTest\testMonthlyFullDayTimeZoneBerlinFromFile" name="RecurrencesTest\testMonthlyFullDayTimeZoneBerlinFromFile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,214,65"/>
+<area shape="rect" id="Node000002" href="$class_recurrences_test.html#aecb3420b1623d54b01212bcbe980e3ae" title=" " alt="" coords="262,31,477,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,41,246,41,246,47,214,47"/>
+<area shape="rect" id="Node000003" href="$class_recurrences_test.html#ad699244e7737dabf8c464ce1783a2f30" title=" " alt="" coords="525,5,719,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="477,31,509,27,510,33,478,36"/>
+<area shape="rect" id="Node000004" href="$class_recurrences_test.html#a55361f5e737237cccedcb2e4a39c050a" title=" " alt="" coords="528,56,716,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="478,52,514,56,513,61,477,57"/>
+</map>

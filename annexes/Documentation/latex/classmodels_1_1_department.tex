@@ -1,0 +1,558 @@
+\doxysection{Référence de la classe models\textbackslash{}Department}
+\hypertarget{classmodels_1_1_department}{}\label{classmodels_1_1_department}\index{models\textbackslash{}Department@{models\textbackslash{}Department}}
+
+
+Graphe d\textquotesingle{}héritage de models\textbackslash{}Department\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de models\textbackslash{}Department\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a7da459e0bdf409d1883cc39cbd7a82e5}{insert}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a17d6c55f0158b97ed06a9b966779876c}{update}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a1dd9fa9694898c31b460a2ff0d118f74}{delete}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a293e389cef639a82f90d6e331bc1eb40}{get}} ( \$id)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_ac353671f79a26af32575c7c558edbaa5}{get\+List}} (int \$begin=0, int \$number\+Element=25)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595}{get\+Department\+By\+Name}} (\$name)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836}{set\+Entity}} (\$data)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a}{set\+Entity\+List}} (\$data\+List, \$admin\+Site=false)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_ac9475a6ce15101424d568110e120186b}{get\+All\+Depts}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a9e71ef5e0b84dd7514177ce6c8cf4ba8}{get\+All\+Depts\+Without\+Subadmin}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a6138e09b6cd110ad3749652b7ae25f2e}{get\+User\+Department}} (int \$user\+Id)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a9255883e26fb4b8396e9218ad2277d87}{get\+Id\+Department}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_abe413ca72da19b420e2c2ba64cf5767b}{set\+Id\+Department}} (int \$\+\_\+id\+\_\+department)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a9d417afba6392a97f2a2e1e1ed7eb6a5}{get\+Name}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a2fa42e7471b99d79828878304dadcc3b}{set\+Name}} (string \$\+\_\+name)
+\item 
+\mbox{\hyperlink{classmodels_1_1_department_a0813ec6f1724d912f3b908dddc171de4}{json\+Serialize}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interfacemodels_1_1_entity}{models\textbackslash{}\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a2192e4e955329f37cab4ebc563e04957}{get\+List}} ()
+\item 
+\mbox{\hyperlink{interfacemodels_1_1_entity_a16b3a6d6e43c77d61bdd47ed4a6ea226}{set\+Entity\+List}} (\$data\+List)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classmodels_1_1_department_a73ced2da43cb9f8db1bc0f91a9c2c9ca}{\$\+\_\+id\+\_\+department}}
+\item 
+string \mbox{\hyperlink{classmodels_1_1_department_a5c6524308388c014bafbc9f406b783ba}{\$\+\_\+name}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Membres hérités additionnels}
+\doxysubsection*{Fonctions membres protégées hérités de \mbox{\hyperlink{classmodels_1_1_model}{models\textbackslash{}\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_model_a640726f66afc95116ee8e51ab488c38d}{get\+Database}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_model_a0585c4cfb717f7456df08e3319929774}{get\+Database\+Viewer}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classmodels_1_1_department_a1dd9fa9694898c31b460a2ff0d118f74}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!delete@{delete}}
+\index{delete@{delete}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a1dd9fa9694898c31b460a2ff0d118f74} 
+models\textbackslash{}\+Department\+::delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Supprime un département de la base de données selon les attributs actuels.
+
+Cette méthode prépare et exécute une requête SQL pour supprimer un département de la table \textquotesingle{}ecran\+\_\+departement\textquotesingle{} en fonction de l\textquotesingle{}ID spécifié.
+
+\begin{DoxyReturn}{Renvoie}
+int Le nombre de lignes affectées par la requête de suppression.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+
+
+Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_acc370fb048defb55fefe8ee788a63b69}{models\textbackslash{}\+Entity}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a1dd9fa9694898c31b460a2ff0d118f74_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a293e389cef639a82f90d6e331bc1eb40}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!get@{get}}
+\index{get@{get}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a293e389cef639a82f90d6e331bc1eb40} 
+models\textbackslash{}\+Department\+::get (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Récupère le département en fonction de son ID.
+
+Cette méthode prépare et exécute une requête SQL pour récupérer les informations d\textquotesingle{}un département spécifique à partir de son ID. Elle retourne un objet \textquotesingle{}Department\textquotesingle{} si le département est trouvé, ou \textquotesingle{}false\textquotesingle{} si aucune donnée n\textquotesingle{}est trouvée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}ID du département à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool\texorpdfstring{$\vert$}{|}\+Department Un objet \textquotesingle{}Department\textquotesingle{} si le département existe, sinon \textquotesingle{}false\textquotesingle{}.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+
+
+Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_a15e4429d0fa178c144090e218d6d6b5c}{models\textbackslash{}\+Entity}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a293e389cef639a82f90d6e331bc1eb40_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_ac9475a6ce15101424d568110e120186b}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getAllDepts@{getAllDepts}}
+\index{getAllDepts@{getAllDepts}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getAllDepts()}{getAllDepts()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_ac9475a6ce15101424d568110e120186b} 
+models\textbackslash{}\+Department\+::get\+All\+Depts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Renvoie tous les départements stockés dans la base de données.
+
+Cette méthode interroge la base de données pour récupérer tous les départements enregistrés, puis utilise la méthode \textquotesingle{}set\+Entity\+List\textquotesingle{} pour convertir les résultats en une liste d\textquotesingle{}objets \textquotesingle{}Department\textquotesingle{}. La liste complète des départements est ensuite retournée.
+
+\begin{DoxyReturn}{Renvoie}
+Department\mbox{[}\mbox{]} Tableau d\textquotesingle{}objets \textquotesingle{}Department\textquotesingle{} représentant tous les départements stockés dans la base de données.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_ac9475a6ce15101424d568110e120186b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a9e71ef5e0b84dd7514177ce6c8cf4ba8}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getAllDeptsWithoutSubadmin@{getAllDeptsWithoutSubadmin}}
+\index{getAllDeptsWithoutSubadmin@{getAllDeptsWithoutSubadmin}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getAllDeptsWithoutSubadmin()}{getAllDeptsWithoutSubadmin()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a9e71ef5e0b84dd7514177ce6c8cf4ba8} 
+models\textbackslash{}\+Department\+::get\+All\+Depts\+Without\+Subadmin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Renvoie tous les départements stockés dans la base de données qui n\textquotesingle{}ont aucun sous administrateur.
+
+\begin{DoxyReturn}{Renvoie}
+Department\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a9e71ef5e0b84dd7514177ce6c8cf4ba8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getDepartmentByName@{getDepartmentByName}}
+\index{getDepartmentByName@{getDepartmentByName}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getDepartmentByName()}{getDepartmentByName()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595} 
+models\textbackslash{}\+Department\+::get\+Department\+By\+Name (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+Récupère un département par son nom dans la base de données.
+
+Cette méthode prépare et exécute une requête SQL pour rechercher un département en fonction de son nom dans la base de données. Elle retourne un tableau contenant les résultats correspondant au nom donné.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$name} & Le nom du département à rechercher.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}\+Department Un tableau d\textquotesingle{}objets \textquotesingle{}Department\textquotesingle{} correspondant aux départements trouvés, ou un seul objet \textquotesingle{}Department\textquotesingle{} si un seul résultat est trouvé.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a9255883e26fb4b8396e9218ad2277d87}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getIdDepartment@{getIdDepartment}}
+\index{getIdDepartment@{getIdDepartment}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getIdDepartment()}{getIdDepartment()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a9255883e26fb4b8396e9218ad2277d87} 
+models\textbackslash{}\+Department\+::get\+Id\+Department (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère l\textquotesingle{}ID du département.
+
+Cette méthode retourne l\textquotesingle{}ID du département associé à l\textquotesingle{}objet courant.
+
+\begin{DoxyReturn}{Renvoie}
+int L\textquotesingle{}ID du département.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a9255883e26fb4b8396e9218ad2277d87_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_ac353671f79a26af32575c7c558edbaa5}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getList@{getList}}
+\index{getList@{getList}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getList()}{getList()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_ac353671f79a26af32575c7c558edbaa5} 
+models\textbackslash{}\+Department\+::get\+List (\begin{DoxyParamCaption}\item[{int}]{\$begin}{ = {\ttfamily 0}, }\item[{int}]{\$number\+Element}{ = {\ttfamily 25}}\end{DoxyParamCaption})}
+
+Récupère une liste de départements à partir de la base de données, avec une pagination.
+
+Cette méthode prépare et exécute une requête SQL pour récupérer une liste de départements depuis la base de données, avec un nombre limité de résultats en fonction des paramètres de pagination fournis. Elle retourne un tableau d\textquotesingle{}objets \textquotesingle{}Department\textquotesingle{} correspondant aux départements dans la plage spécifiée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$begin} & Le point de départ (index) pour la récupération des départements (par défaut 0). \\
+\hline
+int & {\em \$number\+Element} & Le nombre de départements à récupérer (par défaut 25).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Un tableau d\textquotesingle{}objets \textquotesingle{}Department\textquotesingle{} correspondant aux départements récupérés.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_ac353671f79a26af32575c7c558edbaa5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a9d417afba6392a97f2a2e1e1ed7eb6a5}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getName@{getName}}
+\index{getName@{getName}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a9d417afba6392a97f2a2e1e1ed7eb6a5} 
+models\textbackslash{}\+Department\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère le nom du département.
+
+Cette méthode permet d\textquotesingle{}obtenir le nom du département associé à l\textquotesingle{}objet courant.
+
+\begin{DoxyReturn}{Renvoie}
+string Le nom du département.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a9d417afba6392a97f2a2e1e1ed7eb6a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a6138e09b6cd110ad3749652b7ae25f2e}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getUserDepartment@{getUserDepartment}}
+\index{getUserDepartment@{getUserDepartment}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getUserDepartment()}{getUserDepartment()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a6138e09b6cd110ad3749652b7ae25f2e} 
+models\textbackslash{}\+Department\+::get\+User\+Department (\begin{DoxyParamCaption}\item[{int}]{\$user\+Id}{}\end{DoxyParamCaption})}
+
+Renvoie le département associé à un utilisateur donné par son ID.
+
+Cette méthode effectue une jointure entre la table des départements et la table des relations utilisateur-\/département pour récupérer le département de l\textquotesingle{}utilisateur spécifié par son ID. Le département correspondant est ensuite renvoyé sous forme d\textquotesingle{}un objet \textquotesingle{}Department\textquotesingle{}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}ID de l\textquotesingle{}utilisateur dont on souhaite récupérer le département.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Department L\textquotesingle{}objet \textquotesingle{}Department\textquotesingle{} représentant le département associé à l\textquotesingle{}utilisateur.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a6138e09b6cd110ad3749652b7ae25f2e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a7da459e0bdf409d1883cc39cbd7a82e5}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!insert@{insert}}
+\index{insert@{insert}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a7da459e0bdf409d1883cc39cbd7a82e5} 
+models\textbackslash{}\+Department\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Insère un département dans la base de données selon les attributs actuels.
+
+Cette méthode prépare et exécute une requête SQL pour insérer un nouveau département dans la table \textquotesingle{}ecran\+\_\+departement\textquotesingle{} en utilisant le nom du département. Le département est ajouté avec les données actuellement définies dans l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Renvoie}
+string L\textquotesingle{}ID du département inséré dans la base de données.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+
+
+Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_a135727cfa5ec5072f50f3008a35d8d10}{models\textbackslash{}\+Entity}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a7da459e0bdf409d1883cc39cbd7a82e5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a0813ec6f1724d912f3b908dddc171de4}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!jsonSerialize@{jsonSerialize}}
+\index{jsonSerialize@{jsonSerialize}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{jsonSerialize()}{jsonSerialize()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a0813ec6f1724d912f3b908dddc171de4} 
+models\textbackslash{}\+Department\+::json\+Serialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Sérialise l\textquotesingle{}objet en tableau associatif pour JSON.
+
+Cette méthode transforme l\textquotesingle{}objet actuel en un tableau associatif représentant ses propriétés, ce qui permet de le convertir en JSON facilement.
+
+\begin{DoxyReturn}{Renvoie}
+array Un tableau associatif des propriétés de l\textquotesingle{}objet.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!setEntity@{setEntity}}
+\index{setEntity@{setEntity}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{setEntity()}{setEntity()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836} 
+models\textbackslash{}\+Department\+::set\+Entity (\begin{DoxyParamCaption}\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Définit une entité département à partir des données fournies.
+
+Cette méthode crée une instance de l\textquotesingle{}entité \textquotesingle{}Department\textquotesingle{}, assigne les valeurs des propriétés de cette entité à partir des données passées en paramètre, puis retourne l\textquotesingle{}entité configurée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$data} & Les données nécessaires à la création de l\textquotesingle{}entité. Doit contenir les clés \textquotesingle{}dept\+\_\+id\textquotesingle{} (int) et \textquotesingle{}dept\+\_\+nom\textquotesingle{} (string).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Department L\textquotesingle{}entité \textquotesingle{}Department\textquotesingle{} créée et configurée avec les données.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/13 
+\end{DoxyDate}
+
+
+Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5}{models\textbackslash{}\+Entity}}.
+
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!setEntityList@{setEntityList}}
+\index{setEntityList@{setEntityList}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{setEntityList()}{setEntityList()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a} 
+models\textbackslash{}\+Department\+::set\+Entity\+List (\begin{DoxyParamCaption}\item[{}]{\$data\+List}{, }\item[{}]{\$admin\+Site}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Crée une liste d\textquotesingle{}entités à partir des données fournies.
+
+Cette méthode itère sur un tableau de données et utilise la méthode \textquotesingle{}set\+Entity\textquotesingle{} pour créer une entité \textquotesingle{}Department\textquotesingle{} pour chaque élément. Elle retourne un tableau d\textquotesingle{}entités \textquotesingle{}Department\textquotesingle{} créées et configurées à partir des données.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$data\+List} & Un tableau de données, chaque élément devant correspondre à un département, contenant des informations comme \textquotesingle{}dept\+\_\+id\textquotesingle{} et \textquotesingle{}dept\+\_\+nom\textquotesingle{}. \\
+\hline
+bool & {\em \$admin\+Site} & Indique si l\textquotesingle{}entité est pour un site administrateur. Par défaut, la valeur est \textquotesingle{}false\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Department\mbox{[}\mbox{]} Un tableau d\textquotesingle{}entités \textquotesingle{}Department\textquotesingle{} créées et configurées.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/13 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_abe413ca72da19b420e2c2ba64cf5767b}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!setIdDepartment@{setIdDepartment}}
+\index{setIdDepartment@{setIdDepartment}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{setIdDepartment()}{setIdDepartment()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_abe413ca72da19b420e2c2ba64cf5767b} 
+models\textbackslash{}\+Department\+::set\+Id\+Department (\begin{DoxyParamCaption}\item[{int}]{\$\+\_\+id\+\_\+department}{}\end{DoxyParamCaption})}
+
+Définit l\textquotesingle{}ID du département.
+
+Cette méthode permet de définir l\textquotesingle{}ID du département associé à l\textquotesingle{}objet courant.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$\+\_\+id\+\_\+department} & L\textquotesingle{}ID du département à définir.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_department_a2fa42e7471b99d79828878304dadcc3b}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!setName@{setName}}
+\index{setName@{setName}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a2fa42e7471b99d79828878304dadcc3b} 
+models\textbackslash{}\+Department\+::set\+Name (\begin{DoxyParamCaption}\item[{string}]{\$\+\_\+name}{}\end{DoxyParamCaption})}
+
+Définit le nom du département.
+
+Cette méthode permet d\textquotesingle{}assigner un nom au département en cours.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$\+\_\+name} & Le nom du département à attribuer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+\Hypertarget{classmodels_1_1_department_a17d6c55f0158b97ed06a9b966779876c}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!update@{update}}
+\index{update@{update}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a17d6c55f0158b97ed06a9b966779876c} 
+models\textbackslash{}\+Department\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Met à jour un département de la base de données selon les attributs actuels.
+
+Cette méthode prépare et exécute une requête SQL pour mettre à jour les informations d\textquotesingle{}un département dans la table \textquotesingle{}ecran\+\_\+departement\textquotesingle{}. Elle met à jour le nom du département en fonction de l\textquotesingle{}ID spécifié.
+
+\begin{DoxyReturn}{Renvoie}
+int Le nombre de lignes affectées par la requête de mise à jour.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/07 
+\end{DoxyDate}
+
+
+Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_aea3384137a0f2971537ce6526fffe520}{models\textbackslash{}\+Entity}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a17d6c55f0158b97ed06a9b966779876c_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classmodels_1_1_department_a73ced2da43cb9f8db1bc0f91a9c2c9ca}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!\$\_id\_department@{\$\_id\_department}}
+\index{\$\_id\_department@{\$\_id\_department}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{\$\_id\_department}{\$\_id\_department}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a73ced2da43cb9f8db1bc0f91a9c2c9ca} 
+int models\textbackslash{}\+Department\+::\$\+\_\+id\+\_\+department\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classmodels_1_1_department_a5c6524308388c014bafbc9f406b783ba}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!\$\_name@{\$\_name}}
+\index{\$\_name@{\$\_name}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{\$\_name}{\$\_name}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a5c6524308388c014bafbc9f406b783ba} 
+string models\textbackslash{}\+Department\+::\$\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\mbox{\hyperlink{_department_8php}{Department.\+php}}\end{DoxyCompactItemize}

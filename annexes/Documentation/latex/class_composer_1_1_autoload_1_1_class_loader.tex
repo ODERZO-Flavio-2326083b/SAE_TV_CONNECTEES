@@ -1,0 +1,1034 @@
+\doxysection{Référence de la classe Composer\textbackslash{}Autoload\textbackslash{}Class\+Loader}
+\hypertarget{class_composer_1_1_autoload_1_1_class_loader}{}\label{class_composer_1_1_autoload_1_1_class_loader}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2}{\+\_\+\+\_\+construct}} (\$vendor\+Dir=null)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435}{get\+Prefixes}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b}{get\+Prefixes\+Psr4}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402}{get\+Fallback\+Dirs}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd}{get\+Fallback\+Dirs\+Psr4}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e}{get\+Class\+Map}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a}{add\+Class\+Map}} (array \$class\+Map)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd}{add}} (\$prefix, \$paths, \$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1}{add\+Psr4}} (\$prefix, \$paths, \$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce}{set}} (\$prefix, \$paths)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef}{set\+Psr4}} (\$prefix, \$paths)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642}{set\+Use\+Include\+Path}} (\$use\+Include\+Path)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59}{get\+Use\+Include\+Path}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196}{set\+Class\+Map\+Authoritative}} (\$class\+Map\+Authoritative)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015}{is\+Class\+Map\+Authoritative}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd}{set\+Apcu\+Prefix}} (\$apcu\+Prefix)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf}{get\+Apcu\+Prefix}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111}{register}} (\$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136}{unregister}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e}{load\+Class}} (\$class)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3}{find\+File}} (\$class)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2}{\+\_\+\+\_\+construct}} (\$vendor\+Dir=null)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435}{get\+Prefixes}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b}{get\+Prefixes\+Psr4}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402}{get\+Fallback\+Dirs}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd}{get\+Fallback\+Dirs\+Psr4}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e}{get\+Class\+Map}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a}{add\+Class\+Map}} (array \$class\+Map)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd}{add}} (\$prefix, \$paths, \$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1}{add\+Psr4}} (\$prefix, \$paths, \$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce}{set}} (\$prefix, \$paths)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef}{set\+Psr4}} (\$prefix, \$paths)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642}{set\+Use\+Include\+Path}} (\$use\+Include\+Path)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59}{get\+Use\+Include\+Path}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196}{set\+Class\+Map\+Authoritative}} (\$class\+Map\+Authoritative)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015}{is\+Class\+Map\+Authoritative}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd}{set\+Apcu\+Prefix}} (\$apcu\+Prefix)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf}{get\+Apcu\+Prefix}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111}{register}} (\$prepend=false)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136}{unregister}} ()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e}{load\+Class}} (\$class)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3}{find\+File}} (\$class)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f}{get\+Registered\+Loaders}} ()
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f}{get\+Registered\+Loaders}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6}{find\+File\+With\+Extension}} (\$class, \$ext)
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6}{find\+File\+With\+Extension}} (\$class, \$ext)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8}{initialize\+Include\+Closure}} ()
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8}{initialize\+Include\+Closure}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_aea0d4ac54c13fe50ff2400f5956b6480}{\$vendor\+Dir}}
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a464a8bd05c03f1ddcaf5635a10e6fac6}{\$prefix\+Lengths\+Psr4}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a46bb8b71a342103546132c73f5b10519}{\$prefix\+Dirs\+Psr4}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a807a679b9b30c6ab2767b378e921c5b2}{\$fallback\+Dirs\+Psr4}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a4c5191fb13227d30a2740188022d3947}{\$prefixes\+Psr0}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_ac8562a1979a437ce6c1fa55be9f46004}{\$fallback\+Dirs\+Psr0}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_af04772a22e4f88ef90f1d8c850b9584e}{\$use\+Include\+Path}} = false
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a378c76d0904df756823d197d284b93d2}{\$class\+Map}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a5d1e81a6facf862d65be87c84e30bb43}{\$class\+Map\+Authoritative}} = false
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a05a2ef0c23ba69a2051f079ba791c1f0}{\$missing\+Classes}} = array()
+\item 
+\mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a5e0a4b309eee6579af51f298c05cbc5a}{\$apcu\+Prefix}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_ad6e8e48cbbd1d60600f9cdfd72da6edd}{\$include\+File}}
+\item 
+static \mbox{\hyperlink{class_composer_1_1_autoload_1_1_class_loader_a4a61e101d2774fe9418dd237ac302bd1}{\$registered\+Loaders}} = array()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Class\+Loader implements a PSR-\/0, PSR-\/4 and classmap class loader. \begin{DoxyVerb}$loader = new \Composer\Autoload\ClassLoader();
+
+// register classes with namespaces
+$loader->add('Symfony\Component', __DIR__.'/component');
+$loader->add('Symfony',           __DIR__.'/framework');
+
+// activate the autoloader
+$loader->register();
+
+// to enable searching the include path (eg. for PEAR packages)
+$loader->setUseIncludePath(true);
+\end{DoxyVerb}
+
+
+In this example, if you try to use a class in the Symfony\textbackslash{}\+Component namespace or one of its children (Symfony\textbackslash{}\+Component\textbackslash{}\+Console for instance), the autoloader will first look for the class under the component/ directory, and it will then fallback to the framework/ directory if not found before giving up.
+
+This class is loosely based on the Symfony Universal\+Class\+Loader.
+
+\begin{DoxyAuthor}{Auteur}
+Fabien Potencier \href{mailto:fabien@symfony.com}{\texttt{ fabien@symfony.\+com}} 
+
+Jordi Boggiano \href{mailto:j.boggiano@seld.be}{\texttt{ j.\+boggiano@seld.\+be}} 
+\end{DoxyAuthor}
+\begin{DoxySeeAlso}{Voir également}
+\href{https://www.php-fig.org/psr/psr-0/}{\texttt{ https\+://www.\+php-\/fig.\+org/psr/psr-\/0/}} 
+
+\href{https://www.php-fig.org/psr/psr-4/}{\texttt{ https\+://www.\+php-\/fig.\+org/psr/psr-\/4/}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$vendor\+Dir}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$vendor\+Dir} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$vendor\+Dir}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$vendor\+Dir} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_acf5055f6dd20b2dee3720c915c9962e2_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!add@{add}}
+\index{add@{add}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{, }\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/0 directories for a given prefix, either appending or prepending to the ones previously set for this prefix.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/0 root directories \\
+\hline
+bool & {\em \$prepend} & Whether to prepend the directories\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!add@{add}}
+\index{add@{add}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa99f46d61bdf20b924a1bb08bfcb90bd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{, }\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/0 directories for a given prefix, either appending or prepending to the ones previously set for this prefix.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/0 root directories \\
+\hline
+bool & {\em \$prepend} & Whether to prepend the directories\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!addClassMap@{addClassMap}}
+\index{addClassMap@{addClassMap}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{addClassMap()}{addClassMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add\+Class\+Map (\begin{DoxyParamCaption}\item[{array}]{\$class\+Map}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em array$<$string,string$>$} & \$class\+Map Class to filename map\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!addClassMap@{addClassMap}}
+\index{addClassMap@{addClassMap}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{addClassMap()}{addClassMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a246d6f628e6ae99bf0ce65b0212f833a} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add\+Class\+Map (\begin{DoxyParamCaption}\item[{array}]{\$class\+Map}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em array$<$string,string$>$} & \$class\+Map Class to filename map\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!addPsr4@{addPsr4}}
+\index{addPsr4@{addPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{addPsr4()}{addPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add\+Psr4 (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{, }\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/4 directories for a given namespace, either appending or prepending to the ones previously set for this namespace.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix/namespace, with trailing \textquotesingle{}\textbackslash{}\textquotesingle{} \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/4 base directories \\
+\hline
+bool & {\em \$prepend} & Whether to prepend the directories\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Invalid\+Argument\+Exception
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!addPsr4@{addPsr4}}
+\index{addPsr4@{addPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{addPsr4()}{addPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a8831c0a7bb01fa44b4cb7a72ec111cf1} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::add\+Psr4 (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{, }\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/4 directories for a given namespace, either appending or prepending to the ones previously set for this namespace.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix/namespace, with trailing \textquotesingle{}\textbackslash{}\textquotesingle{} \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/4 base directories \\
+\hline
+bool & {\em \$prepend} & Whether to prepend the directories\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Invalid\+Argument\+Exception
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!findFile@{findFile}}
+\index{findFile@{findFile}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{findFile()}{findFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::find\+File (\begin{DoxyParamCaption}\item[{}]{\$class}{}\end{DoxyParamCaption})}
+
+Finds the path to the file where the class is defined.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & The name of the class\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}false The path if found, false otherwise 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!findFile@{findFile}}
+\index{findFile@{findFile}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{findFile()}{findFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::find\+File (\begin{DoxyParamCaption}\item[{}]{\$class}{}\end{DoxyParamCaption})}
+
+Finds the path to the file where the class is defined.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & The name of the class\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}false The path if found, false otherwise 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_a505e9f4e4a29f6bd47bc694e78ae46c3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!findFileWithExtension@{findFileWithExtension}}
+\index{findFileWithExtension@{findFileWithExtension}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{findFileWithExtension()}{findFileWithExtension()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::find\+File\+With\+Extension (\begin{DoxyParamCaption}\item[{}]{\$class}{, }\item[{}]{\$ext}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & \\
+\hline
+string & {\em \$ext} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}false 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!findFileWithExtension@{findFileWithExtension}}
+\index{findFileWithExtension@{findFileWithExtension}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{findFileWithExtension()}{findFileWithExtension()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a33078353f4425052e5c056708a6179f6} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::find\+File\+With\+Extension (\begin{DoxyParamCaption}\item[{}]{\$class}{, }\item[{}]{\$ext}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & \\
+\hline
+string & {\em \$ext} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}false 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getApcuPrefix@{getApcuPrefix}}
+\index{getApcuPrefix@{getApcuPrefix}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getApcuPrefix()}{getApcuPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Apcu\+Prefix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The APCu prefix in use, or null if APCu caching is not enabled.
+
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getApcuPrefix@{getApcuPrefix}}
+\index{getApcuPrefix@{getApcuPrefix}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getApcuPrefix()}{getApcuPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aca46c66a148234ea06274030062d0cdf} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Apcu\+Prefix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The APCu prefix in use, or null if APCu caching is not enabled.
+
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getClassMap@{getClassMap}}
+\index{getClassMap@{getClassMap}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getClassMap()}{getClassMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Class\+Map (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, string$>$ Array of classname =\texorpdfstring{$>$}{>} path 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getClassMap@{getClassMap}}
+\index{getClassMap@{getClassMap}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getClassMap()}{getClassMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa7d3012e1f8299ecc6c3ff3cb3f2652e} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Class\+Map (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, string$>$ Array of classname =\texorpdfstring{$>$}{>} path 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getFallbackDirs@{getFallbackDirs}}
+\index{getFallbackDirs@{getFallbackDirs}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getFallbackDirs()}{getFallbackDirs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Fallback\+Dirs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+list$<$string$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getFallbackDirs@{getFallbackDirs}}
+\index{getFallbackDirs@{getFallbackDirs}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getFallbackDirs()}{getFallbackDirs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a9fe425ce19f8e1298cefbf5094b3c402} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Fallback\+Dirs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+list$<$string$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getFallbackDirsPsr4@{getFallbackDirsPsr4}}
+\index{getFallbackDirsPsr4@{getFallbackDirsPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getFallbackDirsPsr4()}{getFallbackDirsPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Fallback\+Dirs\+Psr4 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+list$<$string$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getFallbackDirsPsr4@{getFallbackDirsPsr4}}
+\index{getFallbackDirsPsr4@{getFallbackDirsPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getFallbackDirsPsr4()}{getFallbackDirsPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a149bf4470ee7c50bd6b9a84b6aa4bccd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Fallback\+Dirs\+Psr4 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+list$<$string$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getPrefixes@{getPrefixes}}
+\index{getPrefixes@{getPrefixes}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getPrefixes()}{getPrefixes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Prefixes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, list$<$string$>$$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getPrefixes@{getPrefixes}}
+\index{getPrefixes@{getPrefixes}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getPrefixes()}{getPrefixes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_af3d914a2e97ec1118f3d70e5a0ce6435} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Prefixes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, list$<$string$>$$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getPrefixesPsr4@{getPrefixesPsr4}}
+\index{getPrefixesPsr4@{getPrefixesPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getPrefixesPsr4()}{getPrefixesPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Prefixes\+Psr4 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, list$<$string$>$$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getPrefixesPsr4@{getPrefixesPsr4}}
+\index{getPrefixesPsr4@{getPrefixesPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getPrefixesPsr4()}{getPrefixesPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a36833139effe6653454d8f02ea8f555b} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Prefixes\+Psr4 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, list$<$string$>$$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getRegisteredLoaders@{getRegisteredLoaders}}
+\index{getRegisteredLoaders@{getRegisteredLoaders}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getRegisteredLoaders()}{getRegisteredLoaders()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Registered\+Loaders (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns the currently registered loaders keyed by their corresponding vendor directories.
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, self$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getRegisteredLoaders@{getRegisteredLoaders}}
+\index{getRegisteredLoaders@{getRegisteredLoaders}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getRegisteredLoaders()}{getRegisteredLoaders()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a58f65ac56ee1bac6415fb758f409fb8f} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Registered\+Loaders (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns the currently registered loaders keyed by their corresponding vendor directories.
+
+\begin{DoxyReturn}{Renvoie}
+array$<$string, self$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getUseIncludePath@{getUseIncludePath}}
+\index{getUseIncludePath@{getUseIncludePath}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getUseIncludePath()}{getUseIncludePath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Use\+Include\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Can be used to check if the autoloader uses the include path to check for classes.
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!getUseIncludePath@{getUseIncludePath}}
+\index{getUseIncludePath@{getUseIncludePath}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{getUseIncludePath()}{getUseIncludePath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aeb0360ce32c89c3d50cf5b054aef0d59} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::get\+Use\+Include\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Can be used to check if the autoloader uses the include path to check for classes.
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!initializeIncludeClosure@{initializeIncludeClosure}}
+\index{initializeIncludeClosure@{initializeIncludeClosure}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{initializeIncludeClosure()}{initializeIncludeClosure()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::initialize\+Include\+Closure (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Scope isolated include.
+
+Prevents access to \$this/self from included files.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$file} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!initializeIncludeClosure@{initializeIncludeClosure}}
+\index{initializeIncludeClosure@{initializeIncludeClosure}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{initializeIncludeClosure()}{initializeIncludeClosure()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a83374f8c1b7cd3c79b99d65b32e17af8} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::initialize\+Include\+Closure (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Scope isolated include.
+
+Prevents access to \$this/self from included files.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$file} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!isClassMapAuthoritative@{isClassMapAuthoritative}}
+\index{isClassMapAuthoritative@{isClassMapAuthoritative}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{isClassMapAuthoritative()}{isClassMapAuthoritative()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::is\+Class\+Map\+Authoritative (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Should class lookup fail if not found in the current class map?
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!isClassMapAuthoritative@{isClassMapAuthoritative}}
+\index{isClassMapAuthoritative@{isClassMapAuthoritative}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{isClassMapAuthoritative()}{isClassMapAuthoritative()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_abaf3d2e9cad5d740b6a29c44b36cf015} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::is\+Class\+Map\+Authoritative (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Should class lookup fail if not found in the current class map?
+
+\begin{DoxyReturn}{Renvoie}
+bool 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!loadClass@{loadClass}}
+\index{loadClass@{loadClass}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{loadClass()}{loadClass()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::load\+Class (\begin{DoxyParamCaption}\item[{}]{\$class}{}\end{DoxyParamCaption})}
+
+Loads the given class or interface.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & The name of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true\texorpdfstring{$\vert$}{|}null True if loaded, null otherwise 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!loadClass@{loadClass}}
+\index{loadClass@{loadClass}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{loadClass()}{loadClass()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::load\+Class (\begin{DoxyParamCaption}\item[{}]{\$class}{}\end{DoxyParamCaption})}
+
+Loads the given class or interface.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$class} & The name of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true\texorpdfstring{$\vert$}{|}null True if loaded, null otherwise 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_composer_1_1_autoload_1_1_class_loader_aee0b004fbf0743f16dab70f8a52f983e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!register@{register}}
+\index{register@{register}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::register (\begin{DoxyParamCaption}\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers this instance as an autoloader.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$prepend} & Whether to prepend the autoloader or not\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!register@{register}}
+\index{register@{register}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a478eedf860efe1bc1b2408fc28656111} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::register (\begin{DoxyParamCaption}\item[{}]{\$prepend}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Registers this instance as an autoloader.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$prepend} & Whether to prepend the autoloader or not\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!set@{set}}
+\index{set@{set}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/0 directories for a given prefix, replacing any others previously set for this prefix.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/0 base directories\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!set@{set}}
+\index{set@{set}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a76f8e2aa4329d78063cc7932108891ce} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/0 directories for a given prefix, replacing any others previously set for this prefix.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/0 base directories\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setApcuPrefix@{setApcuPrefix}}
+\index{setApcuPrefix@{setApcuPrefix}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setApcuPrefix()}{setApcuPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Apcu\+Prefix (\begin{DoxyParamCaption}\item[{}]{\$apcu\+Prefix}{}\end{DoxyParamCaption})}
+
+APCu prefix to use to cache found/not-\/found classes, if the extension is enabled.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$apcu\+Prefix} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setApcuPrefix@{setApcuPrefix}}
+\index{setApcuPrefix@{setApcuPrefix}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setApcuPrefix()}{setApcuPrefix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aa45cccfd4849b1225f20d32c044579fd} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Apcu\+Prefix (\begin{DoxyParamCaption}\item[{}]{\$apcu\+Prefix}{}\end{DoxyParamCaption})}
+
+APCu prefix to use to cache found/not-\/found classes, if the extension is enabled.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$apcu\+Prefix} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setClassMapAuthoritative@{setClassMapAuthoritative}}
+\index{setClassMapAuthoritative@{setClassMapAuthoritative}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setClassMapAuthoritative()}{setClassMapAuthoritative()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Class\+Map\+Authoritative (\begin{DoxyParamCaption}\item[{}]{\$class\+Map\+Authoritative}{}\end{DoxyParamCaption})}
+
+Turns off searching the prefix and fallback directories for classes that have not been registered with the class map.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$class\+Map\+Authoritative} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setClassMapAuthoritative@{setClassMapAuthoritative}}
+\index{setClassMapAuthoritative@{setClassMapAuthoritative}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setClassMapAuthoritative()}{setClassMapAuthoritative()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_ab393ccb89c488ca52fe97865b0957196} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Class\+Map\+Authoritative (\begin{DoxyParamCaption}\item[{}]{\$class\+Map\+Authoritative}{}\end{DoxyParamCaption})}
+
+Turns off searching the prefix and fallback directories for classes that have not been registered with the class map.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$class\+Map\+Authoritative} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setPsr4@{setPsr4}}
+\index{setPsr4@{setPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setPsr4()}{setPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Psr4 (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/4 directories for a given namespace, replacing any others previously set for this namespace.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix/namespace, with trailing \textquotesingle{}\textbackslash{}\textquotesingle{} \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/4 base directories\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Invalid\+Argument\+Exception
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setPsr4@{setPsr4}}
+\index{setPsr4@{setPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setPsr4()}{setPsr4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a11d2831d7657855b5c07cb6885dd86ef} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Psr4 (\begin{DoxyParamCaption}\item[{}]{\$prefix}{, }\item[{}]{\$paths}{}\end{DoxyParamCaption})}
+
+Registers a set of PSR-\/4 directories for a given namespace, replacing any others previously set for this namespace.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$prefix} & The prefix/namespace, with trailing \textquotesingle{}\textbackslash{}\textquotesingle{} \\
+\hline
+ & {\em list$<$string$>$\texorpdfstring{$\vert$}{|}string} & \$paths The PSR-\/4 base directories\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Invalid\+Argument\+Exception
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setUseIncludePath@{setUseIncludePath}}
+\index{setUseIncludePath@{setUseIncludePath}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setUseIncludePath()}{setUseIncludePath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Use\+Include\+Path (\begin{DoxyParamCaption}\item[{}]{\$use\+Include\+Path}{}\end{DoxyParamCaption})}
+
+Turns on searching the include path for class files.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$use\+Include\+Path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!setUseIncludePath@{setUseIncludePath}}
+\index{setUseIncludePath@{setUseIncludePath}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{setUseIncludePath()}{setUseIncludePath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a350f3d947ee3e29b0ac0e09e4a086642} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::set\+Use\+Include\+Path (\begin{DoxyParamCaption}\item[{}]{\$use\+Include\+Path}{}\end{DoxyParamCaption})}
+
+Turns on searching the include path for class files.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+bool & {\em \$use\+Include\+Path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!unregister@{unregister}}
+\index{unregister@{unregister}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{unregister()}{unregister()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::unregister (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Unregisters this instance as an autoloader.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!unregister@{unregister}}
+\index{unregister@{unregister}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{unregister()}{unregister()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a2472d57551ee473381beea31ff642136} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::unregister (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Unregisters this instance as an autoloader.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a5e0a4b309eee6579af51f298c05cbc5a}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$apcuPrefix@{\$apcuPrefix}}
+\index{\$apcuPrefix@{\$apcuPrefix}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$apcuPrefix}{\$apcuPrefix}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a5e0a4b309eee6579af51f298c05cbc5a} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$apcu\+Prefix\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a378c76d0904df756823d197d284b93d2}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$classMap@{\$classMap}}
+\index{\$classMap@{\$classMap}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$classMap}{\$classMap}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a378c76d0904df756823d197d284b93d2} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$class\+Map = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a5d1e81a6facf862d65be87c84e30bb43}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$classMapAuthoritative@{\$classMapAuthoritative}}
+\index{\$classMapAuthoritative@{\$classMapAuthoritative}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$classMapAuthoritative}{\$classMapAuthoritative}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a5d1e81a6facf862d65be87c84e30bb43} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$class\+Map\+Authoritative = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_ac8562a1979a437ce6c1fa55be9f46004}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$fallbackDirsPsr0@{\$fallbackDirsPsr0}}
+\index{\$fallbackDirsPsr0@{\$fallbackDirsPsr0}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$fallbackDirsPsr0}{\$fallbackDirsPsr0}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_ac8562a1979a437ce6c1fa55be9f46004} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$fallback\+Dirs\+Psr0 = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a807a679b9b30c6ab2767b378e921c5b2}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$fallbackDirsPsr4@{\$fallbackDirsPsr4}}
+\index{\$fallbackDirsPsr4@{\$fallbackDirsPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$fallbackDirsPsr4}{\$fallbackDirsPsr4}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a807a679b9b30c6ab2767b378e921c5b2} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$fallback\+Dirs\+Psr4 = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_ad6e8e48cbbd1d60600f9cdfd72da6edd}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$includeFile@{\$includeFile}}
+\index{\$includeFile@{\$includeFile}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$includeFile}{\$includeFile}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_ad6e8e48cbbd1d60600f9cdfd72da6edd} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$include\+File\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a05a2ef0c23ba69a2051f079ba791c1f0}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$missingClasses@{\$missingClasses}}
+\index{\$missingClasses@{\$missingClasses}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$missingClasses}{\$missingClasses}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a05a2ef0c23ba69a2051f079ba791c1f0} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$missing\+Classes = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a46bb8b71a342103546132c73f5b10519}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$prefixDirsPsr4@{\$prefixDirsPsr4}}
+\index{\$prefixDirsPsr4@{\$prefixDirsPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$prefixDirsPsr4}{\$prefixDirsPsr4}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a46bb8b71a342103546132c73f5b10519} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$prefix\+Dirs\+Psr4 = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a4c5191fb13227d30a2740188022d3947}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$prefixesPsr0@{\$prefixesPsr0}}
+\index{\$prefixesPsr0@{\$prefixesPsr0}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$prefixesPsr0}{\$prefixesPsr0}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a4c5191fb13227d30a2740188022d3947} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$prefixes\+Psr0 = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a464a8bd05c03f1ddcaf5635a10e6fac6}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$prefixLengthsPsr4@{\$prefixLengthsPsr4}}
+\index{\$prefixLengthsPsr4@{\$prefixLengthsPsr4}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$prefixLengthsPsr4}{\$prefixLengthsPsr4}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a464a8bd05c03f1ddcaf5635a10e6fac6} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$prefix\+Lengths\+Psr4 = array()\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_a4a61e101d2774fe9418dd237ac302bd1}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$registeredLoaders@{\$registeredLoaders}}
+\index{\$registeredLoaders@{\$registeredLoaders}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$registeredLoaders}{\$registeredLoaders}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_a4a61e101d2774fe9418dd237ac302bd1} 
+static Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$registered\+Loaders = array()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_af04772a22e4f88ef90f1d8c850b9584e}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$useIncludePath@{\$useIncludePath}}
+\index{\$useIncludePath@{\$useIncludePath}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$useIncludePath}{\$useIncludePath}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_af04772a22e4f88ef90f1d8c850b9584e} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$use\+Include\+Path = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_composer_1_1_autoload_1_1_class_loader_aea0d4ac54c13fe50ff2400f5956b6480}\index{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}!\$vendorDir@{\$vendorDir}}
+\index{\$vendorDir@{\$vendorDir}!Composer\textbackslash{}Autoload\textbackslash{}ClassLoader@{Composer\textbackslash{}Autoload\textbackslash{}ClassLoader}}
+\doxysubsubsection{\texorpdfstring{\$vendorDir}{\$vendorDir}}
+{\footnotesize\ttfamily \label{class_composer_1_1_autoload_1_1_class_loader_aea0d4ac54c13fe50ff2400f5956b6480} 
+Composer\textbackslash{}\+Autoload\textbackslash{}\+Class\+Loader\+::\$vendor\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/composer/\mbox{\hyperlink{composer_2_class_loader_8php}{Class\+Loader.\+php}}\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendor/composer/\mbox{\hyperlink{_r34_i_c_s_2vendor_2composer_2_class_loader_8php}{Class\+Loader.\+php}}\end{DoxyCompactItemize}

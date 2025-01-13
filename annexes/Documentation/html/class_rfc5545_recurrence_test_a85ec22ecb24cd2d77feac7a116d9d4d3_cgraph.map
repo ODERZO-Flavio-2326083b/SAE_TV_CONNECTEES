@@ -1,0 +1,15 @@
+<map id="Rfc5545RecurrenceTest\test_page130_test3" name="Rfc5545RecurrenceTest\test_page130_test3">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,139,168,181"/>
+<area shape="rect" id="Node000002" href="$class_rfc5545_recurrence_test.html#abc565072cef660fcc28a424a9a1cb8c6" title=" " alt="" coords="216,139,378,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,157,200,157,200,163,168,163"/>
+<area shape="rect" id="Node000003" href="$class_rfc5545_recurrence_test.html#a72a99ad60b63e4a0b134539de72f0596" title=" " alt="" coords="426,5,588,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,136,367,97,425,58,433,53,436,57,427,62,370,102,323,140"/>
+<area shape="rect" id="Node000004" href="$class_rfc5545_recurrence_test.html#ad56e5eb4a4b18d918a2b876f1430a59b" title=" " alt="" coords="426,72,588,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,136,422,117,424,122,367,141"/>
+<area shape="rect" id="Node000005" href="$class_rfc5545_recurrence_test.html#aa417b3184e825f156d121f7e1be5d671" title=" " alt="" coords="426,139,588,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="378,157,410,157,410,163,378,163"/>
+<area shape="rect" id="Node000006" href="$class_rfc5545_recurrence_test.html#abc4a703b92f1940bc5506abab5b24976" title=" " alt="" coords="426,205,588,248"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="367,179,424,198,422,203,365,184"/>
+<area shape="rect" id="Node000007" href="$class_rfc5545_recurrence_test.html#a77ac7c9edc35389d481567a4dcfa0af5" title=" " alt="" coords="426,272,588,315"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="323,180,370,218,427,258,436,263,433,267,425,262,367,223,320,184"/>
+</map>

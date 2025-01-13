@@ -1,0 +1,15 @@
+<map id="models\Alert\insert" name="models\Alert\insert">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,136,159"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_alert.html#a1fc3f8fcebe3fc223ea9cfaf32f0e709" title=" " alt="" coords="208,5,362,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,130,122,86,151,62,182,42,196,35,198,40,185,46,154,66,126,90,85,133"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_alert.html#a46529978bbba3af0869a81d93bd5818d" title=" " alt="" coords="208,56,362,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,129,183,92,206,85,208,90,185,97,100,134"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_alert.html#aebe365175f1ab6b29c9d1a5f4f206bab" title=" " alt="" coords="204,107,366,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="136,135,188,129,189,134,136,140"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_alert.html#a873ae9a9e6960ead3207e1430ba9a399" title=" " alt="" coords="188,157,382,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="136,150,173,155,172,160,136,156"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="195,208,375,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="100,157,185,194,208,201,206,206,183,198,98,162"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1_alert.html#a9ced99e467426b98bef3d71226c52a20" title=" " alt="" coords="184,259,386,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="85,157,126,201,154,224,185,244,198,251,196,255,182,249,151,229,122,204,81,161"/>
+</map>

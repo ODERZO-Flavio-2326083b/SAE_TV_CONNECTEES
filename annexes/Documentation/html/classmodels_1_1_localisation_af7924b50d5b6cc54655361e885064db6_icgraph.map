@@ -1,0 +1,7 @@
+<map id="models\Localisation\getLongitude" name="models\Localisation\getLongitude">
+<area shape="rect" id="Node000001" title=" " alt="" coords="190,39,326,81"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_localisation.html#ad326f115bbbdd6a5cb9608b0dba24253" title=" " alt="" coords="5,5,142,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,48,142,42,143,36,175,42"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_localisation.html#abf1c778da5f26d13321a1748fd57fbc1" title=" " alt="" coords="5,72,142,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,78,143,84,142,78,174,72"/>
+</map>

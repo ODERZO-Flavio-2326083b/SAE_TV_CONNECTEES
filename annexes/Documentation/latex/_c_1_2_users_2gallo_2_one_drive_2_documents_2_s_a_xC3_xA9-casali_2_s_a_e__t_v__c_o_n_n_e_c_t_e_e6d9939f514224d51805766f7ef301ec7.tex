@@ -1,0 +1,119 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\+Scrapper.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e6d9939f514224d51805766f7ef301ec7}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e6d9939f514224d51805766f7ef301ec7}Récupère le contenu HTML de la page d\textquotesingle{}articles.
+
+Cette méthode utilise la fonction {\ttfamily file\+\_\+get\+\_\+contents} pour récupérer le code HTML de la page d\textquotesingle{}articles depuis l\textquotesingle{}URL spécifiée dans la classe.
+
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML de la page.
+\end{DoxyReturn}
+// Récupérer le code HTML de la page \+: \$html = \$scrapper-\/\texorpdfstring{$>$}{>}get\+Html();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07-\/01-\/2025
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacemodels}{models}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }Scrapper}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>url\ =\ \textcolor{stringliteral}{'https://www.informatiquenews.fr/news'};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getHtml()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$html\ =\ file\_get\_contents(\$this-\/>url);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$html;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getArticles()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$html\ =\ \$this-\/>getHtml();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$dom\ =\ new\ \(\backslash\)DOMDocument();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ @\$dom-\/>loadHTML(\$html);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$xpath\ =\ new\ \(\backslash\)DOMXPath(\$dom);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$articles\ =\ \$xpath-\/>query(\textcolor{stringliteral}{'//article'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$articles;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getArticle(\$article)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$title\ =\ \$article-\/>getElementsByTagName(\textcolor{stringliteral}{'h2'})-\/>item(0)-\/>nodeValue;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$divs\ =\ \$article-\/>getElementsByTagName(\textcolor{stringliteral}{'div'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$divs\ as\ \$div)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$div\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$classContent\ =\ \$div-\/>getAttribute(\textcolor{stringliteral}{'class'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$classContent\ ==\ \textcolor{stringliteral}{'post-\/content\ entry-\/content'})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ \$div-\/>nodeValue;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ \textcolor{stringliteral}{"{}pas\ de\ contenue"{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ \textcolor{stringliteral}{"{}pas\ de\ contenue"{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$link\ =\ \$article-\/>getElementsByTagName(\textcolor{charliteral}{'a'})-\/>item(0)-\/>getAttribute(\textcolor{stringliteral}{'href'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$image\ =\ \$article-\/>getElementsByTagName(\textcolor{stringliteral}{'img'})-\/>item(\$article-\/>getElementsByTagName(\textcolor{stringliteral}{'img'})-\/>length-\/1)-\/>getAttribute(\textcolor{stringliteral}{'src'});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$footers\ =\ \$article-\/>getElementsByTagName(\textcolor{stringliteral}{'footer'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$footers\ as\ \$footer)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$footer\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$classContent\ =\ \$footer-\/>getAttribute(\textcolor{stringliteral}{'class'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$classContent\ ==\ \textcolor{stringliteral}{'meta'})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$author\ =\ \$footer-\/>nodeValue;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$author\ =\ \textcolor{stringliteral}{"{}pas\ de\ contenue"{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$author\ =\ \textcolor{stringliteral}{"{}pas\ de\ contenue"{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'title'}\ =>\ \$title,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'content'}\ =>\ \$content,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'link'}\ =>\ \$link,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'image'}\ =>\ \$image,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'footer'}=>\ \$author}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ printWebsite()\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$articles\ =\ \$this-\/>getArticles();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$html\ =\ \textcolor{stringliteral}{'<div>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$article\ =\ \$articles-\/>item(rand(0,\ \$articles-\/>length\ -\/\ 1));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$varArticle\ =\ \$this-\/>getArticle(\$article);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<div>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<h3>'}\ .\ \$varArticle[\textcolor{stringliteral}{'title'}]\ .\ \textcolor{stringliteral}{'</h3>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<p>'}\ .\ \$varArticle[\textcolor{stringliteral}{'content'}]\ .\ \textcolor{stringliteral}{'</p>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<a\ href="{}'}\ .\ \$varArticle[\textcolor{stringliteral}{'link'}]\ .\ \textcolor{stringliteral}{'"{}>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<img\ src="{}'}\ .\ \$varArticle[\textcolor{stringliteral}{'image'}]\ .\ \textcolor{stringliteral}{'"{}\ height=190em\ width=100\%>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'</a>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'<footer>\ <p><small>Publié'}\ .\ \$varArticle[\textcolor{stringliteral}{'footer'}]\ .\ \textcolor{stringliteral}{'</small></p>\ </footer>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'</div>'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$html\ .=\ \textcolor{stringliteral}{'</div>'};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ echo\ \$html;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

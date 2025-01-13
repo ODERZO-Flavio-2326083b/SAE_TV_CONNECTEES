@@ -1,0 +1,11 @@
+<map id="models\Localisation\setEntity" name="models\Localisation\setEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="396,56,532,99"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_localisation.html#adeda8d56917948c36542a910a249e580" title=" " alt="" coords="190,5,348,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,55,315,35,317,30,382,50"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_localisation.html#a386886946c8dfd1653d2fc434a1585ce" title=" " alt="" coords="201,56,337,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="380,80,337,80,337,75,380,75"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_localisation.html#a251362e49c6cccb1a463a9a3d7cb7eb2" title=" " alt="" coords="201,123,337,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="386,107,334,125,333,120,385,102"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_localisation.html#a80b17ccc7426894ee0d3870cc6315c67" title=" " alt="" coords="5,123,142,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="185,147,142,147,142,141,185,141"/>
+</map>

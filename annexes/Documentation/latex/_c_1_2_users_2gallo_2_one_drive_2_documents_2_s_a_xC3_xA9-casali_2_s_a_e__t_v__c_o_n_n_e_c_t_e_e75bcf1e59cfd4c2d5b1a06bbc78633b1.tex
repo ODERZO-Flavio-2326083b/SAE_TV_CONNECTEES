@@ -1,0 +1,166 @@
+\doxysection{C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\+Localisation.\+php}
+\hypertarget{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e75bcf1e59cfd4c2d5b1a06bbc78633b1}{}\label{_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e75bcf1e59cfd4c2d5b1a06bbc78633b1}Insère une nouvelle localisation dans la base de données avec les valeurs actuelles des attributs.
+
+Cette méthode insère une nouvelle entrée de localisation dans la base de données à partir des attributs de l\textquotesingle{}objet actuel. Elle renvoie l\textquotesingle{}ID de la localisation insérée.
+
+\begin{DoxyReturn}{Renvoie}
+string L\textquotesingle{}ID de la localisation récemment insérée.
+\end{DoxyReturn}
+// Insérer une nouvelle localisation \+: \$localisation = new Localisation(); \$localisation-\/\texorpdfstring{$>$}{>}insert();
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07-\/01-\/2025
+\end{DoxyDate}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{<?php}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacemodels}{models}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{use\ \mbox{\hyperlink{interfacemodels_1_1_entity}{models\(\backslash\)Entity}};}
+\DoxyCodeLine{use\ \mbox{\hyperlink{classmodels_1_1_model}{models\(\backslash\)Model}};}
+\DoxyCodeLine{use\ PDO;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }Localisation\ \textcolor{keyword}{extends}\ Model\ implements\ \(\backslash\)JsonSerializable,\ Entity\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$localisation\_id;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$latitude;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$longitude;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$adresse;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}\ \$user\_id;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ insert():\ string\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$database\ =\ \$this-\/>getDatabase();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$database-\/>prepare(\textcolor{stringliteral}{'INSERT\ INTO\ ecran\_localisation\ (latitude,\ longitude,\ user\_id)\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VALUES\ (:latitude,\ :longitude,\ :user\_id)'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':latitude'},\ \$this-\/>getLatitude());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':longitude'},\ \$this-\/>getLongitude());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':user\_id'},\ \$this-\/>getUserId());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$database-\/>lastInsertId();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ update():\ int\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$database\ =\ \$this-\/>getDatabase();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$database-\/>prepare(\textcolor{stringliteral}{'UPDATE\ ecran\_localisation\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SET\ latitude\ =\ :latitude,\ longitude\ =\ :longitude,\ adresse\ =\ :adresse,\ user\_id\ =\ :user\_id\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ localisation\_id\ =\ :id'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':latitude'},\ \$this-\/>getLatitude());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':longitude'},\ \$this-\/>getLongitude());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':adresse'},\ \$this-\/>getAdresse());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':user\_id'},\ \$this-\/>getUserId());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$this-\/>getLocalisationId());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$request-\/>rowCount();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \textcolor{keyword}{delete}():\ \textcolor{keywordtype}{int}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'DELETE\ FROM\ ecran\_localisation\ WHERE\ localisation\_id\ =\ :id'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$this-\/>getLocalisationId(),\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$request-\/>rowCount();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \textcolor{keyword}{get}(\$id)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ localisation\_id,\ latitude,\ longitude,\ adresse,\ user\_id\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ ecran\_localisation\ WHERE\ localisation\_id\ =\ :id'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$id,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$request-\/>rowCount()\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setEntity(\$request-\/>fetch(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getList(\textcolor{keywordtype}{int}\ \$begin\ =\ 0,\ \textcolor{keywordtype}{int}\ \$numberElement\ =\ 25):\ array\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ localisation\_id,\ latitude,\ longitude,\ adresse,\ user\_id\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ ecran\_localisation\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LIMIT\ :begin,\ :numberElement'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':begin'},\ \$begin,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':numberElement'},\ \$numberElement,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$request-\/>rowCount()\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ \$this-\/>setEntityList(\$request-\/>fetchAll());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [];}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEntity(\$data):\ Localisation\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity\ =\ new\ Localisation();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setLocalisationId(\$data[\textcolor{stringliteral}{'localisation\_id'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setLatitude(\$data[\textcolor{stringliteral}{'latitude'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setLongitude(\$data[\textcolor{stringliteral}{'longitude'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setAdresse(\$data[\textcolor{stringliteral}{'adresse'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$entity-\/>setUserId(\$data[\textcolor{stringliteral}{'user\_id'}]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$entity;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEntityList(\$dataList)\ :\ array\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$listEntity\ =\ [];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$dataList\ as\ \$data)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \$listEntity[]\ =\ \$this-\/>setEntity(\$data);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$listEntity;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLocFromUserId(\$userId)\ :\ false|Localisation\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request\ =\ \$this-\/>getDatabase()-\/>prepare(\textcolor{stringliteral}{'SELECT\ localisation\_id,\ latitude,\ longitude,\ adresse,\ user\_id\ }}
+\DoxyCodeLine{\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ ecran\_localisation\ WHERE\ user\_id\ =\ :id'});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>bindValue(\textcolor{stringliteral}{':id'},\ \$userId,\ PDO::PARAM\_INT);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$request-\/>execute();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$request-\/>rowCount()\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ \$this-\/>setEntity(\$request-\/>fetch(PDO::FETCH\_ASSOC));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLocalisationId():\ int\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \$this-\/>localisation\_id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setLocalisationId(\ \textcolor{keywordtype}{int}\ \$localisation\_id\ ):\ void\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>localisation\_id\ =\ \$localisation\_id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLatitude():\ float\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \$this-\/>latitude;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setLatitude(\ \textcolor{keywordtype}{float}\ \$latitude\ ):\ void\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>latitude\ =\ \$latitude;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLongitude():\ float\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \$this-\/>longitude;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setLongitude(\ \textcolor{keywordtype}{float}\ \$longitude\ ):\ void\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>longitude\ =\ \$longitude;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAdresse():\ string\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \$this-\/>adresse;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setAdresse(\ \textcolor{keywordtype}{string}\ \$adresse\ ):\ void\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>adresse\ =\ \$adresse;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getUserId():\ int\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \$this-\/>user\_id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setUserId(\ \textcolor{keywordtype}{int}\ \$user\_id\ ):\ void\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \$this-\/>user\_id\ =\ \$user\_id;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ jsonSerialize():\ array\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ get\_object\_vars(\$this);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 
