@@ -65,11 +65,14 @@ class CSSCustomizerController extends Controller
         foreach ($listDepartement as $e) {
             // Ajouter le nom du département au tableau
             $listDepName[] = $e->getName();
-            if(!file_exists(WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-'
-                .$e->getName().'.css')){
-                $cssDefault =
-                    file_get_contents(WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-default.css');
-                file_put_contents(WP_CONTENT_DIR.'/themes/theme-ecran-connecte/assets/css/global/global-'.$e->getName().'.css',$cssDefault);
+            if(!file_exists(WP_CONTENT_DIR
+                    .'/themes/theme-ecran-connecte/assets/css/global/global-'
+                    .$e->getName().'.css')){
+                $cssDefault = file_get_contents(WP_CONTENT_DIR.
+'/themes/theme-ecran-connecte/assets/css/global/global-default.css');
+                file_put_contents(WP_CONTENT_DIR.
+'/themes/theme-ecran-connecte/assets/css/global/global-'
+                                  .$e->getName().'.css',$cssDefault);
             }
         }
         $this->view->displayContextCSS();
