@@ -34,6 +34,7 @@ interface Entity
      */
     public function delete();
 
+    // TODO : Commenter le paramètre
     /**
      * Get an entity link to the id
      *
@@ -50,6 +51,7 @@ interface Entity
      */
     public function getList();
 
+    // TODO : Commenter le paramètre
     /**
      * Build an entity
      *
@@ -59,6 +61,7 @@ interface Entity
      */
     public function setEntity($data);
 
+    // TODO : Commenter le paramètre
     /**
      * Build a list of entity
      *
