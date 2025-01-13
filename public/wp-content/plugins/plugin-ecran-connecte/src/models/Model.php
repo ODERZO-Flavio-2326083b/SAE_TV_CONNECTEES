@@ -1,5 +1,24 @@
 <?php
-
+/**
+ * Fichier Model.php
+ *
+ * Ce fichier contient la classe `Model`, qui représente une classe générique
+ * pour la gestion des modèles dans l'application. Cette classe fournit des
+ * fonctions de base pour la gestion des données et la connexion à la base
+ * de données, permettant d'établir une base commune pour toutes les autres
+ * classes de modèle.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Model
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use PDO;
@@ -7,19 +26,33 @@ use PDO;
 /**
  * Class Model
  *
- * Generic class for Model
- * Contain basic function and connection to the database
+ * Classe générique pour les modèles dans l'application. Cette classe
+ * fournit des fonctions de base pour interagir avec la base de données,
+ * telles que la connexion à la base de données, l'exécution de requêtes,
+ * et la gestion des erreurs.
  *
- * @package models
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Model Documentation de la classe
+ * @since    2025-01-07
  */
 class Model
 {
 
-    
+
     /**
-     * @var PDO
+     * Instance de la base de données PDO.
+     *
+     * Cette propriété statique contient l'instance de la base de données
+     * gérée par PDO (PHP Data Objects), utilisée pour effectuer des
+     * opérations de lecture et d'écriture dans la base de données.
+     *
+     * @var PDO Instance de la classe PDO pour la gestion de la base de données.
      */
-    private static PDO $database;
+    private static PDO $_database;
 
     /**
      * Initialise la connexion à la base de données en utilisant PDO.
@@ -36,14 +69,14 @@ class Model
      * @version 1.0
      * @date    2024-10-15
      */
-    private static function setDatabase() : void
+    private static function _setDatabase() : void
     {
-        self::$database = new PDO(
+        self::$_database = new PDO(
             'mysql:host=' . DB_HOST . '; dbname=' . DB_NAME,
             DB_USER, DB_PASSWORD
         );
         //self::$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        self::$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+        self::$_database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
 
     /**
@@ -62,14 +95,14 @@ class Model
      * @version 1.0
      * @date    2024-10-15
      */
-    private static function setDatabaseViewer() : void
+    private static function _setDatabaseViewer() : void
     {
-        self::$database = new PDO(
+        self::$_database = new PDO(
             'mysql:host=' . DB_HOST_VIEWER . '; dbname='
             . DB_NAME_VIEWER, DB_USER_VIEWER, DB_PASSWORD_VIEWER
         );
         //self::$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        self::$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+        self::$_database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
 
     /**
@@ -87,8 +120,8 @@ class Model
      */
     protected function getDatabase() : PDO
     {
-        self::setDatabase();
-        return self::$database;
+        self::_setDatabase();
+        return self::$_database;
     }
 
     /**
@@ -109,7 +142,7 @@ class Model
      */
     protected function getDatabaseViewer() : PDO
     {
-        self::setDatabaseViewer();
-        return self::$database;
+        self::_setDatabaseViewer();
+        return self::$_database;
     }
 }

@@ -1,5 +1,25 @@
 <?php
-
+/**
+ * Fichier Location.php
+ *
+ * Ce fichier contient la classe `Location`, qui représente une localisation
+ * géographique associée à un utilisateur dans l'application. Cette classe
+ * permet de gérer les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
+ * sur les localisations dans la base de données. Chaque localisation est
+ * liée à un utilisateur et contient des informations géographiques telles
+ * que la latitude, la longitude et l'adresse.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category Entity
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Location
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use models\Entity;
@@ -7,38 +27,63 @@ use models\Model;
 use PDO;
 
 /**
- * Classe représentant une localisation géographique d'un utilisateur.
+ * Classe Location
  *
- * Cette classe permet de gérer les opérations CRUD (Create, Read, Update, Delete)
- * sur les localisations dans la base de données. Chaque localisation est associée
- * à un utilisateur et contient des informations géographiques (latitude, longitude)
- * et d'adresse.
+ * Représente une localisation géographique d'un utilisateur. Permet de gérer
+ * les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur les
+ * localisations dans la base de données. Cette classe contient des informations
+ * telles que la latitude, la longitude et l'adresse de la localisation d'un
+ * utilisateur.
  *
- * @package models
+ * @category Entity
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Location Documentation de la classe
+ * @since    2025-01-07
  */
 class Localisation extends Model implements \JsonSerializable, Entity
 {
 
     /**
-     * @var int
+     * Identifiant unique de la localisation.
+     *
+     * @var int L'identifiant de la localisation,
+     * utilisé pour référencer l'entité de localisation.
      */
-    private $localisation_id;
+    private $_localisation_id;
+
     /**
-     * @var float
+     * Latitude de la localisation.
+     *
+     * @var float La latitude géographique de la localisation.
      */
-    private $latitude;
+    private $_latitude;
+
     /**
-     * @var float
+     * Longitude de la localisation.
+     *
+     * @var float La longitude géographique de la localisation.
      */
-    private $longitude;
+    private $_longitude;
+
     /**
-     * @var string
+     * Adresse de la localisation.
+     *
+     * @var string L'adresse détaillée de la localisation,
+     * généralement sous forme de chaîne de texte.
      */
-    private $adresse;
+    private $_adresse;
+
     /**
-     * @var int
+     * Identifiant de l'utilisateur associé à la localisation.
+     *
+     * @var int L'identifiant de
+     * l'utilisateur auquel cette localisation est associée.
      */
-    private $user_id;
+    private $_user_id;
+
 
     /**
      * Insère une nouvelle localisation dans la base de données avec les valeurs
@@ -131,7 +176,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * et renvoie un objet `Localisation` avec les données correspondantes.
      * Si aucune localisation n'est trouvée, la méthode retourne `false`.
      *
-     * @param  int $id Identifiant de la localisation à récupérer.
+     * @param int $id Identifiant de la localisation à récupérer.
+     *
      * @return false|Localisation Objet Localisation si trouvé, sinon false.
      *
      * @version 1.0
@@ -159,9 +205,10 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * de pagination (début et nombre d'éléments).
      * Elle retourne une liste d'objets `Localisation`.
      *
-     * @param  int $begin         Début de la
-     *                            liste.
-     * @param  int $numberElement Nombre d'éléments à récupérer.
+     * @param int $begin         Début de la
+     *                           liste.
+     * @param int $numberElement Nombre d'éléments à récupérer.
+     *
      * @return array Liste d'objets Localisation.
      *
      * @version 1.0
@@ -190,7 +237,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * Cette méthode prend les résultats d'une requête SQL et crée un objet
      * `Localisation` avec les données associées à chaque attribut de la classe.
      *
-     * @param  mixed $data Données de la base de données.
+     * @param mixed $data Données de la base de données.
+     *
      * @return Localisation L'objet Localisation créé.
      *
      * @version 1.0
@@ -213,7 +261,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * Cette méthode transforme une liste de données de la base de données en une
      * liste d'objets `Localisation`.
      *
-     * @param  mixed $dataList Liste des données de la base de données.
+     * @param mixed $dataList Liste des données de la base de données.
+     *
      * @return array Liste d'objets Localisation.
      *
      * @version 1.0
@@ -236,7 +285,8 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * Elle est utilisée pour obtenir la localisation d'un utilisateur spécifique
      * pour des fonctionnalités comme la météo.
      *
-     * @param  int $userId Identifiant de l'utilisateur.
+     * @param int $userId Identifiant de l'utilisateur.
+     *
      * @return false|Localisation Retourne l'objet Localisation si trouvé, sinon
      * false.
      *
@@ -268,20 +318,22 @@ class Localisation extends Model implements \JsonSerializable, Entity
      */
     public function getLocalisationId(): int
     {
-        return $this->localisation_id;
+        return $this->_localisation_id;
     }
 
     /**
      * Setter pour l'identifiant de la localisation.
      *
-     * @param int $localisation_id L'identifiant de la localisation.
+     * @param int $_localisation_id L'identifiant de la localisation.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    07-01-2025
      */
-    public function setLocalisationId( int $localisation_id ): void
+    public function setLocalisationId( int $_localisation_id ): void
     {
-        $this->localisation_id = $localisation_id;
+        $this->_localisation_id = $_localisation_id;
     }
 
     /**
@@ -294,20 +346,22 @@ class Localisation extends Model implements \JsonSerializable, Entity
      */
     public function getLatitude(): float
     {
-        return $this->latitude;
+        return $this->_latitude;
     }
 
     /**
      * Setter pour la latitude de la localisation.
      *
-     * @param float $latitude La latitude de la localisation.
+     * @param float $_latitude La latitude de la localisation.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    07-01-2025
      */
-    public function setLatitude( float $latitude ): void
+    public function setLatitude( float $_latitude ): void
     {
-        $this->latitude = $latitude;
+        $this->_latitude = $_latitude;
     }
 
     /**
@@ -320,20 +374,22 @@ class Localisation extends Model implements \JsonSerializable, Entity
      */
     public function getLongitude(): float
     {
-        return $this->longitude;
+        return $this->_longitude;
     }
 
     /**
      * Setter pour la longitude de la localisation.
      *
-     * @param float $longitude La longitude de la localisation.
+     * @param float $_longitude La longitude de la localisation.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    07-01-2025
      */
-    public function setLongitude( float $longitude ): void
+    public function setLongitude( float $_longitude ): void
     {
-        $this->longitude = $longitude;
+        $this->_longitude = $_longitude;
     }
 
     /**
@@ -346,20 +402,22 @@ class Localisation extends Model implements \JsonSerializable, Entity
      */
     public function getAdresse(): string
     {
-        return $this->adresse;
+        return $this->_adresse;
     }
 
     /**
      * Setter pour l'adresse de la localisation.
      *
-     * @param string $adresse L'adresse de la localisation.
+     * @param string $_adresse L'adresse de la localisation.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    07-01-2025
      */
-    public function setAdresse( string $adresse ): void
+    public function setAdresse( string $_adresse ): void
     {
-        $this->adresse = $adresse;
+        $this->_adresse = $_adresse;
     }
 
     /**
@@ -376,7 +434,7 @@ class Localisation extends Model implements \JsonSerializable, Entity
      */
     public function getUserId(): int
     {
-        return $this->user_id;
+        return $this->_user_id;
     }
 
     /**
@@ -386,14 +444,16 @@ class Localisation extends Model implements \JsonSerializable, Entity
      * localisation.
      * Elle est utilisée pour lier la localisation à un utilisateur spécifique.
      *
-     * @param int $user_id L'ID de l'utilisateur à associer à la localisation.
+     * @param int $_user_id L'ID de l'utilisateur à associer à la localisation.
+     *
+     * @return void
      *
      * @version 1.0
      * @date    07-01-2025
      */
-    public function setUserId( int $user_id ): void
+    public function setUserId( int $_user_id ): void
     {
-        $this->user_id = $user_id;
+        $this->_user_id = $_user_id;
     }
 
     /**

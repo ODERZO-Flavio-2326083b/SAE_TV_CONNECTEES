@@ -1,4 +1,25 @@
 <?php
+/**
+ * Fichier CSSCustomizer.php
+ *
+ * Ce fichier contient la classe `CSSCustomizer`,
+ * qui gère la personnalisation du fichier
+ * CSS global en fonction des données soumises par l'utilisateur via un formulaire.
+ * Cette classe permet de mettre à jour les couleurs,
+ * les mises en page et les autres éléments
+ * de style, et d'enregistrer ces modifications dans un fichier CSS spécifique.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CSSCustomizer
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 
 namespace models;
 
@@ -13,7 +34,13 @@ use models\Model;
  * de style sur la base des choix de l'utilisateur, et d'enregistrer ces
  * modifications dans un fichier CSS spécifique.
  *
- * @package models
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/CSSCustomizer Documentation de la classe
+ * @since    2025-01-07
  */
 class CSSCustomizer extends Model
 {

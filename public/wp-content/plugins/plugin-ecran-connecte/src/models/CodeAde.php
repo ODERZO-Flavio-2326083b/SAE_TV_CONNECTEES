@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier CodeAde.php
+ *
+ * Ce fichier contient la classe `CodeAde`, qui représente une entité de code ADE
+ * dans l'application. Cette classe permet de
+ * manipuler les données liées aux
+ * codes ADE.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CodeAde
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use JsonSerializable;
@@ -8,42 +26,92 @@ use PDO;
 /**
  * Class CodeAde
  *
- * Code ADE entity
+ * Entité représentant un code ADE.
  *
- * @package models
+ * @category Model
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/CodeAde Documentation de la classe
+ * @since    2025-01-07
  */
 class CodeAde extends Model implements Entity, JsonSerializable
 {
 
-    
-    /**
-     * @var int
-     */
-    private int $id;
 
-    
     /**
-     * @var string (year | group | halfGroup)
+     * Identifiant unique de l'entité.
+     *
+     * Cette propriété contient l'identifiant
+     * unique de l'entité. Elle est utilisée pour
+     * identifier de manière unique chaque instance de l'objet.
+     *
+     * @var int L'identifiant unique de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    private string $type;
+    private int $_id;
 
-    
     /**
-     * @var string
+     * Type de l'entité.
+     *
+     * Cette propriété décrit le type de l'entité.
+     * Elle peut avoir les valeurs suivantes :
+     * - "year" : Représente une entité de type année.
+     * - "group" : Représente une entité de type groupe.
+     * - "halfGroup" : Représente une entité de type demi-groupe.
+     *
+     * @var string Le type de l'entité (peut être "year", "group" ou "halfGroup").
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    private string $title;
+    private string $_type;
 
-    
     /**
-     * @var string | int
+     * Titre de l'entité.
+     *
+     * Cette propriété contient le titre de l'entité. Elle est utilisée pour fournir
+     * un nom ou un titre à l'entité.
+     *
+     * @var string Le titre de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    private $code;
+    private string $_title;
 
-    
     /**
-     * @var int
+     * Code de l'entité.
+     *
+     * Cette propriété contient un code qui peut être soit une chaîne de caractères,
+     * soit un entier, en fonction du contexte de l'entité. Ce code peut être utilisé
+     * pour des références, des identifications
+     * supplémentaires ou pour des traitements.
+     *
+     * @var string | int Le code associé à l'entité, qui
+     * peut être une chaîne de caractères ou un entier.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    private $deptId;
+    private $_code;
+
+    /**
+     * Identifiant du département auquel l'entité appartient.
+     *
+     * Cette propriété contient l'identifiant
+     * du département auquel l'entité est associée.
+     * Il permet de relier l'entité à un département spécifique.
+     *
+     * @var int L'identifiant du département.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
+    private int $_deptId;
 
     /**
      Insère un nouvel enregistrement dans la table 'ecran_code_ade'.
@@ -372,95 +440,173 @@ class CodeAde extends Model implements Entity, JsonSerializable
     }
 
     /**
-     * @return int
+     * Récupère le code de l'entité.
+     *
+     * Cette méthode retourne le code
+     * associé à l'entité. Le code peut être un identifiant
+     * unique ou une autre référence utilisée pour l'entité.
+     *
+     * @return int Le code de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getCode() : int
     {
-        return $this->code;
+        return $this->_code;
     }
 
     /**
-     * @param $code
+     * Définit le code de l'entité.
+     *
+     * Cette méthode permet de définir le code associé à l'entité. Le code peut être
+     * un identifiant ou une autre référence pour l'entité.
+     *
+     * @param $_code Le code de l'entité à définir.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setCode($code): void
+    public function setCode($_code): void
     {
-        $this->code = $code;
+        $this->_code = $_code;
     }
 
     /**
-     * @return int
+     * Récupère l'identifiant de l'entité.
+     *
+     * Cette méthode retourne l'identifiant unique de l'entité.
+     *
+     * @return int L'identifiant de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getId() : int
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
-     * @param $id
+     * Définit l'identifiant de l'entité.
+     *
+     * Cette méthode permet de définir l'identifiant unique de l'entité.
+     *
+     * @param $_id L'identifiant de l'entité à définir.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setId($id): void
+    public function setId($_id): void
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
     /**
-     * @return string
+     * Récupère le type de l'entité.
+     *
+     * Cette méthode retourne le type de l'entité. Le type peut être une valeur
+     * comme "year", "group" ou "halfGroup" pour définir le type de l'entité.
+     *
+     * @return string Le type de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getType() : string
     {
-        return $this->type;
+        return $this->_type;
     }
 
     /**
-     * @param $type
+     * Définit le type de l'entité.
+     *
+     * Cette méthode permet de définir le type de l'entité. Le type peut être une
+     * valeur comme "year", "group" ou "halfGroup".
+     *
+     * @param $_type Le type de l'entité à définir.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setType($type): void
+    public function setType($_type): void
     {
-        $this->type = $type;
+        $this->_type = $_type;
     }
 
     /**
-     * @return string
+     * Récupère le titre de l'entité.
+     *
+     * Cette méthode retourne le titre de l'entité.
+     *
+     * @return string Le titre de l'entité.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getTitle() : string
     {
-        return $this->title;
+        return $this->_title;
     }
 
     /**
-     * @param $title
+     * Définit le titre de l'entité.
+     *
+     * Cette méthode permet de définir le titre de l'entité.
+     *
+     * @param $_title Le titre de l'entité à définir.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setTitle($title): void
+    public function setTitle($_title): void
     {
-        $this->title = $title;
+        $this->_title = $_title;
     }
 
     /**
-     * @return int
+     * Récupère l'identifiant du département auquel l'entité appartient.
+     *
+     * Cette méthode retourne l'identifiant du
+     * département auquel l'entité est associée.
+     *
+     * @return int L'identifiant du département.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
     public function getDeptId(): int
     {
-        return $this->deptId;
+        return $this->_deptId;
     }
 
     /**
-     * @param int $deptId
+     * Définit l'identifiant du département auquel l'entité appartient.
+     *
+     * Cette méthode permet de définir l'identifiant du département auquel l'entité
+     * doit être associée.
+     *
+     * @param int $_deptId L'identifiant du département à définir.
      *
      * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
      */
-    public function setDeptId(int $deptId): void
+    public function setDeptId(int $_deptId): void
     {
-        $this->deptId = $deptId;
+        $this->_deptId = $_deptId;
     }
-    
+
+
     /**
      * Sérialise l'objet en un tableau associatif compatible JSON.
      *

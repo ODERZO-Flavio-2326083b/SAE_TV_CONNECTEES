@@ -1,21 +1,48 @@
 <?php
-
+/**
+ * Fichier Scrapper.php
+ *
+ * Ce fichier contient la classe `Scrapper`, qui est utilisée pour l'extraction
+ * de données depuis un site web. La classe permet de scrapper des articles
+ * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
+ * informations telles que le titre, le contenu, l'image, le lien et l'auteur
+ * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
+ * pour extraire et traiter le contenu HTML.
+ *
+ * PHP version 7.4 or later
+ *
+ * @category Web_Scraping
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Scrapper
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 /**
  * Class Scrapper
  *
  * Classe générique pour l'extraction de données depuis un site web.
- * Permet de scrapper les articles du site 'https://www.informatiquenews.fr/news' et
- * d'en extraire des informations telles que le titre, le contenu, l'image, le lien
- * et l'auteur de chaque article. Utilise les fonctionnalités DOM et XPath de PHP
- * pour extraire et traiter le contenu HTML.
+ * Cette classe permet de scrapper les
+ * articles du site 'https://www.informatiquenews.fr/news'
+ * et d'en extraire des informations telles que le titre, le contenu, l'image,
+ * le lien et l'auteur de chaque article. Elle utilise les fonctionnalités DOM
+ * et XPath de PHP pour extraire et traiter le contenu HTML.
  *
- * @package models
+ * @category Web_Scraping
+ * @package  Models
+ * @author   John Doe <johndoe@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/Scrapper Documentation de la classe
+ * @since    2025-01-07
  */
 class Scrapper
 {
-    private $url;
+    private $_url;
 
     /**
      * Classe Scrapper pour extraire des articles depuis un site web.
@@ -31,7 +58,7 @@ class Scrapper
      */
     public function __construct()
     {
-        $this->url = 'https://www.informatiquenews.fr/news';
+        $this->_url = 'https://www.informatiquenews.fr/news';
     }
 
     /**
@@ -47,7 +74,7 @@ class Scrapper
      */
     public function getHtml() : string
     {
-        $html = file_get_contents($this->url);
+        $html = file_get_contents($this->_url);
         return $html;
     }
 
