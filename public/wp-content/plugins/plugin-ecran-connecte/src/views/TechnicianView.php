@@ -4,10 +4,10 @@
  *
  * Ce fichier contient la classe 'SubadminView',
  * qui est responsable de l'affichage des vues
- * liées à la gestion des sous-administrateurs dans
+ * liées à la gestion des administrateurs de département dans
  * l'application. Cette classe génère des formulaires
  * permettant de créer des comptes pour des
- * sous-administrateurs, ainsi que des tableaux et des messages
+ * administrateurs de département, ainsi que des tableaux et des messages
  * pour gérer et afficher ces comptes.
  *
  * PHP version 8.3
@@ -27,11 +27,11 @@ namespace views;
  * Classe SubadminView
  *
  * Cette classe gère l'affichage des vues liées à
- * la gestion des comptes sous-administrateurs.
+ * la gestion des comptes administrateurs de département.
  * Elle fournit des formulaires permettant de
- * créer et de gérer les comptes des sous-administrateurs,
+ * créer et de gérer les comptes des administrateurs de département,
  * ainsi que des tableaux pour afficher
- * les sous-administrateurs existants et leurs informations.
+ * les administrateurs de département existants et leurs informations.
  *
  * @category View
  * @package  Views
