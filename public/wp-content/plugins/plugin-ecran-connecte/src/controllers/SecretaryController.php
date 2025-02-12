@@ -197,6 +197,7 @@ class SecretaryController extends UserController
         $technician = new TechnicianController();
         $television = new TelevisionController();
         $subadmin = new SubadminController();
+        $communicant = new CommuniquantController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
@@ -213,6 +214,7 @@ class SecretaryController extends UserController
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect('communicant', 'Communicant') .
             $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
@@ -220,6 +222,7 @@ class SecretaryController extends UserController
                 'secretary', $secretary->insert(), true
             ) .
             $this->_view->displayContentSelect('technician', $technician->insert()) .
+            $this->_view->displayContentSelect('communicant', $communicant->insert()) .
             $this->_view->displayContentSelect('television', $television->insert()) .
             $subadminContent .
             '</div>' .
@@ -247,6 +250,7 @@ class SecretaryController extends UserController
         $technician = new TechnicianController();
         $television = new TelevisionController();
         $subadmin = new SubadminController();
+        $communicant = new CommuniquantController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
@@ -263,6 +267,7 @@ class SecretaryController extends UserController
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect('communicant', 'Communicant') .
             $this->_view->displayTitleSelect('television', 'Télévisions') .
             $subadminTitle .
             $this->_view->displayEndOfTitle() .
@@ -271,6 +276,9 @@ class SecretaryController extends UserController
             ) .
             $this->_view->displayContentSelect(
                 'technician', $technician->displayAllTechnician()
+            ) .
+            $this->_view->displayContentSelect(
+                'communicant', $communicant->displayAllCommunicants()
             ) .
             $this->_view->displayContentSelect(
                 'television', $television->displayAllTv()
