@@ -384,6 +384,7 @@ function addNewRoles()
     'user_header_menu_access',   // Accès au menu des utilisateurs dans
                                      // l'interface
     'subadmin_access',           // Accès aux administrateurs de département
+    'television_access',         // Accès aux télévisions
     'add_user',                  // Permission d'ajouter de nouveaux utilisateurs
     'view_users',                // Permission de voir la liste complète des
                                      // utilisateurs
@@ -458,6 +459,12 @@ function addNewRoles()
         array()
     );
 
+    add_role(
+        'communicant',
+        __('Communiquant'),
+        array()
+    );
+
     $secretaire = get_role('secretaire');
     $secretaireCaps = [
         'information_header_menu_access',
@@ -501,6 +508,26 @@ function addNewRoles()
 
     foreach ( $televisionCaps as $cap ) {
         $television->add_cap($cap);
+    }
+
+    $communicant = get_role('communicant');
+    $communicantCaps = [
+        'information_header_menu_access',
+        'add_information',
+        'view_informations',
+        'edit_information',
+        'alert_header_menu_access',
+        'add_alert',
+        'view_alerts',
+        'edit_alert',
+        'user_header_menu_access',
+        'add_user',
+        'television_access',
+        'edit_user',
+    ];
+
+    foreach ( $communicantCaps as $cap ) {
+        $communicant->add_cap($cap);
     }
 }
 
