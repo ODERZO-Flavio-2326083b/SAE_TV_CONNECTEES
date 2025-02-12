@@ -29,8 +29,8 @@ Un utilisateur Secretary peut poster des alertes, créer des utilisateurs et ajo
 
 Un utilisateur Technician peut accéder aux emplois du temps.
 
-Un utilisateur Subadmin possède les mêmes permissions qu'un administrateur, il ne peut créer d'autre 
-sous-administrateur.
+Un utilisateur Subadmin, correspondant à un administrateur de département, et qui possède les mêmes permissions qu'un administrateur, il ne peut créer d'autre 
+administrateur de département.
 
 ### Emploi du temps
 
