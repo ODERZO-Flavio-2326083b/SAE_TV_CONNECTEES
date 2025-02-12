@@ -387,9 +387,9 @@ class ICSView extends View
             'ecran_connecte_schedule_msg', 'show'
         ) == 'show' && in_array('television', $current_user->roles)
         ) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
+            return '';
         } elseif (!in_array('television', $current_user->roles)) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
+            return '';
         } else {
             return false;
         }
