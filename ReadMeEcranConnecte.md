@@ -27,7 +27,7 @@ Il y a plusieurs plugins utilisés pour ce projet, voici une liste décrivant l'
 Nous allons traiter plus en détail le plugin que nous développons, le plugin "Ecran connecté".  
 
 Ce plugin permet plusieurs fonctionnalités :  
-- Création de plusieurs types de compte (Secrétaire, Agent d'entretien/Technicien, Télévision, Sous-administrateur).
+- Création de plusieurs types de compte (Secrétaire, Agent d'entretien/Technicien, Télévision, Administrateur de département).
 - Affichage de l'emploi du temps de la personne connectée.
 - Ajout, envoi et affichage d'information.
 - Ajout, envoi et affichage d'alerte.
@@ -44,12 +44,12 @@ Il y a quatre rôles différents avec chacun leur droit :
 |     Technicien      |           Oui            |            Non            |        Non         |            Non            |             Non             |
 |     Télévision      |           Oui            |            Non            |        Non         |            Non            |             Non             |
 |     Secrétaire      |           Non            |            Oui            |        Oui         |            Oui            |             Non             |
-| Sous-administrateur |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |
+| Administrateur de département |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |
 
 
 Les techniciens sont des agents d'entretien, qui vont avoir accès à l'emploi du temps pour leur permettre de savoir 
 quelles salles sont occupées.
-Les sous-administrateurs sont des administrateurs qui ne peuvent pas créer de sous-administrateur.
+Les administrateurs de département sont des administrateurs qui gèrent leur département, et ne peuvent créer d'autres administrateur de département.
 
 ### Emploi du temps
 
