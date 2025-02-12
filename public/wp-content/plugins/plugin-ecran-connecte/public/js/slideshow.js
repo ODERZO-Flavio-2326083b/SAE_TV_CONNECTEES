@@ -7,8 +7,6 @@ let stop = false;
 let videoDurations = DURATIONS.videoDurations;
 let otherDurations = DURATIONS.otherDurations;
 
-console.log(videoDurations);
-console.log(otherDurations)
 
 infoSlideShow();
 videoSlideshow();
