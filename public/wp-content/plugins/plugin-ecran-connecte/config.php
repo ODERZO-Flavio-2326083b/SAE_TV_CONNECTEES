@@ -383,7 +383,7 @@ function addNewRoles()
     // Permissions liées aux utilisateurs
     'user_header_menu_access',   // Accès au menu des utilisateurs dans
                                      // l'interface
-    'subadmin_access',           // Accès aux sous-administrateurs
+    'subadmin_access',           // Accès aux administrateurs de département
     'add_user',                  // Permission d'ajouter de nouveaux utilisateurs
     'view_users',                // Permission de voir la liste complète des
                                      // utilisateurs
@@ -453,8 +453,8 @@ function addNewRoles()
     add_role(
         'subadmin',
         __('Sous-administrateur'),
-        // Un sous-admin peut faire tout ce qu'un administrateur peut faire sur le
-        // site, sauf accéder aux sous admins
+        // Un admin de département peut faire tout ce qu'un administrateur peut faire sur le
+        // site, sauf accéder aux autres admins de département
         array()
     );
 

@@ -78,16 +78,16 @@ class SubadminController extends UserController
     }
 
     /**
-     * Insère un nouvel administrateur ou sous-administrateur dans
+     * Insère un nouvel administrateur ou d'administrateurs de département dans
      * la base de données.
      *
      * Cette fonction récupère les données envoyées via un formulaire
-     * de création de sous-administrateur
+     * de création d'administrateurs de département
      * (login, mot de passe, email, département) et
      * effectue une série de validations avant de procéder à
      * l'insertion dans la base de données. Si les
      * données sont valides et qu'il n'y a pas d'utilisateur en double,
-     * un nouvel utilisateur avec le rôle de sous-administrateur
+     * un nouvel utilisateur avec le rôle d'administrateur de département
      * est créé. En cas d'erreur, des messages appropriés
      * sont affichés pour informer l'utilisateur.
      *
@@ -151,18 +151,17 @@ class SubadminController extends UserController
     }
 
     /**
-     * Affiche la liste de tous les sous-administrateurs avec leur département.
+     * Affiche la liste de tous les administrateurs de départements avec leur département.
      *
-     * Cette fonction récupère tous les utilisateurs ayant le rôle de
-     * sous-administrateur, puis
-     * pour chaque utilisateur, elle obtient le nom de son département.
+     * Cette fonction récupère tous les utilisateurs ayant le rôle d'administrateur de département
+     * puis pour chaque utilisateur, elle obtient le nom de son département.
      * Elle renvoie ensuite un
-     * code HTML qui affiche la liste des sous-administrateurs et les
+     * code HTML qui affiche la liste des administrateurs de département et les
      * départements auxquels ils
      * appartiennent via une vue spécifique.
      *
      * @return string Le code HTML généré pour afficher la liste des
-     * sous-administrateurs et leurs départements.
+     * administrateurs de département et leurs départements.
      *
      * @version 1.0.0
      * @date    2025-01-13
