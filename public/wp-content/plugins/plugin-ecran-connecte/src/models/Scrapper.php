@@ -64,7 +64,7 @@ class Scrapper
      */
     public function __construct()
     {
-        $this->_url = 'https://www.informatiquenews.fr/news';
+        $this->_url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
     }
     /**
      * Récupère le contenu HTML de la page d'articles.
