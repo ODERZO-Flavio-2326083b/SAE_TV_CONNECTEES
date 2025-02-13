@@ -519,9 +519,10 @@ function addNewRoles()
         'add_alert',
         'view_alerts',
         'edit_alert',
-        'user_header_menu_access',
-        'edit_user'
+        'department_header_menu_access',
+        'view_departments'
     ];
+    // var_dump($communicant->capabilities);
 
     foreach ( $communicantCaps as $cap ) {
         $communicant->add_cap($cap);
