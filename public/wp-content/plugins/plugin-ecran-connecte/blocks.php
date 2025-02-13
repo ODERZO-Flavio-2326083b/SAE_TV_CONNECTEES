@@ -305,7 +305,6 @@ function schedule_render_callback()
 {
         $current_user = wp_get_current_user();
 
-        var_dump($current_user->roles);
     if (in_array("television", $current_user->roles)) {
         $controller = new TelevisionController();
         return $controller->displayMySchedule();

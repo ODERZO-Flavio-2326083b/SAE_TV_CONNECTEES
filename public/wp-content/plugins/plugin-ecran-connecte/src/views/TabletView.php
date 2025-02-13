@@ -8,8 +8,7 @@ use models\User;
 
 class TabletView extends UserView
 {
-    public function displayFormTablet(array $years, array $groups,
-                                          array $halfGroups, array $allDepts,
+    public function displayFormTablet(array $classes, array $allDepts,
                                           bool $isAdmin = false,
                                           int $currDept = null
     ): string {
@@ -49,15 +48,14 @@ class TabletView extends UserView
             </div>
             <div class="form-group">
             	<label>Choisir l\'emploi du temps</label>' .
-            $this->buildSelectCode($years, $groups, $halfGroups, $allDepts) . '
+            $this->buildSelectCode($classes, $allDepts) . '
             </div>
             <button type="submit" class="btn button_ecran" id="validTa" 
             name="createTa">Créer</button>
         </form>';
     }
 
-    public static function buildSelectCode(array $years, array $groups,
-                                           array $halfGroups, array $allDepts,
+    public static function buildSelectCode(array $classes, array $allDepts,
                                            CodeAde $code = null,
                                            int $count = 0
     ): string {
@@ -74,27 +72,11 @@ class TabletView extends UserView
 
         $allOptions = [];
 
-        foreach ($years as $year) {
-            $allOptions[$year->getDeptId()][] = [
-                'code' => $year->getCode(),
-                'title' => $year->getTitle(),
-                'type' => 'Année'
-            ];
-        }
-
-        foreach ($groups as $group) {
-            $allOptions[$group->getDeptId()][] = [
-                'code' => $group->getCode(),
-                'title' => $group->getTitle(),
-                'type' => 'Groupe'
-            ];
-        }
-
-        foreach ($halfGroups as $halfGroup) {
-            $allOptions[$halfGroup->getDeptId()][] = [
-                'code' => $halfGroup->getCode(),
-                'title' => $halfGroup->getTitle(),
-                'type' => 'Demi groupe'
+        foreach ($classes as $class) {
+            $allOptions[$class->getDeptId()][] = [
+                'code' => $class->getCode(),
+                'title' => $class->getTitle(),
+                'type' => 'Salle'
             ];
         }
 

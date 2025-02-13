@@ -86,15 +86,13 @@ class TabletController extends UserController implements Schedule
             }
         }
 
-        // Récupération des années, groupes et demi-groupes
-        $years = $codeAde->getAllFromType('year');
-        $groups = $codeAde->getAllFromType('group');
-        $halfGroups = $codeAde->getAllFromType('halfGroup');
+        // Récupération des salles
+        $classes = $codeAde->getAllFromType('class');
 
         $allDepts = $deptModel->getAllDepts();
 
         return $this->_view->displayFormTablet(
-            $years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept
+            $classes, $allDepts, $isAdmin, $currDept
         );
     }
 
@@ -120,11 +118,11 @@ class TabletController extends UserController implements Schedule
         $user = new User();
         $tabUserObj = $user->get(wp_get_current_user()->ID);
 
-        $years = $codeAde->getAllFromType('year');
+        $classes = $codeAde->getAllFromType('class');
         $string = "";
-        foreach ($years as $year) {
-            if ($year->getDeptId() == $tabUserObj->getIdDepartment()) {
-                $string .= $this->displaySchedule($year->getCode());
+        foreach ($classes as $class) {
+            if ($class->getDeptId() == $tabUserObj->getIdDepartment()) {
+                $string .= $this->displaySchedule($class->getCode());
             }
         }
         return $string;
