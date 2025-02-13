@@ -384,12 +384,13 @@ function addNewRoles()
     'user_header_menu_access',   // Accès au menu des utilisateurs dans
                                      // l'interface
     'subadmin_access',           // Accès aux administrateurs de département
-    'television_access',         // Accès aux télévisions
     'add_user',                  // Permission d'ajouter de nouveaux utilisateurs
     'view_users',                // Permission de voir la liste complète des
                                      // utilisateurs
     'edit_user',                 // Permission de modifier les informations des
                                      // utilisateurs
+    'add_TV',                    // Permission d'ajouter de nouvelles télévisions (pour les communiquants)
+    'view_TVs',                   // Permission de voir la liste complète des télévisions (pour les communiquants)
 
     // Permissions liées aux informations
     'information_header_menu_access',  // Accès au menu des informations dans
@@ -521,9 +522,9 @@ function addNewRoles()
         'view_alerts',
         'edit_alert',
         'user_header_menu_access',
-        'add_user',
-        'television_access',
-        'edit_user',
+        'add_TV',
+        'view_TVs',
+        'edit_user'
     ];
 
     foreach ( $communicantCaps as $cap ) {
