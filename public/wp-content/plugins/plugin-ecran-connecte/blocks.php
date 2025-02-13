@@ -380,10 +380,6 @@ function creation_user_render_callback()
     if (current_user_can('add_user')) {
         $manageUser = new SecretaryController();
         return $manageUser->createUsers();
-    } elseif (current_user_can('add_TV')) {
-        $manageUser = new CommuniquantController();
-        $manageUser->deleteUsers();
-        return $manageUser->createTVs();
     } else {
         echo "Désolé, vous n'avez pas la permission de voir ce contenu";
         exit;
@@ -415,10 +411,6 @@ function management_user_render_callback()
         $manageUser = new SecretaryController();
         $manageUser->deleteUsers();
         return $manageUser->displayUsers();
-    } elseif (current_user_can('view_TVs')) {
-        $manageUser = new CommuniquantController();
-        $manageUser->deleteUsers();
-        return $manageUser->displayTVs();
     } else {
         echo "Désolé, vous n'avez pas la permission de voir ce contenu";
         exit;

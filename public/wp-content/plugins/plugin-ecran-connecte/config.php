@@ -389,8 +389,6 @@ function addNewRoles()
                                      // utilisateurs
     'edit_user',                 // Permission de modifier les informations des
                                      // utilisateurs
-    'add_TV',                    // Permission d'ajouter de nouvelles télévisions (pour les communiquants)
-    'view_TVs',                   // Permission de voir la liste complète des télévisions (pour les communiquants)
 
     // Permissions liées aux informations
     'information_header_menu_access',  // Accès au menu des informations dans
@@ -522,8 +520,6 @@ function addNewRoles()
         'view_alerts',
         'edit_alert',
         'user_header_menu_access',
-        'add_TV',
-        'view_TVs',
         'edit_user'
     ];
 
