@@ -23,7 +23,8 @@ class TabletController extends UserController implements Schedule
 
     public function insert(): string
     {
-        $action = filter_input(INPUT_POST, 'createTablette');
+        $action = filter_input(INPUT_POST, 'createTa');
+        $codeAde = new CodeAde();
 
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
@@ -32,32 +33,46 @@ class TabletController extends UserController implements Schedule
         // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept
-            = $isAdmin ? -1 : $deptModel->getUserDepartment(
+            = $isAdmin ? null : $deptModel->getUserDepartment(
             $currentUser->ID
         )->getIdDepartment();
 
         if (isset($action)) {
-            $login = filter_input(INPUT_POST, 'loginTablette');
-            $password = filter_input(INPUT_POST, 'pwdTablette');
-            $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTablette');
-            $email = filter_input(INPUT_POST, 'emailTablette');
+            $login = filter_input(INPUT_POST, 'loginTa');
+            $password = filter_input(INPUT_POST, 'pwdTa');
+            $passwordConfirm = filter_input(INPUT_POST, 'pwdConfirmTa');
+            $codes = filter_input(
+                INPUT_POST, 'selectTa', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+            );
             // les non-admins ne peuvent pas choisir le département, on empêche donc
             // ces utilisateurs de pouvoir le changer
             $deptId
-                = $isAdmin ? filter_input(INPUT_POST, 'deptIdTablette') : $currDept;
+                = $isAdmin ? filter_input(INPUT_POST, 'deptIdTa') : $currDept;
 
             // Validation des données d'entrée
             if (InputValidator::isValidLogin($login)
                 && InputValidator::isValidPassword($password, $passwordConfirm)
-                && InputValidator::isValidEmail($email)
             ) {
+                $codesAde = array();
+                foreach ($codes as $code) {
+                    if (is_numeric($code) && $code > 0) {
+                        if (is_null($codeAde->getByCode($code)->getId())) {
+                            return 'error'; // Code invalide
+                        } else {
+                            $codesAde[] = $codeAde->getByCode($code);
+                        }
+                    }
+                }
+
+                // Configuration du modèle de télévision
                 $this->_model->setLogin($login);
+                $this->_model->setEmail($login . '@' . $login . '.fr');
                 $this->_model->setPassword($password);
-                $this->_model->setEmail($email);
                 $this->_model->setRole('tablette');
+                $this->_model->setCodes($codesAde);
                 $this->_model->setIdDepartment($deptId);
 
-                // Insertion dans la base de données
+                // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(
                         $this->_model
                     ) && $this->_model->insert()
@@ -71,9 +86,16 @@ class TabletController extends UserController implements Schedule
             }
         }
 
+        // Récupération des années, groupes et demi-groupes
+        $years = $codeAde->getAllFromType('year');
+        $groups = $codeAde->getAllFromType('group');
+        $halfGroups = $codeAde->getAllFromType('halfGroup');
+
         $allDepts = $deptModel->getAllDepts();
 
-        return $this->_view->displayFormTablet($allDepts, $currDept, $isAdmin);
+        return $this->_view->displayFormTablet(
+            $years, $groups, $halfGroups, $allDepts, $isAdmin, $currDept
+        );
     }
 
     public function displayAllTablet(): string
