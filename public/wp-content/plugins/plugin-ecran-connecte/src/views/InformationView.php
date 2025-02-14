@@ -864,7 +864,20 @@ name="delete" onclick="return confirm(
             break;
 
         case 'scrapper':
-            $scrapper->printWebsite();
+            // ✅ EXEMPLE 1 : Scrapping "Informatiquenews"
+            $scrapper1 = new Scrapper(
+                'https://www.informatiquenews.fr/news',
+                "//header[@class='post-heading']", // Balise contenant un article
+                [
+                    'title' => ".//h2[@class='entry-title']/a",
+                    'image' => ".//div[@class='img-holder']//img/@src",
+                    'link'  => ".//h2[@class='entry-title']/a/@href",
+                    'content' => ".//following-sibling::div[@class='post-content entry-content']",
+                    'author'  => ".//following-sibling::footer//em[@class='author vcard']/a"
+                ]
+            );
+            $scrapper1->printWebsite();
+
             break;
 
         case 'special':

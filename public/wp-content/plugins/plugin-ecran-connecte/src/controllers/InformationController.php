@@ -741,8 +741,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 if ($information->getType() !== 'video') {
                     $this->_view->displaySlide(
                         $information->getTitle(),
-                        $information->getContent(), $information->getType(), new
-                        Scrapper(), $adminSite
+                        $information->getContent(), $information->getType(), $adminSite
                     );
                 }
             }

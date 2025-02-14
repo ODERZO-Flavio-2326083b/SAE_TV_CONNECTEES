@@ -1,200 +1,91 @@
 <?php
-/**
- * Fichier Scrapper.php
- *
- * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
- * de données depuis un site web. La classe permet de scrapper des articles
- * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
- * informations telles que le titre, le contenu, l'image, le lien et l'auteur
- * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
- * pour extraire et traiter le contenu HTML.
- *
- * PHP version 8.3
- *
- * @category Web_Scraping
- * @package  Models
- * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
- * @link     https://www.example.com/docs/Scrapper
- * Documentation de la classe
- * @since    2025-01-07
- */
+
 namespace models;
 
 use DOMDocument;
-use DOMElement;
-use DOMNodeList;
 use DOMXPath;
 
-/**
- * Class Scrapper
- *
- * Classe générique pour l'extraction de données depuis un site web.
- * Cette classe permet de scrapper les
- * articles du site 'https://www.informatiquenews.fr/news'
- * et d'en extraire des informations telles que le titre, le contenu, l'image,
- * le lien et l'auteur de chaque article. Elle utilise les fonctionnalités DOM
- * et XPath de PHP pour extraire et traiter le contenu HTML.
- *
- * @category Web_Scraping
- * @package  Models
- * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @version  Release: 1.0.0
- * @link     https://www.example.com/docs/Scrapper Documentation de la classe
- * @since    2025-01-07
- */
 class Scrapper
 {
     private string $_url;
+    private string $_articleSelector;
+    private array $_infoSelectors;
 
-    /**
-     * Classe Scrapper pour extraire des articles depuis un site web.
-     *
-     * Cette classe permet de récupérer des articles depuis le site web
-     * 'https://boutique.ed-diamond.com/3_gnu-linux-magazine'
-     * en scrappant son contenu HTML. Elle extrait
-     * des informations telles que le titre, le contenu, l'image, le lien et
-     * l'auteur de chaque article. Elle utilise la bibliothèque DOM de PHP pour
-     * parser le HTML et XPath pour naviguer dans la structure du DOM.
-     *
-     * @version 1.0
-     * @date    07-01-2025
-     */
-    public function __construct()
+    public function __construct(string $url, string $articleSelector, array $infoSelectors)
     {
-        $this->_url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
+        $this->_url = $url;
+        $this->_articleSelector = $articleSelector;
+        $this->_infoSelectors = $infoSelectors;
     }
-    /**
-     * Récupère le contenu HTML de la page d'articles.
-     *
-     * Cette méthode utilise la fonction 'file_get_contents' pour récupérer le code
-     * HTML de la page d'articles depuis l'URL spécifiée dans la classe.
-     *
-     * @return string Le code HTML de la page.
-     *
-     * @version 1.0
-     * @date    07-01-2025
-     */
-    public function getHtml() : string
+
+    public function getHtml(): string
     {
         return file_get_contents($this->_url);
     }
 
-    /**
-     * Récupère tous les articles présents sur la page.
-     *
-     * Cette méthode charge le HTML récupéré avec 'getHtml()' et utilise DOMXPath
-     * pour naviguer dans le DOM et extraire tous les éléments '<article>' présents
-     * sur la page. Ces éléments sont ensuite retournés sous forme d'une liste.
-     *
-     * @return DOMNodeList Liste des articles trouvés dans la page.
-     *
-     * @version 1.0
-     * @date    07-01-2025
-     */
-    public function getArticles() : DOMNodeList
+    private function getXPath(): DOMXPath
     {
         $html = $this->getHtml();
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
-        $xpath = new DOMXPath($dom);
-
-        $query = '//li[contains(@class, "ajax_block_product mb-4 col-6 col-lg-3")]';
-        return $xpath->query($query);
+        return new DOMXPath($dom);
     }
 
-    /**
-     * Récupère les détails d'un article spécifique.
-     *
-     * Cette méthode permet d'extraire le titre, le contenu, le lien, l'image et
-     * l'auteur de chaque article en utilisant les balises HTML correspondantes dans
-     * l'élément '<article>'.
-     *
-     * @param DOMElement $article L'article à traiter.
-     *
-     * @return array Détails de l'article sous forme de tableau associatif avec les
-     *               clés suivantes : 'title', 'content', 'link', 'image', 'footer'.
-     *
-     * @version 1.0
-     * @date    07-01-2025
-     */
-    public function getArticle( DOMElement $article) : array
+    public function getOneArticle(): ?array
     {
-        $images = $article->getElementsByTagName('img');
-        foreach ($images as $div) {
-            if ($div != null) {
-                $classContent = $div->getAttribute('class');
-                if ($classContent == 'img-fluid') {
-                    $image = $div->getAttribute('src');
-                    break;
+        $xpath = $this->getXPath();
+        $articles = $xpath->query($this->_articleSelector);
+
+        if ($articles->length > 0) {
+            return $this->getArticle($xpath, $articles->item(0));
+        }
+
+        return null;
+    }
+
+    private function getArticle(DOMXPath $xpath, \DOMNode $article): array
+    {
+        $details = [];
+
+        foreach ($this->_infoSelectors as $key => $query) {
+            $nodes = $xpath->query($query, $article);
+
+            if ($nodes->length > 0) {
+                if ($key === 'image' || $key === 'link') {
+                    // Vérifie si le nœud est bien un élément DOMElement avant d'appeler getAttribute()
+                    $value = $nodes->item(0) instanceof DOMElement ? $nodes->item(0)->getAttribute($key === 'image' ? 'src' : 'href') : "Pas de contenu.";
                 } else {
-                    $image = "Pas de contenu.";
+                    $value = trim($nodes->item(0)->nodeValue) ?: "Pas de contenu.";
                 }
+                $details[$key] = $value;
             } else {
-                $image = "Pas de contenu.";
+                $details[$key] = "Pas de contenu.";
             }
         }
 
-        return [
-            'image' => $image,
-        ];
+        return $details;
     }
 
 
-    /**
-     * Affiche un article aléatoire du site web.
-     *
-     * Cette méthode sélectionne un article aléatoire parmi ceux récupérés avec la
-     * méthode 'getArticles()'. Elle affiche ensuite cet article en HTML avec son
-     * titre, son contenu, son image, son lien et un footer contenant l'auteur de
-     * l'article.
-     *
-     * @return void
-     *
-     * @version 1.0
-     * @date    07-01-2025
-     */
-    public function printWebsite() : void
+    public function printWebsite(): void
     {
-        $articles = $this->getArticles();
+        $article = $this->getOneArticle();
         $html = '<div>';
 
-        // Récupérer le premier article
-        $article = $articles->item(0);
-
         if ($article) {
-            $varArticle = $this->getArticle($article);
+            $html .= '<div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">';
 
-            // Vérifiez si une image est disponible
-            if (!empty($varArticle['image'])
-                && $varArticle['image'] !== 'pas de contenu'
-            ) {
-                $imageLarge= str_replace(
-                    'home', 'large',
-                    $varArticle['image']
-                );
-                $imageContent = @file_get_contents($imageLarge);
-
-                if ($imageContent !== false) {
-                    // Encoder l'image en base64
-                    $base64Image = 'data:image/jpeg;base64,'
-                                   . base64_encode($imageContent);
-
-                    // Générer le HTML
-                    $html .= '<div>';
-                    $html .= '<a>';
-                    $html .= '<img src="' . $base64Image
-                          . '" style="height: 73vh; width: auto;">';
-                    $html .= '</a>';
-                    $html .= '</div>';
+            foreach ($article as $key => $value) {
+                if ($key === 'image') {
+                    $html .= "<p><strong>{$key} :</strong> <br><img src='{$value}' style='max-width: 300px;'></p>";
+                } elseif ($key === 'link') {
+                    $html .= "<p><strong>{$key} :</strong> <a href='{$value}' target='_blank'>{$value}</a></p>";
                 } else {
-                    $html .= '<p>Impossible de charger l\'image.</p>';
+                    $html .= "<p><strong>{$key} :</strong> {$value}</p>";
                 }
-            } else {
-                $html .= '<p>Aucune image trouvée pour cet article.</p>';
             }
+
+            $html .= '</div>';
         } else {
             $html .= '<p>Aucun article trouvé.</p>';
         }
@@ -202,5 +93,7 @@ class Scrapper
         $html .= '</div>';
         echo $html;
     }
-
 }
+
+
+
