@@ -25,6 +25,7 @@ namespace views;
 
 
 use controllers\InformationController;
+use models\Department;
 use models\Information;
 use models\Scrapper;
 
@@ -113,6 +114,8 @@ class InformationView extends View
                 class="form-control"' . $disabled . '>
                     ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
                 </select>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+            value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -1081,5 +1084,22 @@ class="alert alert-success"> L\'information a été modifiée. </p>', $linkManag
                 )
             ) . '">Créer une information</a>
         </div>';
+    }
+
+    public static function buildSelectCode(array $allDepts,
+                                           int $count = 0
+    ): string {
+        $select = '<select class="form-control firstSelect" id="selectId' . $count
+            . '" name="selectDep[]" required="">';
+
+        $select .= '<option disabled selected value>Sélectionnez un département</option>';
+
+        foreach ($allDepts as $dept) {
+            $select .= '<option value=' . $dept->getIdDepartment() . '"> ' . $dept->getName() . '"</option>';
+        }
+
+        $select .= '</select>';
+
+        return $select;
     }
 }

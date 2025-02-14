@@ -5,6 +5,7 @@ use models\Department;
 use models\Information;
 use models\Localisation;
 use views\AlertView;
+use views\InformationView;
 use views\TelevisionView;
 
 /**
@@ -189,6 +190,26 @@ function injectAllCodesOnTvEdit(): void
 }
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
+
+function injectDepOnInfoEdit(): void
+{
+    $codeAde = new CodeAde();
+    $deptModel = new Department();
+
+    $years = $codeAde->getAllFromType('year');
+    $groups = $codeAde->getAllFromType('group');
+    $halfGroups = $codeAde->getAllFromType('halfGroup');
+
+    $allDepts = $deptModel->getAllDepts();
+
+    wp_localize_script(
+        'addDepartment_script', 'codeHTML', array(
+            'info' => InformationView::buildSelectCode(
+                $years, $groups, $halfGroups, $allDepts
+            )
+        )
+    );
+}
 
 /**
  * Envoie le code HTML du sélecteur de code ADE pour
