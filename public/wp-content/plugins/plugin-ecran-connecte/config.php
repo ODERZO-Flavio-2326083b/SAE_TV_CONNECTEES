@@ -421,10 +421,12 @@ function addNewRoles()
                                            // existants
 
     // Permissions diverses
-    'admin_perms',                // Permission d'accès complet pour
+    'admin_perms',                     // Permission d'accès complet pour
                                            // les administrateurs
     'edit_css',                        // Permission de modifier le CSS du site
-        'schedule_access'                  // Permission d'accès à l'emploi du temps
+    'schedule_access',                 // Permission d'accès à l'emploi du temps
+    'comm_perms'                       // Permission de changement de sélection du/des département(s) lors de la
+                                           // création d'une alerte ou d'une information, pour les communiquants
     ];
 
     $admin = get_role('administrator');
@@ -511,6 +513,7 @@ function addNewRoles()
 
     $communicant = get_role('communicant');
     $communicantCaps = [
+        'comm_perms',
         'information_header_menu_access',
         'add_information',
         'view_informations',

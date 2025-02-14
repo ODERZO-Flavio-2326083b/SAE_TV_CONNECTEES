@@ -105,6 +105,7 @@ class InformationController extends Controller
         $userModel = new User();
 
         $isAdmin = current_user_can('admin_perms');
+        $isComm = current_user_can('comm_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
@@ -131,7 +132,8 @@ class InformationController extends Controller
         $deptId = $isAdmin ? filter_input(
             INPUT_POST,
             'informationDept'
-        ) : $currDept;
+        ) : ($deptId = $isComm ? filter_input(INPUT_POST, 'informationDept'
+        ) : $currDept);
 
         // Si le titre est vide
         if ($title == '') {
@@ -240,32 +242,32 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'text', $this->_view->displayFormText(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 ), true
             ) .
             $this->_view->displayContentSelect(
                 'image', $this->_view->displayFormImg(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'pdf', $this->_view->displayFormPDF(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'event', $this->_view->displayFormEvent(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'video', $this->_view->displayFormVideo(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'short', $this->_view->displayFormShort(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $isAdmin, $isComm, $currDept
                 )
             ) .
             '</div>' .

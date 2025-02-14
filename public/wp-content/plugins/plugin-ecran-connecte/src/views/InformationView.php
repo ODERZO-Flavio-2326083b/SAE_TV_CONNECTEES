@@ -78,13 +78,13 @@ class InformationView extends View
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormText(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
+    public function displayFormText(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+                                    int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
         $form = '
         <form method="post">
             <div class="form-group">
@@ -159,13 +159,13 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormImg(array $allDepts, bool $isAdmin = false,
-        int $currDept = null,$title = null,
+    public function displayFormImg(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+                                   int $currDept = null,$title = null,
         $content = null, $endDate = null,
         $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -252,13 +252,13 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormVideo(array $allDepts, bool $isAdmin = false,
+    public function displayFormVideo(array $allDepts, bool $isAdmin = false, bool $isComm = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createVideo"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -344,13 +344,13 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormShort(array $allDepts, bool $isAdmin = false,
+    public function displayFormShort(array $allDepts, bool $isAdmin = false, bool $isComm = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createShort"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -437,13 +437,13 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormPDF(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
+    public function displayFormPDF(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+                                   int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -518,12 +518,12 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormEvent( array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $endDate = null,
+    public function displayFormEvent( array $allDepts, bool $isAdmin = false, bool $isComm = false,
+                                      int $currDept = null, $endDate = null,
         $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
 
         $form = '
         <form method="post" enctype="multipart/form-data">
