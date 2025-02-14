@@ -200,9 +200,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    if (get_option('init_database') == 1) {
+    /*if (get_option('init_database') == 1) {
         return;
-    }
+    }*/
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -332,6 +332,32 @@ function installDatabaseEcran() : void
             user_id BIGINT(20) UNSIGNED NOT NULL,
             PRIMARY KEY (localisation_id),
             FOREIGN KEY (user_id) REFERENCES wp_users(ID) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_scrapping';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
+            title VARCHAR (30) NOT NULL,
+            tag VARCHAR (70) NOT NULL,
+            num INT(10) NOT NULL,
+            PRIMARY KEY (scrapping_id)
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_scrapping_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_id INT(10) NOT NULL,
+            scrapping_id INT(10) NOT NULL,
+            PRIMARY KEY (id, scrapping_id, dept_id),
+            FOREIGN KEY (dept_id)
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            FOREIGN KEY (scrapping_id) REFERENCES ecran_scrapping(scrapping_id) ON DELETE CASCADE
             ) $charset_collate;";
 
     dbDelta($sql);

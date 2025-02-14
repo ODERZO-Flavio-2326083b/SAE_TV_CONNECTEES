@@ -120,6 +120,7 @@ class InformationController extends Controller
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
         $actionVideo = filter_input(INPUT_POST, 'createVideo');
         $actionShort = filter_input(INPUT_POST, 'createShort');
+        $actionScrapping = filter_input(INPUT_POST, 'createScrapping');
 
         // Variables
         $title = filter_input(INPUT_POST, 'title');
@@ -229,6 +230,14 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
         }
 
+        if (isset($actionScrapping)) {
+            $type = 'scrapping';
+            $information->setType($type);
+            $filename = $_FILES['contentFile']['name'];
+            $fileTmpName = $_FILES['contentFile']['tmp_name'];
+            $explodeName = explode('.', $filename);
+        }
+
         return
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('text', 'Texte', true) .
@@ -237,6 +246,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $this->_view->displayTitleSelect('event', 'Événement') .
             $this->_view->displayTitleSelect('video', "Vidéos") .
             $this->_view->displayTitleSelect('short', "Shorts") .
+            $this->_view->displayTitleSelect('scrapping', "Scrapping") .
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'text', $this->_view->displayFormText(
@@ -265,6 +275,11 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             ) .
             $this->_view->displayContentSelect(
                 'short', $this->_view->displayFormShort(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
+            $this->_view->displayContentSelect(
+                'scrapping', $this->_view->displayFormShort(
                     $allDepts, $isAdmin, $currDept
                 )
             ) .
@@ -597,7 +612,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
 
             if (in_array(
-                $information->getType(), ['img', 'pdf', 'event', 'video', 'short']
+                $information->getType(), ['img', 'pdf', 'event', 'video', 'short', 'scrapping']
             )
             ) {
                 if (in_array($contentExplode[1], $imgExtension)) {
@@ -625,6 +640,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 'text' => 'Texte',
                 'video' => 'Video',
                 'short' => 'Short',
+                'scrapping' => 'Scrapping',
                 default => 'Special',
             };
 

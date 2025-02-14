@@ -561,6 +561,23 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
+    public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
+    int $currDept = null, $endDate = null, $title = null,
+    $type = "createScrapping") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+        $disabled = $isAdmin ? '' : 'disabled';
+        $form = '
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Titre du scrapping</label>
+                <input id="title" class="form-control" type="text"
+                name="title" placeholder="Inserer un titre" maxlength="60" 
+                        value="' . $title . '">
+            </div>
+                ';
+        
+    }
+
     /**
      * Génère le contenu HTML décrivant le processus de création d'informations
      * à afficher sur les téléviseurs connectés.
