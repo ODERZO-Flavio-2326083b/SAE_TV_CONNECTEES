@@ -190,13 +190,13 @@ class Scrapper
                     $html .= '</a>';
                     $html .= '</div>';
                 } else {
-                    $html .= '<p>Impossible de charger l\'image.</p>';
+                    $html .= '';
                 }
             } else {
-                $html .= '<p>Aucune image trouvée pour cet article.</p>';
+                $html .= '';
             }
         } else {
-            $html .= '<p>Aucun article trouvé.</p>';
+            $html .= '';
         }
 
         $html .= '</div>';
