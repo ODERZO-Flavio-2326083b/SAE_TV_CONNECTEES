@@ -119,6 +119,11 @@ class TelevisionView extends UserView
                 </select>
             </div>
             <div class="form-group">
+            	<label for="scroll">Vitesse de défilement</label>
+            	<input type="number" class="form-control" name="scroll" 
+            	placeholder="Vitesse de défilement" required="">
+            </div>
+            <div class="form-group">
             	<label>Premier emploi du temps</label>' .
             $this->buildSelectCode($years, $groups, $halfGroups, $allDepts) . '
             </div>
