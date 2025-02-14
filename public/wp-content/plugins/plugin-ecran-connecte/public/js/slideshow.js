@@ -210,7 +210,6 @@ function displayOrHideVideo(slides, slideIndex) {
                 slides[i].style.display = "none";
             }
 
-            // On attend 6 secondes, avant de refaire apparaître le diaporama
             setTimeout(function () {
                 console.log("--Reprise du diaporama après 10 secondes");
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide

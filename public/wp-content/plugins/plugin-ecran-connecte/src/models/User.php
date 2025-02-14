@@ -1,25 +1,5 @@
 <?php
-/**
- * Fichier Scrapper.php
- *
- * Ce fichier contient la classe 'Scrapper', qui est utilisée pour l'extraction
- * de données depuis un site web. La classe permet de scrapper des articles
- * depuis le site 'https://www.informatiquenews.fr/news' et d'en extraire des
- * informations telles que le titre, le contenu, l'image, le lien et l'auteur
- * de chaque article. Elle utilise les fonctionnalités DOM et XPath de PHP
- * pour extraire et traiter le contenu HTML.
- *
- * PHP version 8.3
- *
- * @category Web_Scraping
- * @package  Models
- * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
- * @link     https://www.example.com/docs/Scrapper
- * Documentation de la classe
- * @since    2025-01-07
- */
+
 namespace models;
 
 use JsonSerializable;
@@ -27,21 +7,16 @@ use PDO;
 use WP_User;
 
 /**
- * Class Scrapper
+ * Class User
  *
- * Classe générique pour l'extraction de données depuis un site web.
- * Cette classe permet de scrapper
- * les articles du site 'https://www.informatiquenews.fr/news'
- * et d'en extraire des informations telles que le titre, le contenu, l'image,
- * le lien et l'auteur de chaque article. Elle utilise les fonctionnalités DOM
- * et XPath de PHP pour extraire et traiter le contenu HTML.
+ * Cete classe gère la gestion des utilisateurs vis à vis de la base de données.
  *
- * @category Web_Scraping
+ * @category Entity
  * @package  Models
  * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
  * @license  https://opensource.org/licenses/MIT MIT License
  * @version  Release: 1.0.0
- * @link     https://www.example.com/docs/Scrapper Documentation de la classe
+ * @link     https://www.example.com/docs/User Documentation de la classe
  * @since    2025-01-07
  */
 class User extends Model implements Entity, JsonSerializable
@@ -120,15 +95,23 @@ class User extends Model implements Entity, JsonSerializable
 
 
     /**
+     * Vitesse de défilement de l'emploi du temps
+     *
+     * Cette propriété contient la vitesse
+     *
+     * @var int
+     */
+    private int $scrollSpeed;
+
+
+    /**
      * Insère un nouvel utilisateur avec un rôle spécifique et, le cas échéant,
      * associe des codes à cet utilisateur. Cette méthode utilise la fonction
      * 'wp_insert_user' pour créer l'utilisateur avec les données appropriées
      * (login, mot de passe, email, rôle).
      *
      * Si le rôle de l'utilisateur est 'television', des codes spécifiques
-     * sont ajoutés à la table 'ecran_code_user'. Pour les rôles 'enseignant'
-     * et 'directeuretude', un nouvel objet 'CodeAde' est créé et inséré,
-     * puis associé à l'utilisateur.
+     * sont ajoutés à la table 'ecran_code_user'.
      *
      * @return int|\WP_Error L'ID de l'utilisateur créé en cas de succès.
      *
