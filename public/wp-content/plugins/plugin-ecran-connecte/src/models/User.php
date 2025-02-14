@@ -99,9 +99,9 @@ class User extends Model implements Entity, JsonSerializable
      *
      * Cette propriété contient la vitesse
      *
-     * @var int
+     * @var array
      */
-    private int $scrollSpeed;
+    private array $metadata;
 
 
     /**
@@ -136,6 +136,8 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindParam(':userId', $id, PDO::PARAM_INT);
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
+
+                add_user_metadata();
             }
         }
         $database = $this->getDatabase();
@@ -765,6 +767,16 @@ class User extends Model implements Entity, JsonSerializable
     public function setIdDepartment(int $id_department): void
     {
         $this->_id_department = $id_department;
+    }
+
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function setMetadata($metadata): void
+    {
+        $this->metadata = $metadata;
     }
 
 
