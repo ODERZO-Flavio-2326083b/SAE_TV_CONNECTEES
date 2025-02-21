@@ -137,8 +137,9 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
 
-                add_user_metadata();
-            }
+                foreach ($this->metadata as $key => $value) {
+                    add_user_meta($id, $key, $value, true);
+                }            }
         }
         $database = $this->getDatabase();
         $request = $database->prepare(
@@ -777,6 +778,10 @@ class User extends Model implements Entity, JsonSerializable
     public function setMetadata($metadata): void
     {
         $this->metadata = $metadata;
+    }
+
+    public function addMetadata(string $key, mixed $value){
+        $this->metadata[$key] = $value;
     }
 
 

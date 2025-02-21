@@ -119,8 +119,8 @@ class TelevisionView extends UserView
                 </select>
             </div>
             <div class="form-group">
-            	<label for="scroll">Vitesse de défilement</label>
-            	<input type="number" class="form-control" name="scroll" 
+            	<label for="scrollSpeedTv">Vitesse de défilement</label>
+            	<input type="number" class="form-control" name="scrollSpeedTv" 
             	placeholder="Vitesse de défilement" required="" min="1">
             	<small class="form-text text-muted">Définissez la vitesse de défilement de l\'emploi du temps.</small>
 
