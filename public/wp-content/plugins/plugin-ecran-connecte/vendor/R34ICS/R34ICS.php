@@ -79,11 +79,13 @@ class R34ICS extends Controller
     }
 
     /**
-     * Lit un fichier ICS et l'affiche
+     * Lit un fichier ICS et renvoie des données parsées
+     *
      * @param $ics_url      string url du fichier ICS
      * @param $code         int Code ADE relié à l'url
      * @param array $args Array d'option
-     * @return string
+     *
+     * @return array
      */
     public function display_calendar($ics_url, $code, $allDay, $args = array()) {
         // Get ICS file, from transient if possible
@@ -152,8 +154,10 @@ class R34ICS extends Controller
                     }
                     $all_day = false;
                 }
-                // Add event data to output array if this month or later
-                if ($dtstart_date == date_i18n('Ymd')) {
+
+                // Add event to output array if start day less than 30 days old
+                $thirty_days_ago = date_i18n('Ymd', strtotime('-30 days'));
+                if ($dtstart_date >= $thirty_days_ago) {
                     // Events with different start and end dates
                     if ($dtend_date != $dtstart_date) {
                         $loop_date = $dtstart_date;
@@ -217,10 +221,11 @@ class R34ICS extends Controller
             }
         }
 
+
         if(isset($ics_data['events'])) {
             // Sort events and remove out-of-range dates
             foreach (array_keys((array)$ics_data['events']) as $date) {
-                $first_date = date_i18n('Ymd');
+                $first_date = $args['first_date'] ?? date_i18n('Ymd');
                 $limit_date = date_i18n('Ymd', mktime(0, 0, 0, date_i18n('n'), date_i18n('j') + $this->limit_days, date_i18n('Y')));
                 if ($date < $first_date || $date > $limit_date) {
                     unset($ics_data['events'][$date]);
@@ -258,9 +263,8 @@ class R34ICS extends Controller
             $ics_data['description'] = ($args['description'] == 'none') ? false : $args['description'];
         }
 
-        $model = new CodeAde();
-        $title = $model->getByCode($code)->getTitle();
-        return $this->_view->displaySchedule($ics_data, $title, $allDay);
+
+        return array($ics_data, $allDay);
     }
 
     public function first_dow($date = null)
