@@ -6,6 +6,8 @@ use models\CodeAde;
 use models\Department;
 use models\User;
 use utils\InputValidator;
+use R34ICS;
+use views\TabletICSView;
 use views\TabletView;
 
 class TabletController extends UserController implements Schedule
@@ -127,4 +129,32 @@ class TabletController extends UserController implements Schedule
         }
         return $string;
     }
+
+    public function displaySchedule($code, $allDay = false) : string
+    {
+        $R34ICS = new R34ICS();
+
+        $url = $this->getFilePath($code);
+        $args = array(
+            'count' => 10,
+            'description' => null,
+            'eventdesc' => null,
+            'format' => null,
+            'hidetimes' => null,
+            'showendtimes' => null,
+            'title' => null,
+            'view' => 'list',
+            'first_date' => date_i18n('Ymd', strtotime('monday this week')),
+        );
+
+        list($ics_data, $allDay) = $R34ICS->get_event_data($url, $code, $allDay, $args);
+
+        $model = new CodeAde();
+        $title = $model->getByCode($code)->getTitle();
+
+        $icsView = new TabletICSView();
+        return $icsView->displaySchedule($ics_data, $title, $allDay);
+    }
+
+
 }
