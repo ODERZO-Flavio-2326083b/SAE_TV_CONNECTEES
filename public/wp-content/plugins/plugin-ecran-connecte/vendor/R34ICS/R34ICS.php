@@ -87,7 +87,7 @@ class R34ICS extends Controller
      *
      * @return array
      */
-    public function display_calendar($ics_url, $code, $allDay, $args = array()) {
+    public function get_event_data($ics_url, $code, $allDay, $args = array()) {
         // Get ICS file, from transient if possible
         $transient_name = __METHOD__ . '_' . sha1($ics_url);
         $ics_contents = null;
