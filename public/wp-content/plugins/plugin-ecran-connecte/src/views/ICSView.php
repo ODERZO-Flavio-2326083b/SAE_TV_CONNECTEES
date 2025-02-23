@@ -280,9 +280,8 @@ class ICSView extends View
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb'])))
             . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
-            if (date(
-                "H:i", strtotime($event['deb'])
-            ) <= $time && $time < date("H:i", strtotime($event['fin']))
+            if (date("H:i", strtotime($event['deb'])) <= $time
+            && $time < date("H:i", strtotime($event['fin']))
             ) {
                 $active = true;
             } else {
@@ -290,7 +289,7 @@ class ICSView extends View
             }
         }
 
-        if (substr($event['label'], -3) == "alt") {
+        if ( str_ends_with( $event['label'], "alt" ) ) {
             $label = substr($event['label'], 0, -3);
         } else {
             $label = $event['label'];
