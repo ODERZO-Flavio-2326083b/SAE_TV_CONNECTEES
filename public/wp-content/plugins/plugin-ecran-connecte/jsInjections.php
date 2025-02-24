@@ -220,3 +220,27 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
 
+/**
+ * Récupère les durées de chaque information du département de l'utilisateur
+ * connecté, et les trie dans deux listes : durées des vidéos, et durées
+ * des informations non vidéos.
+ *
+ * @return void
+ */
+function loadScrollSpeed(): void
+{
+    $userModel = new User();
+
+    $scrollSpeed = $userModel->getMetadata() ?? 12;
+
+
+    // Injection en JavaScript
+    wp_localize_script(
+        'scroll_script_ecran',
+        'SCROLL_SETTINGS', array(
+            'scrollSpeed' => intval($scrollSpeed)
+        )
+    );
+}
+
+add_action('wp_enqueue_scripts', 'loadScrollSpeed');

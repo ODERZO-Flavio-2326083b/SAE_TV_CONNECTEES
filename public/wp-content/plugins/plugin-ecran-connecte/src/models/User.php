@@ -95,9 +95,10 @@ class User extends Model implements Entity, JsonSerializable
 
 
     /**
-     * Vitesse de défilement de l'emploi du temps
+     * Metadata des utiisateurs
      *
-     * Cette propriété contient la vitesse
+     * Ce tableau contient les différentes métadonnées, notamment la vitesse de défilement
+     * en cas d'utilisateur Television.
      *
      * @var array
      */

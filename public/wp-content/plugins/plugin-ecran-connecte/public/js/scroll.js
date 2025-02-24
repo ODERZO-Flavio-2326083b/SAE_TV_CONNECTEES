@@ -1,3 +1,5 @@
+let scrollSpeed = SCROLL_SETTINGS.scrollSpeed
+
 /**
  * Scroll all schedule from the bottom to the top
  */
