@@ -127,6 +127,11 @@ function loadScriptsEcran() : void
         TV_PLUG_PATH . 'public/css/weather.css', array(), '1.0'
     );
 
+    wp_enqueue_style(
+        'tablet_ecran',
+        TV_PLUG_PATH . 'public/css/tablet.css', array(), '1.0'
+    );
+
     // SCRIPT
     wp_enqueue_script(
         'addCheckBox_script_ecran',

@@ -37,7 +37,7 @@ class TabletICSView extends ICSView {
 
         $description = substr($event['description'], 0, -30);
 
-        return "<div style='border:solid'><strong>$duration</strong><br>$label<br>$description<br>{$event['location']}</div>";
+        return "<div style='font-size: small'><strong>$duration</strong><br>$label<br>$description</div>";
     }
 
     /**
@@ -70,8 +70,8 @@ class TabletICSView extends ICSView {
                         $endHour = (int)date("H", strtotime($event['fin']));
                         $duration = max(1, $endHour - $startHour);
 
-                        $eventsByHour[$startHour][$i] = "<td rowspan='$duration' style='background-color:#cce5ff; border: 1px solid #007bff; vertical-align: middle; text-align: center;'>" .
-                                                        ($this->getContent($event) ?: "<div>Erreur d'affichage</div>") . "</td>";
+                        $eventsByHour[$startHour][$i] = "<td rowspan='$duration' class='tablet-event-td'>" .
+                                                        $this->getContent($event) ?: "<div>Erreur d'affichage</div>" . "</td>";
 
                         for ($h = $startHour + 1; $h < $endHour; $h++) {
                             $eventsByHour[$h][$i] = "";
@@ -85,16 +85,17 @@ class TabletICSView extends ICSView {
 
         $tbody = "<tbody>";
         foreach ($hoursRange as $hour) {
-            $tbody .= "<tr><td><strong>" . sprintf('%02d:00', $hour) . "</strong></td>";
+            $tbody .= "<tr><td class='tablet-time'><strong>" .
+                      sprintf('%02d:00', $hour) . "</strong></td>";
             for ($j = 0; $j < 6; $j++) {
-                $tbody .= $eventsByHour[$hour][$j] ?? "<td style='border: 1px solid; height: 50px;'></td>";
+                $tbody .= $eventsByHour[$hour][$j] ?? "<td style='height: 50px;'></td>";
             }
             $tbody .= "</tr>";
         }
         $tbody .= "</tbody>";
 
         return "<h1 style='text-align:center;'>$title</h1>
-            <table style='width:100%; border-collapse: collapse; text-align:center;'>
+            <table class='tablet-table'>
                 $thead
                 $tbody
             </table>";
@@ -114,7 +115,7 @@ class TabletICSView extends ICSView {
      * @return string
      * @throws \DateMalformedStringException
      */
-    function formatDateFr($dateStr): string {
+    function formatDateFr( string $dateStr): string {
         $fr = ['Sunday' => 'Dimanche', 'Monday' => 'Lundi', 'Tuesday' => 'Mardi',
                'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi',
                'Friday' => 'Vendredi', 'Saturday' => 'Samedi',

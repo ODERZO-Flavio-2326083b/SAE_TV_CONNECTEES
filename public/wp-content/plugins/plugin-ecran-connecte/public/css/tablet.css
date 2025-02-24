@@ -1,0 +1,25 @@
+.tablet-event-td {
+    background-color:#cce5ff;
+    border: 1px solid #007bff;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.tablet-table {
+    width:100%;
+    border-collapse: collapse;
+    text-align:center;
+}
+
+.tablet-container {
+    border-radius: 10px;
+    max-width: 90%;
+    background-color: var(--secondary-background-color);
+    min-height: 85vh;
+    margin: auto auto 10px;
+    padding: 10px;
+}
+
+.tablet-time {
+    width: 100px;
+}
