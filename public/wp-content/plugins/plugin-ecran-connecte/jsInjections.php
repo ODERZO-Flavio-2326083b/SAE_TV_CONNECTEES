@@ -193,23 +193,23 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
 
 function injectDepOnInfoEdit(): void
 {
-    $codeAde = new CodeAde();
     $deptModel = new Department();
-
-    $years = $codeAde->getAllFromType('year');
-    $groups = $codeAde->getAllFromType('group');
-    $halfGroups = $codeAde->getAllFromType('halfGroup');
+    $infoView = new InformationView();
 
     $allDepts = $deptModel->getAllDepts();
 
+    $departmentOptions = '<select class="form-control departmentSelect" name="informationDept[]">'
+        . $infoView->buildDepartmentOptions($allDepts)
+        . '</select>';
+
+    wp_enqueue_script('addDepartment_script', get_template_directory_uri() . '/js/addOrDeleteDepartment.js', array('jquery'), null, true);
+
     wp_localize_script(
         'addDepartment_script', 'codeHTML', array(
-            'info' => InformationView::buildSelectCode(
-                $years, $groups, $halfGroups, $allDepts
-            )
-        )
-    );
+            'department' => $departmentOptions));
 }
+
+add_action('wp_enqueue_scripts', 'injectDepOnInfoEdit');
 
 /**
  * Envoie le code HTML du sélecteur de code ADE pour

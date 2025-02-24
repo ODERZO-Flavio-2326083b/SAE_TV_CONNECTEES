@@ -86,6 +86,11 @@ class InformationView extends View
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
+
         $form = '
         <form method="post">
             <div class="form-group">
@@ -108,12 +113,9 @@ class InformationView extends View
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="deptContainer">' . $deptSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
@@ -1084,22 +1086,5 @@ class="alert alert-success"> L\'information a été modifiée. </p>', $linkManag
                 )
             ) . '">Créer une information</a>
         </div>';
-    }
-
-    public static function buildSelectCode(array $allDepts,
-                                           int $count = 0
-    ): string {
-        $select = '<select class="form-control firstSelect" id="selectId' . $count
-            . '" name="selectDep[]" required="">';
-
-        $select .= '<option disabled selected value>Sélectionnez un département</option>';
-
-        foreach ($allDepts as $dept) {
-            $select .= '<option value=' . $dept->getIdDepartment() . '"> ' . $dept->getName() . '"</option>';
-        }
-
-        $select .= '</select>';
-
-        return $select;
     }
 }

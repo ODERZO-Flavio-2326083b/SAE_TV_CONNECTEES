@@ -1,13 +1,22 @@
+console.log("Le script est chargé");
+console.log("Test codeHTML:", typeof codeHTML !== "undefined" ? codeHTML : "codeHTML est undefined");
+
 let count = 0
-let DepSelector = codeHTML.department;
 
 function addButtonDep() {
     count = count + 1;
 
     let div = $('<div>', {
-        id: count,
+        id: 'row-' + count,
         class: 'row'
-    }).append(DepSelector).appendTo('#info');
+    }).appendTo('#deptContainer');
+
+    if (codeHTML.department) {
+        let newSelect = $(codeHTML.department).clone();
+        newSelect.appendTo(div);
+    } else {
+        console.error("codeHTML.department n'est pas défini ou ne contient pas un <select>");
+    }
 
     let button = $('<input>', {
         id: count,
@@ -16,4 +25,8 @@ function addButtonDep() {
         onclick: 'deleteRow(this.id)',
         value: 'Supprimer'
     }).appendTo(div);
+}
+
+function deleteRow(id) {
+    document.getElementById(id).remove();
 }
