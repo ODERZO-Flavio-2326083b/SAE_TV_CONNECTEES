@@ -156,7 +156,7 @@ class TelevisionController extends UserController implements Schedule
                 $this->_model->setRole('television');
                 $this->_model->setCodes($codesAde);
                 $this->_model->setIdDepartment($deptId);
-                $this->_model->setMetadata($scrollSpeed);
+                $this->_model->setMetadata('scroll_speed', $scrollSpeed);
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(

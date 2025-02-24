@@ -1,4 +1,4 @@
-let scrollSpeed = SCROLL_SETTINGS.scrollSpeed
+let scrollSpeed = SCROLL_SETTINGS.scrollSpeed ?? 12;
 
 /**
  * Scroll all schedule from the bottom to the top
@@ -7,7 +7,7 @@ $('.ticker1').easyTicker({
     direction: 'up',
     easing: 'swing',
     speed: 'slow',
-    interval: 12000,
+    interval: scrollSpeed,
     height: 'auto',
     visible: 0,
     mousePause: 1,
@@ -19,3 +19,5 @@ $('.ticker1').easyTicker({
         stopText: 'Stop'
     }
 });
+
+console.log(scrollSpeed);

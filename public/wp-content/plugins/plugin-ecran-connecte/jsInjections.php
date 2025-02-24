@@ -4,6 +4,7 @@ use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Localisation;
+use models\User;
 use views\AlertView;
 use views\TelevisionView;
 
@@ -221,26 +222,25 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
 /**
- * Récupère les durées de chaque information du département de l'utilisateur
- * connecté, et les trie dans deux listes : durées des vidéos, et durées
- * des informations non vidéos.
+ * Récupère la vitesse de défilement de l'utilisateur connecté
+ * et l'injecte en JavaScript.
  *
  * @return void
  */
 function loadScrollSpeed(): void
 {
-    $userModel = new User();
+    if (is_user_logged_in()) {
+        $userId = get_current_user_id();
 
-    $scrollSpeed = $userModel->getMetadata() ?? 12;
+        $scrollSpeed = get_user_meta($userId, 'scroll_speed', true) ?: 12;
 
-
-    // Injection en JavaScript
-    wp_localize_script(
-        'scroll_script_ecran',
-        'SCROLL_SETTINGS', array(
-            'scrollSpeed' => intval($scrollSpeed)
-        )
-    );
+        wp_localize_script(
+            'scroll_script_ecran',
+            'SCROLL_SETTINGS', array(
+                'scrollSpeed' => (int) $scrollSpeed
+            )
+        );
+    }
 }
 
 add_action('wp_enqueue_scripts', 'loadScrollSpeed');

@@ -102,7 +102,7 @@ class User extends Model implements Entity, JsonSerializable
      *
      * @var array
      */
-    private array $metadata;
+    private array $_metadata;
 
 
     /**
@@ -138,7 +138,7 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
 
-                foreach ($this->metadata as $key => $value) {
+                foreach ($this->_metadata as $key => $value) {
                     add_user_meta($id, $key, $value, true);
                 }            }
         }
@@ -771,18 +771,24 @@ class User extends Model implements Entity, JsonSerializable
         $this->_id_department = $id_department;
     }
 
+    /**
+     * Renvoie les métadonnées
+     * @return array
+     */
     public function getMetadata()
     {
-        return $this->metadata;
+        return $this->_metadata;
     }
 
-    public function setMetadata($metadata): void
+    /**
+     *
+     * @param string $key
+     * @param $value
+     * @return void
+     */
+    public function setMetadata(string $key, $value): void
     {
-        $this->metadata = $metadata;
-    }
-
-    public function addMetadata(string $key, mixed $value){
-        $this->metadata[$key] = $value;
+        $this->_metadata[$key] = $value;
     }
 
 
