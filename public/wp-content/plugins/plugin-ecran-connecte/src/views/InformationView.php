@@ -866,14 +866,14 @@ name="delete" onclick="return confirm(
         case 'scrapper':
             // ✅ EXEMPLE 1 : Scrapping "Informatiquenews"
             $scrapper1 = new Scrapper(
-                'https://www.informatiquenews.fr/news',
-                "//header[@class='post-heading']", // Balise contenant un article
+                'https://www.informatiquenews.fr/news', // URL du site à scraper
+                "//header[@class='post-heading']",  // Sélecteur pour l'article
                 [
-                    'title' => ".//h2[@class='entry-title']/a",
-                    'image' => ".//div[@class='img-holder']//img/@src",
-                    'link'  => ".//h2[@class='entry-title']/a/@href",
-                    'content' => ".//following-sibling::div[@class='post-content entry-content']",
-                    'author'  => ".//following-sibling::footer//em[@class='author vcard']/a"
+                    'title' => "//h2[@class='entry-title']/a",  // Sélecteur pour le titre
+                    'content' => "//div[@class='post-content entry-content']",  // Sélecteur pour le contenu
+                    'image' => "//header[@class='post-heading']//img",  // Sélecteur pour l'image
+                    'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
+                    'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
                 ]
             );
             $scrapper1->printWebsite();
