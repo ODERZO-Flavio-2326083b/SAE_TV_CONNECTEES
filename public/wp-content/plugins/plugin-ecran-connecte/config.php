@@ -341,6 +341,54 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
+    $table_name = 'ecran_scrapping';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
+            title VARCHAR (30) NOT NULL,
+            content VARCHAR (255) NOT NULL,
+            tag VARCHAR (70) NOT NULL,
+            num INT(10) NOT NULL,
+            creation_date datetime DEFAULT NOW() NOT NULL,
+            expiration_date datetime NOT NULL,
+            author BIGINT(20) UNSIGNED NOT NULL,
+            type VARCHAR (10) DEFAULT 'text' NOT NULL,
+            administration_id INT(10) DEFAULT NULL,
+            duration INT(10) DEFAULT 5000 NOT NULL,
+            department_id INT(10),
+            PRIMARY KEY (scrapping_id),
+            FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
+            FOREIGN KEY (department_id) 
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_scrapping_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_id INT(10) NOT NULL,
+            scrapping_id INT(10) NOT NULL,
+            PRIMARY KEY (id, scrapping_id, dept_id),
+            FOREIGN KEY (dept_id)
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            FOREIGN KEY (scrapping_id) REFERENCES ecran_scrapping(scrapping_id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_info_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            info_id INT(10) NOT NULL,
+            dept_id INT(10) NOT NULL,
+            PRIMARY KEY (id, info_id, dept_id),
+            FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
+            ) $charset_collate;";
+
     update_option('init_database', 1);
 }
 
