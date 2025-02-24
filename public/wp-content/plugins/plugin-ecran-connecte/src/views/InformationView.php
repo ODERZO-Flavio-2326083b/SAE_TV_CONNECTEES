@@ -563,7 +563,7 @@ name="delete" onclick="return confirm(
 
     public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
     int $currDept = null, $endDate = null, $title = null,
-    $type = "createScrapping") {
+    $type = "createScrapping", $tag = null) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
         $form = '
@@ -574,8 +574,41 @@ name="delete" onclick="return confirm(
                 name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
             </div>
-                ';
-        
+            <div class="form-group">
+                <label for="tag">Tag</label>
+                <select id="tag" class="form-control" name="tag">
+                    <option value="htpps">Lien HTTPS</option>
+                    <option value="title">Titre</option>
+                    <option value="content">Contenu</option>
+                    <option value="image">Image</option>
+                    <option value="link">Lien</option>
+                    <option value="author">Auteur</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="expirationDate">Date d\'expiration</label>
+                <input id="expirationDate" class="form-control" type="date" 
+                name="expirationDate" min="' . $dateMin . '" value="' . $endDate
+            . '" required >
+            </div>
+            <div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" 
+                class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
+            <button class="btn button_ecran" type="submit" name="' . $type . '">
+            Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" 
+name="delete" onclick="return confirm(
+    \' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
+        }
+        $form .= '</form>';
+        return $form;
     }
 
     /**

@@ -22,6 +22,7 @@ use getID3;
 use models\Department;
 use models\Information;
 use models\Scrapper;
+use models\Scrapping;
 use models\User;
 use views\InformationView;
 
@@ -58,6 +59,8 @@ class InformationController extends Controller
      */
     private $_view;
 
+    private $_modelScrapping;
+
     /**
      * Constructeur de la classe.
      *
@@ -73,6 +76,7 @@ class InformationController extends Controller
     {
         $this->_model = new Information();
         $this->_view = new InformationView();
+        $this->_modelScrapping = new Scrapping();
     }
 
     /**
@@ -140,6 +144,7 @@ class InformationController extends Controller
         }
 
         $information = $this->_model;
+        $scrapping = $this->_modelScrapping;
         $information->setContent($content);
         $information->setTitle($title);
         $information->setAuthor($userModel->get($currentUser->ID));
@@ -231,11 +236,12 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         }
 
         if (isset($actionScrapping)) {
-            $type = 'scrapping';
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
+            $scrapping->setType("scrapping");
+            if ($scrapping->insert()) {
+                $this->_view->displayCreateValidate();
+            } else {
+                $this->_view->displayErrorInsertionInfo();
+            }
         }
 
         return
@@ -279,7 +285,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 )
             ) .
             $this->_view->displayContentSelect(
-                'scrapping', $this->_view->displayFormShort(
+                'scrapping', $this->_view->displayFormScrapping(
                     $allDepts, $isAdmin, $currDept
                 )
             ) .
