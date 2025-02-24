@@ -883,14 +883,41 @@ name="delete" onclick="return confirm(
                 // Sélecteur pour l'article
                 [
                     'title' => "//p[@class='article__title article__title--inline']",  // Sélecteur pour
-                    'content' => "//div[@class='article__wrapper']//p[@class='article__desc article__subheader']",  // Sélecteur
-                    'image' => "//picture[contains(@class, 'article__media')]//img",
+                    'content' => "//div[@class='article__wrapper']//p[@class='article__desc']",  // Sélecteur
+                    'image' => "//picture[@class='article__media']//img/@data-srcset",
                     'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
                     'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
                     'duree' => "//p[@class='article__footer-info']"
                 ]
             );
-            $scrapper1->printWebsite();
+
+            $scrapper3 = new Scrapper(
+                'https://www.lefigaro.fr/', // URL du site à scraper
+                "//article[@class='fig-ensemble__first-article']",  //
+                // Sélecteur pour l'article
+                [
+
+                        'title' => "//h1[@class='fig-ensemble__title']",  // Titre de l'article
+                        'content' => "//p[@class='fig-ensemble__standfirst fig-ensemble__standfirst--photo']",  // Description
+                        'image' => "//figure[@class='fig-ensemble__media']//img/@src | //figure[@class='fig-ensemble__media']//img/@srcset",
+                        'link' => "//a[@class='fig-ensemble__first-article-link']/@href"
+
+
+                ]
+            );
+
+            $scrapper4 = new Scrapper(
+                'https://boutique.ed-diamond.com/3_gnu-linux-magazine', // URL du site à scraper
+                "//li[contains(@class, 'ajax_block_product mb-4 col-6 col-lg-3')]",  //
+                // Sélecteur pour l'article
+                [
+
+                    'image' => "//figure[@class='fig-ensemble__media']//img/@src | //figure[@class='fig-ensemble__media']//img/@srcset",
+
+
+                ]
+            );
+            $scrapper3->printWebsite();
 
             break;
 

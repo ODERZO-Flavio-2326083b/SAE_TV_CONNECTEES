@@ -76,9 +76,12 @@ class Scrapper
 
                 if ($key === 'image') {
                     $imgNode = $nodes->item(0);
-                    $value = $imgNode instanceof DOMElement
-                        ? ($imgNode->getAttribute('src') ?: $imgNode->getAttribute('data-src'))
-                        : null;
+                    if ($imgNode instanceof DOMElement) {
+                        // Récupère l'URL de l'image depuis src, data-src ou srcset
+                        $value = $imgNode->getAttribute('data-src') ?:
+                            $imgNode->getAttribute('src') ?:
+                                $this->extractFirstSrcSet($imgNode->getAttribute('srcset'));
+                    }
                 } elseif ($key === 'link') {
                     $linkNode = $nodes->item(0);
                     $value = $linkNode instanceof DOMElement
@@ -116,12 +119,28 @@ class Scrapper
         return null;
     }
 
+    private function extractFirstSrcSet(string $srcset): ?string
+    {
+        if (!$srcset) return null;
+
+        // Le srcset contient plusieurs URLs avec des tailles, on prend la première
+        $parts = explode(',', $srcset);
+        if (isset($parts[0])) {
+            $firstPart = trim($parts[0]);
+            $url = explode(' ', $firstPart)[0]; // Prend uniquement l'URL
+            return filter_var($url, FILTER_VALIDATE_URL) ? $url : null;
+        }
+
+        return null;
+    }
+
     /**
      * Affiche l'article dans un format HTML
      */
     public function printWebsite(): void
     {
         $article = $this->getOneArticle();
+        var_dump($article); // Vérifie le contenu récupéré
         $html = '<div>';
 
         if ($article) {
