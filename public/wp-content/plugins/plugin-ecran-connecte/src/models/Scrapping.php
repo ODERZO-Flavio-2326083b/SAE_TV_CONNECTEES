@@ -35,6 +35,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                 "
                 INSERT INTO ecran_scrapping
                     (title,
+                     content,
                      tag,
                      num,
                      creation_date,

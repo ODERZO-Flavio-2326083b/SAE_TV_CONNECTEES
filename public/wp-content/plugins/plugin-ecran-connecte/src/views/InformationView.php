@@ -575,15 +575,7 @@ name="delete" onclick="return confirm(
                         value="' . $title . '">
             </div>
             <div class="form-group">
-                <label for="tag">Tag</label>
-                <select id="tag" class="form-control" name="tag">
-                    <option value="htpps">Lien HTTPS</option>
-                    <option value="title">Titre</option>
-                    <option value="content">Contenu</option>
-                    <option value="image">Image</option>
-                    <option value="link">Lien</option>
-                    <option value="author">Auteur</option>
-                </select>
+                <label for="tag">Tag</label> ' . $this->buildTagOption() . '
             </div>
             <div class="form-group">
                 <label for="expirationDate">Date d\'expiration</label>
@@ -609,6 +601,13 @@ name="delete" onclick="return confirm(
         }
         $form .= '</form>';
         return $form;
+    }
+
+    public function buildTagOption() {
+        $select = '    <label for="tag">Tag</label>
+                       <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="60" required>
+                       <select class="form-control firstSelect" id="tag" name="tag" required="">';
+        return $select;
     }
 
     /**
