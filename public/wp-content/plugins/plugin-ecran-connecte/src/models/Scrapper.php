@@ -77,7 +77,7 @@ class Scrapper
                 if ($key === 'image') {
                     $imgNode = $nodes->item(0);
                     $value = $imgNode instanceof DOMElement
-                        ? ($imgNode->getAttribute('src') ?: $imgNode->getAttribute('data-lazy-src'))
+                        ? ($imgNode->getAttribute('src') ?: $imgNode->getAttribute('data-src'))
                         : null;
                 } elseif ($key === 'link') {
                     $linkNode = $nodes->item(0);
@@ -88,7 +88,6 @@ class Scrapper
                     $value = trim($nodes->item(0)->nodeValue);
                 }
 
-                // Si le contenu est vide, afficher "Pas de contenu."
                 if (!$value) {
                     $value = "Pas de contenu.";
                 }
@@ -103,6 +102,21 @@ class Scrapper
     }
 
     /**
+     * Télécharge et encode l'image en base64
+     */
+    private function encodeImageToBase64(string $imageUrl): ?string
+    {
+        // Vérifier si l'image existe avant de la récupérer
+        if (@getimagesize($imageUrl)) {
+            $imageContent = @file_get_contents($imageUrl);
+            if ($imageContent !== false) {
+                return 'data:image/jpeg;base64,' . base64_encode($imageContent);
+            }
+        }
+        return null;
+    }
+
+    /**
      * Affiche l'article dans un format HTML
      */
     public function printWebsite(): void
@@ -114,10 +128,14 @@ class Scrapper
             $html .= '<div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">';
 
             foreach ($article as $key => $value) {
-                // Ne pas afficher si "Pas de contenu"
                 if ($value !== "Pas de contenu.") {
                     if ($key === 'image') {
-                        $html .= "<p><strong>{$key} :</strong> <br><img src='{$value}' style='max-width: 300px;'></p>";
+                        $imageBase64 = $this->encodeImageToBase64($value);
+                        if ($imageBase64) {
+                            $html .= "<p><strong>{$key} :</strong> <br><img src='{$imageBase64}' style='height: 7em; width: auto;'></p>";
+                        } else {
+                            $html .= "<p>Image introuvable.</p>";
+                        }
                     } elseif ($key === 'link') {
                         $html .= "<p><strong>{$key} :</strong> <a href='{$value}' target='_blank'>{$value}</a></p>";
                     } else {

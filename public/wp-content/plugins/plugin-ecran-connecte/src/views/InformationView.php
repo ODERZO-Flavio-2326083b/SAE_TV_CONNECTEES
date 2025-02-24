@@ -867,13 +867,27 @@ name="delete" onclick="return confirm(
             // ✅ EXEMPLE 1 : Scrapping "Informatiquenews"
             $scrapper1 = new Scrapper(
                 'https://www.informatiquenews.fr/news', // URL du site à scraper
-                "//header[@class='post-heading']",  // Sélecteur pour l'article
+                "//article[@class='post hnews hentry']",  // Sélecteur pour l'article
                 [
                     'title' => "//h2[@class='entry-title']/a",  // Sélecteur pour le titre
                     'content' => "//div[@class='post-content entry-content']",  // Sélecteur pour le contenu
                     'image' => "//header[@class='post-heading']//img",  // Sélecteur pour l'image
                     'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
                     'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
+                ]
+            );
+
+            $scrapper2 = new Scrapper(
+                'https://www.lemonde.fr', // URL du site à scraper
+                "//div[@class='article article--featured']",  //
+                // Sélecteur pour l'article
+                [
+                    'title' => "//p[@class='article__title article__title--inline']",  // Sélecteur pour
+                    'content' => "//div[@class='article__wrapper']//p[@class='article__desc article__subheader']",  // Sélecteur
+                    'image' => "//picture[contains(@class, 'article__media')]//img",
+                    'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
+                    'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
+                    'duree' => "//p[@class='article__footer-info']"
                 ]
             );
             $scrapper1->printWebsite();
