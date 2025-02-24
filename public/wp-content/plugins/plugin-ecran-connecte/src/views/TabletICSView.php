@@ -37,38 +37,94 @@ class TabletICSView extends ICSView {
 
         $description = substr($event['description'], 0, -30);
 
-        return "<div><strong>{$duration}</strong><br>{$label}<br>{$description}<br>{$event['location']}</div>";
+        return "<div style='border:solid'><strong>$duration</strong><br>$label<br>$description<br>{$event['location']}</div>";
     }
 
+    /**
+     * @throws \DateMalformedStringException
+     */
     public function displaySchedule( $ics_data, $title, $allDay ) : string
     {
-        setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
         $today = new DateTime();
         $firstDayOfWeek = clone $today;
         $firstDayOfWeek->modify('monday this week');
 
-        $days = [];
-        for ($i = 0; $i < 7; $i++) {
+        $days = ["<th scope='col'>Heures</th>"];
+        $eventsByHour = [];
+        $hoursRange = range(7, 20);
+        for ($i = 0; $i < 6; $i++) {
             $day = clone $firstDayOfWeek;
-            $day->modify("+{$i} days");
-            $dateFormatted = strftime('%A %d %B', $day->getTimestamp());
-            $dayEvents = $ics_data['events'][$day->format('Y')][$day->format('m')][$day->format('d')] ?? [];
+            $day->modify("+$i days");
+            $dateFormatted = $this->formatDateFr($day->format("Y-m-d"));
+            $days[] = "<th scope='col'>$dateFormatted</th>";
 
-            $eventsHtml = "";
-            if (!empty($dayEvents)) {
-                foreach ($dayEvents as $events) {
-                    foreach ($events as $event) {
-                        $eventsHtml .= $this->getContent($event) ?: "<div>Erreur d'affichage</div>";
-                    }
-                }
-            } else {
-                $eventsHtml = "<div>Aucun événement</div>";
+            foreach ($hoursRange as $hour) {
+                $eventsByHour[$hour][$i] = "<td style='border: 1px solid #ccc; height: 50px;'></td>";
             }
 
-            $days[] = "<td><strong>{$dateFormatted}</strong><br>{$eventsHtml}</td>";
+            $dayEvents = $ics_data['events'][$day->format('Y')][$day->format('m')][$day->format('d')] ?? [];
+            if (!empty($dayEvents)) {
+                foreach ($dayEvents as $eventsGroup) {
+                    foreach ($eventsGroup as $event) {
+                        $startHour = (int)date("H", strtotime($event['deb']));
+                        $endHour = (int)date("H", strtotime($event['fin']));
+                        $duration = max(1, $endHour - $startHour);
+
+                        $eventsByHour[$startHour][$i] = "<td rowspan='$duration' style='background-color:#cce5ff; border: 1px solid #007bff; vertical-align: middle; text-align: center;'>" .
+                                                        ($this->getContent($event) ?: "<div>Erreur d'affichage</div>") . "</td>";
+
+                        for ($h = $startHour + 1; $h < $endHour; $h++) {
+                            $eventsByHour[$h][$i] = "";
+                        }
+                    }
+                }
+            }
         }
 
-        return "<h1>{$title}</h1><table border='1' style='width:100%; text-align:center;'><tr>" . implode('', $days) . "</tr></table>";
+        $thead = $this->theadBuilder($days);
+
+        $tbody = "<tbody>";
+        foreach ($hoursRange as $hour) {
+            $tbody .= "<tr><td><strong>" . sprintf('%02d:00', $hour) . "</strong></td>";
+            for ($j = 0; $j < 6; $j++) {
+                $tbody .= $eventsByHour[$hour][$j] ?? "<td style='border: 1px solid; height: 50px;'></td>";
+            }
+            $tbody .= "</tr>";
+        }
+        $tbody .= "</tbody>";
+
+        return "<h1 style='text-align:center;'>$title</h1>
+            <table style='width:100%; border-collapse: collapse; text-align:center;'>
+                $thead
+                $tbody
+            </table>";
     }
 
+    function theadBuilder($days) {
+        return '<thead><tr>' . implode('', $days) . '</tr></thead>';
+    }
+
+
+    /**
+     * Renvoie une date sous forme francophone à partir d'une date numérique
+     *
+     * @param $dateStr string Chaine de caractères de la date
+     * sous la forme 'YYYY-MM-DD'
+     *
+     * @return string
+     * @throws \DateMalformedStringException
+     */
+    function formatDateFr($dateStr): string {
+        $fr = ['Sunday' => 'Dimanche', 'Monday' => 'Lundi', 'Tuesday' => 'Mardi',
+               'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi',
+               'Friday' => 'Vendredi', 'Saturday' => 'Samedi',
+               'January' => 'Janvier', 'February' => 'Février',
+               'March' => 'Mars', 'April' => 'Avril', 'May' => 'Mai',
+               'June' => 'Juin', 'July' => 'Juillet', 'August' => 'Août',
+               'September' => 'Septembre', 'October' => 'Octobre',
+               'November' => 'Novembre', 'December' => 'Décembre'];
+
+        $date = new DateTime($dateStr);
+        return str_replace(array_keys($fr), array_values($fr), $date->format('l d F'));
+    }
 }
