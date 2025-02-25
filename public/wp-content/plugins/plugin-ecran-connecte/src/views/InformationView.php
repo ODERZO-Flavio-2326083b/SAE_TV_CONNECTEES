@@ -575,8 +575,10 @@ name="delete" onclick="return confirm(
                         value="' . $title . '">
             </div>
             <div class="form-group">
-                <label for="tag">Tag</label> ' . $this->buildTagOption() . '
+                <label for="tag">Tag</label> ' . $this->buildTagOption($tag) . '
             </div>
+            <input type="button" class="btn button_ecran" onclick="addButtonTv()" 
+            value="Ajouter des tags">
             <div class="form-group">
                 <label for="expirationDate">Date d\'expiration</label>
                 <input id="expirationDate" class="form-control" type="date" 
@@ -603,10 +605,13 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function buildTagOption() {
+    public function buildTagOption($tag) {
         $select = '    <label for="tag">Tag</label>
                        <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="60" required>
-                       <select class="form-control firstSelect" id="tag" name="tag" required="">';
+                       <select class="form-control firstSelect" id="tag" name="tag" required="">
+                            <option value="default">Défault</option>
+                            <option value="' . $tag . '">Image</option>
+                            <option value="lien">Lien</option>    ';
         return $select;
     }
 
