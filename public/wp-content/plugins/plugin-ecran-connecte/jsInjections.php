@@ -234,6 +234,8 @@ function loadScrollSpeed(): void
 
         $scrollSpeed = get_user_meta($userId, 'scroll_speed', true) ?: 12;
 
+        wp_enqueue_script('scroll_script_ecran', TV_PLUG_PATH . 'public/js/scroll.js', array('jquery'), null, true);
+
         wp_localize_script(
             'scroll_script_ecran',
             'SCROLL_SETTINGS', array(
