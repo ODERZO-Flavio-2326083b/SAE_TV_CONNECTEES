@@ -1,4 +1,4 @@
-let scrollSpeed = SCROLL_SETTINGS.scrollSpeed ?? 12;
+let scrollSpeed = parseInt(SCROLL_SETTINGS.scrollSpeed)|| 12;
 
 /**
  * Scroll all schedule from the bottom to the top

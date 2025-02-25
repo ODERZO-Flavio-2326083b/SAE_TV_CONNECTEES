@@ -6,7 +6,7 @@ let endPage = false;
 let stop = false;
 let videoDurations = DURATIONS.videoDurations;
 let otherDurations = DURATIONS.otherDurations;
-
+let timeout = parseInt(SCROLL_SETTINGS.scrollSpeed);
 
 infoSlideShow();
 videoSlideshow();
@@ -202,7 +202,7 @@ function displayOrHideVideo(slides, slideIndex) {
 
             setTimeout(function () {
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
-            }, 10000);
+            }, timeout);
 
             return;
         }
