@@ -205,9 +205,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    if (get_option('init_database') == 1) {
+    /*if (get_option('init_database') == 1) {
         return;
-    }
+    }*/
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -232,11 +232,8 @@ function installDatabaseEcran() : void
 			type VARCHAR (10) DEFAULT 'text' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			duration INT(10) DEFAULT 5000 NOT NULL,
-			department_id INT(10),
 			PRIMARY KEY (id),
-			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
-			FOREIGN KEY (department_id) 
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE
 		) $charset_collate;";
 
     dbDelta($sql);
@@ -388,6 +385,8 @@ function installDatabaseEcran() : void
             FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
             FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
             ) $charset_collate;";
+
+    dbDelta($sql);
 
     update_option('init_database', 1);
 }
