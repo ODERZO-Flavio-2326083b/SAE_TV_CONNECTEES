@@ -13,7 +13,7 @@ use IntlDateFormatter;
  * Elle génère le HTML nécessaire
  * pour afficher un emploi du temps contenant
  * les différents événements ou activités planifiés.
- * L'utilisateur peut ainsi visualiser ses horaires de manière organisée et claire.
+ * Les horaires sont ainsi affichées de manière organisée et claire.
  *
  * @category View
  * @package  Views
@@ -24,10 +24,21 @@ use IntlDateFormatter;
  * @since    2025-01-13
  */
 class TabletICSView extends ICSView {
-    public function getContent( $event, $day = 0 ) : string|false
+
+    /**
+     * Renvoie le contenu d'un évènement formaté en HTML de façon à l'afficher
+     * sur l'emploi du temps d'une tablette.
+     *
+     * @param array $event L'évènement
+     * @param int $day Jour, inutile dans notre cas.
+     *
+     * @return string Le code html de l'évènement
+     */
+    public function getContent( $event, $day = 0 ) : string
     {
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb'])))
-                    . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
+                    . ' - ' .
+                    str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
 
         if (str_ends_with($event['label'], "alt")) {
             $label = substr($event['label'], 0, -3);
@@ -37,11 +48,24 @@ class TabletICSView extends ICSView {
 
         $description = substr($event['description'], 0, -30);
 
-        return "<div style='font-size: small'><strong>$duration</strong><br>$label<br>$description</div>";
+        return "<div style='font-size: small'>
+                    <strong>$duration</strong>
+                    <br>$label<br>
+                    $description
+                </div>";
     }
 
     /**
+     * À partir de données ICS fournies en argument, renvoie le code HTML
+     * de l'emploi du temps de la tablette.
+     *
+     * @param $ics_data array Données ICS de l'emploi du temps
+     * @param $title string Titre de l'emploi du temps
+     * @param $allDay int Inutile dans ce cas.
+     *
      * @throws \DateMalformedStringException
+     *
+     * @return string Le code HTML de l'emploi du temps de la tablette
      */
     public function displaySchedule( $ics_data, $title, $allDay ) : string
     {
@@ -59,10 +83,12 @@ class TabletICSView extends ICSView {
             $days[] = "<th scope='col'>$dateFormatted</th>";
 
             foreach ($hoursRange as $hour) {
-                $eventsByHour[$hour][$i] = "<td style='border: 1px solid #ccc; height: 50px;'></td>";
+                $eventsByHour[$hour][$i] =
+                    "<td style='border: 1px solid #ccc; height: 50px;'></td>";
             }
 
-            $dayEvents = $ics_data['events'][$day->format('Y')][$day->format('m')][$day->format('d')] ?? [];
+            $dayEvents = $ics_data['events'][$day->format('Y')]
+                         [$day->format('m')][$day->format('d')] ?? [];
             if (!empty($dayEvents)) {
                 foreach ($dayEvents as $eventsGroup) {
                     foreach ($eventsGroup as $event) {
@@ -70,8 +96,10 @@ class TabletICSView extends ICSView {
                         $endHour = (int)date("H", strtotime($event['fin']));
                         $duration = max(1, $endHour - $startHour);
 
-                        $eventsByHour[$startHour][$i] = "<td rowspan='$duration' class='tablet-event-td'>" .
-                                                        $this->getContent($event) ?: "<div>Erreur d'affichage</div>" . "</td>";
+                        $eventsByHour[$startHour][$i] =
+                            "<td rowspan='$duration' class='tablet-event-td'>" .
+                            $this->getContent($event) ?:
+                                "<div>Erreur d'affichage</div>" . "</td>";
 
                         for ($h = $startHour + 1; $h < $endHour; $h++) {
                             $eventsByHour[$h][$i] = "";
@@ -88,7 +116,8 @@ class TabletICSView extends ICSView {
             $tbody .= "<tr><td class='tablet-time'><strong>" .
                       sprintf('%02d:00', $hour) . "</strong></td>";
             for ($j = 0; $j < 6; $j++) {
-                $tbody .= $eventsByHour[$hour][$j] ?? "<td style='height: 50px;'></td>";
+                $tbody .= $eventsByHour[$hour][$j]
+                          ?? "<td style='height: 50px;'></td>";
             }
             $tbody .= "</tr>";
         }
@@ -101,7 +130,14 @@ class TabletICSView extends ICSView {
             </table>";
     }
 
-    function theadBuilder($days) {
+    /**
+     * Renvoie une balise thead contenant les jours de la semaine formatés.
+     *
+     * @param $days array Liste des jours de la semaine
+     *
+     * @return string Le code HTML du thead
+     */
+    function theadBuilder(array $days): string {
         return '<thead><tr>' . implode('', $days) . '</tr></thead>';
     }
 
@@ -126,6 +162,7 @@ class TabletICSView extends ICSView {
                'November' => 'Novembre', 'December' => 'Décembre'];
 
         $date = new DateTime($dateStr);
-        return str_replace(array_keys($fr), array_values($fr), $date->format('l d F'));
+        return str_replace(array_keys($fr),
+                    array_values($fr), $date->format('l d F'));
     }
 }
