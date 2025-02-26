@@ -1,11 +1,11 @@
-let count = 0
+let countDep = 0
 let depSelector = codeHTML.department;
 
 function addButtonDep() {
-    count = count + 1;
+    countDep = countDep + 1;
 
     let div = $('<div>', {
-        id: 'row-' + count,
+        id: 'row-' + countDep,
         class: 'row'
     }).appendTo('#deptContainer');
 
@@ -13,7 +13,7 @@ function addButtonDep() {
     newSelect.appendTo(div);
 
     let button = $('<input>', {
-        id: count,
+        id: countDep,
         class: 'btn button_ecran',
         type: 'button',
         onclick: 'deleteRow(this.id)',
