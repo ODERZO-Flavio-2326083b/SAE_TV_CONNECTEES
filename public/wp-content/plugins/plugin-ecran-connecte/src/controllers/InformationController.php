@@ -158,7 +158,6 @@ class InformationController extends Controller
         $departments = array();
         foreach ($depts as $deptId) {
             $department = $deptModel->getDepartmentById((int) $deptId);
-            var_dump($department);
             if($department !== null) {
                 $departments[] = $department;
             }

@@ -423,7 +423,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request = $this->getDatabase()->prepare(
             '
         SELECT 
-            id, 
+            e.id, 
             title, 
             content, 
             creation_date, 
@@ -433,8 +433,8 @@ class Information extends Model implements Entity, JsonSerializable
             administration_id,
             duration
         FROM 
-            ecran_information 
-        JOIN ecran_info_departement ON info_id = id
+            ecran_information e
+        JOIN ecran_info_departement ON info_id = e.id
         WHERE 
             ecran_info_departement.dept_id = :id 
         ORDER BY 

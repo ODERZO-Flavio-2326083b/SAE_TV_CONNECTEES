@@ -115,8 +115,8 @@ class InformationView extends View
             <div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainertexte">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'texte\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -211,8 +211,8 @@ name="delete" onclick="return confirm(
             <div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainerimage">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'image\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -306,8 +306,8 @@ name="delete" onclick="return confirm(
 		<div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainervideo">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'video\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
@@ -403,8 +403,8 @@ Supprimer</button>';
 		<div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainershort">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'short\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
@@ -493,8 +493,8 @@ Supprimer</button>';
             <div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainerpdf">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'pdf\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -565,8 +565,8 @@ name="delete" onclick="return confirm(
             <div class="form-group">
                 <label>Département(s)</label>
                 <br>    
-                <div id="deptContainer">' . $deptSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="addButtonDep()" 
+                <div id="deptContainerevent">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'event\')" 
             value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
