@@ -213,6 +213,7 @@ class TelevisionController extends UserController implements Schedule
         $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
+        $scrollSpeed = filter_input(INPUT_POST, 'scrollSpeedTv');
 
         if (isset($action)) {
             $codes = filter_input(
@@ -230,6 +231,7 @@ class TelevisionController extends UserController implements Schedule
 
             // Mise à jour des codes de l'utilisateur
             $user->setCodes($codesAde);
+            $user->setMetadata('scroll_speed', $scrollSpeed);
 
             if ($user->update()) {
                 $this->_view->displayModificationValidate($linkManageUser);

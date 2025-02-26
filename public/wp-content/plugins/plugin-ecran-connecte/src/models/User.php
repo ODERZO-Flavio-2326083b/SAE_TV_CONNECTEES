@@ -140,7 +140,8 @@ class User extends Model implements Entity, JsonSerializable
 
                 foreach ($this->_metadata as $key => $value) {
                     add_user_meta($id, $key, $value, true);
-                }            }
+                }
+            }
         }
         $database = $this->getDatabase();
         $request = $database->prepare(
@@ -195,6 +196,10 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
+        foreach ($this->_metadata as $key => $value) {
+            update_user_meta($this->getId(), $key, $value);
+        }
+
         return $request->rowCount();
     }
 
