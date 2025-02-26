@@ -260,7 +260,7 @@ function installDatabaseEcran() : void
     dbDelta($query);
 
     // With wordpress id = 1 can't be access if we do : /page/1
-    $sql = "ALTER TABLE $table_name AUTO_INCREMENT = 2;";
+    $sql = "ALTER TABLE 'ecran_code_ade' AUTO_INCREMENT = 2;";
     dbDelta($sql);
 
 
@@ -501,7 +501,7 @@ add_action('init', 'addNewRoles');
 add_action(
     'rest_api_init', function () {
         $controller = new InformationRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
 
         $controller = new CodeAdeRestController();
         $controller->registerRoutes();
@@ -510,6 +510,6 @@ add_action(
         $controller->registerRoutes();
 
         $controller = new ProfileRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
     }
 );
