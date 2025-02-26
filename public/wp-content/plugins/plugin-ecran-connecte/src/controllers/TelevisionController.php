@@ -1,11 +1,11 @@
 <?php
 /**
- * Fichier TechnicianController.php
+ * Fichier TelevisionController.php
  *
- * Ce fichier contient la classe 'TechnicianController', qui gère les opérations
+ * Ce fichier contient la classe 'TelevisionController', qui gère les opérations
  * relatives aux techniciens, telles que la création, la mise à jour, la suppression,
- * l'affichage des techniciens, ainsi
- * que l'affichage de l'emploi du temps des techniciens.
+ * l'affichage des télévisions, ainsi
+ * que l'affichage de l'emploi du temps des télévisions.
  *
  * PHP version 8.3
  *
@@ -27,9 +27,9 @@ use utils\InputValidator;
 use views\TelevisionView;
 
 /**
- * Class TechnicianController
+ * Class TelevisionController
  *
- * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de
+ * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage de
  * l'emploi du temps)
  *
  * @category API
@@ -113,7 +113,7 @@ class TelevisionController extends UserController implements Schedule
         $deptModel = new Department();
 
         $isAdmin = current_user_can('admin_perms');
-        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept
             = $isAdmin ? null : $deptModel->getUserDepartment(
