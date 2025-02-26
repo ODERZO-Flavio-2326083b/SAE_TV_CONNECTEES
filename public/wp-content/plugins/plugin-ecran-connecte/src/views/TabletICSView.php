@@ -34,7 +34,7 @@ class TabletICSView extends ICSView {
      *
      * @return string Le code html de l'évènement
      */
-    public function getContent( $event, $day = 0 ) : string
+    public function getContent( array $event, int $day = 0 ) : string
     {
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb'])))
                     . ' - ' .
@@ -122,7 +122,6 @@ class TabletICSView extends ICSView {
             $tbody .= "</tr>";
         }
         $tbody .= "</tbody>";
-
         return "<h1 style='text-align:center;'>$title</h1>
             <table class='tablet-table'>
                 $thead

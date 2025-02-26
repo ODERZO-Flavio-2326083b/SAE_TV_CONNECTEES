@@ -6,6 +6,7 @@
 }
 
 .tablet-table {
+    margin-top: 40px;
     width:100%;
     border-collapse: collapse;
     text-align:center;
@@ -22,4 +23,15 @@
 
 .tablet-time {
     width: 100px;
+}
+
+.tablet-table>thead {
+    margin-top: 20px;
+    bottom: 20px;
+    position: relative;
+}
+
+.tablet-time>strong{
+    bottom: 25px;
+    position: relative;
 }
