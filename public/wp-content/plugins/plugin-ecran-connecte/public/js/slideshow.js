@@ -6,9 +6,8 @@ let endPage = false;
 let stop = false;
 let videoDurations = DURATIONS.videoDurations;
 let otherDurations = DURATIONS.otherDurations;
-
-console.log(videoDurations);
-console.log(otherDurations)
+let timeout = parseInt(SCROLL_SETTINGS.scrollSpeed);
+let timeoutAdjusted = timeout * 1000;
 
 infoSlideShow();
 videoSlideshow();
@@ -200,10 +199,9 @@ function displayOrHideVideo(slides, slideIndex) {
                 slides[i].style.display = "none";
             }
 
-            // On attend 6 secondes, avant de refaire apparaître le diaporama
             setTimeout(function () {
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
-            }, 10000);
+            }, timeoutAdjusted);
 
             return;
         }

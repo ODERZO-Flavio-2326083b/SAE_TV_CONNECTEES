@@ -107,6 +107,7 @@ class TelevisionController extends UserController implements Schedule
     public function insert(): string
     {
         $action = filter_input(INPUT_POST, 'createTv');
+
         $codeAde = new CodeAde();
 
         $currentUser = wp_get_current_user();
@@ -131,6 +132,7 @@ class TelevisionController extends UserController implements Schedule
             // ces utilisateurs de pouvoir le changer
             $deptId
                 = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
+            $scrollSpeed = filter_input(INPUT_POST, 'scrollSpeedTv');
 
             // Validation des données d'entrée
             if (InputValidator::isValidLogin($login) 
@@ -154,6 +156,7 @@ class TelevisionController extends UserController implements Schedule
                 $this->_model->setRole('television');
                 $this->_model->setCodes($codesAde);
                 $this->_model->setIdDepartment($deptId);
+                $this->_model->setMetadata('scroll_speed', $scrollSpeed);
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(
@@ -210,6 +213,7 @@ class TelevisionController extends UserController implements Schedule
         $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
+        $scrollSpeed = filter_input(INPUT_POST, 'scrollSpeedTv');
 
         if (isset($action)) {
             $codes = filter_input(
@@ -227,6 +231,7 @@ class TelevisionController extends UserController implements Schedule
 
             // Mise à jour des codes de l'utilisateur
             $user->setCodes($codesAde);
+            $user->setMetadata('scroll_speed', $scrollSpeed);
 
             if ($user->update()) {
                 $this->_view->displayModificationValidate($linkManageUser);
@@ -336,7 +341,7 @@ class TelevisionController extends UserController implements Schedule
             if (!empty($user->getCodes()[0])) {
                 $string .= $this->displaySchedule($user->getCodes()[0]->getCode());
             } else {
-                $string .= '<p>Vous n\'avez pas cours</p>';
+                $string .= '';
             }
         }
         return $string;
