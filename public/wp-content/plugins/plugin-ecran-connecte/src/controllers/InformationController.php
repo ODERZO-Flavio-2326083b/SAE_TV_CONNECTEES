@@ -145,14 +145,18 @@ class InformationController extends Controller
 
         $information = $this->_model;
         $scrapping = $this->_modelScrapping;
-        $information->setContent($content);
-        $information->setTitle($title);
-        $information->setAuthor($userModel->get($currentUser->ID));
-        $information->setCreationDate($creationDate);
-        $information->setExpirationDate($endDate);
-        $information->setAdminId(null);
-        $information->setIdDepartment($deptId ?: 0);
-        $information->setDuration(5000);
+
+        foreach(array($information, $scrapping) as $info) {
+            $info->setContent($content);
+            $info->setTitle($title);
+            $info->setAuthor($userModel->get($currentUser->ID));
+            $info->setCreationDate($creationDate);
+            $info->setExpirationDate($endDate);
+            $info->setAdminId(null);
+            $info->setIdDepartment($deptId ?: 0);
+            $info->setDuration(5000);
+        }
+
 
         if (isset($actionText)) {   // Si l'information est un texte
 

@@ -13,11 +13,15 @@ class Scrapping extends Model implements Entity, JsonSerializable {
 
     private ?User $_author;
 
+    private ?string $_content;
+
     private ?string $_creationDate;
 
     private ?string $_expirationDate;
 
     private ?string $_tag;
+
+    private ?array $_tags;
 
     private ?string $_num;
 
@@ -47,6 +51,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                      duration)
                 VALUES 
                     (:title,
+                     :content,
                      :tag,
                      :num,
                      :creation_date,
@@ -57,7 +62,16 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                      :department_id, 
                      :duration) "
         );
+
+        $request2 = $database->prepare(
+        'INSERT INTO ecran_scrapping_departement (dept_id, scrapping_id)
+            VALUES (:dept_id, :scrapping_id)'
+        );
+        $request2->bindValue(':dept_id', $this->getIdDepartment());
+        $request2->bindValue(':scrapping_id', $this->getId());
+
         $request->bindValue(':title', $this->getTitle());
+        $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
         $request->bindValue(':num', $this->getNum());
         $request->bindValue(
@@ -93,6 +107,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             "
         UPDATE ecran_scrapping 
         SET title = :title, 
+            content = :content,
             tag = :tag, 
             num = :num,
             expiration_date = :expirationDate,
@@ -101,6 +116,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         WHERE scrapping_id = :id"
         );
         $request->bindValue(':title', $this->getTitle());
+        $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
         $request->bindValue(':num', $this->getNum());
         $request->bindValue(':expirationDate', $this->getExpirationDate());
@@ -133,7 +149,8 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             "
         SELECT 
             id, 
-            title, 
+            title,
+            content,
             tag,
             num,
             creation_date, 
@@ -162,6 +179,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         SELECT 
             id, 
             title,
+            content,
             tag,
             num,
             creation_date,
@@ -204,6 +222,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $author = new User();
         $entity->setId($data['id']);
         $entity->setTitle($data['title']);
+        $entity->setContent($data['content']);
         $entity->setTag($data['tag']);
         $entity->setNum($data['num']);
         $entity->setCreationDate(
@@ -247,6 +266,16 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $this->_title = $title;
     }
 
+    public function getContent(): ?string
+    {
+        return $this->_content;
+    }
+
+    public function setContent(?string $content): void
+    {
+        $this->_content = $content;
+    }
+
     public function setCreationDate(?string $creationDate): void
     {
         $this->_creationDate = $creationDate;
@@ -255,6 +284,16 @@ class Scrapping extends Model implements Entity, JsonSerializable {
     public function setNum(?string $num): void
     {
         $this->_num = $num;
+    }
+
+    public function getTags(): ?array
+    {
+        return $this->_tags;
+    }
+
+    public function setTags(?array $tags): void
+    {
+        $this->_tags = $tags;
     }
 
     public function setIdDepartment(?int $idDepartment): void

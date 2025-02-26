@@ -574,10 +574,10 @@ name="delete" onclick="return confirm(
                 name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="tagContainer">
                 <label for="tag">Tag</label> ' . $this->buildTagOption($tag) . '
             </div>
-            <input type="button" class="btn button_ecran" onclick="addButtonTv()" 
+            <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
             value="Ajouter des tags">
             <div class="form-group">
                 <label for="expirationDate">Date d\'expiration</label>
@@ -605,7 +605,7 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function buildTagOption($tag) {
+    public static function buildTagOption($tag) {
         $select = '  
                        <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag" required="">

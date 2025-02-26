@@ -138,6 +138,11 @@ function loadScriptsEcran() : void
         . 'public/js/addOrDeleteAlertCode.js', array('jquery'), '1.0', true
     );
     wp_enqueue_script(
+        'addTag_script_ecran',
+        TV_PLUG_PATH
+        . 'public/js/addOrDeleteTag.js', array('jquery'), '1.0', true
+    );
+    wp_enqueue_script(
         'addCodeTv_script_ecran',
         TV_PLUG_PATH
         . 'public/js/addOrDeleteTvCode.js', array('jquery'), '1.0', true
