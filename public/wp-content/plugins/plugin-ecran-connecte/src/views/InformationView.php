@@ -567,7 +567,7 @@ name="delete" onclick="return confirm(
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
         $form = '
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="registerScrappingForm">
             <div class="form-group">
                 <label for="title">Titre du scrapping</label>
                 <input id="title" class="form-control" type="text"
@@ -606,12 +606,12 @@ name="delete" onclick="return confirm(
     }
 
     public function buildTagOption($tag) {
-        $select = '    <label for="tag">Tag</label>
-                       <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="60" required>
+        $select = '  
+                       <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag" required="">
                             <option value="default">Défault</option>
                             <option value="' . $tag . '">Image</option>
-                            <option value="lien">Lien</option>    ';
+                            <option value="'. $tag . '">Lien</option>    ';
         return $select;
     }
 
