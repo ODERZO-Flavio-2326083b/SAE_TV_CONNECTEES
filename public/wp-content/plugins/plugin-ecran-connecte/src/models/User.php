@@ -90,10 +90,10 @@ class User extends Model implements Entity, JsonSerializable
      * Rôle de l'utilisateur dans l'application.
      *
      * Cette propriété définit le rôle de l'utilisateur parmi les valeurs possibles :
-     * 'television', 'secretaire', ou 'technicien'.
+     * 'television', 'secretaire', 'tablette' ou 'technicien'.
      * Chaque rôle a des permissions spécifiques dans l'application.
      *
-     * @var string (television | secretaire | technicien)
+     * @var string (television | secretaire | technicien | tablette)
      */
     private string $_role;
 
@@ -144,7 +144,7 @@ class User extends Model implements Entity, JsonSerializable
             'role' => $this->getRole(),
         );
         $id = wp_insert_user($userData);
-        if ($this->getRole() == 'television') {
+        if ($this->getRole() == 'television' || $this->getRole() == 'tablette') {
             foreach ($this->getCodes() as $code) {
                 $request = $this->getDatabase()->prepare(
                     'INSERT INTO ecran_code_user (user_id, code_ade_id) 

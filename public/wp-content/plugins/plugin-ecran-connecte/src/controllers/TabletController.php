@@ -56,13 +56,12 @@ class TabletController extends UserController implements Schedule
                 && InputValidator::isValidPassword($password, $passwordConfirm)
             ) {
                 $codesAde = array();
-                foreach ($codes as $code) {
-                    if (is_numeric($code) && $code > 0) {
-                        if (is_null($codeAde->getByCode($code)->getId())) {
-                            return 'error'; // Code invalide
-                        } else {
-                            $codesAde[] = $codeAde->getByCode($code);
-                        }
+                $code = $codes[0];
+                if (is_numeric($code) && $code > 0) {
+                    if (is_null($codeAde->getByCode($code)->getId())) {
+                        return 'error'; // Code invalide
+                    } else {
+                        $codesAde[] = $codeAde->getByCode($code);
                     }
                 }
 
@@ -116,18 +115,12 @@ class TabletController extends UserController implements Schedule
 
     public function displayMySchedule(): string
     {
-        $codeAde = new CodeAde();
         $user = new User();
         $tabUserObj = $user->get(wp_get_current_user()->ID);
 
-        $classes = $codeAde->getAllFromType('class');
-        $string = "";
-        foreach ($classes as $class) {
-            if ($class->getDeptId() == $tabUserObj->getIdDepartment()) {
-                $string .= $this->displaySchedule($class->getCode());
-            }
-        }
-        return $string;
+        $code = $tabUserObj->getCodes();
+
+        return $this->displaySchedule($code[0]->getCode());
     }
 
     public function displaySchedule($code, $allDay = false) : string
