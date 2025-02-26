@@ -23,7 +23,6 @@ scheduleSlideshow();
 function infoSlideShow()
 {
     if(document.getElementsByClassName("myInfoSlides").length > 0) {
-        console.log("-Début du diaporama");
         displayOrHide(document.getElementsByClassName("myInfoSlides"), 0);
     }
 }
@@ -33,7 +32,6 @@ function infoSlideShow()
  */
 function videoSlideshow(){
     if (document.getElementsByClassName("myVideoSlides").length > 0){
-        console.log("-Début du diaporama vidéo");
         displayOrHideVideo(document.getElementsByClassName("myVideoSlides"), 0);
     }
 }
@@ -45,7 +43,6 @@ function videoSlideshow(){
 function scheduleSlideshow()
 {
     if(document.getElementsByClassName("mySlides").length > 0) {
-        console.log("-Début du diaporama");
         displayOrHide(document.getElementsByClassName("mySlides"), 0);
     }
 }
@@ -62,14 +59,12 @@ function displayOrHide(slides, slideIndex)
             }
         }
         if(slideIndex === slides.length) {
-            console.log("-Fin du diaporama - On recommence");
             slideIndex = 0;
         }
 
         // On vérifie qu'il existe une dernière slide
         if(slides[slideIndex] !== undefined) {
 
-            console.log("--Slide n°"+ slideIndex);
 
             slides[slideIndex].style.display = "block";
             // On vérifie qu'un enfant existe
@@ -80,7 +75,6 @@ function displayOrHide(slides, slideIndex)
                     // Si c'est un PDF
                     if(child.className === 'canvas_pdf') {
 
-                        console.log("--Lecture de PDF");
                         count++;
 
                         // On génère l'URL
@@ -98,7 +92,6 @@ function displayOrHide(slides, slideIndex)
 
                             if(stop === false) {
                                 if(document.getElementById('the-canvas-' + pdfLink + '-page' + (numPage-1)) != null) {
-                                    console.log('----Supression page n°'+ (numPage-1));
                                     document.getElementById('the-canvas-' + pdfLink + '-page' + (numPage-1)).remove();
                                 }
                             }
@@ -110,7 +103,6 @@ function displayOrHide(slides, slideIndex)
                                     }
 
 
-                                    console.log("---Page du PDF n°"+numPage);
 
                                     let viewport = page.getViewport({ scale: scale, });
 
@@ -151,7 +143,6 @@ function displayOrHide(slides, slideIndex)
                                             document.getElementById('the-canvas-' + pdfLink + '-page' + (totalPage)).remove();
                                         }
                                     }
-                                    console.log("--Fin du PDF");
                                     totalPage = null;
                                     numPage = 0;
                                     endPage = true;
@@ -165,13 +156,11 @@ function displayOrHide(slides, slideIndex)
 
                     // Si c'est un short
                     if (child.className === 'short_container') {
-                        console.log("--Lecture short");
                     }
 
                 }
 
                 if(count === 0) {
-                    console.log("--Lecture image");
                     ++slideIndex;
                 }
             } else {
@@ -207,14 +196,12 @@ function displayOrHideVideo(slides, slideIndex) {
 
         // Une fois que toutes les vidéos ont été passées, on cache la diapositive, laissant apparaître l'emploi du temps
         if (slideIndex === slides.length) {
-            console.log("--Fin du diaporama - On cache les vidéos");
             for (let i = 0; i < slides.length; ++i) {
                 slides[i].style.display = "none";
             }
 
             // On attend 6 secondes, avant de refaire apparaître le diaporama
             setTimeout(function () {
-                console.log("--Reprise du diaporama après 10 secondes");
                 displayOrHideVideo(slides, 0); // Redémarre depuis la première slide
             }, 10000);
 
@@ -223,7 +210,6 @@ function displayOrHideVideo(slides, slideIndex) {
 
         // On vérifie qu'il existe une dernière slide
         if (slides[slideIndex] !== undefined) {
-            console.log("--Slide n°" + slideIndex);
 
             // On vérifie qu'un enfant existe et que c'est bien une vidéo
             if (slides[slideIndex].childNodes) {
@@ -233,7 +219,6 @@ function displayOrHideVideo(slides, slideIndex) {
                     if (child.className === 'video_container') {
                         slides[slideIndex].style.display = "block";
                         slides[slideIndex].style.position = "relative";
-                        console.log("--Lecture de la vidéo");
 
                     }
                 }
