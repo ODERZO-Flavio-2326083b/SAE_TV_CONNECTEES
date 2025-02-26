@@ -655,6 +655,7 @@ name="delete" onclick="return confirm(
         string $endDate, string $type,
         array $allDepts,
         bool $isAdmin = false,
+        bool $isComm = false,
         int $currDept = null
     ): string {
 
@@ -667,7 +668,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormText(
-                        $allDepts, $isAdmin, $currDept, $title, $content,
+                        $allDepts, $isAdmin, $isComm, $currDept, $title, $content,
                         $endDate, 'submit'
                     );
         case "img":
@@ -678,7 +679,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormImg(
-                        $allDepts, $isAdmin, $currDept, $title, $content, $endDate,
+                        $allDepts, $isAdmin, $isComm, $currDept, $title, $content, $endDate,
                         'submit'
                     );
         case "video":
@@ -689,7 +690,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormVideo(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $isAdmin, $isComm, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "short":
@@ -700,7 +701,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormShort(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $isAdmin, $isComm, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "pdf":
@@ -711,7 +712,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormPDF(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $isAdmin, $isComm, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "event":
@@ -724,7 +725,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormPDF(
-                        $allDepts, $isAdmin,
+                        $allDepts, $isAdmin, $isComm,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             } else {
@@ -734,7 +735,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormImg(
-                        $allDepts, $isAdmin,
+                        $allDepts, $isAdmin, $isComm,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             }

@@ -134,6 +134,9 @@ class InformationController extends Controller
             'informationDept'
         ) : ($deptId = $isComm ? filter_input(INPUT_POST, 'informationDept'
         ) : $currDept);
+        $depts = filter_input(
+            INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+        );
 
         // Si le titre est vide
         if ($title == '') {
@@ -147,8 +150,20 @@ class InformationController extends Controller
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
         $information->setAdminId(null);
-        $information->setIdDepartment($deptId ?: 0);
         $information->setDuration(5000);
+
+        if(!is_array($depts)) {
+            $depts = [];
+        }
+        $departments = array();
+        foreach ($depts as $deptId) {
+            $department = $deptModel->getDepartmentById((int) $deptId);
+            var_dump($department);
+            if($department !== null) {
+                $departments[] = $department;
+            }
+        }
+        $information->setDepartments($departments);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -316,6 +331,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $currentUser = wp_get_current_user();
 
         $isAdmin = current_user_can('admin_perms');
+        $isComm = current_user_can('comm_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département.
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
@@ -432,7 +448,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         return $this->_view->displayModifyInformationForm(
             $information->getTitle(), $information->getContent(),
             $information->getExpirationDate(), $information->getType(),
-            $allDepts, $isAdmin, $currDept
+            $allDepts, $isAdmin, $isComm, $currDept
         );
     }
 
@@ -582,7 +598,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
 
         $name = 'Info';
         $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration',
-            'Auteur', 'Type', 'Département', 'Modifier'];
+            'Auteur', 'Type', 'Modifier'];
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
@@ -639,7 +655,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 $information->getExpirationDate(),
                 $information->getAuthor()->getLogin(),
                 $type,
-                $deptModel->get($information->getIdDepartment())->getName(),
                 $this->_view->buildLinkForModify(
                     esc_url(
                         get_permalink(
