@@ -237,4 +237,4 @@ function injectTagOnScrappingEdit() {
 
 }
 
-add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');
+//add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');

@@ -81,8 +81,8 @@ class InformationView extends View
     public function displayFormText(array $allDepts, bool $isAdmin = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
-        $type = "createText"
-    ) : string {
+        $type = "createText") : string {
+
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
         $form = '
@@ -575,7 +575,7 @@ name="delete" onclick="return confirm(
                         value="' . $title . '">
             </div>
             <div class="form-group" id="tagContainer">
-                <label for="tag">Tag</label> ' . $this->buildTagOption($tag) . '
+                <label for="tag">Tag</label> ' . $this->buildTagOption() . '
             </div>
             <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
             value="Ajouter des tags">
@@ -605,13 +605,13 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public static function buildTagOption($tag) {
+    public static function buildTagOption() {
         $select = '  
-                       <input id="tag" class="form-control" type="text" name="tag" placeholder="Inserer un tag" maxlength="255" required>
+                       <input id="content" class="form-control" type="text" name="content" placeholder="Inserer le tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag" required="">
                             <option value="default">Défault</option>
-                            <option value="' . $tag . '">Image</option>
-                            <option value="'. $tag . '">Lien</option>    ';
+                            <option value="image">Image</option>
+                            <option value="lien">Lien</option>    ';
         return $select;
     }
 

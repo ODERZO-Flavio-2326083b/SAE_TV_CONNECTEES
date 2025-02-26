@@ -137,6 +137,7 @@ class InformationController extends Controller
             INPUT_POST,
             'informationDept'
         ) : $currDept;
+        $tag = filter_input(INPUT_POST, 'tag');
 
         // Si le titre est vide
         if ($title == '') {
@@ -156,6 +157,8 @@ class InformationController extends Controller
             $info->setIdDepartment($deptId ?: 0);
             $info->setDuration(5000);
         }
+
+        $scrapping->setTag($tag);
 
 
         if (isset($actionText)) {   // Si l'information est un texte

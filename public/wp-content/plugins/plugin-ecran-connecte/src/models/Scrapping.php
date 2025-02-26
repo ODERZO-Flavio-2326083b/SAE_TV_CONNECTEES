@@ -23,8 +23,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
 
     private ?array $_tags;
 
-    private ?string $_num;
-
     private ?string $_type;
 
     private ?int $_adminId;
@@ -41,7 +39,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                     (title,
                      content,
                      tag,
-                     num,
                      creation_date,
                      expiration_date,
                      type,
@@ -53,7 +50,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                     (:title,
                      :content,
                      :tag,
-                     :num,
                      :creation_date,
                      :expiration_date,
                      :type, 
@@ -73,7 +69,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request->bindValue(':title', $this->getTitle());
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
-        $request->bindValue(':num', $this->getNum());
         $request->bindValue(
             ':creationDate', $this->getCreationDate()
         );
@@ -109,7 +104,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         SET title = :title, 
             content = :content,
             tag = :tag, 
-            num = :num,
             expiration_date = :expirationDate,
             department_id = :deptId,
             duration = :duration
@@ -118,7 +112,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request->bindValue(':title', $this->getTitle());
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
-        $request->bindValue(':num', $this->getNum());
         $request->bindValue(':expirationDate', $this->getExpirationDate());
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(
@@ -152,7 +145,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             title,
             content,
             tag,
-            num,
             creation_date, 
             expiration_date, 
             author, 
@@ -181,7 +173,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             title,
             content,
             tag,
-            num,
             creation_date,
             expiration_date,
             author, 
@@ -224,7 +215,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $entity->setTitle($data['title']);
         $entity->setContent($data['content']);
         $entity->setTag($data['tag']);
-        $entity->setNum($data['num']);
         $entity->setCreationDate(
             date(
                 'Y-m-d',
@@ -279,11 +269,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
     public function setCreationDate(?string $creationDate): void
     {
         $this->_creationDate = $creationDate;
-    }
-
-    public function setNum(?string $num): void
-    {
-        $this->_num = $num;
     }
 
     public function getTags(): ?array
@@ -344,11 +329,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
     public function getTag() : ?string
     {
         return $this->_tag;
-    }
-
-    public function getNum() : ?int
-    {
-        return $this->_num;
     }
 
     public function getCreationDate() : ?string {

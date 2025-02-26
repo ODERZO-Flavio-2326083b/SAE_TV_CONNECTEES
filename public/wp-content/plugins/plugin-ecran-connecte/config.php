@@ -348,7 +348,6 @@ function installDatabaseEcran() : void
             title VARCHAR (30) NOT NULL,
             content VARCHAR (255) NOT NULL,
             tag VARCHAR (70) NOT NULL,
-            num INT(10) NOT NULL,
             creation_date datetime DEFAULT NOW() NOT NULL,
 			expiration_date datetime NOT NULL,
 			author BIGINT(20) UNSIGNED NOT NULL,
