@@ -884,7 +884,7 @@ name="delete" onclick="return confirm(
                 [
                     'title' => "//p[@class='article__title article__title--inline']",  // Sélecteur pour
                     'content' => "//div[@class='article__wrapper']//p[@class='article__desc']",  // Sélecteur
-                    'image' => "//picture[@class='article__media']//img/@data-srcset",
+                    'image' => "//picture[@class='article__media']//img",
                     'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
                     'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
                     'duree' => "//p[@class='article__footer-info']"
@@ -897,9 +897,10 @@ name="delete" onclick="return confirm(
                 // Sélecteur pour l'article
                 [
 
-                        'title' => "//h1[@class='fig-ensemble__title']",  // Titre de l'article
+                        'title' => "//h2[@class='fig-ensemble__title']",  // Titre
+                    // de l'article
                         'content' => "//p[@class='fig-ensemble__standfirst fig-ensemble__standfirst--photo']",  // Description
-                        'image' => "//figure[@class='fig-ensemble__media']//img/@src | //figure[@class='fig-ensemble__media']//img/@srcset",
+                        'image' => "//img[@class='']",
                         'link' => "//a[@class='fig-ensemble__first-article-link']/@href"
 
 
@@ -912,12 +913,12 @@ name="delete" onclick="return confirm(
                 // Sélecteur pour l'article
                 [
 
-                    'image' => "//figure[@class='fig-ensemble__media']//img/@src | //figure[@class='fig-ensemble__media']//img/@srcset",
+                    'image' => "//picture[@class='']//img[@class='img-fluid']",
 
 
                 ]
             );
-            $scrapper3->printWebsite();
+            $scrapper4->printWebsite();
 
             break;
 
