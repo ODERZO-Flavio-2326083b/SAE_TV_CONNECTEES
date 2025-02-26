@@ -897,11 +897,10 @@ name="delete" onclick="return confirm(
                 // Sélecteur pour l'article
                 [
 
-                        'title' => "//h2[@class='fig-ensemble__title']",  // Titre
-                    // de l'article
-                        'content' => "//p[@class='fig-ensemble__standfirst fig-ensemble__standfirst--photo']",  // Description
-                        'image' => "//img[@class='']",
-                        'link' => "//a[@class='fig-ensemble__first-article-link']/@href"
+                    'title' => "//h2[@class='fig-ensemble__title']",  // Titre
+                    'content' => "//p[@class='fig-ensemble__standfirst fig-ensemble__standfirst--photo']",  // Description
+                    'image' => "//figure[contains(@class, 'fig-ensemble__media')]//img/@srcset",
+                    'link' => "//a[@class='fig-ensemble__first-article-link']/@href"
 
 
                 ]

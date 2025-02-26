@@ -61,6 +61,18 @@ class Scrapper
         return null;
     }
 
+    private function extractFirstSrcSet(string $srcset): string {
+        $parts = explode(',', $srcset); // Séparer les URLs
+        if (count($parts) > 0) {
+            $firstPart = explode(' ', trim($parts[0])); // Prendre la première URL
+            return trim($firstPart[0]); // Nettoyer et retourner l'URL
+        }
+        return "";
+    }
+
+
+
+
     /**
      * Récupère les informations d'un article en utilisant les sélecteurs définis
      */
@@ -77,10 +89,16 @@ class Scrapper
                 if ($key === 'image') {
                     $imgNode = $nodes->item(0);
                     if ($imgNode instanceof DOMElement) {
-                        // Récupère l'URL de l'image depuis src, data-src ou srcset
-                        $value = $imgNode->getAttribute('data-src') ?:
-                            $imgNode->getAttribute('src') ?:
-                                $this->extractFirstSrcSet($imgNode->getAttribute('srcset'));
+                        $value = null;
+
+                        // Vérifie en priorité srcset, sinon data-src, sinon src
+                        if ($imgNode->hasAttribute('srcset') && !empty($imgNode->getAttribute('srcset'))) {
+                            $value = $this->extractFirstSrcSet($imgNode->getAttribute('srcset'));
+                        } elseif ($imgNode->hasAttribute('data-src') && !empty($imgNode->getAttribute('data-src'))) {
+                            $value = $imgNode->getAttribute('data-src');
+                        } elseif ($imgNode->hasAttribute('src') && !empty($imgNode->getAttribute('src'))) {
+                            $value = $imgNode->getAttribute('src');
+                        }
                     }
                 } elseif ($key === 'link') {
                     $linkNode = $nodes->item(0);
@@ -119,20 +137,6 @@ class Scrapper
         return null;
     }
 
-    private function extractFirstSrcSet(string $srcset): ?string
-    {
-        if (!$srcset) return null;
-
-        // Le srcset contient plusieurs URLs avec des tailles, on prend la première
-        $parts = explode(',', $srcset);
-        if (isset($parts[0])) {
-            $firstPart = trim($parts[0]);
-            $url = explode(' ', $firstPart)[0]; // Prend uniquement l'URL
-            return filter_var($url, FILTER_VALIDATE_URL) ? $url : null;
-        }
-
-        return null;
-    }
 
     /**
      * Affiche l'article dans un format HTML
@@ -140,35 +144,47 @@ class Scrapper
     public function printWebsite(): void
     {
         $article = $this->getOneArticle();
-        var_dump($article); // Vérifie le contenu récupéré
-        $html = '<div>';
+        if (isset($article['error'])) {
+            echo "<p>{$article['error']}</p>";
+            return;
+        }
+
+        $html = '<div style="font-family: Arial, sans-serif; text-align: center;">';
 
         if ($article) {
-            $html .= '<div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">';
+
+            // Supprime l'auteur du tableau article
+            unset($article['author']);
+
+            $hasImage = isset($article['image']) && $article['image'] !== "Pas de contenu.";
+            $hasOtherContent = count(array_filter($article, fn($v, $k) => $k !== 'image' && $v !== "Pas de contenu.", ARRAY_FILTER_USE_BOTH)) > 0;
 
             foreach ($article as $key => $value) {
                 if ($value !== "Pas de contenu.") {
                     if ($key === 'image') {
-                        $imageBase64 = $this->encodeImageToBase64($value);
-                        if ($imageBase64) {
-                            $html .= "<p><strong>{$key} :</strong> <br><img src='{$imageBase64}' style='height: 7em; width: auto;'></p>";
+                        if ($imageBase64 = $this->encodeImageToBase64($value)) {
+                            // Si l'image est la seule info, elle prend toute la page
+                            $imageStyle = $hasOtherContent ? "max-width: 100%; height: auto;" : "width: 25vw; height: 73vh; object-fit: cover;";
+                            $html .= "<img src='{$imageBase64}' style='{$imageStyle}'>";
                         } else {
-                            $html .= "<p>Image introuvable.</p>";
+                            $html .= "<p style='color: red;'>Image introuvable.</p>";
                         }
                     } elseif ($key === 'link') {
-                        $html .= "<p><strong>{$key} :</strong> <a href='{$value}' target='_blank'>{$value}</a></p>";
+                        $html .= "<p><a href='{$value}' target='_blank'>{$value}</a></p>";
                     } else {
-                        $html .= "<p><strong>{$key} :</strong> {$value}</p>";
+                        $html .= "<p></strong> {$value}</p>";
                     }
                 }
             }
 
             $html .= '</div>';
         } else {
-            $html .= '<p>Aucun article trouvé.</p>';
+            $html .= '<p style="color:red;">Aucun article trouvé.</p>';
         }
 
         $html .= '</div>';
         echo $html;
     }
+
+
 }
