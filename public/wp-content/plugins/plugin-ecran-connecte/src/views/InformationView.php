@@ -575,7 +575,7 @@ name="delete" onclick="return confirm(
                         value="' . $title . '">
             </div>
             <div class="form-group" id="tagContainer">
-                <label for="tag">Tag</label> ' . $this->buildTagOption() . '
+                <label for="tag" id="tagDiv">Tag</label> ' . $this->buildTagOption() . '
             </div>
             <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
             value="Ajouter des tags">
@@ -606,12 +606,14 @@ name="delete" onclick="return confirm(
     }
 
     public static function buildTagOption() {
-        $select = '  
+        $select = '  <div>
                        <input id="content" class="form-control" type="text" name="content" placeholder="Inserer le tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag" required="">
                             <option value="default">Défault</option>
                             <option value="image">Image</option>
-                            <option value="lien">Lien</option>    ';
+                            <option value="lien">Lien</option> 
+                     </div>
+                          ';
         return $select;
     }
 

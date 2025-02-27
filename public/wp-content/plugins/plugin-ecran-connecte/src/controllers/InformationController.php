@@ -244,7 +244,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
 
         if (isset($actionScrapping)) {
             $scrapping->setType("scrapping");
-            if ($scrapping->insert()) {
+            if ($scrapping->insert() && $scrapping->insertScrappingDepartement()) {
                 $this->_view->displayCreateValidate();
             } else {
                 $this->_view->displayErrorInsertionInfo();

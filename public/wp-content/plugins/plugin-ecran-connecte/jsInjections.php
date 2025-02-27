@@ -223,18 +223,11 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
 function injectTagOnScrappingEdit() {
-    $scrappingModel = new Scrapping();
-
-    $tag = $scrappingModel->getTag();
-
     wp_localize_script(
         'addTag_script_ecran', 'codeHTML', array(
-            'tagg' => InformationView::buildTagOption(
-                $tag
-            )
+            'tagg' => InformationView::buildTagOption()
         )
     );
-
 }
 
-//add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');
+add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');

@@ -31,7 +31,8 @@ class Scrapping extends Model implements Entity, JsonSerializable {
 
     private ?int $_duration;
 
-    public function insert() {
+    public function insert(): false|int|string
+    {
         $database = $this->getDatabase();
         $request = $database->prepare(
                 "
@@ -59,13 +60,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
                      :duration) "
         );
 
-        $request2 = $database->prepare(
-        'INSERT INTO ecran_scrapping_departement (dept_id, scrapping_id)
-            VALUES (:dept_id, :scrapping_id)'
-        );
-        $request2->bindValue(':dept_id', $this->getIdDepartment());
-        $request2->bindValue(':scrapping_id', $this->getId());
-
         $request->bindValue(':title', $this->getTitle());
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
@@ -77,7 +71,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         );
         $request->bindValue(':type', $this->getType());
         $request->bindValue(
-            ':userId', $this->getAuthor()->getId(),
+            ':author', $this->getAuthor()->getId(),
             PDO::PARAM_INT
         );
         $request->bindValue(
@@ -93,6 +87,20 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             PDO::PARAM_INT
         );
         $request->execute();
+        return $database->lastInsertId();
+    }
+
+    public function insertScrappingDepartement(): false|string
+    {
+        $database = $this->getDatabase();
+        $request = $database->prepare(
+            'INSERT INTO ecran_scrapping_departement (dept_id, scrapping_id)
+            VALUES (:dept_id, :scrapping_id)'
+        );
+        $request->bindValue(':dept_id', $this->getIdDepartment());
+        $request->bindValue(':scrapping_id', $this->getId());
+        $request->execute();
+
         return $database->lastInsertId();
     }
 
