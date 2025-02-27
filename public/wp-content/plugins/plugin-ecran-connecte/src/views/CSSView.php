@@ -74,7 +74,7 @@ class CSSView extends View
     public function displayContextCSS()
     {
         echo "
-        <h2>Gestion du CSS</h2>
+        <h2>Personnalisation</h2>
         <div class='row'>
                 <p class='lead'>Sur cette page, il est possible de personnaliser la 
                 télévision d'un département au choix.</p>
