@@ -178,7 +178,7 @@ class SubadminController extends UserController
                 = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->_view->displayAllTechnicians($users, $userDeptList);
+        return $this->_view->displayAllSubadmin($users, $userDeptList);
     }
 
 }
