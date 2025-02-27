@@ -30,11 +30,10 @@ CSS de l'emploi du temps
 
 
 .video_container {
-    top: 0;
     left: 0;
     width: 100%;
-    background-color: white;
     display: flex;
+    position:absolute;
     justify-content: center;
     align-items: center;
     z-index: 99;
