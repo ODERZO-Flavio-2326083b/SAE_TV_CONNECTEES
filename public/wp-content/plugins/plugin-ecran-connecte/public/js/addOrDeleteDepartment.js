@@ -3,8 +3,6 @@ let depSelector = codeHTML.department;
 
 function addButtonDep(container) {
     countDep = countDep + 1;
-
-    console.log('bonjour' + container);
     let div = $('<div>', {
         id: 'row-' + countDep,
         class: 'row'
