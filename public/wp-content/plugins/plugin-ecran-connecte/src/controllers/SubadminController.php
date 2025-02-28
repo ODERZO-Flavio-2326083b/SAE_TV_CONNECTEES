@@ -25,9 +25,9 @@ use utils\InputValidator;
 use views\SubadminView;
 
 /**
- * Class TechnicianController
+ * Class SubadminController
  *
- * Gère les techniciens (Création, mise à jour, suppression, affichage)
+ * Gère les administrateurs de département (Création, mise à jour, suppression, affichage)
  *
  * @category API
  * @package  Controllers
