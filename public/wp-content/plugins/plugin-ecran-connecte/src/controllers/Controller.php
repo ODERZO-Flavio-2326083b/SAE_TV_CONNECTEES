@@ -107,20 +107,20 @@ class Controller
      */
     public function getUrl($code) : string
     {
-        $str = strtotime("now"); // Récupère le timestamp actuel
-        $str2 = strtotime(
+        // Timestamp de la semaine dernière
+        $timestampLastWeek = strtotime("monday last week");
+        $timestampIn2Weeks = strtotime(
             date("Y-m-d", strtotime('now'))
-            . " +6 day"
-        ); // Timestamp
-                                        // pour 6 jours
-                                        // dans le futur
-        $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
-        $end = date('Y-m-d', $str2); // Date de fin (dans 6 jours)
-        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/'.
-        'anonymous_cal.jsp?projectId=8&resources=' . $code
-            . '&calType=ical&firstDate=' . $start . '&lastDate='
-            . $end; // Génère l'URL
-        return $url; // Retourne l'URL
+            . " +2 weeks"
+        ); // Timestamp dans 2 semaines
+
+        $start = date('Y-m-d', $timestampLastWeek); // Date de début (aujourd'hui)
+        $end = date('Y-m-d', $timestampIn2Weeks); // Date de fin (dans 6 jours)
+        // Renvoyer l'URL
+        return 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/' .
+               'anonymous_cal.jsp?projectId=8&resources=' . $code
+               . '&calType=ical&firstDate=' . $start . '&lastDate='
+               . $end;
     }
 
     /**
