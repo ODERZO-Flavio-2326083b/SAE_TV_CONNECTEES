@@ -932,7 +932,61 @@ name="delete" onclick="return confirm(
             break;
 
         case 'scrapper':
-            $scrapper->printWebsite();
+            // ✅ EXEMPLE 1 : Scrapping "Informatiquenews"
+            $scrapper1 = new Scrapper(
+                'https://www.informatiquenews.fr/news', // URL du site à scraper
+                "//article[@class='post hnews hentry']",  // Sélecteur pour l'article
+                [
+                    'title' => "//h2[@class='entry-title']/a",  // Sélecteur pour le titre
+                    'content' => "//div[@class='post-content entry-content']",  // Sélecteur pour le contenu
+                    'image' => "//header[@class='post-heading']//img",  // Sélecteur pour l'image
+                    'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
+                    'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
+                ]
+            );
+
+            $scrapper2 = new Scrapper(
+                'https://www.lemonde.fr', // URL du site à scraper
+                "//div[@class='article article--featured']",  //
+                // Sélecteur pour l'article
+                [
+                    'title' => "//p[@class='article__title article__title--inline']",  // Sélecteur pour
+                    'content' => "//div[@class='article__wrapper']//p[@class='article__desc']",  // Sélecteur
+                    'image' => "//picture[@class='article__media']//img",
+                    'link' => "//h2[@class='entry-title']/a",  // Sélecteur pour le lien
+                    'author' => "//footer[@class='meta']//em[@class='author vcard']//a",  // Sélecteur pour l'auteur
+                    'duree' => "//p[@class='article__footer-info']"
+                ]
+            );
+
+            $scrapper3 = new Scrapper(
+                'https://www.lefigaro.fr/', // URL du site à scraper
+                "//article[@class='fig-ensemble__first-article']",  //
+                // Sélecteur pour l'article
+                [
+
+                    'title' => "//h2[@class='fig-ensemble__title']",  // Titre
+                    'content' => "//p[@class='fig-ensemble__standfirst fig-ensemble__standfirst--photo']",  // Description
+                    'image' => "//figure[contains(@class, 'fig-ensemble__media')]//img/@srcset",
+                    'link' => "//a[@class='fig-ensemble__first-article-link']/@href"
+
+
+                ]
+            );
+
+            $scrapper4 = new Scrapper(
+                'https://boutique.ed-diamond.com/3_gnu-linux-magazine', // URL du site à scraper
+                "//li[contains(@class, 'ajax_block_product mb-4 col-6 col-lg-3')]",  //
+                // Sélecteur pour l'article
+                [
+
+                    'image' => "//picture[@class='']//img[@class='img-fluid']",
+
+
+                ]
+            );
+            $scrapper2->printWebsite();
+
             break;
 
         case 'special':
