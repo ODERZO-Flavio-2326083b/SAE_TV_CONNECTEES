@@ -514,7 +514,7 @@ function addNewRoles()
 
     add_role(
         'communicant',
-        __('Communiquant'),
+        __('Communicant'),
         array()
     );
 

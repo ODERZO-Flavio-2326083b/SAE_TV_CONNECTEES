@@ -8,7 +8,7 @@ class CommuniquantView extends UserView
                                           bool $isAdmin
     ): string {
         return '
-        <h2>Compte communiquant</h2>
+        <h2>Compte communicant</h2>
         <p class="lead">Pour créer des communiquants, remplissez ce formulaire 
         avec les valeurs demandées.</p>
         ' . $this->displayBaseForm('Comm', $dept, $isAdmin, $currDept);
@@ -17,7 +17,7 @@ class CommuniquantView extends UserView
     public function displayAllCommunicants(array $users,
                                           array $userDeptList
     ): string {
-        $title = 'Communiquant';
+        $title = 'Communicant';
         $name = 'Comm';
         $header = ['Login', 'Département'];
 
