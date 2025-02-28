@@ -79,13 +79,13 @@ class InformationView extends View
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormText(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormText(array $allDepts, bool $isAdmin = false,
                                     int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -164,13 +164,13 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormImg(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormImg(array $allDepts, bool $isAdmin = false,
                                    int $currDept = null,$title = null,
         $content = null, $endDate = null,
         $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -260,13 +260,13 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormVideo(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormVideo(array $allDepts, bool $isAdmin = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createVideo"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -355,13 +355,13 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormShort(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormShort(array $allDepts, bool $isAdmin = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createShort"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -451,13 +451,13 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormPDF(array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormPDF(array $allDepts, bool $isAdmin = false,
                                    int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -535,12 +535,12 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormEvent( array $allDepts, bool $isAdmin = false, bool $isComm = false,
+    public function displayFormEvent( array $allDepts, bool $isAdmin = false,
                                       int $currDept = null, $endDate = null,
         $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : ($isComm ? '' : 'disabled');
+        $disabled = $isAdmin ? '' : 'disabled';
 
         $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
                         ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
@@ -655,7 +655,6 @@ name="delete" onclick="return confirm(
         string $endDate, string $type,
         array $allDepts,
         bool $isAdmin = false,
-        bool $isComm = false,
         int $currDept = null
     ): string {
 
@@ -668,7 +667,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormText(
-                        $allDepts, $isAdmin, $isComm, $currDept, $title, $content,
+                        $allDepts, $isAdmin, $currDept, $title, $content,
                         $endDate, 'submit'
                     );
         case "img":
@@ -679,7 +678,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormImg(
-                        $allDepts, $isAdmin, $isComm, $currDept, $title, $content, $endDate,
+                        $allDepts, $isAdmin, $currDept, $title, $content, $endDate,
                         'submit'
                     );
         case "video":
@@ -690,7 +689,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormVideo(
-                        $allDepts, $isAdmin, $isComm, $currDept, $title,
+                        $allDepts, $isAdmin, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "short":
@@ -701,7 +700,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormShort(
-                        $allDepts, $isAdmin, $isComm, $currDept, $title,
+                        $allDepts, $isAdmin, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "pdf":
@@ -712,7 +711,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormPDF(
-                        $allDepts, $isAdmin, $isComm, $currDept, $title,
+                        $allDepts, $isAdmin, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "event":
@@ -725,7 +724,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormPDF(
-                        $allDepts, $isAdmin, $isComm,
+                        $allDepts, $isAdmin,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             } else {
@@ -735,7 +734,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormImg(
-                        $allDepts, $isAdmin, $isComm,
+                        $allDepts, $isAdmin,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             }

@@ -105,7 +105,6 @@ class InformationController extends Controller
         $userModel = new User();
 
         $isAdmin = current_user_can('admin_perms');
-        $isComm = current_user_can('comm_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
@@ -132,8 +131,7 @@ class InformationController extends Controller
         $deptId = $isAdmin ? filter_input(
             INPUT_POST,
             'informationDept'
-        ) : ($deptId = $isComm ? filter_input(INPUT_POST, 'informationDept'
-        ) : $currDept);
+        ) : $currDept;
         $depts = filter_input(
             INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
         );
@@ -256,32 +254,32 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'text', $this->_view->displayFormText(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 ), true
             ) .
             $this->_view->displayContentSelect(
                 'image', $this->_view->displayFormImg(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'pdf', $this->_view->displayFormPDF(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'event', $this->_view->displayFormEvent(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'video', $this->_view->displayFormVideo(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'short', $this->_view->displayFormShort(
-                    $allDepts, $isAdmin, $isComm, $currDept
+                    $allDepts, $isAdmin, $currDept
                 )
             ) .
             '</div>' .
@@ -330,7 +328,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $currentUser = wp_get_current_user();
 
         $isAdmin = current_user_can('admin_perms');
-        $isComm = current_user_can('comm_perms');
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département.
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
@@ -463,7 +460,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         return $this->_view->displayModifyInformationForm(
             $information->getTitle(), $information->getContent(),
             $information->getExpirationDate(), $information->getType(),
-            $allDepts, $isAdmin, $isComm, $currDept
+            $allDepts, $isAdmin, $currDept
         );
     }
 
