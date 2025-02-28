@@ -138,6 +138,11 @@ function loadScriptsEcran() : void
         . 'public/js/addOrDeleteAlertCode.js', array('jquery'), '1.0', true
     );
     wp_enqueue_script(
+        'addDepartment_script',
+        TV_PLUG_PATH
+        . 'public/js/addOrDeleteDepartment.js', array('jquery'), '1.0', true
+    );
+    wp_enqueue_script(
         'addCodeTv_script_ecran',
         TV_PLUG_PATH
         . 'public/js/addOrDeleteTvCode.js', array('jquery'), '1.0', true
@@ -224,11 +229,8 @@ function installDatabaseEcran() : void
 			type VARCHAR (10) DEFAULT 'text' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			duration INT(10) DEFAULT 5000 NOT NULL,
-			department_id INT(10),
 			PRIMARY KEY (id),
-			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
-			FOREIGN KEY (department_id) 
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE
 		) $charset_collate;";
 
     dbDelta($sql);
@@ -324,6 +326,56 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
+    $table_name = 'ecran_scrapping';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
+            title VARCHAR (30) NOT NULL,
+            content VARCHAR (255) NOT NULL,
+            tag VARCHAR (70) NOT NULL,
+            num INT(10) NOT NULL,
+            creation_date datetime DEFAULT NOW() NOT NULL,
+            expiration_date datetime NOT NULL,
+            author BIGINT(20) UNSIGNED NOT NULL,
+            type VARCHAR (10) DEFAULT 'text' NOT NULL,
+            administration_id INT(10) DEFAULT NULL,
+            duration INT(10) DEFAULT 5000 NOT NULL,
+            department_id INT(10),
+            PRIMARY KEY (scrapping_id),
+            FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
+            FOREIGN KEY (department_id) 
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_scrapping_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            dept_id INT(10) NOT NULL,
+            scrapping_id INT(10) NOT NULL,
+            PRIMARY KEY (id, scrapping_id, dept_id),
+            FOREIGN KEY (dept_id)
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            FOREIGN KEY (scrapping_id) REFERENCES ecran_scrapping(scrapping_id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = 'ecran_info_departement';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            info_id INT(10) NOT NULL,
+            dept_id INT(10) NOT NULL,
+            PRIMARY KEY (id, info_id, dept_id),
+            FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
     update_option('init_database', 1);
 }
 
@@ -409,10 +461,12 @@ function addNewRoles()
                                            // existants
 
     // Permissions diverses
-    'admin_perms',                // Permission d'accès complet pour
+    'admin_perms',                     // Permission d'accès complet pour
                                            // les administrateurs
     'edit_css',                        // Permission de modifier le CSS du site
-        'schedule_access'                  // Permission d'accès à l'emploi du temps
+    'schedule_access',                 // Permission d'accès à l'emploi du temps
+    'comm_perms'                       // Permission de changement de sélection du/des département(s) lors de la
+                                           // création d'une alerte ou d'une information, pour les communiquants
     ];
 
     $admin = get_role('administrator');
@@ -443,6 +497,12 @@ function addNewRoles()
         __('Sous-administrateur'),
         // Un admin de département peut faire tout ce qu'un administrateur peut faire sur le
         // site, sauf accéder aux autres admins de département
+        array()
+    );
+
+    add_role(
+        'communicant',
+        __('Communicant'),
         array()
     );
 
@@ -489,6 +549,25 @@ function addNewRoles()
 
     foreach ( $televisionCaps as $cap ) {
         $television->add_cap($cap);
+    }
+
+    $communicant = get_role('communicant');
+    $communicantCaps = [
+        'comm_perms',
+        'information_header_menu_access',
+        'add_information',
+        'view_informations',
+        'edit_information',
+        'alert_header_menu_access',
+        'add_alert',
+        'view_alerts',
+        'edit_alert',
+        'department_header_menu_access',
+        'view_departments'
+    ];
+
+    foreach ( $communicantCaps as $cap ) {
+        $communicant->add_cap($cap);
     }
 }
 

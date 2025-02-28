@@ -25,6 +25,7 @@ namespace views;
 
 
 use controllers\InformationController;
+use models\Department;
 use models\Information;
 use models\Scrapper;
 
@@ -79,12 +80,17 @@ class InformationView extends View
      * @date    2024-10-15
      */
     public function displayFormText(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
+                                    int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
+
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
+
         $form = '
         <form method="post">
             <div class="form-group">
@@ -107,12 +113,11 @@ class InformationView extends View
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="deptContainertexte">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'texte\')" 
+            value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -160,12 +165,16 @@ name="delete" onclick="return confirm(
      * @date    2024-10-15
      */
     public function displayFormImg(array $allDepts, bool $isAdmin = false,
-        int $currDept = null,$title = null,
+                                   int $currDept = null,$title = null,
         $content = null, $endDate = null,
         $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
+
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -200,12 +209,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="deptContainerimage">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'image\')" 
+            value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -260,6 +268,10 @@ name="delete" onclick="return confirm(
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
 
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
+
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Titre <span class="text-muted">(Optionnel)
@@ -300,13 +312,12 @@ name="delete" onclick="return confirm(
             . '" required >
 		</div>
 		<div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
-        </div>
+                <div id="deptContainervideo">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'video\')" 
+            value="Ajouter des départements"' . $disabled . '>
+            </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
 
@@ -360,6 +371,10 @@ Supprimer</button>';
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
 
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
+
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Titre <span class="text-muted">(Optionnel)
@@ -394,13 +409,12 @@ Supprimer</button>';
             . '" required >
 		</div>
 		<div class="form-group">
-            <label for="informationDept">Département</label>
-            <br>    
-            <select id="informationDept" name="informationDept" class="form-control"'
-            . $disabled . '>
-                ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-            </select>
-        </div>
+                <label>Département(s)</label>
+                <br>    
+                <div id="deptContainershort">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'short\')" 
+            value="Ajouter des départements"' . $disabled . '>
+            </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
 
@@ -446,12 +460,16 @@ Supprimer</button>';
      * @date    2024-10-15
      */
     public function displayFormPDF(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
+                                   int $currDept = null, $title = null,
         $content = null, $endDate = null,
         $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
+
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -481,12 +499,11 @@ Supprimer</button>';
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="deptContainerpdf">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'pdf\')" 
+            value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -527,11 +544,15 @@ name="delete" onclick="return confirm(
      * @date    2024-10-15
      */
     public function displayFormEvent( array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $endDate = null,
+                                      int $currDept = null, $endDate = null,
         $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
+
+        $deptSelect = '<select name="informationDept[]" class="form-control departmentSelect" ' . $disabled . '>
+                        ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                      </select>';
 
         $form = '
         <form method="post" enctype="multipart/form-data">
@@ -550,12 +571,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Département(s)</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="deptContainerevent">' . $deptSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="addButtonDep(\'event\')" 
+            value="Ajouter des départements"' . $disabled . '>
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';

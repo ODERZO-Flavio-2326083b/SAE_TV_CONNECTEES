@@ -3,6 +3,7 @@
 use controllers\AlertController;
 use controllers\CodeAdeController;
 use controllers\CSSCustomizerController;
+use controllers\CommuniquantController;
 use controllers\DepartmentController;
 use controllers\InformationController;
 use controllers\SecretaryController;

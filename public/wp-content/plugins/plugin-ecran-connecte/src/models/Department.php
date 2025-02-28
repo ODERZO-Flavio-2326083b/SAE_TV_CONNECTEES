@@ -239,6 +239,21 @@ class Department extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public function getDepartmentById($id) : ?Department
+    {
+        $request = $this->getDatabase()->prepare(
+            'SELECT dept_id, dept_nom
+                   FROM ecran_departement
+                   WHERE dept_id = :id LIMIT 1'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_INT);
+        $request->execute();
+
+        $data = $request->fetch(PDO::FETCH_ASSOC);
+
+        return $data ? $this->setEntity($data) : null;
+    }
+
     /**
      * Définit une entité département à partir des données fournies.
      *

@@ -132,6 +132,9 @@ class InformationController extends Controller
             INPUT_POST,
             'informationDept'
         ) : $currDept;
+        $depts = filter_input(
+            INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+        );
 
         // Si le titre est vide
         if ($title == '') {
@@ -145,8 +148,19 @@ class InformationController extends Controller
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
         $information->setAdminId(null);
-        $information->setIdDepartment($deptId ?: 0);
         $information->setDuration(5000);
+
+        if(!is_array($depts)) {
+            $depts = [];
+        }
+        $departments = array();
+        foreach ($depts as $deptId) {
+            $department = $deptModel->getDepartmentById((int) $deptId);
+            if($department !== null) {
+                $departments[] = $department;
+            }
+        }
+        $information->setDepartments($departments);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -346,6 +360,22 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
+
+            $depts = filter_input(
+                INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+            );
+
+            if(!is_array($depts)) {
+                $depts = [];
+            }
+            $departments = array();
+            foreach ($depts as $deptId) {
+                $department = $deptModel->getDepartmentById((int) $deptId);
+                if($department !== null) {
+                    $departments[] = $department;
+                }
+            }
+            $information->setDepartments($departments);
 
             if ($information->getType() == 'text') {
                 // On met en place une nouvelle information
@@ -580,7 +610,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
 
         $name = 'Info';
         $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration',
-            'Auteur', 'Type', 'Département', 'Modifier'];
+            'Auteur', 'Type', 'Modifier'];
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
@@ -637,7 +667,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 $information->getExpirationDate(),
                 $information->getAuthor()->getLogin(),
                 $type,
-                $deptModel->get($information->getIdDepartment())->getName(),
                 $this->_view->buildLinkForModify(
                     esc_url(
                         get_permalink(

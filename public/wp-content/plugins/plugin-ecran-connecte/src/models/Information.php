@@ -116,6 +116,8 @@ class Information extends Model implements Entity, JsonSerializable
      */
     private ?int $_duration;
 
+    private array|null $_departments;
+
 
     /**
      * Insère un nouvel enregistrement d'information dans la base de données.
@@ -143,7 +145,6 @@ class Information extends Model implements Entity, JsonSerializable
              type,
              author,
              administration_id,
-             department_id,
              duration)
         VALUES
             (:title,
@@ -153,7 +154,6 @@ class Information extends Model implements Entity, JsonSerializable
              :type,
              :userId,
              :administration_id,
-             :department_id,
              :duration) "
         );
         $request->bindValue(':title', $this->getTitle());
@@ -174,15 +174,24 @@ class Information extends Model implements Entity, JsonSerializable
             PDO::PARAM_INT
         );
         $request->bindValue(
-            ':department_id', $this->getIdDepartment(),
-            PDO::PARAM_INT
-        );
-        $request->bindValue(
             ':duration', $this->getDuration(),
             PDO::PARAM_INT
         );
         $request->execute();
-        return $database->lastInsertId();
+
+        $infoId = $database->lastInsertId();
+        $departments = $this->getDeparments();
+        foreach ($departments as $dept) {
+            $request = $database->prepare(
+                'INSERT INTO ecran_info_departement (info_id, dept_id) 
+                     VALUES (:infoId, :deptId)'
+            );
+            $request->bindParam(':infoId', $infoId, PDO::PARAM_INT);
+            $request->bindValue(':deptId', $dept->getIdDepartment(), PDO::PARAM_INT);
+            $request->execute();
+        }
+
+        return $infoId;
     }
 
     /**
@@ -206,7 +215,6 @@ class Information extends Model implements Entity, JsonSerializable
         SET title = :title, 
             content = :content, 
             expiration_date = :expirationDate,
-            department_id = :deptId,
             duration = :duration
         WHERE id = :id"
         );
@@ -215,14 +223,34 @@ class Information extends Model implements Entity, JsonSerializable
         $request->bindValue(':expirationDate', $this->getExpirationDate());
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->bindValue(
-            ':deptId', $this->getIdDepartment(),
-            PDO::PARAM_INT
-        );
-        $request->bindValue(
             ':duration', $this->getDuration(),
             PDO::PARAM_INT
         );
         $request->execute();
+
+        $request = $this->getDatabase()->prepare(
+            '
+            DELETE FROM ecran_info_departement
+            WHERE info_id = :infoId'
+        );
+        $infoId = $this->getId();
+        $request->bindValue(':infoId', $infoId, PDO::PARAM_INT);
+        $request->execute();
+
+        $departments = $this->getDeparments();
+        foreach ($departments as $dept) {
+            $request = $this->getDatabase()->prepare(
+                '
+                INSERT INTO ecran_info_departement (info_id, dept_id) 
+                VALUES (:infoId, :deptId)'
+            );
+            $infoId = $this->getId();
+            $request->bindParam(':infoId', $infoId, PDO::PARAM_INT);
+            $request->bindValue(':deptId', $dept->getIdDepartment(), PDO::PARAM_INT);
+            $request->execute();
+        }
+
+
         return $request->rowCount();
     }
 
@@ -281,7 +309,6 @@ class Information extends Model implements Entity, JsonSerializable
             author, 
             type, 
             administration_id, 
-            department_id,
             duration
         FROM 
             ecran_information
@@ -328,7 +355,6 @@ class Information extends Model implements Entity, JsonSerializable
             author, 
             type,
             administration_id,
-            department_id, 
             duration
         FROM ecran_information 
         ORDER BY id 
@@ -382,7 +408,6 @@ class Information extends Model implements Entity, JsonSerializable
             author,
             type,
             administration_id,
-            department_id, 
             duration
         FROM 
             ecran_information
@@ -423,20 +448,20 @@ class Information extends Model implements Entity, JsonSerializable
         $request = $this->getDatabase()->prepare(
             '
         SELECT 
-            id, 
+            e.id, 
             title, 
             content, 
             creation_date, 
             expiration_date, 
             author, 
             type, 
-            administration_id, 
-            department_id, 
+            administration_id,
             duration
         FROM 
-            ecran_information 
+            ecran_information e
+        JOIN ecran_info_departement ON info_id = e.id
         WHERE 
-            department_id = :id 
+            ecran_info_departement.dept_id = :id 
         ORDER BY 
             expiration_date 
         LIMIT :begin, :numberElement'
@@ -659,7 +684,6 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $entity->setExpirationDate(
             date('Y-m-d', strtotime($data['expiration_date']))
         );
-        $entity->setIdDepartment($data['department_id']);
         $entity->setType($data['type']);
         $entity->setDuration($data['duration']);
         if ($data['administration_id'] != null) {
@@ -878,6 +902,16 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
     public function setIdDepartment(?int $_idDepartment): void
     {
         $this->_idDepartment = $_idDepartment;
+    }
+
+    public function getDeparments() : array
+    {
+        return $this->_departments;
+    }
+
+    public function setDepartments(array|null $_departments): void
+    {
+        $this->_departments = $_departments;
     }
 
     /**
