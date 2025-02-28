@@ -227,6 +227,30 @@ class Information extends Model implements Entity, JsonSerializable
             PDO::PARAM_INT
         );
         $request->execute();
+
+        $request = $this->getDatabase()->prepare(
+            '
+            DELETE FROM ecran_info_departement
+            WHERE info_id = :infoId'
+        );
+        $infoId = $this->getId();
+        $request->bindValue(':infoId', $infoId, PDO::PARAM_INT);
+        $request->execute();
+
+        $departments = $this->getDeparments();
+        foreach ($departments as $dept) {
+            $request = $this->getDatabase()->prepare(
+                '
+                INSERT INTO ecran_info_departement (info_id, dept_id) 
+                VALUES (:infoId, :deptId)'
+            );
+            $infoId = $this->getId();
+            $request->bindParam(':infoId', $infoId, PDO::PARAM_INT);
+            $request->bindValue(':deptId', $dept->getIdDepartment(), PDO::PARAM_INT);
+            $request->execute();
+        }
+
+
         return $request->rowCount();
     }
 

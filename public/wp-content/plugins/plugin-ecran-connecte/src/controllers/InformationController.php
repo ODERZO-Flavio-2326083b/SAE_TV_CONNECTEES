@@ -364,6 +364,22 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
 
+            $depts = filter_input(
+                INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+            );
+
+            if(!is_array($depts)) {
+                $depts = [];
+            }
+            $departments = array();
+            foreach ($depts as $deptId) {
+                $department = $deptModel->getDepartmentById((int) $deptId);
+                if($department !== null) {
+                    $departments[] = $department;
+                }
+            }
+            $information->setDepartments($departments);
+
             if ($information->getType() == 'text') {
                 // On met en place une nouvelle information
                 $information->setContent($content);
