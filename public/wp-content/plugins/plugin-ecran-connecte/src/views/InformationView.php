@@ -917,7 +917,7 @@ name="delete" onclick="return confirm(
 
                 ]
             );
-            $scrapper4->printWebsite();
+            $scrapper2->printWebsite();
 
             break;
 

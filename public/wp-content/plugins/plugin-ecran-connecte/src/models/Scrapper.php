@@ -145,15 +145,18 @@ class Scrapper
     {
         $article = $this->getOneArticle();
         if (isset($article['error'])) {
-            echo "<p>{$article['error']}</p>";
+            echo "<p style='color: red; text-align: center; font-size: 18px;'>{$article['error']}</p>";
             return;
         }
 
-        $html = '<div style="font-family: Arial, sans-serif; text-align: center;">';
+        $html = '<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; text-align: center; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">';
+
+        if (isset($article['link'])) {
+            $parsedUrl = parse_url($article['link'], PHP_URL_HOST);
+            $html .= "<p style='font-size: 14px; color: #666; margin-bottom: 10px;'>{$parsedUrl}</p>";
+        }
 
         if ($article) {
-
-            // Supprime l'auteur du tableau article
             unset($article['author']);
 
             $hasImage = isset($article['image']) && $article['image'] !== "Pas de contenu.";
@@ -163,28 +166,26 @@ class Scrapper
                 if ($value !== "Pas de contenu.") {
                     if ($key === 'image') {
                         if ($imageBase64 = $this->encodeImageToBase64($value)) {
-                            // Si l'image est la seule info, elle prend toute la page
-                            $imageStyle = $hasOtherContent ? "max-width: 100%; height: auto;" : "width: 25vw; height: 73vh; object-fit: cover;";
+                            $imageStyle = $hasOtherContent ? "max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;" : "width: 50vw; height: 70vh; object-fit: cover; border-radius: 10px;";
                             $html .= "<img src='{$imageBase64}' style='{$imageStyle}'>";
                         } else {
                             $html .= "<p style='color: red;'>Image introuvable.</p>";
                         }
                     } elseif ($key === 'link') {
-                        $html .= "<p><a href='{$value}' target='_blank'>{$value}</a></p>";
+                        $html .= "<p><a href='{$value}' target='_blank' style='color: #007BFF; text-decoration: none; font-size: 18px;'>{$value}</a></p>";
                     } else {
-                        $html .= "<p></strong> {$value}</p>";
+                        $html .= "<p style='font-size: 18px; color: #333;'>{$value}</p>";
                     }
                 }
             }
-
-            $html .= '</div>';
         } else {
-            $html .= '<p style="color:red;">Aucun article trouvé.</p>';
+            $html .= '<p style="color:red; font-size: 18px;">Aucun article trouvé.</p>';
         }
 
         $html .= '</div>';
         echo $html;
     }
+
 
 
 }
