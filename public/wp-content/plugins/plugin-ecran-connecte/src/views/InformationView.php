@@ -595,7 +595,8 @@ name="delete" onclick="return confirm(
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
-
+        $info = new InformationController();
+        $info->createScrapper();
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" 
 name="delete" onclick="return confirm(

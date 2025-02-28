@@ -139,6 +139,17 @@ class InformationController extends Controller
         ) : $currDept;
         $tag = filter_input(INPUT_POST, 'tag');
 
+        /*$tags = array();
+        foreach ($tags as $tag) {
+            if (is_string($tag) && $tag > 0) {
+                if (is_null($tags->getByCode($code)->getId())) {
+                    return 'error'; // Code invalide
+                } else {
+                    $tags[] = $codeAde->getByCode($code);
+                }
+            }
+        }*/
+
         // Si le titre est vide
         if ($title == '') {
             $title = 'Sans titre';
@@ -922,32 +933,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             echo '</div>';
         }
         echo '</div>';
-    }
-
-    /**
-     * Crée un objet de type "scrapper" avec des informations par défaut.
-     *
-     * Cette méthode initialise un objet de la classe 'information', définit
-     * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
-     * département, l'auteur, la date de création, le contenu, l'identifiant
-     * administratif, le titre, le type et la date d'expiration, et retourne
-     * cet objet.
-     *
-     * @return information Retourne l'objet 'information' initialisé.
-     *
-     * @version 1.0
-     * @date    2024-10-16
-     */
-    public function createScrapper(): Information
-    {
-        $infoScrapper = new information();
-        $infoScrapper->setType("scrapper");
-        $infoScrapper->setTitle("Sans titre");
-        $infoScrapper->setId(1);
-        $infoScrapper->setAdminId(1);
-        $infoScrapper->setContent("content");
-        $infoScrapper->setExpirationDate(date("Y-m-d", strtotime('tomorrow')));
-        return $infoScrapper;
     }
 
 }

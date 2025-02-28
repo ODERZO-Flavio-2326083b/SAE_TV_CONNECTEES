@@ -15,6 +15,8 @@ class Scrapping extends Model implements Entity, JsonSerializable {
 
     private ?string $_content;
 
+    private ?array $_contents;
+
     private ?string $_creationDate;
 
     private ?string $_expirationDate;
@@ -95,6 +97,16 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request2->bindValue(':dept_id', $this->getIdDepartment());
         $request2->bindValue(':scrapping_id', $this->getId());
         $request2->execute();
+
+        foreach ($this->getCodes() as $code) {
+            $request3 = $this->getDatabase()->prepare(
+                'INSERT INTO ecran_code_user (user_id, code_ade_id) 
+                     VALUES (:userId, :codeAdeId)'
+            );
+            $request3->bindParam(':userId', $id, PDO::PARAM_INT);
+            $request3->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
+            $request3->execute();
+        }
 
         return $database->lastInsertId();
     }
@@ -236,18 +248,6 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    public function getContentsByTitle(string $title) : array {
-        $request = $this->getDatabase()->prepare(
-            'SELECT 
-                    content,
-                    tag
-                    FROM ecran_scrapping
-                    WHERE title = :title'
-        );
-        $request->bindParam(':title', $title, PDO::PARAM_STR);
-        return $this->setEntityList($request->fetch(PDO::FETCH_ASSOC));
-    }
-
     public function setEntityList($dataList, bool $adminSite = false) : array
     {
         $listEntity = array();
@@ -314,6 +314,16 @@ class Scrapping extends Model implements Entity, JsonSerializable {
     public function setContent(?string $content): void
     {
         $this->_content = $content;
+    }
+
+    public function getContents(): ?array
+    {
+        return $this->_contents;
+    }
+
+    public function setContents(?array $contents): void
+    {
+        $this->_contents = $contents;
     }
 
     public function setCreationDate(?string $creationDate): void
