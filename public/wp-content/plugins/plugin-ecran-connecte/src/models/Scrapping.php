@@ -64,10 +64,10 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request->bindValue(':content', $this->getContent());
         $request->bindValue(':tag', $this->getTag());
         $request->bindValue(
-            ':creationDate', $this->getCreationDate()
+            ':creation_date', $this->getCreationDate()
         );
         $request->bindValue(
-            ':expirationDate', $this->getExpirationDate()
+            ':expiration_date', $this->getExpirationDate()
         );
         $request->bindValue(':type', $this->getType());
         $request->bindValue(
@@ -87,19 +87,14 @@ class Scrapping extends Model implements Entity, JsonSerializable {
             PDO::PARAM_INT
         );
         $request->execute();
-        return $database->lastInsertId();
-    }
 
-    public function insertScrappingDepartement(): false|string
-    {
-        $database = $this->getDatabase();
-        $request = $database->prepare(
+        $request2 = $database->prepare(
             'INSERT INTO ecran_scrapping_departement (dept_id, scrapping_id)
             VALUES (:dept_id, :scrapping_id)'
         );
-        $request->bindValue(':dept_id', $this->getIdDepartment());
-        $request->bindValue(':scrapping_id', $this->getId());
-        $request->execute();
+        $request2->bindValue(':dept_id', $this->getIdDepartment());
+        $request2->bindValue(':scrapping_id', $this->getId());
+        $request2->execute();
 
         return $database->lastInsertId();
     }

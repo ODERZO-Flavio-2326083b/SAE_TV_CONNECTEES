@@ -158,6 +158,8 @@ class InformationController extends Controller
             $info->setDuration(5000);
         }
 
+
+
         $scrapping->setTag($tag);
 
 
@@ -244,7 +246,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
 
         if (isset($actionScrapping)) {
             $scrapping->setType("scrapping");
-            if ($scrapping->insert() && $scrapping->insertScrappingDepartement()) {
+            if ($scrapping->insert()) {
                 $this->_view->displayCreateValidate();
             } else {
                 $this->_view->displayErrorInsertionInfo();

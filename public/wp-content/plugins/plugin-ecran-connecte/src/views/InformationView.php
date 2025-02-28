@@ -563,7 +563,7 @@ name="delete" onclick="return confirm(
 
     public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
     int $currDept = null, $endDate = null, $title = null,
-    $type = "createScrapping", $tag = null) {
+    $type = "createScrapping") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
         $form = '
@@ -611,7 +611,9 @@ name="delete" onclick="return confirm(
                        <select class="form-control firstSelect" id="tag" name="tag" required="">
                             <option value="default">Défault</option>
                             <option value="image">Image</option>
-                            <option value="lien">Lien</option> 
+                            <option value="lien">Lien</option>
+                            <option value="url">URL</option>
+                            <option value="article">Article</option> 
                      </div>
                           ';
         return $select;
@@ -750,6 +752,16 @@ name="delete" onclick="return confirm(
                         $allDepts, $isAdmin, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
+        case "scrapping":
+            return '<a href="'
+                . esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des informations')
+                    )
+                ) . '">< Retour</a>' .
+                $this->displayFormScrapping(
+                    $allDepts, $isAdmin, $currDept, $title, $endDate, 'submit'
+                );
         case "event":
             $extension = explode('.', $content);
             $extension = $extension[1];
@@ -759,7 +771,7 @@ name="delete" onclick="return confirm(
                         get_permalink(
                             get_page_by_title_custom('Gestion des informations')
                         )
-                    ) . '">< Retour</a>' . $this->displayFormPDF(
+                ) . '">< Retour</a>' . $this->displayFormPDF(
                         $allDepts, $isAdmin,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
@@ -890,7 +902,7 @@ name="delete" onclick="return confirm(
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video'])) {
+        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scrapping'])) {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }

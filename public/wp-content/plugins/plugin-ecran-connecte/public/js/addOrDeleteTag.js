@@ -7,7 +7,7 @@ function addButtonTag() {
     let div = $('<div>', {
         id: 'row-' + countTag,
         class: 'row'
-    }).appendTo('#tagDiv');
+    }).appendTo('#tagContainer');
 
     let newSelect = $(tagSelector);
     newSelect.appendTo(div)
