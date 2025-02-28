@@ -4,7 +4,9 @@ use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Localisation;
+use models\Scrapping;
 use views\AlertView;
+use views\InformationView;
 use views\TelevisionView;
 
 /**
@@ -190,6 +192,7 @@ function injectAllCodesOnTvEdit(): void
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
 
+
 /**
  * Envoie le code HTML du sélecteur de code ADE pour
  * la modification d'alertes.
@@ -219,3 +222,12 @@ function injectAllCodesOnAlertEdit(): void
 add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
+function injectTagOnScrappingEdit() {
+    wp_localize_script(
+        'addTag_script_ecran', 'codeHTML', array(
+            'tagg' => InformationView::buildTagOption()
+        )
+    );
+}
+
+add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');

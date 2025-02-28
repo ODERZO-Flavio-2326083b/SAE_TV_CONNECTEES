@@ -81,8 +81,8 @@ class InformationView extends View
     public function displayFormText(array $allDepts, bool $isAdmin = false,
         int $currDept = null, $title = null,
         $content = null, $endDate = null,
-        $type = "createText"
-    ) : string {
+        $type = "createText") : string {
+
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
         $form = '
@@ -561,6 +561,64 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
+    public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
+    int $currDept = null, $endDate = null, $title = null,
+    $type = "createScrapping") {
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+        $disabled = $isAdmin ? '' : 'disabled';
+        $form = '
+        <form method="post" enctype="multipart/form-data" id="registerScrappingForm">
+            <div class="form-group">
+                <label for="title">Titre du scrapping</label>
+                <input id="title" class="form-control" type="text"
+                name="title" placeholder="Inserer un titre" maxlength="60" 
+                        value="' . $title . '">
+            </div>
+            <div class="form-group" id="tagContainer">
+                <label for="tag" id="tagDiv">Tag</label> ' . $this->buildTagOption() . '
+            </div>
+            <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
+            value="Ajouter des tags">
+            <div class="form-group">
+                <label for="expirationDate">Date d\'expiration</label>
+                <input id="expirationDate" class="form-control" type="date" 
+                name="expirationDate" min="' . $dateMin . '" value="' . $endDate
+            . '" required >
+            </div>
+            <div class="form-group">
+                <label for="informationDept">Département</label>
+                <br>    
+                <select id="informationDept" name="informationDept" 
+                class="form-control"' . $disabled . '>
+                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                </select>
+            </div>
+            <button class="btn button_ecran" type="submit" name="' . $type . '">
+            Valider</button>';
+
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" 
+name="delete" onclick="return confirm(
+    \' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
+        }
+        $form .= '</form>';
+        return $form;
+    }
+
+    public static function buildTagOption() {
+        $select = '  <div>
+                       <input id="content" class="form-control" type="text" name="content" placeholder="Inserer le tag" maxlength="255" required>
+                       <select class="form-control firstSelect" id="tag" name="tag" required="">
+                            <option value="default">Défault</option>
+                            <option value="image">Image</option>
+                            <option value="lien">Lien</option>
+                            <option value="url">URL</option>
+                            <option value="article">Article</option> 
+                     </div>
+                          ';
+        return $select;
+    }
+
     /**
      * Génère le contenu HTML décrivant le processus de création d'informations
      * à afficher sur les téléviseurs connectés.
@@ -694,6 +752,16 @@ name="delete" onclick="return confirm(
                         $allDepts, $isAdmin, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
+        case "scrapping":
+            return '<a href="'
+                . esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des informations')
+                    )
+                ) . '">< Retour</a>' .
+                $this->displayFormScrapping(
+                    $allDepts, $isAdmin, $currDept, $title, $endDate, 'submit'
+                );
         case "event":
             $extension = explode('.', $content);
             $extension = $extension[1];
@@ -703,7 +771,7 @@ name="delete" onclick="return confirm(
                         get_permalink(
                             get_page_by_title_custom('Gestion des informations')
                         )
-                    ) . '">< Retour</a>' . $this->displayFormPDF(
+                ) . '">< Retour</a>' . $this->displayFormPDF(
                         $allDepts, $isAdmin,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
@@ -834,7 +902,7 @@ name="delete" onclick="return confirm(
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video'])) {
+        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scrapping'])) {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }
