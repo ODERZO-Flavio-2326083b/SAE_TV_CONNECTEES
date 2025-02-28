@@ -180,7 +180,8 @@ class Information extends Model implements Entity, JsonSerializable
         $request->execute();
 
         $infoId = $database->lastInsertId();
-        foreach ($this->getDeparments() as $dept) {
+        $departments = $this->getDeparments();
+        foreach ($departments as $dept) {
             $request = $database->prepare(
                 'INSERT INTO ecran_info_departement (info_id, dept_id) 
                      VALUES (:infoId, :deptId)'
