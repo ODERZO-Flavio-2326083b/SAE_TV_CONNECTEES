@@ -144,7 +144,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request = $this->getDatabase()->prepare(
             "
         SELECT 
-            id, 
+            scrapping_id, 
             title,
             content,
             tag,
@@ -172,7 +172,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         $request = $this->getDatabase()->prepare(
             "
         SELECT 
-            id, 
+            scrapping_id, 
             title,
             content,
             tag,
@@ -201,6 +201,53 @@ class Scrapping extends Model implements Entity, JsonSerializable {
         return [];
     }
 
+    public function getScrappingsByDeptId(
+        int $idDept, int $begin = 0, int $numberElement = 25
+    ): array {
+        $request = $this->getDatabase()->prepare(
+            '
+        SELECT 
+            scrapping_id, 
+            title, 
+            content,
+            tag,
+            creation_date, 
+            expiration_date, 
+            author, 
+            type, 
+            administration_id, 
+            department_id, 
+            duration
+        FROM 
+            ecran_scrapping 
+        WHERE 
+            department_id = :id 
+        ORDER BY 
+            expiration_date 
+        LIMIT :begin, :numberElement'
+        );
+        $request->bindParam(':id', $idDept, PDO::PARAM_INT);
+        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
+        $request->bindValue(
+            ':numberElement', $numberElement,
+            PDO::PARAM_INT
+        );
+        $request->execute();
+        return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+    }
+
+    public function getContentsByTitle(string $title) : array {
+        $request = $this->getDatabase()->prepare(
+            'SELECT 
+                    content,
+                    tag
+                    FROM ecran_scrapping
+                    WHERE title = :title'
+        );
+        $request->bindParam(':title', $title, PDO::PARAM_STR);
+        return $this->setEntityList($request->fetch(PDO::FETCH_ASSOC));
+    }
+
     public function setEntityList($dataList, bool $adminSite = false) : array
     {
         $listEntity = array();
@@ -214,7 +261,7 @@ class Scrapping extends Model implements Entity, JsonSerializable {
     {
         $entity = new Scrapping();
         $author = new User();
-        $entity->setId($data['id']);
+        $entity->setId($data['scrapping_id']);
         $entity->setTitle($data['title']);
         $entity->setContent($data['content']);
         $entity->setTag($data['tag']);

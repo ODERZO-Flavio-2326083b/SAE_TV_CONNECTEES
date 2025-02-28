@@ -602,10 +602,14 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $current_user = wp_get_current_user();
         if (current_user_can('admin_perms')) {
             $informationList = $this->_model->getList($begin, $number);
+            //$scrappingList = $this->_modelScrapping->getList($begin, $number);
         } else {
             $informationList = $this->_model->getInformationsByDeptId(
                 $deptModel->getUserDepartment($current_user->ID)->getIdDepartment()
             );
+            /*$scrappingList = $this->_modelScrapping->getScrappingsByDeptId(
+                $deptModel->getUserDepartment($current_user->ID)->getIdDepartment()
+            );*/
         }
 
         $name = 'Info';
