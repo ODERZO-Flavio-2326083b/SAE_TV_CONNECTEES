@@ -577,7 +577,6 @@ function addNewRoles()
         'department_header_menu_access',
         'view_departments'
     ];
-    // var_dump($communicant->capabilities);
 
     foreach ( $communicantCaps as $cap ) {
         $communicant->add_cap($cap);
