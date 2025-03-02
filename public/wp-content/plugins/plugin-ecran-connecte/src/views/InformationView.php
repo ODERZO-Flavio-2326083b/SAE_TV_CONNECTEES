@@ -113,11 +113,11 @@ class InformationView extends View
             . '" required >
             </div>
             <div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainertexte">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'texte\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -208,11 +208,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerimage">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'image\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -302,11 +302,11 @@ name="delete" onclick="return confirm(
             . '" required >
 		</div>
 		<div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainervideo">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'video\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
@@ -397,11 +397,11 @@ Supprimer</button>';
             . '" required >
 		</div>
 		<div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainershort">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'short\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
@@ -486,11 +486,11 @@ Supprimer</button>';
             . '" required >
             </div>
             <div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerpdf">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'pdf\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -556,11 +556,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label>Département(s)</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerevent">' . $codeSelect . '</div>
                 <input type="button" class="btn button_ecran" onclick="codeAddRow(\'event\')" 
-            value="Ajouter des départements">
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -660,7 +660,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormText(
-                        $allDepts, $currDept, $title, $content,
+                        $allDepts, $buildArgs, $currDept, $title, $content,
                         $endDate, 'submit'
                     );
         case "img":
@@ -671,7 +671,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormImg(
-                        $allDepts, $currDept, $title, $content, $endDate,
+                        $allDepts, $buildArgs, $currDept, $title, $content, $endDate,
                         'submit'
                     );
         case "video":
@@ -682,7 +682,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormVideo(
-                        $allDepts, $currDept, $title,
+                        $allDepts, $buildArgs, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "short":
@@ -693,7 +693,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormShort(
-                        $allDepts, $currDept, $title,
+                        $allDepts, $buildArgs, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "pdf":
@@ -704,7 +704,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormPDF(
-                        $allDepts, $currDept, $title,
+                        $allDepts, $buildArgs, $currDept, $title,
                         $content, $endDate, 'submit'
                     );
         case "event":
@@ -717,7 +717,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormPDF(
-                        $allDepts, 
+                        $allDepts, $buildArgs,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             } else {
@@ -727,7 +727,7 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormImg(
-                        $allDepts, 
+                        $allDepts, $buildArgs,
                         $currDept, $title, $content, $endDate, 'submit'
                     );
             }

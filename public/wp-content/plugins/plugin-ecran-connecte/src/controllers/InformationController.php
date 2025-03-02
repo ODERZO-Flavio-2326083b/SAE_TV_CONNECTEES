@@ -352,48 +352,52 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
-            $title = filter_input(INPUT_POST, 'title');
-            $content = filter_input(INPUT_POST, 'content');
-            $endDate = filter_input(INPUT_POST, 'expirationDate');
-            $deptId = $isAdmin ? filter_input(
+            $title   = filter_input( INPUT_POST, 'title' );
+            $content = filter_input( INPUT_POST, 'content' );
+            $endDate = filter_input( INPUT_POST, 'expirationDate' );
+            $deptId  = $isAdmin ? filter_input(
                 INPUT_POST, 'informationDept'
             ) : $currDept;
 
-            $information->setIdDepartment($deptId);
-            $information->setTitle($title);
-            $information->setExpirationDate($endDate);
+            $information->setIdDepartment( $deptId );
+            $information->setTitle( $title );
+            $information->setExpirationDate( $endDate );
 
-            $depts = filter_input(
-                INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+            $codes = filter_input(
+                INPUT_POST, 'informationCodes', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
             );
 
-            if(!is_array($depts)) {
-                $depts = [];
-            }
-            $departments = array();
-            foreach ($depts as $deptId) {
-                $department = $deptModel->getDepartmentById((int) $deptId);
-                if($department !== null) {
-                    $departments[] = $department;
+            $codeAde = new CodeAde();
+
+            $codesObjects = array();
+            foreach ( (array)$codes as $code ) {
+                if ( is_numeric( $code ) && $code > 0 ) {
+                    if ( is_null( $codeAde->getByCode( $code )->getId() ) ) {
+                        return 'error'; // Code invalide
+                    } else {
+                        $codesObjects[] = $codeAde->getByCode( $code );
+                    }
                 }
             }
-            $information->setCodesade($departments);
 
-            if ($information->getType() == 'text') {
+            $information->setCodesAde( $codesObjects );
+
+
+            if ( $information->getType() == 'text' ) {
                 // On met en place une nouvelle information
-                $information->setContent($content);
+                $information->setContent( $content );
             } else {
                 // On change le contenu
-                if ($_FILES["contentFile"]['size'] != 0) {
+                if ( $_FILES["contentFile"]['size'] != 0 ) {
                     echo $_FILES["contentFile"]['size'];
                     $filename = $_FILES["contentFile"]['name'];
-                    if ($information->getType() == 'img') {
+                    if ( $information->getType() == 'img' ) {
                         // Si le type est une image
-                        $explodeName = explode('.', $filename);
-                        $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-                        if (in_array(end($explodeName), $goodExtension)) {
+                        $explodeName   = explode( '.', $filename );
+                        $goodExtension = [ 'jpg', 'jpeg', 'gif', 'png', 'svg' ];
+                        if ( in_array( end( $explodeName ), $goodExtension ) ) {
                             // On vérifie que l'extension est correcte
-                            $this->deleteFile($information->getId());
+                            $this->deleteFile( $information->getId() );
                             $this->registerFile(
                                 $filename, $_FILES["contentFile"]['tmp_name'],
                                 $information
@@ -405,12 +409,12 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                                 valide, veuillez choisir une autre image</p>'
                             );
                         }
-                    } else if ($information->getType() == 'pdf') {
+                    } else if ( $information->getType() == 'pdf' ) {
                         // Si le type est un PDF
-                        $explodeName = explode('.', $filename);
-                        if (end($explodeName) == 'pdf') {
+                        $explodeName = explode( '.', $filename );
+                        if ( end( $explodeName ) == 'pdf' ) {
                             // On vérifie que l'extension est correcte
-                            $this->deleteFile($information->getId());
+                            $this->deleteFile( $information->getId() );
                             $this->registerFile(
                                 $filename, $_FILES["contentFile"]['tmp_name'],
                                 $information
@@ -422,14 +426,14 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                                 valide, veuillez choisir un autre PDF</p>'
                             );
                         }
-                    } else if ($information->getType() == 'video'
-                        || $information->getType() == 'short'
+                    } else if ( $information->getType() == 'video'
+                                || $information->getType() == 'short'
                     ) {
-                        $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'webm'];
-                        if (in_array(end($explodeName), $goodExtension)) {
+                        $explodeName   = explode( '.', $filename );
+                        $goodExtension = [ 'mp4', 'webm' ];
+                        if ( in_array( end( $explodeName ), $goodExtension ) ) {
                             // On vérifie que l'extension est correcte
-                            $this->deleteFile($information->getId());
+                            $this->deleteFile( $information->getId() );
                             $this->registerFile(
                                 $filename,
                                 $_FILES["contentFile"]['tmp_name'], $information
@@ -446,10 +450,18 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 }
             }
 
-            if ($information->update()) {
-                $this->_view->displayModifyValidate();
+            if ( empty( $codes ) ) {
+                $this->_view->buildModal(
+                    'Aucun emploi du temps',
+                    '<p>Aucun emploi du temps n\'a été selectionné, 
+                             merci d\'en choisir au moins un.</p>'
+                );
             } else {
-                $this->_view->errorMessageCantAdd();
+                if ( $information->update() ) {
+                    $this->_view->displayModifyValidate();
+                } else {
+                    $this->_view->errorMessageCantAdd();
+                }
             }
         }
 
