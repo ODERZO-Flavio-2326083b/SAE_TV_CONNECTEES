@@ -1,12 +1,12 @@
 let countDep = 0
-let depSelector = codeHTML.department;
+let depSelector = codeHTML.infoCode;
 
-function addButtonDep(container) {
+function codeAddRow(container) {
     countDep = countDep + 1;
     let div = $('<div>', {
         id: 'row-' + countDep,
         class: 'row'
-    }).appendTo('#deptContainer' + container);
+    }).appendTo('#codeContainer' + container);
 
     let newSelect = $(depSelector);
     newSelect.appendTo(div);
@@ -15,11 +15,11 @@ function addButtonDep(container) {
         id: countDep,
         class: 'btn button_ecran',
         type: 'button',
-        onclick: 'depDeleteRow(this.id)',
+        onclick: 'codeDeleteRow(this.id)',
         value: 'Supprimer'
     }).appendTo(div);
 }
 
-function depDeleteRow(id) {
+function codeDeleteRow(id) {
     $('#row-' + id).remove();
 }

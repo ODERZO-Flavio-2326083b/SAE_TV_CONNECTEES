@@ -225,7 +225,7 @@ class View
      * @version 1.0
      * @date    08-01-2025
      */
-    public function buildDepartmentOptions(array $depts, int $currDept = null)
+    public function buildCodesOptions(array $depts, int $currDept = null)
     : string
     {
         $string = "";

@@ -19,6 +19,7 @@
 namespace controllers;
 
 use getID3;
+use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Scrapper;
@@ -99,7 +100,6 @@ class InformationController extends Controller
      */
     public function create(): string
     {
-
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
         $userModel = new User();
@@ -108,8 +108,7 @@ class InformationController extends Controller
         // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
+            $currentUser->ID)->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
@@ -128,12 +127,9 @@ class InformationController extends Controller
         $creationDate = date('Y-m-d');
         // Si l'utilisateur est un admin, il peut choisir un département, sinon on
         // prend le dpt de l'utilisateur
-        $deptId = $isAdmin ? filter_input(
-            INPUT_POST,
-            'informationDept'
-        ) : $currDept;
-        $depts = filter_input(
-            INPUT_POST, 'informationDept', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
+
+        $codes = filter_input(
+            INPUT_POST, 'informationCodes', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
         );
 
         // Si le titre est vide
@@ -150,17 +146,21 @@ class InformationController extends Controller
         $information->setAdminId(null);
         $information->setDuration(5000);
 
-        if(!is_array($depts)) {
-            $depts = [];
-        }
-        $departments = array();
-        foreach ($depts as $deptId) {
-            $department = $deptModel->getDepartmentById((int) $deptId);
-            if($department !== null) {
-                $departments[] = $department;
+        $codeAde = new CodeAde();
+
+        $codesObjects = array();
+        if(isset($codes)) {
+            foreach ( $codes as $code ) {
+                if ( is_numeric( $code ) && $code > 0 ) {
+                    if ( is_null( $codeAde->getByCode( $code )->getId() ) ) {
+                        return 'error'; // Code invalide
+                    } else {
+                        $codesObjects[] = $codeAde->getByCode( $code );
+                    }
+                }
             }
+            $information->setCodesAde( $codesObjects );
         }
-        $information->setDepartments($departments);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -243,6 +243,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
         }
 
+        $buildArgs = $this->getAllAvailableCodes();
+
         return
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('text', 'Texte', true) .
@@ -254,32 +256,32 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $this->_view->displayEndOfTitle() .
             $this->_view->displayContentSelect(
                 'text', $this->_view->displayFormText(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 ), true
             ) .
             $this->_view->displayContentSelect(
                 'image', $this->_view->displayFormImg(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'pdf', $this->_view->displayFormPDF(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'event', $this->_view->displayFormEvent(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'video', $this->_view->displayFormVideo(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 )
             ) .
             $this->_view->displayContentSelect(
                 'short', $this->_view->displayFormShort(
-                    $allDepts, $isAdmin, $currDept
+                    $allDepts, $buildArgs, $currDept
                 )
             ) .
             '</div>' .
@@ -375,7 +377,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                     $departments[] = $department;
                 }
             }
-            $information->setDepartments($departments);
+            $information->setCodesade($departments);
 
             if ($information->getType() == 'text') {
                 // On met en place une nouvelle information
@@ -460,8 +462,26 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         return $this->_view->displayModifyInformationForm(
             $information->getTitle(), $information->getContent(),
             $information->getExpirationDate(), $information->getType(),
-            $allDepts, $isAdmin, $currDept
+            $allDepts, $this->getAllAvailableCodes(), $currDept
         );
+    }
+
+    public static function getAllAvailableCodes(): array {
+        $codeAde = new CodeAde();
+        $deptModel = new Department();
+
+        if(current_user_can('information_to_any_code')){
+            $years = $codeAde->getAllFromType('year');
+            $groups = $codeAde->getAllFromType('group');
+            $halfGroups = $codeAde->getAllFromType('halfGroup');
+        } else {
+            $currDept = $deptModel->getUserDepartment(get_current_user_id());
+
+            $years = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'year');
+            $groups = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'group');
+            $halfGroups = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'halfGroup');
+        }
+        return array($years, $groups, $halfGroups);
     }
 
 

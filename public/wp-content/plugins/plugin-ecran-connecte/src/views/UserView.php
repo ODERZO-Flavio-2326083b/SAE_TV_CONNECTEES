@@ -115,7 +115,7 @@ afin d\'acceder à cette page. </h1>';
                 <br>    
                 <select name="deptId'. $name .'" class="form-control"' . $disabled
             . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
             </div>
                 <button type="submit" class="btn button_ecran" id="valid' . $name

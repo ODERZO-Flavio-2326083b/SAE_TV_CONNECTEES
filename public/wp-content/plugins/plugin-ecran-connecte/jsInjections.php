@@ -1,5 +1,6 @@
 <?php
 
+use controllers\InformationController;
 use models\CodeAde;
 use models\Department;
 use models\Information;
@@ -191,25 +192,26 @@ function injectAllCodesOnTvEdit(): void
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
 
-function injectDepOnInfoEdit(): void
+function injectCodesOnInfoEdit(): void
 {
+    $codeAde = new CodeAde();
     $deptModel = new Department();
-    $infoView = new InformationView();
 
     $allDepts = $deptModel->getAllDepts();
 
-    $departmentOptions = '<select class="form-control departmentSelect" name="informationDept[]">'
-        . $infoView->buildDepartmentOptions($allDepts)
-        . '</select>';
+    if(!is_user_logged_in()) return;
 
-    wp_enqueue_script('addDepartment_script', get_template_directory_uri() . '/js/addOrDeleteDepartment.js', array('jquery'), null, true);
+    list($years, $groups, $halfGroups) =
+        InformationController::getAllAvailableCodes();
 
     wp_localize_script(
         'addDepartment_script', 'codeHTML', array(
-            'department' => $departmentOptions));
+            'infoCode' => InformationView::buildSelectCode(
+                $years, $groups, $halfGroups, $allDepts
+            )));
 }
 
-add_action('wp_enqueue_scripts', 'injectDepOnInfoEdit');
+add_action('wp_enqueue_scripts', 'injectCodesOnInfoEdit');
 
 /**
  * Envoie le code HTML du sélecteur de code ADE pour
@@ -230,7 +232,7 @@ function injectAllCodesOnAlertEdit(): void
 
     wp_localize_script(
         'addCodeAlert_script_ecran', 'codeHTML', array(
-        'alert' => AlertView::buildSelectCode(
+        'infoCode' => AlertView::buildSelectCode(
             $years, $groups, $halfGroups, $allDepts
         )
         )

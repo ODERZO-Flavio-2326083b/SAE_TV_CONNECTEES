@@ -115,7 +115,7 @@ class TelevisionView extends UserView
                 <br>    
                 <select id="deptIdTv" name="deptIdTv" class="form-control"'
             . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <div class="form-group">

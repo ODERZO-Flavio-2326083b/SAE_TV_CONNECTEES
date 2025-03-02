@@ -205,9 +205,7 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    if (get_option('init_database') == 1) {
-        return;
-    }
+
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -338,9 +336,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_scrapping';
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping (
             scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
             title VARCHAR (30) NOT NULL,
             content VARCHAR (255) NOT NULL,
@@ -361,9 +357,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_scrapping_departement';
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping_departement (
             id INT(10) NOT NULL AUTO_INCREMENT,
             dept_id INT(10) NOT NULL,
             scrapping_id INT(10) NOT NULL,
@@ -375,14 +369,12 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_info_departement';
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_info_code_ade (
             id INT(10) NOT NULL AUTO_INCREMENT,
             info_id INT(10) NOT NULL,
-            dept_id INT(10) NOT NULL,
-            PRIMARY KEY (id, info_id, dept_id),
-            FOREIGN KEY (dept_id) REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
+            code_ade_id INT(10) NOT NULL,
+            PRIMARY KEY (id, info_id, code_ade_id),
+            FOREIGN KEY (code_ade_id) REFERENCES ecran_code_ade(id) ON DELETE CASCADE,
             FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
             ) $charset_collate;";
 
@@ -447,6 +439,8 @@ function addNewRoles()
                                            // l'interface
     'add_information',                 // Permission d'ajouter de nouvelles
                                            // informations
+    'information_to_any_code',         // Permission d'ajouter une information
+                                           // à n'importe quel code ade
     'view_informations',               // Permission de consulter toutes les
                                            // informations
     'edit_information',                // Permission de modifier les
@@ -575,7 +569,8 @@ function addNewRoles()
         'view_alerts',
         'edit_alert',
         'department_header_menu_access',
-        'view_departments'
+        'view_departments',
+        'information_to_any_code'
     ];
 
     foreach ( $communicantCaps as $cap ) {

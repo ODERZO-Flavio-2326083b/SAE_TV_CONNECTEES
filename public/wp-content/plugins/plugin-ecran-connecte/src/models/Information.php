@@ -116,7 +116,7 @@ class Information extends Model implements Entity, JsonSerializable
      */
     private ?int $_duration;
 
-    private array|null $_departments;
+    private array|null $_codes_ade;
 
 
     /**
@@ -180,14 +180,14 @@ class Information extends Model implements Entity, JsonSerializable
         $request->execute();
 
         $infoId = $database->lastInsertId();
-        $departments = $this->getDeparments();
-        foreach ($departments as $dept) {
+        $codes = $this->getCodesAde();
+        foreach ($codes as $code) {
             $request = $database->prepare(
-                'INSERT INTO ecran_info_departement (info_id, dept_id) 
-                     VALUES (:infoId, :deptId)'
+                'INSERT INTO ecran_info_code_ade (info_id, code_ade_id) 
+                     VALUES (:infoId, :code_ade_id)'
             );
             $request->bindParam(':infoId', $infoId, PDO::PARAM_INT);
-            $request->bindValue(':deptId', $dept->getIdDepartment(), PDO::PARAM_INT);
+            $request->bindValue(':code_ade_id', $code->getId(), PDO::PARAM_INT);
             $request->execute();
         }
 
@@ -230,23 +230,23 @@ class Information extends Model implements Entity, JsonSerializable
 
         $request = $this->getDatabase()->prepare(
             '
-            DELETE FROM ecran_info_departement
+            DELETE FROM ecran_info_code_ade
             WHERE info_id = :infoId'
         );
         $infoId = $this->getId();
         $request->bindValue(':infoId', $infoId, PDO::PARAM_INT);
         $request->execute();
 
-        $departments = $this->getDeparments();
-        foreach ($departments as $dept) {
+        $codes = $this->getCodesAde();
+        foreach ($codes as $code) {
             $request = $this->getDatabase()->prepare(
                 '
-                INSERT INTO ecran_info_departement (info_id, dept_id) 
-                VALUES (:infoId, :deptId)'
+                INSERT INTO ecran_info_code_ade (info_id, code_ade_id) 
+                VALUES (:infoId, :code_ade_id)'
             );
             $infoId = $this->getId();
             $request->bindParam(':infoId', $infoId, PDO::PARAM_INT);
-            $request->bindValue(':deptId', $dept->getIdDepartment(), PDO::PARAM_INT);
+            $request->bindValue(':code_ade_id', $code->getId(), PDO::PARAM_INT);
             $request->execute();
         }
 
@@ -424,6 +424,59 @@ class Information extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     } //getAuthorListInformation()
 
+
+    /**
+     * Récupère une liste d'informations provenant d'un code ade spécifique.
+     *
+     * Cette méthode prépare une requête SQL pour sélectionner les enregistrements
+     * dans la table 'ecran_information' où le code ade correspond à celui
+     * spécifié.
+     * La méthode utilise la pagination pour retourner un sous-ensemble des résultats
+     * en fonction des paramètres de début et de nombre d'éléments. Les résultats
+     * sont triés par date d'expiration.
+     *
+     * @param int $idCodeAde        L'identifiant du
+     *                           code ade
+     * @param int $begin         Point de départ pour la récupération des
+     *                           informations
+     * @param int $numberElement Le nombre d'informations à récupérer
+     *
+     * @return array Une liste d'entités correspondant aux informations récupérées
+     */
+    public function getInformationsByCodeAdeId(
+        int $idCodeAde, int $begin = 0, int $numberElement = 25
+    ): array {
+        $request = $this->getDatabase()->prepare(
+            '
+        SELECT 
+            e.id, 
+            title, 
+            content, 
+            creation_date, 
+            expiration_date, 
+            author, 
+            type, 
+            administration_id,
+            duration
+        FROM 
+            ecran_information e
+        JOIN ecran_info_code_ade ON info_id = e.id
+        WHERE 
+            ecran_info_code_ade.code_ade_id = :id 
+        ORDER BY 
+            expiration_date 
+        LIMIT :begin, :numberElement'
+        );
+        $request->bindParam(':id', $idCodeAde, PDO::PARAM_INT);
+        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
+        $request->bindValue(
+            ':numberElement', $numberElement,
+            PDO::PARAM_INT
+        );
+        $request->execute();
+        return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+    }
+
     /**
      * Récupère une liste d'informations provenant d'un département spécifique.
      *
@@ -443,30 +496,31 @@ class Information extends Model implements Entity, JsonSerializable
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
     public function getInformationsByDeptId(
-        int $idDept, int $begin = 0, int $numberElement = 25
-    ): array {
+        int $deptId,  int $begin = 0, int $numberElement = 25 ): array {
         $request = $this->getDatabase()->prepare(
             '
         SELECT 
-            e.id, 
-            title, 
+            i.id, 
+            i.title, 
             content, 
             creation_date, 
             expiration_date, 
             author, 
-            type, 
+            i.type, 
             administration_id,
+            
             duration
         FROM 
-            ecran_information e
-        JOIN ecran_info_departement ON info_id = e.id
+            ecran_information i
+        JOIN ecran_info_code_ade ic ON ic.info_id = i.id
+        JOIN ecran_code_ade c ON c.id = ic.code_ade_id
         WHERE 
-            ecran_info_departement.dept_id = :id 
+            c.dept_id = :dept_id
         ORDER BY 
             expiration_date 
         LIMIT :begin, :numberElement'
         );
-        $request->bindParam(':id', $idDept, PDO::PARAM_INT);
+        $request->bindParam(':dept_id', $deptId, PDO::PARAM_INT);
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(
             ':numberElement', $numberElement,
@@ -904,14 +958,14 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $this->_idDepartment = $_idDepartment;
     }
 
-    public function getDeparments() : array
+    public function getCodesAde() : array
     {
-        return $this->_departments;
+        return $this->_codes_ade;
     }
 
-    public function setDepartments(array|null $_departments): void
+    public function setCodesAde(array|null $_codes_ade): void
     {
-        $this->_departments = $_departments;
+        $this->_codes_ade = $_codes_ade;
     }
 
     /**

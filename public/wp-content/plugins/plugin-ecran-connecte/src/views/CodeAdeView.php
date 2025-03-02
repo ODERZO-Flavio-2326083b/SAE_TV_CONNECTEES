@@ -103,7 +103,7 @@ class CodeAdeView extends View
                 <label for="dept">Département</label>
                 <br>    
                 <select id="dept" name="dept" class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
             </div>
           <button type="submit" class="btn button_ecran" name="submit">Ajouter
@@ -176,7 +176,7 @@ class CodeAdeView extends View
                 <label for="dept">Département</label>
                 <br>    
                 <select id="dept" name="dept" class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <button type="submit" class="btn button_ecran" name="submit">Modifier
