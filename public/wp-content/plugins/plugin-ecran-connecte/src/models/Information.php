@@ -426,16 +426,16 @@ class Information extends Model implements Entity, JsonSerializable
 
 
     /**
-     * Récupère une liste d'informations provenant d'un code ade spécifique.
+     * Récupère une liste d'informations provenant de codes ade spécifiques.
      *
      * Cette méthode prépare une requête SQL pour sélectionner les enregistrements
-     * dans la table 'ecran_information' où le code ade correspond à celui
+     * dans la table 'ecran_information' où le code ade correspond à au moins un
      * spécifié.
      * La méthode utilise la pagination pour retourner un sous-ensemble des résultats
      * en fonction des paramètres de début et de nombre d'éléments. Les résultats
      * sont triés par date d'expiration.
      *
-     * @param int $idCodeAde        L'identifiant du
+     * @param array $codeAdeIds        L'identifiant du
      *                           code ade
      * @param int $begin         Point de départ pour la récupération des
      *                           informations
@@ -443,7 +443,8 @@ class Information extends Model implements Entity, JsonSerializable
      *
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
-    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array {
+    public function getInformationsByCodeAdeIds( array $codeAdeIds,
+        int $begin = 0, int $numberElement = 25 ): array {
 
         // pour mettre un ? par id
         $inQuery = str_repeat('?,', count($codeAdeIds) - 1) . '?';
@@ -467,7 +468,13 @@ class Information extends Model implements Entity, JsonSerializable
         WHERE 
             c.id IN ($inQuery)
         ORDER BY 
-            expiration_date"
+            expiration_date LIMIT :begin, :numberElement"
+        );
+        $request->bindParam(':dept_id', $deptId, PDO::PARAM_INT);
+        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
+        $request->bindValue(
+            ':numberElement', $numberElement,
+            PDO::PARAM_INT
         );
         // remplacer les ? par tous les ids
         $request->execute($codeAdeIds);
@@ -484,7 +491,7 @@ class Information extends Model implements Entity, JsonSerializable
      * en fonction des paramètres de début et de nombre d'éléments. Les résultats
      * sont triés par date d'expiration.
      *
-     * @param int $idDept        L'identifiant du
+     * @param int $deptId        L'identifiant du
      *                           département
      * @param int $begin         Point de départ pour la récupération des
      *                           informations
