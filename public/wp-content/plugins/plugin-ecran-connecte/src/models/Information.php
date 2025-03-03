@@ -904,8 +904,6 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
     }
 
 
-
-
     /**
      * Sérialise l'objet en tableau associatif pour JSON.
      *
