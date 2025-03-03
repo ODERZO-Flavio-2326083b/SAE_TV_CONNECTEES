@@ -248,7 +248,7 @@ add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 function injectTagOnScrapingEdit() {
     wp_localize_script(
         'addTag_script_ecran', 'codeHTML', array(
-            'tagg' => InformationView::buildTagOption()
+            'tagg' => '<br>' . InformationView::buildTagOption()
         )
     );
 }

@@ -573,39 +573,44 @@ name="delete" onclick="return confirm(
 
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $form = '
-        <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
-            <div class="form-group">
-                <label for="title">Titre du scraping</label>
-                <input id="title" class="form-control" type="text"
-                name="title" placeholder="Inserer un titre" maxlength="60" 
-                        value="' . $title . '">
+    <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
+        <div class="form-group">
+            <label for="title">Titre du scraping</label>
+            <input id="title" class="form-control" type="text"
+                   name="title" placeholder="Insérer un titre" maxlength="60"
+                   value="' . $title . '">
+        </div>
+        <div class="form-group">
+            <label for="url">Lien du site</label>
+            <input id="url" class="form-control" type="url"
+                   name="content" placeholder="Insérer un lien" maxlength="255"
+                   value="' . $url . '">
+        </div>
+        <div class="form-group">
+            <label for="tag">Tag</label>
+            <div id="tagContainer">
+                ' . $this->buildTagOption() . '
+                <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
+               value="Ajouter des tags">
             </div>
-            <div class="form-group">
-                <label for="url">Lien du site</label>
-                <input id="url" class="form-control" type="url"
-                name="content" placeholder="Inserer un lien" maxlength="255"
-                        value="' . $url . '">
-            </div>
-            <div class="form-group" id="tagContainer">
-                <label for="tag" id="tagDiv">Tag</label> ' . $this->buildTagOption() . '
-            </div>
-            <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
-            value="Ajouter des tags">
-            <div class="form-group">
-                <label for="expirationDate">Date d\'expiration</label>
-                <input id="expirationDate" class="form-control" type="date" 
-                name="expirationDate" min="' . $dateMin . '" value="' . $endDate
-            . '" required >
-            </div>
-            <div class="form-group">
-                <label>Emploi(s) du temps</label>
-                <br>    
-                <div id="codeContainerscraping">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
-            value="Ajouter un emploi du temps">
-            </div>
-            <button class="btn button_ecran" type="submit" name="' . $type . '">
-            Valider</button>';
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="expirationDate">Date d\'expiration</label>
+            <input id="expirationDate" class="form-control" type="date" 
+                   name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required>
+        </div>
+        <div class="form-group">
+            <label>Emploi(s) du temps</label>
+            <br>    
+            <div id="codeContainerscraping">' . $codeSelect . '</div>
+            <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
+                   value="Ajouter un emploi du temps">
+        </div>
+        <button class="btn button_ecran" type="submit" name="' . $type . '">
+            Valider
+        </button>
+    </form>';
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" 
 name="delete" onclick="return confirm(
@@ -616,7 +621,7 @@ name="delete" onclick="return confirm(
     }
 
     public static function buildTagOption() {
-        return '  <div>
+        return '  <div id="tagListDiv">
                        <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag[]" required="">
                             <option value="default">Défault</option>
@@ -624,7 +629,7 @@ name="delete" onclick="return confirm(
                             <option value="lien">Lien</option>
                             <option value="url">URL</option>
                             <option value="article">Article</option> 
-                     </div>
+                     </div></div>
                           ';
     }
 
