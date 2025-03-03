@@ -140,7 +140,7 @@ class User extends Model implements Entity, JsonSerializable
 
                 if(!empty($this->_metadata)) {
                     foreach ( $this->_metadata as $key => $value ) {
-                        add_user_meta( $id, $key, $value, true );
+                        add_user_meta($id, $key, $value, true);
                     }
                 }
             }
@@ -200,7 +200,7 @@ class User extends Model implements Entity, JsonSerializable
         }
         if(!empty($this->_metadata)) {
             foreach ( $this->_metadata as $key => $value ) {
-                update_user_meta( $this->getId(), $key, $value );
+                update_user_meta($this->getId(), $key, $value);
             }
         }
 
@@ -782,6 +782,7 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      * Renvoie les métadonnées
+     *
      * @return array
      */
     public function getMetadata()
@@ -791,8 +792,8 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      *
-     * @param string $key
-     * @param $value
+     * @param  string $key
+     * @param  $value
      * @return void
      */
     public function setMetadata(string $key, $value): void

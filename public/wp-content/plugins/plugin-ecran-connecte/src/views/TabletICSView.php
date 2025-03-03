@@ -23,14 +23,15 @@ use IntlDateFormatter;
  * @link     https://www.example.com/docs/TabletICSView Documentation de la classe
  * @since    2025-01-13
  */
-class TabletICSView extends ICSView {
+class TabletICSView extends ICSView
+{
 
     /**
      * Renvoie le contenu d'un évènement formaté en HTML de façon à l'afficher
      * sur l'emploi du temps d'une tablette.
      *
      * @param array $event L'évènement
-     * @param int $day Jour, inutile dans notre cas.
+     * @param int   $day   Jour, inutile dans notre cas.
      *
      * @return string Le code html de l'évènement
      */
@@ -60,8 +61,8 @@ class TabletICSView extends ICSView {
      * de l'emploi du temps de la tablette.
      *
      * @param $ics_data array Données ICS de l'emploi du temps
-     * @param $title string Titre de l'emploi du temps
-     * @param $allDay int Inutile dans ce cas.
+     * @param $title    string Titre de l'emploi du temps
+     * @param $allDay   int Inutile dans ce cas.
      *
      * @throws \DateMalformedStringException
      *
@@ -136,7 +137,8 @@ class TabletICSView extends ICSView {
      *
      * @return string Le code HTML du thead
      */
-    function theadBuilder(array $days): string {
+    function theadBuilder(array $days): string
+    {
         return '<thead><tr>' . implode('', $days) . '</tr></thead>';
     }
 
@@ -145,12 +147,13 @@ class TabletICSView extends ICSView {
      * Renvoie une date sous forme francophone à partir d'une date numérique
      *
      * @param $dateStr string Chaine de caractères de la date
-     * sous la forme 'YYYY-MM-DD'
+     *                 sous la forme 'YYYY-MM-DD'
      *
      * @return string
      * @throws \DateMalformedStringException
      */
-    function formatDateFr( string $dateStr): string {
+    function formatDateFr( string $dateStr): string
+    {
         $fr = ['Sunday' => 'Dimanche', 'Monday' => 'Lundi', 'Tuesday' => 'Mardi',
                'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi',
                'Friday' => 'Vendredi', 'Saturday' => 'Samedi',
@@ -161,7 +164,9 @@ class TabletICSView extends ICSView {
                'November' => 'Novembre', 'December' => 'Décembre'];
 
         $date = new DateTime($dateStr);
-        return str_replace(array_keys($fr),
-                    array_values($fr), $date->format('l d F'));
+        return str_replace(
+            array_keys($fr),
+            array_values($fr), $date->format('l d F')
+        );
     }
 }
