@@ -1,13 +1,71 @@
 <?php
-
+/**
+ * Fichier TabletView.php
+ *
+ * Ce fichier contient la classe 'TabletView', qui est responsable
+ * de l'affichage des vues
+ * associées aux utilisateurs de type "tablette" dans l'application.
+ * Elle permet la gestion
+ * des formulaires de création, l'affichage des tablettes, ainsi que
+ * la sélection de départements
+ * et d'emplois du temps pour chaque utilisateur de type "tablette".
+ * Cette classe étend la classe
+ * 'UserView' pour réutiliser certaines méthodes communes
+ * liées à l'affichage des utilisateurs.
+ *
+ * PHP version 8.3
+ *
+ * @category Views
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.example.com/docs/TabletView
+ * @since    2024-03-03
+ */
 namespace views;
 
 use models\CodeAde;
 use models\Department;
 use models\User;
 
+/**
+ * Class TabletView
+ *
+ * La classe TabletView est utilisée pour afficher les vues associées
+ * à la gestion des tablettes dans l'application.
+ * Elle permet d'afficher le formulaire de création d'un utilisateur
+ * de type "tablette", ainsi que l'affichage des
+ * tablettes existantes et de leurs emplois du temps.
+ *
+ * @category Views
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.example.com/docs/TabletView
+ * @since    2024-03-03
+ */
 class TabletView extends UserView
 {
+
+    /**
+     * Affiche le formulaire de création d'une tablette.
+     *
+     * Cette méthode génère un formulaire permettant la création d'un utilisateur
+     * de type "tablette", avec des champs pour le login, le mot de passe,
+     * le département et l'emploi du temps à choisir.
+     *
+     * @param array $classes  Liste des classes disponibles pour
+     *                        la sélection de l'emploi du temps.
+     * @param array $allDepts Liste de tous les départements.
+     * @param bool  $isAdmin  Indicateur pour savoir si l'utilisateur
+     *                        est administrateur.
+     * @param int   $currDept Département actuel de l'utilisateur.
+     *
+     * @return string Le code HTML du formulaire de création de tablette.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function displayFormTablet(array $classes, array $allDepts,
         bool $isAdmin = false,
         int $currDept = null
@@ -55,6 +113,23 @@ class TabletView extends UserView
         </form>';
     }
 
+    /**
+     * Génère le HTML pour la sélection des codes ADE dans un formulaire.
+     *
+     * Cette méthode crée un champ de sélection HTML pour choisir un emploi du temps
+     * à partir des classes disponibles. Elle inclut un tri des départements et
+     * des options par type et titre.
+     *
+     * @param array   $classes  Liste des classes à afficher dans la sélection.
+     * @param array   $allDepts Liste de tous les départements.
+     * @param CodeAde $code     Objet CodeAde à afficher (si fourni).
+     * @param int     $count    Le numéro du groupe de sélection (pour ID unique).
+     *
+     * @return string Le code HTML du champ de sélection des codes ADE.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public static function buildSelectCode(array $classes, array $allDepts,
         CodeAde $code = null,
         int $count = 0
@@ -114,6 +189,23 @@ class TabletView extends UserView
         return $select;
     }
 
+    /**
+     * Affiche toutes les tablettes existantes dans le système.
+     *
+     * Cette méthode génère le tableau HTML pour afficher les informations sur
+     * les utilisateurs
+     * de type "tablette", incluant leur login et leur département. Elle permet
+     * également la sélection
+     * multiple des tablettes grâce à une case à cocher.
+     *
+     * @param array $users        Liste des utilisateurs (tablettes) à afficher.
+     * @param array $userDeptList Liste des départements des utilisateurs.
+     *
+     * @return string Le code HTML du tableau des tablettes.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function displayAllTablets(array $users, array $userDeptList)
     {
         $title = 'Tablette';
