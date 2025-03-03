@@ -451,6 +451,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $information->delete();
+            $information->deleteScrappingTags();
             $this->_view->displayModifyValidate();
         }
         return $this->_view->displayModifyInformationForm(

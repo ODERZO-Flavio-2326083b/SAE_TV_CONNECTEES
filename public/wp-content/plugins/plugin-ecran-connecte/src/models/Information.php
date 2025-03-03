@@ -475,6 +475,17 @@ class Information extends Model implements Entity, JsonSerializable
         return $database->lastInsertId();
     }
 
+    public function deleteScrappingTags() : int
+    {
+        $request = $this->getDatabase()->prepare(
+            'DELETE FROM ecran_information 
+       WHERE id_info = :id'
+        );
+        $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+        $request->execute();
+        return $request->rowCount();
+    }
+
     /**
      * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
      *
