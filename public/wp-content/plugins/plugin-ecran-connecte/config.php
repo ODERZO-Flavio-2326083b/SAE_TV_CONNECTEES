@@ -127,6 +127,11 @@ function loadScriptsEcran() : void
         TV_PLUG_PATH . 'public/css/weather.css', array(), '1.0'
     );
 
+    wp_enqueue_style(
+        'tablet_ecran',
+        TV_PLUG_PATH . 'public/css/tablet.css', array(), '1.0'
+    );
+
     // SCRIPT
     wp_enqueue_script(
         'addCheckBox_script_ecran',
@@ -446,6 +451,12 @@ function addNewRoles()
         array()
     );
 
+    add_role(
+        'tablette',
+        __('Tablette'),
+        array()
+    );
+
     $secretaire = get_role('secretaire');
     $secretaireCaps = [
         'information_header_menu_access',
@@ -489,6 +500,15 @@ function addNewRoles()
 
     foreach ( $televisionCaps as $cap ) {
         $television->add_cap($cap);
+    }
+
+    $tablette = get_role('tablette');
+    $tabletteCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $tabletteCaps as $cap ) {
+        $tablette->add_cap($cap);
     }
 }
 

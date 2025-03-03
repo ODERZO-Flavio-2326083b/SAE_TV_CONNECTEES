@@ -132,7 +132,8 @@ function loadInformationDurations(): void
     $informationModel = new Information();
     $deptModel = new Department();
 
-    if (is_user_logged_in() && get_current_user_id() != 1) {
+    if (is_user_logged_in() && in_array('television', wp_get_current_user()
+            ->roles)) {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
             ->getIdDepartment();
 

@@ -65,10 +65,10 @@ class User extends Model implements Entity, JsonSerializable
      * Rôle de l'utilisateur dans l'application.
      *
      * Cette propriété définit le rôle de l'utilisateur parmi les valeurs possibles :
-     * 'television', 'secretaire', ou 'technicien'.
+     * 'television', 'secretaire', 'tablette' ou 'technicien'.
      * Chaque rôle a des permissions spécifiques dans l'application.
      *
-     * @var string (television | secretaire | technicien)
+     * @var string (television | secretaire | technicien | tablette)
      */
     private string $_role;
 
@@ -128,7 +128,7 @@ class User extends Model implements Entity, JsonSerializable
             'role' => $this->getRole(),
         );
         $id = wp_insert_user($userData);
-        if ($this->getRole() == 'television') {
+        if ($this->getRole() == 'television' || $this->getRole() == 'tablette') {
             foreach ($this->getCodes() as $code) {
                 $request = $this->getDatabase()->prepare(
                     'INSERT INTO ecran_code_user (user_id, code_ade_id) 
@@ -138,8 +138,10 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
 
-                foreach ($this->_metadata as $key => $value) {
-                    add_user_meta($id, $key, $value, true);
+                if(!empty($this->_metadata)) {
+                    foreach ( $this->_metadata as $key => $value ) {
+                        add_user_meta( $id, $key, $value, true );
+                    }
                 }
             }
         }
@@ -196,8 +198,10 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
-        foreach ($this->_metadata as $key => $value) {
-            update_user_meta($this->getId(), $key, $value);
+        if(!empty($this->_metadata)) {
+            foreach ( $this->_metadata as $key => $value ) {
+                update_user_meta( $this->getId(), $key, $value );
+            }
         }
 
         return $request->rowCount();
