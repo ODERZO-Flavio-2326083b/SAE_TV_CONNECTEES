@@ -64,7 +64,7 @@ class Scrapper
      */
     public function __construct()
     {
-        $this->_url = 'https://www.informatiquenews.fr/news';
+        $this->_url = 'https://boutique.ed-diamond.com/3_gnu-linux-magazine';
     }
     /**
      * Récupère le contenu HTML de la page d'articles.
@@ -190,13 +190,13 @@ class Scrapper
                     $html .= '</a>';
                     $html .= '</div>';
                 } else {
-                    $html .= '<p>Impossible de charger l\'image.</p>';
+                    $html .= '';
                 }
             } else {
-                $html .= '<p>Aucune image trouvée pour cet article.</p>';
+                $html .= '';
             }
         } else {
-            $html .= '<p>Aucun article trouvé.</p>';
+            $html .= '';
         }
 
         $html .= '</div>';

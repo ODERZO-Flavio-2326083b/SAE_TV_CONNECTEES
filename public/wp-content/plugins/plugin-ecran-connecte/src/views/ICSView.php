@@ -177,10 +177,10 @@ class ICSView extends View
             }
             // AUCUN EMPLOI DU TEMPS
             if ($current_study < 1) {
-                return $this->displayNoSchedule($title, $current_user);
+                return '';
             }
         } else {
-            return $this->displayNoSchedule($title, $current_user);
+            return '';
         }
 
         return $string;
@@ -363,34 +363,4 @@ class ICSView extends View
           </div>';
     }
 
-    /**
-     * Affiche un message lorsque aucun emploi du temps n'est disponible pour
-     * l'utilisateur courant.
-     *
-     * Cette méthode vérifie les paramètres du thème pour déterminer si le message
-     * doit être affiché pour les utilisateurs ayant le rôle 'television'. Si
-     * l'utilisateur ne possède pas de cours, un message approprié est retourné.
-     *
-     * @param string  $title        Le titre à afficher dans le message.
-     * @param WP_User $current_user L'objet utilisateur courant.
-     *
-     * @return string|false       Une chaîne HTML contenant le message d'absence de
-     * cours, ou false si aucun message ne doit être affiché.
-     *
-     * @version 1.0
-     * @date    2024-10-15
-     */
-    public function displayNoSchedule($title, $current_user) : string|false
-    {
-        if (get_theme_mod(
-            'ecran_connecte_schedule_msg', 'show'
-        ) == 'show' && in_array('television', $current_user->roles)
-        ) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
-        } elseif (!in_array('television', $current_user->roles)) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
-        } else {
-            return false;
-        }
-    }
 }
