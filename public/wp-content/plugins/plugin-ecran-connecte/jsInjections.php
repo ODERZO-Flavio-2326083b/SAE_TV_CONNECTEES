@@ -5,6 +5,7 @@ use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Localisation;
+use models\User;
 use views\AlertView;
 use views\InformationView;
 use views\TelevisionView;
@@ -133,7 +134,8 @@ function loadInformationDurations(): void
     $informationModel = new Information();
     $deptModel = new Department();
 
-    if (is_user_logged_in() && get_current_user_id() != 1) {
+    if (is_user_logged_in() && in_array('television', wp_get_current_user()
+            ->roles)) {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
             ->getIdDepartment();
 
@@ -242,3 +244,29 @@ function injectAllCodesOnAlertEdit(): void
 add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
+
+/**
+ * Récupère la vitesse de défilement de l'utilisateur connecté
+ * et l'injecte en JavaScript.
+ *
+ * @return void
+ */
+function loadScrollSpeed(): void
+{
+    if (is_user_logged_in()) {
+        $userId = get_current_user_id();
+
+        $scrollSpeed = get_user_meta($userId, 'scroll_speed', true) ?: 12;
+
+        wp_enqueue_script('scroll_script_ecran', TV_PLUG_PATH . 'public/js/scroll.js', array('jquery'), null, true);
+
+        wp_localize_script(
+            'scroll_script_ecran',
+            'SCROLL_SETTINGS', array(
+                'scrollSpeed' => (int) $scrollSpeed
+            )
+        );
+    }
+}
+
+add_action('wp_enqueue_scripts', 'loadScrollSpeed');

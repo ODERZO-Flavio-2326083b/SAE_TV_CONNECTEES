@@ -1,11 +1,11 @@
 <?php
 /**
- * Fichier TechnicianController.php
+ * Fichier TelevisionController.php
  *
- * Ce fichier contient la classe 'TechnicianController', qui gère les opérations
+ * Ce fichier contient la classe 'TelevisionController', qui gère les opérations
  * relatives aux techniciens, telles que la création, la mise à jour, la suppression,
- * l'affichage des techniciens, ainsi
- * que l'affichage de l'emploi du temps des techniciens.
+ * l'affichage des télévisions, ainsi
+ * que l'affichage de l'emploi du temps des télévisions.
  *
  * PHP version 8.3
  *
@@ -27,9 +27,9 @@ use utils\InputValidator;
 use views\TelevisionView;
 
 /**
- * Class TechnicianController
+ * Class TelevisionController
  *
- * Gère les techniciens (Création, mise à jour, suppression, affichage, affichage de
+ * Gère les télévisions (Création, mise à jour, suppression, affichage, affichage de
  * l'emploi du temps)
  *
  * @category API
@@ -107,13 +107,14 @@ class TelevisionController extends UserController implements Schedule
     public function insert(): string
     {
         $action = filter_input(INPUT_POST, 'createTv');
+
         $codeAde = new CodeAde();
 
         $currentUser = wp_get_current_user();
         $deptModel = new Department();
 
         $isAdmin = current_user_can('admin_perms');
-        // si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
         // département, sinon on cherche le département
         $currDept
             = $isAdmin ? null : $deptModel->getUserDepartment(
@@ -131,6 +132,7 @@ class TelevisionController extends UserController implements Schedule
             // ces utilisateurs de pouvoir le changer
             $deptId
                 = $isAdmin ? filter_input(INPUT_POST, 'deptIdTv') : $currDept;
+            $scrollSpeed = filter_input(INPUT_POST, 'scrollSpeedTv');
 
             // Validation des données d'entrée
             if (InputValidator::isValidLogin($login) 
@@ -154,6 +156,7 @@ class TelevisionController extends UserController implements Schedule
                 $this->_model->setRole('television');
                 $this->_model->setCodes($codesAde);
                 $this->_model->setIdDepartment($deptId);
+                $this->_model->setMetadata('scroll_speed', $scrollSpeed);
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(
@@ -210,6 +213,7 @@ class TelevisionController extends UserController implements Schedule
         $deptModel = new Department();
         $codeAde = new CodeAde();
         $action = filter_input(INPUT_POST, 'modifValidate');
+        $scrollSpeed = filter_input(INPUT_POST, 'scrollSpeedTv');
 
         if (isset($action)) {
             $codes = filter_input(
@@ -227,6 +231,7 @@ class TelevisionController extends UserController implements Schedule
 
             // Mise à jour des codes de l'utilisateur
             $user->setCodes($codesAde);
+            $user->setMetadata('scroll_speed', $scrollSpeed);
 
             if ($user->update()) {
                 $this->_view->displayModificationValidate($linkManageUser);
@@ -336,7 +341,7 @@ class TelevisionController extends UserController implements Schedule
             if (!empty($user->getCodes()[0])) {
                 $string .= $this->displaySchedule($user->getCodes()[0]->getCode());
             } else {
-                $string .= '<p>Vous n\'avez pas cours</p>';
+                $string .= '';
             }
         }
         return $string;

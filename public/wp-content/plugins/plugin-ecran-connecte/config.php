@@ -127,6 +127,11 @@ function loadScriptsEcran() : void
         TV_PLUG_PATH . 'public/css/weather.css', array(), '1.0'
     );
 
+    wp_enqueue_style(
+        'tablet_ecran',
+        TV_PLUG_PATH . 'public/css/tablet.css', array(), '1.0'
+    );
+
     // SCRIPT
     wp_enqueue_script(
         'addCheckBox_script_ecran',
@@ -209,18 +214,15 @@ function installDatabaseEcran() : void
 
     $charset_collate = $wpdb->get_charset_collate();
 
-    $table_name = 'ecran_departement';
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_departement' (
             dept_id INT(10) NOT NULL AUTO_INCREMENT,
             dept_nom VARCHAR (60) NOT NULL,
             PRIMARY KEY (dept_id)) $charset_collate;";
 
     dbDelta($sql);
 
-    $table_name = 'ecran_information';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_information' (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			title VARCHAR (40),
 			content VARCHAR(280) NOT NULL,
@@ -236,9 +238,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_alert';
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_alert' (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			content VARCHAR(280) NOT NULL,
 			creation_date datetime DEFAULT NOW() NOT NULL,
@@ -251,9 +251,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_code_ade';
-
-    $query = "CREATE TABLE IF NOT EXISTS $table_name (
+    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_ade' (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
@@ -267,12 +265,11 @@ function installDatabaseEcran() : void
     dbDelta($query);
 
     // With wordpress id = 1 can't be access if we do : /page/1
-    $sql = "ALTER TABLE $table_name AUTO_INCREMENT = 2;";
+    $sql = "ALTER TABLE 'ecran_code_ade' AUTO_INCREMENT = 2;";
     dbDelta($sql);
 
-    $table_name = 'ecran_code_alert';
 
-    $query = "CREATE TABLE IF NOT EXISTS $table_name (
+    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_alert' (
 			alert_id INT(10) NOT NULL ,
 			code_ade_id INT(10) NOT NULL ,
 			PRIMARY KEY (alert_id, code_ade_id),
@@ -282,9 +279,8 @@ function installDatabaseEcran() : void
 
     dbDelta($query);
 
-    $table_name = 'ecran_code_user';
 
-    $query = "CREATE TABLE IF NOT EXISTS $table_name (
+    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_user' (
 			user_id BIGINT(20) UNSIGNED NOT NULL,
 			code_ade_id INT(10) NOT NULL ,
 			PRIMARY KEY (user_id, code_ade_id),
@@ -294,9 +290,8 @@ function installDatabaseEcran() : void
 
     dbDelta($query);
 
-    $table_name = 'ecran_code_delete_account';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_code_delete_account' (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			user_id BIGINT(20) UNSIGNED NOT NULL,
 			code VARCHAR(40) NOT NULL,
@@ -308,9 +303,8 @@ function installDatabaseEcran() : void
 
 
 
-    $table_name = 'ecran_user_departement';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_user_departement' (
             id INT(10) NOT NULL AUTO_INCREMENT,
 			dept_id INT(10) NOT NULL ,
 			user_id BIGINT(20) UNSIGNED NOT NULL ,
@@ -322,9 +316,8 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_localisation';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_localisation' (
             localisation_id INT(10) NOT NULL AUTO_INCREMENT,
             latitude DECIMAL(10,6) NOT NULL,
             longitude DECIMAL(10,6) NOT NULL,
@@ -512,6 +505,12 @@ function addNewRoles()
         array()
     );
 
+    add_role(
+        'tablette',
+        __('Tablette'),
+        array()
+    );
+
     $secretaire = get_role('secretaire');
     $secretaireCaps = [
         'information_header_menu_access',
@@ -557,6 +556,15 @@ function addNewRoles()
         $television->add_cap($cap);
     }
 
+    $tablette = get_role('tablette');
+    $tabletteCaps = [
+        'schedule_access'
+    ];
+
+    foreach ( $tabletteCaps as $cap ) {
+        $tablette->add_cap($cap);
+    }
+
     $communicant = get_role('communicant');
     $communicantCaps = [
         'comm_perms',
@@ -587,7 +595,7 @@ add_action('init', 'addNewRoles');
 add_action(
     'rest_api_init', function () {
         $controller = new InformationRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
 
         $controller = new CodeAdeRestController();
         $controller->registerRoutes();
@@ -596,6 +604,6 @@ add_action(
         $controller->registerRoutes();
 
         $controller = new ProfileRestController();
-        $controller->register_routes();
+        $controller->registerRoutes();
     }
 );

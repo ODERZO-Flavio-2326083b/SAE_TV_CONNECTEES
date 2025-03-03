@@ -10,6 +10,7 @@ use controllers\SecretaryController;
 use controllers\TechnicianController;
 use controllers\TelevisionController;
 use controllers\UserController;
+use controllers\TabletController;
 use views\UserView;
 
 
@@ -304,13 +305,18 @@ add_action('init', 'block_information_modify');
 function schedule_render_callback()
 {
         $current_user = wp_get_current_user();
+
     if (in_array("television", $current_user->roles)) {
         $controller = new TelevisionController();
         return $controller->displayMySchedule();
     } else if (in_array("technicien", $current_user->roles)) {
         $controller = new TechnicianController();
         return $controller->displayMySchedule();
-    } else if (in_array(
+    } else if (in_array("tablette", $current_user->roles)) {
+        $controller = new TabletController();
+        return $controller->displayMySchedule();
+    }
+    else if (in_array(
         "administrator", $current_user->roles
     ) || in_array("secretaire", $current_user->roles)
     ) {

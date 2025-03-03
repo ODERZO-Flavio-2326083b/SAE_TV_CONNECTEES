@@ -98,6 +98,12 @@ class CodeAdeView extends View
                     <label class="form-check-label" for="halfGroup">Demi-groupe
                     </label>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" 
+                    id="class" value="class">
+                    <label class="form-check-label" for="class">Salle
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label for="dept">Département</label>
@@ -219,6 +225,10 @@ class CodeAdeView extends View
                 'value' => 'halfGroup',
                 'title' => 'Demi-Groupe',
             ),
+            array(
+                'value' => 'class',
+                'title' => 'Salle',
+            )
         );
 
         // Construit la liste des options
@@ -255,7 +265,7 @@ class CodeAdeView extends View
      * @version 1.0
      * @date    08-01-2025
      */
-    public function displayAllCode($years, $groups, $halfGroups) : string
+    public function displayAllCode($years, $groups, $halfGroups, $class) : string
     {
         $deptModel = new Department();
 
@@ -266,7 +276,7 @@ class CodeAdeView extends View
         $name = 'Code';
         $header = ['Titre', 'Code', 'Type', 'Département', 'Modifier'];
 
-        $codesAde = [$years, $groups, $halfGroups];
+        $codesAde = [$years, $groups, $halfGroups, $class];
 
         $row = array();
         $count = 0;
@@ -279,6 +289,8 @@ class CodeAdeView extends View
                     $code->setType('Groupe');
                 } elseif ($code->getType() === 'halfGroup') {
                     $code->setType('Demi-groupe');
+                } elseif ($code->getType() === 'class') {
+                    $code->setType('Salle');
                 }
                 ++$count;
                 $row[] = [$count,

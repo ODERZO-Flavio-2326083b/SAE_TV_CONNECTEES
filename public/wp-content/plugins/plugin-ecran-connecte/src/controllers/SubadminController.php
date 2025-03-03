@@ -25,9 +25,9 @@ use utils\InputValidator;
 use views\SubadminView;
 
 /**
- * Class TechnicianController
+ * Class SubadminController
  *
- * Gère les techniciens (Création, mise à jour, suppression, affichage)
+ * Gère les administrateurs de département (Création, mise à jour, suppression, affichage)
  *
  * @category API
  * @package  Controllers
@@ -178,7 +178,7 @@ class SubadminController extends UserController
                 = $deptModel->getUserDepartment($user->getId())->getName();
         }
 
-        return $this->_view->displayAllTechnicians($users, $userDeptList);
+        return $this->_view->displayAllSubadmin($users, $userDeptList);
     }
 
 }

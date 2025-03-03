@@ -177,10 +177,10 @@ class ICSView extends View
             }
             // AUCUN EMPLOI DU TEMPS
             if ($current_study < 1) {
-                return $this->displayNoSchedule($title, $current_user);
+                return '';
             }
         } else {
-            return $this->displayNoSchedule($title, $current_user);
+            return '';
         }
 
         return $string;
@@ -261,7 +261,7 @@ class ICSView extends View
      * @param array $event Un tableau associatif représentant
      *                     l'événement, contenant les clés 'deb',
      *                     'fin', 'label', et 'description'.
-     * @param int   $day   Le jour du mois (optionnel). Par défaut, il s'agit du
+     * @param int $day   Le jour du mois (optionnel). Par défaut, il s'agit du
      *                     jour actuel.
      *
      * @return string|false  Une chaîne formatée représentant l'événement actif
@@ -270,7 +270,7 @@ class ICSView extends View
      * @version 1.0
      * @date    2024-10-15
      */
-    public function getContent($event, $day = 0) : string|false
+    public function getContent( array $event, int $day = 0) : string|false
     {
         if ($day == 0) {
             $day = date('j');
@@ -280,9 +280,8 @@ class ICSView extends View
         $duration = str_replace(':', 'h', date("H:i", strtotime($event['deb'])))
             . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
-            if (date(
-                "H:i", strtotime($event['deb'])
-            ) <= $time && $time < date("H:i", strtotime($event['fin']))
+            if (date("H:i", strtotime($event['deb'])) <= $time
+            && $time < date("H:i", strtotime($event['fin']))
             ) {
                 $active = true;
             } else {
@@ -290,7 +289,7 @@ class ICSView extends View
             }
         }
 
-        if (substr($event['label'], -3) == "alt") {
+        if ( str_ends_with( $event['label'], "alt" ) ) {
             $label = substr($event['label'], 0, -3);
         } else {
             $label = $event['label'];
@@ -364,34 +363,4 @@ class ICSView extends View
           </div>';
     }
 
-    /**
-     * Affiche un message lorsque aucun emploi du temps n'est disponible pour
-     * l'utilisateur courant.
-     *
-     * Cette méthode vérifie les paramètres du thème pour déterminer si le message
-     * doit être affiché pour les utilisateurs ayant le rôle 'television'. Si
-     * l'utilisateur ne possède pas de cours, un message approprié est retourné.
-     *
-     * @param string  $title        Le titre à afficher dans le message.
-     * @param WP_User $current_user L'objet utilisateur courant.
-     *
-     * @return string|false       Une chaîne HTML contenant le message d'absence de
-     * cours, ou false si aucun message ne doit être affiché.
-     *
-     * @version 1.0
-     * @date    2024-10-15
-     */
-    public function displayNoSchedule($title, $current_user) : string|false
-    {
-        if (get_theme_mod(
-            'ecran_connecte_schedule_msg', 'show'
-        ) == 'show' && in_array('television', $current_user->roles)
-        ) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
-        } elseif (!in_array('television', $current_user->roles)) {
-            return '<h1>' . $title . '</h1><p> Vous n\'avez pas cours !</p>';
-        } else {
-            return false;
-        }
-    }
 }
