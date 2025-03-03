@@ -336,9 +336,8 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $table_name = 'ecran_scrapping_tags';
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping_tags (
             id INT(10) NOT NULL AUTO_INCREMENT,
             id_info INT(10) NOT NULL,
             content VARCHAR (280) NOT NULL,
@@ -349,8 +348,8 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping (
-            scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping (
+            scraping_id INT(10) NOT NULL AUTO_INCREMENT,
             title VARCHAR (30) NOT NULL,
             content VARCHAR (255) NOT NULL,
             tag VARCHAR (70) NOT NULL,
@@ -362,22 +361,10 @@ function installDatabaseEcran() : void
             administration_id INT(10) DEFAULT NULL,
             duration INT(10) DEFAULT 5000 NOT NULL,
             department_id INT(10),
-            PRIMARY KEY (scrapping_id),
+            PRIMARY KEY (scraping_id),
             FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
             FOREIGN KEY (department_id) 
             REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
-            ) $charset_collate;";
-
-    dbDelta($sql);
-
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping_departement (
-            id INT(10) NOT NULL AUTO_INCREMENT,
-            dept_id INT(10) NOT NULL,
-            scrapping_id INT(10) NOT NULL,
-            PRIMARY KEY (id, scrapping_id, dept_id),
-            FOREIGN KEY (dept_id)
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
-            FOREIGN KEY (scrapping_id) REFERENCES ecran_scrapping(scrapping_id) ON DELETE CASCADE
             ) $charset_collate;";
 
     dbDelta($sql);

@@ -28,7 +28,7 @@ use controllers\InformationController;
 use models\CodeAde;
 use models\Department;
 use models\Information;
-use models\Scrapper;
+use models\Scraper;
 
 /**
  * Classe InformationView
@@ -564,18 +564,18 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function displayFormScrapping (array $allDepts, array $buildArgs,
+    public function displayFormScraping (array $allDepts, array $buildArgs,
                              $endDate = null, $title = null, $url = null,
-    $type = "createScrapping") {
+    $type = "createScraping") {
 
         list($years, $groups, $halfGroups) = $buildArgs;
         $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $form = '
-        <form method="post" enctype="multipart/form-data" id="registerScrappingForm">
+        <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
             <div class="form-group">
-                <label for="title">Titre du scrapping</label>
+                <label for="title">Titre du scraping</label>
                 <input id="title" class="form-control" type="text"
                 name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
@@ -600,8 +600,8 @@ name="delete" onclick="return confirm(
             <div class="form-group">
                 <label>Emploi(s) du temps</label>
                 <br>    
-                <div id="codeContainerscrapping">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scrapping\')" 
+                <div id="codeContainerscraping">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
             value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -617,7 +617,7 @@ name="delete" onclick="return confirm(
 
     public static function buildTagOption() {
         return '  <div>
-                       <input id="content" class="form-control" type="text" name="contentScrapper[]" placeholder="Inserer le tag" maxlength="255" required>
+                       <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag[]" required="">
                             <option value="default">Défault</option>
                             <option value="image">Image</option>
@@ -761,14 +761,14 @@ name="delete" onclick="return confirm(
                         $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
-        case "scrapping":
+        case "scraping":
             return '<a href="'
                 . esc_url(
                     get_permalink(
                         get_page_by_title_custom('Gestion des informations')
                     )
                 ) . '">< Retour</a>' .
-                $this->displayFormScrapping(
+                $this->displayFormScraping(
                     $allDepts, $buildArgs, $title, $endDate, 'submit'
                 );
         case "event":
@@ -988,9 +988,7 @@ name="delete" onclick="return confirm(
      * @param string   $content   Le contenu à afficher dans la diapositive
      *                            (texte, image ou PDF).
      * @param string   $type      Le type de contenu à afficher ('text',
-     *                            'img', 'video', 'short', 'pdf', 'event').
-     * @param Scrapper $scrapper  Un objet 'Scrapper' permettant de scraper du
-     *                            contenu depuis un site web.
+     *                            'img', 'video', 'short', 'pdf', 'event', 'scraper')
      * @param bool     $adminSite Indique si la diapositive est affichée sur le
      *                            site d'administration.
      *
@@ -1010,7 +1008,7 @@ name="delete" onclick="return confirm(
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scrapping'])) {
+        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scraping'])) {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }

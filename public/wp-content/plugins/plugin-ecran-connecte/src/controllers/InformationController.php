@@ -22,7 +22,7 @@ use getID3;
 use models\CodeAde;
 use models\Department;
 use models\Information;
-use models\Scrapper;
+use models\Scraper;
 use models\User;
 use views\InformationView;
 
@@ -59,7 +59,7 @@ class InformationController extends Controller
      */
     private $_view;
 
-    private $_modelScrapping;
+    private $_modelScraping;
 
     /**
      * Constructeur de la classe.
@@ -115,7 +115,7 @@ class InformationController extends Controller
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
         $actionVideo = filter_input(INPUT_POST, 'createVideo');
         $actionShort = filter_input(INPUT_POST, 'createShort');
-        $actionScrapping = filter_input(INPUT_POST, 'createScrapping');
+        $actionScraping = filter_input(INPUT_POST, 'createScraping');
 
         // Variables
         $title = filter_input(INPUT_POST, 'title');
@@ -249,16 +249,16 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                         );
                     }
                 }
-                if (isset($actionScrapping)) {
-                    $information->setType("scrapping");
+                if (isset($actionScraping)) {
+                    $information->setType("scraping");
                     $tags = filter_input(INPUT_POST, 'tag',
                         FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-                    $contentsScrapper = filter_input(INPUT_POST, 'contentScrapper',
+                    $contentsScraper = filter_input(INPUT_POST, 'contentScraper',
                         FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
                     if ($id = $information->insert()) {
                         $information->setId($id);
-                        $information->insertScrappingTags($tags, $contentsScrapper);
+                        $information->insertScrapingTags($tags, $contentsScraper);
                         $this->_view->displayCreateValidate();
                     } else {
                         $this->_view->displayErrorInsertionInfo();
@@ -273,8 +273,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         }
 
         $buildArgs = $this->getAllAvailableCodes();
-        $titles = ['Image', 'PDF', 'Événement', 'Vidéo', 'Short', 'Scrapping'];
-        $contentTypes = ['image', 'pdf', 'event', 'video', 'short', 'scrapping'];
+        $titles = ['Image', 'PDF', 'Événement', 'Vidéo', 'Short', 'Scraping'];
+        $contentTypes = ['image', 'pdf', 'event', 'video', 'short', 'scraping'];
 
 
         // immonde à lire, mais map la fonction displayTitleSelect
@@ -480,7 +480,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $information->delete();
-            $information->deleteScrappingTags();
+            $information->deleteScrapingTags();
             $this->_view->displayModifyValidate();
         }
         return $this->_view->displayModifyInformationForm(
@@ -646,14 +646,10 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $current_user = wp_get_current_user();
         if (current_user_can('admin_perms')) {
             $informationList = $this->_model->getList($begin, $number);
-            //$scrappingList = $this->_modelScrapping->getList($begin, $number);
         } else {
             $informationList = $this->_model->getInformationsByDeptId(
                 $deptModel->getUserDepartment($current_user->ID)->getIdDepartment()
             );
-            /*$scrappingList = $this->_modelScrapping->getScrappingsByDeptId(
-                $deptModel->getUserDepartment($current_user->ID)->getIdDepartment()
-            );*/
         }
 
         $name = 'Info';
@@ -703,7 +699,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 'text' => 'Texte',
                 'video' => 'Video',
                 'short' => 'Short',
-                'scrapping' => 'Scrapping',
+                'scraping' => 'Scraping',
                 default => 'Special',
             };
 
@@ -820,9 +816,9 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 }
                 // Affiche les informations sauf les vidéos
                 if ($information->getType() !== 'video') {
-                    if($information->getType() === 'scrapping') {
+                    if($information->getType() === 'scraping') {
                         $this->_view->displaySlide('Sans titre',
-                            $this->createScrapper($information->getId()), $information->getType());
+                            $this->createScraper($information->getId()), $information->getType());
                     } else {
                         $this->_view->displaySlide(
                             $information->getTitle(),
@@ -976,7 +972,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
     }
 
     /**
-     * Crée un objet de type "scrapper" avec des informations par défaut.
+     * Crée un objet de type "scraper" avec des informations par défaut.
      *
      * Cette méthode initialise un objet de la classe 'information', définit
      * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
@@ -989,9 +985,9 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      * @version 1.0
      * @date    2024-10-16
      */
-    public function createScrapper($id): string {
+    public function createScraper($id): string {
         $information = $this->_model;
-        list($url, $balises, $types) = $information->getScrappingTags($id);
+        list($url, $balises, $types) = $information->getScrapingTags($id);
 
         $arrayArg = array();
         for($i=0; $i<count($balises); $i++) {
@@ -1001,11 +997,11 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $article = $arrayArg['article'];
         unset($arrayArg['article']);
 
-        $scrapper1 = new Scrapper(
+        $scraper1 = new Scraper(
             $url, // URL du site à scraper
             $article,  // Sélecteur pour l'article
             $arrayArg
         );
-        return $scrapper1->printWebsite();
+        return $scraper1->printWebsite();
     }
 }

@@ -6,7 +6,7 @@ use DOMDocument;
 use DOMXPath;
 use DOMElement;
 
-class Scrapper
+class Scraper
 {
     private string $_url;
     private string $_articleSelector;

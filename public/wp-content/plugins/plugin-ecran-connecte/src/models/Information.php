@@ -522,12 +522,12 @@ class Information extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    public function insertScrappingTags(array $tags, array $contents) {
+    public function insertScrapingTags(array $tags, array $contents) {
 
         $database = $this->getDatabase();
         for ($i = 0; $i < count($tags); $i++) {
             $request = $database->prepare(
-                'INSERT INTO ecran_scrapping_tags
+                'INSERT INTO ecran_scraping_tags
                   (id_info,
                    content,
                    tag
@@ -546,7 +546,7 @@ class Information extends Model implements Entity, JsonSerializable
         return $database->lastInsertId();
     }
 
-    public function deleteScrappingTags() : int
+    public function deleteScrapingTags() : int
     {
         $request = $this->getDatabase()->prepare(
             'DELETE FROM ecran_information 
@@ -557,7 +557,7 @@ class Information extends Model implements Entity, JsonSerializable
         return $request->rowCount();
     }
 
-    public function getScrappingTags(int $id) : array {
+    public function getScrapingTags(int $id) : array {
         $database = $this->getDatabase();
 
         $request = $database->prepare(
@@ -573,7 +573,7 @@ class Information extends Model implements Entity, JsonSerializable
         $request = $database->prepare(
             'SELECT sc.content, sc.tag
                    FROM ecran_information i
-                   JOIN ecran_scrapping_tags sc 
+                   JOIN ecran_scraping_tags sc 
                    ON i.id = sc.id_info
                    WHERE i.id = :id'
         );
