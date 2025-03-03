@@ -61,7 +61,8 @@ class Scraper
         return null;
     }
 
-    private function extractFirstSrcSet(string $srcset): string {
+    private function extractFirstSrcSet(string $srcset): string
+    {
         $parts = explode(',', $srcset); // Séparer les URLs
         if (count($parts) > 0) {
             $firstPart = explode(' ', trim($parts[0])); // Prendre la première URL

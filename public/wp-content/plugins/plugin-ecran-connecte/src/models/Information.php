@@ -428,12 +428,13 @@ class Information extends Model implements Entity, JsonSerializable
      * en fonction des paramètres de début et de nombre d'éléments. Les résultats
      * sont triés par date d'expiration.
      *
-     * @param array $codeAdeIds        L'identifiant du
-     *                           code ade
+     * @param array $codeAdeIds L'identifiant du
+     *                          code ade
      *
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
-    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array {
+    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array
+    {
 
         // pour mettre un ? par id
         $inQuery = str_repeat('?,', count($codeAdeIds) - 1) . '?';
@@ -481,7 +482,8 @@ class Information extends Model implements Entity, JsonSerializable
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
     public function getInformationsByDeptId(
-        int $deptId,  int $begin = 0, int $numberElement = 25 ): array {
+        int $deptId,  int $begin = 0, int $numberElement = 25 
+    ): array {
         $request = $this->getDatabase()->prepare(
             '
         SELECT 
@@ -515,7 +517,8 @@ class Information extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    public function insertScrapingTags(array $tags, array $contents) {
+    public function insertScrapingTags(array $tags, array $contents)
+    {
 
         $database = $this->getDatabase();
         for ($i = 0; $i < count($tags); $i++) {
@@ -529,7 +532,8 @@ class Information extends Model implements Entity, JsonSerializable
                   (:id_info,
                    :content,
                    :tag)
-        ');
+        '
+            );
 
             $request->bindValue(':id_info', $this->getId(), PDO::PARAM_INT);
             $request->bindValue(':content', $contents[$i], PDO::PARAM_STR);
@@ -550,7 +554,8 @@ class Information extends Model implements Entity, JsonSerializable
         return $request->rowCount();
     }
 
-    public function getScrapingTags(int $id) : array {
+    public function getScrapingTags(int $id) : array
+    {
         $database = $this->getDatabase();
 
         $request = $database->prepare(

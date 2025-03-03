@@ -522,7 +522,7 @@ name="delete" onclick="return confirm(
      * @date    2024-10-15
      */
     public function displayFormEvent( array $allDepts, array $buildArgs,
-                                      $endDate = null, $type = "createEvent"
+        $endDate = null, $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
@@ -564,9 +564,10 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function displayFormScraping (array $allDepts, array $buildArgs,
-                             $endDate = null, $title = null, $url = null,
-    $type = "createScraping") {
+    public function displayFormScraping(array $allDepts, array $buildArgs,
+        $endDate = null, $title = null, $url = null,
+        $type = "createScraping"
+    ) {
 
         list($years, $groups, $halfGroups) = $buildArgs;
         $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
@@ -615,7 +616,8 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public static function buildTagOption() {
+    public static function buildTagOption()
+    {
         return '  <div>
                        <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
                        <select class="form-control firstSelect" id="tag" name="tag[]" required="">
@@ -701,8 +703,6 @@ name="delete" onclick="return confirm(
     public function displayModifyInformationForm( string $title, string $content,
         string $endDate, string $type,
         array $allDepts, array $buildArgs,
-
-
     ): string {
 
         switch ($type) {
@@ -881,8 +881,8 @@ name="delete" onclick="return confirm(
             //trier les options au sein de chaque département par type puis par titre
             usort(
                 $options, function ($a, $b) {
-                return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
-            }
+                    return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
+                }
             );
 
             foreach ($options as $option) {
@@ -941,11 +941,13 @@ name="delete" onclick="return confirm(
      * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
      * d'administration et l'affichage normal.
      *
-     * @param string $title     Le titre de la diapositive, affiché en tant que
-     *                          en-tête si non vide.
-     * @param string $content   Le contenu à afficher dans la diapositive
-0      * @param bool   $adminSite Indique si la diapositive est affichée sur le site
-     *                          d'administration.
+     * @param string $title   Le titre de la diapositive, affiché en tant
+     *                        que en-tête si non vide.
+
+     * @param string $content Le contenu à afficher dans la
+     *                        diapositive 0      * @param bool  
+     *                        $adminSite Indique si la diapositive est
+     *                        affichée sur le site d'administration.
      *
      * @return void
      *
@@ -980,14 +982,18 @@ name="delete" onclick="return confirm(
      * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
      * d'administration et l'affichage normal.
      *
-     * @param string   $title     Le titre de la diapositive, affiché en tant
-     *                            que en-tête si non vide.
-     * @param string   $content   Le contenu à afficher dans la diapositive
-     *                            (texte, image ou PDF).
-     * @param string   $type      Le type de contenu à afficher ('text',
-     *                            'img', 'video', 'short', 'pdf', 'event', 'scraper')
-     * @param bool     $adminSite Indique si la diapositive est affichée sur le
-     *                            site d'administration.
+     * @param string $title     Le titre de la diapositive, affiché en
+     *                          tant que en-tête si non vide.
+
+     * @param string $content   Le contenu à afficher dans la
+     *                          diapositive (texte, image ou PDF).
+
+     * @param string $type      Le type de contenu à afficher
+     *                          ('text', 'img', 'video', 'short',
+     *                          'pdf', 'event', 'scraper')
+
+     * @param bool   $adminSite Indique si la diapositive est affichée sur
+     *                          le site d'administration.
      *
      * @return void
      *
@@ -1034,7 +1040,7 @@ name="delete" onclick="return confirm(
             echo '<p class="lead">' . $content . '</p>';
             break;
 
-            case 'special':
+        case 'special':
             $func = explode('(Do this(function:', $content);
             $text = explode('.', $func[0]);
             foreach ($text as $value) {

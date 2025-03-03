@@ -9,7 +9,7 @@ use models\User;
 class TabletView extends UserView
 {
     public function displayFormTablet(array $classes, array $allDepts,
-                                          int $currDept = null
+        int $currDept = null
     ): string {
 
         return '
@@ -53,8 +53,8 @@ class TabletView extends UserView
     }
 
     public static function buildSelectCode(array $classes, array $allDepts,
-                                           CodeAde $code = null,
-                                           int $count = 0
+        CodeAde $code = null,
+        int $count = 0
     ): string {
         $select = '<select class="form-control firstSelect" id="selectId' . $count
             . '" name="selectTa[]" required="">';
@@ -93,8 +93,8 @@ class TabletView extends UserView
             //trier les options au sein de chaque département par type puis par titre
             usort(
                 $options, function ($a, $b) {
-                return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
-            }
+                    return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
+                }
             );
 
             foreach ($options as $option) {
@@ -111,7 +111,8 @@ class TabletView extends UserView
         return $select;
     }
 
-    public function displayAllTablets(array $users, array $userDeptList) {
+    public function displayAllTablets(array $users, array $userDeptList)
+    {
         $title = 'Tablette';
         $name = 'Tablette';
         $header = ['Login', 'Département'];

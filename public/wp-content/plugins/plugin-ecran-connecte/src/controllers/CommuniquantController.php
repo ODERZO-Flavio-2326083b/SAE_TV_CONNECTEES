@@ -32,8 +32,8 @@ class CommuniquantController extends UserController
         // département, sinon on cherche le département
         $currDept
             = $isAdmin ? -1 : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
+                $currentUser->ID
+            )->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginComm');
@@ -58,8 +58,8 @@ class CommuniquantController extends UserController
 
                 // Insertion dans la base de données
                 if (!$this->checkDuplicateUser(
-                        $this->_model
-                    ) && $this->_model->insert()
+                    $this->_model
+                ) && $this->_model->insert()
                 ) {
                     $this->_view->displayInsertValidate();
                 } else {

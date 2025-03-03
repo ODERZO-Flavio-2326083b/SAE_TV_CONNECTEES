@@ -5,7 +5,7 @@ namespace views;
 class CommuniquantView extends UserView
 {
     public function displayFormCommunicant(array $dept, int $currDept,
-                                          bool $isAdmin
+        bool $isAdmin
     ): string {
         return '
         <h2>Compte communicant</h2>
@@ -15,7 +15,7 @@ class CommuniquantView extends UserView
     }
 
     public function displayAllCommunicants(array $users,
-                                          array $userDeptList
+        array $userDeptList
     ): string {
         $title = 'Communicant';
         $name = 'Comm';
