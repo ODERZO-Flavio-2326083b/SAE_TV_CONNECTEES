@@ -25,8 +25,10 @@ namespace views;
 
 
 use controllers\InformationController;
+use models\CodeAde;
+use models\Department;
 use models\Information;
-use models\Scrapper;
+use models\Scraper;
 
 /**
  * Classe InformationView
@@ -78,13 +80,15 @@ class InformationView extends View
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormText(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createText"
+    public function displayFormText(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+
         $form = '
         <form method="post">
             <div class="form-group">
@@ -107,12 +111,11 @@ class InformationView extends View
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="codeContainertexte">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'texte\')" 
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -159,13 +162,14 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormImg(array $allDepts, bool $isAdmin = false,
-        int $currDept = null,$title = null,
-        $content = null, $endDate = null,
-        $type = "createImg"
+    public function displayFormImage(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -200,12 +204,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="codeContainerimage">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'image\')" 
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -252,13 +255,14 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormVideo(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createVideo"
+    public function displayFormVideo(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createVideo"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -286,13 +290,6 @@ name="delete" onclick="return confirm(
              .mp4, .webm</small>
              
         </div>
-                    <div class="form-group">
-            <label for="format">Format d\'affichage</label>
-            <input type="radio" id="surimpression" name="format" value="surimpression" />
-            <label for="surimpression">Sur-impression</label>
-            <input type="radio" id="file" name="format" value="file" />   
-            <label for="file">File d\'attente</label>
-            </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
 			<input id="expirationDate" class="form-control" type="date" 
@@ -300,13 +297,12 @@ name="delete" onclick="return confirm(
             . '" required >
 		</div>
 		<div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
-        </div>
+                <div id="codeContainervideo">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'video\')" 
+            value="Ajouter un emploi du temps">
+            </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
 
@@ -352,13 +348,13 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormShort(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createShort"
+    public function displayFormShort(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createShort"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -394,13 +390,12 @@ Supprimer</button>';
             . '" required >
 		</div>
 		<div class="form-group">
-            <label for="informationDept">Département</label>
-            <br>    
-            <select id="informationDept" name="informationDept" class="form-control"'
-            . $disabled . '>
-                ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-            </select>
-        </div>
+                <label>Emploi(s) du temps</label>
+                <br>    
+                <div id="codeContainershort">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'short\')" 
+            value="Ajouter un emploi du temps">
+            </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
 		</button>';
 
@@ -445,19 +440,20 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormPDF(array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createPDF"
+    public function displayFormPDF(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Titre <span class="text-muted">(Optionnel)
                         </span></label>
-                        <input id="title" class="form-control" type="text" 
+                        <input id="title" class="form-control$title" type="text" 
                         name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
                     </div>';
@@ -481,12 +477,11 @@ Supprimer</button>';
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="codeContainerpdf">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'pdf\')" 
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -526,12 +521,13 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormEvent( array $allDepts, bool $isAdmin = false,
-        int $currDept = null, $endDate = null,
-        $type = "createEvent"
+    public function displayFormEvent( array $allDepts, array $buildArgs,
+                                      $endDate = null, $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
 
         $form = '
         <form method="post" enctype="multipart/form-data">
@@ -550,12 +546,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="codeContainerevent">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'event\')" 
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -567,6 +562,70 @@ name="delete" onclick="return confirm(
         }
         $form .= '</form>';
         return $form;
+    }
+
+    public function displayFormScraping (array $allDepts, array $buildArgs,
+                             $endDate = null, $title = null, $url = null,
+    $type = "createScraping") {
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+        $form = '
+        <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
+            <div class="form-group">
+                <label for="title">Titre du scraping</label>
+                <input id="title" class="form-control" type="text"
+                name="title" placeholder="Inserer un titre" maxlength="60" 
+                        value="' . $title . '">
+            </div>
+            <div class="form-group">
+                <label for="url">Lien du site</label>
+                <input id="url" class="form-control" type="url"
+                name="content" placeholder="Inserer un lien" maxlength="255"
+                        value="' . $url . '">
+            </div>
+            <div class="form-group" id="tagContainer">
+                <label for="tag" id="tagDiv">Tag</label> ' . $this->buildTagOption() . '
+            </div>
+            <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
+            value="Ajouter des tags">
+            <div class="form-group">
+                <label for="expirationDate">Date d\'expiration</label>
+                <input id="expirationDate" class="form-control" type="date" 
+                name="expirationDate" min="' . $dateMin . '" value="' . $endDate
+            . '" required >
+            </div>
+            <div class="form-group">
+                <label>Emploi(s) du temps</label>
+                <br>    
+                <div id="codeContainerscraping">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
+            value="Ajouter un emploi du temps">
+            </div>
+            <button class="btn button_ecran" type="submit" name="' . $type . '">
+            Valider</button>';
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" 
+name="delete" onclick="return confirm(
+    \' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
+        }
+        $form .= '</form>';
+        return $form;
+    }
+
+    public static function buildTagOption() {
+        return '  <div>
+                       <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
+                       <select class="form-control firstSelect" id="tag" name="tag[]" required="">
+                            <option value="default">Défault</option>
+                            <option value="image">Image</option>
+                            <option value="lien">Lien</option>
+                            <option value="url">URL</option>
+                            <option value="article">Article</option> 
+                     </div>
+                          ';
     }
 
     /**
@@ -641,9 +700,9 @@ name="delete" onclick="return confirm(
      */
     public function displayModifyInformationForm( string $title, string $content,
         string $endDate, string $type,
-        array $allDepts,
-        bool $isAdmin = false,
-        int $currDept = null
+        array $allDepts, array $buildArgs,
+
+
     ): string {
 
         switch ($type) {
@@ -655,7 +714,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormText(
-                        $allDepts, $isAdmin, $currDept, $title, $content,
+                        $allDepts, $buildArgs, $title, $content,
                         $endDate, 'submit'
                     );
         case "img":
@@ -665,8 +724,8 @@ name="delete" onclick="return confirm(
                         get_page_by_title_custom('Gestion des informations')
                     )
                 ) . '">< Retour</a>' .
-                    $this->displayFormImg(
-                        $allDepts, $isAdmin, $currDept, $title, $content, $endDate,
+                    $this->displayFormImage(
+                        $allDepts, $buildArgs, $title, $content, $endDate,
                         'submit'
                     );
         case "video":
@@ -677,7 +736,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormVideo(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
         case "short":
@@ -688,7 +747,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormShort(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
         case "pdf":
@@ -699,9 +758,19 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormPDF(
-                        $allDepts, $isAdmin, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
+        case "scraping":
+            return '<a href="'
+                . esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des informations')
+                    )
+                ) . '">< Retour</a>' .
+                $this->displayFormScraping(
+                    $allDepts, $buildArgs, $title, $endDate, 'submit'
+                );
         case "event":
             $extension = explode('.', $content);
             $extension = $extension[1];
@@ -712,8 +781,8 @@ name="delete" onclick="return confirm(
                             get_page_by_title_custom('Gestion des informations')
                         )
                     ) . '">< Retour</a>' . $this->displayFormPDF(
-                        $allDepts, $isAdmin,
-                        $currDept, $title, $content, $endDate, 'submit'
+                        $allDepts, $buildArgs,
+                        $title, $content, $endDate, 'submit'
                     );
             } else {
                 return '<a href="'
@@ -721,14 +790,113 @@ name="delete" onclick="return confirm(
                         get_permalink(
                             get_page_by_title_custom('Gestion des informations')
                         )
-                    ) . '">< Retour</a>' . $this->displayFormImg(
-                        $allDepts, $isAdmin,
-                        $currDept, $title, $content, $endDate, 'submit'
+                    ) . '">< Retour</a>' . $this->displayFormImage(
+                        $allDepts, $buildArgs,
+                        $title, $content, $endDate, 'submit'
                     );
             }
         default:
             return $this->noInformation();
         }
+    }
+
+    /**
+     * Génère un élément '<select>' HTML pour sélectionner des emplois du temps.
+     *
+     * Cette méthode crée un menu déroulant contenant des options pour les années,
+     * groupes et demi-groupes. Si un code d'emploi du temps est fourni, il sera
+     * pré-sélectionné dans le menu déroulant.
+     *
+     * @param array<CodeAde> $years      Un tableau d'objets représentant les années
+     *                                   disponibles.
+     * @param array<CodeAde> $groups     Un tableau d'objets représentant les groupes
+     *                                   disponibles.
+     * @param array<CodeAde> $halfGroups Un tableau d'objets représentant les
+     *                                   demi-groupes disponibles.
+     * @param array          $allDepts   Une liste de tous les départements
+     *                                   présents dans la base de données.
+     * @param CodeAde|null   $code       Un objet représentant le code d'emploi du
+     *                                   temps à pré-sélectionner (facultatif).
+     *
+     * @return string Le code HTML du menu déroulant pour sélectionner un emploi du
+     *                temps.
+     *
+     * @version 1.0
+     * @date    2024-10-15
+     */
+    public static function buildSelectCode(array $years, array $groups,
+        array $halfGroups, array $allDepts,
+        CodeAde $code = null
+    ): string {
+        $select =
+            '<select class="form-control departmentSelect" name="informationCodes[]">';
+
+        if (!is_null($code)) {
+            $select .= '<option value="' . $code->getCode() . '">'
+                       . $code->getTitle() . '</option>';
+        } else {
+            $select .= '<option disabled selected value>Sélectionnez un code ADE
+</option>';
+        }
+
+        $allOptions = [];
+
+        foreach ($years as $year) {
+            $allOptions[$year->getDeptId()][] = [
+                'code' => $year->getCode(),
+                'title' => $year->getTitle(),
+                'type' => 'Année'
+            ];
+        }
+
+        foreach ($groups as $group) {
+            $allOptions[$group->getDeptId()][] = [
+                'code' => $group->getCode(),
+                'title' => $group->getTitle(),
+                'type' => 'Groupe'
+            ];
+        }
+
+        foreach ($halfGroups as $halfGroup) {
+            $allOptions[$halfGroup->getDeptId()][] = [
+                'code' => $halfGroup->getCode(),
+                'title' => $halfGroup->getTitle(),
+                'type' => 'Demi groupe'
+            ];
+        }
+
+        // trier les départements par id
+        ksort($allOptions);
+
+        foreach ($allOptions as $deptId => $options) {
+            $deptName = 'Département inconnu';
+            foreach ($allDepts as $dept) {
+                if ($dept->getIdDepartment() === $deptId) {
+                    $deptName = $dept->getName();
+                    break;
+                }
+            }
+            $select .= '<optgroup label="Département ' . $deptName . '">';
+
+            //trier les options au sein de chaque département par type puis par titre
+            usort(
+                $options, function ($a, $b) {
+                return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
+            }
+            );
+
+            foreach ($options as $option) {
+                $select .= '<option value="' . $option['code'] . '">'
+                           . $option['type'] . ' - ' . $option['title']
+                           . '</option>';
+            }
+
+            $select .= '</optgroup>';
+        }
+
+        $select .= '</select>';
+
+        return $select;
     }
 
     /**
@@ -776,10 +944,7 @@ name="delete" onclick="return confirm(
      * @param string $title     Le titre de la diapositive, affiché en tant que
      *                          en-tête si non vide.
      * @param string $content   Le contenu à afficher dans la diapositive
-     *                          (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher
-     *                          ('text', 'img', 'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site
+0      * @param bool   $adminSite Indique si la diapositive est affichée sur le site
      *                          d'administration.
      *
      * @return void
@@ -787,7 +952,7 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displaySlideVideo($title, $content, $type, $adminSite = false)
+    public function displaySlideVideo($title, $content, $adminSite = false)
     {
         echo '<div class="myVideoSlides text-center" style="display: block;">';
 
@@ -799,7 +964,7 @@ name="delete" onclick="return confirm(
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
         echo '<video class="video_container" src="' . $url . $content . '
-              " autoplay loop muted></video>';
+              " autoplay loop muted style="max-height: 70vh;"></video>';
 
 
 
@@ -820,9 +985,7 @@ name="delete" onclick="return confirm(
      * @param string   $content   Le contenu à afficher dans la diapositive
      *                            (texte, image ou PDF).
      * @param string   $type      Le type de contenu à afficher ('text',
-     *                            'img', 'video', 'short', 'pdf', 'event').
-     * @param Scrapper $scrapper  Un objet 'Scrapper' permettant de scraper du
-     *                            contenu depuis un site web.
+     *                            'img', 'video', 'short', 'pdf', 'event', 'scraper')
      * @param bool     $adminSite Indique si la diapositive est affichée sur le
      *                            site d'administration.
      *
@@ -831,7 +994,7 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displaySlide($title, $content, $type, $scrapper,
+    public function displaySlide($title, $content, $type,
         $adminSite = false
     ) {
         echo '<div class="myInfoSlides text-center">';
@@ -842,7 +1005,7 @@ name="delete" onclick="return confirm(
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video'])) {
+        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scraping'])) {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }
@@ -871,11 +1034,7 @@ name="delete" onclick="return confirm(
             echo '<p class="lead">' . $content . '</p>';
             break;
 
-        case 'scrapper':
-            $scrapper->printWebsite();
-            break;
-
-        case 'special':
+            case 'special':
             $func = explode('(Do this(function:', $content);
             $text = explode('.', $func[0]);
             foreach ($text as $value) {
@@ -926,7 +1085,7 @@ name="delete" onclick="return confirm(
                 "Modifier" à la ligne correspondante à l\'information.</p>
                 <p class="lead">Vous souhaitez supprimer une / plusieurs 
                 information(s) ? Cochez les cases des informations puis cliquez sur 
-                "Supprimer" le bouton ce situe en bas du tableau.</p>
+                "Supprimer" le bouton se situant en bas du tableau.</p>
                 <p class="lead">Il faut également penser à créer un département avant
                  afin d\'associer cette information à ce département.</p>
             </div>

@@ -1,11 +1,14 @@
 <?php
 
+use controllers\InformationController;
 use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Localisation;
 use models\User;
+use models\Scraping;
 use views\AlertView;
+use views\InformationView;
 use views\TelevisionView;
 
 /**
@@ -192,6 +195,27 @@ function injectAllCodesOnTvEdit(): void
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
 
+function injectCodesOnInfoEdit(): void
+{
+    $codeAde = new CodeAde();
+    $deptModel = new Department();
+
+    $allDepts = $deptModel->getAllDepts();
+
+    if(!is_user_logged_in()) return;
+
+    list($years, $groups, $halfGroups) =
+        InformationController::getAllAvailableCodes();
+
+    wp_localize_script(
+        'addDepartment_script', 'codeHTML', array(
+            'infoCode' => InformationView::buildSelectCode(
+                $years, $groups, $halfGroups, $allDepts
+            )));
+}
+
+add_action('wp_enqueue_scripts', 'injectCodesOnInfoEdit');
+
 /**
  * Envoie le code HTML du sélecteur de code ADE pour
  * la modification d'alertes.
@@ -211,7 +235,7 @@ function injectAllCodesOnAlertEdit(): void
 
     wp_localize_script(
         'addCodeAlert_script_ecran', 'codeHTML', array(
-        'alert' => AlertView::buildSelectCode(
+        'infoCode' => AlertView::buildSelectCode(
             $years, $groups, $halfGroups, $allDepts
         )
         )
@@ -221,6 +245,15 @@ function injectAllCodesOnAlertEdit(): void
 add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
+function injectTagOnScrapingEdit() {
+    wp_localize_script(
+        'addTag_script_ecran', 'codeHTML', array(
+            'tagg' => InformationView::buildTagOption()
+        )
+    );
+}
+
+add_action('wp_enqueue_scripts', 'injectTagOnScrapingEdit');
 
 /**
  * Récupère la vitesse de défilement de l'utilisateur connecté
@@ -247,3 +280,4 @@ function loadScrollSpeed(): void
 }
 
 add_action('wp_enqueue_scripts', 'loadScrollSpeed');
+

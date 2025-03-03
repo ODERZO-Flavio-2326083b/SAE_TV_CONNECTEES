@@ -5,9 +5,11 @@ let totalPage = null; // Nombre de pages
 let endPage = false;
 let stop = false;
 let videoDurations = DURATIONS.videoDurations;
+let numberArray = videoDurations.length;
 let otherDurations = DURATIONS.otherDurations;
 let timeout = parseInt(SCROLL_SETTINGS.scrollSpeed);
-let timeoutAdjusted = timeout * 1000;
+let timeoutAdjusted = (numberArray > 0) ? (timeout * 1000 * numberArray) : timeout*1000;
+console.log(timeoutAdjusted);
 
 infoSlideShow();
 videoSlideshow();
@@ -175,28 +177,36 @@ function displayOrHide(slides, slideIndex)
     }
 
     setTimeout(function(){
-        window.location.reload(1);
+        window.location.reload(true);
     }, 86400000);
 }
 
 
 
-
 /**
- * Affiche un diaporama en n'affichant que les vidéos, qu'on utilisera donc à droite dans notre télévision
+ * Affiche un diaporama en n'affichant que les vidéos, qu'on utilisera donc à gauche dans notre télévision.
  */
 function displayOrHideVideo(slides, slideIndex) {
+    let edt = document.getElementsByClassName("table tabSchedule");
+
     if (slides.length > 0) {
+        // Masquer toutes les diapositives et afficher l'emploi du temps
         if (slides.length > 1) {
             for (let i = 0; i < slides.length; ++i) {
                 slides[i].style.display = "none";
             }
+            for (let i = 0; i < edt.length; ++i) {
+                edt[i].style.display = "table";
+            }
         }
 
-        // Une fois que toutes les vidéos ont été passées, on cache la diapositive, laissant apparaître l'emploi du temps
+        // Une fois toutes les vidéos passées, afficher l'emploi du temps
         if (slideIndex === slides.length) {
             for (let i = 0; i < slides.length; ++i) {
                 slides[i].style.display = "none";
+            }
+            for (let i = 0; i < edt.length; ++i) {
+                edt[i].style.display = "table";
             }
 
             setTimeout(function () {
@@ -206,33 +216,44 @@ function displayOrHideVideo(slides, slideIndex) {
             return;
         }
 
-        // On vérifie qu'il existe une dernière slide
+        // Vérifier si la diapositive actuelle est bien définie
         if (slides[slideIndex] !== undefined) {
+            let hasVideo = false;
 
-            // On vérifie qu'un enfant existe et que c'est bien une vidéo
+            // Vérifier si cette diapositive contient une vidéo
             if (slides[slideIndex].childNodes) {
                 for (let i = 0; i < slides[slideIndex].childNodes.length; ++i) {
                     let child = slides[slideIndex].childNodes[i];
-                    // Si c'est une vidéo, on l'affiche
                     if (child.className === 'video_container') {
                         slides[slideIndex].style.display = "block";
                         slides[slideIndex].style.position = "relative";
-
+                        hasVideo = true;
                     }
                 }
-                // On passe à la slide suivante
-                ++slideIndex;
             }
+
+            // Si une vidéo est détectée, masquer l'emploi du temps
+            if (hasVideo) {
+                for (let i = 0; i < edt.length; ++i) {
+                    edt[i].style.display = "none";
+                }
+            }
+
+            // Passer à la diapositive suivante
+            ++slideIndex;
         }
 
         if (slides.length !== 1 || totalPage !== 1) {
-            // On définit notre temps, ici 5 secondes
+            // Sécuriser l'accès à `videoDurations[slideIndex-1]`
+            let duration = videoDurations[slideIndex - 1] || 10000; // Valeur par défaut : 5s si non définie
+
             setTimeout(function () {
-                displayOrHideVideo(slides, slideIndex)
-            }, videoDurations[slideIndex-1]);
+                displayOrHideVideo(slides, slideIndex);
+            }, duration);
         }
     }
 }
+
 
 
 

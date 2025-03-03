@@ -165,7 +165,7 @@ class TabletController extends UserController implements Schedule
         $allDepts = $deptModel->getAllDepts();
 
         return $this->_view->displayFormTablet(
-            $classes, $allDepts, $isAdmin, $currDept
+            $classes, $allDepts, $isAdmin
         );
     }
 

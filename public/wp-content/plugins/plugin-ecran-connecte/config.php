@@ -143,6 +143,16 @@ function loadScriptsEcran() : void
         . 'public/js/addOrDeleteAlertCode.js', array('jquery'), '1.0', true
     );
     wp_enqueue_script(
+        'addDepartment_script',
+        TV_PLUG_PATH
+        . 'public/js/addOrDeleteDepartment.js', array('jquery'), '1.0', true
+    );
+    wp_enqueue_script(
+        'addTag_script_ecran',
+        TV_PLUG_PATH
+        . 'public/js/addOrDeleteTag.js', array('jquery'), '1.0', true
+    );
+    wp_enqueue_script(
         'addCodeTv_script_ecran',
         TV_PLUG_PATH
         . 'public/js/addOrDeleteTvCode.js', array('jquery'), '1.0', true
@@ -205,9 +215,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    if (get_option('init_database') == 1) {
+    /*if (get_option('init_database') == 1) {
         return;
-    }
+    }*/
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -229,11 +239,8 @@ function installDatabaseEcran() : void
 			type VARCHAR (10) DEFAULT 'text' NOT NULL,
 			administration_id INT(10) DEFAULT NULL,
 			duration INT(10) DEFAULT 5000 NOT NULL,
-			department_id INT(10),
 			PRIMARY KEY (id),
-			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
-			FOREIGN KEY (department_id) 
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+			FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE
 		) $charset_collate;";
 
     dbDelta($sql);
@@ -329,6 +336,50 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
+
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping_tags (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            id_info INT(10) NOT NULL,
+            content VARCHAR (280) NOT NULL,
+            tag VARCHAR (25) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (id_info) REFERENCES ecran_information(id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping (
+            scraping_id INT(10) NOT NULL AUTO_INCREMENT,
+            title VARCHAR (30) NOT NULL,
+            content VARCHAR (255) NOT NULL,
+            tag VARCHAR (70) NOT NULL,
+            num INT(10) NOT NULL,
+            creation_date datetime DEFAULT NOW() NOT NULL,
+            expiration_date datetime NOT NULL,
+            author BIGINT(20) UNSIGNED NOT NULL,
+            type VARCHAR (10) DEFAULT 'text' NOT NULL,
+            administration_id INT(10) DEFAULT NULL,
+            duration INT(10) DEFAULT 5000 NOT NULL,
+            department_id INT(10),
+            PRIMARY KEY (scraping_id),
+            FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
+            FOREIGN KEY (department_id) 
+            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_info_code_ade (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            info_id INT(10) NOT NULL,
+            code_ade_id INT(10) NOT NULL,
+            PRIMARY KEY (id, info_id, code_ade_id),
+            FOREIGN KEY (code_ade_id) REFERENCES ecran_code_ade(id) ON DELETE CASCADE,
+            FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
     update_option('init_database', 1);
 }
 
@@ -388,6 +439,8 @@ function addNewRoles()
                                            // l'interface
     'add_information',                 // Permission d'ajouter de nouvelles
                                            // informations
+    'information_to_any_code',         // Permission d'ajouter une information
+                                           // à n'importe quel code ade
     'view_informations',               // Permission de consulter toutes les
                                            // informations
     'edit_information',                // Permission de modifier les
@@ -414,10 +467,10 @@ function addNewRoles()
                                            // existants
 
     // Permissions diverses
-    'admin_perms',                // Permission d'accès complet pour
+    'admin_perms',                     // Permission d'accès complet pour
                                            // les administrateurs
     'edit_css',                        // Permission de modifier le CSS du site
-        'schedule_access'                  // Permission d'accès à l'emploi du temps
+    'schedule_access',                 // Permission d'accès à l'emploi du temps
     ];
 
     $admin = get_role('administrator');
@@ -448,6 +501,12 @@ function addNewRoles()
         __('Sous-administrateur'),
         // Un admin de département peut faire tout ce qu'un administrateur peut faire sur le
         // site, sauf accéder aux autres admins de département
+        array()
+    );
+
+    add_role(
+        'communicant',
+        __('Communicant'),
         array()
     );
 
@@ -509,6 +568,24 @@ function addNewRoles()
 
     foreach ( $tabletteCaps as $cap ) {
         $tablette->add_cap($cap);
+    }
+
+    $communicant = get_role('communicant');
+    $communicantCaps = [
+        'information_header_menu_access',
+        'add_information',
+        'view_informations',
+        'edit_information',
+        'alert_header_menu_access',
+        'add_alert',
+        'view_alerts',
+        'edit_alert',
+        'view_departments',
+        'information_to_any_code'
+    ];
+
+    foreach ( $communicantCaps as $cap ) {
+        $communicant->add_cap($cap);
     }
 }
 
