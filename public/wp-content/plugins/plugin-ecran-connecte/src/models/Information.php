@@ -517,6 +517,20 @@ class Information extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    /**
+     * Insère des balises de scraping associées à une information.
+     *
+     * Cette méthode insère plusieurs entrées dans la table 'ecran_scraping_tags',
+     * associant chaque balise à un contenu spécifique pour une information donnée.
+     *
+     * @param array $tags     Liste des balises de scraping à insérer.
+     * @param array $contents Liste des contenus associés aux balises.
+     *
+     * @return int Retourne l'identifiant de la dernière insertion.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function insertScrapingTags(array $tags, array $contents)
     {
 
@@ -543,6 +557,17 @@ class Information extends Model implements Entity, JsonSerializable
         return $database->lastInsertId();
     }
 
+    /**
+     * Supprime toutes les balises de scraping associées à une information.
+     *
+     * Cette méthode supprime toutes les entrées de la table 'ecran_information'
+     * correspondant à l'identifiant de l'information actuelle.
+     *
+     * @return int Retourne le nombre de lignes supprimées.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function deleteScrapingTags() : int
     {
         $request = $this->getDatabase()->prepare(
@@ -554,6 +579,23 @@ class Information extends Model implements Entity, JsonSerializable
         return $request->rowCount();
     }
 
+    /**
+     * Récupère les balises et contenus de scraping associés à une information.
+     *
+     * Cette méthode effectue deux requêtes :
+     * - La première récupère le contenu de l'information associée.
+     * - La seconde récupère les balises et leurs contenus associés.
+     *
+     * @param int $id Identifiant unique de l'information concernée.
+     *
+     * @return array Retourne un tableau contenant :
+     *               - string : l'URL de l'information
+     *               - array  : la liste des contenus
+     *               - array  : la liste des balises
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function getScrapingTags(int $id) : array
     {
         $database = $this->getDatabase();
@@ -581,7 +623,7 @@ class Information extends Model implements Entity, JsonSerializable
         $balises = array();
         $tags = array();
 
-        foreach($request->fetchAll(PDO::FETCH_ASSOC) as $row) {
+        foreach ($request->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $balises[] = $row['content'];
             $tags[] = $row['tag'];
         }
@@ -994,11 +1036,34 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $this->_adminId = $_adminId;
     }
 
+    /**
+     * Récupère les codes ADE.
+     *
+     * Cette méthode retourne un tableau contenant
+     * les codes ADE stockés dans l'objet.
+     *
+     * @return array Liste des codes ADE.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function getCodesAde() : array
     {
         return $this->_codes_ade;
     }
 
+    /**
+     * Définit les codes ADE.
+     *
+     * Cette méthode permet d'affecter une liste de codes ADE à l'objet.
+     *
+     * @param array|null $_codes_ade Liste des codes ADE ou null pour réinitialiser.
+     *
+     * @return void
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function setCodesAde(array|null $_codes_ade): void
     {
         $this->_codes_ade = $_codes_ade;

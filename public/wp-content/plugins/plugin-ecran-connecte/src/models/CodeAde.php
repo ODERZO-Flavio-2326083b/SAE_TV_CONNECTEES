@@ -321,6 +321,22 @@ class CodeAde extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    /**
+     * Récupère tous les codes ADE d'un type spécifique pour un département donné.
+     *
+     * Cette méthode exécute une requête pour obtenir les codes ADE
+     * correspondant à un type
+     * et un département donnés, triés par ordre décroissant
+     * d'ID et limités à 500 résultats.
+     *
+     * @param int    $id_dept Identifiant du département.
+     * @param string $type    Type de code ADE à récupérer.
+     *
+     * @return array Liste des codes ADE correspondant aux critères.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function getAllFromTypeAndDept($id_dept, $type) : array
     {
         $request = $this->getDatabase()->prepare(

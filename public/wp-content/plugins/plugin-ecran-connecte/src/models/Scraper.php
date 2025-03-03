@@ -12,7 +12,8 @@ class Scraper
     private string $_articleSelector;
     private array $_infoSelectors;
 
-    public function __construct(string $url, string $articleSelector, array $infoSelectors)
+    public function __construct(string $url, string $articleSelector,
+                                array $infoSelectors)
     {
         $this->_url = $url;
         $this->_articleSelector = $articleSelector;
@@ -27,7 +28,9 @@ class Scraper
         $html = @file_get_contents($this->_url);
 
         if (!$html) {
-            throw new \Exception("Impossible de récupérer le contenu de l'URL: " . $this->_url);
+            throw new \Exception(
+                "Impossible de récupérer le contenu de l'URL: " .
+                $this->_url);
         }
 
         return $html;
@@ -65,7 +68,8 @@ class Scraper
     {
         $parts = explode(',', $srcset); // Séparer les URLs
         if (count($parts) > 0) {
-            $firstPart = explode(' ', trim($parts[0])); // Prendre la première URL
+            // Prendre la première URL
+            $firstPart = explode(' ', trim($parts[0]));
             return trim($firstPart[0]); // Nettoyer et retourner l'URL
         }
         return "";
@@ -93,11 +97,16 @@ class Scraper
                         $value = null;
 
                         // Vérifie en priorité srcset, sinon data-src, sinon src
-                        if ($imgNode->hasAttribute('srcset') && !empty($imgNode->getAttribute('srcset'))) {
-                            $value = $this->extractFirstSrcSet($imgNode->getAttribute('srcset'));
-                        } elseif ($imgNode->hasAttribute('data-src') && !empty($imgNode->getAttribute('data-src'))) {
+                        if ($imgNode->hasAttribute('srcset') && !empty(
+                            $imgNode->getAttribute('srcset'))) {
+                            $value = $this->extractFirstSrcSet(
+                                $imgNode->getAttribute('srcset'));
+                        } elseif ($imgNode->hasAttribute(
+                            'data-src') && !empty(
+                                $imgNode->getAttribute('data-src'))) {
                             $value = $imgNode->getAttribute('data-src');
-                        } elseif ($imgNode->hasAttribute('src') && !empty($imgNode->getAttribute('src'))) {
+                        } elseif ($imgNode->hasAttribute('src') &&
+                            !empty($imgNode->getAttribute('src'))) {
                             $value = $imgNode->getAttribute('src');
                         }
                     }
@@ -146,40 +155,56 @@ class Scraper
     {
         $article = $this->getOneArticle();
         if (isset($article['error'])) {
-            return "<p style='color: red; text-align: center; font-size: 18px;'>{$article['error']}</p>";
+            return "<p style='color: red;
+ text-align: center; font-size: 18px;'>{$article['error']}</p>";
         }
 
-        $html = '<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; text-align: center; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">';
+        $html = '<div style="font-family: Arial,
+ sans-serif; max-width: 800px; margin: auto; text-align: center; padding:
+  20px; border-radius: 10px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">';
 
         if (isset($article['link'])) {
             $parsedUrl = parse_url($article['link'], PHP_URL_HOST);
-            $html .= "<p style='font-size: 14px; color: #666; margin-bottom: 10px;'>{$parsedUrl}</p>";
+            $html .= "<p style='font-size: 14px; color: #666;
+ margin-bottom: 10px;'>{$parsedUrl}</p>";
         }
 
         if ($article) {
             unset($article['author']);
 
-            $hasImage = isset($article['image']) && $article['image'] !== "Pas de contenu.";
-            $hasOtherContent = count(array_filter($article, fn($v, $k) => $k !== 'image' && $v !== "Pas de contenu.", ARRAY_FILTER_USE_BOTH)) > 0;
+            $hasImage = isset($article['image']) &&
+                $article['image'] !== "Pas de contenu.";
+            $hasOtherContent = count(array_filter($article,
+                    fn($v, $k) => $k !== 'image' &&
+                        $v !== "Pas de contenu.", ARRAY_FILTER_USE_BOTH)) > 0;
 
             foreach ($article as $key => $value) {
                 if ($value !== "Pas de contenu.") {
                     if ($key === 'image') {
                         if ($imageBase64 = $this->encodeImageToBase64($value)) {
-                            $imageStyle = $hasOtherContent ? "max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;" : "width: 50vw; height: 70vh; object-fit: cover; border-radius: 10px;";
-                            $html .= "<img src='{$imageBase64}' style='{$imageStyle}'>";
+                            $imageStyle = $hasOtherContent ? "max-width: 100%;
+                             height: auto; border-radius: 10px; margin-bottom: 15px;"
+                                : "width: 50vw; height: 70vh; object-fit: cover; 
+                                border-radius: 10px;";
+                            $html .= "<img src='{$imageBase64}' style='
+{$imageStyle}'>";
                         } else {
                             $html .= "<p style='color: red;'>Image introuvable.</p>";
                         }
                     } elseif ($key === 'link') {
-                        $html .= "<p><a href='{$value}' target='_blank' style='color: #007BFF; text-decoration: none; font-size: 18px;'>{$value}</a></p>";
+                        $html .= "<p><a href='{$value}'
+ target='_blank' style='color: #007BFF; text-decoration: none;
+  font-size: 18px;'>{$value}</a></p>";
                     } else {
-                        $html .= "<p style='font-size: 18px; color: #333;'>{$value}</p>";
+                        $html .= "<p style='font-size:
+ 18px; color: #333;'>{$value}</p>";
                     }
                 }
             }
         } else {
-            $html .= '<p style="color:red; font-size: 18px;">Aucun article trouvé.</p>';
+            $html .= '<p style="color:red;
+ font-size: 18px;">Aucun article trouvé.</p>';
         }
 
         $html .= '</div>';
