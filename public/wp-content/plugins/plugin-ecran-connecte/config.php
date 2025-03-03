@@ -210,7 +210,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-
+    if (get_option('init_database') == 1) {
+        return;
+    }
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -464,8 +466,6 @@ function addNewRoles()
                                            // les administrateurs
     'edit_css',                        // Permission de modifier le CSS du site
     'schedule_access',                 // Permission d'accès à l'emploi du temps
-    'comm_perms'                       // Permission de changement de sélection du/des département(s) lors de la
-                                           // création d'une alerte ou d'une information, pour les communiquants
     ];
 
     $admin = get_role('administrator');
@@ -567,7 +567,6 @@ function addNewRoles()
 
     $communicant = get_role('communicant');
     $communicantCaps = [
-        'comm_perms',
         'information_header_menu_access',
         'add_information',
         'view_informations',
@@ -576,7 +575,6 @@ function addNewRoles()
         'add_alert',
         'view_alerts',
         'edit_alert',
-        'department_header_menu_access',
         'view_departments',
         'information_to_any_code'
     ];

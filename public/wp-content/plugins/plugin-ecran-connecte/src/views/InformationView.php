@@ -290,13 +290,6 @@ name="delete" onclick="return confirm(
              .mp4, .webm</small>
              
         </div>
-                    <div class="form-group">
-            <label for="format">Format d\'affichage</label>
-            <input type="radio" id="surimpression" name="format" value="surimpression" />
-            <label for="surimpression">Sur-impression</label>
-            <input type="radio" id="file" name="format" value="file" />   
-            <label for="file">File d\'attente</label>
-            </div>
         <div class="form-group">
 			<label for="expirationDate">Date d\'expiration</label>
 			<input id="expirationDate" class="form-control" type="date" 
