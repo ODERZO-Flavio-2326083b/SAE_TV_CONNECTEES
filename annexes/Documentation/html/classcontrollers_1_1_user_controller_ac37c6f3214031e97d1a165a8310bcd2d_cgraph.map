@@ -1,0 +1,13 @@
+<map id="controllers\UserController\displayYearSchedule" name="controllers\UserController\displayYearSchedule">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,175,81"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_user_controller.html#a52764873bf9545ca63ba48f4c9f46a5a" title=" " alt="" coords="223,39,392,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,57,207,57,207,63,175,63"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_controller.html#ae91490a4c6439b92bf61dcf79f9be061" title=" " alt="" coords="440,39,581,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,57,424,57,424,63,393,63"/>
+<area shape="rect" id="Node000004" href="$classcontrollers_1_1_controller.html#aab8efe1998e8d66bb2fdf7213b6efb47" title=" " alt="" coords="629,39,771,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="582,57,614,57,614,63,582,63"/>
+<area shape="rect" id="Node000005" href="$classcontrollers_1_1_controller.html#ad98f831e4ce2e24acb14092501c0fccf" title=" " alt="" coords="819,5,960,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="770,45,803,39,804,44,771,50"/>
+<area shape="rect" id="Node000006" href="$classcontrollers_1_1_controller.html#a5cfa956a8c87eb5fc071ff0b3baf34a8" title=" " alt="" coords="819,72,960,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="771,70,804,76,803,81,770,75"/>
+</map>

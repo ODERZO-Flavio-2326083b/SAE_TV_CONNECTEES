@@ -1,0 +1,11 @@
+<map id="models\Localisation\insert" name="models\Localisation\insert">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,142,132"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="190,5,370,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,87,145,63,189,42,207,35,208,40,191,46,147,68,109,91"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_localisation.html#a3ab45e62775691ea91f7b29f8acf0c46" title=" " alt="" coords="212,56,348,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,97,196,88,197,93,143,102"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_localisation.html#af7924b50d5b6cc54655361e885064db6" title=" " alt="" coords="212,123,348,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,119,197,128,196,133,142,124"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_localisation.html#a60bb7a8724a248872b6887d53e9c61d5" title=" " alt="" coords="212,189,348,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="110,130,191,175,203,181,201,185,188,180,108,135"/>
+</map>

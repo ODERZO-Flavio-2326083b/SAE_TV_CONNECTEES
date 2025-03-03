@@ -1,5 +1,22 @@
 <?php
-
+/**
+ * Fichier ProfileRestController.php
+ *
+ * Ce fichier contient la classe 'ProfileRestController', qui gère
+ * les requêtes REST pour récupérer les informations du profil de
+ * l'utilisateur actuellement connecté.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/ProfileRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\User;
@@ -9,11 +26,19 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * @class ProfileRestController
- * @brief Classe pour gérer le contrôleur REST des profils utilisateur.
+ * Classe ProfileRestController
  *
- * Cette classe permet de récupérer les informations du profil de l'utilisateur
- * actuellement connecté.
+ * Cette classe gère les requêtes REST pour récupérer les informations
+ * du profil de l'utilisateur actuellement connecté.
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/ProfileRestController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class ProfileRestController extends WP_REST_Controller
 {
@@ -56,8 +81,8 @@ class ProfileRestController extends WP_REST_Controller
                 array(
                     'methods' => WP_REST_Server::READABLE,
                     'callback' => array($this, 'getItem'),
-                    'permission_callback' => array($this,
-                        'getItemPermissionsCheck'),
+                    'permission_callback' => array(
+                        $this, 'getItemPermissionsCheck'),
                     'args' => array(),
                 ),
                 'schema' => array($this, 'get_public_item_schema'),
@@ -69,17 +94,15 @@ class ProfileRestController extends WP_REST_Controller
      * Récupère les informations de l'utilisateur courant via l'API REST.
      *
      * Cette méthode récupère les informations du profil de l'utilisateur
-     * actuellement
-     * connecté en interrogeant la base de données. Elle renvoie les données
-     * de l'utilisateur,
-     * telles que l'ID, le login, l'email, le rôle et les codes associés.
-     * Si l'utilisateur
-     * n'est pas trouvé, une réponse HTTP 404 avec un message d'erreur est retournée.
+     * actuellement connecté en interrogeant la base de données. Elle renvoie les
+     * données de l'utilisateur, telles que l'ID, le login, l'email, le rôle et les
+     * codes associés. Si l'utilisateur n'est pas trouvé, une réponse HTTP 404 avec
+     * un message d'erreur est retournée.
      *
      * @param WP_REST_Request $request Requête envoyée à l'API REST.
      *
-     * @return WP_REST_Response Réponse REST contenant les données
-     * utilisateur ou un message d'erreur.
+     * @return WP_REST_Response Réponse REST contenant les données utilisateur ou un
+     * message d'erreur.
      *
      * @version 1.0
      * @date    2024-10-15
@@ -108,14 +131,12 @@ class ProfileRestController extends WP_REST_Controller
     }
 
     /**
-     * Vérifie les permissions de l'utilisateur pour récupérer
-     * ses informations via l'API REST.
+     * Vérifie les permissions de l'utilisateur pour récupérer ses informations via
+     * l'API REST.
      *
-     * Cette méthode s'assure que l'utilisateur est actuellement
-     * connecté avant de permettre
-     * l'accès à ses données. Si l'utilisateur est connecté,
-     * l'accès est accordé, sinon,
-     * la requête est refusée.
+     * Cette méthode s'assure que l'utilisateur est actuellement connecté avant de
+     * permettre l'accès à ses données. Si l'utilisateur est connecté, l'accès est
+     * accordé, sinon, la requête est refusée.
      *
      * @param WP_REST_Request $request Requête envoyée à l'API REST.
      *

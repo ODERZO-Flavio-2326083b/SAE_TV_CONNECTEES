@@ -1,20 +1,48 @@
 <?php
-
+/**
+ * Fichier DepartmentController.php
+ *
+ * Ce fichier contient la classe 'DepartmentController', qui gère les
+ * opérations CRUD
+ * (Créer, Lire, Mettre à jour, Supprimer) pour les départements.
+ * Elle inclut des méthodes pour insérer, modifier, supprimer et
+ * afficher les départements,
+ * ainsi que la gestion des doublons.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/DepartmentController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use controllers\Controller;
 use models\Department;
 use views\DepartmentView;
 
+
 /**
- * Contrôleur pour la gestion des départements.
+ * Classe DepartmentController
  *
- * Cette classe gère toutes les opérations liées aux départements, telles que
- * l'insertion, la modification, la suppression et l'affichage des données.
- * Elle interagit avec le modèle `Department` pour manipuler les données
- * et avec la vue `DepartmentView` pour afficher les informations.
+ * Cette classe gère les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) pour
+ * les départements. Elle inclut des méthodes pour insérer, modifier,
+ * supprimer et afficher les
+ * départements, ainsi que la gestion des doublons.
  *
- * @package Controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/DepartmentController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class DepartmentController extends Controller
 {
@@ -47,16 +75,13 @@ class DepartmentController extends Controller
     /**
      * Insère un nouveau département dans la base de données.
      *
-     * Cette méthode traite les données POST issues du formulaire
-     * de création de département,
-     * filtre les entrées, vérifie les doublons
-     * et insère un nouveau département si aucune
-     * duplication n'est détectée. Affiche également
-     * les messages de succès ou d'erreur
-     * via la vue.
+     * Cette méthode traite les données POST issues du formulaire de création de
+     * département, filtre les entrées, vérifie les doublons et insère un nouveau
+     * département si aucune duplication n'est détectée. Affiche également les
+     * messages de succès ou d'erreur via la vue.
      *
-     * @return string Retourne le formulaire de création
-     * avec les résultats du traitement.
+     * @return string Retourne le formulaire de création avec les résultats du
+     * traitement.
      *
      * @version 1.0
      * @date    2024-10-16
@@ -88,14 +113,12 @@ class DepartmentController extends Controller
     /**
      * Modifie un département existant dans la base de données.
      *
-     * Affiche un formulaire de modification basé sur
-     * l'identifiant fourni via GET,
-     * traite les données POST soumises pour changer
-     * le nom du département et vérifie
+     * Affiche un formulaire de modification basé sur l'identifiant fourni via GET,
+     * traite les données POST soumises pour changer le nom du département et vérifie
      * les doublons avant d'enregistrer les modifications.
      *
-     * @return string Retourne le formulaire de
-     * modification avec les résultats du traitement.
+     * @return string Retourne le formulaire de modification avec les résultats du
+     * traitement.
      *
      * @version 1.0
      * @date    2024-10-16
@@ -189,7 +212,7 @@ class DepartmentController extends Controller
      *
      * @param Department $department Objet représentant le département à vérifier.
      *
-     * @return bool Retourne `true` si un doublon est trouvé, sinon `false`.
+     * @return bool Retourne 'true' si un doublon est trouvé, sinon 'false'.
      *
      * @version 1.0
      * @date    2024-10-16

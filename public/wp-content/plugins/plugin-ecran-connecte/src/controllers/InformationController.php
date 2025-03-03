@@ -1,7 +1,24 @@
 <?php
-
+/**
+ * Fichier InformationController.php
+ *
+ * Ce fichier contient la classe 'InformationController', qui gère les informations
+ * avec ses différentes fonctions (créer, mettre à jour, supprimer, afficher).
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/InformationController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
+use getID3;
 use models\Department;
 use models\Information;
 use models\Scrapper;
@@ -12,19 +29,31 @@ use views\InformationView;
 /**
  * Class InformationController
  *
- * Manage information (create, update, delete, display)
+ * Gère les informations avec ces différentes fonctions : créer, mettre à jour,
+ * supprimer, afficher.
  *
- * @package Controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/InformationController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class InformationController extends Controller
 {
 
     /**
+     * Permet d'utiliser le model de l'Information
+     *
      * @var Information
      */
     private $_model;
 
     /**
+     * Permet d'utiliser la vue de l'Information
+     *
      * @var InformationView
      */
     private $_view;
@@ -38,7 +67,7 @@ class InformationController extends Controller
      * instance de 'InformationView' pour la vue.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
     public function __construct()
     {
@@ -75,11 +104,12 @@ class InformationController extends Controller
         $deptModel = new Department();
         $userModel = new User();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a
-        // aucun département, sinon on cherche le département
+        $isAdmin = current_user_can('admin_perms');
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID)->getIdDepartment();
+            $currentUser->ID
+        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
@@ -96,10 +126,12 @@ class InformationController extends Controller
         $content = filter_input(INPUT_POST, 'content');
         $endDate = filter_input(INPUT_POST, 'expirationDate');
         $creationDate = date('Y-m-d');
-        // Si l'utilisateur est un admin,
-        // il peut choisir un département, sinon on prend le dpt de l'utilisateur
-        $deptId = $isAdmin ? filter_input(INPUT_POST,
-            'informationDept') : $currDept;
+        // Si l'utilisateur est un admin, il peut choisir un département, sinon on
+        // prend le dpt de l'utilisateur
+        $deptId = $isAdmin ? filter_input(
+            INPUT_POST,
+            'informationDept'
+        ) : $currDept;
 
         // Si le titre est vide
         if ($title == '') {
@@ -114,6 +146,7 @@ class InformationController extends Controller
         $information->setExpirationDate($endDate);
         $information->setAdminId(null);
         $information->setIdDepartment($deptId ?: 0);
+        $information->setDuration(5000);
 
         if (isset($actionText)) {   // Si l'information est un texte
 
@@ -130,14 +163,15 @@ class InformationController extends Controller
             $filename = $_FILES['contentFile']['name'];
             $fileTmpName = $_FILES['contentFile']['tmp_name'];
             $explodeName = explode('.', $filename);
-            // On définit les extensions valides pour nos images
             $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
+            // On définit les extensions valides pour nos images
             if (in_array(end($explodeName), $goodExtension)) {
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->_view->buildModal('Image non valide',
-                    '<p>Ce fichier est une image non valide
-                            , veuillez choisir une autre image</p>');
+                $this->_view->buildModal(
+                    'Image non valide', '<p>Ce fichier est une 
+image non valide, veuillez choisir une autre image</p>'
+                );
             }
         }
         if (isset($actionPDF)) { // Si l'information est un PDF
@@ -149,9 +183,10 @@ class InformationController extends Controller
                 $fileTmpName = $_FILES['contentFile']['tmp_name'];
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->_view->buildModal('PDF non valide',
-                    '<p>Ce fichier est un tableau non PDF, 
-veuillez choisir un autre PDF.</p>');
+                $this->_view->buildModal(
+                    'PDF non valide', '<p>Ce fichier est un PDF 
+non valide, veuillez choisir un autre PDF.</p>'
+                );
             }
         }
         if (isset($actionEvent)) { // Si l'information est un événement
@@ -163,32 +198,34 @@ veuillez choisir un autre PDF.</p>');
                 $filename = $_FILES['contentFile']['name'][$i];
                 $fileTmpName = $_FILES['contentFile']['tmp_name'][$i];
                 $explodeName = explode('.', $filename);
-                // On définit les extensions valides pour nos événements
                 $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'pdf'];
+                // On définit les extensions valides pour nos événements
                 if (in_array(end($explodeName), $goodExtension)) {
                     $this->registerFile($filename, $fileTmpName, $information);
                 } else {
-                    $this->_view->buildModal('Fichiers non valide',
-                        '<p>Ce fichier n\'est pas valide,
- merci de choisir d\'autres fichiers.</p>');
+                    $this->_view->buildModal(
+                        'Fichiers non valide', '<p>Ce fichier 
+n\'est pas valide, merci de choisir d\'autres fichiers.</p>'
+                    );
                 }
             }
         }
-        // Si l'information est un short ou une vidéo
-        if (isset($actionShort) || isset($actionVideo)) {
+        if (isset($actionShort) || isset($actionVideo)) { // Si l'information est un
+            // short ou une vidéo
             isset($actionShort) ? $type = "short" : $type = "video";
             $information->setType($type);
             $filename = $_FILES['contentFile']['name'];
             $fileTmpName = $_FILES['contentFile']['tmp_name'];
             $explodeName = explode('.', $filename);
+            $goodExtension = ['mp4', 'webm'];
             // On définit les extensions valides pour nos vidéos/shorts
-            $goodExtension = ['mp4', 'mov', 'avi'];
             if (in_array(end($explodeName), $goodExtension)) {
                 $this->registerFile($filename, $fileTmpName, $information);
             } else {
-                $this->_view->buildModal('Vidéo non valide',
-                    '<p>Ce fichier est une vidéo non valide, 
-veuillez choisir une autre vidéo</p>');
+                $this->_view->buildModal(
+                    'Vidéo non valide', '<p>Ce fichier est une 
+vidéo non valide, veuillez choisir une autre vidéo</p>'
+                );
             }
         }
 
@@ -201,19 +238,36 @@ veuillez choisir une autre vidéo</p>');
             $this->_view->displayTitleSelect('video', "Vidéos") .
             $this->_view->displayTitleSelect('short', "Shorts") .
             $this->_view->displayEndOfTitle() .
-            $this->_view->displayContentSelect('text',
-                $this->_view->displayFormText($allDepts,
-                    $isAdmin, $currDept), true) .
-            $this->_view->displayContentSelect('image',
-                $this->_view->displayFormImg($allDepts, $isAdmin, $currDept)) .
-            $this->_view->displayContentSelect('pdf',
-                $this->_view->displayFormPDF($allDepts, $isAdmin, $currDept)) .
-            $this->_view->displayContentSelect('event',
-                $this->_view->displayFormEvent($allDepts, $isAdmin, $currDept)) .
-            $this->_view->displayContentSelect('video',
-                $this->_view->displayFormVideo($allDepts, $isAdmin, $currDept)) .
-            $this->_view->displayContentSelect('short',
-                $this->_view->displayFormShort($allDepts, $isAdmin, $currDept)) .
+            $this->_view->displayContentSelect(
+                'text', $this->_view->displayFormText(
+                    $allDepts, $isAdmin, $currDept
+                ), true
+            ) .
+            $this->_view->displayContentSelect(
+                'image', $this->_view->displayFormImg(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
+            $this->_view->displayContentSelect(
+                'pdf', $this->_view->displayFormPDF(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
+            $this->_view->displayContentSelect(
+                'event', $this->_view->displayFormEvent(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
+            $this->_view->displayContentSelect(
+                'video', $this->_view->displayFormVideo(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
+            $this->_view->displayContentSelect(
+                'short', $this->_view->displayFormShort(
+                    $allDepts, $isAdmin, $currDept
+                )
+            ) .
             '</div>' .
             $this->_view->contextCreateInformation();
     }
@@ -259,19 +313,20 @@ veuillez choisir une autre vidéo</p>');
         $deptModel = new Department();
         $currentUser = wp_get_current_user();
 
-        $isAdmin = in_array("administrator", $currentUser->roles);
-        // Si l'utilisateur actuel est admin, on envoie null car
-        // il n'a aucun département, sinon on cherche le département.
+        $isAdmin = current_user_can('admin_perms');
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département.
         $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID)->getIdDepartment();
+            $currentUser->ID
+        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
         $information = $this->_model->get($id);
 
-        if (!(in_array('administrator', $currentUser->roles)
-            || in_array('secretaire', $currentUser->roles)
-            || $information->getAuthor()->getId() == $currentUser->ID)) {
+        if (!(current_user_can('edit_information') 
+            || $information->getAuthor()->getId() == $currentUser->ID)
+        ) {
             return $this->_view->noInformation();
         }
 
@@ -284,7 +339,11 @@ veuillez choisir une autre vidéo</p>');
             $title = filter_input(INPUT_POST, 'title');
             $content = filter_input(INPUT_POST, 'content');
             $endDate = filter_input(INPUT_POST, 'expirationDate');
+            $deptId = $isAdmin ? filter_input(
+                INPUT_POST, 'informationDept'
+            ) : $currDept;
 
+            $information->setIdDepartment($deptId);
             $information->setTitle($title);
             $information->setExpirationDate($endDate);
 
@@ -296,38 +355,64 @@ veuillez choisir une autre vidéo</p>');
                 if ($_FILES["contentFile"]['size'] != 0) {
                     echo $_FILES["contentFile"]['size'];
                     $filename = $_FILES["contentFile"]['name'];
-                    // Si le type est une image
                     if ($information->getType() == 'img') {
+                        // Si le type est une image
                         $explodeName = explode('.', $filename);
                         $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-                        if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
+                        if (in_array(end($explodeName), $goodExtension)) {
+                            // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
-                            $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
+                            $this->registerFile(
+                                $filename, $_FILES["contentFile"]['tmp_name'],
+                                $information
+                            );
                         } else {
-                            $this->_view->buildModal('Image non valide', '<p>Ce fichier est une image non valide, veuillez choisir une autre image</p>');
+                            $this->_view->buildModal(
+                                'Image non valide',
+                                '<p>Ce fichier est une image non 
+                                valide, veuillez choisir une autre image</p>'
+                            );
                         }
-                    } else if ($information->getType() == 'pdf') { // Si le type est un PDF
+                    } else if ($information->getType() == 'pdf') {
+                        // Si le type est un PDF
                         $explodeName = explode('.', $filename);
-                        if (end($explodeName) == 'pdf') { // On vérifie que l'extension est correcte
+                        if (end($explodeName) == 'pdf') {
+                            // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
-                            $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
+                            $this->registerFile(
+                                $filename, $_FILES["contentFile"]['tmp_name'],
+                                $information
+                            );
                         } else {
-                            $this->_view->buildModal('PDF non valide', '<p>Ce fichier est un PDF non valide, veuillez choisir un autre PDF</p>');
+                            $this->_view->buildModal(
+                                'PDF non valide',
+                                '<p>Ce fichier est un PDF non 
+                                valide, veuillez choisir un autre PDF</p>'
+                            );
                         }
-                    } else if ($information->getType() == 'video' || $information->getType() == 'short') {
+                    } else if ($information->getType() == 'video'
+                        || $information->getType() == 'short'
+                    ) {
                         $explodeName = explode('.', $filename);
-                        $goodExtension = ['mp4', 'avi', 'mov'];
-                        if (in_array(end($explodeName), $goodExtension)) { // On vérifie que l'extension est correcte
+                        $goodExtension = ['mp4', 'webm'];
+                        if (in_array(end($explodeName), $goodExtension)) {
+                            // On vérifie que l'extension est correcte
                             $this->deleteFile($information->getId());
-                            $this->registerFile($filename, $_FILES["contentFile"]['tmp_name'], $information);
+                            $this->registerFile(
+                                $filename,
+                                $_FILES["contentFile"]['tmp_name'], $information
+                            );
 
                         } else {
-                            $this->_view->buildModal('Vidéo non valide', '<p>Ce fichier est une vidéo non valide, veuillez choisir une autre vidéo</p>');
+                            $this->_view->buildModal(
+                                'Vidéo non valide',
+                                '<p>Ce fichier est une vidéo non 
+                                valide, veuillez choisir une autre vidéo</p>'
+                            );
                         }
                     }
                 }
             }
-
 
             if ($information->update()) {
                 $this->_view->displayModifyValidate();
@@ -342,8 +427,11 @@ veuillez choisir une autre vidéo</p>');
             $information->delete();
             $this->_view->displayModifyValidate();
         }
-        return $this->_view->displayModifyInformationForm($information->getTitle(), $information->getContent(), $information->getExpirationDate(), $information->getType()
-            , $allDepts, $isAdmin, $currDept);
+        return $this->_view->displayModifyInformationForm(
+            $information->getTitle(), $information->getContent(),
+            $information->getExpirationDate(), $information->getType(),
+            $allDepts, $isAdmin, $currDept
+        );
     }
 
 
@@ -352,30 +440,49 @@ veuillez choisir une autre vidéo</p>');
      *
      * Cette méthode déplace un fichier temporaire vers un emplacement définitif
      * sur le serveur et met à jour l'entité donnée avec les informations du fichier.
-     * Si l'entité n'a pas encore d'identifiant, elle sera insérée dans la base de données.
+     * Si l'entité n'a pas encore d'identifiant, elle sera insérée dans la base de
+     * données.
      * Sinon, les informations existantes seront mises à jour.
      *
      * Le nom du fichier est ensuite modifié pour inclure un hachage MD5 afin de
-     * garantir l'unicité. Si l'enregistrement ou le téléchargement échoue, un message d'erreur
-     * sera affiché à l'utilisateur.
+     * garantir l'unicité. Si l'enregistrement ou le téléchargement échoue, un
+     * message d'erreur sera affiché à l'utilisateur.
      *
-     * @param string $filename Le nom du fichier téléchargé.
-     * @param string $tmpName Le nom temporaire du fichier sur le serveur.
-     * @param Information $entity L'entité à laquelle le contenu du fichier est associé.
+     * @param string      $filename Le nom du fichier
+     *                              téléchargé.
+     * @param string      $tmpName  Le nom temporaire du fichier sur le serveur.
+     * @param Information $entity   L'entité à laquelle le contenu du fichier est
+     *                              associé.
      *
      * @return void
      *
      * @version 1.0.0
      * @date    2024-10-16
      */
-    public function registerFile(string $filename, string $tmpName, Information $entity): void
-    {
+    public function registerFile(string $filename, string $tmpName,
+        Information $entity
+    ): void {
         $id = 'temporary';
-        $extension_upload = strtolower(substr(strrchr($filename, '.'), 1));
-        $name = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
+        $extension_upload = strtolower(
+            substr(
+                strrchr($filename, '.'), 1
+            )
+        );
+        $name = $_SERVER['DOCUMENT_ROOT']
+            . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
+        $entity->setDuration(5000);
+
+        if ($entity->getType() == 'video' || $entity->getType() == 'short') {
+            $getID3 = new getID3();
+            $fileInfo = $getID3->analyze($tmpName);
+            if (isset($fileInfo['playtime_seconds'])) {
+                $duration = $fileInfo['playtime_seconds'];
+                $entity->setDuration(floor($duration*1000));
+            }
+        }
 
         // Upload le fichier
-        if ($result = move_uploaded_file($tmpName, $name)) {
+        if (move_uploaded_file($tmpName, $name)) {
             $entity->setContent('temporary content');
             if ($entity->getId() == null) {
                 $id = $entity->insert();
@@ -391,7 +498,10 @@ veuillez choisir une autre vidéo</p>');
             $entity->setId($id);
 
             $md5Name = $id . md5_file($name);
-            rename($name, $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $md5Name . '.' . $extension_upload);
+            rename(
+                $name, $_SERVER['DOCUMENT_ROOT']
+                . TV_UPLOAD_PATH . $md5Name . '.' . $extension_upload
+            );
 
             $content = $md5Name . '.' . $extension_upload;
 
@@ -408,14 +518,37 @@ veuillez choisir une autre vidéo</p>');
      * Supprime le fichier qui est lié à l'identifiant
      *
      * @param $id int Code
+     *
+     * @return void
      */
     public function deleteFile($id)
     {
         $this->_model = $this->_model->get($id);
-        $source = $_SERVER['DOCUMENT_ROOT'] . TV_UPLOAD_PATH . $this->_model->getContent();
+        $source = $_SERVER['DOCUMENT_ROOT']
+            . TV_UPLOAD_PATH . $this->_model->getContent();
         wp_delete_file($source);
     }
 
+    /**
+     * Affiche toutes les informations avec pagination et gestion des
+     * permissions utilisateur.
+     *
+     * Cette fonction récupère toutes les informations en fonction des
+     * permissions de l'utilisateur
+     * (administrateur ou utilisateur d'un département spécifique).
+     * Elle génère également une table paginée
+     * avec les informations à afficher, permettant de modifier ou
+     * de supprimer des informations.
+     * La suppression d'informations vérifie les droits de l'utilisateur
+     * avant d'effectuer une suppression,
+     * y compris la suppression des fichiers associés.
+     *
+     * @return string Le code HTML généré pour afficher la liste
+     * des informations avec pagination.
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
     public function displayAll()
     {
         $numberAllEntity = $this->_model->countAll();
@@ -437,18 +570,21 @@ veuillez choisir une autre vidéo</p>');
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (in_array('administrator', $current_user->roles)) {
+        if (current_user_can('admin_perms')) {
             $informationList = $this->_model->getList($begin, $number);
         } else {
-            $informationList = $this->_model->getInformationsByDeptId($deptModel->getUserDepartment($current_user->ID)->getIdDepartment());
+            $informationList = $this->_model->getInformationsByDeptId(
+                $deptModel->getUserDepartment($current_user->ID)->getIdDepartment()
+            );
         }
 
         $name = 'Info';
-        $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration', 'Auteur', 'Type', 'Département', 'Modifier'];
+        $header = ['Titre', 'Contenu', 'Date de création', 'Date d\'expiration',
+            'Auteur', 'Type', 'Département', 'Modifier'];
         $dataList = [];
         $row = $begin;
         $imgExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-        $videoExtension = ['mp4', 'avi', 'mov'];
+        $videoExtension = ['mp4', 'webm'];
 
         foreach ($informationList as $information) {
             ++$row;
@@ -460,13 +596,22 @@ veuillez choisir une autre vidéo</p>');
                 $content = URL_WEBSITE_VIEWER . TV_UPLOAD_PATH;
             }
 
-            if (in_array($information->getType(), ['img', 'pdf', 'event', 'video', 'short'])) {
+            if (in_array(
+                $information->getType(), ['img', 'pdf', 'event', 'video', 'short']
+            )
+            ) {
                 if (in_array($contentExplode[1], $imgExtension)) {
-                    $content = '<img class="img-thumbnail img_table_ecran" src="' . $content . $information->getContent() . '" alt="' . $information->getTitle() . '">';
+                    $content = '<img class="img-thumbnail img_table_ecran" src="'
+                        . $content
+                        . $information->getContent()
+                        . '" alt="' . $information->getTitle() . '">';
                 } else if ($contentExplode[1] === 'pdf') {
-                    $content = '[pdf-embedder url="' . TV_UPLOAD_PATH . $information->getContent() . '"]';
+                    $content = '[pdf-embedder url="'
+                        . TV_UPLOAD_PATH . $information->getContent() . '"]';
                 } else if (in_array($contentExplode[1], $videoExtension)) {
-                    $content = '<video src="' . $content . $information->getContent() . '" autoplay muted loop>';
+                    $content = '<video src="'
+                        . $content
+                        . $information->getContent() . '" autoplay muted loop>';
                 }
 
             } else {
@@ -494,7 +639,11 @@ veuillez choisir une autre vidéo</p>');
                 $type,
                 $deptModel->get($information->getIdDepartment())->getName(),
                 $this->_view->buildLinkForModify(
-                    esc_url(get_permalink(get_page_by_title_custom('Modifier une information'))) . '?id=' . $information->getId()
+                    esc_url(
+                        get_permalink(
+                            get_page_by_title_custom('Modifier une information')
+                        )
+                    ) . '?id=' . $information->getId()
                 )
             ];
 
@@ -506,7 +655,9 @@ veuillez choisir une autre vidéo</p>');
                 $checked_values = $_REQUEST['checkboxStatusInfo'];
                 foreach ($checked_values as $id) {
                     $entity = $this->_model->get($id);
-                    if (in_array('administrator', $current_user->roles) || in_array('secretaire', $current_user->roles) || $entity->getAuthor()->getId() == $current_user->ID) {
+                    if (current_user_can('edit_information')
+                        || $entity->getAuthor()->getId() == $current_user->ID
+                    ) {
                         $type = $entity->getType();
                         $types = ["img", "pdf", "event"];
                         if (in_array($type, $types)) {
@@ -522,7 +673,16 @@ veuillez choisir une autre vidéo</p>');
         if ($pageNumber == 1) {
             $returnString = $this->_view->contextDisplayAll();
         }
-        return $returnString . $this->_view->displayAll($name, 'Informations', $header, $dataList) . $this->_view->pageNumber($maxPage, $pageNumber, esc_url(get_permalink(get_page_by_title_custom('Gestion des informations'))), $number);
+        return $returnString . $this->_view->displayAll(
+            $name, 'Informations', $header, $dataList
+        )
+            . $this->_view->pageNumber(
+                $maxPage, $pageNumber, esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des informations')
+                    )
+                ), $number
+            );
     }
 
     /**
@@ -531,7 +691,8 @@ veuillez choisir une autre vidéo</p>');
      * Si la date de fin est inférieure ou égale à la date actuelle,
      * l'information associée est supprimée, ainsi que son fichier.
      *
-     * @param int $id L'identifiant de l'information à vérifier.
+     * @param int    $id      L'identifiant de l'information
+     *                        à vérifier.
      * @param string $endDate La date de fin au format 'Y-m-d'.
      *
      * @return boolean
@@ -553,9 +714,8 @@ veuillez choisir une autre vidéo</p>');
     /**
      * Affiche les informations principales sous forme de diaporama.
      *
-     * Récupère la liste des informations, vérifie si leur date d'expiration est dépassée,
-     * et affiche chaque information en fonction de son type.
-     * Pour les tableaux, le contenu est lu à partir d'un fichier et formaté pour l'affichage.
+     * Récupère la liste des informations, vérifie si leur date d'expiration est
+     * dépassée, et affiche chaque information en fonction de son type.
      *
      * @return void
      *
@@ -565,7 +725,9 @@ veuillez choisir une autre vidéo</p>');
     public function informationMain()
     {
         $deptModel = new Department();
-        $informations = $this->_model->getInformationsByDeptId($deptModel->getUserDepartment(wp_get_current_user()->ID)->getIdDepartment());
+        $informations = $this->_model->getInformationsByDeptId(
+            $deptModel->getUserDepartment(get_current_user_id())->getIdDepartment()
+        );
         $informations[] = $this->createScrapper();
         $this->_view->displayStartSlideshow();
         foreach ($informations as $information) {
@@ -575,7 +737,67 @@ veuillez choisir une autre vidéo</p>');
                 if (is_null($information->getAdminId())) {
                     $adminSite = false;
                 }
-                $this->_view->displaySlide($information->getTitle(), $information->getContent(), $information->getType(), new Scrapper(), $adminSite);
+                // Affiche les informations sauf les vidéos
+                if ($information->getType() !== 'video') {
+                    $this->_view->displaySlide(
+                        $information->getTitle(),
+                        $information->getContent(), $information->getType(), new
+                        Scrapper(), $adminSite
+                    );
+                }
+            }
+        }
+        echo '</div>';
+    }
+
+    /**
+     * Affiche les vidéos associées aux informations d'un département.
+     *
+     * Cette fonction récupère les informations d'un utilisateur
+     * en fonction de son département,
+     * vérifie que la date d'expiration de chaque information
+     * n'est pas dépassée, et affiche
+     * uniquement les vidéos sous forme de diaporama. Si
+     * l'information n'a pas de date d'expiration valide,
+     * elle est ignorée. De plus, la fonction vérifie si
+     * l'utilisateur est un administrateur pour afficher
+     * des informations spécifiques en fonction de son rôle.
+     *
+     * @return void
+     *
+     * @version 1.0.0
+     * @date    2025-01-13
+     */
+    public function displayVideo()
+    {
+        $deptModel = new Department();
+        $informations = $this->_model->getInformationsByDeptId(
+            $deptModel->getUserDepartment(
+                wp_get_current_user()->ID
+            )->getIdDepartment()
+        );
+
+        // Début du conteneur pour les vidéos
+        $this->_view->displayStartSlideVideo();
+        foreach ($informations as $information) {
+            $endDate = date(
+                'Y-m-d', strtotime(
+                    $information->getExpirationDate()
+                )
+            );
+            if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
+                $adminSite = true;
+                if (is_null($information->getAdminId())) {
+                    $adminSite = false;
+                }
+                // Affiche uniquement les vidéos
+                if ($information->getType() === 'video') {
+                    $this->_view->displaySlideVideo(
+                        $information->getTitle(),
+                        $information->getContent(),
+                        $information->getType(), $adminSite
+                    );
+                }
             }
         }
         echo '</div>';
@@ -587,7 +809,8 @@ veuillez choisir une autre vidéo</p>');
      * Récupère la liste des informations du site administrateur et compare
      * avec les informations existantes dans le modèle. Met à jour les informations
      * existantes si nécessaire, ou les supprime si elles ne sont plus présentes.
-     * Ajoute également les nouvelles informations qui ne sont pas encore enregistrées.
+     * Ajoute également les nouvelles informations qui ne sont pas encore
+     * enregistrées.
      *
      * @return void
      *
@@ -599,14 +822,19 @@ veuillez choisir une autre vidéo</p>');
         $informationList = $this->_model->getFromAdminWebsite();
         $myInformationList = $this->_model->getAdminWebsiteInformation();
         foreach ($myInformationList as $information) {
-            if ($adminInfo = $this->_model->getInformationFromAdminSite($information->getId())) {
+            if ($adminInfo = $this->_model->getInformationFromAdminSite(
+                $information->getId()
+            )
+            ) {
                 if ($information->getTitle() != $adminInfo->getTitle()) {
                     $information->setTitle($adminInfo->getTitle());
                 }
                 if ($information->getContent() != $adminInfo->getContent()) {
                     $information->setContent($adminInfo->getContent());
                 }
-                if ($information->getExpirationDate() != $adminInfo->getExpirationDate()) {
+                if ($information->getExpirationDate(
+                ) != $adminInfo->getExpirationDate()
+                ) {
                     $information->setExpirationDate($adminInfo->getExpirationDate());
                 }
                 $information->update();
@@ -653,7 +881,9 @@ veuillez choisir une autre vidéo</p>');
                 echo '
 				<div class="canvas_pdf" id="' . $event->getContent() . '"></div>';
             } else {
-                echo '<img src="' . TV_UPLOAD_PATH . $event->getContent() . '" alt="' . $event->getTitle() . '">';
+                echo '<img src="'
+                    . TV_UPLOAD_PATH
+                    . $event->getContent() . '" alt="' . $event->getTitle() . '">';
             }
             echo '</div>';
         }
@@ -663,28 +893,26 @@ veuillez choisir une autre vidéo</p>');
     /**
      * Crée un objet de type "scrapper" avec des informations par défaut.
      *
-     * Cette méthode initialise un objet de la classe `information`, définit
+     * Cette méthode initialise un objet de la classe 'information', définit
      * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
      * département, l'auteur, la date de création, le contenu, l'identifiant
      * administratif, le titre, le type et la date d'expiration, et retourne
      * cet objet.
      *
-     * @return information Retourne l'objet `information` initialisé.
+     * @return information Retourne l'objet 'information' initialisé.
      *
      * @version 1.0
-     * @date 2024-10-16
+     * @date    2024-10-16
      */
-    public function  createScrapper(){
+    public function createScrapper(): Information
+    {
         $infoScrapper = new information();
-        $infoScrapper->setIdDepartment(1);
-        $infoScrapper->setAuthor(1);
-        $infoScrapper->setCreationDate(date("2024-12-18"));
-        $infoScrapper->setId(27);
-        $infoScrapper->setContent("scrapper");
-        $infoScrapper->setAdminId(1);
-        $infoScrapper->setTitle("Sans titre");
         $infoScrapper->setType("scrapper");
-        $infoScrapper->setExpirationDate("2028-12-18");
+        $infoScrapper->setTitle("Sans titre");
+        $infoScrapper->setId(1);
+        $infoScrapper->setAdminId(1);
+        $infoScrapper->setContent("content");
+        $infoScrapper->setExpirationDate(date("Y-m-d", strtotime('tomorrow')));
         return $infoScrapper;
     }
 

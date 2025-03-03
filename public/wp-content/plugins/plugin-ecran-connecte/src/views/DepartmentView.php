@@ -1,42 +1,89 @@
 <?php
-
+/**
+ * Fichier DepartmentView.php
+ *
+ * Ce fichier contient la classe 'DepartmentView',
+ * responsable de la gestion de l'affichage
+ * des départements dans l'application.
+ * Elle génère les formulaires pour ajouter, modifier
+ * et afficher les départements,
+ * ainsi que des messages de confirmation ou d'erreur en
+ * fonction des actions effectuées.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/DepartmentView Documentation de la classe
+ * @since    2025-01-08
+ */
 namespace views;
 
 use models\Department;
 use views\View;
-
-class DepartmentView extends View {
+/**
+ * Classe DepartmentView
+ *
+ * Cette classe gère l'affichage des départements dans l'application. Elle contient
+ * des méthodes pour afficher des formulaires permettant d'ajouter, de modifier
+ * des départements, ainsi que pour afficher des messages de confirmation ou
+ * d'erreur relatifs aux actions effectuées.
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/DepartmentView Documentation de la classe
+ * @since    2025-01-08
+ */
+class DepartmentView extends View
+{
 
     /**
      * Vue pour la gestion des départements.
      *
-     * Cette classe fait partie du package `views`, qui contient toutes les vues utilisées
-     * dans l'application pour afficher les données de manière appropriée à l'utilisateur.
-     * La vue des départements permet de rendre les formulaires pour ajouter ou modifier des départements,
-     * de gérer l'affichage des départements existants, ainsi que d'afficher des messages de confirmation ou d'erreur.
+     * Cette classe fait partie du package 'views', qui contient toutes les vues
+     * utilisées dans l'application pour afficher les données de manière appropriée à
+     * l'utilisateur.
+     * La vue des départements permet de rendre les formulaires pour ajouter ou
+     * modifier des départements, de gérer l'affichage des départements existants,
+     * ainsi que d'afficher des messages de confirmation ou d'erreur.
+     *
+     * @return void
+     * Cette méthode retourne le code HTML du formulaire d'ajout de département.
      *
      * @package views
      */
-
-    public function renderAddForm() {
+    public function renderAddForm()
+    {
         return '
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="2" maxlength="60">
-                <small id="passwordHelpBlock" class="form-text text-muted">Format : Texte de 60 caractères maximum.</small>
+                <input class="form-control" type="text" id="dept_name" 
+                name="dept_name" placeholder="Nom du département" required="" 
+                minlength="2" maxlength="60">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                Format : Texte de 60 caractères maximum.</small>
             </div>
-              <button type="submit" class="btn button_ecran" name="submit">Ajouter</button>
+              <button type="submit" class="btn button_ecran" name="submit">Ajouter
+              </button>
         </form>';
     }
 
     /**
      * Rendu du formulaire de modification d'un Département.
      *
-     * Cette méthode génère un formulaire HTML permettant à l'utilisateur de modifier un département existant.
-     * Le formulaire comprend un champ pour modifier le nom du département avec une validation de longueur de texte
-     * comprise entre 5 et 60 caractères. Un bouton "Modifier" est inclus pour soumettre les changements, ainsi qu'un
-     * lien permettant de revenir à la gestion des départements.
+     * Cette méthode génère un formulaire HTML permettant à l'utilisateur de modifier
+     * un département existant.
+     * Le formulaire comprend un champ pour modifier le nom du département avec une
+     * validation de longueur de texte comprise entre 5 et 60 caractères. Un bouton
+     * "Modifier" est inclus pour soumettre les changements, ainsi qu'un lien
+     * permettant de revenir à la gestion des départements.
      *
      * @param string $name Nom actuel du département à modifier.
      *
@@ -44,9 +91,10 @@ class DepartmentView extends View {
      * Retourne le code HTML du formulaire de modification de département.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function renderModifForm(string $name) : string {
+    public function renderModifForm(string $name) : string
+    {
         $returnPage = get_page_by_title_custom('Gestion des départements');
         $linkManageCode = get_permalink($returnPage->ID);
 
@@ -55,9 +103,12 @@ class DepartmentView extends View {
         <form method="post">
             <div class="form-group">
                 <label for="dept_name">Nom du département</label>
-                <input class="form-control" type="text" id="dept_name" name="dept_name" placeholder="Nom du département" required="" minlength="5" maxlength="60" value="'. $name .'">
+                <input class="form-control" type="text" id="dept_name" 
+                name="dept_name" placeholder="Nom du département" required="" 
+                minlength="2" maxlength="60" value="'. $name .'">
             </div>
-          <button type="submit" class="btn button_ecran" name="submit">Modifier</button>
+          <button type="submit" class="btn button_ecran" name="submit">Modifier
+          </button>
           <a href="'. $linkManageCode .'">Annuler</a>
         </form>';
     }
@@ -65,19 +116,23 @@ class DepartmentView extends View {
     /**
      * Rendu de la table des départements et des boutons.
      *
-     * Cette méthode génère une table HTML affichant la liste des départements existants. Pour chaque département,
-     * elle affiche son nom et un lien permettant de le modifier. Un bouton de mise à jour est également inclus
-     * pour chaque département. La méthode utilise les données d'une liste de départements pour afficher ces informations.
+     * Cette méthode génère une table HTML affichant la liste des départements
+     * existants. Pour chaque département, elle affiche son nom et un lien permettant
+     * de le modifier. Un bouton de mise à jour est également inclus pour chaque
+     * département. La méthode utilise les données d'une liste de départements pour
+     * afficher ces informations.
      *
      * @param Department[] $deptList Liste des départements à afficher.
      *
      * @return string
-     * Retourne le code HTML de la table des départements avec les boutons de mise à jour.
+     * Retourne le code HTML de la table des départements avec les boutons de mise à
+     * jour.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function renderAllDeptsTable($deptList): string {
+    public function renderAllDeptsTable($deptList): string
+    {
         $page = get_page_by_title_custom('Modifier un département');
         $linkModifDept = get_permalink($page->ID);
 
@@ -91,7 +146,9 @@ class DepartmentView extends View {
         foreach ($deptList as $dept) {
             $row[] = [$count,
                 $this->buildCheckbox($name, $dept->getIdDepartment()),
-                $dept->getName(), $this->buildLinkForModify($linkModifDept.'?id='.$dept->getIdDepartment())];
+                $dept->getName(), $this->buildLinkForModify(
+                    $linkModifDept.'?id='.$dept->getIdDepartment()
+                )];
             ++$count;
         }
 
@@ -99,101 +156,133 @@ class DepartmentView extends View {
     }
 
     /**
-     * Affiche un modal avec un message de confirmation de la création d'un département.
+     * Affiche un modal avec un message de confirmation de la création d'un
+     * département.
      *
-     * Cette méthode génère un modal qui informe l'utilisateur que le département a bien été créé. Le message de succès
-     * est affiché dans le modal pour confirmer l'opération réussie.
+     * Cette méthode génère un modal qui informe l'utilisateur que le département a
+     * bien été créé. Le message de succès est affiché dans le modal pour confirmer
+     * l'opération réussie.
      *
      * @return void
-     * Cette méthode ne retourne rien, elle se contente d'afficher un modal de confirmation.
+     * Cette méthode ne retourne rien, elle se contente d'afficher un modal de
+     * confirmation.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function successCreation() {
-        $this->buildModal("Ajout d'un département", "<p>Le département a bien été créé !</p>");
+    public function successCreation()
+    {
+        $this->buildModal(
+            "Ajout d'un département", "<p>Le département a bien été créé !</p>"
+        );
     }
 
     /**
      * Affiche un modal de confirmation de la mise à jour d'un département.
      *
-     * Cette méthode génère un modal qui informe l'utilisateur que le département a bien été modifié. Le message de succès
+     * Cette méthode génère un modal qui informe l'utilisateur que le département a
+     * bien été modifié. Le message de succès
      * est affiché dans le modal pour confirmer l'opération réussie.
      *
      * @return void
-     * Cette méthode ne retourne rien, elle se contente d'afficher un modal de confirmation.
+     * Cette méthode ne retourne rien, elle se contente d'afficher un modal de
+     * confirmation.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function successUpdate() {
-        $this->buildModal("Modification d'un département", "<p>Le département a bien été modifié !</p>");
+    public function successUpdate()
+    {
+        $this->buildModal(
+            "Modification d'un département", "<p>Le département a bien été modifié !
+</p>"
+        );
     }
 
     /**
      * Affiche un modal d'erreur lors de la création d'un département.
      *
-     * Cette méthode génère un modal qui informe l'utilisateur qu'une erreur s'est produite lors de l'ajout du département.
-     * Le message d'erreur est affiché dans le modal pour indiquer à l'utilisateur qu'une difficulté est survenue.
+     * Cette méthode génère un modal qui informe l'utilisateur qu'une erreur s'est
+     * produite lors de l'ajout du département.
+     * Le message d'erreur est affiché dans le modal pour indiquer à l'utilisateur
+     * qu'une difficulté est survenue.
      *
      * @return void
      * Cette méthode ne retourne rien, elle se contente d'afficher un modal d'erreur.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function errorCreation() {
-        $this->buildModal('Erreur lors de la création du département', '<p>Erreur lors de l\'ajout du département.</p>');
+    public function errorCreation()
+    {
+        $this->buildModal(
+            'Erreur lors de la création du département', '
+<p>Erreur lors de l\'ajout du département.</p>'
+        );
     }
 
     /**
      * Affiche un modal d'erreur lors de la mise à jour d'un département.
      *
-     * Cette méthode génère un modal informant l'utilisateur qu'une erreur est survenue lors de la modification du département.
-     * Le message d'erreur est affiché dans le modal pour signaler un échec de la mise à jour.
+     * Cette méthode génère un modal informant l'utilisateur qu'une erreur est
+     * survenue lors de la modification du département.
+     * Le message d'erreur est affiché dans le modal pour signaler un échec de la
+     * mise à jour.
      *
      * @return void
      * Cette méthode ne retourne rien, elle se contente d'afficher un modal d'erreur.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function errorUpdate() {
-        $this->buildModal('Errur lors de la modification du département.', '<p>Erreur lors de la mise à jour du département.</p>');
+    public function errorUpdate()
+    {
+        $this->buildModal(
+            'Erreur lors de la modification du département.', '<p>
+Erreur lors de la mise à jour du département.</p>'
+        );
     }
 
     /**
      * Affiche un message d'erreur si le département existe déjà.
      *
-     * Cette méthode génère un message d'alerte indiquant que le département avec le nom spécifié existe déjà
-     * dans la base de données. Ce message est affiché pour informer l'utilisateur qu'il ne peut pas créer
+     * Cette méthode génère un message d'alerte indiquant que le département avec le
+     * nom spécifié existe déjà dans la base de données. Ce message est affiché pour
+     * informer l'utilisateur qu'il ne peut pas créer
      * un département avec un nom en double.
      *
      * @return void
-     * Cette méthode ne retourne rien, elle affiche simplement un message d'erreur à l'utilisateur.
+     * Cette méthode ne retourne rien, elle affiche simplement un message d'erreur à
+     * l'utilisateur.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function errorDuplicate() {
-        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà. </p>';
+    public function errorDuplicate()
+    {
+        echo '<p class="alert alert-danger"> Un département avec ce nom existe déjà. 
+</p>';
     }
 
     /**
      * Affiche un message indiquant qu'il n'y a aucun département disponible.
      *
-     * Cette méthode génère un message informant l'utilisateur qu'aucun département n'a été trouvé
-     * et lui fournit un lien pour retourner à la page de gestion des départements.
+     * Cette méthode génère un message informant l'utilisateur qu'aucun département
+     * n'a été trouvé et lui fournit un lien pour retourner à la page de gestion des
+     * départements.
      *
      * @return string
-     * Retourne le code HTML contenant le message d'erreur et un lien pour retourner à la page de gestion des départements.
+     * Retourne le code HTML contenant le message d'erreur et un lien pour retourner
+     * à la page de gestion des départements.
      *
      * @version 1.0
-     * @date 08-01-2025
+     * @date    08-01-2025
      */
-    public function errorNothing(): string {
+    public function errorNothing(): string
+    {
         $page = get_page_by_title_custom("Gestion des départements");
         $returnLink = get_permalink($page->ID);
-        return '<p>Il n\'y a rien par ici</p><a href="' . $returnLink . '">Retour</a>';
+        return '<p>Il n\'y a rien par ici</p><a href="'
+            . $returnLink . '">Retour</a>';
     }
 }

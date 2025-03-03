@@ -319,8 +319,8 @@ class R34ICS extends Controller
             $ics_data['description'] = ($args['description'] == 'none') ? false : $args['description'];
         }
 
-        $_model = new CodeAde();
-        $title = $_model->getByCode($code)->getTitle();
+        $model = new CodeAde();
+        $title = $model->getByCode($code)->getTitle();
         return $this->_view->displaySchedule($ics_data, $title, $allDay);
     }
 

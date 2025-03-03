@@ -1,4 +1,24 @@
 <?php
+/**
+ * Fichier AlertRestController.php
+ *
+ * Ce fichier contient la classe 'AlertRestController', qui gère l'API REST
+ * pour la gestion des alertes. Elle enregistre les routes REST, effectue des
+ * opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur les alertes,
+ * et vérifie les permissions des utilisateurs.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/AlertRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
+
 
 namespace controllers\rest;
 
@@ -10,23 +30,31 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * Class AlertRestController
+ * Classe AlertRestController
  *
- * Contrôleur REST pour la gestion des alertes dans WordPress.
- * Ce contrôleur gère les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
- * pour les alertes via l'API REST.
+ * Cette classe gère l'API REST pour la gestion des alertes.
+ * Elle enregistre les routes REST, effectue des opérations CRUD
+ * (Créer, Lire, Mettre à jour, Supprimer) sur les alertes, et vérifie
+ * les permissions des utilisateurs.
  *
- * @package controllers\rest
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/AlertRestController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class AlertRestController extends WP_REST_Controller
 {
     /**
      * Initialise l'API REST pour la gestion des alertes.
      *
-     * Ce constructeur définit le namespace et le chemin de base pour les routes REST
-     * liées aux alertes.
-     * Ces informations sont utilisées pour enregistrer les routes de l'API dans
-     * WordPress.
+     * Ce constructeur définit le namespace et le chemin de base pour
+     * les routes REST liées aux alertes.
+     * Ces informations sont utilisées pour enregistrer
+     * les routes de l'API dans WordPress.
      *
      * @return void
      *
@@ -42,10 +70,10 @@ class AlertRestController extends WP_REST_Controller
     /**
      * Enregistre les routes REST pour la gestion des alertes.
      *
-     * Cette méthode définit les différentes routes pour les opérations CRUD (Créer,
-     * Lire, Mettre à jour,
-     * Supprimer) sur les alertes dans l'API REST. Elle enregistre les routes pour
-     * obtenir la liste des alertes,
+     * Cette méthode définit les différentes routes pour les opérations CRUD
+     * (Créer, Lire, Mettre à jour,
+     * Supprimer) sur les alertes dans l'API REST. Elle enregistre les routes
+     * pour obtenir la liste des alertes,
      * créer une nouvelle alerte, récupérer une alerte spécifique par son
      * identifiant, mettre à jour une alerte
      * existante et supprimer une alerte. Pour chaque route, les méthodes,
@@ -161,8 +189,8 @@ class AlertRestController extends WP_REST_Controller
      *
      * @param WP_REST_Request $request Les paramètres de la requête REST.
      *
-     * @return WP_REST_Response Une réponse de l'API REST contenant
-     * la liste des alertes.
+     * @return WP_REST_Response Une réponse de l'API REST
+     * contenant la liste des alertes.
      *
      * @version 1.0
      * @date    16-09-2024
@@ -180,20 +208,20 @@ class AlertRestController extends WP_REST_Controller
      *
      * Cette méthode permet à un utilisateur d'ajouter
      * une nouvelle alerte au système. Elle récupère
-     * les données fournies dans la requête,
-     * définit les propriétés de l'alerte, y compris l'auteur,
-     * le contenu, la date de création et la date d'expiration.
-     * Les codes ADE associés à l'alerte
-     * sont également définis. En cas d'erreur lors de la création de l'alerte,
-     * un message d'erreur
-     * approprié est renvoyé.
-     * Si l'insertion est réussie, l'ID de l'alerte créée est retourné.
+     * les données fournies dans la requête, définit
+     * les propriétés de l'alerte, y compris l'auteur,
+     * le contenu, la date de création et la date
+     * d'expiration. Les codes ADE associés à l'alerte
+     * sont également définis. En cas d'erreur lors
+     * de la création de l'alerte, un message d'erreur
+     * approprié est renvoyé. Si l'insertion est
+     * réussie, l'ID de l'alerte créée est retourné.
      *
-     * @param WP_REST_Request $request Les paramètres de la requête REST contenant
-     *                                 les détails de l'alerte.
+     * @param WP_REST_Request $request Les paramètres de la requête
+     *                                 REST contenant les détails de l'alerte.
      *
-     * @return WP_REST_Response Une réponse de l'API REST contenant l'ID de
-     * l'alerte créée ou un message d'erreur.
+     * @return WP_REST_Response Une réponse de l'API REST contenant
+     * l'ID de l'alerte créée ou un message d'erreur.
      *
      * @version 1.0
      * @date    16-09-2024
@@ -240,17 +268,17 @@ class AlertRestController extends WP_REST_Controller
      *
      * Cette méthode permet de récupérer les détails d'une alerte existante
      * en fonction de son identifiant
-     * fourni dans la requête. Si l'alerte est trouvée dans la base de données,
-     * ses informations sont renvoyées.
-     * Sinon, un message d'erreur est retourné indiquant que
-     * l'alerte n'a pas été trouvée.
+     * fourni dans la requête. Si l'alerte est trouvée
+     * dans la base de données, ses informations sont renvoyées.
+     * Sinon, un message d'erreur est retourné
+     * indiquant que l'alerte n'a pas été trouvée.
      *
-     * @param WP_REST_Request $request Les paramètres de la requête
-     *                                 REST contenant
-     *                                 l'identifiant de l'alerte à récupérer.
+     * @param WP_REST_Request $request Les paramètres
+     *                                 de la requête REST contenant l'identifiant de
+     *                                 l'alerte à récupérer.
      *
-     * @return WP_REST_Response Une réponse de l'API REST contenant
-     * les détails de l'alerte ou un message d'erreur.
+     * @return WP_REST_Response Une réponse de l'API REST contenant les détails de
+     * l'alerte ou un message d'erreur.
      *
      * @version 1.0
      * @date    16-09-2024
@@ -272,17 +300,17 @@ class AlertRestController extends WP_REST_Controller
     /**
      * Met à jour une alerte existante avec les nouvelles données fournies.
      *
-     * Cette méthode récupère les détails d'une alerte spécifique à
-     * l'aide de son identifiant,
-     * puis met à jour son contenu, sa date d'expiration et ses codes
-     * ADE si de nouvelles informations
-     * sont fournies dans la requête. Si l'alerte n'est pas trouvée ou
-     * si les données sont invalides,
+     * Cette méthode récupère les détails
+     * d'une alerte spécifique à l'aide de son identifiant,
+     * puis met à jour son contenu, sa date
+     * d'expiration et ses codes ADE si de nouvelles informations
+     * sont fournies dans la requête.
+     * Si l'alerte n'est pas trouvée ou si les données sont invalides,
      * un message d'erreur approprié est retourné.
      *
-     * @param WP_REST_Request $request Les paramètres de la requête
-     *                                 REST contenant
-     *                                 l'identifiant de l'alerte à mettre à jour
+     * @param WP_REST_Request $request Les paramètres de
+     *                                 la requête REST contenant l'identifiant
+     *                                 de l'alerte à mettre à jour
      *                                 ainsi que les nouvelles données
      *                                 (content, expiration-date, codes).
      *
@@ -346,8 +374,9 @@ class AlertRestController extends WP_REST_Controller
      * une réponse indiquant le succès est retournée. Si l'alerte n'est pas trouvée
      * ou si la suppression échoue, un message d'erreur approprié est retourné.
      *
-     * @param WP_REST_Request $request Les paramètres de la requête REST contenant
-     *                                 l'identifiant de l'alerte à supprimer.
+     * @param WP_REST_Request $request Les paramètres de la
+     *                                 requête REST contenant l'identifiant
+     *                                 de l'alerte à supprimer.
      *
      * @return WP_REST_Response Une réponse de l'API REST
      * indiquant le succès ou l'échec de la suppression de l'alerte.
@@ -492,13 +521,10 @@ class AlertRestController extends WP_REST_Controller
     {
         // Trouver les codes ADE
         $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
         $ade_codes = array();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } elseif ($code != 0) {
+            if ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {

@@ -1,0 +1,17 @@
+<map id="SingleEventsTest\testSeveralFullDaysTimeZoneBerlin" name="SingleEventsTest\testSeveralFullDaysTimeZoneBerlin">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,156,199,199"/>
+<area shape="rect" id="Node000002" href="$class_single_events_test.html#a98c8516c3fa32b062d9d7d933ea85bcc" title=" " alt="" coords="247,164,464,191"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,175,231,175,231,180,199,180"/>
+<area shape="rect" id="Node000003" href="$class_single_events_test.html#a2ad20bc9791f55c7fe9873f78e0e2e0c" title=" " alt="" coords="512,5,709,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="367,162,424,104,466,70,511,42,524,35,527,40,513,46,469,75,428,108,370,166"/>
+<area shape="rect" id="Node000004" href="$class_single_events_test.html#a681d0cdfac180d16da2ab7eba526c132" title=" " alt="" coords="518,56,703,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="386,161,511,108,528,102,530,107,513,113,388,166"/>
+<area shape="rect" id="Node000005" href="$class_single_events_test.html#aa94bf50762412b573c58bbb64fc937b2" title=" " alt="" coords="528,123,694,165"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="462,161,511,154,512,160,463,166"/>
+<area shape="rect" id="Node000006" href="$class_single_events_test.html#a86fe58ac70f6435bafccc6f614a53f44" title=" " alt="" coords="528,189,694,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="463,189,512,195,511,200,462,194"/>
+<area shape="rect" id="Node000007" href="$class_single_events_test.html#a16ba9dcfaf255a8fb82cae482e170099" title=" " alt="" coords="528,256,694,299"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="388,189,513,242,530,248,528,253,511,246,386,194"/>
+<area shape="rect" id="Node000008" href="$class_single_events_test.html#a3ab74e955370b2fc1e1d299404276cee" title=" " alt="" coords="516,323,706,349"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="370,189,428,247,469,280,513,308,527,314,524,319,511,313,466,284,424,251,367,193"/>
+</map>

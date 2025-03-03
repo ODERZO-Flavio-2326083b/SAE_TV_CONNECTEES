@@ -1,0 +1,9 @@
+<map id="views\UserView\displayBaseForm" name="views\UserView\displayBaseForm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="212,80,433,107"/>
+<area shape="rect" id="Node000002" href="$classviews_1_1_secretary_view.html#a64204d2e05fbf7985d74784c47f533e9" title=" " alt="" coords="8,5,161,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,78,160,51,162,45,258,73"/>
+<area shape="rect" id="Node000003" href="$classviews_1_1_subadmin_view.html#add8b2affa664df860c5ddfe345b4db46" title=" " alt="" coords="7,72,162,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,96,162,96,162,91,196,91"/>
+<area shape="rect" id="Node000004" href="$classviews_1_1_technician_view.html#a9cffa6fccc3aa87ca025e8c7c0be5f60" title=" " alt="" coords="5,139,164,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,114,164,141,163,135,256,109"/>
+</map>

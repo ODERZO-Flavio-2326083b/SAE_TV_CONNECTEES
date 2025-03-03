@@ -1,15 +1,40 @@
 <?php
-
+/**
+ * Fichier Controller.php
+ *
+ * Ce fichier contient la classe 'Controller', qui est le contrôleur principal
+ * dans l'application. Elle regroupe toutes les fonctions de base utilisées
+ * par les autres contrôleurs pour gérer les opérations courantes.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Controller
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
 use Exception;
+
 
 /**
  * Class Controller
  *
  * Contrôleur principal contenant toutes les fonctions de base.
  *
- * @package Controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Controller Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class Controller
 {
@@ -34,8 +59,8 @@ class Controller
         $cleanUrl = array(); // Tableau pour stocker les segments nettoyés
         for ($i = 0; $i < sizeof($urlExplode); ++$i) {
             if ($urlExplode[$i] != '/' && $urlExplode[$i] != '') {
-                // Ajoute les segments non vides au tableau
-                $cleanUrl[] = $urlExplode[$i];
+                $cleanUrl[] = $urlExplode[$i]; // Ajoute les segments non vides au
+                                               // tableau
             }
         }
         return $cleanUrl; // Retourne le tableau des segments nettoyés
@@ -62,8 +87,7 @@ class Controller
         $time = "[" . $time . "] "; // Formate l'heure pour le log
         $event = $time . $event . "\n"; // Prépare le message d'erreur
         file_put_contents(
-            ABSPATH . TV_PLUG_PATH . "fichier.log", $event,
-            FILE_APPEND
+            ABSPATH . TV_PLUG_PATH . "fichier.log", $event, FILE_APPEND
         ); // Écrit dans le fichier log
     }
 
@@ -87,13 +111,15 @@ class Controller
         $str2 = strtotime(
             date("Y-m-d", strtotime('now'))
             . " +6 day"
-        ); // Timestamp pour 6 jours dans le futur
+        ); // Timestamp
+                                        // pour 6 jours
+                                        // dans le futur
         $start = date('Y-m-d', $str); // Date de début (aujourd'hui)
         $end = date('Y-m-d', $str2); // Date de fin (dans 6 jours)
-        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/
-            modules/plannings/anonymous_cal.jsp?projectId=8&resources='
-            . $code . '&calType=ical&firstDate=' . $start
-            . '&lastDate=' . $end; // Génère l'URL
+        $url = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/'.
+        'anonymous_cal.jsp?projectId=8&resources=' . $code
+            . '&calType=ical&firstDate=' . $start . '&lastDate='
+            . $end; // Génère l'URL
         return $url; // Retourne l'URL
     }
 
@@ -122,18 +148,18 @@ class Controller
 
         // Vérifie si le fichier local existe
         for ($i = 0; $i <= 3; ++$i) {
-            // Crée le chemin du fichier
             $file_path = $base_path . 'file' . $i . '/' . $code . '.ics';
-            // Vérifie si le fichier existe et a une taille suffisante
+                                                        // Crée le chemin du fichier
             if (file_exists($file_path) && filesize($file_path) > 100) {
+                        // Vérifie si le fichier existe et a une taille suffisante
                 return $file_path; // Retourne le chemin du fichier
             }
         }
 
         // Pas de version locale, téléchargeons-en une
         $this->addFile($code); // Appelle la méthode pour ajouter le fichier
-        // Retourne le chemin du fichier téléchargé
         return $base_path . "file0/" . $code . '.ics';
+                                        // Retourne le chemin du fichier téléchargé
     }
 
     /**
@@ -159,27 +185,27 @@ class Controller
     public function addFile($code)
     {
         try {
-            // Définit le chemin du fichier à créer
             $path = ABSPATH . TV_ICSFILE_PATH . "file0/" . $code . '.ics';
-            $url = $this->getUrl($code); // Obtient l'URL du fichier à télécharger
+                                            // Définit le chemin du fichier à créer
+            $url = $this->getUrl($code);
+                                            // Obtient l'URL du fichier à télécharger
             //file_put_contents($path, fopen($url, 'r'));
             $contents = ''; // Initialise une variable pour stocker le contenu
             if (($handler = @fopen($url, "r")) !== false) { // Ouvre l'URL
                 while (!feof($handler)) {
-                    // Lit le contenu en morceaux
-                    $contents .= fread($handler, 8192);
+                    $contents .= fread($handler, 8192); // Lit le contenu en morceaux
                 }
                 fclose($handler); // Ferme le gestionnaire de fichier
             } else {
-                // Lève une exception si l'ouverture échoue
-                throw new Exception('File open failed.');
+                throw new Exception('File open failed.'); // Lève une exception si
+                                                          // l'ouverture échoue
             }
             if ($handle = fopen($path, "w")) { // Ouvre le fichier pour écrire
                 fwrite($handle, $contents); // Écrit le contenu dans le fichier
                 fclose($handle); // Ferme le gestionnaire de fichier
             } else {
-                // Lève une exception si l'ouverture échoue
-                throw new Exception('File open failed.');
+                throw new Exception('File open failed.'); // Lève une exception si
+                                                          // l'ouverture échoue
             }
         } catch (Exception $e) {
             $this->addLogEvent($e); // Enregistre l'exception dans le log
@@ -204,12 +230,12 @@ class Controller
      */
     public function isRealDate($date) : bool
     {
-        // Vérifie si la date peut être convertie en timestamp
         if (false === strtotime($date)) {
+                               // Vérifie si la date peut être convertie en timestamp
             return false; // Retourne faux si la date n'est pas valide
         }
-        // Sépare la date en année, mois et jour
-        list($year, $month, $day) = explode('-', $date);
+        list($year, $month, $day) = explode('-', $date); // Sépare la date en année,
+                                                         // mois et jour
         return checkdate($month, $day, $year); // Vérifie si la date est valide
     }
 }

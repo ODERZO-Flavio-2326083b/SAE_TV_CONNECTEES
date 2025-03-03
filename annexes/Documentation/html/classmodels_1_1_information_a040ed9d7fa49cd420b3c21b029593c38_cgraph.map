@@ -1,0 +1,9 @@
+<map id="models\Information\getFromAdminWebsite" name="models\Information\getFromAdminWebsite">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,163,81"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a0585c4cfb717f7456df08e3319929774" title=" " alt="" coords="211,5,391,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,45,195,40,195,46,164,51"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_information.html#aec53c94b529d442bab1fae33fc747916" title=" " alt="" coords="235,72,367,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,69,220,78,219,83,163,75"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_information.html#a440ba26a13955dbcce620827420e773c" title=" " alt="" coords="439,72,571,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="368,91,423,91,423,96,368,96"/>
+</map>

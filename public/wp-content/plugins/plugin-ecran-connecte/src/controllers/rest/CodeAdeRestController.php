@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * Fichier AdeCodeRestController.php
+ *
+ * Ce fichier contient la classe 'AdeCodeRestController', qui étend la classe
+ * 'WP_REST_Controller' pour gérer les codes ADE via l'API REST de WordPress.
+ * Elle fournit des méthodes pour récupérer, créer, mettre à jour et supprimer
+ * des codes ADE.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/AdeCodeRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\CodeAde;
@@ -8,29 +26,22 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+
 /**
- * Contrôleur REST pour la gestion des codes ADE.
+ * Classe AdeCodeRestController
  *
- * Cette classe implémente les fonctionnalités nécessaires pour gérer les
- * opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur les codes ADE
- * via l'API REST de WordPress. Elle étend la classe `WP_REST_Controller` pour
- * s'intégrer à l'infrastructure REST de WordPress et suit le namespace
- * 'amu-ecran-connectee/v1' pour organiser les points de terminaison.
+ * Cette classe étend la classe WP_REST_Controller et permet de gérer les codes ADE
+ * via l'API REST de WordPress. Elle fournit des méthodes pour récupérer, créer,
+ * mettre à jour et supprimer des codes ADE.
  *
- * Principales fonctionnalités :
- * - Enregistrement des routes REST pour les codes ADE.
- * - Gestion des requêtes REST (GET, POST, PUT, DELETE) pour les codes ADE.
- * - Vérification des permissions pour sécuriser l'accès aux ressources.
- *
- * Les routes REST définies permettent :
- * - Récupération de tous les codes ADE.
- * - Création d'un nouveau code ADE.
- * - Lecture, mise à jour et suppression d'un code ADE spécifique par ID.
- *
- * Les contrôleurs communiquent avec le modèle `CodeAde` pour effectuer
- * les opérations sur la base de données.
- *
- * @package controllers\rest
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/AdeCodeRestController Documentation de
+ * la classe
+ * @since    2025-01-07
  */
 class CodeAdeRestController extends WP_REST_Controller
 {
@@ -53,29 +64,21 @@ class CodeAdeRestController extends WP_REST_Controller
     /**
      * Enregistre les routes REST pour les opérations sur les codes ADE.
      *
-     * Cette méthode configure les routes de l'API REST sous le namespace
-     * 'amu-ecran-connectee/v1' et le chemin de base 'ade'. Elle permet de définir
-     * les routes nécessaires pour effectuer des opérations CRUD (Créer, Lire,
-     * Mettre à jour, Supprimer) sur les codes ADE. Chaque route est associée à un
-     * ensemble spécifique de méthodes HTTP, un callback de traitement,
-     * une vérification
-     * des permissions, et des arguments requis ou optionnels.
+     * Cette méthode définit les routes de l'API REST sous le namespace
+     * 'amu-ecran-connectee/v1' et le chemin de base 'ade'. Elle configure les
+     * méthodes disponibles pour récupérer, créer, mettre à jour et supprimer
+     * les codes ADE. Les permissions nécessaires pour chaque opération sont
+     * également vérifiées.
      *
      * Routes définies :
      * - GET /amu-ecran-connectee/v1/ade : Récupère tous les codes ADE.
      * - POST /amu-ecran-connectee/v1/ade : Crée un nouveau code ADE.
      * - GET /amu-ecran-connectee/v1/ade/{id} : Récupère un code ADE
      * spécifique par ID.
-     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code ADE
-     * spécifique par ID.
-     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code ADE
-     * spécifique par ID.
-     *
-     * Les callbacks gèrent les différentes opérations et vérifient les permissions
-     * via des méthodes spécifiques comme `getItemsPermissionsCheck` ou
-     * `createItemPermissionsCheck`.
-     * Les schémas publics pour les données retournées ou attendues sont définis dans
-     * `get_public_item_schema`.
+     * - PUT /amu-ecran-connectee/v1/ade/{id} : Met à jour un code
+     * ADE spécifique par ID.
+     * - DELETE /amu-ecran-connectee/v1/ade/{id} : Supprime un code
+     * ADE spécifique par ID.
      *
      * @return void
      *

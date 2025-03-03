@@ -1,0 +1,13 @@
+<map id="controllers\InformationController\deleteFile" name="controllers\InformationController\deleteFile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="514,72,720,115"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_information_controller.html#abb734ab4bcc8cab5f014e365c7da6254" title=" " alt="" coords="260,5,466,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,70,446,51,448,46,519,65"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_information_controller.html#a717f893fa41ffc8da378164a18768e4a" title=" " alt="" coords="260,72,466,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="498,96,466,96,466,91,498,91"/>
+<area shape="rect" id="Node000006" href="$classcontrollers_1_1_information_controller.html#a38c7b7f4e2d2c82fd2b39df041322754" title=" " alt="" coords="260,139,466,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="519,122,448,141,446,135,518,117"/>
+<area shape="rect" id="Node000004" href="$classcontrollers_1_1_information_controller.html#a62ae995196e87272ffd8021deacc0e4c" title=" " alt="" coords="5,39,212,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="244,80,212,76,212,71,244,75"/>
+<area shape="rect" id="Node000005" href="$classcontrollers_1_1_information_controller.html#ac6460a393cbbde84720b85e3918aee02" title=" " alt="" coords="5,105,212,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="244,112,212,116,212,110,244,106"/>
+</map>

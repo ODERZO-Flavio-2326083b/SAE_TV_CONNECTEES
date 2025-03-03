@@ -1,0 +1,1966 @@
+\doxysection{Référence de la classe ICal\textbackslash{}ICal}
+\hypertarget{class_i_cal_1_1_i_cal}{}\label{class_i_cal_1_1_i_cal}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a2c574c3113cddece7cccb7793a025ddd}{\+\_\+\+\_\+construct}} (\$files=false, array \$options=array())
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aa54d7f266fffdd580d9222c303659020}{init\+String}} (\$string)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a91a6f823932d6b7d90a71feabd152639}{init\+File}} (\$file)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a7d69364ce312b401b8b0e1a775380801}{init\+Url}} (\$url, \$username=null, \$password=null, \$user\+Agent=null, \$accept\+Language=null, \$http\+Protocol\+Version=null)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_af1b2e9fa732a5e804be303d0332968a3}{key\+Value\+From\+String}} (\$text)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a53d25a7d2940a464c51c64eb36349b5b}{i\+Cal\+Date\+To\+Date\+Time}} (\$ical\+Date)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a4e134666408b65cf5a9f7c1801188396}{i\+Cal\+Date\+To\+Unix\+Timestamp}} (\$ical\+Date)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a574e2c054332104abc2c5615e20404bc}{i\+Cal\+Date\+With\+Time\+Zone}} (array \$event, \$key, \$format=self\+::\+DATE\+\_\+\+TIME\+\_\+\+FORMAT)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a25f4b0b3ed8c471e3134bd4bd955996c}{events}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a66b76902e5a3631afed755c982b98de2}{calendar\+Name}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a2af6a156e2f137365374757b616acc48}{calendar\+Description}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a6317c79b570e642236e097e9190faba3}{calendar\+Time\+Zone}} (\$ignore\+Utc=false)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a169aa4107fea3236c5ac394ce88a2f51}{free\+Busy\+Events}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a106b7ebeff1906db830c08ebb804496d}{has\+Events}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_af1ca5ec05382aa5b88594f6d81f0767e}{events\+From\+Range}} (\$range\+Start=null, \$range\+End=null)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a5fbe1994a33de648e755a1d88efdb8ea}{events\+From\+Interval}} (\$interval)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a034e235865fd43841a08a70195051efe}{sort\+Events\+With\+Order}} (array \$\mbox{\hyperlink{class_i_cal_1_1_i_cal_a25f4b0b3ed8c471e3134bd4bd955996c}{events}}, \$sort\+Order=SORT\+\_\+\+ASC)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a6d5481dd75c81b813a9e636ab7073279}{is\+Valid\+Cldr\+Time\+Zone\+Id}} (\$time\+Zone)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ae06014a4b39c06dff716f85447c44481}{is\+Valid\+Windows\+Time\+Zone\+Id}} (\$time\+Zone)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_add500c6d054d396a8aab558d4cf66ff8}{parse\+Exdates}} (array \$event)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_af73624f84b9dc154348474e3155a3a65}{is\+Valid\+Date}} (\$value)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a8dd701d0e92fc6099d573e0afe42259d}{time\+Zone\+String\+To\+Date\+Time\+Zone}} (\$time\+Zone\+String)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a52e32e820c232c62fe7157091ef953d3}{DATE\+\_\+\+TIME\+\_\+\+FORMAT}} = \textquotesingle{}Ymd\textbackslash{}\+THis\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a204101f5f901f63a1c273ef69d0a89b9}{DATE\+\_\+\+TIME\+\_\+\+FORMAT\+\_\+\+PRETTY}} = \textquotesingle{}F Y H\+:i\+:s\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a6f5dd369c0442d0a13a8fcc91a0aa3c0}{ICAL\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+TEMPLATE}} = \textquotesingle{}TZID=\%s\+:\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a0a1c910da22a0a4cd38d5861f6011e46}{ISO\+\_\+8601\+\_\+\+WEEK\+\_\+\+START}} = \textquotesingle{}MO\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a7334631c78256bdd2f91c8958a37df94}{RECURRENCE\+\_\+\+EVENT}} = \textquotesingle{}Generated recurrence event\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a4e10ea2da42857999d9a7a40c33831f9}{SECONDS\+\_\+\+IN\+\_\+\+A\+\_\+\+WEEK}} = 604800
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a9a8ea6d0c87ec74b031d48d09f25d075}{TIME\+\_\+\+FORMAT}} = \textquotesingle{}His\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a9e127ba6a2796c218d12fcd795acb1d9}{TIME\+\_\+\+ZONE\+\_\+\+UTC}} = \textquotesingle{}UTC\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_a963c578d3fe1076b19201412c3154f84}{UNIX\+\_\+\+FORMAT}} = \textquotesingle{}U\textquotesingle{}
+\item 
+const \mbox{\hyperlink{class_i_cal_1_1_i_cal_ae008f222021d22a05036e47b3a51bcf1}{UNIX\+\_\+\+MIN\+\_\+\+YEAR}} = 1970
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_afd3e5222c98643483c90d3e2489b388e}{\$alarm\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a79d75efcf70737cbe7fd47b1d3180e51}{\$event\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a68202ea178999bedfc4545fbd64c205e}{\$free\+Busy\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ae8199bdcb0350d06479df2386b340992}{\$todo\+Count}} = 0
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aefc80c5040c16d9221e9ed9a79a8fc6e}{\$default\+Span}} = 2
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_acb67c8cda1e7c4351f5722aaa027eca2}{\$default\+Time\+Zone}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a3bcd2af2f767917ea46e325c5d816ca3}{\$default\+Week\+Start}} = self\+::\+ISO\+\_\+8601\+\_\+\+WEEK\+\_\+\+START
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a03e389972b1d63446206868000992e26}{\$skip\+Recurrence}} = false
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aa54bee17817d929065a1e321f9189ff5}{\$disable\+Character\+Replacement}} = false
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a1b5b95ca74f7b2407c55bce5e6cb60c3}{\$filter\+Days\+Before}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a2781fa3c4fa70283c24438efb72c4772}{\$filter\+Days\+After}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a6f884bea5192a4598b03362578dd1ae6}{\$cal}} = array()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ac650d561cdacf042b88a7a533d869906}{init\+Lines}} (array \$lines)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ab9fb9991aead3bb843b1c809a3de9a55}{remove\+Last\+Event\+If\+Outside\+Window\+And\+Non\+Recurring}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a57af3bb5a0cb529c27e6993c7eeb4ef7}{reduce\+Events\+To\+Min\+Max\+Range}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a65b6f68357a65905de430c9b016c197a}{does\+Event\+Start\+Outside\+Window}} (array \$event)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_abd8ecab3e25db42ab7772ebab927f84f}{is\+Out\+Of\+Range}} (\$calendar\+Date, \$min\+Timestamp, \$max\+Timestamp)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ab2b4dbb903a5f62c0cf6ebe53504fb39}{unfold}} (array \$lines)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_afa1611b2ba41eeabbb6adea58b932cad}{add\+Calendar\+Component\+With\+Key\+And\+Value}} (\$component, \$keyword, \$value)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a0e43386d7d6010aa29cf2f8c12d18652}{parse\+Line}} (\$line)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a6c09097058f9709380a724cd3ab04986}{process\+Events}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aca8fb8d30586b1737e0c3716bff05aac}{process\+Recurrences}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a15c047dcefeeee774bbe891cb534cd54}{resolve\+Indices\+Of\+Range}} (array \$indexes, \$limit)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aa14a44d8126324350c7de228f6e408ea}{get\+Days\+Of\+Month\+Matching\+By\+Day\+RRule}} (array \$by\+Days, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a5f5000aa77f27a2f0bdd4a72f6d6e136}{get\+Days\+Of\+Month\+Matching\+By\+Month\+Day\+RRule}} (array \$by\+Month\+Days, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_af7b991b376611241637dedc0a498488a}{get\+Days\+Of\+Year\+Matching\+By\+Day\+RRule}} (array \$by\+Days, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a37b8c358aec8d151fe4ee6346bf7fa18}{get\+Days\+Of\+Year\+Matching\+By\+Year\+Day\+RRule}} (array \$by\+Year\+Days, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ab18d408eef86a2ed19a631463ebcc94e}{get\+Days\+Of\+Year\+Matching\+By\+Week\+No\+RRule}} (array \$by\+Week\+Nums, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ac58eec55b4a8b8ebb8b419bcf81ffc8e}{get\+Days\+Of\+Year\+Matching\+By\+Month\+Day\+RRule}} (array \$by\+Month\+Days, \$initial\+Date\+Time)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a9c5722641432a32bcbd0999293e0e7d8}{filter\+Values\+Using\+By\+Set\+Pos\+RRule}} (array \$by\+Set\+Pos, array \$values\+List)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_acfa93681344ad35a8777e21b103114ce}{process\+Date\+Conversions}} ()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ae417a9c2a1ea3e3813573e27f7508c5d}{is\+Valid\+Time\+Zone\+Id}} (\$time\+Zone)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ac017b144f48454b4db20734d41ec22c9}{is\+Valid\+Iana\+Time\+Zone\+Id}} (\$time\+Zone)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a2051175c8e2f89f1200889100c5cb977}{parse\+Duration}} (\$date, \$duration)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a18aa41e33dc8d0d8b8cb6d68b3ab5713}{remove\+Unprintable\+Chars}} (\$data)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a7a4260ec64610928ed05e802c27b246f}{mb\+\_\+chr}} (\$code)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a03266fa0bfa141b3bad507fd05aae9e6}{escape\+Param\+Text}} (\$candidate\+Text)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aff478c0b01fa8fb4f875990f403df215}{clean\+Characters}} (\$input)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ada25373dbed9cffdea105d801958ac3d}{is\+File\+Or\+Url}} (\$filename)
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_af4ed9694e9433fc2184d3f5887e86d3c}{file\+Or\+Url}} (\$filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_abdabe1b9dbf6b6ea0714d063387f6b4e}{\$free\+Busy\+Index}} = 0
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ade3c34478d8c192b16bdee40d11ed4fb}{\$last\+Keyword}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a240a83129b8a417bca430d7c261235d0}{\$valid\+Iana\+Time\+Zones}} = array()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ab3bb62069186727a93ea75374cfd3c92}{\$altered\+Recurrence\+Instances}} = array()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aa4d3bbe570ab045b77e7762aca2e2eca}{\$weekdays}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a51c46a10eb223d3b4854fb952fcbf3d2}{\$frequency\+Conversion}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_aa8aa8e6441524da7e4706b59935d3f28}{\$http\+Basic\+Auth}} = array()
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_ae20f1b0c73598adcb4cc43637ad57c62}{\$http\+User\+Agent}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a46d05e7e5cc32d3634d8cf34fb9cea53}{\$http\+Accept\+Language}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a272b598dfffeda92aabd6cb56e58e4cc}{\$http\+Protocol\+Version}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a3dba31363377e524896dea58dc074572}{get\+Default\+Time\+Zone}} (\$force\+Return\+System\+Default=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_adaa89ee7ef38c30646b68b491fac40fa}{\$window\+Min\+Timestamp}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a12a71d4fecf40cf3796ef8573e7d5bf3}{\$window\+Max\+Timestamp}}
+\item 
+\mbox{\hyperlink{class_i_cal_1_1_i_cal_a28441e8d66138feef92438e4364d8c93}{\$should\+Filter\+By\+Window}} = false
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_i_cal_1_1_i_cal_a50d66b4243536abb5dce4976e7f22d71}{\$configurable\+Options}}
+\item 
+static \mbox{\hyperlink{class_i_cal_1_1_i_cal_a425d6d34e06d8bf8cbbcf1d30982dac5}{\$cldr\+Time\+Zones\+Map}}
+\item 
+static \mbox{\hyperlink{class_i_cal_1_1_i_cal_a16a636ba845ac6cd7e2fafa4dd90a06c}{\$windows\+Time\+Zones\+Map}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{class_i_cal_1_1_i_cal_a2c574c3113cddece7cccb7793a025ddd}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a2c574c3113cddece7cccb7793a025ddd} 
+ICal\textbackslash{}\+ICal\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$files}{ = {\ttfamily false}, }\item[{array}]{\$options}{ = {\ttfamily array()}}\end{DoxyParamCaption})}
+
+Creates the \doxylink{namespace_i_cal}{ICal} object
+
+
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$files} & \\
+\hline
+array & {\em \$options} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a2c574c3113cddece7cccb7793a025ddd_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{class_i_cal_1_1_i_cal_afa1611b2ba41eeabbb6adea58b932cad}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!addCalendarComponentWithKeyAndValue@{addCalendarComponentWithKeyAndValue}}
+\index{addCalendarComponentWithKeyAndValue@{addCalendarComponentWithKeyAndValue}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{addCalendarComponentWithKeyAndValue()}{addCalendarComponentWithKeyAndValue()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_afa1611b2ba41eeabbb6adea58b932cad} 
+ICal\textbackslash{}\+ICal\+::add\+Calendar\+Component\+With\+Key\+And\+Value (\begin{DoxyParamCaption}\item[{}]{\$component}{, }\item[{}]{\$keyword}{, }\item[{}]{\$value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Add one key and value pair to the {\ttfamily \$this-\/\texorpdfstring{$>$}{>}cal} array
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$component} & \\
+\hline
+string | boolean & {\em \$keyword} & \\
+\hline
+string | array & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_afa1611b2ba41eeabbb6adea58b932cad_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a2af6a156e2f137365374757b616acc48}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!calendarDescription@{calendarDescription}}
+\index{calendarDescription@{calendarDescription}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{calendarDescription()}{calendarDescription()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a2af6a156e2f137365374757b616acc48} 
+ICal\textbackslash{}\+ICal\+::calendar\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the calendar description
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_i_cal_1_1_i_cal_a66b76902e5a3631afed755c982b98de2}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!calendarName@{calendarName}}
+\index{calendarName@{calendarName}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{calendarName()}{calendarName()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a66b76902e5a3631afed755c982b98de2} 
+ICal\textbackslash{}\+ICal\+::calendar\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the calendar name
+
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+\Hypertarget{class_i_cal_1_1_i_cal_a6317c79b570e642236e097e9190faba3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!calendarTimeZone@{calendarTimeZone}}
+\index{calendarTimeZone@{calendarTimeZone}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{calendarTimeZone()}{calendarTimeZone()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a6317c79b570e642236e097e9190faba3} 
+ICal\textbackslash{}\+ICal\+::calendar\+Time\+Zone (\begin{DoxyParamCaption}\item[{}]{\$ignore\+Utc}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Returns the calendar time zone
+
+
+\begin{DoxyParams}[1]{Paramètres}
+boolean & {\em \$ignore\+Utc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a6317c79b570e642236e097e9190faba3_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a6317c79b570e642236e097e9190faba3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_aff478c0b01fa8fb4f875990f403df215}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!cleanCharacters@{cleanCharacters}}
+\index{cleanCharacters@{cleanCharacters}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{cleanCharacters()}{cleanCharacters()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aff478c0b01fa8fb4f875990f403df215} 
+ICal\textbackslash{}\+ICal\+::clean\+Characters (\begin{DoxyParamCaption}\item[{}]{\$input}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Replace curly quotes and other special characters with their standard equivalents \begin{DoxySeeAlso}{Voir également}
+\href{https://utf8-chartable.de/unicode-utf8-table.pl?start=8211&utf8=string-literal}{\texttt{ https\+://utf8-\/chartable.\+de/unicode-\/utf8-\/table.\+pl?start=8211\&utf8=string-\/literal}}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$input} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_i_cal_1_1_i_cal_aff478c0b01fa8fb4f875990f403df215_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_aff478c0b01fa8fb4f875990f403df215_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a65b6f68357a65905de430c9b016c197a}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!doesEventStartOutsideWindow@{doesEventStartOutsideWindow}}
+\index{doesEventStartOutsideWindow@{doesEventStartOutsideWindow}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{doesEventStartOutsideWindow()}{doesEventStartOutsideWindow()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a65b6f68357a65905de430c9b016c197a} 
+ICal\textbackslash{}\+ICal\+::does\+Event\+Start\+Outside\+Window (\begin{DoxyParamCaption}\item[{array}]{\$event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Determines whether the event start date is outside {\ttfamily \$window\+Min\+Timestamp} / {\ttfamily \$window\+Max\+Timestamp}. Returns {\ttfamily true} for invalid dates.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a65b6f68357a65905de430c9b016c197a_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a65b6f68357a65905de430c9b016c197a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a03266fa0bfa141b3bad507fd05aae9e6}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!escapeParamText@{escapeParamText}}
+\index{escapeParamText@{escapeParamText}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{escapeParamText()}{escapeParamText()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a03266fa0bfa141b3bad507fd05aae9e6} 
+ICal\textbackslash{}\+ICal\+::escape\+Param\+Text (\begin{DoxyParamCaption}\item[{}]{\$candidate\+Text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Places double-\/quotes around texts that have characters not permitted in parameter-\/texts, but are permitted in quoted-\/texts.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$candidate\+Text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a03266fa0bfa141b3bad507fd05aae9e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a25f4b0b3ed8c471e3134bd4bd955996c}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!events@{events}}
+\index{events@{events}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{events()}{events()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a25f4b0b3ed8c471e3134bd4bd955996c} 
+ICal\textbackslash{}\+ICal\+::events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns an array of Events. Every event is a class with the event details being properties within it.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a25f4b0b3ed8c471e3134bd4bd955996c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a5fbe1994a33de648e755a1d88efdb8ea}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!eventsFromInterval@{eventsFromInterval}}
+\index{eventsFromInterval@{eventsFromInterval}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{eventsFromInterval()}{eventsFromInterval()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a5fbe1994a33de648e755a1d88efdb8ea} 
+ICal\textbackslash{}\+ICal\+::events\+From\+Interval (\begin{DoxyParamCaption}\item[{}]{\$interval}{}\end{DoxyParamCaption})}
+
+Returns a sorted array of the events following a given string
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$interval} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a5fbe1994a33de648e755a1d88efdb8ea_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_af1ca5ec05382aa5b88594f6d81f0767e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!eventsFromRange@{eventsFromRange}}
+\index{eventsFromRange@{eventsFromRange}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{eventsFromRange()}{eventsFromRange()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_af1ca5ec05382aa5b88594f6d81f0767e} 
+ICal\textbackslash{}\+ICal\+::events\+From\+Range (\begin{DoxyParamCaption}\item[{}]{\$range\+Start}{ = {\ttfamily null}, }\item[{}]{\$range\+End}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Returns a sorted array of the events in a given range, or an empty array if no events exist in the range.
+
+Events will be returned if the start or end date is contained within the range (inclusive), or if the event starts before and end after the range.
+
+If a start date is not specified or of a valid format, then the start of the range will default to the current time and date of the server.
+
+If an end date is not specified or of a valid format, then the end of the range will default to the current time and date of the server, plus 20 years.
+
+Note that this function makes use of Unix timestamps. This might be a problem for events on, during, or after 29 Jan 2038. See \href{https://en.wikipedia.org/wiki/Unix_time\#Representing_the_number}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Unix\+\_\+time\#\+Representing\+\_\+the\+\_\+number}}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string | null & {\em \$range\+Start} & \\
+\hline
+string | null & {\em \$range\+End} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af1ca5ec05382aa5b88594f6d81f0767e_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af1ca5ec05382aa5b88594f6d81f0767e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_af4ed9694e9433fc2184d3f5887e86d3c}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!fileOrUrl@{fileOrUrl}}
+\index{fileOrUrl@{fileOrUrl}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{fileOrUrl()}{fileOrUrl()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_af4ed9694e9433fc2184d3f5887e86d3c} 
+ICal\textbackslash{}\+ICal\+::file\+Or\+Url (\begin{DoxyParamCaption}\item[{}]{\$filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Reads an entire file or URL into an array
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$filename} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af4ed9694e9433fc2184d3f5887e86d3c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a9c5722641432a32bcbd0999293e0e7d8}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!filterValuesUsingBySetPosRRule@{filterValuesUsingBySetPosRRule}}
+\index{filterValuesUsingBySetPosRRule@{filterValuesUsingBySetPosRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{filterValuesUsingBySetPosRRule()}{filterValuesUsingBySetPosRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a9c5722641432a32bcbd0999293e0e7d8} 
+ICal\textbackslash{}\+ICal\+::filter\+Values\+Using\+By\+Set\+Pos\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Set\+Pos}{, }\item[{array}]{\$values\+List}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Filters a provided values-\/list by applying a BYSETPOS RRule.
+
+Where a +ve \{daynum\} is provided, the \{ordday\} position\textquotesingle{}d value as measured from the start of the list of values should be retained.
+
+Where a -\/ve \{daynum\} is provided, the \{ordday\} position\textquotesingle{}d value as measured from the end of the list of values should be retained.
+
+RRule Syntax\+: BYSETPOS=\{bysplist\}
+
+Where\+: bysplist = \{setposday\}\mbox{[},\{setposday\}...\mbox{]} setposday = \{daynum\} daynum = \mbox{[}+ \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/\mbox{]} \{ordday\} ordday = 1 to 366
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Set\+Pos} & \\
+\hline
+array & {\em \$values\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a9c5722641432a32bcbd0999293e0e7d8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a169aa4107fea3236c5ac394ce88a2f51}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!freeBusyEvents@{freeBusyEvents}}
+\index{freeBusyEvents@{freeBusyEvents}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{freeBusyEvents()}{freeBusyEvents()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a169aa4107fea3236c5ac394ce88a2f51} 
+ICal\textbackslash{}\+ICal\+::free\+Busy\+Events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns an array of arrays with all free/busy events. Every event is an associative array and each property is an element it.
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+\Hypertarget{class_i_cal_1_1_i_cal_aa14a44d8126324350c7de228f6e408ea}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfMonthMatchingByDayRRule@{getDaysOfMonthMatchingByDayRRule}}
+\index{getDaysOfMonthMatchingByDayRRule@{getDaysOfMonthMatchingByDayRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfMonthMatchingByDayRRule()}{getDaysOfMonthMatchingByDayRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aa14a44d8126324350c7de228f6e408ea} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Month\+Matching\+By\+Day\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Days}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a month that match the BYDAY stanza of an RRULE.
+
+With no \{ordwk\}, then return the day number of every \{weekday\} within the month.
+
+With a +ve \{ordwk\}, then return the \{ordwk\} \{weekday\} within the month.
+
+With a -\/ve \{ordwk\}, then return the \{ordwk\}-\/to-\/last \{weekday\} within the month.
+
+RRule Syntax\+: BYDAY=\{bywdaylist\}
+
+Where\+: bywdaylist = \{weekdaynum\}\mbox{[},\{weekdaynum\}...\mbox{]} weekdaynum = \mbox{[}\mbox{[}+\mbox{]}\{ordwk\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/\{ordwk\}\mbox{]}\{weekday\} ordwk = 1 to 53 weekday = SU \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} MO \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} TU \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} WE \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} TH \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} FR \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} SA
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Days} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_aa14a44d8126324350c7de228f6e408ea_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a5f5000aa77f27a2f0bdd4a72f6d6e136}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfMonthMatchingByMonthDayRRule@{getDaysOfMonthMatchingByMonthDayRRule}}
+\index{getDaysOfMonthMatchingByMonthDayRRule@{getDaysOfMonthMatchingByMonthDayRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfMonthMatchingByMonthDayRRule()}{getDaysOfMonthMatchingByMonthDayRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a5f5000aa77f27a2f0bdd4a72f6d6e136} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Month\+Matching\+By\+Month\+Day\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Month\+Days}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a month that match the BYMONTHDAY stanza of an RRULE.
+
+RRUle Syntax\+: BYMONTHDAY=\{bymodaylist\}
+
+Where\+: bymodaylist = \{monthdaynum\}\mbox{[},\{monthdaynum\}...\mbox{]} monthdaynum = (\mbox{[}+\mbox{]} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/) \{ordmoday\} ordmoday = 1 to 31
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Month\+Days} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a5f5000aa77f27a2f0bdd4a72f6d6e136_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a5f5000aa77f27a2f0bdd4a72f6d6e136_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_af7b991b376611241637dedc0a498488a}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfYearMatchingByDayRRule@{getDaysOfYearMatchingByDayRRule}}
+\index{getDaysOfYearMatchingByDayRRule@{getDaysOfYearMatchingByDayRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfYearMatchingByDayRRule()}{getDaysOfYearMatchingByDayRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_af7b991b376611241637dedc0a498488a} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Year\+Matching\+By\+Day\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Days}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a year that match the BYDAY stanza of an RRULE.
+
+With no \{ordwk\}, then return the day number of every \{weekday\} within the year.
+
+With a +ve \{ordwk\}, then return the \{ordwk\} \{weekday\} within the year.
+
+With a -\/ve \{ordwk\}, then return the \{ordwk\}-\/to-\/last \{weekday\} within the year.
+
+RRule Syntax\+: BYDAY=\{bywdaylist\}
+
+Where\+: bywdaylist = \{weekdaynum\}\mbox{[},\{weekdaynum\}...\mbox{]} weekdaynum = \mbox{[}\mbox{[}+\mbox{]}\{ordwk\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/\{ordwk\}\mbox{]}\{weekday\} ordwk = 1 to 53 weekday = SU \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} MO \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} TU \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} WE \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} TH \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} FR \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} SA
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Days} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af7b991b376611241637dedc0a498488a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ac58eec55b4a8b8ebb8b419bcf81ffc8e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfYearMatchingByMonthDayRRule@{getDaysOfYearMatchingByMonthDayRRule}}
+\index{getDaysOfYearMatchingByMonthDayRRule@{getDaysOfYearMatchingByMonthDayRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfYearMatchingByMonthDayRRule()}{getDaysOfYearMatchingByMonthDayRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ac58eec55b4a8b8ebb8b419bcf81ffc8e} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Year\+Matching\+By\+Month\+Day\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Month\+Days}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a year that match the BYMONTHDAY stanza of an RRULE.
+
+RRule Syntax\+: BYMONTHDAY=\{bymodaylist\}
+
+Where\+: bymodaylist = \{monthdaynum\}\mbox{[},\{monthdaynum\}...\mbox{]} monthdaynum = (\mbox{[}+\mbox{]} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/) \{ordmoday\} ordmoday = 1 to 31
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Month\+Days} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ac58eec55b4a8b8ebb8b419bcf81ffc8e_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ac58eec55b4a8b8ebb8b419bcf81ffc8e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ab18d408eef86a2ed19a631463ebcc94e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfYearMatchingByWeekNoRRule@{getDaysOfYearMatchingByWeekNoRRule}}
+\index{getDaysOfYearMatchingByWeekNoRRule@{getDaysOfYearMatchingByWeekNoRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfYearMatchingByWeekNoRRule()}{getDaysOfYearMatchingByWeekNoRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ab18d408eef86a2ed19a631463ebcc94e} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Year\+Matching\+By\+Week\+No\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Week\+Nums}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a year that match the BYWEEKNO stanza of an RRULE.
+
+Unfortunately, the RFC5545 specification does not specify exactly how BYWEEKNO should expand on the initial DTSTART when provided without any other stanzas.
+
+A comparison of expansions used by other ics parsers may be found at \href{https://github.com/s0600204/ics-parser-1/wiki/byweekno}{\texttt{ https\+://github.\+com/s0600204/ics-\/parser-\/1/wiki/byweekno}}
+
+This method uses the same expansion as the python-\/dateutil module.
+
+RRUle Syntax\+: BYWEEKNO=\{bywknolist\}
+
+Where\+: bywknolist = \{weeknum\}\mbox{[},\{weeknum\}...\mbox{]} weeknum = (\mbox{[}+\mbox{]} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/) \{ordwk\} ordwk = 1 to 53
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Week\+Nums} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ab18d408eef86a2ed19a631463ebcc94e_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ab18d408eef86a2ed19a631463ebcc94e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a37b8c358aec8d151fe4ee6346bf7fa18}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDaysOfYearMatchingByYearDayRRule@{getDaysOfYearMatchingByYearDayRRule}}
+\index{getDaysOfYearMatchingByYearDayRRule@{getDaysOfYearMatchingByYearDayRRule}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDaysOfYearMatchingByYearDayRRule()}{getDaysOfYearMatchingByYearDayRRule()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a37b8c358aec8d151fe4ee6346bf7fa18} 
+ICal\textbackslash{}\+ICal\+::get\+Days\+Of\+Year\+Matching\+By\+Year\+Day\+RRule (\begin{DoxyParamCaption}\item[{array}]{\$by\+Year\+Days}{, }\item[{}]{\$initial\+Date\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Find all days of a year that match the BYYEARDAY stanza of an RRULE.
+
+RRUle Syntax\+: BYYEARDAY=\{byyrdaylist\}
+
+Where\+: byyrdaylist = \{yeardaynum\}\mbox{[},\{yeardaynum\}...\mbox{]} yeardaynum = (\mbox{[}+\mbox{]} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} -\/) \{ordyrday\} ordyrday = 1 to 366
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$by\+Year\+Days} & \\
+\hline
+\textbackslash{}\+Date\+Time & {\em \$initial\+Date\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a37b8c358aec8d151fe4ee6346bf7fa18_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a37b8c358aec8d151fe4ee6346bf7fa18_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a3dba31363377e524896dea58dc074572}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!getDefaultTimeZone@{getDefaultTimeZone}}
+\index{getDefaultTimeZone@{getDefaultTimeZone}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{getDefaultTimeZone()}{getDefaultTimeZone()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a3dba31363377e524896dea58dc074572} 
+ICal\textbackslash{}\+ICal\+::get\+Default\+Time\+Zone (\begin{DoxyParamCaption}\item[{}]{\$force\+Return\+System\+Default}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Returns the default time zone if set. Falls back to the system default if not set.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+boolean & {\em \$force\+Return\+System\+Default} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a3dba31363377e524896dea58dc074572_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a106b7ebeff1906db830c08ebb804496d}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!hasEvents@{hasEvents}}
+\index{hasEvents@{hasEvents}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{hasEvents()}{hasEvents()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a106b7ebeff1906db830c08ebb804496d} 
+ICal\textbackslash{}\+ICal\+::has\+Events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns a boolean value whether the current calendar has events or not
+
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{class_i_cal_1_1_i_cal_a106b7ebeff1906db830c08ebb804496d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a53d25a7d2940a464c51c64eb36349b5b}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!iCalDateToDateTime@{iCalDateToDateTime}}
+\index{iCalDateToDateTime@{iCalDateToDateTime}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{iCalDateToDateTime()}{iCalDateToDateTime()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a53d25a7d2940a464c51c64eb36349b5b} 
+ICal\textbackslash{}\+ICal\+::i\+Cal\+Date\+To\+Date\+Time (\begin{DoxyParamCaption}\item[{}]{\$ical\+Date}{}\end{DoxyParamCaption})}
+
+Returns a {\ttfamily Date\+Time} object from an i\+Cal date time format
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$ical\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\textbackslash{}\+Date\+Time\texorpdfstring{$\vert$}{|}false 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception i\+Cal times may be in 3 formats, (\href{https://www.kanzaki.com/docs/ical/dateTime.html}{\texttt{ https\+://www.\+kanzaki.\+com/docs/ical/date\+Time.\+html}})
+
+UTC\+: Has a trailing \textquotesingle{}Z\textquotesingle{} Floating\+: No time zone reference specified, no trailing \textquotesingle{}Z\textquotesingle{}, use local time TZID\+: Set time zone as specified
+
+Use Date\+Time class objects to get around limitations with {\ttfamily mktime} and {\ttfamily gmmktime}. Must have a local time zone set to process floating times.Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a53d25a7d2940a464c51c64eb36349b5b_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a53d25a7d2940a464c51c64eb36349b5b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a4e134666408b65cf5a9f7c1801188396}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!iCalDateToUnixTimestamp@{iCalDateToUnixTimestamp}}
+\index{iCalDateToUnixTimestamp@{iCalDateToUnixTimestamp}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{iCalDateToUnixTimestamp()}{iCalDateToUnixTimestamp()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a4e134666408b65cf5a9f7c1801188396} 
+ICal\textbackslash{}\+ICal\+::i\+Cal\+Date\+To\+Unix\+Timestamp (\begin{DoxyParamCaption}\item[{}]{\$ical\+Date}{}\end{DoxyParamCaption})}
+
+Returns a Unix timestamp from an i\+Cal date time format
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$ical\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+integer 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a4e134666408b65cf5a9f7c1801188396_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a4e134666408b65cf5a9f7c1801188396_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a574e2c054332104abc2c5615e20404bc}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!iCalDateWithTimeZone@{iCalDateWithTimeZone}}
+\index{iCalDateWithTimeZone@{iCalDateWithTimeZone}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{iCalDateWithTimeZone()}{iCalDateWithTimeZone()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a574e2c054332104abc2c5615e20404bc} 
+ICal\textbackslash{}\+ICal\+::i\+Cal\+Date\+With\+Time\+Zone (\begin{DoxyParamCaption}\item[{array}]{\$event}{, }\item[{}]{\$key}{, }\item[{}]{\$format}{ = {\ttfamily self\+:\+:DATE\+\_\+TIME\+\_\+FORMAT}}\end{DoxyParamCaption})}
+
+Returns a date adapted to the calendar time zone depending on the event {\ttfamily TZID}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$event} & \\
+\hline
+string & {\em \$key} & \\
+\hline
+string | null & {\em \$format} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}integer\texorpdfstring{$\vert$}{|}boolean\texorpdfstring{$\vert$}{|}\textbackslash{}\+Date\+Time 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a574e2c054332104abc2c5615e20404bc_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a574e2c054332104abc2c5615e20404bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a91a6f823932d6b7d90a71feabd152639}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!initFile@{initFile}}
+\index{initFile@{initFile}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{initFile()}{initFile()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a91a6f823932d6b7d90a71feabd152639} 
+ICal\textbackslash{}\+ICal\+::init\+File (\begin{DoxyParamCaption}\item[{}]{\$file}{}\end{DoxyParamCaption})}
+
+Initialises lines from a file
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$file} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_i_cal}{ICal} 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a91a6f823932d6b7d90a71feabd152639_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{class_i_cal_1_1_i_cal_a91a6f823932d6b7d90a71feabd152639_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ac650d561cdacf042b88a7a533d869906}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!initLines@{initLines}}
+\index{initLines@{initLines}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{initLines()}{initLines()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ac650d561cdacf042b88a7a533d869906} 
+ICal\textbackslash{}\+ICal\+::init\+Lines (\begin{DoxyParamCaption}\item[{array}]{\$lines}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Initialises the parser using an array containing each line of i\+Cal content
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$lines} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ac650d561cdacf042b88a7a533d869906_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ac650d561cdacf042b88a7a533d869906_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_aa54d7f266fffdd580d9222c303659020}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!initString@{initString}}
+\index{initString@{initString}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{initString()}{initString()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aa54d7f266fffdd580d9222c303659020} 
+ICal\textbackslash{}\+ICal\+::init\+String (\begin{DoxyParamCaption}\item[{}]{\$string}{}\end{DoxyParamCaption})}
+
+Initialises lines from a string
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$string} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_i_cal}{ICal} 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_aa54d7f266fffdd580d9222c303659020_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_i_cal_1_1_i_cal_aa54d7f266fffdd580d9222c303659020_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a7d69364ce312b401b8b0e1a775380801}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!initUrl@{initUrl}}
+\index{initUrl@{initUrl}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{initUrl()}{initUrl()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a7d69364ce312b401b8b0e1a775380801} 
+ICal\textbackslash{}\+ICal\+::init\+Url (\begin{DoxyParamCaption}\item[{}]{\$url}{, }\item[{}]{\$username}{ = {\ttfamily null}, }\item[{}]{\$password}{ = {\ttfamily null}, }\item[{}]{\$user\+Agent}{ = {\ttfamily null}, }\item[{}]{\$accept\+Language}{ = {\ttfamily null}, }\item[{}]{\$http\+Protocol\+Version}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Initialises lines from a URL
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & \\
+\hline
+string & {\em \$username} & \\
+\hline
+string & {\em \$password} & \\
+\hline
+string & {\em \$user\+Agent} & \\
+\hline
+string & {\em \$accept\+Language} & \\
+\hline
+string & {\em \$http\+Protocol\+Version} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{namespace_i_cal}{ICal} 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a7d69364ce312b401b8b0e1a775380801_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ada25373dbed9cffdea105d801958ac3d}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isFileOrUrl@{isFileOrUrl}}
+\index{isFileOrUrl@{isFileOrUrl}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isFileOrUrl()}{isFileOrUrl()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ada25373dbed9cffdea105d801958ac3d} 
+ICal\textbackslash{}\+ICal\+::is\+File\+Or\+Url (\begin{DoxyParamCaption}\item[{}]{\$filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Checks if a filename exists as a file or URL
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$filename} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{class_i_cal_1_1_i_cal_ada25373dbed9cffdea105d801958ac3d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_abd8ecab3e25db42ab7772ebab927f84f}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isOutOfRange@{isOutOfRange}}
+\index{isOutOfRange@{isOutOfRange}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isOutOfRange()}{isOutOfRange()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_abd8ecab3e25db42ab7772ebab927f84f} 
+ICal\textbackslash{}\+ICal\+::is\+Out\+Of\+Range (\begin{DoxyParamCaption}\item[{}]{\$calendar\+Date}{, }\item[{}]{\$min\+Timestamp}{, }\item[{}]{\$max\+Timestamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Determines whether a valid i\+Calendar date is within a given range
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$calendar\+Date} & \\
+\hline
+integer & {\em \$min\+Timestamp} & \\
+\hline
+integer & {\em \$max\+Timestamp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_abd8ecab3e25db42ab7772ebab927f84f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a6d5481dd75c81b813a9e636ab7073279}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isValidCldrTimeZoneId@{isValidCldrTimeZoneId}}
+\index{isValidCldrTimeZoneId@{isValidCldrTimeZoneId}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isValidCldrTimeZoneId()}{isValidCldrTimeZoneId()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a6d5481dd75c81b813a9e636ab7073279} 
+ICal\textbackslash{}\+ICal\+::is\+Valid\+Cldr\+Time\+Zone\+Id (\begin{DoxyParamCaption}\item[{}]{\$time\+Zone}{}\end{DoxyParamCaption})}
+
+Checks if a time zone is a valid CLDR time zone
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$time\+Zone} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a6d5481dd75c81b813a9e636ab7073279_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_af73624f84b9dc154348474e3155a3a65}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isValidDate@{isValidDate}}
+\index{isValidDate@{isValidDate}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isValidDate()}{isValidDate()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_af73624f84b9dc154348474e3155a3a65} 
+ICal\textbackslash{}\+ICal\+::is\+Valid\+Date (\begin{DoxyParamCaption}\item[{}]{\$value}{}\end{DoxyParamCaption})}
+
+Checks if a date string is a valid date
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af73624f84b9dc154348474e3155a3a65_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ac017b144f48454b4db20734d41ec22c9}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isValidIanaTimeZoneId@{isValidIanaTimeZoneId}}
+\index{isValidIanaTimeZoneId@{isValidIanaTimeZoneId}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isValidIanaTimeZoneId()}{isValidIanaTimeZoneId()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ac017b144f48454b4db20734d41ec22c9} 
+ICal\textbackslash{}\+ICal\+::is\+Valid\+Iana\+Time\+Zone\+Id (\begin{DoxyParamCaption}\item[{}]{\$time\+Zone}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Checks if a time zone is a valid IANA time zone
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$time\+Zone} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ac017b144f48454b4db20734d41ec22c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ae417a9c2a1ea3e3813573e27f7508c5d}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isValidTimeZoneId@{isValidTimeZoneId}}
+\index{isValidTimeZoneId@{isValidTimeZoneId}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isValidTimeZoneId()}{isValidTimeZoneId()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ae417a9c2a1ea3e3813573e27f7508c5d} 
+ICal\textbackslash{}\+ICal\+::is\+Valid\+Time\+Zone\+Id (\begin{DoxyParamCaption}\item[{}]{\$time\+Zone}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Checks if a time zone is valid (IANA, CLDR, or Windows)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$time\+Zone} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ae417a9c2a1ea3e3813573e27f7508c5d_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ae417a9c2a1ea3e3813573e27f7508c5d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ae06014a4b39c06dff716f85447c44481}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!isValidWindowsTimeZoneId@{isValidWindowsTimeZoneId}}
+\index{isValidWindowsTimeZoneId@{isValidWindowsTimeZoneId}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{isValidWindowsTimeZoneId()}{isValidWindowsTimeZoneId()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ae06014a4b39c06dff716f85447c44481} 
+ICal\textbackslash{}\+ICal\+::is\+Valid\+Windows\+Time\+Zone\+Id (\begin{DoxyParamCaption}\item[{}]{\$time\+Zone}{}\end{DoxyParamCaption})}
+
+Checks if a time zone is a recognised Windows (non-\/\+CLDR) time zone
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$time\+Zone} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+boolean 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ae06014a4b39c06dff716f85447c44481_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_af1b2e9fa732a5e804be303d0332968a3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!keyValueFromString@{keyValueFromString}}
+\index{keyValueFromString@{keyValueFromString}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{keyValueFromString()}{keyValueFromString()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_af1b2e9fa732a5e804be303d0332968a3} 
+ICal\textbackslash{}\+ICal\+::key\+Value\+From\+String (\begin{DoxyParamCaption}\item[{}]{\$text}{}\end{DoxyParamCaption})}
+
+Gets the key value pair from an i\+Cal string
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af1b2e9fa732a5e804be303d0332968a3_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_af1b2e9fa732a5e804be303d0332968a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a7a4260ec64610928ed05e802c27b246f}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!mb\_chr@{mb\_chr}}
+\index{mb\_chr@{mb\_chr}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{mb\_chr()}{mb\_chr()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a7a4260ec64610928ed05e802c27b246f} 
+ICal\textbackslash{}\+ICal\+::mb\+\_\+chr (\begin{DoxyParamCaption}\item[{}]{\$code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Provides a polyfill for PHP 7.\+2\textquotesingle{}s {\ttfamily mb\+\_\+chr()}, which is a multibyte safe version of {\ttfamily chr()}. Multibyte safe.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+integer & {\em \$code} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{class_i_cal_1_1_i_cal_a7a4260ec64610928ed05e802c27b246f_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a7a4260ec64610928ed05e802c27b246f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a2051175c8e2f89f1200889100c5cb977}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!parseDuration@{parseDuration}}
+\index{parseDuration@{parseDuration}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{parseDuration()}{parseDuration()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a2051175c8e2f89f1200889100c5cb977} 
+ICal\textbackslash{}\+ICal\+::parse\+Duration (\begin{DoxyParamCaption}\item[{}]{\$date}{, }\item[{}]{\$duration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Parses a duration and applies it to a date
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$date} & \\
+\hline
+\textbackslash{}\+Date\+Interval & {\em \$duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\textbackslash{}\+Date\+Time\texorpdfstring{$\vert$}{|}false 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a2051175c8e2f89f1200889100c5cb977_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_add500c6d054d396a8aab558d4cf66ff8}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!parseExdates@{parseExdates}}
+\index{parseExdates@{parseExdates}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{parseExdates()}{parseExdates()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_add500c6d054d396a8aab558d4cf66ff8} 
+ICal\textbackslash{}\+ICal\+::parse\+Exdates (\begin{DoxyParamCaption}\item[{array}]{\$event}{}\end{DoxyParamCaption})}
+
+Parses a list of excluded dates to be applied to an Event
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_add500c6d054d396a8aab558d4cf66ff8_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_add500c6d054d396a8aab558d4cf66ff8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a0e43386d7d6010aa29cf2f8c12d18652}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!parseLine@{parseLine}}
+\index{parseLine@{parseLine}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{parseLine()}{parseLine()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a0e43386d7d6010aa29cf2f8c12d18652} 
+ICal\textbackslash{}\+ICal\+::parse\+Line (\begin{DoxyParamCaption}\item[{}]{\$line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Parses a line from an i\+Cal file into an array of tokens
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$line} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a0e43386d7d6010aa29cf2f8c12d18652_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_acfa93681344ad35a8777e21b103114ce}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!processDateConversions@{processDateConversions}}
+\index{processDateConversions@{processDateConversions}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{processDateConversions()}{processDateConversions()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_acfa93681344ad35a8777e21b103114ce} 
+ICal\textbackslash{}\+ICal\+::process\+Date\+Conversions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Processes date conversions using the time zone
+
+Add keys {\ttfamily DTSTART\+\_\+tz} and {\ttfamily DTEND\+\_\+tz} to each Event These keys contain dates adapted to the calendar time zone depending on the event {\ttfamily TZID}.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_acfa93681344ad35a8777e21b103114ce_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_acfa93681344ad35a8777e21b103114ce_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a6c09097058f9709380a724cd3ab04986}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a6c09097058f9709380a724cd3ab04986} 
+ICal\textbackslash{}\+ICal\+::process\+Events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Performs admin tasks on all events as read from the i\+Cal file. Adds a Unix timestamp to all {\ttfamily \{DTSTART\texorpdfstring{$\vert$}{|}\+DTEND\texorpdfstring{$\vert$}{|}\+RECURRENCE-\/\+ID\}\+\_\+array} arrays Tracks modified recurrence instances
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a6c09097058f9709380a724cd3ab04986_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a6c09097058f9709380a724cd3ab04986_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_aca8fb8d30586b1737e0c3716bff05aac}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!processRecurrences@{processRecurrences}}
+\index{processRecurrences@{processRecurrences}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{processRecurrences()}{processRecurrences()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aca8fb8d30586b1737e0c3716bff05aac} 
+ICal\textbackslash{}\+ICal\+::process\+Recurrences (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Processes recurrence rules
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Determine at what point we should stop calculating recurrences by looking at the UNTIL or COUNT rrule stanza, or, if neither if set, using a fallback.
+
+If the initial date is also an EXDATE, it shouldn\textquotesingle{}t be included in the count.
+
+Syntax\+: UNTIL=\{enddate\} COUNT=$<$positive integer$>$
+
+Where\+: enddate = $<$ical\+Date$>$ \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} $<$ical\+Date\+Time$>$Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_aca8fb8d30586b1737e0c3716bff05aac_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_aca8fb8d30586b1737e0c3716bff05aac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a57af3bb5a0cb529c27e6993c7eeb4ef7}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!reduceEventsToMinMaxRange@{reduceEventsToMinMaxRange}}
+\index{reduceEventsToMinMaxRange@{reduceEventsToMinMaxRange}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{reduceEventsToMinMaxRange()}{reduceEventsToMinMaxRange()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a57af3bb5a0cb529c27e6993c7eeb4ef7} 
+ICal\textbackslash{}\+ICal\+::reduce\+Events\+To\+Min\+Max\+Range (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Reduces the number of events to the defined minimum and maximum range
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a57af3bb5a0cb529c27e6993c7eeb4ef7_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a57af3bb5a0cb529c27e6993c7eeb4ef7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ab9fb9991aead3bb843b1c809a3de9a55}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!removeLastEventIfOutsideWindowAndNonRecurring@{removeLastEventIfOutsideWindowAndNonRecurring}}
+\index{removeLastEventIfOutsideWindowAndNonRecurring@{removeLastEventIfOutsideWindowAndNonRecurring}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{removeLastEventIfOutsideWindowAndNonRecurring()}{removeLastEventIfOutsideWindowAndNonRecurring()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ab9fb9991aead3bb843b1c809a3de9a55} 
+ICal\textbackslash{}\+ICal\+::remove\+Last\+Event\+If\+Outside\+Window\+And\+Non\+Recurring (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Removes the last event (i.\+e. most recently parsed) if its start date is outside the window spanned by {\ttfamily \$window\+Min\+Timestamp} / {\ttfamily \$window\+Max\+Timestamp}.
+
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ab9fb9991aead3bb843b1c809a3de9a55_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ab9fb9991aead3bb843b1c809a3de9a55_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a18aa41e33dc8d0d8b8cb6d68b3ab5713}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!removeUnprintableChars@{removeUnprintableChars}}
+\index{removeUnprintableChars@{removeUnprintableChars}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{removeUnprintableChars()}{removeUnprintableChars()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a18aa41e33dc8d0d8b8cb6d68b3ab5713} 
+ICal\textbackslash{}\+ICal\+::remove\+Unprintable\+Chars (\begin{DoxyParamCaption}\item[{}]{\$data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Removes unprintable ASCII and UTF-\/8 characters
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a18aa41e33dc8d0d8b8cb6d68b3ab5713_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a15c047dcefeeee774bbe891cb534cd54}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!resolveIndicesOfRange@{resolveIndicesOfRange}}
+\index{resolveIndicesOfRange@{resolveIndicesOfRange}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{resolveIndicesOfRange()}{resolveIndicesOfRange()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a15c047dcefeeee774bbe891cb534cd54} 
+ICal\textbackslash{}\+ICal\+::resolve\+Indices\+Of\+Range (\begin{DoxyParamCaption}\item[{array}]{\$indexes}{, }\item[{}]{\$limit}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Resolves values from indices of the range 1 -\/\texorpdfstring{$>$}{>} \$limit.
+
+For instance, if passed \mbox{[}1, 4, -\/16\mbox{]} and 28, this will return \mbox{[}1, 4, 13\mbox{]}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$indexes} & \\
+\hline
+integer & {\em \$limit} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a15c047dcefeeee774bbe891cb534cd54_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a034e235865fd43841a08a70195051efe}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!sortEventsWithOrder@{sortEventsWithOrder}}
+\index{sortEventsWithOrder@{sortEventsWithOrder}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{sortEventsWithOrder()}{sortEventsWithOrder()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a034e235865fd43841a08a70195051efe} 
+ICal\textbackslash{}\+ICal\+::sort\+Events\+With\+Order (\begin{DoxyParamCaption}\item[{array}]{\$events}{, }\item[{}]{\$sort\+Order}{ = {\ttfamily SORT\+\_\+ASC}}\end{DoxyParamCaption})}
+
+Sorts events based on a given sort order
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$events} & \\
+\hline
+integer & {\em \$sort\+Order} & Either SORT\+\_\+\+ASC, SORT\+\_\+\+DESC, SORT\+\_\+\+REGULAR, SORT\+\_\+\+NUMERIC, SORT\+\_\+\+STRING \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a034e235865fd43841a08a70195051efe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_a8dd701d0e92fc6099d573e0afe42259d}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!timeZoneStringToDateTimeZone@{timeZoneStringToDateTimeZone}}
+\index{timeZoneStringToDateTimeZone@{timeZoneStringToDateTimeZone}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{timeZoneStringToDateTimeZone()}{timeZoneStringToDateTimeZone()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a8dd701d0e92fc6099d573e0afe42259d} 
+ICal\textbackslash{}\+ICal\+::time\+Zone\+String\+To\+Date\+Time\+Zone (\begin{DoxyParamCaption}\item[{}]{\$time\+Zone\+String}{}\end{DoxyParamCaption})}
+
+Returns a {\ttfamily Date\+Time\+Zone} object based on a string containing a time zone name. Falls back to the default time zone if string passed not a recognised time zone.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$time\+Zone\+String} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\textbackslash{}\+Date\+Time\+Zone 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a8dd701d0e92fc6099d573e0afe42259d_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_a8dd701d0e92fc6099d573e0afe42259d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_i_cal_1_1_i_cal_ab2b4dbb903a5f62c0cf6ebe53504fb39}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!unfold@{unfold}}
+\index{unfold@{unfold}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{unfold()}{unfold()}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ab2b4dbb903a5f62c0cf6ebe53504fb39} 
+ICal\textbackslash{}\+ICal\+::unfold (\begin{DoxyParamCaption}\item[{array}]{\$lines}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Unfolds an i\+Cal file in preparation for parsing (\href{https://icalendar.org/iCalendar-RFC-5545/3-1-content-lines.html}{\texttt{ https\+://icalendar.\+org/i\+Calendar-\/\+RFC-\/5545/3-\/1-\/content-\/lines.\+html}})
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$lines} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_i_cal_1_1_i_cal_ab2b4dbb903a5f62c0cf6ebe53504fb39_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{class_i_cal_1_1_i_cal_afd3e5222c98643483c90d3e2489b388e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$alarmCount@{\$alarmCount}}
+\index{\$alarmCount@{\$alarmCount}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$alarmCount}{\$alarmCount}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_afd3e5222c98643483c90d3e2489b388e} 
+ICal\textbackslash{}\+ICal\+::\$alarm\+Count = 0}
+
+\Hypertarget{class_i_cal_1_1_i_cal_ab3bb62069186727a93ea75374cfd3c92}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$alteredRecurrenceInstances@{\$alteredRecurrenceInstances}}
+\index{\$alteredRecurrenceInstances@{\$alteredRecurrenceInstances}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$alteredRecurrenceInstances}{\$alteredRecurrenceInstances}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ab3bb62069186727a93ea75374cfd3c92} 
+ICal\textbackslash{}\+ICal\+::\$altered\+Recurrence\+Instances = array()\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a6f884bea5192a4598b03362578dd1ae6}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$cal@{\$cal}}
+\index{\$cal@{\$cal}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$cal}{\$cal}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a6f884bea5192a4598b03362578dd1ae6} 
+ICal\textbackslash{}\+ICal\+::\$cal = array()}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a425d6d34e06d8bf8cbbcf1d30982dac5}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$cldrTimeZonesMap@{\$cldrTimeZonesMap}}
+\index{\$cldrTimeZonesMap@{\$cldrTimeZonesMap}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$cldrTimeZonesMap}{\$cldrTimeZonesMap}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a425d6d34e06d8bf8cbbcf1d30982dac5} 
+ICal\textbackslash{}\+ICal\+::\$cldr\+Time\+Zones\+Map\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a50d66b4243536abb5dce4976e7f22d71}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$configurableOptions@{\$configurableOptions}}
+\index{\$configurableOptions@{\$configurableOptions}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$configurableOptions}{\$configurableOptions}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a50d66b4243536abb5dce4976e7f22d71} 
+ICal\textbackslash{}\+ICal\+::\$configurable\+Options\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'defaultSpan'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'defaultTimeZone'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'defaultWeekStart'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'disableCharacterReplacement'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'filterDaysAfter'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'filterDaysBefore'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'httpUserAgent'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'skipRecurrence'},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{class_i_cal_1_1_i_cal_aefc80c5040c16d9221e9ed9a79a8fc6e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$defaultSpan@{\$defaultSpan}}
+\index{\$defaultSpan@{\$defaultSpan}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$defaultSpan}{\$defaultSpan}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aefc80c5040c16d9221e9ed9a79a8fc6e} 
+ICal\textbackslash{}\+ICal\+::\$default\+Span = 2}
+
+\Hypertarget{class_i_cal_1_1_i_cal_acb67c8cda1e7c4351f5722aaa027eca2}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$defaultTimeZone@{\$defaultTimeZone}}
+\index{\$defaultTimeZone@{\$defaultTimeZone}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$defaultTimeZone}{\$defaultTimeZone}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_acb67c8cda1e7c4351f5722aaa027eca2} 
+ICal\textbackslash{}\+ICal\+::\$default\+Time\+Zone}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a3bcd2af2f767917ea46e325c5d816ca3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$defaultWeekStart@{\$defaultWeekStart}}
+\index{\$defaultWeekStart@{\$defaultWeekStart}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$defaultWeekStart}{\$defaultWeekStart}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a3bcd2af2f767917ea46e325c5d816ca3} 
+ICal\textbackslash{}\+ICal\+::\$default\+Week\+Start = self\+::\+ISO\+\_\+8601\+\_\+\+WEEK\+\_\+\+START}
+
+\Hypertarget{class_i_cal_1_1_i_cal_aa54bee17817d929065a1e321f9189ff5}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$disableCharacterReplacement@{\$disableCharacterReplacement}}
+\index{\$disableCharacterReplacement@{\$disableCharacterReplacement}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$disableCharacterReplacement}{\$disableCharacterReplacement}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aa54bee17817d929065a1e321f9189ff5} 
+ICal\textbackslash{}\+ICal\+::\$disable\+Character\+Replacement = false}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a79d75efcf70737cbe7fd47b1d3180e51}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$eventCount@{\$eventCount}}
+\index{\$eventCount@{\$eventCount}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$eventCount}{\$eventCount}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a79d75efcf70737cbe7fd47b1d3180e51} 
+ICal\textbackslash{}\+ICal\+::\$event\+Count = 0}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a2781fa3c4fa70283c24438efb72c4772}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$filterDaysAfter@{\$filterDaysAfter}}
+\index{\$filterDaysAfter@{\$filterDaysAfter}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$filterDaysAfter}{\$filterDaysAfter}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a2781fa3c4fa70283c24438efb72c4772} 
+ICal\textbackslash{}\+ICal\+::\$filter\+Days\+After}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a1b5b95ca74f7b2407c55bce5e6cb60c3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$filterDaysBefore@{\$filterDaysBefore}}
+\index{\$filterDaysBefore@{\$filterDaysBefore}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$filterDaysBefore}{\$filterDaysBefore}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a1b5b95ca74f7b2407c55bce5e6cb60c3} 
+ICal\textbackslash{}\+ICal\+::\$filter\+Days\+Before}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a68202ea178999bedfc4545fbd64c205e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$freeBusyCount@{\$freeBusyCount}}
+\index{\$freeBusyCount@{\$freeBusyCount}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$freeBusyCount}{\$freeBusyCount}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a68202ea178999bedfc4545fbd64c205e} 
+ICal\textbackslash{}\+ICal\+::\$free\+Busy\+Count = 0}
+
+\Hypertarget{class_i_cal_1_1_i_cal_abdabe1b9dbf6b6ea0714d063387f6b4e}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$freeBusyIndex@{\$freeBusyIndex}}
+\index{\$freeBusyIndex@{\$freeBusyIndex}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$freeBusyIndex}{\$freeBusyIndex}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_abdabe1b9dbf6b6ea0714d063387f6b4e} 
+ICal\textbackslash{}\+ICal\+::\$free\+Busy\+Index = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a51c46a10eb223d3b4854fb952fcbf3d2}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$frequencyConversion@{\$frequencyConversion}}
+\index{\$frequencyConversion@{\$frequencyConversion}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$frequencyConversion}{\$frequencyConversion}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a51c46a10eb223d3b4854fb952fcbf3d2} 
+ICal\textbackslash{}\+ICal\+::\$frequency\+Conversion\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'DAILY'}\ \ \ =>\ \textcolor{stringliteral}{'day'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'WEEKLY'}\ \ =>\ \textcolor{stringliteral}{'week'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'MONTHLY'}\ =>\ \textcolor{stringliteral}{'month'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'YEARLY'}\ \ =>\ \textcolor{stringliteral}{'year'},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{class_i_cal_1_1_i_cal_a46d05e7e5cc32d3634d8cf34fb9cea53}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$httpAcceptLanguage@{\$httpAcceptLanguage}}
+\index{\$httpAcceptLanguage@{\$httpAcceptLanguage}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$httpAcceptLanguage}{\$httpAcceptLanguage}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a46d05e7e5cc32d3634d8cf34fb9cea53} 
+ICal\textbackslash{}\+ICal\+::\$http\+Accept\+Language\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_aa8aa8e6441524da7e4706b59935d3f28}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$httpBasicAuth@{\$httpBasicAuth}}
+\index{\$httpBasicAuth@{\$httpBasicAuth}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$httpBasicAuth}{\$httpBasicAuth}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aa8aa8e6441524da7e4706b59935d3f28} 
+ICal\textbackslash{}\+ICal\+::\$http\+Basic\+Auth = array()\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a272b598dfffeda92aabd6cb56e58e4cc}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$httpProtocolVersion@{\$httpProtocolVersion}}
+\index{\$httpProtocolVersion@{\$httpProtocolVersion}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$httpProtocolVersion}{\$httpProtocolVersion}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a272b598dfffeda92aabd6cb56e58e4cc} 
+ICal\textbackslash{}\+ICal\+::\$http\+Protocol\+Version\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_ae20f1b0c73598adcb4cc43637ad57c62}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$httpUserAgent@{\$httpUserAgent}}
+\index{\$httpUserAgent@{\$httpUserAgent}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$httpUserAgent}{\$httpUserAgent}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ae20f1b0c73598adcb4cc43637ad57c62} 
+ICal\textbackslash{}\+ICal\+::\$http\+User\+Agent\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_ade3c34478d8c192b16bdee40d11ed4fb}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$lastKeyword@{\$lastKeyword}}
+\index{\$lastKeyword@{\$lastKeyword}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$lastKeyword}{\$lastKeyword}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ade3c34478d8c192b16bdee40d11ed4fb} 
+ICal\textbackslash{}\+ICal\+::\$last\+Keyword\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a28441e8d66138feef92438e4364d8c93}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$shouldFilterByWindow@{\$shouldFilterByWindow}}
+\index{\$shouldFilterByWindow@{\$shouldFilterByWindow}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$shouldFilterByWindow}{\$shouldFilterByWindow}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a28441e8d66138feef92438e4364d8c93} 
+ICal\textbackslash{}\+ICal\+::\$should\+Filter\+By\+Window = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a03e389972b1d63446206868000992e26}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$skipRecurrence@{\$skipRecurrence}}
+\index{\$skipRecurrence@{\$skipRecurrence}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$skipRecurrence}{\$skipRecurrence}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a03e389972b1d63446206868000992e26} 
+ICal\textbackslash{}\+ICal\+::\$skip\+Recurrence = false}
+
+\Hypertarget{class_i_cal_1_1_i_cal_ae8199bdcb0350d06479df2386b340992}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$todoCount@{\$todoCount}}
+\index{\$todoCount@{\$todoCount}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$todoCount}{\$todoCount}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ae8199bdcb0350d06479df2386b340992} 
+ICal\textbackslash{}\+ICal\+::\$todo\+Count = 0}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a240a83129b8a417bca430d7c261235d0}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$validIanaTimeZones@{\$validIanaTimeZones}}
+\index{\$validIanaTimeZones@{\$validIanaTimeZones}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$validIanaTimeZones}{\$validIanaTimeZones}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a240a83129b8a417bca430d7c261235d0} 
+ICal\textbackslash{}\+ICal\+::\$valid\+Iana\+Time\+Zones = array()\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_aa4d3bbe570ab045b77e7762aca2e2eca}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$weekdays@{\$weekdays}}
+\index{\$weekdays@{\$weekdays}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$weekdays}{\$weekdays}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_aa4d3bbe570ab045b77e7762aca2e2eca} 
+ICal\textbackslash{}\+ICal\+::\$weekdays\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'MO'}\ =>\ \textcolor{stringliteral}{'monday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'TU'}\ =>\ \textcolor{stringliteral}{'tuesday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'WE'}\ =>\ \textcolor{stringliteral}{'wednesday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'TH'}\ =>\ \textcolor{stringliteral}{'thursday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'FR'}\ =>\ \textcolor{stringliteral}{'friday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SA'}\ =>\ \textcolor{stringliteral}{'saturday'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SU'}\ =>\ \textcolor{stringliteral}{'sunday'},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{class_i_cal_1_1_i_cal_a12a71d4fecf40cf3796ef8573e7d5bf3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$windowMaxTimestamp@{\$windowMaxTimestamp}}
+\index{\$windowMaxTimestamp@{\$windowMaxTimestamp}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$windowMaxTimestamp}{\$windowMaxTimestamp}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a12a71d4fecf40cf3796ef8573e7d5bf3} 
+ICal\textbackslash{}\+ICal\+::\$window\+Max\+Timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_adaa89ee7ef38c30646b68b491fac40fa}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$windowMinTimestamp@{\$windowMinTimestamp}}
+\index{\$windowMinTimestamp@{\$windowMinTimestamp}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$windowMinTimestamp}{\$windowMinTimestamp}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_adaa89ee7ef38c30646b68b491fac40fa} 
+ICal\textbackslash{}\+ICal\+::\$window\+Min\+Timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a16a636ba845ac6cd7e2fafa4dd90a06c}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!\$windowsTimeZonesMap@{\$windowsTimeZonesMap}}
+\index{\$windowsTimeZonesMap@{\$windowsTimeZonesMap}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{\$windowsTimeZonesMap}{\$windowsTimeZonesMap}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a16a636ba845ac6cd7e2fafa4dd90a06c} 
+ICal\textbackslash{}\+ICal\+::\$windows\+Time\+Zones\+Map\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a52e32e820c232c62fe7157091ef953d3}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!DATE\_TIME\_FORMAT@{DATE\_TIME\_FORMAT}}
+\index{DATE\_TIME\_FORMAT@{DATE\_TIME\_FORMAT}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{DATE\_TIME\_FORMAT}{DATE\_TIME\_FORMAT}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a52e32e820c232c62fe7157091ef953d3} 
+const ICal\textbackslash{}\+ICal\+::\+DATE\+\_\+\+TIME\+\_\+\+FORMAT = \textquotesingle{}Ymd\textbackslash{}\+THis\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a204101f5f901f63a1c273ef69d0a89b9}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!DATE\_TIME\_FORMAT\_PRETTY@{DATE\_TIME\_FORMAT\_PRETTY}}
+\index{DATE\_TIME\_FORMAT\_PRETTY@{DATE\_TIME\_FORMAT\_PRETTY}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{DATE\_TIME\_FORMAT\_PRETTY}{DATE\_TIME\_FORMAT\_PRETTY}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a204101f5f901f63a1c273ef69d0a89b9} 
+const ICal\textbackslash{}\+ICal\+::\+DATE\+\_\+\+TIME\+\_\+\+FORMAT\+\_\+\+PRETTY = \textquotesingle{}F Y H\+:i\+:s\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a6f5dd369c0442d0a13a8fcc91a0aa3c0}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!ICAL\_DATE\_TIME\_TEMPLATE@{ICAL\_DATE\_TIME\_TEMPLATE}}
+\index{ICAL\_DATE\_TIME\_TEMPLATE@{ICAL\_DATE\_TIME\_TEMPLATE}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{ICAL\_DATE\_TIME\_TEMPLATE}{ICAL\_DATE\_TIME\_TEMPLATE}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a6f5dd369c0442d0a13a8fcc91a0aa3c0} 
+const ICal\textbackslash{}\+ICal\+::\+ICAL\+\_\+\+DATE\+\_\+\+TIME\+\_\+\+TEMPLATE = \textquotesingle{}TZID=\%s\+:\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a0a1c910da22a0a4cd38d5861f6011e46}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!ISO\_8601\_WEEK\_START@{ISO\_8601\_WEEK\_START}}
+\index{ISO\_8601\_WEEK\_START@{ISO\_8601\_WEEK\_START}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{ISO\_8601\_WEEK\_START}{ISO\_8601\_WEEK\_START}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a0a1c910da22a0a4cd38d5861f6011e46} 
+const ICal\textbackslash{}\+ICal\+::\+ISO\+\_\+8601\+\_\+\+WEEK\+\_\+\+START = \textquotesingle{}MO\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a7334631c78256bdd2f91c8958a37df94}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!RECURRENCE\_EVENT@{RECURRENCE\_EVENT}}
+\index{RECURRENCE\_EVENT@{RECURRENCE\_EVENT}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{RECURRENCE\_EVENT}{RECURRENCE\_EVENT}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a7334631c78256bdd2f91c8958a37df94} 
+const ICal\textbackslash{}\+ICal\+::\+RECURRENCE\+\_\+\+EVENT = \textquotesingle{}Generated recurrence event\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a4e10ea2da42857999d9a7a40c33831f9}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!SECONDS\_IN\_A\_WEEK@{SECONDS\_IN\_A\_WEEK}}
+\index{SECONDS\_IN\_A\_WEEK@{SECONDS\_IN\_A\_WEEK}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{SECONDS\_IN\_A\_WEEK}{SECONDS\_IN\_A\_WEEK}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a4e10ea2da42857999d9a7a40c33831f9} 
+const ICal\textbackslash{}\+ICal\+::\+SECONDS\+\_\+\+IN\+\_\+\+A\+\_\+\+WEEK = 604800}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a9a8ea6d0c87ec74b031d48d09f25d075}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!TIME\_FORMAT@{TIME\_FORMAT}}
+\index{TIME\_FORMAT@{TIME\_FORMAT}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{TIME\_FORMAT}{TIME\_FORMAT}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a9a8ea6d0c87ec74b031d48d09f25d075} 
+const ICal\textbackslash{}\+ICal\+::\+TIME\+\_\+\+FORMAT = \textquotesingle{}His\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a9e127ba6a2796c218d12fcd795acb1d9}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!TIME\_ZONE\_UTC@{TIME\_ZONE\_UTC}}
+\index{TIME\_ZONE\_UTC@{TIME\_ZONE\_UTC}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{TIME\_ZONE\_UTC}{TIME\_ZONE\_UTC}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a9e127ba6a2796c218d12fcd795acb1d9} 
+const ICal\textbackslash{}\+ICal\+::\+TIME\+\_\+\+ZONE\+\_\+\+UTC = \textquotesingle{}UTC\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_a963c578d3fe1076b19201412c3154f84}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!UNIX\_FORMAT@{UNIX\_FORMAT}}
+\index{UNIX\_FORMAT@{UNIX\_FORMAT}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{UNIX\_FORMAT}{UNIX\_FORMAT}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_a963c578d3fe1076b19201412c3154f84} 
+const ICal\textbackslash{}\+ICal\+::\+UNIX\+\_\+\+FORMAT = \textquotesingle{}U\textquotesingle{}}
+
+\Hypertarget{class_i_cal_1_1_i_cal_ae008f222021d22a05036e47b3a51bcf1}\index{ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}!UNIX\_MIN\_YEAR@{UNIX\_MIN\_YEAR}}
+\index{UNIX\_MIN\_YEAR@{UNIX\_MIN\_YEAR}!ICal\textbackslash{}ICal@{ICal\textbackslash{}ICal}}
+\doxysubsubsection{\texorpdfstring{UNIX\_MIN\_YEAR}{UNIX\_MIN\_YEAR}}
+{\footnotesize\ttfamily \label{class_i_cal_1_1_i_cal_ae008f222021d22a05036e47b3a51bcf1} 
+const ICal\textbackslash{}\+ICal\+::\+UNIX\+\_\+\+MIN\+\_\+\+YEAR = 1970}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/vendor/\+R34\+ICS/vendor/johngrogg/ics-\/parser/src/\+ICal/\mbox{\hyperlink{_i_cal_8php}{ICal.\+php}}\end{DoxyCompactItemize}

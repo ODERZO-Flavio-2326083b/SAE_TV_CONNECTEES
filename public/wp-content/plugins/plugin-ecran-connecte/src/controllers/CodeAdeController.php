@@ -1,8 +1,27 @@
 <?php
-
+/**
+ * Fichier CodeAdeController.php
+ *
+ * Ce fichier contient la classe 'CodeAdeController', qui gère les codes ADE
+ * dans l'application, y compris les fonctionnalités pour la création, mise à jour,
+ * suppression et affichage des codes ADE.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/CodeAdeController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers;
 
+use Exception;
 use models\CodeAde;
+use models\Department;
 use views\CodeAdeView;
 
 /**
@@ -10,7 +29,14 @@ use views\CodeAdeView;
  *
  * Gère les codes ADE (création, mise à jour, suppression, affichage)
  *
- * @package Controllers
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/CodeAdeController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class CodeAdeController extends Controller
 {
@@ -54,11 +80,24 @@ class CodeAdeController extends Controller
      *
      * @return string Formulaire de création de Code
      *
+     * @throws  Exception
      * @version 1.0
      * @date    2024-09-16
      */
     public function insert() : string
     {
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = current_user_can('admin_perms');
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
+            $currentUser->ID
+        )->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
+
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
@@ -67,6 +106,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
@@ -77,10 +117,12 @@ class CodeAdeController extends Controller
                 $this->_model->setTitle($title);
                 $this->_model->setCode($code);
                 $this->_model->setType($type);
+                $this->_model->setDeptId($dept);
 
                 // Vérifie les doublons et insère le code
-                if (!$this->_checkDuplicateCode($this->_model)
-                    && $this->_model->insert()
+                if (!$this->_checkDuplicateCode(
+                    $this->_model
+                ) && $this->_model->insert()
                 ) {
                     $this->_view->successCreation();
                     $this->addFile($code);
@@ -92,7 +134,7 @@ class CodeAdeController extends Controller
                 $this->_view->errorCreation();
             }
         }
-        return $this->_view->createForm();
+        return $this->_view->createForm($allDepts, $isAdmin, $currDept);
     }
 
     /**
@@ -117,6 +159,18 @@ class CodeAdeController extends Controller
             return $this->_view->errorNobody();
         }
 
+        $currentUser = wp_get_current_user();
+        $deptModel = new Department();
+
+        $isAdmin = current_user_can('admin_perms');
+        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
+        // département, sinon on cherche le département
+        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
+            $currentUser->ID
+        )->getIdDepartment();
+
+        $allDepts = $deptModel->getAllDepts();
+
         $result = $codeAde = $this->_model->get($id);
 
         $submit = filter_input(INPUT_POST, 'submit');
@@ -126,6 +180,7 @@ class CodeAdeController extends Controller
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
             $type = filter_input(INPUT_POST, 'type');
+            $dept = filter_input(INPUT_POST, 'dept');
 
             // Validation des entrées
             if (is_string($title) && strlen($title) > 4 && strlen($title) < 30 
@@ -136,9 +191,10 @@ class CodeAdeController extends Controller
                 $codeAde->setTitle($title);
                 $codeAde->setCode($code);
                 $codeAde->setType($type);
+                $codeAde->setDeptId($dept);
 
                 // Vérifie les doublons et met à jour le code
-                if (!$this->_checkDuplicateCode($codeAde) && $codeAde->update()) {
+                if ($codeAde->update()) {
                     if ($result->getCode() != $code) {
                         $this->addFile($code);
                     }
@@ -151,8 +207,8 @@ class CodeAdeController extends Controller
             }
         }
         return $this->_view->displayModifyCode(
-            $codeAde->getTitle(),
-            $codeAde->getType(), $codeAde->getCode()
+            $codeAde->getTitle(), $codeAde->getType(), $codeAde->getCode(),
+            $allDepts, $isAdmin, $codeAde->getDeptId()
         );
     }
 

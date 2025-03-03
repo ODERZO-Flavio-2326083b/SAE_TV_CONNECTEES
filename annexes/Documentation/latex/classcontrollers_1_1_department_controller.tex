@@ -1,0 +1,227 @@
+\doxysection{Référence de la classe controllers\textbackslash{}Department\+Controller}
+\hypertarget{classcontrollers_1_1_department_controller}{}\label{classcontrollers_1_1_department_controller}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}Department\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classcontrollers_1_1_department_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de controllers\textbackslash{}Department\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classcontrollers_1_1_department_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_ad1fa687b5804eadc74c59ee2d8924752}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_ab754d4a6e52cc0b8690b78f619a9ffd7}{insert}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_ad84e1bf0bbc1cb101fbb6808965dddad}{modify}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_a7e1d651d794c58415f54cd44eab3717a}{display\+Dept\+Table}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_a8ec7e5d4e6c26b97aace91db46813a9c}{delete\+Depts}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_a2ba0a7afcca62606c121d21a0dd98847}{check\+Duplicate}} (\mbox{\hyperlink{classmodels_1_1_department}{Department}} \$department)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classcontrollers_1_1_controller}{controllers\textbackslash{}\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}{get\+Part\+Of\+Url}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}{add\+Log\+Event}} (\$event)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}{get\+Url}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}{get\+File\+Path}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}{add\+File}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_ad702e9778911f3429edeacb9725663e0}{\$\+\_\+model}}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_department_controller_a4a1bcf1b718f5c3fed02d04e5d814378}{\$\+\_\+view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrollers_1_1_department_controller_ad1fa687b5804eadc74c59ee2d8924752}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_ad1fa687b5804eadc74c59ee2d8924752} 
+controllers\textbackslash{}\+Department\+Controller\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe Department\+Controller.
+
+Initialise le modèle et la vue associés au contrôleur des départements.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1_department_controller_a2ba0a7afcca62606c121d21a0dd98847}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!checkDuplicate@{checkDuplicate}}
+\index{checkDuplicate@{checkDuplicate}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{checkDuplicate()}{checkDuplicate()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_a2ba0a7afcca62606c121d21a0dd98847} 
+controllers\textbackslash{}\+Department\+Controller\+::check\+Duplicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmodels_1_1_department}{Department}}}]{\$department}{}\end{DoxyParamCaption})}
+
+Vérifie la duplication d\textquotesingle{}un département dans la base de données.
+
+Compare le nom d\textquotesingle{}un département donné avec ceux déjà existants dans la base de données pour éviter les doublons.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+Department & {\em \$department} & Objet représentant le département à vérifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne \textquotesingle{}true\textquotesingle{} si un doublon est trouvé, sinon \textquotesingle{}false\textquotesingle{}.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_department_controller_a2ba0a7afcca62606c121d21a0dd98847_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_department_controller_a2ba0a7afcca62606c121d21a0dd98847_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_department_controller_a8ec7e5d4e6c26b97aace91db46813a9c}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!deleteDepts@{deleteDepts}}
+\index{deleteDepts@{deleteDepts}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{deleteDepts()}{deleteDepts()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_a8ec7e5d4e6c26b97aace91db46813a9c} 
+controllers\textbackslash{}\+Department\+Controller\+::delete\+Depts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Supprime les départements sélectionnés via une requête POST.
+
+Vérifie si des départements ont été sélectionnés via des cases à cocher, puis les supprime de la base de données. Rafraîchit ensuite la page.
+
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1_department_controller_a7e1d651d794c58415f54cd44eab3717a}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!displayDeptTable@{displayDeptTable}}
+\index{displayDeptTable@{displayDeptTable}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{displayDeptTable()}{displayDeptTable()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_a7e1d651d794c58415f54cd44eab3717a} 
+controllers\textbackslash{}\+Department\+Controller\+::display\+Dept\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Affiche la liste de tous les départements sous forme de tableau.
+
+Récupère les données de tous les départements à partir du modèle et transmet ces informations à la vue pour affichage.
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le tableau affiché des départements.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+\Hypertarget{classcontrollers_1_1_department_controller_ab754d4a6e52cc0b8690b78f619a9ffd7}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!insert@{insert}}
+\index{insert@{insert}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_ab754d4a6e52cc0b8690b78f619a9ffd7} 
+controllers\textbackslash{}\+Department\+Controller\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Insère un nouveau département dans la base de données.
+
+Cette méthode traite les données POST issues du formulaire de création de département, filtre les entrées, vérifie les doublons et insère un nouveau département si aucune duplication n\textquotesingle{}est détectée. Affiche également les messages de succès ou d\textquotesingle{}erreur via la vue.
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le formulaire de création avec les résultats du traitement.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_department_controller_ab754d4a6e52cc0b8690b78f619a9ffd7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_department_controller_ad84e1bf0bbc1cb101fbb6808965dddad}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!modify@{modify}}
+\index{modify@{modify}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{modify()}{modify()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_ad84e1bf0bbc1cb101fbb6808965dddad} 
+controllers\textbackslash{}\+Department\+Controller\+::modify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Modifie un département existant dans la base de données.
+
+Affiche un formulaire de modification basé sur l\textquotesingle{}identifiant fourni via GET, traite les données POST soumises pour changer le nom du département et vérifie les doublons avant d\textquotesingle{}enregistrer les modifications.
+
+\begin{DoxyReturn}{Renvoie}
+string Retourne le formulaire de modification avec les résultats du traitement.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_department_controller_ad84e1bf0bbc1cb101fbb6808965dddad_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classcontrollers_1_1_department_controller_ad702e9778911f3429edeacb9725663e0}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!\$\_model@{\$\_model}}
+\index{\$\_model@{\$\_model}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{\$\_model}{\$\_model}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_ad702e9778911f3429edeacb9725663e0} 
+controllers\textbackslash{}\+Department\+Controller\+::\$\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcontrollers_1_1_department_controller_a4a1bcf1b718f5c3fed02d04e5d814378}\index{controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}!\$\_view@{\$\_view}}
+\index{\$\_view@{\$\_view}!controllers\textbackslash{}DepartmentController@{controllers\textbackslash{}DepartmentController}}
+\doxysubsubsection{\texorpdfstring{\$\_view}{\$\_view}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_department_controller_a4a1bcf1b718f5c3fed02d04e5d814378} 
+controllers\textbackslash{}\+Department\+Controller\+::\$\+\_\+view\hspace{0.3cm}{\ttfamily [private]}}
+
+Vue département 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_department_controller_8php}{Department\+Controller.\+php}}\end{DoxyCompactItemize}

@@ -1,0 +1,234 @@
+\doxysection{Référence de la classe controllers\textbackslash{}Controller}
+\hypertarget{classcontrollers_1_1_controller}{}\label{classcontrollers_1_1_controller}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+
+
+Graphe d\textquotesingle{}héritage de controllers\textbackslash{}Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}{get\+Part\+Of\+Url}} ()
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}{add\+Log\+Event}} (\$event)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}{get\+Url}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}{get\+File\+Path}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}{add\+File}} (\$code)
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!addFile@{addFile}}
+\index{addFile@{addFile}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{addFile()}{addFile()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47} 
+controllers\textbackslash{}\+Controller\+::add\+File (\begin{DoxyParamCaption}\item[{}]{\$code}{}\end{DoxyParamCaption})}
+
+Télécharge et enregistre un fichier i\+Calendar à partir d\textquotesingle{}une URL.
+
+Cette méthode construit l\textquotesingle{}URL du fichier i\+Calendar en utilisant le code fourni, puis tente de télécharger le fichier. Si le téléchargement est réussi, le contenu est enregistré localement dans un fichier avec le nom correspondant. En cas d\textquotesingle{}échec à ouvrir le fichier ou à télécharger le contenu, une exception est levée et enregistrée dans le log.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$code} & Le code des ressources utilisé pour générer l\textquotesingle{}URL du fichier i\+Calendar à télécharger.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si l\textquotesingle{}ouverture du fichier échoue lors du téléchargement ou de l\textquotesingle{}enregistrement.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_aab8efe1998e8d66bb2fdf7213b6efb47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!addLogEvent@{addLogEvent}}
+\index{addLogEvent@{addLogEvent}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{addLogEvent()}{addLogEvent()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf} 
+controllers\textbackslash{}\+Controller\+::add\+Log\+Event (\begin{DoxyParamCaption}\item[{}]{\$event}{}\end{DoxyParamCaption})}
+
+Ajoute un événement au fichier de log.
+
+Cette méthode enregistre un événement dans un fichier de log, en préfixant le message avec la date et l\textquotesingle{}heure actuelles. Le message est écrit à la fin du fichier spécifié, permettant de conserver un historique des événements enregistrés.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$event} & Le message de l\textquotesingle{}événement à enregistrer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_ad98f831e4ce2e24acb14092501c0fccf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!getFilePath@{getFilePath}}
+\index{getFilePath@{getFilePath}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{getFilePath()}{getFilePath()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061} 
+controllers\textbackslash{}\+Controller\+::get\+File\+Path (\begin{DoxyParamCaption}\item[{}]{\$code}{}\end{DoxyParamCaption})}
+
+Récupère le chemin d\textquotesingle{}accès d\textquotesingle{}un fichier i\+Calendar local.
+
+Cette méthode vérifie l\textquotesingle{}existence d\textquotesingle{}un fichier i\+Calendar correspondant au code donné, dans plusieurs répertoires. Si un fichier valide est trouvé, son chemin est retourné. Sinon, un nouveau fichier est téléchargé et son chemin est également retourné.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$code} & Le code des ressources utilisé pour identifier le fichier i\+Calendar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le chemin du fichier i\+Calendar, qu\textquotesingle{}il soit localement existant ou nouvellement téléchargé.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_ae91490a4c6439b92bf61dcf79f9be061_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!getPartOfUrl@{getPartOfUrl}}
+\index{getPartOfUrl@{getPartOfUrl}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{getPartOfUrl()}{getPartOfUrl()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5} 
+controllers\textbackslash{}\+Controller\+::get\+Part\+Of\+Url (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère les segments de l\textquotesingle{}URL de la requête actuelle.
+
+Cette méthode extrait l\textquotesingle{}URL de la requête en cours, la divise en segments basés sur le caractère \textquotesingle{}/\textquotesingle{} et nettoie les segments vides ou non valides. Elle retourne un tableau contenant les segments pertinents de l\textquotesingle{}URL.
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau des segments nettoyés de l\textquotesingle{}URL.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_a9d14d0d2b90df675a9d9c7b7833305a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!getUrl@{getUrl}}
+\index{getUrl@{getUrl}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{getUrl()}{getUrl()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8} 
+controllers\textbackslash{}\+Controller\+::get\+Url (\begin{DoxyParamCaption}\item[{}]{\$code}{}\end{DoxyParamCaption})}
+
+Génère une URL pour accéder à un calendrier i\+Calendar.
+
+Cette méthode crée une URL basée sur le code fourni, pour accéder à un calendrier qui affiche les événements pour une période de 7 jours à partir d\textquotesingle{}aujourd\textquotesingle{}hui.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$code} & Le code des ressources à inclure dans l\textquotesingle{}URL.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string L\textquotesingle{}URL générée pour le calendrier i\+Calendar.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_controller_a5cfa956a8c87eb5fc071ff0b3baf34a8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}\index{controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}!isRealDate@{isRealDate}}
+\index{isRealDate@{isRealDate}!controllers\textbackslash{}Controller@{controllers\textbackslash{}Controller}}
+\doxysubsubsection{\texorpdfstring{isRealDate()}{isRealDate()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44} 
+controllers\textbackslash{}\+Controller\+::is\+Real\+Date (\begin{DoxyParamCaption}\item[{}]{\$date}{}\end{DoxyParamCaption})}
+
+Vérifie si une chaîne de caractères représente une date valide.
+
+Cette méthode tente de convertir la chaîne de caractères donnée en timestamp. Si la conversion échoue, elle retourne faux. Sinon, elle décompose la date en année, mois et jour, et utilise la fonction \textquotesingle{}checkdate\textquotesingle{} pour valider la date.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$date} & La chaîne de caractères représentant la date à vérifier au format \textquotesingle{}YYYY-\/\+MM-\/\+DD\textquotesingle{}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne vrai si la date est valide, faux sinon.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44_icgraph}
+\end{center}
+\end{figure}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/controllers/\mbox{\hyperlink{_controller_8php}{Controller.\+php}}\end{DoxyCompactItemize}

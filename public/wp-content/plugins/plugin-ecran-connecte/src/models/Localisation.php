@@ -1,49 +1,110 @@
 <?php
-
+/**
+ * Fichier Location.php
+ *
+ * Ce fichier contient la classe 'Location', qui représente une localisation
+ * géographique associée à un utilisateur dans l'application. Cette classe
+ * permet de gérer les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer)
+ * sur les localisations dans la base de données. Chaque localisation est
+ * liée à un utilisateur et contient des informations géographiques telles
+ * que la latitude, la longitude et l'adresse.
+ *
+ * PHP version 8.3
+ *
+ * @category Entity
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/Location
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace models;
 
 use models\Entity;
 use models\Model;
 use PDO;
 
-class Localisation extends Model implements \JsonSerializable, Entity {
+/**
+ * Classe Location
+ *
+ * Représente une localisation géographique d'un utilisateur. Permet de gérer
+ * les opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur les
+ * localisations dans la base de données. Cette classe contient des informations
+ * telles que la latitude, la longitude et l'adresse de la localisation d'un
+ * utilisateur.
+ *
+ * @category Entity
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/Location Documentation de la classe
+ * @since    2025-01-07
+ */
+class Localisation extends Model implements \JsonSerializable, Entity
+{
 
     /**
-     * @var int
-     */
-    private $localisation_id;
-    /**
-     * @var float
-     */
-    private $latitude;
-    /**
-     * @var float
-     */
-    private $longitude;
-    /**
-     * @var string
-     */
-    private $adresse;
-    /**
-     * @var int
-     */
-    private $user_id;
-
-    /**
-     * Insère une nouvelle localisation dans la base de données avec les valeurs actuelles des attributs.
+     * Identifiant unique de la localisation.
      *
-     * Cette méthode insère une nouvelle entrée de localisation dans la base de données à partir des
-     * attributs de l'objet actuel. Elle renvoie l'ID de la localisation insérée.
+     * @var int L'identifiant de la localisation,
+     * utilisé pour référencer l'entité de localisation.
+     */
+    private $_localisation_id;
+
+    /**
+     * Latitude de la localisation.
+     *
+     * @var float La latitude géographique de la localisation.
+     */
+    private $_latitude;
+
+    /**
+     * Longitude de la localisation.
+     *
+     * @var float La longitude géographique de la localisation.
+     */
+    private $_longitude;
+
+    /**
+     * Adresse de la localisation.
+     *
+     * @var string L'adresse détaillée de la localisation,
+     * généralement sous forme de chaîne de texte.
+     */
+    private $_adresse;
+
+    /**
+     * Identifiant de l'utilisateur associé à la localisation.
+     *
+     * @var int L'identifiant de
+     * l'utilisateur auquel cette localisation est associée.
+     */
+    private $_user_id;
+
+
+    /**
+     * Insère une nouvelle localisation dans la base de données avec les valeurs
+     * actuelles des attributs.
+     *
+     * Cette méthode insère une nouvelle entrée de localisation dans la base de
+     * données à partir des attributs de l'objet actuel. Elle renvoie l'ID de la
+     * localisation insérée.
      *
      * @return string L'ID de la localisation récemment insérée.
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function insert(): string {
+    public function insert(): string
+    {
         $database = $this->getDatabase();
-        $request = $database->prepare('INSERT INTO ecran_localisation (latitude, longitude, user_id) 
-                                       VALUES (:latitude, :longitude, :user_id)');
+        $request = $database->prepare(
+            'INSERT INTO ecran_localisation (latitude, longitude, user_id) 
+                                       VALUES (:latitude, :longitude, :user_id)'
+        );
         $request->bindValue(':latitude', $this->getLatitude());
         $request->bindValue(':longitude', $this->getLongitude());
         $request->bindValue(':user_id', $this->getUserId());
@@ -52,23 +113,30 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     }
 
     /**
-     * Met à jour une localisation existante dans la base de données en fonction des attributs actuels.
+     * Met à jour une localisation existante dans la base de données en fonction des
+     * attributs actuels.
      *
-     * Cette méthode permet de mettre à jour une localisation déjà présente dans la base de données
-     * avec les nouvelles valeurs de latitude, longitude, adresse et identifiant de l'utilisateur.
+     * Cette méthode permet de mettre à jour une localisation déjà présente dans la
+     * base de données avec les nouvelles valeurs de latitude, longitude, adresse et
+     * identifiant de l'utilisateur.
      * Elle renvoie le nombre de lignes affectées par la mise à jour.
      *
      * @return int Nombre de lignes mises à jour dans la table.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function update(): int {
+    public function update(): int
+    {
         $database = $this->getDatabase();
-        $request = $database->prepare('UPDATE ecran_localisation 
-                                       SET latitude = :latitude, longitude = :longitude, adresse = :adresse, user_id = :user_id 
-                                       WHERE localisation_id = :id');
+        $request = $database->prepare(
+            'UPDATE ecran_localisation 
+             SET latitude = :latitude, 
+                 longitude = :longitude, 
+                 adresse = :adresse, 
+                 user_id = :user_id 
+             WHERE localisation_id = :id'
+        );
         $request->bindValue(':latitude', $this->getLatitude());
         $request->bindValue(':longitude', $this->getLongitude());
         $request->bindValue(':adresse', $this->getAdresse());
@@ -81,17 +149,21 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     /**
      * Supprime une localisation de la base de données en fonction de son ID.
      *
-     * Cette méthode supprime la localisation correspondant à l'ID fourni dans la base de données.
+     * Cette méthode supprime la localisation correspondant à l'ID fourni dans la
+     * base de données.
      * Elle renvoie le nombre de lignes supprimées.
      *
      * @return int Nombre de lignes supprimées dans la table.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function delete(): int {
-        $request = $this->getDatabase()->prepare('DELETE FROM ecran_localisation WHERE localisation_id = :id');
+    public function delete(): int
+    {
+        $request = $this->getDatabase()->prepare(
+            'DELETE FROM ecran_localisation 
+             WHERE localisation_id = :id'
+        );
         $request->bindValue(':id', $this->getLocalisationId(), PDO::PARAM_INT);
         $request->execute();
         return $request->rowCount();
@@ -100,20 +172,24 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     /**
      * Récupère une localisation en fonction de son identifiant.
      *
-     * Cette méthode récupère une localisation spécifique en fonction de l'ID fourni et renvoie un objet
-     * `Localisation` avec les données correspondantes. Si aucune localisation n'est trouvée, la méthode
-     * retourne `false`.
+     * Cette méthode récupère une localisation spécifique en fonction de l'ID fourni
+     * et renvoie un objet 'Localisation' avec les données correspondantes.
+     * Si aucune localisation n'est trouvée, la méthode retourne 'false'.
      *
      * @param int $id Identifiant de la localisation à récupérer.
+     *
      * @return false|Localisation Objet Localisation si trouvé, sinon false.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function get($id) {
-        $request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation WHERE localisation_id = :id');
+    public function get($id)
+    {
+        $request = $this->getDatabase()->prepare(
+            'SELECT localisation_id, latitude, longitude, adresse, user_id 
+             FROM ecran_localisation 
+             WHERE localisation_id = :id'
+        );
         $request->bindValue(':id', $id, PDO::PARAM_INT);
         $request->execute();
         if ($request->rowCount() > 0) {
@@ -125,21 +201,26 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     /**
      * Récupère une liste paginée de localisations à partir de la base de données.
      *
-     * Cette méthode récupère une liste de localisations en fonction des paramètres de pagination
-     * (début et nombre d'éléments). Elle retourne une liste d'objets `Localisation`.
+     * Cette méthode récupère une liste de localisations en fonction des paramètres
+     * de pagination (début et nombre d'éléments).
+     * Elle retourne une liste d'objets 'Localisation'.
      *
-     * @param int $begin Début de la liste.
+     * @param int $begin         Début de la
+     *                           liste.
      * @param int $numberElement Nombre d'éléments à récupérer.
+     *
      * @return array Liste d'objets Localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getList(int $begin = 0, int $numberElement = 25): array {
-        $request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation 
-                                                  LIMIT :begin, :numberElement');
+    public function getList(int $begin = 0, int $numberElement = 25): array
+    {
+        $request = $this->getDatabase()->prepare(
+            'SELECT localisation_id, latitude, longitude, adresse, user_id 
+             FROM ecran_localisation 
+                 LIMIT :begin, :numberElement'
+        );
         $request->bindValue(':begin', $begin, PDO::PARAM_INT);
         $request->bindValue(':numberElement', $numberElement, PDO::PARAM_INT);
         $request->execute();
@@ -150,19 +231,21 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     }
 
     /**
-     * Crée un objet Localisation à partir des données récupérées de la base de données.
+     * Crée un objet Localisation à partir des données récupérées de la base de
+     * données.
      *
-     * Cette méthode prend les résultats d'une requête SQL et crée un objet `Localisation`
-     * avec les données associées à chaque attribut de la classe.
+     * Cette méthode prend les résultats d'une requête SQL et crée un objet
+     * 'Localisation' avec les données associées à chaque attribut de la classe.
      *
      * @param mixed $data Données de la base de données.
+     *
      * @return Localisation L'objet Localisation créé.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setEntity($data): Localisation {
+    public function setEntity($data): Localisation
+    {
         $entity = new Localisation();
         $entity->setLocalisationId($data['localisation_id']);
         $entity->setLatitude($data['latitude']);
@@ -175,16 +258,18 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     /**
      * Crée une liste d'objets Localisation à partir des résultats d'une requête SQL.
      *
-     * Cette méthode transforme une liste de données de la base de données en une liste d'objets `Localisation`.
+     * Cette méthode transforme une liste de données de la base de données en une
+     * liste d'objets 'Localisation'.
      *
      * @param mixed $dataList Liste des données de la base de données.
+     *
      * @return array Liste d'objets Localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setEntityList($dataList) : array {
+    public function setEntityList($dataList) : array
+    {
         $listEntity = [];
         foreach ($dataList as $data) {
             $listEntity[] = $this->setEntity($data);
@@ -195,19 +280,26 @@ class Localisation extends Model implements \JsonSerializable, Entity {
     /**
      * Récupère une localisation basée sur l'identifiant de l'utilisateur.
      *
-     * Cette méthode permet de récupérer une localisation spécifique en fonction de l'identifiant d'un utilisateur.
-     * Elle est utilisée pour obtenir la localisation d'un utilisateur spécifique pour des fonctionnalités comme la météo.
+     * Cette méthode permet de récupérer une localisation spécifique en fonction de
+     * l'identifiant d'un utilisateur.
+     * Elle est utilisée pour obtenir la localisation d'un utilisateur spécifique
+     * pour des fonctionnalités comme la météo.
      *
      * @param int $userId Identifiant de l'utilisateur.
-     * @return false|Localisation Retourne l'objet Localisation si trouvé, sinon false.
      *
+     * @return false|Localisation Retourne l'objet Localisation si trouvé, sinon
+     * false.
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getLocFromUserId($userId) : false|Localisation {
-        $request = $this->getDatabase()->prepare('SELECT localisation_id, latitude, longitude, adresse, user_id 
-                                                  FROM ecran_localisation WHERE user_id = :id');
+    public function getLocFromUserId($userId) : false|Localisation
+    {
+        $request = $this->getDatabase()->prepare(
+            'SELECT localisation_id, latitude, longitude, adresse, user_id 
+             FROM ecran_localisation 
+             WHERE user_id = :id'
+        );
         $request->bindValue(':id', $userId, PDO::PARAM_INT);
         $request->execute();
         if ($request->rowCount() > 0) {
@@ -221,25 +313,27 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return int L'identifiant de la localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getLocalisationId(): int {
-        return $this->localisation_id;
+    public function getLocalisationId(): int
+    {
+        return $this->_localisation_id;
     }
 
     /**
      * Setter pour l'identifiant de la localisation.
      *
-     * @param int $localisation_id L'identifiant de la localisation.
+     * @param int $_localisation_id L'identifiant de la localisation.
      *
+     * @return void
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setLocalisationId( int $localisation_id ): void {
-        $this->localisation_id = $localisation_id;
+    public function setLocalisationId( int $_localisation_id ): void
+    {
+        $this->_localisation_id = $_localisation_id;
     }
 
     /**
@@ -247,25 +341,27 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return float La latitude de la localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getLatitude(): float {
-        return $this->latitude;
+    public function getLatitude(): float
+    {
+        return $this->_latitude;
     }
 
     /**
      * Setter pour la latitude de la localisation.
      *
-     * @param float $latitude La latitude de la localisation.
+     * @param float $_latitude La latitude de la localisation.
      *
+     * @return void
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setLatitude( float $latitude ): void {
-        $this->latitude = $latitude;
+    public function setLatitude( float $_latitude ): void
+    {
+        $this->_latitude = $_latitude;
     }
 
     /**
@@ -273,25 +369,27 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return float La longitude de la localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getLongitude(): float {
-        return $this->longitude;
+    public function getLongitude(): float
+    {
+        return $this->_longitude;
     }
 
     /**
      * Setter pour la longitude de la localisation.
      *
-     * @param float $longitude La longitude de la localisation.
+     * @param float $_longitude La longitude de la localisation.
      *
+     * @return void
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setLongitude( float $longitude ): void {
-        $this->longitude = $longitude;
+    public function setLongitude( float $_longitude ): void
+    {
+        $this->_longitude = $_longitude;
     }
 
     /**
@@ -299,25 +397,27 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return string L'adresse de la localisation.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getAdresse(): string {
-        return $this->adresse;
+    public function getAdresse(): string
+    {
+        return $this->_adresse;
     }
 
     /**
      * Setter pour l'adresse de la localisation.
      *
-     * @param string $adresse L'adresse de la localisation.
+     * @param string $_adresse L'adresse de la localisation.
      *
+     * @return void
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setAdresse( string $adresse ): void {
-        $this->adresse = $adresse;
+    public function setAdresse( string $_adresse ): void
+    {
+        $this->_adresse = $_adresse;
     }
 
     /**
@@ -329,44 +429,47 @@ class Localisation extends Model implements \JsonSerializable, Entity {
      *
      * @return int L'ID de l'utilisateur.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function getUserId(): int {
-        return $this->user_id;
+    public function getUserId(): int
+    {
+        return $this->_user_id;
     }
 
     /**
      * Définit l'ID de l'utilisateur pour la localisation.
      *
-     * Cette méthode permet d'assigner un identifiant d'utilisateur à la localisation.
+     * Cette méthode permet d'assigner un identifiant d'utilisateur à la
+     * localisation.
      * Elle est utilisée pour lier la localisation à un utilisateur spécifique.
      *
-     * @param int $user_id L'ID de l'utilisateur à associer à la localisation.
+     * @param int $_user_id L'ID de l'utilisateur à associer à la localisation.
      *
+     * @return void
      *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function setUserId( int $user_id ): void {
-        $this->user_id = $user_id;
+    public function setUserId( int $_user_id ): void
+    {
+        $this->_user_id = $_user_id;
     }
 
     /**
      * Sérialise l'objet Localisation en tableau pour le format JSON.
      *
-     * Cette méthode permet de sérialiser l'objet Localisation en un tableau associatif
-     * afin de le rendre compatible avec le format JSON. Elle est utilisée lorsque
-     * l'objet doit être converti en JSON pour une API ou une réponse HTTP.
+     * Cette méthode permet de sérialiser l'objet Localisation en un tableau
+     * associatif afin de le rendre compatible avec le format JSON. Elle est utilisée
+     * lorsque l'objet doit être converti en JSON pour une API ou une réponse HTTP.
      *
      * @return array Tableau associatif des attributs de l'objet.
      *
-     *
      * @version 1.0
-     * @date 07-01-2025
+     * @date    07-01-2025
      */
-    public function jsonSerialize(): array {
+    public function jsonSerialize(): array
+    {
         return get_object_vars($this);
     }
 }

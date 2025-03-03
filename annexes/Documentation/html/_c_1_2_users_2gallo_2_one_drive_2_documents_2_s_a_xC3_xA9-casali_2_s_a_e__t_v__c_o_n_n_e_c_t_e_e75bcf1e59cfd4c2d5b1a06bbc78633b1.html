@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TV Connecté: C:/Users/gallo/OneDrive/Documents/SAé-casali/SAE_TV_CONNECTEES/public/wp-content/plugins/plugin-ecran-connecte/src/models/Localisation.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TV Connecté
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_c_1_2_users_2gallo_2_one_drive_2_documents_2_s_a_xC3_xA9-casali_2_s_a_e__t_v__c_o_n_n_e_c_t_e_e75bcf1e59cfd4c2d5b1a06bbc78633b1.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">C:/Users/gallo/OneDrive/Documents/SAé-casali/SAE_TV_CONNECTEES/public/wp-content/plugins/plugin-ecran-connecte/src/models/Localisation.php</div></div>
+</div><!--header-->
+<div class="contents">
+<p>Insère une nouvelle localisation dans la base de données avec les valeurs actuelles des attributs.</p>
+<p>Cette méthode insère une nouvelle entrée de localisation dans la base de données à partir des attributs de l'objet actuel. Elle renvoie l'ID de la localisation insérée.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>string L'ID de la localisation récemment insérée.</dd></dl>
+<p>// Insérer une nouvelle localisation : $localisation = new Localisation(); $localisation-&gt;insert();</p>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>07-01-2025</dd></dl>
+<div class="fragment"><div class="line">&lt;?php</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemodels.html">models</a>;</div>
+<div class="line"> </div>
+<div class="line">use <a id="_a0" name="_a0"></a><a class="code hl_interface" href="interfacemodels_1_1_entity.html">models\Entity</a>;</div>
+<div class="line">use <a id="_a1" name="_a1"></a><a class="code hl_class" href="classmodels_1_1_model.html">models\Model</a>;</div>
+<div class="line">use PDO;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>Localisation <span class="keyword">extends</span> Model implements \JsonSerializable, Entity {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> $localisation_id;</div>
+<div class="line">    <span class="keyword">private</span> $latitude;</div>
+<div class="line">    <span class="keyword">private</span> $longitude;</div>
+<div class="line">    <span class="keyword">private</span> $adresse;</div>
+<div class="line">    <span class="keyword">private</span> $user_id;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> insert(): string {</div>
+<div class="line">        $database = $this-&gt;getDatabase();</div>
+<div class="line">        $request = $database-&gt;prepare(<span class="stringliteral">&#39;INSERT INTO ecran_localisation (latitude, longitude, user_id) </span></div>
+<div class="line"><span class="stringliteral">                                       VALUES (:latitude, :longitude, :user_id)&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:latitude&#39;</span>, $this-&gt;getLatitude());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:longitude&#39;</span>, $this-&gt;getLongitude());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:user_id&#39;</span>, $this-&gt;getUserId());</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">return</span> $database-&gt;lastInsertId();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> update(): int {</div>
+<div class="line">        $database = $this-&gt;getDatabase();</div>
+<div class="line">        $request = $database-&gt;prepare(<span class="stringliteral">&#39;UPDATE ecran_localisation </span></div>
+<div class="line"><span class="stringliteral">                                       SET latitude = :latitude, longitude = :longitude, adresse = :adresse, user_id = :user_id </span></div>
+<div class="line"><span class="stringliteral">                                       WHERE localisation_id = :id&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:latitude&#39;</span>, $this-&gt;getLatitude());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:longitude&#39;</span>, $this-&gt;getLongitude());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:adresse&#39;</span>, $this-&gt;getAdresse());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:user_id&#39;</span>, $this-&gt;getUserId());</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:id&#39;</span>, $this-&gt;getLocalisationId());</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">return</span> $request-&gt;rowCount();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> <span class="keyword">delete</span>(): <span class="keywordtype">int</span> {</div>
+<div class="line">        $request = $this-&gt;getDatabase()-&gt;prepare(<span class="stringliteral">&#39;DELETE FROM ecran_localisation WHERE localisation_id = :id&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:id&#39;</span>, $this-&gt;getLocalisationId(), PDO::PARAM_INT);</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">return</span> $request-&gt;rowCount();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> <span class="keyword">get</span>($id) {</div>
+<div class="line">        $request = $this-&gt;getDatabase()-&gt;prepare(<span class="stringliteral">&#39;SELECT localisation_id, latitude, longitude, adresse, user_id </span></div>
+<div class="line"><span class="stringliteral">                                                  FROM ecran_localisation WHERE localisation_id = :id&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:id&#39;</span>, $id, PDO::PARAM_INT);</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">if</span> ($request-&gt;rowCount() &gt; 0) {</div>
+<div class="line">            <span class="keywordflow">return</span> $this-&gt;setEntity($request-&gt;fetch(PDO::FETCH_ASSOC));</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getList(<span class="keywordtype">int</span> $begin = 0, <span class="keywordtype">int</span> $numberElement = 25): array {</div>
+<div class="line">        $request = $this-&gt;getDatabase()-&gt;prepare(<span class="stringliteral">&#39;SELECT localisation_id, latitude, longitude, adresse, user_id </span></div>
+<div class="line"><span class="stringliteral">                                                  FROM ecran_localisation </span></div>
+<div class="line"><span class="stringliteral">                                                  LIMIT :begin, :numberElement&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:begin&#39;</span>, $begin, PDO::PARAM_INT);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:numberElement&#39;</span>, $numberElement, PDO::PARAM_INT);</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">if</span> ($request-&gt;rowCount() &gt; 0) {</div>
+<div class="line">            return $this-&gt;setEntityList($request-&gt;fetchAll());</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">return</span> [];</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setEntity($data): Localisation {</div>
+<div class="line">        $entity = new Localisation();</div>
+<div class="line">        $entity-&gt;setLocalisationId($data[<span class="stringliteral">&#39;localisation_id&#39;</span>]);</div>
+<div class="line">        $entity-&gt;setLatitude($data[<span class="stringliteral">&#39;latitude&#39;</span>]);</div>
+<div class="line">        $entity-&gt;setLongitude($data[<span class="stringliteral">&#39;longitude&#39;</span>]);</div>
+<div class="line">        $entity-&gt;setAdresse($data[<span class="stringliteral">&#39;adresse&#39;</span>]);</div>
+<div class="line">        $entity-&gt;setUserId($data[<span class="stringliteral">&#39;user_id&#39;</span>]);</div>
+<div class="line">        <span class="keywordflow">return</span> $entity;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setEntityList($dataList) : array {</div>
+<div class="line">        $listEntity = [];</div>
+<div class="line">        <span class="keywordflow">foreach</span> ($dataList as $data) {</div>
+<div class="line">            $listEntity[] = $this-&gt;setEntity($data);</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">return</span> $listEntity;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getLocFromUserId($userId) : false|Localisation {</div>
+<div class="line">        $request = $this-&gt;getDatabase()-&gt;prepare(<span class="stringliteral">&#39;SELECT localisation_id, latitude, longitude, adresse, user_id </span></div>
+<div class="line"><span class="stringliteral">                                                  FROM ecran_localisation WHERE user_id = :id&#39;</span>);</div>
+<div class="line">        $request-&gt;bindValue(<span class="stringliteral">&#39;:id&#39;</span>, $userId, PDO::PARAM_INT);</div>
+<div class="line">        $request-&gt;execute();</div>
+<div class="line">        <span class="keywordflow">if</span> ($request-&gt;rowCount() &gt; 0) {</div>
+<div class="line">            return $this-&gt;setEntity($request-&gt;fetch(PDO::FETCH_ASSOC));</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getLocalisationId(): int {</div>
+<div class="line">        return $this-&gt;localisation_id;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setLocalisationId( <span class="keywordtype">int</span> $localisation_id ): void {</div>
+<div class="line">        $this-&gt;localisation_id = $localisation_id;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getLatitude(): float {</div>
+<div class="line">        return $this-&gt;latitude;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setLatitude( <span class="keywordtype">float</span> $latitude ): void {</div>
+<div class="line">        $this-&gt;latitude = $latitude;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getLongitude(): float {</div>
+<div class="line">        return $this-&gt;longitude;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setLongitude( <span class="keywordtype">float</span> $longitude ): void {</div>
+<div class="line">        $this-&gt;longitude = $longitude;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getAdresse(): string {</div>
+<div class="line">        return $this-&gt;adresse;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setAdresse( <span class="keywordtype">string</span> $adresse ): void {</div>
+<div class="line">        $this-&gt;adresse = $adresse;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> getUserId(): int {</div>
+<div class="line">        return $this-&gt;user_id;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> setUserId( <span class="keywordtype">int</span> $user_id ): void {</div>
+<div class="line">        $this-&gt;user_id = $user_id;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keyword">function</span> jsonSerialize(): array {</div>
+<div class="line">        return get_object_vars($this);</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassmodels_1_1_model_html"><div class="ttname"><a href="classmodels_1_1_model.html">models\Model</a></div><div class="ttdef"><b>Definition</b> Model.php:16</div></div>
+<div class="ttc" id="ainterfacemodels_1_1_entity_html"><div class="ttname"><a href="interfacemodels_1_1_entity.html">models\Entity</a></div><div class="ttdef"><b>Definition</b> Entity.php:14</div></div>
+<div class="ttc" id="anamespacemodels_html"><div class="ttname"><a href="namespacemodels.html">models</a></div><div class="ttdef"><b>Definition</b> Alert.php:3</div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

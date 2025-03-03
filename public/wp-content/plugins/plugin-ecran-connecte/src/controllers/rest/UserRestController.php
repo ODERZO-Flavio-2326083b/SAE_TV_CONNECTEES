@@ -1,5 +1,24 @@
 <?php
-
+/**
+ * Fichier UserRestController.php
+ *
+ * Ce fichier contient la classe 'UserRestController', qui gère
+ * les routes REST pour la gestion des alertes associées aux utilisateurs.
+ * Elle permet de récupérer, créer, mettre à jour et supprimer des alertes
+ * via l'API REST de WordPress. Elle utilise 'WP_REST_Controller' pour
+ * enregistrer et traiter les routes REST personnalisées.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/UserRestController
+ * Documentation de la classe
+ * @since    2025-01-07
+ */
 namespace controllers\rest;
 
 use models\Alert;
@@ -10,23 +29,32 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * UserRestController
+ * Class UserRestController
  *
- * Contrôleur REST pour gérer les alertes utilisateur via l'API WordPress.
- * Fournit des routes CRUD pour les alertes avec validation des permissions
- * et gestion des codes ADE. Permet de définir des alertes globales ou spécifiques.
+ * Cette classe gère les routes REST pour la gestion des alertes
+ * associées aux utilisateurs. Elle permet de récupérer, créer,
+ * mettre à jour et supprimer des alertes via l'API REST de WordPress.
+ * Elle utilise 'WP_REST_Controller' pour enregistrer et traiter
+ * les routes REST personnalisées.
  *
- * @package Controllers\rest
+ * @category API
+ * @package  Controllers\Rest
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 2.0.0
+ * @link     https://www.example.com/docs/UserRestController Documentation
+ * de la classe
+ * @since    2025-01-07
  */
 class UserRestController extends WP_REST_Controller
 {
     /**
      * Constructeur de la classe.
      *
-     * Initialise le namespace et la base REST pour les opérations liées à
-     * l'utilisateur.
-     * Ce constructeur est utilisé pour configurer les propriétés essentielles
-     * de la classe
+     * Initialise le namespace et la base REST pour les opérations
+     * liées à l'utilisateur.
+     * Ce constructeur est utilisé pour configurer les propriétés
+     * essentielles de la classe
      * lors de sa création.
      *
      * @return void
@@ -40,7 +68,8 @@ class UserRestController extends WP_REST_Controller
     /**
      * Enregistre les routes REST pour les opérations sur les alertes.
      *
-     * Cette méthode utilise la classe 'WP_REST_Server' pour définir les routes REST
+     * Cette méthode utilise la classe 'WP_REST_Server'
+     * pour définir les routes REST
      * qui permettent de créer, lire, mettre à jour et supprimer des alertes.
      * Les routes sont accessibles via le namespace spécifié dans la classe et
      * incluent des vérifications de permission pour chaque opération.
@@ -49,14 +78,14 @@ class UserRestController extends WP_REST_Controller
      * - GET /{namespace}/{rest_base} : Récupère une liste d'alertes.
      * - POST /{namespace}/{rest_base} : Crée une nouvelle alerte.
      * - GET /{namespace}/{rest_base}/{id} : Récupère une alerte spécifique par ID.
-     * - PUT/PATCH /{namespace}/{rest_base}/{id} : Met à jour une alerte spécifique
-     * par ID.
-     * - DELETE /{namespace}/{rest_base}/{id} : Supprime une alerte spécifique par
-     * ID.
+     * - PUT/PATCH /{namespace}/{rest_base}/{id} : Met à jour une
+     * alerte spécifique par ID.
+     * - DELETE /{namespace}/{rest_base}/{id} : Supprime
+     * une alerte spécifique par ID.
      *
      * @return void
      */
-    public function registeRoutes()
+    public function registerRoutes()
     {
         register_rest_route(
             $this->namespace,
@@ -181,8 +210,8 @@ class UserRestController extends WP_REST_Controller
      * message d'erreur est renvoyé.
      *
      * @param WP_REST_Request $request L'objet de requête contenant les paramètres
-     *                                 et informations nécessaires pour créer
-     *                                 l'alerte.
+     *                                 et informations nécessaires
+     *                                 pour créer l'alerte.
      *
      * @return WP_REST_Response La réponse REST contenant l'ID de l'alerte créée
      *                          si l'insertion réussit, ou un message d'erreur
@@ -296,8 +325,7 @@ class UserRestController extends WP_REST_Controller
 
         if (is_array($request->get_json_params()['codes'])) {
             $ade_codes = $this->_findAdeCodes(
-                $requested_alert,
-                $request->get_json_params()['codes']
+                $requested_alert, $request->get_json_params()['codes']
             );
 
             if (is_null($ade_codes)) {
@@ -392,8 +420,8 @@ class UserRestController extends WP_REST_Controller
      *
      * Cette méthode utilise la vérification des permissions existantes pour
      * déterminer si l'utilisateur actuel a les droits nécessaires pour
-     * accéder aux détails d'un élément dans l'API REST. Elle renvoie true
-     * si l'utilisateur
+     * accéder aux détails d'un élément dans l'API REST. Elle renvoie
+     * true si l'utilisateur
      * a le rôle d'administrateur, sinon elle renvoie false.
      *
      * @param WP_REST_Request $request L'objet de requête contenant les informations
@@ -417,8 +445,8 @@ class UserRestController extends WP_REST_Controller
      * @param WP_REST_Request $request L'objet de requête contenant les informations
      *                                 sur la requête de l'API REST.
      *
-     * @return bool True si l'utilisateur a les permissions requises pour mettre
-     * à jour
+     * @return bool True si l'utilisateur a les permissions requises pour
+     * mettre à jour
      *              l'élément, sinon false.
      */
     public function updateItemPermissionsCheck($request)
@@ -466,13 +494,10 @@ class UserRestController extends WP_REST_Controller
     {
         // Find the ADE codes
         $ade_code = new CodeAde();
-        $alert->setForEveryone(0);
         $ade_codes = array();
 
         foreach ($codes as $code) {
-            if ($code == 'all') {
-                $alert->setForEveryone(1);
-            } elseif ($code != 0) {
+            if ($code != 0) {
                 if (is_null($ade_code->getByCode($code)->getId())) {
                     return null;
                 } else {
