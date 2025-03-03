@@ -967,7 +967,7 @@ name="delete" onclick="return confirm(
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
         echo '<video class="video_container" src="' . $url . $content . '
-              " autoplay loop muted></video>';
+              " autoplay loop muted style="max-height: 70vh;"></video>';
 
 
 

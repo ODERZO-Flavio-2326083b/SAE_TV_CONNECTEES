@@ -683,7 +683,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                     $content = '[pdf-embedder url="'
                         . TV_UPLOAD_PATH . $information->getContent() . '"]';
                 } else if (in_array($contentExplode[1], $videoExtension)) {
-                    $content = '<video src="'
+                    $content = '<video style=\'max-height:300px;\' src="'
                         . $content
                         . $information->getContent() . '" autoplay muted loop>';
                 }
