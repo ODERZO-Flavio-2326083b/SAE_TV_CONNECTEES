@@ -471,7 +471,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $name = $_SERVER['DOCUMENT_ROOT']
             . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
         $entity->setDuration(5000);
-        $entity->setFormat(null);
 
         if ($entity->getType() == 'video' || $entity->getType() == 'short') {
             $getID3 = new getID3();
