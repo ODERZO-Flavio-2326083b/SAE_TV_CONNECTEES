@@ -437,14 +437,10 @@ class Information extends Model implements Entity, JsonSerializable
      *
      * @param array $codeAdeIds        L'identifiant du
      *                           code ade
-     * @param int $begin         Point de départ pour la récupération des
-     *                           informations
-     * @param int $numberElement Le nombre d'informations à récupérer
      *
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
-    public function getInformationsByCodeAdeIds( array $codeAdeIds,
-        int $begin = 0, int $numberElement = 25 ): array {
+    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array {
 
         // pour mettre un ? par id
         $inQuery = str_repeat('?,', count($codeAdeIds) - 1) . '?';
@@ -466,15 +462,7 @@ class Information extends Model implements Entity, JsonSerializable
         JOIN ecran_info_code_ade ic ON ic.info_id = i.id
         JOIN ecran_code_ade c ON c.id = ic.code_ade_id
         WHERE 
-            c.id IN ($inQuery)
-        ORDER BY 
-            expiration_date LIMIT :begin, :numberElement"
-        );
-        $request->bindParam(':dept_id', $deptId, PDO::PARAM_INT);
-        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
-        $request->bindValue(
-            ':numberElement', $numberElement,
-            PDO::PARAM_INT
+            c.id IN ($inQuery)"
         );
         // remplacer les ? par tous les ids
         $request->execute($codeAdeIds);
@@ -562,7 +550,7 @@ class Information extends Model implements Entity, JsonSerializable
     {
         $request = $this->getDatabase()->prepare(
             'DELETE FROM ecran_information 
-       WHERE id_info = :id'
+       WHERE id = :id'
         );
         $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $request->execute();
