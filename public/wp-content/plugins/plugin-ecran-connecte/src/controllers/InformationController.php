@@ -147,7 +147,6 @@ class InformationController extends Controller
         $information->setAdminId(null);
         $information->setIdDepartment($deptId ?: 0);
         $information->setDuration(5000);
-        $information->setFormat("Sur-impression");
 
         if (isset($actionText)) {   // Si l'information est un texte
 
