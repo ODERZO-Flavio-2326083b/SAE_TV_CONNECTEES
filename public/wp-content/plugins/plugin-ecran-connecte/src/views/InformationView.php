@@ -944,10 +944,7 @@ name="delete" onclick="return confirm(
      * @param string $title     Le titre de la diapositive, affiché en tant que
      *                          en-tête si non vide.
      * @param string $content   Le contenu à afficher dans la diapositive
-     *                          (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher
-     *                          ('text', 'img', 'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site
+0      * @param bool   $adminSite Indique si la diapositive est affichée sur le site
      *                          d'administration.
      *
      * @return void
@@ -955,7 +952,7 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displaySlideVideo($title, $content, $type, $adminSite = false)
+    public function displaySlideVideo($title, $content, $adminSite = false)
     {
         echo '<div class="myVideoSlides text-center" style="display: block;">';
 
@@ -1088,7 +1085,7 @@ name="delete" onclick="return confirm(
                 "Modifier" à la ligne correspondante à l\'information.</p>
                 <p class="lead">Vous souhaitez supprimer une / plusieurs 
                 information(s) ? Cochez les cases des informations puis cliquez sur 
-                "Supprimer" le bouton ce situe en bas du tableau.</p>
+                "Supprimer" le bouton se situant en bas du tableau.</p>
                 <p class="lead">Il faut également penser à créer un département avant
                  afin d\'associer cette information à ce département.</p>
             </div>
