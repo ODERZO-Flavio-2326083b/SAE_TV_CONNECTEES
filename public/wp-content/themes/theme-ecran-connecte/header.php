@@ -82,7 +82,7 @@ if(in_array('television', $current_user->roles)) : ?>
             <?php endif;
             if (current_user_can('edit_css')): ?>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion du CSS'))); ?>">Gestion du CSS</a>
+                    <a class="nav-link" href="<?php echo esc_url(get_permalink(get_page_by_title_custom('Gestion du CSS'))); ?>">Personnalisation</a>
                 </li>
             <?php endif;
             if (current_user_can('ade_code_header_menu_access')) : ?>

@@ -202,7 +202,7 @@ class SecretaryController extends UserController
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
             $subadminTitle = $this->_view->displayTitleSelect(
-                'subadmin', 'Sous-administrateurs'
+                'subadmin', 'Administrateur de département'
             );
             $subadminContent = $this->_view->displayContentSelect(
                 'subadmin',
@@ -255,7 +255,7 @@ class SecretaryController extends UserController
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
             $subadminTitle = $this->_view->displayTitleSelect(
-                'subadmin', 'Sous-administrateurs'
+                'subadmin', 'Administrateur de département'
             );
             $subadminContent = $this->_view->displayContentSelect(
                 'subadmin',
