@@ -25,6 +25,7 @@ use models\Department;
 use models\Information;
 use models\User;
 use R34ICS;
+use views\ICSView;
 use views\UserView;
 
 /**
@@ -315,7 +316,6 @@ class UserController extends Controller
      */
     public function displaySchedule($code, $allDay = false) : string
     {
-        global $R34ICS;
         $R34ICS = new R34ICS();
 
         $url = $this->getFilePath($code);
@@ -329,7 +329,14 @@ class UserController extends Controller
             'title' => null,
             'view' => 'list',
         );
-        return $R34ICS->display_calendar($url, $code, $allDay, $args);
+
+        list($ics_data, $allDay) = $R34ICS->get_event_data($url, $code, $allDay, $args);
+
+        $model = new CodeAde();
+        $title = $model->getByCode($code)->getTitle();
+
+        $icsView = new ICSView();
+        return $icsView->displaySchedule($ics_data, $title, $allDay);
     }
 
     /**
@@ -480,6 +487,6 @@ class UserController extends Controller
     {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->_view->buildDepartmentOptions($dept);
+        return $this->_view->buildCodesOptions($dept);
     }
 }

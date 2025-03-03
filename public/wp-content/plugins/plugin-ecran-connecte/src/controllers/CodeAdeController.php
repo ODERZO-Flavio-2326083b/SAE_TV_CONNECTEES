@@ -101,7 +101,7 @@ class CodeAdeController extends Controller
         $action = filter_input(INPUT_POST, 'submit');
 
         if (isset($action)) {
-            $validType = ['year', 'group', 'halfGroup'];
+            $validType = ['year', 'group', 'halfGroup', 'class'];
 
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
@@ -175,7 +175,7 @@ class CodeAdeController extends Controller
 
         $submit = filter_input(INPUT_POST, 'submit');
         if (isset($submit)) {
-            $validType = ['year', 'group', 'halfGroup'];
+            $validType = ['year', 'group', 'halfGroup', 'class'];
 
             $title = filter_input(INPUT_POST, 'title');
             $code = filter_input(INPUT_POST, 'code');
@@ -229,8 +229,9 @@ class CodeAdeController extends Controller
         $years = $this->_model->getAllFromType('year');
         $groups = $this->_model->getAllFromType('group');
         $halfGroups = $this->_model->getAllFromType('halfGroup');
+        $classes = $this->_model->getAllFromType('class');
 
-        return $this->_view->displayAllCode($years, $groups, $halfGroups);
+        return $this->_view->displayAllCode($years, $groups, $halfGroups, $classes);
     }
 
     /**

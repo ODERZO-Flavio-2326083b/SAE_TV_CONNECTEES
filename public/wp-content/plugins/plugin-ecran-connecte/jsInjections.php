@@ -1,9 +1,11 @@
 <?php
 
+use controllers\InformationController;
 use models\CodeAde;
 use models\Department;
 use models\Information;
 use models\Localisation;
+use models\User;
 use models\Scrapping;
 use views\AlertView;
 use views\InformationView;
@@ -133,7 +135,8 @@ function loadInformationDurations(): void
     $informationModel = new Information();
     $deptModel = new Department();
 
-    if (is_user_logged_in() && get_current_user_id() != 1) {
+    if (is_user_logged_in() && in_array('television', wp_get_current_user()
+            ->roles)) {
         $currentUserDeptId = $deptModel->getUserDepartment(get_current_user_id())
             ->getIdDepartment();
 
@@ -192,6 +195,26 @@ function injectAllCodesOnTvEdit(): void
 
 add_action('wp_enqueue_scripts', 'injectAllCodesOnTvEdit');
 
+function injectCodesOnInfoEdit(): void
+{
+    $codeAde = new CodeAde();
+    $deptModel = new Department();
+
+    $allDepts = $deptModel->getAllDepts();
+
+    if(!is_user_logged_in()) return;
+
+    list($years, $groups, $halfGroups) =
+        InformationController::getAllAvailableCodes();
+
+    wp_localize_script(
+        'addDepartment_script', 'codeHTML', array(
+            'infoCode' => InformationView::buildSelectCode(
+                $years, $groups, $halfGroups, $allDepts
+            )));
+}
+
+add_action('wp_enqueue_scripts', 'injectCodesOnInfoEdit');
 
 /**
  * Envoie le code HTML du sélecteur de code ADE pour
@@ -212,7 +235,7 @@ function injectAllCodesOnAlertEdit(): void
 
     wp_localize_script(
         'addCodeAlert_script_ecran', 'codeHTML', array(
-        'alert' => AlertView::buildSelectCode(
+        'infoCode' => AlertView::buildSelectCode(
             $years, $groups, $halfGroups, $allDepts
         )
         )
@@ -231,3 +254,30 @@ function injectTagOnScrappingEdit() {
 }
 
 add_action('wp_enqueue_scripts', 'injectTagOnScrappingEdit');
+
+/**
+ * Récupère la vitesse de défilement de l'utilisateur connecté
+ * et l'injecte en JavaScript.
+ *
+ * @return void
+ */
+function loadScrollSpeed(): void
+{
+    if (is_user_logged_in()) {
+        $userId = get_current_user_id();
+
+        $scrollSpeed = get_user_meta($userId, 'scroll_speed', true) ?: 12;
+
+        wp_enqueue_script('scroll_script_ecran', TV_PLUG_PATH . 'public/js/scroll.js', array('jquery'), null, true);
+
+        wp_localize_script(
+            'scroll_script_ecran',
+            'SCROLL_SETTINGS', array(
+                'scrollSpeed' => (int) $scrollSpeed
+            )
+        );
+    }
+}
+
+add_action('wp_enqueue_scripts', 'loadScrollSpeed');
+

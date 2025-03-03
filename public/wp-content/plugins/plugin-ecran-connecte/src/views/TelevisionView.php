@@ -115,8 +115,15 @@ class TelevisionView extends UserView
                 <br>    
                 <select id="deptIdTv" name="deptIdTv" class="form-control"'
             . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
+            </div>
+            <div class="form-group">
+            	<label for="scrollSpeedTv">Vitesse de défilement</label>
+            	<input type="number" class="form-control" name="scrollSpeedTv" 
+            	placeholder="Vitesse de défilement" required="" min="1">
+            	<small class="form-text text-muted">Définissez la vitesse de défilement de l\'emploi du temps en secondes.</small>
+
             </div>
             <div class="form-group">
             	<label>Premier emploi du temps</label>' .
@@ -216,6 +223,13 @@ class TelevisionView extends UserView
             ) . '">< Retour</a>
         <h2>' . $user->getLogin() . '</h2>
          <form method="post" id="registerTvForm">
+             <div class="form-group">
+            	<label for="scrollSpeedTv">Vitesse de défilement</label>
+            	<input type="number" class="form-control" name="scrollSpeedTv" 
+            	placeholder="Vitesse de défilement" required="" min="1">
+            	<small class="form-text text-muted">Définissez la vitesse de défilement de l\'emploi du temps en secondes.</small>
+
+            </div>
             <label id="selectId1"> Emploi du temps</label>';
 
         foreach ($user->getCodes() as $code) {

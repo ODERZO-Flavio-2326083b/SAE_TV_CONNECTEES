@@ -321,6 +321,21 @@ class CodeAde extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public function getAllFromTypeAndDept($id_dept, $type) : array
+    {
+        $request = $this->getDatabase()->prepare(
+            'SELECT id, title, code, type, dept_id
+             FROM ecran_code_ade 
+             WHERE type = :type 
+             AND dept_id = :id_dept
+             ORDER BY id DESC LIMIT 500'
+        );
+        $request->bindParam(':type', $type, PDO::PARAM_STR);
+        $request->bindParam(':id_dept', $id_dept, PDO::PARAM_INT);
+        $request->execute();
+        return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+    }
+
     /**
      * Récupère un enregistrement de la table 'ecran_code_ade' correspondant à un
      * code spécifique.
