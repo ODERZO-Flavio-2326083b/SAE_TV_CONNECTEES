@@ -103,13 +103,6 @@ class Information extends Model implements Entity, JsonSerializable
     private ?int $_adminId;
 
     /**
-     * Identifiant du département associé à l'entité.
-     *
-     * @var ?int L'identifiant du département, ou null si non défini.
-     */
-    private ?int $_idDepartment;
-
-    /**
      * Durée associée à l'entité.
      *
      * @var ?int La durée de l'entité en heures, ou null si non définie.
@@ -994,29 +987,6 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
     public function setAdminId( ?int $_adminId ): void
     {
         $this->_adminId = $_adminId;
-    }
-
-    /**
-     * Retourne l'identifiant du département associé à l'entité.
-     *
-     * @return int|null L'identifiant du département, ou null si non défini.
-     */
-    public function getIdDepartment(): ?int
-    {
-        return $this->_idDepartment;
-    }
-
-    /**
-     * Définit l'identifiant du département associé à l'entité.
-     *
-     * @param int|null $_idDepartment L'identifiant du département à définir,
-     *                                ou null si non défini.
-     *
-     * @return void
-     */
-    public function setIdDepartment(?int $_idDepartment): void
-    {
-        $this->_idDepartment = $_idDepartment;
     }
 
     public function getCodesAde() : array

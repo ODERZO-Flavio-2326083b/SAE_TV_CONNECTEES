@@ -341,11 +341,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $currentUser = wp_get_current_user();
 
         $isAdmin = current_user_can('admin_perms');
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
-        // département, sinon on cherche le département.
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
@@ -366,11 +361,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $title   = filter_input( INPUT_POST, 'title' );
             $content = filter_input( INPUT_POST, 'content' );
             $endDate = filter_input( INPUT_POST, 'expirationDate' );
-            $deptId  = $isAdmin ? filter_input(
-                INPUT_POST, 'informationDept'
-            ) : $currDept;
-
-            $information->setIdDepartment( $deptId );
             $information->setTitle( $title );
             $information->setExpirationDate( $endDate );
 
@@ -392,7 +382,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
 
             $information->setCodesAde( $codesObjects );
-
 
             if ( $information->getType() == 'text' ) {
                 // On met en place une nouvelle information

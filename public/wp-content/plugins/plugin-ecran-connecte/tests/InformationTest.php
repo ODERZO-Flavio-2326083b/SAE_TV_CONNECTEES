@@ -33,7 +33,6 @@ class InformationTest extends TestCase
             "Test content");
         $this->information->setType("texte");
         $this->information->setAdminId(42);
-        $this->information->setIdDepartment(5);
         $this->information->setDuration(3600000);
 
     }
