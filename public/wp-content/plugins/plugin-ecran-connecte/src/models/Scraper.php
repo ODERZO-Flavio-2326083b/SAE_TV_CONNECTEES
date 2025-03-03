@@ -13,8 +13,8 @@ class Scraper
     private array $_infoSelectors;
 
     public function __construct(string $url, string $articleSelector,
-                                array $infoSelectors)
-    {
+        array $infoSelectors
+    ) {
         $this->_url = $url;
         $this->_articleSelector = $articleSelector;
         $this->_infoSelectors = $infoSelectors;
@@ -30,7 +30,8 @@ class Scraper
         if (!$html) {
             throw new \Exception(
                 "Impossible de récupérer le contenu de l'URL: " .
-                $this->_url);
+                $this->_url
+            );
         }
 
         return $html;
@@ -39,7 +40,7 @@ class Scraper
     /**
      * Crée et renvoie un objet DOMXPath
      */
-    private function getXPath(): DOMXPath
+    public function getXPath(): DOMXPath
     {
         $html = $this->getHtml();
         $dom = new DOMDocument();
@@ -64,7 +65,7 @@ class Scraper
         return null;
     }
 
-    private function extractFirstSrcSet(string $srcset): string
+    public function extractFirstSrcSet(string $srcset): string
     {
         $parts = explode(',', $srcset); // Séparer les URLs
         if (count($parts) > 0) {
@@ -75,13 +76,10 @@ class Scraper
         return "";
     }
 
-
-
-
     /**
      * Récupère les informations d'un article en utilisant les sélecteurs définis
      */
-    private function getArticle(DOMXPath $xpath, \DOMNode $article): array
+    public function getArticle(DOMXPath $xpath, \DOMNode $article): array
     {
         $details = [];
 
@@ -97,16 +95,20 @@ class Scraper
                         $value = null;
 
                         // Vérifie en priorité srcset, sinon data-src, sinon src
-                        if ($imgNode->hasAttribute('srcset') && !empty(
-                            $imgNode->getAttribute('srcset'))) {
+                        if ($imgNode->hasAttribute('srcset')
+                            && !empty($imgNode->getAttribute('srcset'))
+                        ) {
                             $value = $this->extractFirstSrcSet(
-                                $imgNode->getAttribute('srcset'));
+                                $imgNode->getAttribute('srcset')
+                            );
                         } elseif ($imgNode->hasAttribute(
-                            'data-src') && !empty(
-                                $imgNode->getAttribute('data-src'))) {
+                            'data-src'
+                        ) && !empty($imgNode->getAttribute('data-src'))
+                        ) {
                             $value = $imgNode->getAttribute('data-src');
-                        } elseif ($imgNode->hasAttribute('src') &&
-                            !empty($imgNode->getAttribute('src'))) {
+                        } elseif ($imgNode->hasAttribute('src') 
+                            && !empty($imgNode->getAttribute('src'))
+                        ) {
                             $value = $imgNode->getAttribute('src');
                         }
                     }
@@ -147,7 +149,6 @@ class Scraper
         return null;
     }
 
-
     /**
      * Retourne l'article dans un format HTML
      */
@@ -175,9 +176,13 @@ class Scraper
 
             $hasImage = isset($article['image']) &&
                 $article['image'] !== "Pas de contenu.";
-            $hasOtherContent = count(array_filter($article,
+            $hasOtherContent = count(
+                array_filter(
+                    $article,
                     fn($v, $k) => $k !== 'image' &&
-                        $v !== "Pas de contenu.", ARRAY_FILTER_USE_BOTH)) > 0;
+                    $v !== "Pas de contenu.", ARRAY_FILTER_USE_BOTH
+                )
+            ) > 0;
 
             foreach ($article as $key => $value) {
                 if ($value !== "Pas de contenu.") {
@@ -211,6 +216,6 @@ class Scraper
         return $html;
     }
 
-
-
 }
+
+// caca
