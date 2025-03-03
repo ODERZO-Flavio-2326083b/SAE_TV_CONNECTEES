@@ -487,6 +487,6 @@ class UserController extends Controller
     {
         $deptModel = new Department();
         $dept = $deptModel->getAllDepts();
-        return $this->_view->buildDepartmentOptions($dept);
+        return $this->_view->buildCodesOptions($dept);
     }
 }

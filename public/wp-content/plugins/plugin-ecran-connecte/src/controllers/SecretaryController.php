@@ -198,6 +198,7 @@ class SecretaryController extends UserController
         $television = new TelevisionController();
         $subadmin = new SubadminController();
         $tablette = new TabletController();
+        $communicant = new CommuniquantController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
@@ -214,6 +215,7 @@ class SecretaryController extends UserController
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->_view->displayTitleSelect('technician', 'Agent d\'entretien') .
+            $this->_view->displayTitleSelect('communicant', 'Communicant') .
             $this->_view->displayTitleSelect('television', 'Télévisions') .
             $this->_view->displayTitleSelect('tablette', 'Tablettes') .
             $subadminTitle .
@@ -222,6 +224,7 @@ class SecretaryController extends UserController
                 'secretary', $secretary->insert(), true
             ) .
             $this->_view->displayContentSelect('technician', $technician->insert()) .
+            $this->_view->displayContentSelect('communicant', $communicant->insert()) .
             $this->_view->displayContentSelect('television', $television->insert()) .
             $this->_view->displayContentSelect('tablette', $tablette->insert()) .
             $subadminContent .
@@ -251,6 +254,7 @@ class SecretaryController extends UserController
         $television = new TelevisionController();
         $subadmin = new SubadminController();
         $tablette = new TabletController();
+        $communicant = new CommuniquantController();
 
         $subadminTitle = $subadminContent = '';
         if (current_user_can('subadmin_access')) {
@@ -267,6 +271,7 @@ class SecretaryController extends UserController
             $this->_view->displayStartMultiSelect() .
             $this->_view->displayTitleSelect('secretary', 'Secrétaires', true) .
             $this->_view->displayTitleSelect('technician', 'Agents d\'entretiens') .
+            $this->_view->displayTitleSelect('communicant', 'Communicant') .
             $this->_view->displayTitleSelect('television', 'Télévisions') .
             $this->_view->displayTitleSelect('tablette', 'Tablettes') .
             $subadminTitle .
@@ -276,6 +281,9 @@ class SecretaryController extends UserController
             ) .
             $this->_view->displayContentSelect(
                 'technician', $technician->displayAllTechnician()
+            ) .
+            $this->_view->displayContentSelect(
+                'communicant', $communicant->displayAllCommunicants()
             ) .
             $this->_view->displayContentSelect(
                 'television', $television->displayAllTv()
@@ -340,7 +348,7 @@ class SecretaryController extends UserController
     public function deleteUsers(): void
     {
         $actionDelete = filter_input(INPUT_POST, 'delete');
-        $roles = ['Tech', 'Secre', 'Tele', 'Subadmin', 'Tablette'];
+        $roles = ['Tech', 'Secre', 'Tele', 'Comm', 'Tablette', 'Subadmin'];
 
         if (isset($actionDelete)) {
             foreach ($roles as $role) {

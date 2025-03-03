@@ -9,10 +9,8 @@ use models\User;
 class TabletView extends UserView
 {
     public function displayFormTablet(array $classes, array $allDepts,
-                                          bool $isAdmin = false,
                                           int $currDept = null
     ): string {
-        $disabled = $isAdmin ? '' : 'disabled';
 
         return '
         <h2> Compte tablettes</h2>
@@ -41,9 +39,8 @@ class TabletView extends UserView
             <div class="form-group">
                 <label for="deptIdTa">Département</label>
                 <br>    
-                <select id="deptIdTa" name="deptIdTa" class="form-control"'
-            . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
+                <select id="deptIdTa" name="deptIdTa" class="form-control">
+                    ' . $this->buildCodesOptions($allDepts, $currDept) . '
                 </select>
             </div>
             <div class="form-group">
