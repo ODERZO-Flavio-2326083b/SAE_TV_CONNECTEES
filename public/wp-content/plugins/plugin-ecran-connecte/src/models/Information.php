@@ -486,6 +486,55 @@ class Information extends Model implements Entity, JsonSerializable
         return $request->rowCount();
     }
 
+    public function getScrappingTags(int $id) : array {
+        $database = $this->getDatabase();
+
+        $request = $database->prepare(
+            'SELECT content
+                   FROM ecran_information
+                   WHERE id = :id'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_STR);
+        $request->execute();
+
+        $url = $request->fetch()['content'];
+
+        $request = $database->prepare(
+            'SELECT sc.content, sc.tag
+                   FROM ecran_information i
+                   JOIN ecran_scrapping_tags sc 
+                   ON i.id = sc.id_info
+                   WHERE i.id = :id'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_INT);
+        $request->execute();
+
+        $balises = array();
+        $tags = array();
+
+        foreach($request->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $balises[] = $row['content'];
+            $tags[] = $row['tag'];
+        }
+
+        return array($url, $balises, $tags);
+    }
+
+    public function getContentByArticle($id) {
+        $database = $this->getDatabase();
+
+        $request = $database->prepare(
+            'SELECT content
+                   FROM ecran_scrapping_tags
+                   WHERE tag = \'article\' 
+                   AND id = :id'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_INT);
+        $request->execute();
+
+        return $request->fetch(PDO::FETCH_ASSOC)['content'];
+    }
+
     /**
      * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
      *

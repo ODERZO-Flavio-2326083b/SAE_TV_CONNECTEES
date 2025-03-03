@@ -142,7 +142,6 @@ class InformationController extends Controller
         if ($title == '') {
             $title = 'Sans titre';
         }
-
         $information = $this->_model;
 
         foreach(array($information) as $info) {
@@ -243,6 +242,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             if ($id = $information->insert()) {
                 $information->setId($id);
                 $information->insertScrappingTags($tags, $contentsScrapper);
+                $this->createScrapper();
                 $this->_view->displayCreateValidate();
             } else {
                 $this->_view->displayErrorInsertionInfo();
@@ -921,4 +921,37 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         echo '</div>';
     }
 
+    /**
+     * Crée un objet de type "scrapper" avec des informations par défaut.
+     *
+     * Cette méthode initialise un objet de la classe 'information', définit
+     * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
+     * département, l'auteur, la date de création, le contenu, l'identifiant
+     * administratif, le titre, le type et la date d'expiration, et retourne
+     * cet objet.
+     *
+     * @return information Retourne l'objet 'information' initialisé.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
+    function createScrapper() {
+        $information = $this->_model;
+        list($url, $balises, $types) = $information->getScrappingTags($information->getId());
+        $article = $information->getContentByArticle($information->getId());
+
+        $arrayArg = array();
+        for($i=0; $i<count($balises); $i++) {
+                $arrayArg[$types[$i]] = $balises[$i];
+        }
+
+        var_dump($arrayArg);
+
+        $scrapper1 = new Scrapper(
+            $url, // URL du site à scraper
+            $article,  // Sélecteur pour l'article
+            $arrayArg
+        );
+        $scrapper1->printWebsite();
+    }
 }
