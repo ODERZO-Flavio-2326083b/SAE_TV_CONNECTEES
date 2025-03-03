@@ -104,12 +104,6 @@ class InformationController extends Controller
         $deptModel = new Department();
         $userModel = new User();
 
-        $isAdmin = current_user_can('admin_perms');
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
-        // département, sinon on cherche le département
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID)->getIdDepartment();
-
         $allDepts = $deptModel->getAllDepts();
 
         // Pour toutes les actions
@@ -275,12 +269,12 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                ($type, $title), $titles, $contentTypes)) .
                $this->_view->displayEndOfTitle() .
                $this->_view->displayContentSelect('text',
-                 $this->_view->displayFormText($allDepts, $buildArgs, $currDept),
+                 $this->_view->displayFormText($allDepts, $buildArgs),
                    true) .
                implode('', array_map(fn($type)
                => $this->_view->displayContentSelect($type,
                    $this->_view->{"displayForm" . ucfirst($type)}
-                   ($allDepts, $buildArgs, $currDept)),
+                   ($allDepts, $buildArgs)),
                    $contentTypes)).
                '</div>' .
                $this->_view->contextCreateInformation();
@@ -472,7 +466,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         return $this->_view->displayModifyInformationForm(
             $information->getTitle(), $information->getContent(),
             $information->getExpirationDate(), $information->getType(),
-            $allDepts, $this->getAllAvailableCodes(), $currDept
+            $allDepts, $this->getAllAvailableCodes()
         );
     }
 
