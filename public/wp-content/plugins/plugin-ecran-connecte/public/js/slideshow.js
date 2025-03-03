@@ -8,7 +8,7 @@ let videoDurations = DURATIONS.videoDurations;
 let numberArray = videoDurations.length;
 let otherDurations = DURATIONS.otherDurations;
 let timeout = parseInt(SCROLL_SETTINGS.scrollSpeed);
-let timeoutAdjusted = (timeout * 1000)*numberArray;
+let timeoutAdjusted = (numberArray > 0) ? (timeout * 1000 * numberArray) : timeout*1000;
 console.log(timeoutAdjusted);
 
 infoSlideShow();
