@@ -330,7 +330,9 @@ class UserController extends Controller
             'view' => 'list',
         );
 
-        list($ics_data, $allDay) = $R34ICS->get_event_data($url, $code, $allDay, $args);
+        list($ics_data, $allDay) = $R34ICS->get_event_data(
+            $url, $code, $allDay, $args
+        );
 
         $model = new CodeAde();
         $title = $model->getByCode($code)->getTitle();

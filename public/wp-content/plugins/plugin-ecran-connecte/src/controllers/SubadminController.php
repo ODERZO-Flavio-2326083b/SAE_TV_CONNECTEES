@@ -27,7 +27,8 @@ use views\SubadminView;
 /**
  * Class SubadminController
  *
- * Gère les administrateurs de département (Création, mise à jour, suppression, affichage)
+ * Gère les administrateurs de département (Création, mise à jour,
+ * suppression, affichage)
  *
  * @category API
  * @package  Controllers
@@ -151,9 +152,11 @@ class SubadminController extends UserController
     }
 
     /**
-     * Affiche la liste de tous les administrateurs de départements avec leur département.
+     * Affiche la liste de tous les administrateurs de départements
+     * avec leur département.
      *
-     * Cette fonction récupère tous les utilisateurs ayant le rôle d'administrateur de département
+     * Cette fonction récupère tous les utilisateurs ayant le
+     * rôle d'administrateur de département
      * puis pour chaque utilisateur, elle obtient le nom de son département.
      * Elle renvoie ensuite un
      * code HTML qui affiche la liste des administrateurs de département et les

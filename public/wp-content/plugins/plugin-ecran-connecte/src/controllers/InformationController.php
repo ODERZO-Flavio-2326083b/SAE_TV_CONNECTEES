@@ -160,7 +160,7 @@ class InformationController extends Controller
             $information->setCodesAde($codesObjects);
         }
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! empty($codesObjects) ) {
                 if (isset($actionText) ) {   // Si l'information est un texte
 
@@ -222,7 +222,10 @@ non valide, veuillez choisir un autre PDF.</p>'
                         ];
                         // On définit les extensions valides pour nos événements
                         if (in_array(end($explodeName), $goodExtension) ) {
-                            $this->registerFile($filename, $fileTmpName, $information);
+                            $this->registerFile(
+                                $filename, $fileTmpName,
+                                $information
+                            );
                         } else {
                             $this->_view->buildModal(
                                 'Fichiers non valide', '<p>Ce fichier 
@@ -292,7 +295,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             implode(
                 '', array_map(
                     fn($title, $type) =>
-                     $this->_view->displayTitleSelect($type, $title), $titles, $contentTypes
+                     $this->_view->displayTitleSelect($type, $title),
+                    $titles, $contentTypes
                 )
             ) .
                $this->_view->displayEndOfTitle() .
@@ -306,7 +310,10 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                     fn($type)
                     => $this->_view->displayContentSelect(
                         $type,
-                        $this->_view->{"displayForm" . ucfirst($type)}($allDepts, $buildArgs)
+                        $this->_view->{"displayForm" . ucfirst($type)}(
+                            $allDepts,
+                            $buildArgs
+                        )
                     ),
                     $contentTypes
                 )
@@ -495,21 +502,43 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         );
     }
 
+    /**
+     * Récupère tous les codes disponibles en fonction des
+     * permissions de l'utilisateur.
+     *
+     * Cette méthode retourne une liste des codes ADE disponibles, classés par type :
+     * années, groupes et demi-groupes. Si l'utilisateur dispose de la permission
+     * "information_to_any_code", il obtient tous les codes disponibles. Sinon,
+     * les codes sont filtrés en fonction du département de l'utilisateur.
+     *
+     * @return array Tableau contenant trois listes :
+     *               - Années disponibles
+     *               - Groupes disponibles
+     *               - Demi-groupes disponibles
+     */
     public static function getAllAvailableCodes(): array
     {
         $codeAde = new CodeAde();
         $deptModel = new Department();
 
-        if(current_user_can('information_to_any_code')) {
+        if (current_user_can('information_to_any_code')) {
             $years = $codeAde->getAllFromType('year');
             $groups = $codeAde->getAllFromType('group');
             $halfGroups = $codeAde->getAllFromType('halfGroup');
         } else {
             $currDept = $deptModel->getUserDepartment(get_current_user_id());
 
-            $years = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'year');
-            $groups = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'group');
-            $halfGroups = $codeAde->getAllFromTypeAndDept($currDept->getIdDepartment(), 'halfGroup');
+            $years = $codeAde->getAllFromTypeAndDept(
+                $currDept->getIdDepartment(),
+                'year'
+            );
+            $groups = $codeAde->getAllFromTypeAndDept(
+                $currDept->getIdDepartment(),
+                'group'
+            );
+            $halfGroups = $codeAde->getAllFromTypeAndDept(
+                $currDept->getIdDepartment(), 'halfGroup'
+            );
         }
         return array($years, $groups, $halfGroups);
     }
@@ -814,7 +843,11 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $this->_view->displayStartSlideshow();
 
         foreach ($informations as $information) {
-            $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
+            $endDate = date(
+                'Y-m-d', strtotime(
+                    $information->getExpirationDate()
+                )
+            );
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {
                 $adminSite = true;
                 if (is_null($information->getAdminId())) {
@@ -822,15 +855,17 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 }
                 // Affiche les informations sauf les vidéos
                 if ($information->getType() !== 'video') {
-                    if($information->getType() === 'scraping') {
+                    if ($information->getType() === 'scraping') {
                         $this->_view->displaySlide(
                             'Sans titre',
-                            $this->createScraper($information->getId()), $information->getType()
+                            $this->createScraper($information->getId()),
+                            $information->getType()
                         );
                     } else {
                         $this->_view->displaySlide(
                             $information->getTitle(),
-                            $information->getContent(), $information->getType(), $adminSite
+                            $information->getContent(), $information->getType(),
+                            $adminSite
                         );
                     }
                 }
@@ -980,15 +1015,18 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
     }
 
     /**
-     * Crée un objet de type "scraper" avec des informations par défaut.
+     * Crée un objet de type "Scraper" et récupère les informations d'un site web.
      *
-     * Cette méthode initialise un objet de la classe 'information', définit
-     * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
-     * département, l'auteur, la date de création, le contenu, l'identifiant
-     * administratif, le titre, le type et la date d'expiration, et retourne
-     * cet objet.
+     * Cette méthode initialise un scraper avec les balises HTML nécessaires
+     * pour extraire des informations depuis une URL spécifique. Elle récupère
+     * les sélecteurs HTML associés à un identifiant donné, les organise en tableau,
+     * puis les transmet au scraper pour récupérer et afficher le contenu du site.
      *
-     * @return information Retourne l'objet 'information' initialisé.
+     * @param int $id Identifiant permettant de
+     *                récupérer les balises et l'URL associées.
+     *
+     * @return string Retourne le contenu extrait
+     * du site web après exécution du scraper.
      *
      * @version 1.0
      * @date    2024-10-16
@@ -999,7 +1037,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         list($url, $balises, $types) = $information->getScrapingTags($id);
 
         $arrayArg = array();
-        for($i=0; $i<count($balises); $i++) {
+        for ($i=0; $i<count($balises); $i++) {
                 $arrayArg[$types[$i]] = $balises[$i];
         }
 
