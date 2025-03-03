@@ -29,6 +29,8 @@ Un utilisateur Secretary peut poster des alertes, créer des utilisateurs et ajo
 
 Un utilisateur Technician peut accéder aux emplois du temps.
 
+Un utilisateur Television, affiche les emplois du temps d'une salle.
+
 Un utilisateur Subadmin, correspondant à un administrateur de département, et qui possède les mêmes permissions qu'un administrateur, il ne peut créer d'autre 
 administrateur de département.
 
@@ -43,7 +45,7 @@ lire les fichiers ICS.
 
 ### Informations
 
-Une information correspond à un des types de fichiers suivants : Texte, Image, PDF, Vidéo, Short.
+Une information correspond à un des types de fichiers suivants : Texte, Image, PDF, Vidéo, Short, Scrapping.
 
 Les classes utilisées sont : InformationController, Information & InformationView.  
 Les librairies "PhpOffice" et "PDF.js" sont aussi utilisées.  
