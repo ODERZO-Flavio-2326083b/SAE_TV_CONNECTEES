@@ -118,6 +118,12 @@ class Information extends Model implements Entity, JsonSerializable
 
 
     /**
+     * Format d'affichage des vidéos
+     * @var string|null le format d'affichage des vidéos sur les télévisions
+     */
+    private ?string $_format;
+
+    /**
      * Insère un nouvel enregistrement d'information dans la base de données.
      *
      * Cette méthode prépare une requête SQL pour insérer un nouvel enregistrement
@@ -662,6 +668,7 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $entity->setIdDepartment($data['department_id']);
         $entity->setType($data['type']);
         $entity->setDuration($data['duration']);
+        $entity->setFormat($data['format']);
         if ($data['administration_id'] != null) {
             $author->setLogin('Administration');
             $entity->setAuthor($author);
@@ -902,6 +909,27 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
     {
         $this->_duration = $_duration;
     }
+
+    /**
+     * Renvoie le format de la vidéo.
+     * @return string|null le format de la vidéo
+     */
+    public function getFormat(): ?string
+    {
+        return $this->_format;
+    }
+
+    /**
+     * Définit le format de la vidéo.
+     * @param string|null $format le format de la vidéo à définir.
+     * @return void
+     */
+    public function setFormat(?string $format): void
+    {
+        $this->_format = $format;
+    }
+
+
 
 
     /**
