@@ -43,6 +43,8 @@ Il y a quatre rôles différents avec chacun leur droit :
 |:-------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|:---------------------------:|
 |     Technicien      |           Oui            |            Non            |        Non         |            Non            |             Non             |
 |     Télévision      |           Oui            |            Non            |        Non         |            Non            |             Non             |
+|     Tablette      |           Oui            |            Non            |        Non         |            Non            |             Non             |
+|     Communicant      |           Non            |            Oui            |        Oui         |            Non            |             Non             |
 |     Secrétaire      |           Non            |            Oui            |        Oui         |            Oui            |             Non             |
 | Administrateur de département |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |
 
@@ -50,6 +52,7 @@ Il y a quatre rôles différents avec chacun leur droit :
 Les techniciens sont des agents d'entretien, qui vont avoir accès à l'emploi du temps pour leur permettre de savoir 
 quelles salles sont occupées.
 Les administrateurs de département sont des administrateurs qui gèrent leur département, et ne peuvent créer d'autres administrateur de département.
+Les communicants envoient des informations ou des alertes à un département en général.
 
 ### Emploi du temps
 
@@ -60,9 +63,11 @@ Il est téléchargé tous les matins via "WP Crontrol", en cas de problème de t
 temps téléchargé la veille.  
 L'emploi du temps télécharge une période d'une semaine en cas de problème venant de l'ADE permettant de continuer à 
 fonctionner.  
-L'affichage de l'emploi du temps est sur la journée pour les étudiants et les techniciens.  
+L'affichage de l'emploi du temps est sur la journée pour les étudiants et les techniciens.
+Pour l'utilisateur Tablette, il affiche l'emploi du temps d'une seule salle à partir de son code ADE.
 
 Les emplois du temps des différentes promotions sont disponibles pour tous les utilisateurs connectés.
+Il est possible de personnaliser la vitesse de défilement de l'emploi du temps lors de la création d'un utilisateur Télévision.
 
 
 ### Informations
@@ -70,10 +75,10 @@ Les emplois du temps des différentes promotions sont disponibles pour tous les 
 Les informations sont visibles par tous les utilisateurs selon leur département.
 Elles sont affichées dans un diaporama à la droite de l'écran.
 
-Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short).
+Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short, scrapping).
 Les images sont affichées au format .png, .gif, .jpg, .jpeg et .svg.
 
-Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son propre lecteur de PDF. Voir "slideshow.js"
+Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son propre lecteur de PDF. Voir "slideshow.js".
 
 Les vidéos et shorts (vidéo courte au format vertical) sont au format .mp4 ou .webm et sont affichés dans un diaporama 
 par-dessus l'emploi du temps
@@ -94,6 +99,7 @@ Un événement est soit une image, soit un PDF.
 Les alertes sont visibles par les personnes concernées.
 Avant de poster une alerte, la personne doit indiquer les personnes concernées. Elle peut envoyer l'alerte à tout 
 le monde ou seulement à un groupe, voire plusieurs groupes.
+Dans le cas d'un utilisateur Communicant, il peut poster l'alerte pour un département entier.
 
 Normalement, les personnes qui se sont abonnées aux alertes du site reçoivent l'alerte en notification.
 Les alertes défilent les une après les autres en bas de l'écran dans un bandeau rouge.
@@ -106,6 +112,8 @@ amène à l'utilisation des autres pages :
 - Chaque utilisateur crée est associé à un département.
 - Chaque information créée est associé à un département.
 - Pour la personnalisation de la télévision, chaque télévision est associée à un département.
+- Un communicant poste des informations ou des alertes à tout un département.
+
 
 
 ### Météo
@@ -142,7 +150,7 @@ par AMU.
 
 ## Personnalisation via le CSS
 
-Vous pouvez également personnaliser les télévisions comme vous le souhaitez grâce à la page "Gestion du CSS".
+Vous pouvez également personnaliser les télévisions comme vous le souhaitez grâce à la page "Personnalisation".
 
 Sélectionnez le département dont vous souhaitez modifier les couleurs de la télévision.
 
