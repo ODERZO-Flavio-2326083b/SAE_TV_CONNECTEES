@@ -149,11 +149,12 @@ class InformationController extends Controller
         $codeAde = new CodeAde();
 
         $codesObjects = array();
-        if(isset($codes)) {
+
+        if (isset($codes)) {
             foreach ( $codes as $code ) {
                 if ( is_numeric( $code ) && $code > 0 ) {
                     if ( is_null( $codeAde->getByCode( $code )->getId() ) ) {
-                        return 'error'; // Code invalide
+                        return 'error';
                     } else {
                         $codesObjects[] = $codeAde->getByCode( $code );
                     }
@@ -162,130 +163,127 @@ class InformationController extends Controller
             $information->setCodesAde( $codesObjects );
         }
 
-        if (isset($actionText)) {   // Si l'information est un texte
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ( ! empty( $codesObjects ) ) {
+                if ( isset( $actionText ) ) {   // Si l'information est un texte
 
-            $information->setType("text");
-            if ($information->insert()) {
-                $this->_view->displayCreateValidate();
-            } else {
-                $this->_view->displayErrorInsertionInfo();
-            }
-        }
-        if (isset($actionImg)) {  // Si l'information est une image
-            $type = "img";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg'];
-            // On définit les extensions valides pour nos images
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->_view->buildModal(
-                    'Image non valide', '<p>Ce fichier est une 
-image non valide, veuillez choisir une autre image</p>'
-                );
-            }
-        }
-        if (isset($actionPDF)) { // Si l'information est un PDF
-            $type = "pdf";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $explodeName = explode('.', $filename);
-            if (end($explodeName) == 'pdf') {
-                $fileTmpName = $_FILES['contentFile']['tmp_name'];
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->_view->buildModal(
-                    'PDF non valide', '<p>Ce fichier est un PDF 
-non valide, veuillez choisir un autre PDF.</p>'
-                );
-            }
-        }
-        if (isset($actionEvent)) { // Si l'information est un événement
-            $type = 'event';
-            $information->setType($type);
-            $countFiles = count($_FILES['contentFile']['name']);
-            for ($i = 0; $i < $countFiles; $i++) {
-                $this->_model->setId(null);
-                $filename = $_FILES['contentFile']['name'][$i];
-                $fileTmpName = $_FILES['contentFile']['tmp_name'][$i];
-                $explodeName = explode('.', $filename);
-                $goodExtension = ['jpg', 'jpeg', 'gif', 'png', 'svg', 'pdf'];
-                // On définit les extensions valides pour nos événements
-                if (in_array(end($explodeName), $goodExtension)) {
-                    $this->registerFile($filename, $fileTmpName, $information);
-                } else {
-                    $this->_view->buildModal(
-                        'Fichiers non valide', '<p>Ce fichier 
-n\'est pas valide, merci de choisir d\'autres fichiers.</p>'
-                    );
+                    $information->setType( "text" );
+                    if ( $information->insert() ) {
+                        $this->_view->displayCreateValidate();
+                    } else {
+                        $this->_view->displayErrorInsertionInfo();
+                    }
                 }
-            }
-        }
-        if (isset($actionShort) || isset($actionVideo)) { // Si l'information est un
-            // short ou une vidéo
-            isset($actionShort) ? $type = "short" : $type = "video";
-            $information->setType($type);
-            $filename = $_FILES['contentFile']['name'];
-            $fileTmpName = $_FILES['contentFile']['tmp_name'];
-            $explodeName = explode('.', $filename);
-            $goodExtension = ['mp4', 'webm'];
-            // On définit les extensions valides pour nos vidéos/shorts
-            if (in_array(end($explodeName), $goodExtension)) {
-                $this->registerFile($filename, $fileTmpName, $information);
-            } else {
-                $this->_view->buildModal(
-                    'Vidéo non valide', '<p>Ce fichier est une 
+                if ( isset( $actionImg ) ) {  // Si l'information est une image
+                    $type = "img";
+                    $information->setType( $type );
+                    $filename      = $_FILES['contentFile']['name'];
+                    $fileTmpName   = $_FILES['contentFile']['tmp_name'];
+                    $explodeName   = explode( '.', $filename );
+                    $goodExtension = [ 'jpg', 'jpeg', 'gif', 'png', 'svg' ];
+                    // On définit les extensions valides pour nos images
+                    if ( in_array( end( $explodeName ), $goodExtension ) ) {
+                        $this->registerFile( $filename, $fileTmpName, $information );
+                    } else {
+                        $this->_view->buildModal(
+                            'Image non valide', '<p>Ce fichier est une 
+image non valide, veuillez choisir une autre image</p>'
+                        );
+                    }
+                }
+                if ( isset( $actionPDF ) ) { // Si l'information est un PDF
+                    $type = "pdf";
+                    $information->setType( $type );
+                    $filename    = $_FILES['contentFile']['name'];
+                    $explodeName = explode( '.', $filename );
+                    if ( end( $explodeName ) == 'pdf' ) {
+                        $fileTmpName = $_FILES['contentFile']['tmp_name'];
+                        $this->registerFile( $filename, $fileTmpName, $information );
+                    } else {
+                        $this->_view->buildModal(
+                            'PDF non valide', '<p>Ce fichier est un PDF 
+non valide, veuillez choisir un autre PDF.</p>'
+                        );
+                    }
+                }
+                if ( isset( $actionEvent ) ) { // Si l'information est un événement
+                    $type = 'event';
+                    $information->setType( $type );
+                    $countFiles = count( $_FILES['contentFile']['name'] );
+                    for ( $i = 0; $i < $countFiles; $i ++ ) {
+                        $this->_model->setId( null );
+                        $filename      = $_FILES['contentFile']['name'][ $i ];
+                        $fileTmpName   = $_FILES['contentFile']['tmp_name'][ $i ];
+                        $explodeName   = explode( '.', $filename );
+                        $goodExtension = [
+                            'jpg',
+                            'jpeg',
+                            'gif',
+                            'png',
+                            'svg',
+                            'pdf'
+                        ];
+                        // On définit les extensions valides pour nos événements
+                        if ( in_array( end( $explodeName ), $goodExtension ) ) {
+                            $this->registerFile( $filename, $fileTmpName, $information );
+                        } else {
+                            $this->_view->buildModal(
+                                'Fichiers non valide', '<p>Ce fichier 
+n\'est pas valide, merci de choisir d\'autres fichiers.</p>'
+                            );
+                        }
+                    }
+                }
+                if ( isset( $actionShort ) || isset( $actionVideo ) ) {
+                    // Si l'information est un short ou une vidéo
+                    isset( $actionShort ) ? $type = "short" : $type = "video";
+                    $information->setType( $type );
+                    $filename      = $_FILES['contentFile']['name'];
+                    $fileTmpName   = $_FILES['contentFile']['tmp_name'];
+                    $explodeName   = explode( '.', $filename );
+                    $goodExtension = [ 'mp4', 'webm' ];
+                    // On définit les extensions valides pour nos vidéos/shorts
+                    if ( in_array( end( $explodeName ), $goodExtension ) ) {
+                        $this->registerFile( $filename, $fileTmpName, $information );
+                    } else {
+                        $this->_view->buildModal(
+                            'Vidéo non valide', '<p>Ce fichier est une 
 vidéo non valide, veuillez choisir une autre vidéo</p>'
-                );
+                        );
+                    }
+                }
+            } else {
+                $this->_view->buildModal( 'Emplois du temps insuffisants',
+                    "Aucun emploi du temps n'a été fourni, 
+                merci d'en fournir au moins un." );
             }
         }
 
         $buildArgs = $this->getAllAvailableCodes();
+        $titles = ['Image', 'PDF', 'Événement', 'Vidéo', 'Short'];
+        $contentTypes = ['image', 'pdf', 'event', 'video', 'short'];
 
-        return
-            $this->_view->displayStartMultiSelect() .
-            $this->_view->displayTitleSelect('text', 'Texte', true) .
-            $this->_view->displayTitleSelect('image', 'Image') .
-            $this->_view->displayTitleSelect('pdf', 'PDF') .
-            $this->_view->displayTitleSelect('event', 'Événement') .
-            $this->_view->displayTitleSelect('video', "Vidéos") .
-            $this->_view->displayTitleSelect('short', "Shorts") .
-            $this->_view->displayEndOfTitle() .
-            $this->_view->displayContentSelect(
-                'text', $this->_view->displayFormText(
-                    $allDepts, $buildArgs, $currDept
-                ), true
-            ) .
-            $this->_view->displayContentSelect(
-                'image', $this->_view->displayFormImg(
-                    $allDepts, $buildArgs, $currDept
-                )
-            ) .
-            $this->_view->displayContentSelect(
-                'pdf', $this->_view->displayFormPDF(
-                    $allDepts, $buildArgs, $currDept
-                )
-            ) .
-            $this->_view->displayContentSelect(
-                'event', $this->_view->displayFormEvent(
-                    $allDepts, $buildArgs, $currDept
-                )
-            ) .
-            $this->_view->displayContentSelect(
-                'video', $this->_view->displayFormVideo(
-                    $allDepts, $buildArgs, $currDept
-                )
-            ) .
-            $this->_view->displayContentSelect(
-                'short', $this->_view->displayFormShort(
-                    $allDepts, $buildArgs, $currDept
-                )
-            ) .
-            '</div>' .
-            $this->_view->contextCreateInformation();
+
+        // immonde à lire, mais map la fonction displayTitleSelect
+        // pour chaque title et contentType, et concatène un contentType à
+        // 'displayForm' pour avoir une fonction (ex: displayFormText())
+        // pour éviter les répétitions. - flavio
+        return $this->_view->displayStartMultiSelect() .
+               $this->_view->displayTitleSelect('text', 'Texte', true).
+               implode('', array_map(fn($title, $type) =>
+               $this->_view->displayTitleSelect
+               ($type, $title), $titles, $contentTypes)) .
+               $this->_view->displayEndOfTitle() .
+               $this->_view->displayContentSelect('text',
+                 $this->_view->displayFormText($allDepts, $buildArgs, $currDept),
+                   true) .
+               implode('', array_map(fn($type)
+               => $this->_view->displayContentSelect($type,
+                   $this->_view->{"displayForm" . ucfirst($type)}
+                   ($allDepts, $buildArgs, $currDept)),
+                   $contentTypes)).
+               '</div>' .
+               $this->_view->contextCreateInformation();
     }
 
     /**
@@ -785,12 +783,16 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      */
     public function informationMain()
     {
-        $deptModel = new Department();
-        $informations = $this->_model->getInformationsByDeptId(
-            $deptModel->getUserDepartment(get_current_user_id())->getIdDepartment()
-        );
+        $user = new User();
+        $user = $user->get(get_current_user_id());
+        $user = $user->getMyCodes([$user])[0];
+
+        $informations = array();
+        $codeAdeIds = array_map(fn($code) => $code->getId(), $user->getCodes());
+        $informations += $this->_model->getInformationsByCodeAdeIds($codeAdeIds);
         $informations[] = $this->createScrapper();
         $this->_view->displayStartSlideshow();
+
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
             if (!$this->endDateCheckInfo($information->getId(), $endDate)) {

@@ -443,37 +443,34 @@ class Information extends Model implements Entity, JsonSerializable
      *
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
-    public function getInformationsByCodeAdeId(
-        int $idCodeAde, int $begin = 0, int $numberElement = 25
-    ): array {
+    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array {
+
+        // pour mettre un ? par id
+        $inQuery = str_repeat('?,', count($codeAdeIds) - 1) . '?';
+
         $request = $this->getDatabase()->prepare(
-            '
+            "
         SELECT 
-            e.id, 
-            title, 
+            DISTINCT i.id, 
+            i.title, 
             content, 
             creation_date, 
             expiration_date, 
             author, 
-            type, 
+            i.type, 
             administration_id,
             duration
         FROM 
-            ecran_information e
-        JOIN ecran_info_code_ade ON info_id = e.id
+            ecran_information i
+        JOIN ecran_info_code_ade ic ON ic.info_id = i.id
+        JOIN ecran_code_ade c ON c.id = ic.code_ade_id
         WHERE 
-            ecran_info_code_ade.code_ade_id = :id 
+            c.id IN ($inQuery)
         ORDER BY 
-            expiration_date 
-        LIMIT :begin, :numberElement'
+            expiration_date"
         );
-        $request->bindParam(':id', $idCodeAde, PDO::PARAM_INT);
-        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
-        $request->bindValue(
-            ':numberElement', $numberElement,
-            PDO::PARAM_INT
-        );
-        $request->execute();
+        // remplacer les ? par tous les ids
+        $request->execute($codeAdeIds);
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 

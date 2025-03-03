@@ -80,10 +80,8 @@ class InformationView extends View
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormText(array $allDepts, array $buildArgs,
-                                    int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createText"
+    public function displayFormText(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         
@@ -164,10 +162,8 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormImg(array $allDepts, array $buildArgs,
-                                   int $currDept = null,$title = null,
-        $content = null, $endDate = null,
-        $type = "createImg"
+    public function displayFormImage(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         
@@ -259,10 +255,8 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormVideo(array $allDepts, array $buildArgs,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createVideo"
+    public function displayFormVideo(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createVideo"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
@@ -353,10 +347,8 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormShort(array $allDepts, array $buildArgs,
-        int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createShort"
+    public function displayFormShort(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createShort"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
@@ -447,10 +439,8 @@ Supprimer</button>';
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displayFormPDF(array $allDepts, array $buildArgs,
-                                   int $currDept = null, $title = null,
-        $content = null, $endDate = null,
-        $type = "createPDF"
+    public function displayFormPDF(array $allDepts, array $buildArgs, $title = null,
+        $content = null, $endDate = null, $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         
@@ -531,8 +521,7 @@ name="delete" onclick="return confirm(
      * @date    2024-10-15
      */
     public function displayFormEvent( array $allDepts, array $buildArgs,
-                                      int $currDept = null, $endDate = null,
-        $type = "createEvent"
+                                      $endDate = null, $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
@@ -648,7 +637,7 @@ name="delete" onclick="return confirm(
         string $endDate, string $type,
         array $allDepts, array $buildArgs,
        
-        int $currDept = null
+        
     ): string {
 
         switch ($type) {
@@ -660,7 +649,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormText(
-                        $allDepts, $buildArgs, $currDept, $title, $content,
+                        $allDepts, $buildArgs, $title, $content,
                         $endDate, 'submit'
                     );
         case "img":
@@ -670,8 +659,8 @@ name="delete" onclick="return confirm(
                         get_page_by_title_custom('Gestion des informations')
                     )
                 ) . '">< Retour</a>' .
-                    $this->displayFormImg(
-                        $allDepts, $buildArgs, $currDept, $title, $content, $endDate,
+                    $this->displayFormImage(
+                        $allDepts, $buildArgs, $title, $content, $endDate,
                         'submit'
                     );
         case "video":
@@ -682,7 +671,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormVideo(
-                        $allDepts, $buildArgs, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
         case "short":
@@ -693,7 +682,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormShort(
-                        $allDepts, $buildArgs, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
         case "pdf":
@@ -704,7 +693,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                     $this->displayFormPDF(
-                        $allDepts, $buildArgs, $currDept, $title,
+                        $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
         case "event":
@@ -718,7 +707,7 @@ name="delete" onclick="return confirm(
                         )
                     ) . '">< Retour</a>' . $this->displayFormPDF(
                         $allDepts, $buildArgs,
-                        $currDept, $title, $content, $endDate, 'submit'
+                        $title, $content, $endDate, 'submit'
                     );
             } else {
                 return '<a href="'
@@ -726,9 +715,9 @@ name="delete" onclick="return confirm(
                         get_permalink(
                             get_page_by_title_custom('Gestion des informations')
                         )
-                    ) . '">< Retour</a>' . $this->displayFormImg(
+                    ) . '">< Retour</a>' . $this->displayFormImage(
                         $allDepts, $buildArgs,
-                        $currDept, $title, $content, $endDate, 'submit'
+                        $title, $content, $endDate, 'submit'
                     );
             }
         default:
