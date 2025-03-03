@@ -177,7 +177,7 @@ function displayOrHide(slides, slideIndex)
     }
 
     setTimeout(function(){
-        window.location.reload(1);
+        window.location.reload(true);
     }, 86400000);
 }
 
@@ -245,7 +245,7 @@ function displayOrHideVideo(slides, slideIndex) {
 
         if (slides.length !== 1 || totalPage !== 1) {
             // Sécuriser l'accès à `videoDurations[slideIndex-1]`
-            let duration = videoDurations[slideIndex - 1] || 5000; // Valeur par défaut : 5s si non définie
+            let duration = videoDurations[slideIndex - 1] || 10000; // Valeur par défaut : 5s si non définie
 
             setTimeout(function () {
                 displayOrHideVideo(slides, slideIndex);

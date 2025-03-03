@@ -140,7 +140,8 @@ class InformationController extends Controller
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
         $information->setAdminId(null);
-        $information->setDuration(5000);
+        $information->setDuration(10000);   // Durée par défaut
+                                                    // d'une information
 
         $codeAde = new CodeAde();
 
@@ -294,7 +295,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                    $this->_view->{"displayForm" . ucfirst($type)}
                    ($allDepts, $buildArgs)),
                    $contentTypes)).
-               '</div>' .
+               '</div></div>' .
                $this->_view->contextCreateInformation();
     }
 
@@ -543,7 +544,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         );
         $name = $_SERVER['DOCUMENT_ROOT']
             . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
-        $entity->setDuration(5000);
+        $entity->setDuration(10000); // durée par défaut d'une information
 
         if ($entity->getType() == 'video' || $entity->getType() == 'short') {
             $getID3 = new getID3();
@@ -822,11 +823,12 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                     if($information->getType() === 'scrapping') {
                         $this->_view->displaySlide('Sans titre',
                             $this->createScrapper($information->getId()), $information->getType());
-                    }
+                    } else {
                         $this->_view->displaySlide(
                             $information->getTitle(),
                             $information->getContent(), $information->getType(), $adminSite
                         );
+                    }
                 }
             }
         }
