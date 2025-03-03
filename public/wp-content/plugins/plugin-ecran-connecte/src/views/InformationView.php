@@ -564,11 +564,14 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
-    int $currDept = null, $endDate = null, $title = null, $url = null,
+    public function displayFormScrapping (array $allDepts, array $buildArgs,
+                             $endDate = null, $title = null, $url = null,
     $type = "createScrapping") {
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        $disabled = $isAdmin ? '' : 'disabled';
         $form = '
         <form method="post" enctype="multipart/form-data" id="registerScrappingForm">
             <div class="form-group">
@@ -595,12 +598,11 @@ name="delete" onclick="return confirm(
             . '" required >
             </div>
             <div class="form-group">
-                <label for="informationDept">Département</label>
+                <label>Emploi(s) du temps</label>
                 <br>    
-                <select id="informationDept" name="informationDept" 
-                class="form-control"' . $disabled . '>
-                    ' . $this->buildDepartmentOptions($allDepts, $currDept) . '
-                </select>
+                <div id="codeContainerscrapping">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scrapping\')" 
+            value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
@@ -767,7 +769,7 @@ name="delete" onclick="return confirm(
                     )
                 ) . '">< Retour</a>' .
                 $this->displayFormScrapping(
-                    $allDepts, $isAdmin, $currDept, $title, $endDate, 'submit'
+                    $allDepts, $buildArgs, $title, $endDate, 'submit'
                 );
         case "event":
             $extension = explode('.', $content);
