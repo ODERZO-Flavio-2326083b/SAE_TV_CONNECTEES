@@ -138,8 +138,10 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
 
-                foreach ($this->_metadata as $key => $value) {
-                    add_user_meta($id, $key, $value, true);
+                if(!empty($this->_metadata)) {
+                    foreach ( $this->_metadata as $key => $value ) {
+                        add_user_meta( $id, $key, $value, true );
+                    }
                 }
             }
         }
@@ -196,8 +198,10 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
-        foreach ($this->_metadata as $key => $value) {
-            update_user_meta($this->getId(), $key, $value);
+        if(!empty($this->_metadata)) {
+            foreach ( $this->_metadata as $key => $value ) {
+                update_user_meta( $this->getId(), $key, $value );
+            }
         }
 
         return $request->rowCount();
