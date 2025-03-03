@@ -22,7 +22,6 @@ use getID3;
 use models\Department;
 use models\Information;
 use models\Scrapper;
-use models\Scrapping;
 use models\User;
 use views\InformationView;
 
@@ -76,7 +75,6 @@ class InformationController extends Controller
     {
         $this->_model = new Information();
         $this->_view = new InformationView();
-        $this->_modelScrapping = new Scrapping();
     }
 
     /**
@@ -137,18 +135,8 @@ class InformationController extends Controller
             INPUT_POST,
             'informationDept'
         ) : $currDept;
-        $tag = filter_input(INPUT_POST, 'tag');
-
-        /*$tags = array();
-        foreach ($tags as $tag) {
-            if (is_string($tag) && $tag > 0) {
-                if (is_null($tags->getByCode($code)->getId())) {
-                    return 'error'; // Code invalide
-                } else {
-                    $tags[] = $codeAde->getByCode($code);
-                }
-            }
-        }*/
+        $tags = filter_input(INPUT_POST, 'tag', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $contentsScrapper = filter_input(INPUT_POST, 'contentScrapper', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
         // Si le titre est vide
         if ($title == '') {
@@ -156,9 +144,8 @@ class InformationController extends Controller
         }
 
         $information = $this->_model;
-        $scrapping = $this->_modelScrapping;
 
-        foreach(array($information, $scrapping) as $info) {
+        foreach(array($information) as $info) {
             $info->setContent($content);
             $info->setTitle($title);
             $info->setAuthor($userModel->get($currentUser->ID));
@@ -168,10 +155,6 @@ class InformationController extends Controller
             $info->setIdDepartment($deptId ?: 0);
             $info->setDuration(5000);
         }
-
-
-
-        $scrapping->setTag($tag);
 
 
         if (isset($actionText)) {   // Si l'information est un texte
@@ -256,8 +239,10 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         }
 
         if (isset($actionScrapping)) {
-            $scrapping->setType("scrapping");
-            if ($scrapping->insert()) {
+            $information->setType("scrapping");
+            if ($id = $information->insert()) {
+                $information->setId($id);
+                $information->insertScrappingTags($tags, $contentsScrapper);
                 $this->_view->displayCreateValidate();
             } else {
                 $this->_view->displayErrorInsertionInfo();
@@ -642,7 +627,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
 
             if (in_array(
-                $information->getType(), ['img', 'pdf', 'event', 'video', 'short', 'scrapping']
+                $information->getType(), ['img', 'pdf', 'event', 'video', 'short']
             )
             ) {
                 if (in_array($contentExplode[1], $imgExtension)) {

@@ -451,6 +451,30 @@ class Information extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public function insertScrappingTags(array $tags, array $contents) {
+
+        $database = $this->getDatabase();
+        for ($i = 0; $i < count($tags); $i++) {
+            $request = $database->prepare(
+                'INSERT INTO ecran_scrapping_tags
+                  (id_info,
+                   content,
+                   tag
+                  )
+                   VALUES
+                  (:id_info,
+                   :content,
+                   :tag)
+        ');
+
+            $request->bindValue(':id_info', $this->getId(), PDO::PARAM_INT);
+            $request->bindValue(':content', $contents[$i], PDO::PARAM_STR);
+            $request->bindValue(':tag', $tags[$i], PDO::PARAM_STR);
+            $request->execute();
+        }
+        return $database->lastInsertId();
+    }
+
     /**
      * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
      *

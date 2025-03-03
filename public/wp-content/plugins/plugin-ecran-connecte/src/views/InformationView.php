@@ -562,7 +562,7 @@ name="delete" onclick="return confirm(
     }
 
     public function displayFormScrapping (array $allDepts, bool $isAdmin = false,
-    int $currDept = null, $endDate = null, $title = null,
+    int $currDept = null, $endDate = null, $title = null, $url = null,
     $type = "createScrapping") {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $disabled = $isAdmin ? '' : 'disabled';
@@ -573,6 +573,12 @@ name="delete" onclick="return confirm(
                 <input id="title" class="form-control" type="text"
                 name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
+            </div>
+            <div class="form-group">
+                <label for="url">Lien du site</label>
+                <input id="url" class="form-control" type="url"
+                name="content" placeholder="Inserer un lien" maxlength="255"
+                        value="' . $url . '">
             </div>
             <div class="form-group" id="tagContainer">
                 <label for="tag" id="tagDiv">Tag</label> ' . $this->buildTagOption() . '
@@ -595,8 +601,6 @@ name="delete" onclick="return confirm(
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
             Valider</button>';
-        $info = new InformationController();
-        $info->createScrapper();
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" 
 name="delete" onclick="return confirm(
@@ -607,9 +611,9 @@ name="delete" onclick="return confirm(
     }
 
     public static function buildTagOption() {
-        $select = '  <div>
-                       <input id="content" class="form-control" type="text" name="content" placeholder="Inserer le tag" maxlength="255" required>
-                       <select class="form-control firstSelect" id="tag" name="tag" required="">
+        return '  <div>
+                       <input id="content" class="form-control" type="text" name="contentScrapper[]" placeholder="Inserer le tag" maxlength="255" required>
+                       <select class="form-control firstSelect" id="tag" name="tag[]" required="">
                             <option value="default">Défault</option>
                             <option value="image">Image</option>
                             <option value="lien">Lien</option>
@@ -617,7 +621,6 @@ name="delete" onclick="return confirm(
                             <option value="article">Article</option> 
                      </div>
                           ';
-        return $select;
     }
 
     /**
