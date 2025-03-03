@@ -662,7 +662,6 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
         $entity->setIdDepartment($data['department_id']);
         $entity->setType($data['type']);
         $entity->setDuration($data['duration']);
-        $entity->setFormat($data['format']);
         if ($data['administration_id'] != null) {
             $author->setLogin('Administration');
             $entity->setAuthor($author);
