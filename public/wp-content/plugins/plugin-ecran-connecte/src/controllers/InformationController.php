@@ -242,7 +242,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             if ($id = $information->insert()) {
                 $information->setId($id);
                 $information->insertScrappingTags($tags, $contentsScrapper);
-                $this->createScrapper();
                 $this->_view->displayCreateValidate();
             } else {
                 $this->_view->displayErrorInsertionInfo();
@@ -760,7 +759,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $informations = $this->_model->getInformationsByDeptId(
             $deptModel->getUserDepartment(get_current_user_id())->getIdDepartment()
         );
-        $informations[] = $this->createScrapper();
         $this->_view->displayStartSlideshow();
         foreach ($informations as $information) {
             $endDate = date('Y-m-d', strtotime($information->getExpirationDate()));
@@ -771,10 +769,14 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 }
                 // Affiche les informations sauf les vidéos
                 if ($information->getType() !== 'video') {
-                    $this->_view->displaySlide(
-                        $information->getTitle(),
-                        $information->getContent(), $information->getType(), $adminSite
-                    );
+                    if($information->getType() === 'scrapping') {
+                        $this->_view->displaySlide('Sans titre',
+                            $this->createScrapper($information->getId()), $information->getType());
+                    }
+                        $this->_view->displaySlide(
+                            $information->getTitle(),
+                            $information->getContent(), $information->getType(), $adminSite
+                        );
                 }
             }
         }
@@ -935,23 +937,23 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      * @version 1.0
      * @date    2024-10-16
      */
-    function createScrapper() {
+    public function createScrapper($id): string {
         $information = $this->_model;
-        list($url, $balises, $types) = $information->getScrappingTags($information->getId());
-        $article = $information->getContentByArticle($information->getId());
+        list($url, $balises, $types) = $information->getScrappingTags($id);
 
         $arrayArg = array();
         for($i=0; $i<count($balises); $i++) {
                 $arrayArg[$types[$i]] = $balises[$i];
         }
 
-        var_dump($arrayArg);
+        $article = $arrayArg['article'];
+        unset($arrayArg['article']);
 
         $scrapper1 = new Scrapper(
             $url, // URL du site à scraper
             $article,  // Sélecteur pour l'article
             $arrayArg
         );
-        $scrapper1->printWebsite();
+        return $scrapper1->printWebsite();
     }
 }

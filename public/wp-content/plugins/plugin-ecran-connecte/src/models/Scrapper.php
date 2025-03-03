@@ -139,14 +139,13 @@ class Scrapper
 
 
     /**
-     * Affiche l'article dans un format HTML
+     * Retourne l'article dans un format HTML
      */
-    public function printWebsite(): void
+    public function printWebsite(): string
     {
         $article = $this->getOneArticle();
         if (isset($article['error'])) {
-            echo "<p style='color: red; text-align: center; font-size: 18px;'>{$article['error']}</p>";
-            return;
+            return "<p style='color: red; text-align: center; font-size: 18px;'>{$article['error']}</p>";
         }
 
         $html = '<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; text-align: center; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">';
@@ -183,7 +182,7 @@ class Scrapper
         }
 
         $html .= '</div>';
-        echo $html;
+        return $html;
     }
 
 

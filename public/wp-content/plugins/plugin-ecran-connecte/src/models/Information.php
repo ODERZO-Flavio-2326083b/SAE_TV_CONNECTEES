@@ -520,21 +520,6 @@ class Information extends Model implements Entity, JsonSerializable
         return array($url, $balises, $tags);
     }
 
-    public function getContentByArticle($id) {
-        $database = $this->getDatabase();
-
-        $request = $database->prepare(
-            'SELECT content
-                   FROM ecran_scrapping_tags
-                   WHERE tag = \'article\' 
-                   AND id = :id'
-        );
-        $request->bindValue(':id', $id, PDO::PARAM_INT);
-        $request->execute();
-
-        return $request->fetch(PDO::FETCH_ASSOC)['content'];
-    }
-
     /**
      * Compte le nombre total d'enregistrements dans la table 'ecran_information'.
      *
