@@ -75,7 +75,7 @@ Il est possible de personnaliser la vitesse de défilement de l'emploi du temps 
 Les informations sont visibles par tous les utilisateurs selon leur département.
 Elles sont affichées dans un diaporama à la droite de l'écran.
 
-Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short, scrapping).
+Il y a plusieurs types d'informations possibles à poster (image, texte, PDF, événement, vidéo, short, scraping).
 Les images sont affichées au format .png, .gif, .jpg, .jpeg et .svg.
 
 Les PDF sont affichés grâce à la librairie "PDF.js" qui permet de créer son propre lecteur de PDF. Voir "slideshow.js".
