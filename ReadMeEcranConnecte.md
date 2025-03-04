@@ -37,22 +37,22 @@ Ce plugin permet plusieurs fonctionnalités :
 
 ### Utilisateurs
 
-Il y a quatre rôles différents avec chacun leur droit :
+Il y a six rôles différents avec chacun leur droit :
 
-|     Utilisateur     | Voir son emploi du temps |   Poster des informations | Poster des alertes | Inscrire des utilisateurs | Personnaliser la télévision |
-|:-------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|:---------------------------:|
-|     Technicien      |           Oui            |            Non            |        Non         |            Non            |             Non             |
-|     Télévision      |           Oui            |            Non            |        Non         |            Non            |             Non             |
-|     Tablette      |           Oui            |            Non            |        Non         |            Non            |             Non             |
-|     Communicant      |           Non            |            Oui            |        Oui         |            Non            |             Non             |
-|     Secrétaire      |           Non            |            Oui            |        Oui         |            Oui            |             Non             |
-| Administrateur de département |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |
+|     Utilisateur     | Voir son emploi du temps |   Poster des informations | Poster des alertes | Inscrire des utilisateurs | Personnaliser la télévision | Gestion des départements |
+|:-------------------:|:------------------------:|:-------------------------:|:------------------:|:-------------------------:|:---------------------------:|:------------------------:|
+|     Agent d'entretien      |           Oui            |            Non            |        Non         |            Non            |             Non             |        Non        |
+|     Télévision      |           Oui            |            Non            |        Non         |            Non            |             Non             |           Non            |
+|     Tablette      |           Oui            |            Non            |        Non         |            Non            |             Non             |            Non             |
+|     Communicant      |           Non            |            Oui            |        Oui         |            Non            |             Non             |           Non           |
+|     Secrétaire      |           Non            |            Oui            |        Oui         |            Oui            |             Non             |           Non            |
+| Administrateur de département |           Non            |            Oui            |        Oui         |            Oui            |             Oui             |      Oui       |
 
 
-Les techniciens sont des agents d'entretien, qui vont avoir accès à l'emploi du temps pour leur permettre de savoir 
-quelles salles sont occupées.
+Les agents d'entretien, ont accès à l'emploi du temps pour leur permettre de savoir quelles salles sont occupées
+et ne peuvent pas être nettoyées pour le moment.
 Les administrateurs de département sont des administrateurs qui gèrent leur département, et ne peuvent créer d'autres administrateur de département.
-Les communicants envoient des informations ou des alertes à un département en général.
+Les communicants envoient des informations ou des alertes à un ou plusieurs départements en général.
 
 ### Emploi du temps
 
@@ -86,6 +86,9 @@ dans un diaporama. Une fois le diaporama terminé, les vidéos disparaissent pen
 à l'emploi du temps.
 
 Les shorts sont affichés dans le diaporama d'informations à droite comme les autres.
+
+Le scraping sert à récupérer dynamiquement des éléments d'un autre site pour les afficher en tant qu'information. Il est nécessaire de connaître la structure du site
+à scraper pour pouvoir récupérer les bonnes balises HTML. Voir le guide pour plus de détails.
 
 Les événements sont des informations spéciales. Lorsqu'une information événement est postée, les télévisions n'affichent
 que les informations en plein écran.  
