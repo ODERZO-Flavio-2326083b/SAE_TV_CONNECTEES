@@ -463,7 +463,7 @@ Supprimer</button>';
                     <div class="form-group">
                         <label for="title">Titre <span class="text-muted">(Optionnel)
                         </span></label>
-                        <input id="title" class="form-control$title" type="text" 
+                        <input id="title" class="form-control" type="text" 
                         name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
                     </div>';

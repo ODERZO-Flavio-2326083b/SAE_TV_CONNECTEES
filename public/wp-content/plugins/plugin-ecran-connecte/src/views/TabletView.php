@@ -54,11 +54,11 @@ class TabletView extends UserView
      * le mot de passe, le département et l'emploi du temps.
      *
      * @param array    $classes  Liste des classes disponibles
-     * pour l'emploi du temps.
+     *                           pour l'emploi du temps.
      * @param array    $allDepts Liste des départements disponibles pour la
      *                           sélection.
      * @param int|null $currDept L'identifiant du département actuellement
-     * sélectionné (facultatif, par défaut null).
+     *                           sélectionné (facultatif, par défaut null).
      *
      * @return string Retourne le code HTML du formulaire de création de tablette.
      */
@@ -114,14 +114,13 @@ class TabletView extends UserView
      * en paramètre, il sera sélectionné par défaut.
      *
      * @param array        $classes  Liste des classes
-     * disponibles pour l'emploi du temps.
+     *                               disponibles pour l'emploi du temps.
      * @param array        $allDepts Liste des départements disponibles pour la
      *                               sélection.
      * @param CodeAde|null $code     Code ADE à sélectionner par défaut
      *                               (facultatif).
      * @param int          $count    Compteur pour générer un identifiant unique pour
-     *                               le
- select.
+     *                               le select.
      *
      * @return string Retourne le code HTML du menu déroulant des codes ADE.
      */
