@@ -352,9 +352,10 @@ function installDatabaseEcran() : void
             id INT(10) NOT NULL AUTO_INCREMENT,
             info_id INT(10) NOT NULL,
             code_ade_id INT(10) NOT NULL,
-            PRIMARY KEY (id, info_id, code_ade_id),
-            FOREIGN KEY (code_ade_id) REFERENCES
-                ecran_code_ade(id) ON DELETE CASCADE,
+            PRIMARY KEY (id),
+            UNIQUE (info_id, code_ade_id),
+            FOREIGN KEY (code_ade_id) 
+                REFERENCES ecran_code_ade(id) ON DELETE CASCADE,
             FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
             ) $charset_collate;";
 
