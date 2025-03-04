@@ -215,9 +215,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    /*if (get_option('init_database') == 1) {
+    if (get_option('init_database') == 1) {
         return;
-    }*/
+    }
 
     $charset_collate = $wpdb->get_charset_collate();
 

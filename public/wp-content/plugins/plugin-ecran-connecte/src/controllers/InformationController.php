@@ -679,7 +679,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $pageNumber = $maxPage;
         }
         $current_user = wp_get_current_user();
-        if (current_user_can('admin_perms')) {
+        if (current_user_can('admin_perms')
+            || in_array("communicant", $current_user->roles)) {
             $informationList = $this->_model->getList($begin, $number);
         } else {
             $informationList = $this->_model->getInformationsByDeptId(
