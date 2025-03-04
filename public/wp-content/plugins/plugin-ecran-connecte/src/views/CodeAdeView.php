@@ -258,6 +258,7 @@ class CodeAdeView extends View
      *                              année.
      * @param CodeAde[] $groups     Liste des codes ADE de type groupe.
      * @param CodeAde[] $halfGroups Liste des codes ADE de type demi-groupe.
+     * @param CodeAde[] $class      Groupe pour les codes ADE
      *
      * @return string
      * Retourne le code HTML affichant tous les codes ADE sous forme de tableau.

@@ -1,4 +1,25 @@
 <?php
+/**
+ * Fichier TabletView.php
+ *
+ * Ce fichier contient la classe 'TabletView',
+ * qui est responsable de l'affichage des vues liées à la gestion
+ * des comptes tablettes
+ * dans l'application. Cette classe génère des formulaires permettant de
+ * créer des comptes tablettes,
+ * ainsi que des tableaux et des messages pour gérer et afficher ces comptes.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TabletView
+ * Documentation de la classe
+ * @since    2025-01-13
+ */
 
 namespace views;
 
@@ -6,8 +27,41 @@ use models\CodeAde;
 use models\Department;
 use models\User;
 
+/**
+ * Classe TabletView
+ *
+ * Cette classe gère l'affichage des vues liées à la gestion des comptes tablettes.
+ * Elle fournit des formulaires permettant de créer des comptes
+ * tablettes, ainsi que des tableaux
+ * pour afficher les informations des comptes créés.
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0.0
+ * @link     https://www.example.com/docs/TabletView Documentation de la classe
+ * @since    2025-01-13
+ */
 class TabletView extends UserView
 {
+
+    /**
+     * Affiche le formulaire pour créer une tablette.
+     *
+     * Cette méthode génère un formulaire HTML permettant à l'utilisateur de
+     * créer une tablette, en fournissant des informations telles que le login,
+     * le mot de passe, le département et l'emploi du temps.
+     *
+     * @param array    $classes  Liste des classes disponibles
+     * pour l'emploi du temps.
+     * @param array    $allDepts Liste des départements disponibles pour la
+     *                           sélection.
+     * @param int|null $currDept L'identifiant du département actuellement
+     * sélectionné (facultatif, par défaut null).
+     *
+     * @return string Retourne le code HTML du formulaire de création de tablette.
+     */
     public function displayFormTablet(array $classes, array $allDepts,
         int $currDept = null
     ): string {
@@ -52,6 +106,25 @@ class TabletView extends UserView
         </form>';
     }
 
+    /**
+     * Génère un menu déroulant HTML pour sélectionner un code ADE.
+     *
+     * Cette méthode crée un menu `<select>` contenant les codes ADE regroupés
+     * par département, et triés par type puis titre. Si un code ADE est passé
+     * en paramètre, il sera sélectionné par défaut.
+     *
+     * @param array        $classes  Liste des classes
+     * disponibles pour l'emploi du temps.
+     * @param array        $allDepts Liste des départements disponibles pour la
+     *                               sélection.
+     * @param CodeAde|null $code     Code ADE à sélectionner par défaut
+     *                               (facultatif).
+     * @param int          $count    Compteur pour générer un identifiant unique pour
+     *                               le
+ select.
+     *
+     * @return string Retourne le code HTML du menu déroulant des codes ADE.
+     */
     public static function buildSelectCode(array $classes, array $allDepts,
         CodeAde $code = null,
         int $count = 0
@@ -111,6 +184,20 @@ class TabletView extends UserView
         return $select;
     }
 
+
+    /**
+     * Affiche toutes les tablettes avec leurs informations.
+     *
+     * Cette méthode génère un tableau HTML affichant toutes les tablettes créées,
+     * avec leurs informations telles que le login et le département associé.
+     *
+     * @param array $users        Liste des utilisateurs (tablettes) à
+     *                            afficher.
+     * @param array $userDeptList Liste des départements associés aux utilisateurs.
+     *
+     * @return string Retourne le code HTML affichant toutes
+     * les tablettes sous forme de tableau.
+     */
     public function displayAllTablets(array $users, array $userDeptList)
     {
         $title = 'Tablette';

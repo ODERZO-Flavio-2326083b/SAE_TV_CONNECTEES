@@ -1,4 +1,22 @@
 <?php
+/**
+ * Fichier TabletICSView.php
+ *
+ * Ce fichier contient la classe 'TabletICSView',
+ * qui est responsable de l'affichage de l'emploi du temps
+ * sur une tablette. Il génère le HTML nécessaire
+ * pour afficher les événements programmés sur une semaine,
+ * organisés par heure et jour, de manière claire et structurée.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.example.com/docs/TabletICSView Documentation de la classe
+ * @since    2025-01-13
+ */
 
 namespace views;
 
@@ -84,8 +102,8 @@ class TabletICSView extends ICSView
             $days[] = "<th scope='col'>$dateFormatted</th>";
 
             foreach ($hoursRange as $hour) {
-                $eventsByHour[$hour][$i] =
-                    "<td style='border: 1px solid #ccc; height: 50px;'></td>";
+                $eventsByHour[$hour][$i]
+                    = "<td style='border: 1px solid #ccc; height: 50px;'></td>";
             }
 
             $dayEvents = $ics_data['events'][$day->format('Y')]
@@ -97,8 +115,8 @@ class TabletICSView extends ICSView
                         $endHour = (int)date("H", strtotime($event['fin']));
                         $duration = max(1, $endHour - $startHour);
 
-                        $eventsByHour[$startHour][$i] =
-                            "<td rowspan='$duration' class='tablet-event-td'>" .
+                        $eventsByHour[$startHour][$i]
+                            = "<td rowspan='$duration' class='tablet-event-td'>" .
                             $this->getContent($event) ?:
                                 "<div>Erreur d'affichage</div>" . "</td>";
 
