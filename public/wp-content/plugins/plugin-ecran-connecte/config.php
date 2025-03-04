@@ -348,27 +348,6 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping (
-            scraping_id INT(10) NOT NULL AUTO_INCREMENT,
-            title VARCHAR (30) NOT NULL,
-            content VARCHAR (255) NOT NULL,
-            tag VARCHAR (70) NOT NULL,
-            num INT(10) NOT NULL,
-            creation_date datetime DEFAULT NOW() NOT NULL,
-            expiration_date datetime NOT NULL,
-            author BIGINT(20) UNSIGNED NOT NULL,
-            type VARCHAR (10) DEFAULT 'text' NOT NULL,
-            administration_id INT(10) DEFAULT NULL,
-            duration INT(10) DEFAULT 5000 NOT NULL,
-            department_id INT(10),
-            PRIMARY KEY (scraping_id),
-            FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
-            FOREIGN KEY (department_id) 
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
-            ) $charset_collate;";
-
-    dbDelta($sql);
-
     $sql = "CREATE TABLE IF NOT EXISTS ecran_info_code_ade (
             id INT(10) NOT NULL AUTO_INCREMENT,
             info_id INT(10) NOT NULL,
