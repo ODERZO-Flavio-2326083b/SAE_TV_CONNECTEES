@@ -1,7 +1,9 @@
 <map id="controllers\Schedule" name="controllers\Schedule">
-<area shape="rect" id="Node000001" title=" " alt="" coords="149,5,289,32"/>
-<area shape="rect" id="Node000002" href="$classcontrollers_1_1_technician_controller.html" title=" " alt="" coords="5,80,209,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,43,128,82,125,77,185,38"/>
-<area shape="rect" id="Node000003" href="$classcontrollers_1_1_television_controller.html" title=" " alt="" coords="233,80,432,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,38,314,77,311,82,250,43"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,145,83"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_tablet_controller.html" title=" " alt="" coords="206,5,382,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,49,233,30,234,35,151,55"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_technician_controller.html" title=" " alt="" coords="193,56,396,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,67,192,67,192,72,160,72"/>
+<area shape="rect" id="Node000004" href="$classcontrollers_1_1_television_controller.html" title=" " alt="" coords="195,107,394,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,84,234,103,233,109,150,89"/>
 </map>

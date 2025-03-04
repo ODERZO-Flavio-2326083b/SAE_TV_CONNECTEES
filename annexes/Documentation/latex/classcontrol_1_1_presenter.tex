@@ -1,0 +1,104 @@
+\doxysection{Référence de la classe control\textbackslash{}Presenter}
+\hypertarget{classcontrol_1_1_presenter}{}\label{classcontrol_1_1_presenter}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_a0d3210182696828b6cc34313805827b8}{\+\_\+\+\_\+construct}} (\$annonces\+Check, \$messages\+Check)
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_ac950df284e1f0a634752ea1c37cd27c7}{get\+All\+Annonces\+HTML}} ()
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_a9d7d74e441a52f229a6a7d6bb86da4d3}{get\+Current\+Post\+HTML}} ()
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_a91c8f6856dd3a855125c0258f87c27eb}{get\+All\+Messages\+HTML}} (\$user\+Id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_a446922012dc8250a061702a32cac7c9c}{\$annonces\+Check}}
+\item 
+\mbox{\hyperlink{classcontrol_1_1_presenter_a9d0393e1db5a0174db4ed15137e3ed9f}{\$messages\+Check}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe Presenter
+
+Cette classe est responsable de la génération du contenu HTML pour l\textquotesingle{}affichage des annonces et des messages. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classcontrol_1_1_presenter_a0d3210182696828b6cc34313805827b8}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_a0d3210182696828b6cc34313805827b8} 
+control\textbackslash{}\+Presenter\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$annonces\+Check}{, }\item[{}]{\$messages\+Check}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe Presenter.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$annonces\+Check} & Instance d\textquotesingle{}un objet permettant la récupération des annonces. \\
+\hline
+object & {\em \$messages\+Check} & Instance d\textquotesingle{}un objet permettant la récupération des messages. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrol_1_1_presenter_ac950df284e1f0a634752ea1c37cd27c7}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!getAllAnnoncesHTML@{getAllAnnoncesHTML}}
+\index{getAllAnnoncesHTML@{getAllAnnoncesHTML}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{getAllAnnoncesHTML()}{getAllAnnoncesHTML()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_ac950df284e1f0a634752ea1c37cd27c7} 
+control\textbackslash{}\+Presenter\+::get\+All\+Annonces\+HTML (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Génère le contenu HTML pour afficher la liste de toutes les annonces.
+
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null Le code HTML de la liste des annonces ou null si aucune annonce n\textquotesingle{}est disponible. 
+\end{DoxyReturn}
+\Hypertarget{classcontrol_1_1_presenter_a91c8f6856dd3a855125c0258f87c27eb}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!getAllMessagesHTML@{getAllMessagesHTML}}
+\index{getAllMessagesHTML@{getAllMessagesHTML}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{getAllMessagesHTML()}{getAllMessagesHTML()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_a91c8f6856dd3a855125c0258f87c27eb} 
+control\textbackslash{}\+Presenter\+::get\+All\+Messages\+HTML (\begin{DoxyParamCaption}\item[{}]{\$user\+Id}{}\end{DoxyParamCaption})}
+
+Génère le contenu HTML pour afficher tous les messages reçus par un utilisateur spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur dont on veut afficher les messages. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string Le code HTML contenant la liste des messages. 
+\end{DoxyReturn}
+\Hypertarget{classcontrol_1_1_presenter_a9d7d74e441a52f229a6a7d6bb86da4d3}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!getCurrentPostHTML@{getCurrentPostHTML}}
+\index{getCurrentPostHTML@{getCurrentPostHTML}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{getCurrentPostHTML()}{getCurrentPostHTML()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_a9d7d74e441a52f229a6a7d6bb86da4d3} 
+control\textbackslash{}\+Presenter\+::get\+Current\+Post\+HTML (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Génère le contenu HTML pour afficher un post spécifique.
+
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null Le code HTML du post ou null si aucun post n\textquotesingle{}est disponible. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classcontrol_1_1_presenter_a446922012dc8250a061702a32cac7c9c}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!\$annoncesCheck@{\$annoncesCheck}}
+\index{\$annoncesCheck@{\$annoncesCheck}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{\$annoncesCheck}{\$annoncesCheck}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_a446922012dc8250a061702a32cac7c9c} 
+control\textbackslash{}\+Presenter\+::\$annonces\+Check\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcontrol_1_1_presenter_a9d0393e1db5a0174db4ed15137e3ed9f}\index{control\textbackslash{}Presenter@{control\textbackslash{}Presenter}!\$messagesCheck@{\$messagesCheck}}
+\index{\$messagesCheck@{\$messagesCheck}!control\textbackslash{}Presenter@{control\textbackslash{}Presenter}}
+\doxysubsubsection{\texorpdfstring{\$messagesCheck}{\$messagesCheck}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_presenter_a9d0393e1db5a0174db4ed15137e3ed9f} 
+control\textbackslash{}\+Presenter\+::\$messages\+Check\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/control/\mbox{\hyperlink{_presenter_8php}{Presenter.\+php}}\end{DoxyCompactItemize}

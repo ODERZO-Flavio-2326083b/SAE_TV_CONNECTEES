@@ -1,0 +1,132 @@
+\doxysection{Référence de l\textquotesingle{}interface service\textbackslash{}Data\+Access\+Interface}
+\hypertarget{interfaceservice_1_1_data_access_interface}{}\label{interfaceservice_1_1_data_access_interface}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+
+
+Graphe d\textquotesingle{}héritage de service\textbackslash{}Data\+Access\+Interface\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{interfaceservice_1_1_data_access_interface__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a91f1fc49ca9d735d9836f867b00798d2}{get\+User}} (\$login, \$password)
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a6f9cad5138033d2627a5c936c5ab9561}{get\+All\+Annonces}} ()
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a5c492cf8fb9c2b58510a0d922442aba3}{get\+Post}} (\$id)
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a1d9f3bb81dfa9ecdda7e64c75197f2e5}{put\+Message\+Post}} (\$id\+Receveur, \$message, \$data)
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a15955f72d2f724cf11735ff2a692ad40}{get\+All\+Messages}} (\$user\+Id, \$data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Interface Data\+Access\+Interface
+
+Cette interface définit les méthodes nécessaires pour l\textquotesingle{}accès aux données dans l\textquotesingle{}application. Elle spécifie les opérations requises pour récupérer, insérer et manipuler les données relatives aux utilisateurs, aux annonces, aux posts et aux messages. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{interfaceservice_1_1_data_access_interface_a6f9cad5138033d2627a5c936c5ab9561}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}!getAllAnnonces@{getAllAnnonces}}
+\index{getAllAnnonces@{getAllAnnonces}!service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+\doxysubsubsection{\texorpdfstring{getAllAnnonces()}{getAllAnnonces()}}
+{\footnotesize\ttfamily \label{interfaceservice_1_1_data_access_interface_a6f9cad5138033d2627a5c936c5ab9561} 
+service\textbackslash{}\+Data\+Access\+Interface\+::get\+All\+Annonces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère toutes les annonces.
+
+\begin{DoxyReturn}{Renvoie}
+array Retourne un tableau d\textquotesingle{}objets représentant toutes les annonces. 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classdata_1_1_data_access_a61584c9227370abc5d53c7aaa370e6fb}{data\textbackslash{}\+Data\+Access}}.
+
+\Hypertarget{interfaceservice_1_1_data_access_interface_a15955f72d2f724cf11735ff2a692ad40}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}!getAllMessages@{getAllMessages}}
+\index{getAllMessages@{getAllMessages}!service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+\doxysubsubsection{\texorpdfstring{getAllMessages()}{getAllMessages()}}
+{\footnotesize\ttfamily \label{interfaceservice_1_1_data_access_interface_a15955f72d2f724cf11735ff2a692ad40} 
+service\textbackslash{}\+Data\+Access\+Interface\+::get\+All\+Messages (\begin{DoxyParamCaption}\item[{}]{\$user\+Id}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Récupère tous les messages d\textquotesingle{}un utilisateur spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur. \\
+\hline
+mixed & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données pour récupérer les messages.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Retourne un tableau d\textquotesingle{}objets représentant les messages associés à l\textquotesingle{}utilisateur. 
+\end{DoxyReturn}
+\Hypertarget{interfaceservice_1_1_data_access_interface_a5c492cf8fb9c2b58510a0d922442aba3}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}!getPost@{getPost}}
+\index{getPost@{getPost}!service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+\doxysubsubsection{\texorpdfstring{getPost()}{getPost()}}
+{\footnotesize\ttfamily \label{interfaceservice_1_1_data_access_interface_a5c492cf8fb9c2b58510a0d922442aba3} 
+service\textbackslash{}\+Data\+Access\+Interface\+::get\+Post (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Récupère un post spécifique par son identifiant.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant du post.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed Retourne un objet représentant le post spécifique. 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classdata_1_1_data_access_acbd16c381a74735e0512d8fe86181c52}{data\textbackslash{}\+Data\+Access}}.
+
+\Hypertarget{interfaceservice_1_1_data_access_interface_a91f1fc49ca9d735d9836f867b00798d2}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}!getUser@{getUser}}
+\index{getUser@{getUser}!service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \label{interfaceservice_1_1_data_access_interface_a91f1fc49ca9d735d9836f867b00798d2} 
+service\textbackslash{}\+Data\+Access\+Interface\+::get\+User (\begin{DoxyParamCaption}\item[{}]{\$login}{, }\item[{}]{\$password}{}\end{DoxyParamCaption})}
+
+Récupère un utilisateur à partir de son login et mot de passe.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$login} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur. \\
+\hline
+string & {\em \$password} & Le mot de passe de l\textquotesingle{}utilisateur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mixed Retourne un objet utilisateur si les informations sont valides, sinon null. 
+\end{DoxyReturn}
+
+
+Implémenté dans \mbox{\hyperlink{classdata_1_1_data_access_aea901f1897ba0a755f88d12187e0d4b8}{data\textbackslash{}\+Data\+Access}}.
+
+\Hypertarget{interfaceservice_1_1_data_access_interface_a1d9f3bb81dfa9ecdda7e64c75197f2e5}\index{service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}!putMessagePost@{putMessagePost}}
+\index{putMessagePost@{putMessagePost}!service\textbackslash{}DataAccessInterface@{service\textbackslash{}DataAccessInterface}}
+\doxysubsubsection{\texorpdfstring{putMessagePost()}{putMessagePost()}}
+{\footnotesize\ttfamily \label{interfaceservice_1_1_data_access_interface_a1d9f3bb81dfa9ecdda7e64c75197f2e5} 
+service\textbackslash{}\+Data\+Access\+Interface\+::put\+Message\+Post (\begin{DoxyParamCaption}\item[{}]{\$id\+Receveur}{, }\item[{}]{\$message}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Insère un message en lien avec un post.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id\+Receveur} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur destinataire du message. \\
+\hline
+string & {\em \$message} & Le contenu du message. \\
+\hline
+mixed & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données pour l\textquotesingle{}insertion du message.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne {\ttfamily true} si l\textquotesingle{}insertion a réussi, sinon {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+La documentation de cette interface a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/service/\mbox{\hyperlink{_data_access_interface_8php}{Data\+Access\+Interface.\+php}}\end{DoxyCompactItemize}

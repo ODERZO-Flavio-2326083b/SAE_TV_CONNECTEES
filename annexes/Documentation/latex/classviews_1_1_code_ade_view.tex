@@ -27,7 +27,7 @@ Graphe de collaboration de views\textbackslash{}Code\+Ade\+View\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_code_ade_view_ac5ba162421e1699aba9d1807e3111bd0}{create\+Type\+Option}} (\$selected\+Type)
 \item 
-\mbox{\hyperlink{classviews_1_1_code_ade_view_ab80095a38552a0aa2d8739f570caca9c}{display\+All\+Code}} (\$years, \$groups, \$half\+Groups)
+\mbox{\hyperlink{classviews_1_1_code_ade_view_a5613b3b89c60dcdc95d284a5f5fa3a3c}{display\+All\+Code}} (\$years, \$groups, \$half\+Groups, \$class)
 \item 
 \mbox{\hyperlink{classviews_1_1_code_ade_view_ac482a825b78ebcf66bcd7478684f9159}{success\+Creation}} ()
 \item 
@@ -48,7 +48,7 @@ Graphe de collaboration de views\textbackslash{}Code\+Ade\+View\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a9556d3c65a345cdc7903e079ba2d3402}{page\+Number}} (\$page\+Number, \$current\+Page, \$url, \$number\+Element=null)
 \item 
-\mbox{\hyperlink{classviews_1_1_view_ae28c5fd6e404973637c7c79c55770e94}{build\+Department\+Options}} (array \$depts, int \$curr\+Dept=null)
+\mbox{\hyperlink{classviews_1_1_view_aa5fcf58011c2c6975da63fa7aaf8a957}{build\+Codes\+Options}} (array \$depts, int \$curr\+Dept=null)
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a0decacec17aa7984c858d1518a225475}{build\+Link\+For\+Modify}} (\$link)
 \item 
@@ -111,7 +111,8 @@ string Retourne le code HTML du formulaire de cr√©ation de code ADE.
 \begin{DoxyDate}{Date}
 08-\/01-\/2025 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -149,11 +150,11 @@ Voici le graphe des appelants de cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classviews_1_1_code_ade_view_ac5ba162421e1699aba9d1807e3111bd0_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classviews_1_1_code_ade_view_ab80095a38552a0aa2d8739f570caca9c}\index{views\textbackslash{}CodeAdeView@{views\textbackslash{}CodeAdeView}!displayAllCode@{displayAllCode}}
+\Hypertarget{classviews_1_1_code_ade_view_a5613b3b89c60dcdc95d284a5f5fa3a3c}\index{views\textbackslash{}CodeAdeView@{views\textbackslash{}CodeAdeView}!displayAllCode@{displayAllCode}}
 \index{displayAllCode@{displayAllCode}!views\textbackslash{}CodeAdeView@{views\textbackslash{}CodeAdeView}}
 \doxysubsubsection{\texorpdfstring{displayAllCode()}{displayAllCode()}}
-{\footnotesize\ttfamily \label{classviews_1_1_code_ade_view_ab80095a38552a0aa2d8739f570caca9c} 
-views\textbackslash{}\+Code\+Ade\+View\+::display\+All\+Code (\begin{DoxyParamCaption}\item[{}]{\$years}{, }\item[{}]{\$groups}{, }\item[{}]{\$half\+Groups}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classviews_1_1_code_ade_view_a5613b3b89c60dcdc95d284a5f5fa3a3c} 
+views\textbackslash{}\+Code\+Ade\+View\+::display\+All\+Code (\begin{DoxyParamCaption}\item[{}]{\$years}{, }\item[{}]{\$groups}{, }\item[{}]{\$half\+Groups}{, }\item[{}]{\$class}{}\end{DoxyParamCaption})}
 
 Affiche toutes les informations des codes ADE.
 
@@ -165,7 +166,9 @@ Code\+Ade\mbox{[}$\,$\mbox{]} & {\em \$years} & Liste des codes ADE de type ann√
 \hline
 Code\+Ade\mbox{[}$\,$\mbox{]} & {\em \$groups} & Liste des codes ADE de type groupe. \\
 \hline
-Code\+Ade\mbox{[}$\,$\mbox{]} & {\em \$half\+Groups} & Liste des codes ADE de type demi-\/groupe.\\
+Code\+Ade\mbox{[}$\,$\mbox{]} & {\em \$half\+Groups} & Liste des codes ADE de type demi-\/groupe. \\
+\hline
+Code\+Ade\mbox{[}$\,$\mbox{]} & {\em \$class} & Groupe pour les codes ADE\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -177,11 +180,12 @@ string Retourne le code HTML affichant tous les codes ADE sous forme de tableau.
 \begin{DoxyDate}{Date}
 08-\/01-\/2025 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classviews_1_1_code_ade_view_ab80095a38552a0aa2d8739f570caca9c_cgraph}
+\includegraphics[width=350pt]{classviews_1_1_code_ade_view_a5613b3b89c60dcdc95d284a5f5fa3a3c_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classviews_1_1_code_ade_view_a68437f134f97701ee45331c477e89a9f}\index{views\textbackslash{}CodeAdeView@{views\textbackslash{}CodeAdeView}!displayErrorDoubleCode@{displayErrorDoubleCode}}
@@ -237,7 +241,8 @@ string Retourne le code HTML du formulaire de modification de code ADE.
 \begin{DoxyDate}{Date}
 08-\/01-\/2025 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

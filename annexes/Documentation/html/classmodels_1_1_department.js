@@ -4,6 +4,7 @@ var classmodels_1_1_department =
     [ "get", "classmodels_1_1_department.html#a293e389cef639a82f90d6e331bc1eb40", null ],
     [ "getAllDepts", "classmodels_1_1_department.html#ac9475a6ce15101424d568110e120186b", null ],
     [ "getAllDeptsWithoutSubadmin", "classmodels_1_1_department.html#a9e71ef5e0b84dd7514177ce6c8cf4ba8", null ],
+    [ "getDepartmentById", "classmodels_1_1_department.html#a6bc0fc561ffcb2c2c2a05c5ae09b383f", null ],
     [ "getDepartmentByName", "classmodels_1_1_department.html#a15af4b652f30df48ab29f77cf72a0595", null ],
     [ "getIdDepartment", "classmodels_1_1_department.html#a9255883e26fb4b8396e9218ad2277d87", null ],
     [ "getList", "classmodels_1_1_department.html#ac353671f79a26af32575c7c558edbaa5", null ],

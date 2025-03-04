@@ -33,7 +33,15 @@ Graphe de collaboration de models\textbackslash{}Information\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classmodels_1_1_information_ae27a30a55f7fbc85609110215c2449b8}{get\+Author\+List\+Information}} (int \$author, int \$begin=0, int \$number\+Element=25)
 \item 
-\mbox{\hyperlink{classmodels_1_1_information_a41c630ce58b24c465297294ed26c2980}{get\+Informations\+By\+Dept\+Id}} (int \$id\+Dept, int \$begin=0, int \$number\+Element=25)
+\mbox{\hyperlink{classmodels_1_1_information_a78536698fb81e356d72545173a7a3877}{get\+Informations\+By\+Code\+Ade\+Ids}} (array \$code\+Ade\+Ids)
+\item 
+\mbox{\hyperlink{classmodels_1_1_information_a749dff63793abd657a634464aa2328d8}{get\+Informations\+By\+Dept\+Id}} (int \$dept\+Id, int \$begin=0, int \$number\+Element=25)
+\item 
+\mbox{\hyperlink{classmodels_1_1_information_a62c6e66bbc7a06e0f8f5fbd42a102c86}{insert\+Scraping\+Tags}} (array \$tags, array \$contents)
+\item 
+\mbox{\hyperlink{classmodels_1_1_information_a4a7afd5560ef75b2dd32cc7af3018547}{delete\+Scraping\+Tags}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_information_ab0be810d8a73a098ec95663e122bfaac}{get\+Scraping\+Tags}} (int \$id)
 \item 
 \mbox{\hyperlink{classmodels_1_1_information_a6dd8b23b0234bc521731fc741d6355c9}{count\+All}} ()
 \item 
@@ -81,9 +89,9 @@ Graphe de collaboration de models\textbackslash{}Information\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classmodels_1_1_information_a9448369e7d3ea828c39b4ee2a5d6f83b}{set\+Admin\+Id}} (?int \$\+\_\+admin\+Id)
 \item 
-\mbox{\hyperlink{classmodels_1_1_information_a83aaf513971fc1c209beb7c3211aa22d}{get\+Id\+Department}} ()
+\mbox{\hyperlink{classmodels_1_1_information_a759eb289a2de0fa13e8d2e3a0aa72e24}{get\+Codes\+Ade}} ()
 \item 
-\mbox{\hyperlink{classmodels_1_1_information_a9190358693c73dfddae3b32de67a7893}{set\+Id\+Department}} (?int \$\+\_\+id\+Department)
+\mbox{\hyperlink{classmodels_1_1_information_a79a032f64baf38e43f5c8d6b1bbea104}{set\+Codes\+Ade}} (array\texorpdfstring{$\vert$}{|}null \$\+\_\+codes\+\_\+ade)
 \item 
 \mbox{\hyperlink{classmodels_1_1_information_add9f628fd6346b5c1f5050d59af4aba5}{get\+Duration}} ()
 \item 
@@ -119,9 +127,9 @@ string \mbox{\hyperlink{classmodels_1_1_information_a7d875a2643a5a20c9da18a0d420
 \item 
 int \mbox{\hyperlink{classmodels_1_1_information_a45b591187043c7f74f53a7c36abe280a}{\$\+\_\+admin\+Id}}
 \item 
-int \mbox{\hyperlink{classmodels_1_1_information_a5ad4fb2c2f4b455ffdf511cac68e21b1}{\$\+\_\+id\+Department}}
-\item 
 int \mbox{\hyperlink{classmodels_1_1_information_a8ebb54e342169b505ff8585df2cd790d}{\$\+\_\+duration}}
+\item 
+array null \mbox{\hyperlink{classmodels_1_1_information_a11925bbe95af65fcc656e665c39705af}{\$\+\_\+codes\+\_\+ade}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Membres hérités additionnels}
 \doxysubsection*{Fonctions membres protégées hérités de \mbox{\hyperlink{classmodels_1_1_model}{models\textbackslash{}\+Model}}}
@@ -195,6 +203,33 @@ Voici le graphe des appelants de cette fonction \+:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classmodels_1_1_information_ad508e7585dfdd6c8f86d74c21dd2cb39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_information_a4a7afd5560ef75b2dd32cc7af3018547}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!deleteScrapingTags@{deleteScrapingTags}}
+\index{deleteScrapingTags@{deleteScrapingTags}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{deleteScrapingTags()}{deleteScrapingTags()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a4a7afd5560ef75b2dd32cc7af3018547} 
+models\textbackslash{}\+Information\+::delete\+Scraping\+Tags (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Supprime toutes les balises de scraping associées à une information.
+
+Cette méthode supprime toutes les entrées de la table \textquotesingle{}ecran\+\_\+information\textquotesingle{} correspondant à l\textquotesingle{}identifiant de l\textquotesingle{}information actuelle.
+
+\begin{DoxyReturn}{Renvoie}
+int Retourne le nombre de lignes supprimées.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_information_a4a7afd5560ef75b2dd32cc7af3018547_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_information_ade007b10034c166601fe5256ce9c1f94}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!get@{get}}
@@ -336,6 +371,33 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classmodels_1_1_information_ae27a30a55f7fbc85609110215c2449b8_cgraph}
 \end{center}
 \end{figure}
+\Hypertarget{classmodels_1_1_information_a759eb289a2de0fa13e8d2e3a0aa72e24}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getCodesAde@{getCodesAde}}
+\index{getCodesAde@{getCodesAde}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{getCodesAde()}{getCodesAde()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a759eb289a2de0fa13e8d2e3a0aa72e24} 
+models\textbackslash{}\+Information\+::get\+Codes\+Ade (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère les codes ADE.
+
+Cette méthode retourne un tableau contenant les codes ADE stockés dans l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Renvoie}
+array Liste des codes ADE.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classmodels_1_1_information_a759eb289a2de0fa13e8d2e3a0aa72e24_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classmodels_1_1_information_a6201529a04fed76b0ffb233bf55d084a}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getContent@{getContent}}
 \index{getContent@{getContent}!models\textbackslash{}Information@{models\textbackslash{}Information}}
 \doxysubsubsection{\texorpdfstring{getContent()}{getContent()}}
@@ -445,29 +507,12 @@ Retourne l\textquotesingle{}identifiant de l\textquotesingle{}entité.
 \begin{DoxyReturn}{Renvoie}
 int\texorpdfstring{$\vert$}{|}null L\textquotesingle{}identifiant de l\textquotesingle{}entité, ou null si non défini. 
 \end{DoxyReturn}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classmodels_1_1_information_af0834e921d2c56be1592af4337b1e8b0_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{classmodels_1_1_information_a83aaf513971fc1c209beb7c3211aa22d}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getIdDepartment@{getIdDepartment}}
-\index{getIdDepartment@{getIdDepartment}!models\textbackslash{}Information@{models\textbackslash{}Information}}
-\doxysubsubsection{\texorpdfstring{getIdDepartment()}{getIdDepartment()}}
-{\footnotesize\ttfamily \label{classmodels_1_1_information_a83aaf513971fc1c209beb7c3211aa22d} 
-models\textbackslash{}\+Information\+::get\+Id\+Department (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-Retourne l\textquotesingle{}identifiant du département associé à l\textquotesingle{}entité.
-
-\begin{DoxyReturn}{Renvoie}
-int\texorpdfstring{$\vert$}{|}null L\textquotesingle{}identifiant du département, ou null si non défini. 
-\end{DoxyReturn}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=315pt]{classmodels_1_1_information_a83aaf513971fc1c209beb7c3211aa22d_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_information_a0c395458dea6d4fca0d3487df6c540f5}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getInformationFromAdminSite@{getInformationFromAdminSite}}
@@ -501,11 +546,37 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classmodels_1_1_information_a0c395458dea6d4fca0d3487df6c540f5_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classmodels_1_1_information_a41c630ce58b24c465297294ed26c2980}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getInformationsByDeptId@{getInformationsByDeptId}}
+\Hypertarget{classmodels_1_1_information_a78536698fb81e356d72545173a7a3877}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getInformationsByCodeAdeIds@{getInformationsByCodeAdeIds}}
+\index{getInformationsByCodeAdeIds@{getInformationsByCodeAdeIds}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{getInformationsByCodeAdeIds()}{getInformationsByCodeAdeIds()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a78536698fb81e356d72545173a7a3877} 
+models\textbackslash{}\+Information\+::get\+Informations\+By\+Code\+Ade\+Ids (\begin{DoxyParamCaption}\item[{array}]{\$code\+Ade\+Ids}{}\end{DoxyParamCaption})}
+
+Récupère une liste d\textquotesingle{}informations provenant de codes ade spécifiques.
+
+Cette méthode prépare une requête SQL pour sélectionner les enregistrements dans la table \textquotesingle{}ecran\+\_\+information\textquotesingle{} où le code ade correspond à au moins un spécifié. La méthode utilise la pagination pour retourner un sous-\/ensemble des résultats en fonction des paramètres de début et de nombre d\textquotesingle{}éléments. Les résultats sont triés par date d\textquotesingle{}expiration.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$code\+Ade\+Ids} & L\textquotesingle{}identifiant du code ade\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Une liste d\textquotesingle{}entités correspondant aux informations récupérées 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_information_a78536698fb81e356d72545173a7a3877_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_information_a749dff63793abd657a634464aa2328d8}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getInformationsByDeptId@{getInformationsByDeptId}}
 \index{getInformationsByDeptId@{getInformationsByDeptId}!models\textbackslash{}Information@{models\textbackslash{}Information}}
 \doxysubsubsection{\texorpdfstring{getInformationsByDeptId()}{getInformationsByDeptId()}}
-{\footnotesize\ttfamily \label{classmodels_1_1_information_a41c630ce58b24c465297294ed26c2980} 
-models\textbackslash{}\+Information\+::get\+Informations\+By\+Dept\+Id (\begin{DoxyParamCaption}\item[{int}]{\$id\+Dept}{, }\item[{int}]{\$begin}{ = {\ttfamily 0}, }\item[{int}]{\$number\+Element}{ = {\ttfamily 25}}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a749dff63793abd657a634464aa2328d8} 
+models\textbackslash{}\+Information\+::get\+Informations\+By\+Dept\+Id (\begin{DoxyParamCaption}\item[{int}]{\$dept\+Id}{, }\item[{int}]{\$begin}{ = {\ttfamily 0}, }\item[{int}]{\$number\+Element}{ = {\ttfamily 25}}\end{DoxyParamCaption})}
 
 Récupère une liste d\textquotesingle{}informations provenant d\textquotesingle{}un département spécifique.
 
@@ -513,7 +584,7 @@ Cette méthode prépare une requête SQL pour sélectionner les enregistrements 
 
 
 \begin{DoxyParams}[1]{Paramètres}
-int & {\em \$id\+Dept} & L\textquotesingle{}identifiant du département \\
+int & {\em \$dept\+Id} & L\textquotesingle{}identifiant du département \\
 \hline
 int & {\em \$begin} & Point de départ pour la récupération des informations \\
 \hline
@@ -523,11 +594,12 @@ int & {\em \$number\+Element} & Le nombre d\textquotesingle{}informations à ré
 \begin{DoxyReturn}{Renvoie}
 array Une liste d\textquotesingle{}entités correspondant aux informations récupérées 
 \end{DoxyReturn}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classmodels_1_1_information_a41c630ce58b24c465297294ed26c2980_cgraph}
+\includegraphics[width=350pt]{classmodels_1_1_information_a749dff63793abd657a634464aa2328d8_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_information_a085383dec32ef3b15f40794e2b671635}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getList@{getList}}
@@ -589,6 +661,47 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classmodels_1_1_information_a6668bfef139ca631273708f9fd80abfc_cgraph}
 \end{center}
 \end{figure}
+\Hypertarget{classmodels_1_1_information_ab0be810d8a73a098ec95663e122bfaac}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getScrapingTags@{getScrapingTags}}
+\index{getScrapingTags@{getScrapingTags}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{getScrapingTags()}{getScrapingTags()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_ab0be810d8a73a098ec95663e122bfaac} 
+models\textbackslash{}\+Information\+::get\+Scraping\+Tags (\begin{DoxyParamCaption}\item[{int}]{\$id}{}\end{DoxyParamCaption})}
+
+Récupère les balises et contenus de scraping associés à une information.
+
+Cette méthode effectue deux requêtes \+:
+\begin{DoxyItemize}
+\item La première récupère le contenu de l\textquotesingle{}information associée.
+\item La seconde récupère les balises et leurs contenus associés.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & Identifiant unique de l\textquotesingle{}information concernée.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Retourne un tableau contenant \+:
+\begin{DoxyItemize}
+\item string \+: l\textquotesingle{}URL de l\textquotesingle{}information
+\item array \+: la liste des contenus
+\item array \+: la liste des balises
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_information_ab0be810d8a73a098ec95663e122bfaac_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classmodels_1_1_information_a3b427540373a123f914e32f6308bb812}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!getTitle@{getTitle}}
 \index{getTitle@{getTitle}!models\textbackslash{}Information@{models\textbackslash{}Information}}
 \doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
@@ -648,11 +761,46 @@ int L\textquotesingle{}ID du nouvel enregistrement inséré dans la base de donn
 
 Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_a135727cfa5ec5072f50f3008a35d8d10}{models\textbackslash{}\+Entity}}.
 
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=550pt]{classmodels_1_1_information_af4f7de1a8a316ddbfa6b43d980fb7835_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_information_a62c6e66bbc7a06e0f8f5fbd42a102c86}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!insertScrapingTags@{insertScrapingTags}}
+\index{insertScrapingTags@{insertScrapingTags}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{insertScrapingTags()}{insertScrapingTags()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a62c6e66bbc7a06e0f8f5fbd42a102c86} 
+models\textbackslash{}\+Information\+::insert\+Scraping\+Tags (\begin{DoxyParamCaption}\item[{array}]{\$tags}{, }\item[{array}]{\$contents}{}\end{DoxyParamCaption})}
+
+Insère des balises de scraping associées à une information.
+
+Cette méthode insère plusieurs entrées dans la table \textquotesingle{}ecran\+\_\+scraping\+\_\+tags\textquotesingle{}, associant chaque balise à un contenu spécifique pour une information donnée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array & {\em \$tags} & Liste des balises de scraping à insérer. \\
+\hline
+array & {\em \$contents} & Liste des contenus associés aux balises.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Retourne l\textquotesingle{}identifiant de la dernière insertion.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_information_a62c6e66bbc7a06e0f8f5fbd42a102c86_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_information_af0d79ef62007487d1758218e21d9e04a}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!jsonSerialize@{jsonSerialize}}
@@ -706,6 +854,30 @@ User | null & {\em \$\+\_\+author} & L\textquotesingle{}auteur à définir pour 
 \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
+\Hypertarget{classmodels_1_1_information_a79a032f64baf38e43f5c8d6b1bbea104}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!setCodesAde@{setCodesAde}}
+\index{setCodesAde@{setCodesAde}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{setCodesAde()}{setCodesAde()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a79a032f64baf38e43f5c8d6b1bbea104} 
+models\textbackslash{}\+Information\+::set\+Codes\+Ade (\begin{DoxyParamCaption}\item[{array\texorpdfstring{$\vert$}{|}null}]{\$\+\_\+codes\+\_\+ade}{}\end{DoxyParamCaption})}
+
+Définit les codes ADE.
+
+Cette méthode permet d\textquotesingle{}affecter une liste de codes ADE à l\textquotesingle{}objet.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+array | null & {\em \$\+\_\+codes\+\_\+ade} & Liste des codes ADE ou null pour réinitialiser.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
 \Hypertarget{classmodels_1_1_information_a3ef6b1e8e22c8f7dcedd9ffa9253ebf0}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!setContent@{setContent}}
 \index{setContent@{setContent}!models\textbackslash{}Information@{models\textbackslash{}Information}}
 \doxysubsubsection{\texorpdfstring{setContent()}{setContent()}}
@@ -790,7 +962,8 @@ Information L\textquotesingle{}instance d\textquotesingle{}entité \textquotesin
 \begin{DoxyDate}{Date}
 2024-\/10-\/15 
 \end{DoxyDate}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -830,7 +1003,8 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \includegraphics[width=315pt]{classmodels_1_1_information_aec53c94b529d442bab1fae33fc747916_cgraph}
 \end{center}
 \end{figure}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -864,22 +1038,6 @@ Définit l\textquotesingle{}identifiant de l\textquotesingle{}entité.
 
 \begin{DoxyParams}[1]{Paramètres}
 int | null & {\em \$\+\_\+id} & L\textquotesingle{}identifiant à définir pour l\textquotesingle{}entité.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-void 
-\end{DoxyReturn}
-\Hypertarget{classmodels_1_1_information_a9190358693c73dfddae3b32de67a7893}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!setIdDepartment@{setIdDepartment}}
-\index{setIdDepartment@{setIdDepartment}!models\textbackslash{}Information@{models\textbackslash{}Information}}
-\doxysubsubsection{\texorpdfstring{setIdDepartment()}{setIdDepartment()}}
-{\footnotesize\ttfamily \label{classmodels_1_1_information_a9190358693c73dfddae3b32de67a7893} 
-models\textbackslash{}\+Information\+::set\+Id\+Department (\begin{DoxyParamCaption}\item[{?int}]{\$\+\_\+id\+Department}{}\end{DoxyParamCaption})}
-
-Définit l\textquotesingle{}identifiant du département associé à l\textquotesingle{}entité.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-int | null & {\em \$\+\_\+id\+Department} & L\textquotesingle{}identifiant du département à définir, ou null si non défini.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -940,7 +1098,8 @@ int Le nombre de lignes mises à jour dans la base de données.
 
 Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_aea3384137a0f2971537ce6526fffe520}{models\textbackslash{}\+Entity}}.
 
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -961,6 +1120,12 @@ int models\textbackslash{}\+Information\+::\$\+\_\+admin\+Id\hspace{0.3cm}{\ttfa
 \doxysubsubsection{\texorpdfstring{\$\_author}{\$\_author}}
 {\footnotesize\ttfamily \label{classmodels_1_1_information_a23925cbf7b955a2d442aeec6239009b4} 
 \mbox{\hyperlink{classmodels_1_1_user}{User}} models\textbackslash{}\+Information\+::\$\+\_\+author\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classmodels_1_1_information_a11925bbe95af65fcc656e665c39705af}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!\$\_codes\_ade@{\$\_codes\_ade}}
+\index{\$\_codes\_ade@{\$\_codes\_ade}!models\textbackslash{}Information@{models\textbackslash{}Information}}
+\doxysubsubsection{\texorpdfstring{\$\_codes\_ade}{\$\_codes\_ade}}
+{\footnotesize\ttfamily \label{classmodels_1_1_information_a11925bbe95af65fcc656e665c39705af} 
+array null models\textbackslash{}\+Information\+::\$\+\_\+codes\+\_\+ade\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classmodels_1_1_information_adad0e17cdb7176ac75dc7791e90a0ede}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!\$\_content@{\$\_content}}
 \index{\$\_content@{\$\_content}!models\textbackslash{}Information@{models\textbackslash{}Information}}
@@ -991,12 +1156,6 @@ string models\textbackslash{}\+Information\+::\$\+\_\+expiration\+Date\hspace{0.
 \doxysubsubsection{\texorpdfstring{\$\_id}{\$\_id}}
 {\footnotesize\ttfamily \label{classmodels_1_1_information_a0fc4249cdea8bcded6bc94b88b8cfcbe} 
 int models\textbackslash{}\+Information\+::\$\+\_\+id = null\hspace{0.3cm}{\ttfamily [private]}}
-
-\Hypertarget{classmodels_1_1_information_a5ad4fb2c2f4b455ffdf511cac68e21b1}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!\$\_idDepartment@{\$\_idDepartment}}
-\index{\$\_idDepartment@{\$\_idDepartment}!models\textbackslash{}Information@{models\textbackslash{}Information}}
-\doxysubsubsection{\texorpdfstring{\$\_idDepartment}{\$\_idDepartment}}
-{\footnotesize\ttfamily \label{classmodels_1_1_information_a5ad4fb2c2f4b455ffdf511cac68e21b1} 
-int models\textbackslash{}\+Information\+::\$\+\_\+id\+Department\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classmodels_1_1_information_a32c37c87887023ee744d7e07490857ea}\index{models\textbackslash{}Information@{models\textbackslash{}Information}!\$\_title@{\$\_title}}
 \index{\$\_title@{\$\_title}!models\textbackslash{}Information@{models\textbackslash{}Information}}

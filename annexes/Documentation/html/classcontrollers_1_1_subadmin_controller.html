@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TV Connecté: Référence de la classe controllers\SubadminController</title>
+<title>Documentation post/message Gallou Loic: Référence de la classe controllers\SubadminController</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">TV Connecté
+   <div id="projectname">Documentation post/message Gallou Loic
    </div>
   </td>
  </tr>
@@ -232,9 +232,9 @@ Attributs privés</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Affiche la liste de tous les sous-administrateurs avec leur département.</p>
-<p>Cette fonction récupère tous les utilisateurs ayant le rôle de sous-administrateur, puis pour chaque utilisateur, elle obtient le nom de son département. Elle renvoie ensuite un code HTML qui affiche la liste des sous-administrateurs et les départements auxquels ils appartiennent via une vue spécifique.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>string Le code HTML généré pour afficher la liste des sous-administrateurs et leurs départements.</dd></dl>
+<p>Affiche la liste de tous les administrateurs de départements avec leur département.</p>
+<p>Cette fonction récupère tous les utilisateurs ayant le rôle d'administrateur de département puis pour chaque utilisateur, elle obtient le nom de son département. Elle renvoie ensuite un code HTML qui affiche la liste des administrateurs de département et les départements auxquels ils appartiennent via une vue spécifique.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>string Le code HTML généré pour afficher la liste des administrateurs de département et leurs départements.</dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-01-13 </dd></dl>
 
@@ -254,8 +254,8 @@ Attributs privés</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Insère un nouvel administrateur ou sous-administrateur dans la base de données.</p>
-<p>Cette fonction récupère les données envoyées via un formulaire de création de sous-administrateur (login, mot de passe, email, département) et effectue une série de validations avant de procéder à l'insertion dans la base de données. Si les données sont valides et qu'il n'y a pas d'utilisateur en double, un nouvel utilisateur avec le rôle de sous-administrateur est créé. En cas d'erreur, des messages appropriés sont affichés pour informer l'utilisateur.</p>
+<p>Insère un nouvel administrateur ou d'administrateurs de département dans la base de données.</p>
+<p>Cette fonction récupère les données envoyées via un formulaire de création d'administrateurs de département (login, mot de passe, email, département) et effectue une série de validations avant de procéder à l'insertion dans la base de données. Si les données sont valides et qu'il n'y a pas d'utilisateur en double, un nouvel utilisateur avec le rôle d'administrateur de département est créé. En cas d'erreur, des messages appropriés sont affichés pour informer l'utilisateur.</p>
 <dl class="section return"><dt>Renvoie</dt><dd>string Le code HTML généré pour afficher le formulaire de création ou un message de validation/erreur.</dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-01-13 </dd></dl>

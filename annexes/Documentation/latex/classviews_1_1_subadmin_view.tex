@@ -23,7 +23,7 @@ Graphe de collaboration de views\textbackslash{}Subadmin\+View\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_subadmin_view_add8b2affa664df860c5ddfe345b4db46}{display\+Form\+Subadmin}} (array \$dept, int \$curr\+Dept, bool \$is\+Admin)
 \item 
-\mbox{\hyperlink{classviews_1_1_subadmin_view_a25b3efa8479ef33850dbeb4f56d3a98c}{display\+All\+Technicians}} (array \$users, array \$user\+Dept\+List)
+\mbox{\hyperlink{classviews_1_1_subadmin_view_ac8f165155dc5e658b0719ffba63d5fa5}{display\+All\+Subadmin}} (array \$users, array \$user\+Dept\+List)
 \end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classviews_1_1_user_view}{views\textbackslash{}\+User\+View}}}
 \begin{DoxyCompactItemize}
@@ -67,7 +67,7 @@ Graphe de collaboration de views\textbackslash{}Subadmin\+View\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a9556d3c65a345cdc7903e079ba2d3402}{page\+Number}} (\$page\+Number, \$current\+Page, \$url, \$number\+Element=null)
 \item 
-\mbox{\hyperlink{classviews_1_1_view_ae28c5fd6e404973637c7c79c55770e94}{build\+Department\+Options}} (array \$depts, int \$curr\+Dept=null)
+\mbox{\hyperlink{classviews_1_1_view_aa5fcf58011c2c6975da63fa7aaf8a957}{build\+Codes\+Options}} (array \$depts, int \$curr\+Dept=null)
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a0decacec17aa7984c858d1518a225475}{build\+Link\+For\+Modify}} (\$link)
 \item 
@@ -108,13 +108,13 @@ Graphe de collaboration de views\textbackslash{}Subadmin\+View\+:\nopagebreak
 
 
 \doxysubsection{Documentation des fonctions membres}
-\Hypertarget{classviews_1_1_subadmin_view_a25b3efa8479ef33850dbeb4f56d3a98c}\index{views\textbackslash{}SubadminView@{views\textbackslash{}SubadminView}!displayAllTechnicians@{displayAllTechnicians}}
-\index{displayAllTechnicians@{displayAllTechnicians}!views\textbackslash{}SubadminView@{views\textbackslash{}SubadminView}}
-\doxysubsubsection{\texorpdfstring{displayAllTechnicians()}{displayAllTechnicians()}}
-{\footnotesize\ttfamily \label{classviews_1_1_subadmin_view_a25b3efa8479ef33850dbeb4f56d3a98c} 
-views\textbackslash{}\+Subadmin\+View\+::display\+All\+Technicians (\begin{DoxyParamCaption}\item[{array}]{\$users}{, }\item[{array}]{\$user\+Dept\+List}{}\end{DoxyParamCaption})}
+\Hypertarget{classviews_1_1_subadmin_view_ac8f165155dc5e658b0719ffba63d5fa5}\index{views\textbackslash{}SubadminView@{views\textbackslash{}SubadminView}!displayAllSubadmin@{displayAllSubadmin}}
+\index{displayAllSubadmin@{displayAllSubadmin}!views\textbackslash{}SubadminView@{views\textbackslash{}SubadminView}}
+\doxysubsubsection{\texorpdfstring{displayAllSubadmin()}{displayAllSubadmin()}}
+{\footnotesize\ttfamily \label{classviews_1_1_subadmin_view_ac8f165155dc5e658b0719ffba63d5fa5} 
+views\textbackslash{}\+Subadmin\+View\+::display\+All\+Subadmin (\begin{DoxyParamCaption}\item[{array}]{\$users}{, }\item[{array}]{\$user\+Dept\+List}{}\end{DoxyParamCaption})}
 
-Affiche un tableau des techniciens (Sous-\/admins) avec leurs informations. Cette méthode crée un tableau HTML contenant les informations suivantes pour chaque technicien \+: un checkbox, le login, et le département.
+Affiche un tableau des administrateurs de département avec leurs informations. Cette méthode crée un tableau HTML contenant les informations suivantes pour chaque technicien \+: un checkbox, le login, et le département.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -126,11 +126,12 @@ array & {\em \$user\+Dept\+List} & Liste des départements associés à chaque u
 \begin{DoxyReturn}{Renvoie}
 string Retourne le code HTML complet du tableau avec les utilisateurs et leurs départements associés. 
 \end{DoxyReturn}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classviews_1_1_subadmin_view_a25b3efa8479ef33850dbeb4f56d3a98c_cgraph}
+\includegraphics[width=350pt]{classviews_1_1_subadmin_view_ac8f165155dc5e658b0719ffba63d5fa5_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classviews_1_1_subadmin_view_add8b2affa664df860c5ddfe345b4db46}\index{views\textbackslash{}SubadminView@{views\textbackslash{}SubadminView}!displayFormSubadmin@{displayFormSubadmin}}
@@ -139,9 +140,9 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 {\footnotesize\ttfamily \label{classviews_1_1_subadmin_view_add8b2affa664df860c5ddfe345b4db46} 
 views\textbackslash{}\+Subadmin\+View\+::display\+Form\+Subadmin (\begin{DoxyParamCaption}\item[{array}]{\$dept}{, }\item[{int}]{\$curr\+Dept}{, }\item[{bool}]{\$is\+Admin}{}\end{DoxyParamCaption})}
 
-Affiche le formulaire de création de compte pour techniciens.
+Affiche le formulaire de création de compte pour les administrateurs de département.
 
-Cette méthode génère un formulaire HTML pour la création de nouveaux comptes techniciens. Le formulaire inclut des champs nécessaires pour fournir les informations requises pour un compte technicien.
+Cette méthode génère un formulaire HTML pour la création de nouveaux comptes techniciens. Le formulaire inclut des champs nécessaires pour fournir les informations requises pour un compte administrateur de département.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -153,7 +154,7 @@ bool & {\em \$is\+Admin} & Un booléen correspondant à "{}true"{} si l\textquot
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-string Le code HTML du formulaire pour créer un compte sous-\/admin.
+string Le code HTML du formulaire pour créer un compte administrateur de département.
 \end{DoxyReturn}
 \begin{DoxyVersion}{Version}
 1.\+0 

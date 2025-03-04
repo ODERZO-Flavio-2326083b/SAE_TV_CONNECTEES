@@ -2,11 +2,12 @@
 \hypertarget{classviews_1_1_i_c_s_view}{}\label{classviews_1_1_i_c_s_view}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}}
 
 
-Graphe d\textquotesingle{}héritage de views\textbackslash{}ICSView\+:\nopagebreak
+Graphe d\textquotesingle{}héritage de views\textbackslash{}ICSView\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=164pt]{classviews_1_1_i_c_s_view__inherit__graph}
+\includegraphics[width=190pt]{classviews_1_1_i_c_s_view__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -27,13 +28,11 @@ Graphe de collaboration de views\textbackslash{}ICSView\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_i_c_s_view_a78dfd2ae31ccf2f75402c17932f107a1}{give\+Date}} (\$day, \$month, \$year)
 \item 
-\mbox{\hyperlink{classviews_1_1_i_c_s_view_ae96967596911b0336f0e77fd4c376076}{get\+Content}} (\$event, \$day=0)
+\mbox{\hyperlink{classviews_1_1_i_c_s_view_ab1ed341bc7011652b453c6f06d65b1ac}{get\+Content}} (array \$event, int \$day=0)
 \item 
 \mbox{\hyperlink{classviews_1_1_i_c_s_view_a5bcecc4b48e3da07d6c8a954c1315df7}{display\+Line\+Schedule}} (\$datas, \$active=false)
 \item 
 \mbox{\hyperlink{classviews_1_1_i_c_s_view_a70132696866275a7306a88595eb6c836}{display\+End\+Schedule}} ()
-\item 
-\mbox{\hyperlink{classviews_1_1_i_c_s_view_a2716f0d36cf92580c909562bc1b17d06}{display\+No\+Schedule}} (\$title, \$current\+\_\+user)
 \end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classviews_1_1_view}{views\textbackslash{}\+View}}}
 \begin{DoxyCompactItemize}
@@ -42,7 +41,7 @@ Graphe de collaboration de views\textbackslash{}ICSView\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a9556d3c65a345cdc7903e079ba2d3402}{page\+Number}} (\$page\+Number, \$current\+Page, \$url, \$number\+Element=null)
 \item 
-\mbox{\hyperlink{classviews_1_1_view_ae28c5fd6e404973637c7c79c55770e94}{build\+Department\+Options}} (array \$depts, int \$curr\+Dept=null)
+\mbox{\hyperlink{classviews_1_1_view_aa5fcf58011c2c6975da63fa7aaf8a957}{build\+Codes\+Options}} (array \$depts, int \$curr\+Dept=null)
 \item 
 \mbox{\hyperlink{classviews_1_1_view_a0decacec17aa7984c858d1518a225475}{build\+Link\+For\+Modify}} (\$link)
 \item 
@@ -133,44 +132,12 @@ string Une chaîne HTML représentant la ligne du tableau.
 \begin{DoxyDate}{Date}
 2024-\/10-\/15 
 \end{DoxyDate}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classviews_1_1_i_c_s_view_a5bcecc4b48e3da07d6c8a954c1315df7_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{classviews_1_1_i_c_s_view_a2716f0d36cf92580c909562bc1b17d06}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}!displayNoSchedule@{displayNoSchedule}}
-\index{displayNoSchedule@{displayNoSchedule}!views\textbackslash{}ICSView@{views\textbackslash{}ICSView}}
-\doxysubsubsection{\texorpdfstring{displayNoSchedule()}{displayNoSchedule()}}
-{\footnotesize\ttfamily \label{classviews_1_1_i_c_s_view_a2716f0d36cf92580c909562bc1b17d06} 
-views\textbackslash{}\+ICSView\+::display\+No\+Schedule (\begin{DoxyParamCaption}\item[{}]{\$title}{, }\item[{}]{\$current\+\_\+user}{}\end{DoxyParamCaption})}
-
-Affiche un message lorsque aucun emploi du temps n\textquotesingle{}est disponible pour l\textquotesingle{}utilisateur courant.
-
-Cette méthode vérifie les paramètres du thème pour déterminer si le message doit être affiché pour les utilisateurs ayant le rôle \textquotesingle{}television\textquotesingle{}. Si l\textquotesingle{}utilisateur ne possède pas de cours, un message approprié est retourné.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-string & {\em \$title} & Le titre à afficher dans le message. \\
-\hline
-WP\+\_\+\+User & {\em \$current\+\_\+user} & L\textquotesingle{}objet utilisateur courant.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-string\texorpdfstring{$\vert$}{|}false Une chaîne HTML contenant le message d\textquotesingle{}absence de cours, ou false si aucun message ne doit être affiché.
-\end{DoxyReturn}
-\begin{DoxyVersion}{Version}
-1.\+0 
-\end{DoxyVersion}
-\begin{DoxyDate}{Date}
-2024-\/10-\/15 
-\end{DoxyDate}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{classviews_1_1_i_c_s_view_a2716f0d36cf92580c909562bc1b17d06_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classviews_1_1_i_c_s_view_a556c5dd26473ae5cc12bb131fdb3158c}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}!displaySchedule@{displaySchedule}}
@@ -201,7 +168,12 @@ string Renvoie une chaîne HTML contenant l\textquotesingle{}emploi du temps ou 
 \begin{DoxyDate}{Date}
 2024-\/10-\/15 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+
+
+Réimplémentée dans \mbox{\hyperlink{classviews_1_1_tablet_i_c_s_view_a7fe9d88445a1b104ffacd34d71ed705c}{views\textbackslash{}\+Tablet\+ICSView}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -239,11 +211,11 @@ Voici le graphe des appelants de cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classviews_1_1_i_c_s_view_abab5ead9733ccfd0b0db90fd9c797b32_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classviews_1_1_i_c_s_view_ae96967596911b0336f0e77fd4c376076}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}!getContent@{getContent}}
+\Hypertarget{classviews_1_1_i_c_s_view_ab1ed341bc7011652b453c6f06d65b1ac}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}!getContent@{getContent}}
 \index{getContent@{getContent}!views\textbackslash{}ICSView@{views\textbackslash{}ICSView}}
 \doxysubsubsection{\texorpdfstring{getContent()}{getContent()}}
-{\footnotesize\ttfamily \label{classviews_1_1_i_c_s_view_ae96967596911b0336f0e77fd4c376076} 
-views\textbackslash{}\+ICSView\+::get\+Content (\begin{DoxyParamCaption}\item[{}]{\$event}{, }\item[{}]{\$day}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classviews_1_1_i_c_s_view_ab1ed341bc7011652b453c6f06d65b1ac} 
+views\textbackslash{}\+ICSView\+::get\+Content (\begin{DoxyParamCaption}\item[{array}]{\$event}{, }\item[{int}]{\$day}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
 
 Récupère le contenu d\textquotesingle{}un événement et génère une ligne de programme.
 
@@ -265,18 +237,24 @@ string\texorpdfstring{$\vert$}{|}false Une chaîne formatée représentant l\tex
 \begin{DoxyDate}{Date}
 2024-\/10-\/15 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+
+
+Réimplémentée dans \mbox{\hyperlink{classviews_1_1_tablet_i_c_s_view_aae90f97a20a5127466a96fc4e0ab9aae}{views\textbackslash{}\+Tablet\+ICSView}}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classviews_1_1_i_c_s_view_ae96967596911b0336f0e77fd4c376076_cgraph}
+\includegraphics[width=350pt]{classviews_1_1_i_c_s_view_ab1ed341bc7011652b453c6f06d65b1ac_cgraph}
 \end{center}
 \end{figure}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classviews_1_1_i_c_s_view_ae96967596911b0336f0e77fd4c376076_icgraph}
+\includegraphics[width=350pt]{classviews_1_1_i_c_s_view_ab1ed341bc7011652b453c6f06d65b1ac_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classviews_1_1_i_c_s_view_a78dfd2ae31ccf2f75402c17932f107a1}\index{views\textbackslash{}ICSView@{views\textbackslash{}ICSView}!giveDate@{giveDate}}

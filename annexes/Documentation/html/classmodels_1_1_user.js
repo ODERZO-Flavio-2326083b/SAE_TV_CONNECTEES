@@ -12,6 +12,7 @@ var classmodels_1_1_user =
     [ "getIdDepartment", "classmodels_1_1_user.html#a2266b417bbe11bc752b726e9d1da72a2", null ],
     [ "getList", "classmodels_1_1_user.html#a9a7bf3baf93adb396a2ebd3e205df8ed", null ],
     [ "getLogin", "classmodels_1_1_user.html#a9d6c0b71d9a6b7480fd8cc5b26583423", null ],
+    [ "getMetadata", "classmodels_1_1_user.html#a2752fbd56d87ee459c5d00385c9f738f", null ],
     [ "getMyCodes", "classmodels_1_1_user.html#a3d9eb20a1b09b0a8296dca57b8cd05c8", null ],
     [ "getPassword", "classmodels_1_1_user.html#ae04cc94f29425d21b0ee258ad9e4f100", null ],
     [ "getRole", "classmodels_1_1_user.html#a0dcbc9766b0ba48045fa3c3786e67537", null ],
@@ -26,6 +27,7 @@ var classmodels_1_1_user =
     [ "setId", "classmodels_1_1_user.html#a6ec90d0515d01c904993865849cdb618", null ],
     [ "setIdDepartment", "classmodels_1_1_user.html#a899747ffd3b0a0bc7dd62055612129f8", null ],
     [ "setLogin", "classmodels_1_1_user.html#a284b0cebbf9662947c300480045dcfb3", null ],
+    [ "setMetadata", "classmodels_1_1_user.html#a3cc569325b00a3d4a00a629ca01b38c7", null ],
     [ "setPassword", "classmodels_1_1_user.html#a29ce54f402617018c699d5aa69645d43", null ],
     [ "setRole", "classmodels_1_1_user.html#a5b37de2fa4050c55d41a3e23430d964d", null ],
     [ "update", "classmodels_1_1_user.html#ac04ced6be4698afc58458064def6d732", null ],
@@ -35,6 +37,7 @@ var classmodels_1_1_user =
     [ "$_id", "classmodels_1_1_user.html#a89ac4441db90f14780b4afef91980fa4", null ],
     [ "$_id_department", "classmodels_1_1_user.html#aa5895eb303a5d5848fea479939b15375", null ],
     [ "$_login", "classmodels_1_1_user.html#ad450a2dadf3b3a7bc59de15da6229e35", null ],
+    [ "$_metadata", "classmodels_1_1_user.html#a949221319240d31b3da1d7c4cf36fa59", null ],
     [ "$_password", "classmodels_1_1_user.html#a6ee598c497c1e31dd9db889e699548af", null ],
     [ "$_role", "classmodels_1_1_user.html#aec3676d0ecc33ee901a667bdfffcac5a", null ]
 ];

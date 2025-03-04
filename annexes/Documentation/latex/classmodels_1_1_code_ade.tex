@@ -35,6 +35,8 @@ Graphe de collaboration de models\textbackslash{}Code\+Ade\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classmodels_1_1_code_ade_a78ba5043ac1183595679db8fd6a46867}{get\+All\+From\+Type}} (\$type)
 \item 
+\mbox{\hyperlink{classmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58}{get\+All\+From\+Type\+And\+Dept}} (\$id\+\_\+dept, \$type)
+\item 
 \mbox{\hyperlink{classmodels_1_1_code_ade_a579f904d77db673961726ed0d9200c12}{get\+By\+Code}} (\$code)
 \item 
 \mbox{\hyperlink{classmodels_1_1_code_ade_a27e448b8df971a8adf7e60f71ca6a074}{get\+By\+Alert}} (\$id)
@@ -216,6 +218,40 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classmodels_1_1_code_ade_a78ba5043ac1183595679db8fd6a46867_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58}\index{models\textbackslash{}CodeAde@{models\textbackslash{}CodeAde}!getAllFromTypeAndDept@{getAllFromTypeAndDept}}
+\index{getAllFromTypeAndDept@{getAllFromTypeAndDept}!models\textbackslash{}CodeAde@{models\textbackslash{}CodeAde}}
+\doxysubsubsection{\texorpdfstring{getAllFromTypeAndDept()}{getAllFromTypeAndDept()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58} 
+models\textbackslash{}\+Code\+Ade\+::get\+All\+From\+Type\+And\+Dept (\begin{DoxyParamCaption}\item[{}]{\$id\+\_\+dept}{, }\item[{}]{\$type}{}\end{DoxyParamCaption})}
+
+Récupère tous les codes ADE d\textquotesingle{}un type spécifique pour un département donné.
+
+Cette méthode exécute une requête pour obtenir les codes ADE correspondant à un type et un département donnés, triés par ordre décroissant d\textquotesingle{}ID et limités à 500 résultats.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id\+\_\+dept} & Identifiant du département. \\
+\hline
+string & {\em \$type} & Type de code ADE à récupérer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Liste des codes ADE correspondant aux critères.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_code_ade_a27e448b8df971a8adf7e60f71ca6a074}\index{models\textbackslash{}CodeAde@{models\textbackslash{}CodeAde}!getByAlert@{getByAlert}}
@@ -565,7 +601,8 @@ Code\+Ade L\textquotesingle{}objet \textquotesingle{}Code\+Ade\textquotesingle{}
 
 Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5}{models\textbackslash{}\+Entity}}.
 
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -607,7 +644,8 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b_cgraph}
 \end{center}
 \end{figure}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

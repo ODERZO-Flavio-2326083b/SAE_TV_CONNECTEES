@@ -33,6 +33,8 @@ Graphe de collaboration de models\textbackslash{}Department\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595}{get\+Department\+By\+Name}} (\$name)
 \item 
+\mbox{\hyperlink{classmodels_1_1_department_a6bc0fc561ffcb2c2c2a05c5ae09b383f}{get\+Department\+By\+Id}} (\$id)
+\item 
 \mbox{\hyperlink{classmodels_1_1_department_a4eab8321a3e8a6a8149dff91ca0b6836}{set\+Entity}} (\$data)
 \item 
 \mbox{\hyperlink{classmodels_1_1_department_af08e24f4f7090c0826df1ad7bee4c30a}{set\+Entity\+List}} (\$data\+List, \$admin\+Site=false)
@@ -185,6 +187,38 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classmodels_1_1_department_a9e71ef5e0b84dd7514177ce6c8cf4ba8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_department_a6bc0fc561ffcb2c2c2a05c5ae09b383f}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getDepartmentById@{getDepartmentById}}
+\index{getDepartmentById@{getDepartmentById}!models\textbackslash{}Department@{models\textbackslash{}Department}}
+\doxysubsubsection{\texorpdfstring{getDepartmentById()}{getDepartmentById()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_department_a6bc0fc561ffcb2c2c2a05c5ae09b383f} 
+models\textbackslash{}\+Department\+::get\+Department\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Récupère un département par son identifiant.
+
+Cette méthode effectue une requête SQL pour récupérer les informations d\textquotesingle{}un département à partir de son identifiant unique. Si un département correspondant est trouvé, il est retourné sous forme d\textquotesingle{}objet \textquotesingle{}Department\textquotesingle{}, sinon la méthode retourne \textquotesingle{}null\textquotesingle{}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & Identifiant unique du département recherché.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Department\texorpdfstring{$\vert$}{|}null Retourne un objet \textquotesingle{}Department\textquotesingle{} si trouvé, sinon \textquotesingle{}null\textquotesingle{}.
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_department_a6bc0fc561ffcb2c2c2a05c5ae09b383f_cgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classmodels_1_1_department_a15af4b652f30df48ab29f77cf72a0595}\index{models\textbackslash{}Department@{models\textbackslash{}Department}!getDepartmentByName@{getDepartmentByName}}
@@ -411,7 +445,8 @@ Department L\textquotesingle{}entité \textquotesingle{}Department\textquotesing
 
 Implémente \mbox{\hyperlink{interfacemodels_1_1_entity_ab4dc4aa8e29cbb51bdf7f623663f5db5}{models\textbackslash{}\+Entity}}.
 
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

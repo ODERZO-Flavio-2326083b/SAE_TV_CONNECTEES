@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TV Connecté: Référence de la classe models\CodeAde</title>
+<title>Documentation post/message Gallou Loic: Référence de la classe models\CodeAde</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">TV Connecté
+   <div id="projectname">Documentation post/message Gallou Loic
    </div>
   </td>
  </tr>
@@ -148,6 +148,8 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:adc93a1054b2d1bba0edd4feebbfe2a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78ba5043ac1183595679db8fd6a46867" id="r_a78ba5043ac1183595679db8fd6a46867"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78ba5043ac1183595679db8fd6a46867">getAllFromType</a> ($type)</td></tr>
 <tr class="separator:a78ba5043ac1183595679db8fd6a46867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddb4d9b3b9abb241f9539fa35c15a58" id="r_a7ddb4d9b3b9abb241f9539fa35c15a58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ddb4d9b3b9abb241f9539fa35c15a58">getAllFromTypeAndDept</a> ($id_dept, $type)</td></tr>
+<tr class="separator:a7ddb4d9b3b9abb241f9539fa35c15a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a579f904d77db673961726ed0d9200c12" id="r_a579f904d77db673961726ed0d9200c12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a579f904d77db673961726ed0d9200c12">getByCode</a> ($code)</td></tr>
 <tr class="separator:a579f904d77db673961726ed0d9200c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27e448b8df971a8adf7e60f71ca6a074" id="r_a27e448b8df971a8adf7e60f71ca6a074"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27e448b8df971a8adf7e60f71ca6a074">getByAlert</a> ($id)</td></tr>
@@ -363,6 +365,53 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="poly" title=" " alt="" coords="222,52,254,55,254,61,222,57"/>
 <area shape="rect" href="classmodels_1_1_code_ade.html#a647d56b768357becb817191a26c9e9d9" title=" " alt="" coords="516,56,693,83"/>
 <area shape="poly" title=" " alt="" coords="468,67,501,67,501,72,468,72"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7ddb4d9b3b9abb241f9539fa35c15a58" name="a7ddb4d9b3b9abb241f9539fa35c15a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddb4d9b3b9abb241f9539fa35c15a58">&#9670;&#160;</a></span>getAllFromTypeAndDept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">models\CodeAde::getAllFromTypeAndDept </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>$id_dept</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>$type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Récupère tous les codes ADE d'un type spécifique pour un département donné.</p>
+<p>Cette méthode exécute une requête pour obtenir les codes ADE correspondant à un type et un département donnés, triés par ordre décroissant d'ID et limités à 500 résultats.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$id_dept</td><td>Identifiant du département. </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$type</td><td>Type de code ADE à récupérer.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>array Liste des codes ADE correspondant aux critères.</dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-10-16 </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="classmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58_cgraph.png" border="0" usemap="#aclassmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58_cgraph" alt=""/></div>
+<map name="aclassmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58_cgraph" id="aclassmodels_1_1_code_ade_a7ddb4d9b3b9abb241f9539fa35c15a58_cgraph">
+<area shape="rect" title=" " alt="" coords="5,23,194,65"/>
+<area shape="rect" href="classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="251,5,431,32"/>
+<area shape="poly" title=" " alt="" coords="194,31,235,27,235,32,194,37"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a23abfa91d6e982b5665ed483d9c9006b" title=" " alt="" coords="242,56,440,83"/>
+<area shape="poly" title=" " alt="" coords="194,51,226,55,226,60,194,57"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a647d56b768357becb817191a26c9e9d9" title=" " alt="" coords="488,56,665,83"/>
+<area shape="poly" title=" " alt="" coords="440,67,473,67,473,72,440,72"/>
 </map>
 </div>
 
@@ -822,21 +871,23 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodels_1_1_code_ade_a647d56b768357becb817191a26c9e9d9_icgraph.png" border="0" usemap="#aclassmodels_1_1_code_ade_a647d56b768357becb817191a26c9e9d9_icgraph" alt=""/></div>
 <map name="aclassmodels_1_1_code_ade_a647d56b768357becb817191a26c9e9d9_icgraph" id="aclassmodels_1_1_code_ade_a647d56b768357becb817191a26c9e9d9_icgraph">
-<area shape="rect" title=" " alt="" coords="516,56,693,83"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a0fd4e057c02a3bade0a545287fbd6c56" title=" " alt="" coords="297,5,440,32"/>
-<area shape="poly" title=" " alt="" coords="523,55,434,35,435,30,525,50"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a579f904d77db673961726ed0d9200c12" title=" " alt="" coords="274,56,464,83"/>
-<area shape="poly" title=" " alt="" coords="501,72,464,72,464,67,501,67"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a23abfa91d6e982b5665ed483d9c9006b" title=" " alt="" coords="270,107,468,133"/>
-<area shape="poly" title=" " alt="" coords="525,89,435,109,434,103,523,84"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#adc93a1054b2d1bba0edd4feebbfe2a7e" title=" " alt="" coords="18,31,209,57"/>
-<area shape="poly" title=" " alt="" coords="289,104,269,97,244,84,221,72,184,61,186,55,223,67,247,80,271,92,291,99"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a78ba5043ac1183595679db8fd6a46867" title=" " alt="" coords="5,81,222,108"/>
-<area shape="poly" title=" " alt="" coords="254,111,222,108,222,103,254,106"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a27e448b8df971a8adf7e60f71ca6a074" title=" " alt="" coords="20,132,207,159"/>
-<area shape="poly" title=" " alt="" coords="254,134,207,139,207,133,254,129"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a6d12c81a736f277ca389066a4be7a320" title=" " alt="" coords="31,183,196,209"/>
-<area shape="poly" title=" " alt="" coords="317,142,222,173,179,185,178,179,221,168,316,137"/>
+<area shape="rect" title=" " alt="" coords="516,64,693,91"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a0fd4e057c02a3bade0a545287fbd6c56" title=" " alt="" coords="297,13,440,40"/>
+<area shape="poly" title=" " alt="" coords="523,63,434,43,435,38,525,58"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a579f904d77db673961726ed0d9200c12" title=" " alt="" coords="274,64,464,91"/>
+<area shape="poly" title=" " alt="" coords="501,80,464,80,464,75,501,75"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a23abfa91d6e982b5665ed483d9c9006b" title=" " alt="" coords="270,115,468,141"/>
+<area shape="poly" title=" " alt="" coords="525,97,435,117,434,111,523,92"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#adc93a1054b2d1bba0edd4feebbfe2a7e" title=" " alt="" coords="18,5,209,32"/>
+<area shape="poly" title=" " alt="" coords="278,110,268,105,252,90,243,75,235,60,220,46,197,35,199,30,223,42,239,56,248,72,256,87,271,101,281,106"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a78ba5043ac1183595679db8fd6a46867" title=" " alt="" coords="5,56,222,83"/>
+<area shape="poly" title=" " alt="" coords="292,113,174,86,175,81,294,108"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a7ddb4d9b3b9abb241f9539fa35c15a58" title=" " alt="" coords="19,107,208,149"/>
+<area shape="poly" title=" " alt="" coords="254,131,208,131,208,125,254,125"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a27e448b8df971a8adf7e60f71ca6a074" title=" " alt="" coords="20,173,207,200"/>
+<area shape="poly" title=" " alt="" coords="294,148,175,175,174,170,292,143"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a6d12c81a736f277ca389066a4be7a320" title=" " alt="" coords="31,224,196,251"/>
+<area shape="poly" title=" " alt="" coords="337,153,284,184,223,214,187,226,186,221,221,210,282,180,334,148"/>
 </map>
 </div>
 
@@ -884,15 +935,17 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b_icgraph.png" border="0" usemap="#aclassmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b_icgraph" alt=""/></div>
 <map name="aclassmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b_icgraph" id="aclassmodels_1_1_code_ade_a23abfa91d6e982b5665ed483d9c9006b_icgraph">
-<area shape="rect" title=" " alt="" coords="270,81,468,108"/>
+<area shape="rect" title=" " alt="" coords="270,115,468,141"/>
 <area shape="rect" href="classmodels_1_1_code_ade.html#adc93a1054b2d1bba0edd4feebbfe2a7e" title=" " alt="" coords="18,5,209,32"/>
-<area shape="poly" title=" " alt="" coords="316,78,221,47,178,35,179,30,222,41,317,73"/>
+<area shape="poly" title=" " alt="" coords="334,108,282,76,221,46,186,35,187,30,223,42,284,72,337,103"/>
 <area shape="rect" href="classmodels_1_1_code_ade.html#a78ba5043ac1183595679db8fd6a46867" title=" " alt="" coords="5,56,222,83"/>
-<area shape="poly" title=" " alt="" coords="254,86,222,83,222,77,254,81"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a27e448b8df971a8adf7e60f71ca6a074" title=" " alt="" coords="20,107,207,133"/>
-<area shape="poly" title=" " alt="" coords="254,109,207,113,207,108,254,103"/>
-<area shape="rect" href="classmodels_1_1_code_ade.html#a6d12c81a736f277ca389066a4be7a320" title=" " alt="" coords="31,157,196,184"/>
-<area shape="poly" title=" " alt="" coords="317,116,222,148,179,159,178,154,221,143,316,111"/>
+<area shape="poly" title=" " alt="" coords="292,113,174,86,175,81,294,108"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a7ddb4d9b3b9abb241f9539fa35c15a58" title=" " alt="" coords="19,107,208,149"/>
+<area shape="poly" title=" " alt="" coords="254,131,208,131,208,125,254,125"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a27e448b8df971a8adf7e60f71ca6a074" title=" " alt="" coords="20,173,207,200"/>
+<area shape="poly" title=" " alt="" coords="294,148,175,175,174,170,292,143"/>
+<area shape="rect" href="classmodels_1_1_code_ade.html#a6d12c81a736f277ca389066a4be7a320" title=" " alt="" coords="31,224,196,251"/>
+<area shape="poly" title=" " alt="" coords="337,153,284,184,223,214,187,226,186,221,221,210,282,180,334,148"/>
 </map>
 </div>
 

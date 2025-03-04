@@ -8,6 +8,6 @@ var dir_f226ccfb6938649478d475017224f1df =
     [ "Information.php", "_information_8php.html", "_information_8php" ],
     [ "Localisation.php", "_localisation_8php.html", "_localisation_8php" ],
     [ "Model.php", "_model_8php.html", "_model_8php" ],
-    [ "Scrapper.php", "_scrapper_8php.html", "_scrapper_8php" ],
+    [ "Scraper.php", "_scraper_8php.html", "_scraper_8php" ],
     [ "User.php", "_user_8php.html", "_user_8php" ]
 ];

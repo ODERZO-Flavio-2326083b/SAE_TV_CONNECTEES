@@ -79,6 +79,10 @@ Graphe de collaboration de models\textbackslash{}User\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classmodels_1_1_user_a899747ffd3b0a0bc7dd62055612129f8}{set\+Id\+Department}} (int \$id\+\_\+department)
 \item 
+\mbox{\hyperlink{classmodels_1_1_user_a2752fbd56d87ee459c5d00385c9f738f}{get\+Metadata}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_user_a3cc569325b00a3d4a00a629ca01b38c7}{set\+Metadata}} (string \$key, \$value)
+\item 
 \mbox{\hyperlink{classmodels_1_1_user_a47772fadfebb47730e060f6996884e60}{json\+Serialize}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interfacemodels_1_1_entity}{models\textbackslash{}\+Entity}}}
@@ -102,6 +106,8 @@ string \mbox{\hyperlink{classmodels_1_1_user_aec3676d0ecc33ee901a667bdfffcac5a}{
 array \mbox{\hyperlink{classmodels_1_1_user_a025efc4743fe548087fc304ccdc25195}{\$\+\_\+codes}}
 \item 
 int \mbox{\hyperlink{classmodels_1_1_user_aa5895eb303a5d5848fea479939b15375}{\$\+\_\+id\+\_\+department}}
+\item 
+array \mbox{\hyperlink{classmodels_1_1_user_a949221319240d31b3da1d7c4cf36fa59}{\$\+\_\+metadata}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Membres hérités additionnels}
 \doxysubsection*{Fonctions membres protégées hérités de \mbox{\hyperlink{classmodels_1_1_model}{models\textbackslash{}\+Model}}}
@@ -316,7 +322,8 @@ Cette méthode retourne l\textquotesingle{}adresse e-\/mail de l\textquotesingle
 \begin{DoxyReturn}{Renvoie}
 string L\textquotesingle{}adresse e-\/mail de l\textquotesingle{}utilisateur. 
 \end{DoxyReturn}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -407,13 +414,25 @@ Cette méthode retourne le nom d\textquotesingle{}utilisateur de l\textquotesing
 \begin{DoxyReturn}{Renvoie}
 string Le nom d\textquotesingle{}utilisateur. 
 \end{DoxyReturn}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classmodels_1_1_user_a9d6c0b71d9a6b7480fd8cc5b26583423_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{classmodels_1_1_user_a2752fbd56d87ee459c5d00385c9f738f}\index{models\textbackslash{}User@{models\textbackslash{}User}!getMetadata@{getMetadata}}
+\index{getMetadata@{getMetadata}!models\textbackslash{}User@{models\textbackslash{}User}}
+\doxysubsubsection{\texorpdfstring{getMetadata()}{getMetadata()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_user_a2752fbd56d87ee459c5d00385c9f738f} 
+models\textbackslash{}\+User\+::get\+Metadata (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Renvoie les métadonnées
+
+\begin{DoxyReturn}{Renvoie}
+array 
+\end{DoxyReturn}
 \Hypertarget{classmodels_1_1_user_a3d9eb20a1b09b0a8296dca57b8cd05c8}\index{models\textbackslash{}User@{models\textbackslash{}User}!getMyCodes@{getMyCodes}}
 \index{getMyCodes@{getMyCodes}!models\textbackslash{}User@{models\textbackslash{}User}}
 \doxysubsubsection{\texorpdfstring{getMyCodes()}{getMyCodes()}}
@@ -544,7 +563,7 @@ models\textbackslash{}\+User\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyPar
 
 Insère un nouvel utilisateur avec un rôle spécifique et, le cas échéant, associe des codes à cet utilisateur. Cette méthode utilise la fonction \textquotesingle{}wp\+\_\+insert\+\_\+user\textquotesingle{} pour créer l\textquotesingle{}utilisateur avec les données appropriées (login, mot de passe, email, rôle).
 
-Si le rôle de l\textquotesingle{}utilisateur est \textquotesingle{}television\textquotesingle{}, des codes spécifiques sont ajoutés à la table \textquotesingle{}ecran\+\_\+code\+\_\+user\textquotesingle{}. Pour les rôles \textquotesingle{}enseignant\textquotesingle{} et \textquotesingle{}directeuretude\textquotesingle{}, un nouvel objet \textquotesingle{}Code\+Ade\textquotesingle{} est créé et inséré, puis associé à l\textquotesingle{}utilisateur.
+Si le rôle de l\textquotesingle{}utilisateur est \textquotesingle{}television\textquotesingle{}, des codes spécifiques sont ajoutés à la table \textquotesingle{}ecran\+\_\+code\+\_\+user\textquotesingle{}.
 
 \begin{DoxyReturn}{Renvoie}
 int\texorpdfstring{$\vert$}{|}\textbackslash{}\+WP\+\_\+\+Error L\textquotesingle{}ID de l\textquotesingle{}utilisateur créé en cas de succès.
@@ -756,6 +775,40 @@ string & {\em \$\+\_\+login} & Le nom d\textquotesingle{}utilisateur.\\
 \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
+\Hypertarget{classmodels_1_1_user_a3cc569325b00a3d4a00a629ca01b38c7}\index{models\textbackslash{}User@{models\textbackslash{}User}!setMetadata@{setMetadata}}
+\index{setMetadata@{setMetadata}!models\textbackslash{}User@{models\textbackslash{}User}}
+\doxysubsubsection{\texorpdfstring{setMetadata()}{setMetadata()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_user_a3cc569325b00a3d4a00a629ca01b38c7} 
+models\textbackslash{}\+User\+::set\+Metadata (\begin{DoxyParamCaption}\item[{string}]{\$key}{, }\item[{}]{\$value}{}\end{DoxyParamCaption})}
+
+Définit une valeur de métadonnée pour une clé spécifique.
+
+Cette méthode permet d\textquotesingle{}ajouter ou de mettre à jour une métadonnée associée à une clé donnée dans le tableau des métadonnées de l\textquotesingle{}objet.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$key} & Clé de la métadonnée. \\
+\hline
+mixed & {\em \$value} & Valeur associée à la clé.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void
+\end{DoxyReturn}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/10-\/16 
+\end{DoxyDate}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_user_a3cc569325b00a3d4a00a629ca01b38c7_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classmodels_1_1_user_a29ce54f402617018c699d5aa69645d43}\index{models\textbackslash{}User@{models\textbackslash{}User}!setPassword@{setPassword}}
 \index{setPassword@{setPassword}!models\textbackslash{}User@{models\textbackslash{}User}}
 \doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
@@ -888,6 +941,12 @@ int models\textbackslash{}\+User\+::\$\+\_\+id\+\_\+department\hspace{0.3cm}{\tt
 \doxysubsubsection{\texorpdfstring{\$\_login}{\$\_login}}
 {\footnotesize\ttfamily \label{classmodels_1_1_user_ad450a2dadf3b3a7bc59de15da6229e35} 
 string models\textbackslash{}\+User\+::\$\+\_\+login\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classmodels_1_1_user_a949221319240d31b3da1d7c4cf36fa59}\index{models\textbackslash{}User@{models\textbackslash{}User}!\$\_metadata@{\$\_metadata}}
+\index{\$\_metadata@{\$\_metadata}!models\textbackslash{}User@{models\textbackslash{}User}}
+\doxysubsubsection{\texorpdfstring{\$\_metadata}{\$\_metadata}}
+{\footnotesize\ttfamily \label{classmodels_1_1_user_a949221319240d31b3da1d7c4cf36fa59} 
+array models\textbackslash{}\+User\+::\$\+\_\+metadata\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classmodels_1_1_user_a6ee598c497c1e31dd9db889e699548af}\index{models\textbackslash{}User@{models\textbackslash{}User}!\$\_password@{\$\_password}}
 \index{\$\_password@{\$\_password}!models\textbackslash{}User@{models\textbackslash{}User}}

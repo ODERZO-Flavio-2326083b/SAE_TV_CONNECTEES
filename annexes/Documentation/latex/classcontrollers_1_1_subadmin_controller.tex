@@ -105,12 +105,12 @@ Réimplémentée à partir de \mbox{\hyperlink{classcontrollers_1_1_user_control
 {\footnotesize\ttfamily \label{classcontrollers_1_1_subadmin_controller_ac4b1a1231d1fad737f03dfac3d90eb74} 
 controllers\textbackslash{}\+Subadmin\+Controller\+::display\+All\+Subadmin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Affiche la liste de tous les sous-\/administrateurs avec leur département.
+Affiche la liste de tous les administrateurs de départements avec leur département.
 
-Cette fonction récupère tous les utilisateurs ayant le rôle de sous-\/administrateur, puis pour chaque utilisateur, elle obtient le nom de son département. Elle renvoie ensuite un code HTML qui affiche la liste des sous-\/administrateurs et les départements auxquels ils appartiennent via une vue spécifique.
+Cette fonction récupère tous les utilisateurs ayant le rôle d\textquotesingle{}administrateur de département puis pour chaque utilisateur, elle obtient le nom de son département. Elle renvoie ensuite un code HTML qui affiche la liste des administrateurs de département et les départements auxquels ils appartiennent via une vue spécifique.
 
 \begin{DoxyReturn}{Renvoie}
-string Le code HTML généré pour afficher la liste des sous-\/administrateurs et leurs départements.
+string Le code HTML généré pour afficher la liste des administrateurs de département et leurs départements.
 \end{DoxyReturn}
 \begin{DoxyVersion}{Version}
 1.\+0.\+0 
@@ -124,9 +124,9 @@ string Le code HTML généré pour afficher la liste des sous-\/administrateurs 
 {\footnotesize\ttfamily \label{classcontrollers_1_1_subadmin_controller_a5dea02fb432609c7e97b1553a9b39d82} 
 controllers\textbackslash{}\+Subadmin\+Controller\+::insert (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Insère un nouvel administrateur ou sous-\/administrateur dans la base de données.
+Insère un nouvel administrateur ou d\textquotesingle{}administrateurs de département dans la base de données.
 
-Cette fonction récupère les données envoyées via un formulaire de création de sous-\/administrateur (login, mot de passe, email, département) et effectue une série de validations avant de procéder à l\textquotesingle{}insertion dans la base de données. Si les données sont valides et qu\textquotesingle{}il n\textquotesingle{}y a pas d\textquotesingle{}utilisateur en double, un nouvel utilisateur avec le rôle de sous-\/administrateur est créé. En cas d\textquotesingle{}erreur, des messages appropriés sont affichés pour informer l\textquotesingle{}utilisateur.
+Cette fonction récupère les données envoyées via un formulaire de création d\textquotesingle{}administrateurs de département (login, mot de passe, email, département) et effectue une série de validations avant de procéder à l\textquotesingle{}insertion dans la base de données. Si les données sont valides et qu\textquotesingle{}il n\textquotesingle{}y a pas d\textquotesingle{}utilisateur en double, un nouvel utilisateur avec le rôle d\textquotesingle{}administrateur de département est créé. En cas d\textquotesingle{}erreur, des messages appropriés sont affichés pour informer l\textquotesingle{}utilisateur.
 
 \begin{DoxyReturn}{Renvoie}
 string Le code HTML généré pour afficher le formulaire de création ou un message de validation/erreur.

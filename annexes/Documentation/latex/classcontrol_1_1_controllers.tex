@@ -1,0 +1,110 @@
+\doxysection{Référence de la classe control\textbackslash{}Controllers}
+\hypertarget{classcontrol_1_1_controllers}{}\label{classcontrol_1_1_controllers}\index{control\textbackslash{}Controllers@{control\textbackslash{}Controllers}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontrol_1_1_controllers_a80e2e645e8a0c0ea5d5bde32754b2df1}{annonces\+Action}} (\$login, \$password, \$data, \$annonces\+Check)
+\item 
+\mbox{\hyperlink{classcontrol_1_1_controllers_a4f2476562d19caf0a7425e36d012e9c5}{post\+Action}} (\$id, \$data, \$annonces\+Check)
+\item 
+\mbox{\hyperlink{classcontrol_1_1_controllers_aa92caf74ca4cf969b0158975f15b309f}{get\+Messages\+By\+User\+Id}} (\$user\+Id, \$data, \$messages\+Check)
+\item 
+\mbox{\hyperlink{classcontrol_1_1_controllers_acaa7fcb59fb069b9b71df24364cf2902}{put\+Message\+Post}} (\$id\+Receveur, \$message, \$data, \$messages\+Check)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe Controllers
+
+Cette classe gère différentes actions liées aux annonces et aux messages. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classcontrol_1_1_controllers_a80e2e645e8a0c0ea5d5bde32754b2df1}\index{control\textbackslash{}Controllers@{control\textbackslash{}Controllers}!annoncesAction@{annoncesAction}}
+\index{annoncesAction@{annoncesAction}!control\textbackslash{}Controllers@{control\textbackslash{}Controllers}}
+\doxysubsubsection{\texorpdfstring{annoncesAction()}{annoncesAction()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_controllers_a80e2e645e8a0c0ea5d5bde32754b2df1} 
+control\textbackslash{}\+Controllers\+::annonces\+Action (\begin{DoxyParamCaption}\item[{}]{\$login}{, }\item[{}]{\$password}{, }\item[{}]{\$data}{, }\item[{}]{\$annonces\+Check}{}\end{DoxyParamCaption})}
+
+Authentifie un utilisateur et récupère toutes les annonces si l\textquotesingle{}authentification réussit.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$login} & Le nom d\textquotesingle{}utilisateur pour l\textquotesingle{}authentification. \\
+\hline
+string & {\em \$password} & Le mot de passe de l\textquotesingle{}utilisateur. \\
+\hline
+array & {\em \$data} & Données supplémentaires nécessaires pour l\textquotesingle{}authentification et la récupération des annonces. \\
+\hline
+object & {\em \$annonces\+Check} & Instance d\textquotesingle{}un objet permettant l\textquotesingle{}authentification et la récupération des annonces. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{classcontrol_1_1_controllers_aa92caf74ca4cf969b0158975f15b309f}\index{control\textbackslash{}Controllers@{control\textbackslash{}Controllers}!getMessagesByUserId@{getMessagesByUserId}}
+\index{getMessagesByUserId@{getMessagesByUserId}!control\textbackslash{}Controllers@{control\textbackslash{}Controllers}}
+\doxysubsubsection{\texorpdfstring{getMessagesByUserId()}{getMessagesByUserId()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_controllers_aa92caf74ca4cf969b0158975f15b309f} 
+control\textbackslash{}\+Controllers\+::get\+Messages\+By\+User\+Id (\begin{DoxyParamCaption}\item[{}]{\$user\+Id}{, }\item[{}]{\$data}{, }\item[{}]{\$messages\+Check}{}\end{DoxyParamCaption})}
+
+Récupère tous les messages d\textquotesingle{}un utilisateur spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur dont on veut récupérer les messages. \\
+\hline
+array & {\em \$data} & Données supplémentaires nécessaires à la récupération des messages. \\
+\hline
+object & {\em \$messages\+Check} & Instance d\textquotesingle{}un objet permettant la récupération des messages. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array La liste des messages de l\textquotesingle{}utilisateur. 
+\end{DoxyReturn}
+\Hypertarget{classcontrol_1_1_controllers_a4f2476562d19caf0a7425e36d012e9c5}\index{control\textbackslash{}Controllers@{control\textbackslash{}Controllers}!postAction@{postAction}}
+\index{postAction@{postAction}!control\textbackslash{}Controllers@{control\textbackslash{}Controllers}}
+\doxysubsubsection{\texorpdfstring{postAction()}{postAction()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_controllers_a4f2476562d19caf0a7425e36d012e9c5} 
+control\textbackslash{}\+Controllers\+::post\+Action (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$data}{, }\item[{}]{\$annonces\+Check}{}\end{DoxyParamCaption})}
+
+Récupère les détails d\textquotesingle{}une annonce spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant de l\textquotesingle{}annonce à récupérer. \\
+\hline
+array & {\em \$data} & Données supplémentaires nécessaires à la récupération de l\textquotesingle{}annonce. \\
+\hline
+object & {\em \$annonces\+Check} & Instance d\textquotesingle{}un objet permettant la récupération de l\textquotesingle{}annonce. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\Hypertarget{classcontrol_1_1_controllers_acaa7fcb59fb069b9b71df24364cf2902}\index{control\textbackslash{}Controllers@{control\textbackslash{}Controllers}!putMessagePost@{putMessagePost}}
+\index{putMessagePost@{putMessagePost}!control\textbackslash{}Controllers@{control\textbackslash{}Controllers}}
+\doxysubsubsection{\texorpdfstring{putMessagePost()}{putMessagePost()}}
+{\footnotesize\ttfamily \label{classcontrol_1_1_controllers_acaa7fcb59fb069b9b71df24364cf2902} 
+control\textbackslash{}\+Controllers\+::put\+Message\+Post (\begin{DoxyParamCaption}\item[{}]{\$id\+Receveur}{, }\item[{}]{\$message}{, }\item[{}]{\$data}{, }\item[{}]{\$messages\+Check}{}\end{DoxyParamCaption})}
+
+Envoie un message à un utilisateur spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id\+Receveur} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur destinataire du message. \\
+\hline
+string & {\em \$message} & Le contenu du message à envoyer. \\
+\hline
+array & {\em \$data} & Données supplémentaires nécessaires à l\textquotesingle{}envoi du message. \\
+\hline
+object & {\em \$messages\+Check} & Instance d\textquotesingle{}un objet permettant l\textquotesingle{}envoi du message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/control/\mbox{\hyperlink{_controllers_8php}{Controllers.\+php}}\end{DoxyCompactItemize}

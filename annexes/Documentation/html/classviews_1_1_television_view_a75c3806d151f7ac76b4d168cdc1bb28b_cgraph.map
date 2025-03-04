@@ -1,7 +1,7 @@
 <map id="views\TelevisionView\displayFormTelevision" name="views\TelevisionView\displayFormTelevision">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,160,81"/>
-<area shape="rect" id="Node000002" href="$classviews_1_1_view.html#ae28c5fd6e404973637c7c79c55770e94" title=" " alt="" coords="208,5,395,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,46,191,41,192,46,160,51"/>
-<area shape="rect" id="Node000003" href="$classviews_1_1_television_view.html#a651165c6d00cbeb464e247da6b6a6084" title=" " alt="" coords="228,72,374,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,69,213,77,212,83,160,74"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,27,160,69"/>
+<area shape="rect" id="Node000002" href="$classviews_1_1_view.html#aa5fcf58011c2c6975da63fa7aaf8a957" title=" " alt="" coords="208,5,410,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,35,192,31,193,36,161,41"/>
+<area shape="rect" id="Node000003" href="$classviews_1_1_television_view.html#a651165c6d00cbeb464e247da6b6a6084" title=" " alt="" coords="236,56,382,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,55,221,63,220,69,160,61"/>
 </map>

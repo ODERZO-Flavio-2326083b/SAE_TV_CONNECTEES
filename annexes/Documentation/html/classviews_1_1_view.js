@@ -1,7 +1,7 @@
 var classviews_1_1_view =
 [
     [ "buildCheckbox", "classviews_1_1_view.html#a0b4ea62c83957cfaf1f8e1254d5d14b7", null ],
-    [ "buildDepartmentOptions", "classviews_1_1_view.html#ae28c5fd6e404973637c7c79c55770e94", null ],
+    [ "buildCodesOptions", "classviews_1_1_view.html#aa5fcf58011c2c6975da63fa7aaf8a957", null ],
     [ "buildLinkForModify", "classviews_1_1_view.html#a0decacec17aa7984c858d1518a225475", null ],
     [ "buildModal", "classviews_1_1_view.html#ac33c697655b0945501a66e2ad229326b", null ],
     [ "displayAll", "classviews_1_1_view.html#ae5777bd9277dcf4cc3cf537866b3e7bf", null ],

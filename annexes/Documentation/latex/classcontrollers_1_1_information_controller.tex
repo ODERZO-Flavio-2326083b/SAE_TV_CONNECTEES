@@ -43,7 +43,7 @@ Graphe de collaboration de controllers\textbackslash{}Information\+Controller\+:
 \item 
 \mbox{\hyperlink{classcontrollers_1_1_information_controller_a3c20fb306559ab23764f734ac0cf3968}{display\+Event}} ()
 \item 
-\mbox{\hyperlink{classcontrollers_1_1_information_controller_a136a541453a0308f4243f256b9ec24ea}{create\+Scrapper}} ()
+\mbox{\hyperlink{classcontrollers_1_1_information_controller_acc07a8c7af62d32f1af6388d9ef0e383}{create\+Scraper}} (\$id)
 \end{DoxyCompactItemize}
 \doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{classcontrollers_1_1_controller}{controllers\textbackslash{}\+Controller}}}
 \begin{DoxyCompactItemize}
@@ -60,12 +60,19 @@ Graphe de collaboration de controllers\textbackslash{}Information\+Controller\+:
 \item 
 \mbox{\hyperlink{classcontrollers_1_1_controller_a759ffd3109dd4387672296ccedb15a44}{is\+Real\+Date}} (\$date)
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classcontrollers_1_1_information_controller_ad69c00cd679b35917b28d46bef103d90}{get\+All\+Available\+Codes}} ()
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Attributs privés}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcontrollers_1_1_information_controller_a90ed7980f0b1c2d10705b19faf0763d5}{\$\+\_\+model}}
 \item 
 \mbox{\hyperlink{classcontrollers_1_1_information_controller_acbc4c2be821c7c77e27af142a7625246}{\$\+\_\+view}}
+\item 
+\mbox{\hyperlink{classcontrollers_1_1_information_controller_a606068a4793ce311066c136468d368b0}{\$\+\_\+model\+Scraping}}
 \end{DoxyCompactItemize}
 
 
@@ -112,25 +119,31 @@ Si le titre est vide, un titre par défaut "{}\+Sans titre"{} est utilisé. La m
 \begin{DoxyReturn}{Renvoie}
 string HTML du formulaire de création d\textquotesingle{}informations avec des options de sélection. 
 \end{DoxyReturn}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classcontrollers_1_1_information_controller_a87b1614d5e031c67257e41183043c9fa_cgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classcontrollers_1_1_information_controller_a136a541453a0308f4243f256b9ec24ea}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!createScrapper@{createScrapper}}
-\index{createScrapper@{createScrapper}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
-\doxysubsubsection{\texorpdfstring{createScrapper()}{createScrapper()}}
-{\footnotesize\ttfamily \label{classcontrollers_1_1_information_controller_a136a541453a0308f4243f256b9ec24ea} 
-controllers\textbackslash{}\+Information\+Controller\+::create\+Scrapper (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+\Hypertarget{classcontrollers_1_1_information_controller_acc07a8c7af62d32f1af6388d9ef0e383}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!createScraper@{createScraper}}
+\index{createScraper@{createScraper}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
+\doxysubsubsection{\texorpdfstring{createScraper()}{createScraper()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_information_controller_acc07a8c7af62d32f1af6388d9ef0e383} 
+controllers\textbackslash{}\+Information\+Controller\+::create\+Scraper (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
 
-Crée un objet de type "{}scrapper"{} avec des informations par défaut.
+Crée un objet de type "{}\+Scraper"{} et récupère les informations d\textquotesingle{}un site web.
 
-Cette méthode initialise un objet de la classe \textquotesingle{}information\textquotesingle{}, définit des valeurs prédéfinies pour ses propriétés, telles que l\textquotesingle{}identifiant du département, l\textquotesingle{}auteur, la date de création, le contenu, l\textquotesingle{}identifiant administratif, le titre, le type et la date d\textquotesingle{}expiration, et retourne cet objet.
+Cette méthode initialise un scraper avec les balises HTML nécessaires pour extraire des informations depuis une URL spécifique. Elle récupère les sélecteurs HTML associés à un identifiant donné, les organise en tableau, puis les transmet au scraper pour récupérer et afficher le contenu du site.
 
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & Identifiant permettant de récupérer les balises et l\textquotesingle{}URL associées.\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-information Retourne l\textquotesingle{}objet \textquotesingle{}information\textquotesingle{} initialisé.
+string Retourne le contenu extrait du site web après exécution du scraper.
 \end{DoxyReturn}
 \begin{DoxyVersion}{Version}
 1.\+0 
@@ -138,11 +151,12 @@ information Retourne l\textquotesingle{}objet \textquotesingle{}information\text
 \begin{DoxyDate}{Date}
 2024-\/10-\/16 
 \end{DoxyDate}
-Voici le graphe des appelants de cette fonction \+:\nopagebreak
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classcontrollers_1_1_information_controller_a136a541453a0308f4243f256b9ec24ea_icgraph}
+\includegraphics[width=350pt]{classcontrollers_1_1_information_controller_acc07a8c7af62d32f1af6388d9ef0e383_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{classcontrollers_1_1_information_controller_acf508c2c05f5ed73cfb0222d81f7d917}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!deleteFile@{deleteFile}}
@@ -279,6 +293,32 @@ Voici le graphe des appelants de cette fonction \+:\nopagebreak
 \includegraphics[width=350pt]{classcontrollers_1_1_information_controller_a717f893fa41ffc8da378164a18768e4a_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{classcontrollers_1_1_information_controller_ad69c00cd679b35917b28d46bef103d90}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!getAllAvailableCodes@{getAllAvailableCodes}}
+\index{getAllAvailableCodes@{getAllAvailableCodes}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
+\doxysubsubsection{\texorpdfstring{getAllAvailableCodes()}{getAllAvailableCodes()}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_information_controller_ad69c00cd679b35917b28d46bef103d90} 
+static controllers\textbackslash{}\+Information\+Controller\+::get\+All\+Available\+Codes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Récupère tous les codes disponibles en fonction des permissions de l\textquotesingle{}utilisateur.
+
+Cette méthode retourne une liste des codes ADE disponibles, classés par type \+: années, groupes et demi-\/groupes. Si l\textquotesingle{}utilisateur dispose de la permission "{}information\+\_\+to\+\_\+any\+\_\+code"{}, il obtient tous les codes disponibles. Sinon, les codes sont filtrés en fonction du département de l\textquotesingle{}utilisateur.
+
+\begin{DoxyReturn}{Renvoie}
+array Tableau contenant trois listes \+:
+\begin{DoxyItemize}
+\item Années disponibles
+\item Groupes disponibles
+\item Demi-\/groupes disponibles 
+\end{DoxyItemize}
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcontrollers_1_1_information_controller_ad69c00cd679b35917b28d46bef103d90_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{classcontrollers_1_1_information_controller_ac6460a393cbbde84720b85e3918aee02}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!informationMain@{informationMain}}
 \index{informationMain@{informationMain}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
 \doxysubsubsection{\texorpdfstring{informationMain()}{informationMain()}}
@@ -298,7 +338,8 @@ void
 \begin{DoxyDate}{Date}
 2024-\/10-\/16 
 \end{DoxyDate}
-Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -409,6 +450,12 @@ void
 \doxysubsubsection{\texorpdfstring{\$\_model}{\$\_model}}
 {\footnotesize\ttfamily \label{classcontrollers_1_1_information_controller_a90ed7980f0b1c2d10705b19faf0763d5} 
 controllers\textbackslash{}\+Information\+Controller\+::\$\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcontrollers_1_1_information_controller_a606068a4793ce311066c136468d368b0}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!\$\_modelScraping@{\$\_modelScraping}}
+\index{\$\_modelScraping@{\$\_modelScraping}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
+\doxysubsubsection{\texorpdfstring{\$\_modelScraping}{\$\_modelScraping}}
+{\footnotesize\ttfamily \label{classcontrollers_1_1_information_controller_a606068a4793ce311066c136468d368b0} 
+controllers\textbackslash{}\+Information\+Controller\+::\$\+\_\+model\+Scraping\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{classcontrollers_1_1_information_controller_acbc4c2be821c7c77e27af142a7625246}\index{controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}!\$\_view@{\$\_view}}
 \index{\$\_view@{\$\_view}!controllers\textbackslash{}InformationController@{controllers\textbackslash{}InformationController}}
