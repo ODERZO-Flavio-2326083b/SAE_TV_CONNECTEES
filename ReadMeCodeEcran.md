@@ -45,7 +45,7 @@ lire les fichiers ICS.
 
 ### Informations
 
-Une information correspond à un des types de fichiers suivants : Texte, Image, PDF, Vidéo, Short, Scrapping.
+Une information correspond à un des types de fichiers suivants : Texte, Image, PDF, Vidéo, Short, Scraping.
 
 Les classes utilisées sont : InformationController, Information & InformationView.  
 Les librairies "PhpOffice" et "PDF.js" sont aussi utilisées.  
@@ -64,8 +64,8 @@ La librairie "JQuery Ticker" est aussi utilisée.
 
 Les alertes sont uniquement composées de texte.
 
-### Scrapping
-Le scrapping, méthode de récupération de données de site web, est également affiché dans le diaporama d'informations.
+### Scraping
+Le scraping, méthode de récupération de données de site web, est également affiché dans le diaporama d'informations.
 Il est statique, ce qu'il signifie que pour changer ces informations, il faut se rendre dans le fichier Scrapper.php, 
 localisé dans le dossier models.
 On modifie "$this→url→'liendusite.net';".
