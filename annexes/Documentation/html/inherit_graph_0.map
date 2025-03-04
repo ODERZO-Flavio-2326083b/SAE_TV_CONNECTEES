@@ -12,15 +12,20 @@
 <area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="118,123,194,92,233,81,235,86,196,97,120,128"/>
 <area shape="rect" id="Node000006" href="$classcontrollers_1_1_user_controller.html" title=" " alt="" coords="215,107,384,133"/>
 <area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="162,133,214,127,215,132,162,138"/>
-<area shape="rect" id="Node000007" href="$classcontrollers_1_1_secretary_controller.html" title=" " alt="" coords="455,81,652,108"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="399,107,454,102,455,107,400,113"/>
-<area shape="rect" id="Node000008" href="$classcontrollers_1_1_subadmin_controller.html" title=" " alt="" coords="454,132,653,159"/>
-<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="400,127,454,133,453,138,399,133"/>
-<area shape="rect" id="Node000009" href="$classcontrollers_1_1_technician_controller.html" title=" " alt="" coords="452,199,655,225"/>
-<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="383,136,405,143,430,155,453,168,517,196,515,201,451,173,427,160,403,148,381,141"/>
-<area shape="rect" id="Node000011" href="$classcontrollers_1_1_television_controller.html" title=" " alt="" coords="454,283,653,309"/>
-<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="399,139,406,143,425,166,432,189,439,212,454,236,486,261,520,280,517,284,483,266,450,239,434,214,427,190,420,168,402,147,396,143"/>
-<area shape="rect" id="Node000010" href="$interfacecontrollers_1_1_schedule.html" title=" " alt="" coords="230,325,369,352"/>
-<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="383,320,403,311,417,301,427,291,450,269,524,224,527,228,454,273,431,295,421,305,405,316,385,325"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="384,322,469,307,470,313,385,327"/>
+<area shape="rect" id="Node000007" href="$classcontrollers_1_1_communiquant_controller.html" title=" " alt="" coords="467,40,640,83"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="374,100,466,79,467,84,376,105"/>
+<area shape="rect" id="Node000008" href="$classcontrollers_1_1_secretary_controller.html" title=" " alt="" coords="455,107,652,133"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="399,117,455,117,455,123,399,123"/>
+<area shape="rect" id="Node000009" href="$classcontrollers_1_1_subadmin_controller.html" title=" " alt="" coords="454,157,653,184"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="385,134,484,154,483,159,384,140"/>
+<area shape="rect" id="Node000010" href="$classcontrollers_1_1_tablet_controller.html" title=" " alt="" coords="466,209,642,236"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="394,137,405,143,421,156,430,169,439,182,453,194,481,206,479,211,451,198,435,185,426,172,417,159,403,148,392,142"/>
+<area shape="rect" id="Node000012" href="$classcontrollers_1_1_technician_controller.html" title=" " alt="" coords="452,264,655,291"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="399,139,406,143,418,156,425,169,431,196,436,222,443,234,454,246,479,261,477,266,450,250,438,237,431,224,426,197,420,171,414,159,402,147,396,143"/>
+<area shape="rect" id="Node000013" href="$classcontrollers_1_1_television_controller.html" title=" " alt="" coords="454,323,653,349"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="399,138,406,143,422,163,429,183,431,223,433,263,440,282,454,301,483,320,480,324,450,305,435,284,428,264,426,223,424,184,417,166,402,147,395,142"/>
+<area shape="rect" id="Node000011" href="$interfacecontrollers_1_1_schedule.html" title=" " alt="" coords="230,325,369,352"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="382,321,402,311,418,297,426,282,434,266,450,250,482,234,485,239,454,254,439,269,431,284,422,300,406,316,385,326"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="372,319,494,289,496,294,373,324"/>
+<area shape="poly" id="edge15_Node000011_Node000013" title=" " alt="" coords="384,335,453,334,453,340,384,340"/>
 </map>

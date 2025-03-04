@@ -45,11 +45,13 @@ class SubadminView extends UserView
 {
 
     /**
-     * Affiche le formulaire de création de compte pour les administrateurs de département.
+     * Affiche le formulaire de création de compte pour
+     * les administrateurs de département.
      *
      * Cette méthode génère un formulaire HTML pour la création de nouveaux
      * comptes techniciens. Le formulaire inclut des champs nécessaires pour
-     * fournir les informations requises pour un compte administrateur de département.
+     * fournir les informations requises pour un
+     * compte administrateur de département.
      *
      * @param array $dept     Liste de tous les
      *                        départements
@@ -60,7 +62,8 @@ class SubadminView extends UserView
      *                        est un administrateur, et
      *                        "false" sinon.
      *
-     * @return string Le code HTML du formulaire pour créer un compte administrateur de département.
+     * @return string Le code HTML du formulaire pour créer
+     * un compte administrateur de département.
      *
      * @version 1.0
      * @date    2024-10-15
@@ -70,7 +73,8 @@ class SubadminView extends UserView
     {
         return '
         <h2>Compte administrateur de département</h2>
-        <p class="lead">Pour créer des administrateurs de département, remplissez ce formulaire avec 
+        <p class="lead">Pour créer des administrateurs
+         de département, remplissez ce formulaire avec 
         	les valeurs demandées.</p>
         ' . $this->displayBaseForm('Subadmin', $dept, $isAdmin, $currDept);
     }

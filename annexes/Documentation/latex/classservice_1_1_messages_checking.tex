@@ -1,0 +1,84 @@
+\doxysection{Référence de la classe service\textbackslash{}Messages\+Checking}
+\hypertarget{classservice_1_1_messages_checking}{}\label{classservice_1_1_messages_checking}\index{service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classservice_1_1_messages_checking_aaeeb0c2d8b162acf3ce6c8a765b33d59}{get\+Messages\+Txt}} ()
+\item 
+\mbox{\hyperlink{classservice_1_1_messages_checking_a8722ca0c12fa12ea49453337f3a00c21}{get\+All\+Messages}} (\$user\+Id, \$data)
+\item 
+\mbox{\hyperlink{classservice_1_1_messages_checking_a938f49b6e58cc2334aa712ed7c15bd4c}{put\+Message\+Post}} (\$id\+Receveur, \$message, \$data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classservice_1_1_messages_checking_a6b8cd8dc7434dabab023adb260dfcf93}{\$messages\+Txt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Class Messages\+Checking
+
+Cette classe est responsable de la gestion des messages. Elle permet de récupérer, enregistrer et manipuler les messages associés aux utilisateurs, en interagissant avec la couche d\textquotesingle{}accès aux données. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classservice_1_1_messages_checking_a8722ca0c12fa12ea49453337f3a00c21}\index{service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}!getAllMessages@{getAllMessages}}
+\index{getAllMessages@{getAllMessages}!service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}}
+\doxysubsubsection{\texorpdfstring{getAllMessages()}{getAllMessages()}}
+{\footnotesize\ttfamily \label{classservice_1_1_messages_checking_a8722ca0c12fa12ea49453337f3a00c21} 
+service\textbackslash{}\+Messages\+Checking\+::get\+All\+Messages (\begin{DoxyParamCaption}\item[{}]{\$user\+Id}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Récupère tous les messages d\textquotesingle{}un utilisateur spécifique à partir de la base de données.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur pour lequel récupérer les messages. \\
+\hline
+mixed & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Retourne un tableau contenant les messages associés à l\textquotesingle{}utilisateur. 
+\end{DoxyReturn}
+\Hypertarget{classservice_1_1_messages_checking_aaeeb0c2d8b162acf3ce6c8a765b33d59}\index{service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}!getMessagesTxt@{getMessagesTxt}}
+\index{getMessagesTxt@{getMessagesTxt}!service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}}
+\doxysubsubsection{\texorpdfstring{getMessagesTxt()}{getMessagesTxt()}}
+{\footnotesize\ttfamily \label{classservice_1_1_messages_checking_aaeeb0c2d8b162acf3ce6c8a765b33d59} 
+service\textbackslash{}\+Messages\+Checking\+::get\+Messages\+Txt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retourne la liste des messages sous forme de tableau.
+
+\begin{DoxyReturn}{Renvoie}
+array Retourne le tableau des messages. 
+\end{DoxyReturn}
+\Hypertarget{classservice_1_1_messages_checking_a938f49b6e58cc2334aa712ed7c15bd4c}\index{service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}!putMessagePost@{putMessagePost}}
+\index{putMessagePost@{putMessagePost}!service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}}
+\doxysubsubsection{\texorpdfstring{putMessagePost()}{putMessagePost()}}
+{\footnotesize\ttfamily \label{classservice_1_1_messages_checking_a938f49b6e58cc2334aa712ed7c15bd4c} 
+service\textbackslash{}\+Messages\+Checking\+::put\+Message\+Post (\begin{DoxyParamCaption}\item[{}]{\$id\+Receveur}{, }\item[{}]{\$message}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Enregistre un nouveau message dans la base de données pour un post spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id\+Receveur} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur destinataire du message. \\
+\hline
+string & {\em \$message} & Le contenu du message. \\
+\hline
+mixed & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classservice_1_1_messages_checking_a6b8cd8dc7434dabab023adb260dfcf93}\index{service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}!\$messagesTxt@{\$messagesTxt}}
+\index{\$messagesTxt@{\$messagesTxt}!service\textbackslash{}MessagesChecking@{service\textbackslash{}MessagesChecking}}
+\doxysubsubsection{\texorpdfstring{\$messagesTxt}{\$messagesTxt}}
+{\footnotesize\ttfamily \label{classservice_1_1_messages_checking_a6b8cd8dc7434dabab023adb260dfcf93} 
+service\textbackslash{}\+Messages\+Checking\+::\$messages\+Txt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/service/\mbox{\hyperlink{_messages_checking_8php}{Messages\+Checking.\+php}}\end{DoxyCompactItemize}

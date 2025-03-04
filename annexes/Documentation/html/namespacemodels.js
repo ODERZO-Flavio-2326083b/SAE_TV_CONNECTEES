@@ -8,6 +8,6 @@ var namespacemodels =
     [ "Information", "classmodels_1_1_information.html", "classmodels_1_1_information" ],
     [ "Localisation", "classmodels_1_1_localisation.html", "classmodels_1_1_localisation" ],
     [ "Model", "classmodels_1_1_model.html", "classmodels_1_1_model" ],
-    [ "Scrapper", "classmodels_1_1_scrapper.html", "classmodels_1_1_scrapper" ],
+    [ "Scraper", "classmodels_1_1_scraper.html", "classmodels_1_1_scraper" ],
     [ "User", "classmodels_1_1_user.html", "classmodels_1_1_user" ]
 ];

@@ -1,0 +1,23 @@
+<map id="controllers\CommuniquantController" name="controllers\CommuniquantController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,263,428,305"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_user_controller.html" title=" " alt="" coords="257,172,426,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="344,215,344,262,339,262,339,215"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_controller.html" title=" " alt="" coords="271,81,412,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,124,344,171,339,171,339,124"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_user.html" title=" " alt="" coords="142,81,237,108"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="185,123,183,161,186,180,193,197,209,218,229,235,274,260,272,264,226,239,205,221,189,200,181,181,178,161,180,123"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="225,114,321,169,318,174,223,118"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_model.html" title=" " alt="" coords="272,5,374,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="288,42,213,83,211,78,285,37"/>
+<area shape="rect" id="Node000006" href="$interfacemodels_1_1_entity.html" title=" " alt="" coords="5,5,107,32"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="93,37,168,78,165,83,91,42"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="131,5,248,32"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="192,47,192,81,187,81,187,47"/>
+<area shape="rect" id="Node000008" href="$classviews_1_1_user_view.html" title=" " alt="" coords="458,81,574,108"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="479,118,368,174,365,169,476,113"/>
+<area shape="rect" id="Node000010" href="$classviews_1_1_communiquant_view.html" title=" " alt="" coords="450,172,627,199"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="526,122,538,171,533,172,520,124"/>
+<area shape="rect" id="Node000009" href="$classviews_1_1_view.html" title=" " alt="" coords="472,5,560,32"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="519,47,519,81,513,81,513,47"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="501,208,385,264,383,260,498,203"/>
+</map>

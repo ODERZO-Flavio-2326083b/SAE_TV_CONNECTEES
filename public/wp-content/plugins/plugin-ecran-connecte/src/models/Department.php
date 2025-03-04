@@ -239,6 +239,22 @@ class Department extends Model implements Entity, JsonSerializable
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    /**
+     * Récupère un département par son identifiant.
+     *
+     * Cette méthode effectue une requête SQL pour récupérer les informations
+     * d'un département à partir de son identifiant unique. Si un département
+     * correspondant est trouvé, il est retourné sous forme d'objet 'Department',
+     * sinon la méthode retourne 'null'.
+     *
+     * @param int $id Identifiant unique du département recherché.
+     *
+     * @return Department|null Retourne un objet
+     * 'Department' si trouvé, sinon 'null'.
+     *
+     * @version 1.0
+     * @date    2024-10-16
+     */
     public function getDepartmentById($id) : ?Department
     {
         $request = $this->getDatabase()->prepare(

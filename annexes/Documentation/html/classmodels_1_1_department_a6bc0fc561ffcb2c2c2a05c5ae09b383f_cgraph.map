@@ -1,0 +1,7 @@
+<map id="models\Department\getDepartmentById" name="models\Department\getDepartmentById">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,258,57"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_model.html#a640726f66afc95116ee8e51ab488c38d" title=" " alt="" coords="311,5,492,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,29,296,26,296,31,258,35"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_department.html#a4eab8321a3e8a6a8149dff91ca0b6836" title=" " alt="" coords="306,56,497,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,53,290,56,290,62,258,59"/>
+</map>

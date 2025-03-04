@@ -51,34 +51,29 @@ class InformationView extends View
 {
 
     /**
-     * Affiche un formulaire pour créer ou modifier un texte avec des champs pour le
-     * titre, le contenu, et la date d'expiration.
+     * Affiche un formulaire permettant de créer
+     * ou modifier un texte associé à un emploi du temps.
      *
-     * Le formulaire inclut des validations pour s'assurer que le titre est optionnel
-     * (minimum 4 caractères), que le contenu est requis (maximum 280 caractères),
-     * et que la date d'expiration ne peut pas être antérieure à la date actuelle.
+     * Ce formulaire permet de spécifier
+     * un titre (optionnel), un contenu (obligatoire),
+     * une date d'expiration, et de lier le texte à un emploi du temps spécifique.
+     * Le formulaire génère du HTML incluant
+     * les champs nécessaires pour la saisie du texte,
+     * et permet d'ajouter ou de supprimer des emplois du temps associés au texte.
      *
-     * @param array       $allDepts Une liste de tous les départements
-     *                              présents dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du
-     *                              département actuel.
-     * @param string|null $title    Le titre du texte à afficher dans le
-     *                              champ (optionnel).
-     * @param string|null $content  Le contenu à afficher dans la zone de
-     *                              texte (optionnel).
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer, par
-     *                              défaut "createText". Peut être
-     *                              "submit" pour soumettre le formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments
+     *                          de construction,
+     *                          contenant les années, groupes et demi-groupes.
+     * @param string $title     Titre du texte (optionnel).
+     * @param string $content   Contenu du texte.
+     * @param string $endDate   Date d'expiration du texte.
+     * @param string $type      Type de l'action,
+     *                          par défaut "createText" (peut être "submit" pour une
+     *                          modification).
      *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
     public function displayFormText(array $allDepts, array $buildArgs, $title = null,
         $content = null, $endDate = null, $type = "createText"
@@ -87,7 +82,10 @@ class InformationView extends View
 
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years,
+            $groups, $halfGroups, $allDepts
+        );
 
         $form = '
         <form method="post">
@@ -114,7 +112,8 @@ class InformationView extends View
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainertexte">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'texte\')" 
+                <input type="button" class="btn button_ecran"
+                 onclick="codeAddRow(\'texte\')" 
             value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -130,46 +129,43 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier une image avec des champs pour le
-     * titre, le fichier image, et la date d'expiration.
+     * Affiche un formulaire permettant de créer
+     * ou modifier une image associée à un emploi du temps.
      *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de
-     * télécharger une image. Si une image existe déjà, elle sera affichée avec une
-     * légende.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
-     * date actuelle.
+     * Ce formulaire permet de spécifier
+     * un titre (optionnel), d'ajouter une nouvelle image,
+     * d'afficher une image existante si elle est
+     * fournie, et de lier l'image à un emploi du temps spécifique.
+     * Le formulaire inclut des champs pour la
+     * saisie du titre, le téléchargement de l'image,
+     * et la sélection de la date d'expiration.
+     * Il permet également d'ajouter des emplois du temps à l'image.
      *
-     * @param array       $allDepts Une liste de tous les départements présents
-     *                              dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du département
-     *                              actuel.
-     * @param string|null $title    Le titre de l'image à afficher dans le
-     *                              champ (optionnel).
-     * @param string|null $content  Le nom du fichier image à
-     *                              afficher (optionnel).
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer,
-     *                              par défaut "createImg". Peut
-     *                              être "submit" pour soumettre le
-     *                              formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments de construction,
+     *                          contenant les années, groupes et demi-groupes.
+     * @param string $title     Titre de l'image (optionnel).
+     * @param string $content   Contenu de l'image (nom du fichier de l'image).
+     * @param string $endDate   Date d'expiration de l'image.
+     * @param string $type      Type de l'action, par défaut
+     *                          "createImg" (peut être "submit" pour
+     *                          une modification).
      *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
-    public function displayFormImage(array $allDepts, array $buildArgs, $title = null,
+    public function displayFormImage(array $allDepts,
+        array $buildArgs, $title = null,
         $content = null, $endDate = null, $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years, $groups,
+            $halfGroups, $allDepts
+        );
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
@@ -207,7 +203,8 @@ name="delete" onclick="return confirm(
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerimage">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'image\')" 
+                <input type="button" class="btn button_ecran"
+                 onclick="codeAddRow(\'image\')" 
             value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -223,46 +220,51 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le
-     * titre, le fichier video, et la date d'expiration.
+     * Affiche un formulaire permettant de créer ou modifier
+     * une vidéo associée à un emploi du temps.
      *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de
-     * télécharger une video. Si une video existe déjà, elle sera affichée avec une
-     * légende.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
-     * date actuelle.
+     * Ce formulaire permet à l'utilisateur de spécifier
+     * un titre (optionnel), d'ajouter une nouvelle vidéo,
+     * d'afficher une vidéo existante si elle est fournie,
+     * et de lier la vidéo à un emploi du temps spécifique.
+     * Le formulaire comprend un champ pour le titre,
+     * un champ pour télécharger une vidéo, un champ pour définir la
+     * date d'expiration de la vidéo, ainsi qu'une option
+     * pour lier cette vidéo à un emploi du temps.
+     * Il inclut également un bouton de soumission pour
+     * valider les informations et un bouton de suppression pour
+     * supprimer une vidéo existante.
      *
-     * @param array       $allDepts Une liste de tous les départements présents
-     *                              dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du département
-     *                              actuel.
-     * @param string|null $title    Le titre de la video à afficher dans le
-     *                              champ (optionnel).
-     * @param string|null $content  Le nom du fichier video à
-     *                              afficher (optionnel).
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer,
-     *                              par défaut "createVideo". Peut
-     *                              être "submit" pour soumettre le
-     *                              formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments nécessaires
+     *                          pour construire les
+     *                          options des années, groupes, et demi-groupes.
+     * @param string $title     Titre de la vidéo
+     *                          (optionnel).
+     * @param string $content   Contenu de la vidéo (nom du fichier vidéo existant,
+     *                          facultatif).
+     * @param string $endDate   Date d'expiration de la
+     *                          vidéo.
+     * @param string $type      Type de l'action, par défaut
+     *                          "createVideo". Si "submit",
+     *                          permet de modifier la vidéo
+     *                          existante.
      *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
-    public function displayFormVideo(array $allDepts, array $buildArgs, $title = null,
+    public function displayFormVideo(array $allDepts,
+        array $buildArgs, $title = null,
         $content = null, $endDate = null, $type = "createVideo"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years,
+            $groups, $halfGroups, $allDepts
+        );
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -300,7 +302,8 @@ name="delete" onclick="return confirm(
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainervideo">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'video\')" 
+                <input type="button" class="btn button_ecran"
+                 onclick="codeAddRow(\'video\')" 
             value="Ajouter un emploi du temps">
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
@@ -316,45 +319,50 @@ Supprimer</button>';
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier une vidéo avec des champs pour le
-     * titre, le fichier video, et la date d'expiration.
+     * Affiche un formulaire
+     * permettant de créer ou modifier une vidéo courte (short).
      *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de
-     * télécharger un short. Si un short existe déjà, elle sera affichée avec une
-     * légende.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
-     * date actuelle.
+     * Ce formulaire permet à l'utilisateur de spécifier
+     * un titre (optionnel), de télécharger une vidéo courte au format vertical,
+     * d'afficher une vidéo actuelle si elle est fournie,
+     * et de lier cette vidéo à un emploi du temps spécifique.
+     * Le formulaire comprend un champ pour le titre, un champ
+     * pour télécharger une vidéo courte, un champ pour définir la
+     * date d'expiration de la vidéo, ainsi qu'une option pour
+     * lier cette vidéo à un emploi du temps.
+     * Il inclut également un bouton de soumission pour valider
+     * les informations et un bouton de suppression pour
+     * supprimer une vidéo existante.
      *
-     * @param array       $allDepts Une liste de tous les départements présents
-     *                              dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du département
-     *                              actuel.
-     * @param string|null $title    Le titre du short à afficher dans le
-     *                              champ (optionnel).
-     * @param string|null $content  Le nom du fichier video à
-     *                              afficher (optionnel).
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer,
-     *                              par défaut "createShort". Peut
-     *                              être "submit" pour soumettre le
-     *                              formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments nécessaires
+     *                          pour construire les options des années,
+     *                          groupes, et demi-groupes.
+     * @param string $title     Titre de la vidéo
+     *                          (optionnel).
+     * @param string $content   Contenu de la vidéo (nom du
+     *                          fichier vidéo existant,
+     *                          facultatif).
+     * @param string $endDate   Date d'expiration de la
+     *                          vidéo.
+     * @param string $type      Type de l'action, par défaut
+     *                          "createShort". Si "submit", permet de
+     *                          modifier la vidéo existante.
      *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
-    public function displayFormShort(array $allDepts, array $buildArgs, $title = null,
+    public function displayFormShort(array $allDepts,
+        array $buildArgs, $title = null,
         $content = null, $endDate = null, $type = "createShort"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years, $groups,
+            $halfGroups, $allDepts
+        );
 
         $form = '<form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -393,7 +401,8 @@ Supprimer</button>';
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainershort">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'short\')" 
+                <input type="button" class="btn button_ecran" 
+                onclick="codeAddRow(\'short\')" 
             value="Ajouter un emploi du temps">
             </div>
 		<button class="btn button_ecran" type="submit" name="' . $type . '">Valider
@@ -409,36 +418,34 @@ Supprimer</button>';
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier un document PDF avec des champs
-     * pour le titre, le fichier à télécharger et la date d'expiration.
+     * Affiche un formulaire permettant de créer ou modifier un fichier PDF.
      *
-     * Le formulaire permet à l'utilisateur d'insérer un titre optionnel et de
-     * télécharger un fichier PDF. Si un contenu est déjà présent, le PDF
-     * correspondant sera affiché dans un iframe.
-     * Le champ de date d'expiration est requis et ne peut pas être antérieur à la
-     * date actuelle.
+     * Ce formulaire permet à l'utilisateur de spécifier un titre (optionnel),
+     * de télécharger un fichier PDF,
+     * d'afficher un fichier PDF actuel si déjà téléchargé, et de lier ce fichier
+     * à un emploi du temps spécifique.
+     * Le formulaire comprend un champ pour le titre, un champ pour télécharger un
+     * fichier PDF, un champ pour définir la
+     * date d'expiration du PDF, ainsi qu'une option pour lier ce
+     * fichier à un emploi du temps.
+     * Il inclut également un bouton de soumission pour valider les
+     * informations et un bouton de suppression pour
+     * supprimer le fichier PDF existant.
      *
-     * @param array       $allDepts Une liste de tous les départements présents
-     *                              dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du département
-     *                              actuel.
-     * @param string|null $title    Le titre du document PDF à afficher dans le
-     *                              champ (optionnel).
-     * @param string|null $content  Le nom du fichier PDF à
-     *                              afficher (optionnel).
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer, par
-     *                              défaut "createPDF". Peut être "submit"
-     *                              pour soumettre le formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments nécessaires pour
+     *                          construire les options des années,
+     *                          groupes, et demi-groupes.
+     * @param string $title     Titre du fichier PDF (optionnel).
+     * @param string $content   Contenu du fichier PDF (nom du fichier
+     *                          PDF existant, facultatif).
+     * @param string $endDate   Date d'expiration du fichier PDF.
+     * @param string $type      Type de l'action, par défaut
+     *                          "createPDF". Si "submit", permet de
+     *                          modifier le fichier PDF existant.
      *
-     * @return string                 Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
     public function displayFormPDF(array $allDepts, array $buildArgs, $title = null,
         $content = null, $endDate = null, $type = "createPDF"
@@ -447,13 +454,16 @@ Supprimer</button>';
 
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years, $groups,
+            $halfGroups, $allDepts
+        );
 
         $form = '<form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Titre <span class="text-muted">(Optionnel)
                         </span></label>
-                        <input id="title" class="form-control$title" type="text" 
+                        <input id="title" class="form-control" type="text" 
                         name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
                     </div>';
@@ -480,7 +490,8 @@ Supprimer</button>';
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerpdf">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'pdf\')" 
+                <input type="button" class="btn button_ecran"
+                 onclick="codeAddRow(\'pdf\')" 
             value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -495,39 +506,38 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * Affiche un formulaire pour créer ou modifier un événement, permettant de
-     * télécharger des fichiers et de spécifier une date d'expiration.
+     * Affiche un formulaire pour créer
+     * ou modifier un événement avec des fichiers joints.
      *
-     * Le formulaire permet à l'utilisateur de sélectionner plusieurs fichiers
-     * (images ou PDF) à télécharger.
-     * La date d'expiration est requise et ne peut pas être antérieure à la date
-     * actuelle.
+     * Ce formulaire permet à l'utilisateur de
+     * télécharger plusieurs fichiers (images ou PDF),
+     * de spécifier une date d'expiration pour l'événement,
+     * et d'associer cet événement à un emploi du temps.
+     * L'utilisateur peut aussi ajouter un ou plusieurs emplois
+     * du temps en utilisant un bouton pour ajouter des lignes
+     * de sélection d'emplois du temps.
      *
-     * @param array       $allDepts Une liste de tous les départements présents
-     *                              dans la base de données.
-     * @param bool        $isAdmin  Un booléen correspondant à "true"
-     *                              si l'utilisateur est un
-     *                              administrateur, et "false" sinon.
-     * @param int|null    $currDept Le numéro du département
-     *                              actuel.
-     * @param string|null $endDate  La date d'expiration à
-     *                              afficher (optionnel).
-     * @param string      $type     Le type d'action à effectuer, par
-     *                              défaut "createEvent". Peut être
-     *                              "submit" pour soumettre le formulaire.
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments nécessaires pour construire les
+     *                          options des années, groupes, et demi-groupes.
+     * @param string $endDate   Date d'expiration de
+     *                          l'événement.
+     * @param string $type      Type de l'action, par défaut "createEvent". Si
+     *                          "submit", permet de modifier l'événement existant.
      *
-     * @return string                Une chaîne HTML contenant le formulaire.
-     *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML généré pour le formulaire.
      */
     public function displayFormEvent( array $allDepts, array $buildArgs,
-                                      $endDate = null, $type = "createEvent"
+        $endDate = null, $type = "createEvent"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years, $groups, $halfGroups,
+            $allDepts
+        );
 
         $form = '
         <form method="post" enctype="multipart/form-data">
@@ -549,7 +559,8 @@ name="delete" onclick="return confirm(
                 <label>Emploi(s) du temps</label>
                 <br>    
                 <div id="codeContainerevent">' . $codeSelect . '</div>
-                <input type="button" class="btn button_ecran" onclick="codeAddRow(\'event\')" 
+                <input type="button" class="btn button_ecran" 
+                onclick="codeAddRow(\'event\')" 
             value="Ajouter un emploi du temps">
             </div>
             <button class="btn button_ecran" type="submit" name="' . $type . '">
@@ -564,53 +575,85 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public function displayFormScraping (array $allDepts, array $buildArgs,
-                             $endDate = null, $title = null, $url = null,
-    $type = "createScraping") {
+    /**
+     * Affiche un formulaire pour créer ou modifier un scraping.
+     *
+     * Ce formulaire permet à l'utilisateur de spécifier un titre,
+     * un lien URL, de choisir des tags associés,
+     * de spécifier une date d'expiration pour le scraping,
+     * et de lier ce scraping à un emploi du temps.
+     * L'utilisateur peut aussi ajouter un ou plusieurs tags ainsi que des emplois
+     * du temps en utilisant des boutons pour ajouter des lignes
+     * de tags ou d'emplois du temps. Le formulaire inclut également un champ pour
+     * uploader des fichiers et une option de
+     * suppression si l'utilisateur est en mode "submit".
+     *
+     * @param array  $allDepts  Liste des départements
+     *                          disponibles.
+     * @param array  $buildArgs Liste des arguments nécessaires pour construire les
+     *                          options des années, groupes, et demi-groupes.
+     * @param string $endDate   Date d'expiration du scraping.
+     * @param string $title     Titre du scraping.
+     * @param string $url       URL du site pour le scraping.
+     * @param string $type      Type de l'action, par défaut
+     *                          "createScraping". Si "submit", permet de
+     *                          modifier le scraping existant.
+     *
+     * @return string Le code HTML généré pour le formulaire.
+     */
+    public function displayFormScraping(array $allDepts, array $buildArgs,
+        $endDate = null, $title = null, $url = null,
+        $type = "createScraping"
+    ) {
 
         list($years, $groups, $halfGroups) = $buildArgs;
-        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+        $codeSelect = $this->buildSelectCode(
+            $years, $groups, $halfGroups,
+            $allDepts
+        );
 
         $dateMin = date('Y-m-d', strtotime("+1 day"));
         $form = '
-    <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
-        <div class="form-group">
-            <label for="title">Titre du scraping</label>
-            <input id="title" class="form-control" type="text"
-                   name="title" placeholder="Insérer un titre" maxlength="60"
-                   value="' . $title . '">
-        </div>
-        <div class="form-group">
-            <label for="url">Lien du site</label>
-            <input id="url" class="form-control" type="url"
-                   name="content" placeholder="Insérer un lien" maxlength="255"
-                   value="' . $url . '">
-        </div>
-        <div class="form-group">
-            <label for="tag">Tag</label>
-            <div id="tagContainer">
-                ' . $this->buildTagOption() . '
-                <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
-               value="Ajouter des tags">
+        <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
+            <div class="form-group">
+                <label for="title">Titre du scraping</label>
+                <input id="title" class="form-control" type="text"
+                name="title" placeholder="Insérer un titre" maxlength="60" 
+                        value="' . $title . '">
             </div>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="expirationDate">Date d\'expiration</label>
-            <input id="expirationDate" class="form-control" type="date" 
-                   name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required>
-        </div>
-        <div class="form-group">
-            <label>Emploi(s) du temps</label>
-            <br>    
-            <div id="codeContainerscraping">' . $codeSelect . '</div>
-            <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
-                   value="Ajouter un emploi du temps">
-        </div>
-        <button class="btn button_ecran" type="submit" name="' . $type . '">
-            Valider
-        </button>
-    </form>';
+            <div class="form-group">
+                <label for="url">Lien du site</label>
+                <input id="url" class="form-control" type="url"
+                name="content" placeholder="Insérer un lien" maxlength="255"
+                        value="' . $url . '">
+            </div>
+            <div class="form-group">
+                <label for="tag" id="tagDiv">Tag</label>
+                <div id="tagContainer">
+                 ' . $this->buildTagOption() . '
+                 <input type="button" class="btn button_ecran"
+                  onclick="addButtonTag()" value="Ajouter des tags">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="expirationDate">Date d\'expiration</label>
+                <input id="expirationDate" class="form-control" type="date" 
+                name="expirationDate" min="' . $dateMin . '" value="' . $endDate
+            . '" required >
+            </div>
+            <div class="form-group">
+                <label>Emploi(s) du temps</label>
+                <br>    
+                <div id="codeContainerscraping">' . $codeSelect . '</div>
+                <input type="button" class="btn button_ecran"
+                 onclick="codeAddRow(\'scraping\')" 
+            value="Ajouter un emploi du temps">
+            </div>
+            <button class="btn button_ecran" type="submit" name="' . $type . '">
+                Valider
+            </button>
+        </form>';
         if ($type == 'submit') {
             $form .= '<button type="submit" class="btn delete_button_ecran" 
 name="delete" onclick="return confirm(
@@ -620,10 +663,34 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
-    public static function buildTagOption() {
+    /**
+     * Génère un bloc HTML pour un champ de saisie de tags avec un
+     * sélecteur pour spécifier leur type.
+     * Ce bloc contient un champ de texte pour insérer un tag et une
+     * liste déroulante pour sélectionner
+     * le type de tag associé au scraping.
+     *
+     * Le champ de texte permet de saisir un tag, tandis que la liste
+     * déroulante propose plusieurs types
+     * de tags possibles : 'default', 'image', 'lien', 'url', et 'article'.
+     *
+     * Cette méthode est utilisée pour ajouter des tags à un formulaire
+     * de scraping où l'utilisateur
+     * peut associer des informations spécifiques (par exemple, des liens,
+     * des images, des articles) aux données
+     * récupérées par un scraping.
+     *
+     * @return string Le bloc HTML contenant un champ de texte et un
+     * liste déroulante pour les tags.
+     */
+    public static function buildTagOption()
+    {
         return '  <div id="tagListDiv">
-                       <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
-                       <select class="form-control firstSelect" id="tag" name="tag[]" required="">
+                       <input id="content" class="form-control" type="text" 
+                       name="contentScraper[]" placeholder="Inserer le tag"
+                        maxlength="255" required>
+                       <select class="form-control firstSelect" id="tag"
+                        name="tag[]" required="">
                             <option value="default">Défault</option>
                             <option value="image">Image</option>
                             <option value="lien">Lien</option>
@@ -675,39 +742,38 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * Affiche un formulaire de modification d'informations en fonction du type
-     * d'information.
+     * Affiche un formulaire de modification pour différents types
+     * de contenu (texte, image, vidéo, etc.).
      *
-     * Cette méthode génère un lien pour revenir à la page de gestion des
-     * informations, puis affiche le formulaire correspondant au type d'information
-     * spécifié (texte, image, vidéo, short, PDF ou événement).
+     * Cette méthode génère un formulaire permettant à l'utilisateur de
+     * modifier des informations selon le type spécifié.
+     * Elle gère différents types de contenu tels que du texte, une image,
+     * une vidéo, un short, un fichier PDF, du scraping, et des événements.
+     * Selon le type de contenu, un formulaire approprié sera affiché pour
+     * permettre la modification.
      *
-     * @param string   $title    Le titre de l'information
-     *                           à modifier.
-     * @param string   $content  Le contenu de l'information à modifier (peut
-     *                           être une URL pour les images ou PDF).
-     * @param string   $endDate  La date d'expiration de l'information.
-     * @param string   $type     Le type d'information à modifier (valeurs
-     *                           possibles : 'text', 'img', 'video', 'short', 'pdf',
-     *                           'event').
-     * @param array    $allDepts Une liste de tous les départements présents
-     *                           dans la base de données.
-     * @param bool     $isAdmin  Un booléen correspondant à "true"
-     *                           si l'utilisateur est un
-     *                           administrateur, et "false" sinon.
-     * @param int|null $currDept Le numéro du département actuel.
+     * Le lien "Retour" est également généré pour rediriger l'utilisateur vers
+     * la page de gestion des informations.
      *
-     * @return string           Une chaîne HTML contenant le lien de retour et le
-     * formulaire de modification approprié pour le type d'information.
+     * @param string $title     Le titre de l'information à
+     *                          modifier.
+     * @param string $content   Le contenu à modifier (peut être un lien
+     *                          vers un fichier, du texte, etc.).
+     * @param string $endDate   La date d'expiration de l'information.
+     * @param string $type      Le type de contenu à modifier (texte,
+     *                          image, vidéo, etc.).
+     * @param array  $allDepts  Liste des
+     *                          départements
+     *                          disponibles.
+     * @param array  $buildArgs Les arguments nécessaires pour
+     *                          construire les champs du formulaire.
      *
-     * @version 1.0
-     * @date    2024-10-15
+     * @return string Le code HTML pour afficher le formulaire de
+     * modification approprié.
      */
     public function displayModifyInformationForm( string $title, string $content,
         string $endDate, string $type,
         array $allDepts, array $buildArgs,
-
-
     ): string {
 
         switch ($type) {
@@ -833,8 +899,9 @@ name="delete" onclick="return confirm(
         array $halfGroups, array $allDepts,
         CodeAde $code = null
     ): string {
-        $select =
-            '<select class="form-control departmentSelect" name="informationCodes[]">';
+        $select
+            = '<select class="form-control departmentSelect"
+ name="informationCodes[]">';
 
         if (!is_null($code)) {
             $select .= '<option value="' . $code->getCode() . '">'
@@ -886,8 +953,8 @@ name="delete" onclick="return confirm(
             //trier les options au sein de chaque département par type puis par titre
             usort(
                 $options, function ($a, $b) {
-                return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
-            }
+                    return [$a['type'], $a['title']] <=> [$b['type'], $b['title']];
+                }
             );
 
             foreach ($options as $option) {
@@ -938,24 +1005,27 @@ name="delete" onclick="return confirm(
     }
 
     /**
-     * Affiche une diapositive dans le diaporama avec un titre, un contenu et un type
-     * spécifié.
+     * Affiche un lecteur vidéo avec un titre et un contenu vidéo dans un diaporama.
      *
-     * Cette méthode génère du HTML pour afficher une diapositive, qui peut contenir
-     * différents types de contenu tels que du texte, des images, des vidéos ou des
-     * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
-     * d'administration et l'affichage normal.
+     * Cette méthode génère un bloc HTML contenant
+     * un lecteur vidéo qui peut être affiché
+     * avec ou sans titre en fonction de la variable
+     * `$title`. Elle est principalement utilisée
+     * pour afficher une vidéo avec des options de lecture automatique,
+     * en boucle et en mode muet.
+     * Selon que l'utilisateur est un administrateur ou non
+     * (déterminé par `$adminSite`),
+     * le chemin d'accès à la vidéo peut varier pour pointer vers un
+     * site de prévisualisation ou un chemin local.
      *
-     * @param string $title     Le titre de la diapositive, affiché en tant que
-     *                          en-tête si non vide.
-     * @param string $content   Le contenu à afficher dans la diapositive
-0      * @param bool   $adminSite Indique si la diapositive est affichée sur le site
-     *                          d'administration.
+     * @param string $title     Le titre de la vidéo. Si vide ou égal à "Sans
+     *                          titre", aucun titre n'est affiché.
+     * @param string $content   Le nom du fichier vidéo à
+     *                          afficher.
+     * @param bool   $adminSite Indique si l'utilisateur est un administrateur
+     *                          (utilisé pour ajuster le chemin d'accès).
      *
      * @return void
-     *
-     * @version 1.0
-     * @date    2024-10-15
      */
     public function displaySlideVideo($title, $content, $adminSite = false)
     {
@@ -985,14 +1055,15 @@ name="delete" onclick="return confirm(
      * fichiers PDF. Elle gère également la distinction entre l'affichage sur le site
      * d'administration et l'affichage normal.
      *
-     * @param string   $title     Le titre de la diapositive, affiché en tant
-     *                            que en-tête si non vide.
-     * @param string   $content   Le contenu à afficher dans la diapositive
-     *                            (texte, image ou PDF).
-     * @param string   $type      Le type de contenu à afficher ('text',
-     *                            'img', 'video', 'short', 'pdf', 'event', 'scraper')
-     * @param bool     $adminSite Indique si la diapositive est affichée sur le
-     *                            site d'administration.
+     * @param string $title     Le titre de la diapositive, affiché en
+     *                          tant que en-tête si non vide.
+     * @param string $content   Le contenu à afficher dans la
+     *                          diapositive (texte, image ou PDF).
+     * @param string $type      Le type de contenu à afficher
+     *                          ('text', 'img', 'video', 'short',
+     *                          'pdf', 'event', 'scraper')
+     * @param bool   $adminSite Indique si la diapositive est affichée sur
+     *                          le site d'administration.
      *
      * @return void
      *
@@ -1039,7 +1110,7 @@ name="delete" onclick="return confirm(
             echo '<p class="lead">' . $content . '</p>';
             break;
 
-            case 'special':
+        case 'special':
             $func = explode('(Do this(function:', $content);
             $text = explode('.', $func[0]);
             foreach ($text as $value) {

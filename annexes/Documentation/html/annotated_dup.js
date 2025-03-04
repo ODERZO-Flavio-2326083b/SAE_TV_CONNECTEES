@@ -10,6 +10,7 @@ var annotated_dup =
       ] ],
       [ "AlertController", "classcontrollers_1_1_alert_controller.html", "classcontrollers_1_1_alert_controller" ],
       [ "CodeAdeController", "classcontrollers_1_1_code_ade_controller.html", "classcontrollers_1_1_code_ade_controller" ],
+      [ "CommuniquantController", "classcontrollers_1_1_communiquant_controller.html", "classcontrollers_1_1_communiquant_controller" ],
       [ "Controller", "classcontrollers_1_1_controller.html", "classcontrollers_1_1_controller" ],
       [ "CSSCustomizerController", "classcontrollers_1_1_c_s_s_customizer_controller.html", "classcontrollers_1_1_c_s_s_customizer_controller" ],
       [ "DepartmentController", "classcontrollers_1_1_department_controller.html", "classcontrollers_1_1_department_controller" ],
@@ -17,6 +18,7 @@ var annotated_dup =
       [ "Schedule", "interfacecontrollers_1_1_schedule.html", "interfacecontrollers_1_1_schedule" ],
       [ "SecretaryController", "classcontrollers_1_1_secretary_controller.html", "classcontrollers_1_1_secretary_controller" ],
       [ "SubadminController", "classcontrollers_1_1_subadmin_controller.html", "classcontrollers_1_1_subadmin_controller" ],
+      [ "TabletController", "classcontrollers_1_1_tablet_controller.html", "classcontrollers_1_1_tablet_controller" ],
       [ "TechnicianController", "classcontrollers_1_1_technician_controller.html", "classcontrollers_1_1_technician_controller" ],
       [ "TelevisionController", "classcontrollers_1_1_television_controller.html", "classcontrollers_1_1_television_controller" ],
       [ "UserController", "classcontrollers_1_1_user_controller.html", "classcontrollers_1_1_user_controller" ]
@@ -30,7 +32,7 @@ var annotated_dup =
       [ "Information", "classmodels_1_1_information.html", "classmodels_1_1_information" ],
       [ "Localisation", "classmodels_1_1_localisation.html", "classmodels_1_1_localisation" ],
       [ "Model", "classmodels_1_1_model.html", "classmodels_1_1_model" ],
-      [ "Scrapper", "classmodels_1_1_scrapper.html", "classmodels_1_1_scrapper" ],
+      [ "Scraper", "classmodels_1_1_scraper.html", "classmodels_1_1_scraper" ],
       [ "User", "classmodels_1_1_user.html", "classmodels_1_1_user" ]
     ] ],
     [ "utils", "namespaceutils.html", [
@@ -39,6 +41,7 @@ var annotated_dup =
     [ "views", "namespaceviews.html", [
       [ "AlertView", "classviews_1_1_alert_view.html", "classviews_1_1_alert_view" ],
       [ "CodeAdeView", "classviews_1_1_code_ade_view.html", "classviews_1_1_code_ade_view" ],
+      [ "CommuniquantView", "classviews_1_1_communiquant_view.html", "classviews_1_1_communiquant_view" ],
       [ "CSSView", "classviews_1_1_c_s_s_view.html", "classviews_1_1_c_s_s_view" ],
       [ "DepartmentView", "classviews_1_1_department_view.html", "classviews_1_1_department_view" ],
       [ "HelpMapView", "classviews_1_1_help_map_view.html", "classviews_1_1_help_map_view" ],
@@ -46,6 +49,8 @@ var annotated_dup =
       [ "InformationView", "classviews_1_1_information_view.html", "classviews_1_1_information_view" ],
       [ "SecretaryView", "classviews_1_1_secretary_view.html", "classviews_1_1_secretary_view" ],
       [ "SubadminView", "classviews_1_1_subadmin_view.html", "classviews_1_1_subadmin_view" ],
+      [ "TabletICSView", "classviews_1_1_tablet_i_c_s_view.html", "classviews_1_1_tablet_i_c_s_view" ],
+      [ "TabletView", "classviews_1_1_tablet_view.html", "classviews_1_1_tablet_view" ],
       [ "TechnicianView", "classviews_1_1_technician_view.html", "classviews_1_1_technician_view" ],
       [ "TelevisionView", "classviews_1_1_television_view.html", "classviews_1_1_television_view" ],
       [ "UserView", "classviews_1_1_user_view.html", "classviews_1_1_user_view" ],

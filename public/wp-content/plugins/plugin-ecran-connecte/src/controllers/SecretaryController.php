@@ -224,7 +224,10 @@ class SecretaryController extends UserController
                 'secretary', $secretary->insert(), true
             ) .
             $this->_view->displayContentSelect('technician', $technician->insert()) .
-            $this->_view->displayContentSelect('communicant', $communicant->insert()) .
+            $this->_view->displayContentSelect(
+                'communicant',
+                $communicant->insert()
+            ) .
             $this->_view->displayContentSelect('television', $television->insert()) .
             $this->_view->displayContentSelect('tablette', $tablette->insert()) .
             $subadminContent .

@@ -1,15 +1,19 @@
 <map id="views\View\buildCheckbox" name="views\View\buildCheckbox">
-<area shape="rect" id="Node000001" title=" " alt="" coords="241,180,419,207"/>
-<area shape="rect" id="Node000002" href="$classviews_1_1_code_ade_view.html#ab80095a38552a0aa2d8739f570caca9c" title=" " alt="" coords="5,5,193,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,170,257,116,226,87,191,62,170,51,172,46,194,58,229,83,261,112,310,166"/>
-<area shape="rect" id="Node000003" href="$classviews_1_1_secretary_view.html#a6954acbb3b99ef996190736cb095ad93" title=" " alt="" coords="27,72,171,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,175,192,129,163,118,165,113,194,124,290,170"/>
-<area shape="rect" id="Node000004" href="$classviews_1_1_subadmin_view.html#a25b3efa8479ef33850dbeb4f56d3a98c" title=" " alt="" coords="24,139,174,181"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,181,174,173,175,168,226,176"/>
-<area shape="rect" id="Node000005" href="$classviews_1_1_technician_view.html#ad1c062e0b3065ea5bd127a3716f3c94b" title=" " alt="" coords="24,205,174,248"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="226,211,175,218,174,213,225,206"/>
-<area shape="rect" id="Node000006" href="$classviews_1_1_television_view.html#a200d42e400ef9d770a863f8ebe6cf0bb" title=" " alt="" coords="26,272,172,315"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="290,217,194,262,165,274,163,269,192,258,288,212"/>
-<area shape="rect" id="Node000007" href="$classviews_1_1_department_view.html#a397600ed139b5ac1aaf88bcfd0cbfef6" title=" " alt="" coords="21,339,177,381"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="310,221,261,275,229,303,194,329,172,341,170,336,191,324,226,299,257,271,307,217"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="241,247,419,273"/>
+<area shape="rect" id="Node000002" href="$classviews_1_1_code_ade_view.html#a5613b3b89c60dcdc95d284a5f5fa3a3c" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="314,233,295,195,268,149,233,103,191,62,173,51,176,46,194,58,237,99,272,146,300,193,319,231"/>
+<area shape="rect" id="Node000003" href="$classviews_1_1_communiquant_view.html#aa06d41c6422ddda5899f9e0bfa965cf6" title=" " alt="" coords="11,72,187,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,236,257,183,226,154,191,129,170,118,172,113,194,124,229,150,261,179,310,233"/>
+<area shape="rect" id="Node000004" href="$classviews_1_1_secretary_view.html#a6954acbb3b99ef996190736cb095ad93" title=" " alt="" coords="27,139,171,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,242,192,196,163,184,165,179,194,191,290,237"/>
+<area shape="rect" id="Node000005" href="$classviews_1_1_subadmin_view.html#ac8f165155dc5e658b0719ffba63d5fa5" title=" " alt="" coords="26,205,172,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="225,248,172,240,173,235,226,242"/>
+<area shape="rect" id="Node000006" href="$classviews_1_1_tablet_view.html#ae217ed75e817967ea6ecfd6f3ba64453" title=" " alt="" coords="15,272,183,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="226,278,184,284,183,278,225,272"/>
+<area shape="rect" id="Node000007" href="$classviews_1_1_technician_view.html#ad1c062e0b3065ea5bd127a3716f3c94b" title=" " alt="" coords="24,339,174,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="290,283,194,329,165,341,163,336,192,324,288,278"/>
+<area shape="rect" id="Node000008" href="$classviews_1_1_television_view.html#a200d42e400ef9d770a863f8ebe6cf0bb" title=" " alt="" coords="26,405,172,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="310,287,261,341,229,370,194,396,172,407,170,402,191,391,226,366,257,337,307,284"/>
+<area shape="rect" id="Node000009" href="$classviews_1_1_department_view.html#a397600ed139b5ac1aaf88bcfd0cbfef6" title=" " alt="" coords="21,472,177,515"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="319,289,300,327,272,374,237,421,194,462,176,474,173,469,191,458,233,417,268,371,295,325,314,287"/>
 </map>

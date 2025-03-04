@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "TV Connecté", "index.html", [
+  [ "Documentation post/message Gallou Loic", "index.html", [
     [ "Espaces de nommage", "namespaces.html", [
       [ "Liste des espaces de nommage", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -47,10 +47,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_alert_8php.html",
-"classcontrollers_1_1rest_1_1_alert_rest_controller.html#a160135aa9d651ca95ec62eb8cc6a9e4d",
-"classmodels_1_1_code_ade.html#af79a923735a5fc9f6de794f8f34be5c1",
-"classmodels_1_1_user.html#a8247508c2f8c987298c4568f9bccd502",
-"classviews_1_1_user_view.html#af90fa1751538a06dbe23403f92108446"
+"classcontrollers_1_1_television_controller.html#a52e52a34abb13cb3f3492bd2d777ae3d",
+"classmodels_1_1_code_ade.html#a2922060004d6ff96f71bf80b55959150",
+"classmodels_1_1_scraper.html#a658c5f092d5c3dcd8c9da4c3edd6617d",
+"classviews_1_1_information_view.html#af9280cebab56ed36236cd3dbbbb5dda7"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

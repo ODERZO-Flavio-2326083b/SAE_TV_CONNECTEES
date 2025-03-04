@@ -221,7 +221,7 @@ function installDatabaseEcran() : void
 
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_departement' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_departement (
             dept_id INT(10) NOT NULL AUTO_INCREMENT,
             dept_nom VARCHAR (60) NOT NULL,
             PRIMARY KEY (dept_id)) $charset_collate;";
@@ -229,7 +229,7 @@ function installDatabaseEcran() : void
     dbDelta($sql);
 
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_information' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_information (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			title VARCHAR (40),
 			content VARCHAR(280) NOT NULL,
@@ -245,7 +245,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_alert' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_alert (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			content VARCHAR(280) NOT NULL,
 			creation_date datetime DEFAULT NOW() NOT NULL,
@@ -258,7 +258,7 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_ade' (
+    $query = "CREATE TABLE IF NOT EXISTS ecran_code_ade (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			type VARCHAR(15) NOT NULL,
 			title VARCHAR (60) NOT NULL,
@@ -272,11 +272,11 @@ function installDatabaseEcran() : void
     dbDelta($query);
 
     // With wordpress id = 1 can't be access if we do : /page/1
-    $sql = "ALTER TABLE 'ecran_code_ade' AUTO_INCREMENT = 2;";
+    $sql = "ALTER TABLE ecran_code_ade AUTO_INCREMENT = 2;";
     dbDelta($sql);
 
 
-    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_alert' (
+    $query = "CREATE TABLE IF NOT EXISTS ecran_code_alert (
 			alert_id INT(10) NOT NULL ,
 			code_ade_id INT(10) NOT NULL ,
 			PRIMARY KEY (alert_id, code_ade_id),
@@ -287,7 +287,7 @@ function installDatabaseEcran() : void
     dbDelta($query);
 
 
-    $query = "CREATE TABLE IF NOT EXISTS 'ecran_code_user' (
+    $query = "CREATE TABLE IF NOT EXISTS ecran_code_user (
 			user_id BIGINT(20) UNSIGNED NOT NULL,
 			code_ade_id INT(10) NOT NULL ,
 			PRIMARY KEY (user_id, code_ade_id),
@@ -298,7 +298,7 @@ function installDatabaseEcran() : void
     dbDelta($query);
 
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_code_delete_account' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_code_delete_account (
 			id INT(10) NOT NULL AUTO_INCREMENT,
 			user_id BIGINT(20) UNSIGNED NOT NULL,
 			code VARCHAR(40) NOT NULL,
@@ -311,7 +311,7 @@ function installDatabaseEcran() : void
 
 
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_user_departement' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_user_departement (
             id INT(10) NOT NULL AUTO_INCREMENT,
 			dept_id INT(10) NOT NULL ,
 			user_id BIGINT(20) UNSIGNED NOT NULL ,
@@ -324,7 +324,7 @@ function installDatabaseEcran() : void
     dbDelta($sql);
 
 
-    $sql = "CREATE TABLE IF NOT EXISTS 'ecran_localisation' (
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_localisation (
             localisation_id INT(10) NOT NULL AUTO_INCREMENT,
             latitude DECIMAL(10,6) NOT NULL,
             longitude DECIMAL(10,6) NOT NULL,
@@ -348,33 +348,14 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping (
-            scraping_id INT(10) NOT NULL AUTO_INCREMENT,
-            title VARCHAR (30) NOT NULL,
-            content VARCHAR (255) NOT NULL,
-            tag VARCHAR (70) NOT NULL,
-            num INT(10) NOT NULL,
-            creation_date datetime DEFAULT NOW() NOT NULL,
-            expiration_date datetime NOT NULL,
-            author BIGINT(20) UNSIGNED NOT NULL,
-            type VARCHAR (10) DEFAULT 'text' NOT NULL,
-            administration_id INT(10) DEFAULT NULL,
-            duration INT(10) DEFAULT 5000 NOT NULL,
-            department_id INT(10),
-            PRIMARY KEY (scraping_id),
-            FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
-            FOREIGN KEY (department_id) 
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
-            ) $charset_collate;";
-
-    dbDelta($sql);
-
     $sql = "CREATE TABLE IF NOT EXISTS ecran_info_code_ade (
             id INT(10) NOT NULL AUTO_INCREMENT,
             info_id INT(10) NOT NULL,
             code_ade_id INT(10) NOT NULL,
-            PRIMARY KEY (id, info_id, code_ade_id),
-            FOREIGN KEY (code_ade_id) REFERENCES ecran_code_ade(id) ON DELETE CASCADE,
+            PRIMARY KEY (id),
+            UNIQUE (info_id, code_ade_id),
+            FOREIGN KEY (code_ade_id) 
+                REFERENCES ecran_code_ade(id) ON DELETE CASCADE,
             FOREIGN KEY (info_id) REFERENCES ecran_information(id) ON DELETE CASCADE
             ) $charset_collate;";
 

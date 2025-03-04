@@ -1,4 +1,23 @@
 <?php
+/**
+ * Fichier TabletController.php
+ *
+ * Ce fichier contient la classe 'TabletController', qui gère les opérations
+ * liées aux utilisateurs de type "tablette" dans l'application, telles que la
+ * création d'un utilisateur, l'affichage de la liste des utilisateurs,
+ * ainsi que la gestion de l'affichage de leurs emplois du temps.
+ *
+ * PHP version 8.3
+ *
+ * @category API
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  GIT: abcd1234abcd5678efgh9012ijkl3456mnop6789
+ * @link     https://www.example.com/docs/TabletController
+ * Documentation de la classe
+ * @since    2024-03-03
+ */
 
 namespace controllers;
 
@@ -10,6 +29,25 @@ use R34ICS;
 use views\TabletICSView;
 use views\TabletView;
 
+
+/**
+ * Fichier TabletController.php
+ *
+ * Ce fichier contient la classe 'TabletController', qui gère les opérations
+ * liées aux utilisateurs de type "tablette" dans l'application, telles que la
+ * création d'un utilisateur, l'affichage de la liste des utilisateurs,
+ * ainsi que la gestion de l'affichage de leurs emplois du temps.
+ *
+ * PHP version 8.3
+ *
+ * @category Controllers
+ * @package  Controllers
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @version  Release: 1.0
+ * @link     https://www.example.com/docs/TabletController
+ * @since    2024-03-03
+ */
 class TabletController extends UserController implements Schedule
 {
 
@@ -17,12 +55,46 @@ class TabletController extends UserController implements Schedule
 
     private TabletView $_view;
 
-    public function __construct() {
+
+    /**
+     * Constructeur de la classe.
+     *
+     * Initialise le modèle utilisateur et la vue tablette.
+     * Cette méthode appelle d'abord le constructeur de la classe parente
+     * afin d'assurer l'initialisation correcte de l'héritage.
+     * Ensuite, elle instancie un objet User pour gérer les données utilisateurs
+     * et un objet TabletView pour la représentation de l'interface utilisateur.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
+    public function __construct()
+    {
         parent::__construct();
         $this->_model = new User();
         $this->_view = new TabletView();
     }
 
+
+    /**
+     * Insère un nouvel utilisateur de type "tablette".
+     *
+     * Cette méthode récupère et valide les données envoyées via un formulaire
+     * POST pour créer un nouvel utilisateur. Elle vérifie notamment :
+     * - Si l'utilisateur actuel est administrateur ou non.
+     * - La validité des identifiants et du mot de passe.
+     * - L'existence des codes ADE sélectionnés.
+     * - Les éventuels doublons d'utilisateur.
+     *
+     * Après validation, les informations sont enregistrées dans le modèle,
+     * puis insérées en base de données. En cas de succès, un message de
+     * confirmation est affiché, sinon un message d'erreur est retourné.
+     *
+     * @return string Le message de validation ou d'erreur.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function insert(): string
     {
         $action = filter_input(INPUT_POST, 'createTa');
@@ -36,8 +108,8 @@ class TabletController extends UserController implements Schedule
         // département, sinon on cherche le département
         $currDept
             = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
+                $currentUser->ID
+            )->getIdDepartment();
 
         if (isset($action)) {
             $login = filter_input(INPUT_POST, 'loginTa');
@@ -75,8 +147,8 @@ class TabletController extends UserController implements Schedule
 
                 // Insertion du modèle dans la base de données
                 if (!$this->checkDuplicateUser(
-                        $this->_model
-                    ) && $this->_model->insert()
+                    $this->_model
+                ) && $this->_model->insert()
                 ) {
                     $this->_view->displayInsertValidate();
                 } else {
@@ -97,6 +169,18 @@ class TabletController extends UserController implements Schedule
         );
     }
 
+    /**
+     * Affiche la liste de tous les utilisateurs de type "tablette".
+     *
+     * Cette méthode récupère tous les utilisateurs ayant le rôle "tablette"
+     * depuis le modèle, puis associe chaque utilisateur à son département.
+     * Les informations sont ensuite préparées pour l'affichage.
+     *
+     * @return string Le rendu de la liste des utilisateurs "tablette".
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function displayAllTablet(): string
     {
         $users = $this->_model->getUsersByRole('tablette');
@@ -113,6 +197,18 @@ class TabletController extends UserController implements Schedule
         return $this->_view->displayAllTablets($users, $userDeptList);
     }
 
+    /**
+     * Affiche l'emploi du temps de l'utilisateur connecté.
+     *
+     * Cette méthode récupère l'utilisateur actuellement connecté,
+     * extrait son premier code ADE associé, puis génère et retourne
+     * l'affichage de son emploi du temps.
+     *
+     * @return string Le rendu de l'emploi du temps de l'utilisateur.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function displayMySchedule(): string
     {
         $user = new User();
@@ -123,6 +219,26 @@ class TabletController extends UserController implements Schedule
         return $this->displaySchedule($code[0]->getCode());
     }
 
+    /**
+     * Génère et affiche l'emploi du temps pour un code ADE donné.
+     *
+     * Cette méthode utilise un code ADE pour récupérer un fichier ICS contenant
+     * les événements de l'emploi du temps. Elle configure les paramètres nécessaires
+     * pour l'affichage, récupère les données des événements, et génère l'affichage
+     * via la vue appropriée. Le paramètre `$allDay` permet de spécifier si tous
+     * les événements de la journée doivent être affichés.
+     *
+     * @param string $code   Le code ADE permettant de récupérer l'emploi du
+     *                       temps.
+     * @param bool   $allDay Si true, affiche tous les événements de la journée
+     *                       (par défaut :
+     *                       false).
+     *
+     * @return string Le rendu HTML de l'emploi du temps.
+     *
+     * @version 1.0
+     * @date    2024-03-03
+     */
     public function displaySchedule($code, $allDay = false) : string
     {
         $R34ICS = new R34ICS();
@@ -140,7 +256,9 @@ class TabletController extends UserController implements Schedule
             'first_date' => date_i18n('Ymd', strtotime('monday this week')),
         );
 
-        list($ics_data, $allDay) = $R34ICS->get_event_data($url, $code, $allDay, $args);
+        list($ics_data, $allDay) = $R34ICS->get_event_data(
+            $url, $code, $allDay, $args
+        );
 
         $model = new CodeAde();
         $title = $model->getByCode($code)->getTitle();

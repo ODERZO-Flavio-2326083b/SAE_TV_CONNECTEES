@@ -5,8 +5,8 @@ use Models\CodeAde;
 if (function_exists('downloadFileICS_func')) {
     $current_user = wp_get_current_user();
     if (class_exists(CodeAde::class)) {
-        $model = new CodeAde();
-        $years = $model->getAllFromType('year');
+        $_model = new CodeAde();
+        $years = $_model->getAllFromType('year');
     }
 
     // Url of all pages of Wordpress

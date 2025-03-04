@@ -1,0 +1,105 @@
+\doxysection{Référence de la classe service\textbackslash{}Annonces\+Checking}
+\hypertarget{classservice_1_1_annonces_checking}{}\label{classservice_1_1_annonces_checking}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classservice_1_1_annonces_checking_a832c542876589414dc239008f68b02af}{get\+Annonces\+Txt}} ()
+\item 
+\mbox{\hyperlink{classservice_1_1_annonces_checking_add4e614684d30789851c6b88ed5b2d53}{authenticate}} (\$login, \$password, \$data)
+\item 
+\mbox{\hyperlink{classservice_1_1_annonces_checking_a15c7d8938a9ba010e38639710a8a5fee}{get\+All\+Annonces}} (\$data)
+\item 
+\mbox{\hyperlink{classservice_1_1_annonces_checking_a6702145d223c48e5ffe6b92ceffbc428}{get\+Post}} (\$id, \$data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classservice_1_1_annonces_checking_a373a7a6ace8653c5e03984dc16b0346b}{\$annonces\+Txt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe Annonces\+Checking
+
+Cette classe gère les opérations liées à la vérification des annonces et des utilisateurs. Elle inclut des méthodes pour l\textquotesingle{}authentification des utilisateurs, la récupération des annonces et des détails d\textquotesingle{}un post spécifique. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classservice_1_1_annonces_checking_add4e614684d30789851c6b88ed5b2d53}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}!authenticate@{authenticate}}
+\index{authenticate@{authenticate}!service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection{\texorpdfstring{authenticate()}{authenticate()}}
+{\footnotesize\ttfamily \label{classservice_1_1_annonces_checking_add4e614684d30789851c6b88ed5b2d53} 
+service\textbackslash{}\+Annonces\+Checking\+::authenticate (\begin{DoxyParamCaption}\item[{}]{\$login}{, }\item[{}]{\$password}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Authentifie un utilisateur en fonction de son login et mot de passe.
+
+Cette méthode appelle la fonction {\ttfamily get\+User} de l\textquotesingle{}objet {\ttfamily data} pour vérifier les informations d\textquotesingle{}identification de l\textquotesingle{}utilisateur et initialise la session si l\textquotesingle{}authentification réussit.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$login} & Le login de l\textquotesingle{}utilisateur. \\
+\hline
+string & {\em \$password} & Le mot de passe de l\textquotesingle{}utilisateur. \\
+\hline
+object & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données (ex. {\ttfamily Data\+Access}).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne {\ttfamily true} si l\textquotesingle{}utilisateur est authentifié avec succès, sinon {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{classservice_1_1_annonces_checking_a15c7d8938a9ba010e38639710a8a5fee}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}!getAllAnnonces@{getAllAnnonces}}
+\index{getAllAnnonces@{getAllAnnonces}!service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection{\texorpdfstring{getAllAnnonces()}{getAllAnnonces()}}
+{\footnotesize\ttfamily \label{classservice_1_1_annonces_checking_a15c7d8938a9ba010e38639710a8a5fee} 
+service\textbackslash{}\+Annonces\+Checking\+::get\+All\+Annonces (\begin{DoxyParamCaption}\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Récupère toutes les annonces depuis la base de données et les stocke dans {\ttfamily \$annonces\+Txt}.
+
+Cette méthode appelle la fonction {\ttfamily get\+All\+Annonces} de l\textquotesingle{}objet {\ttfamily data} pour récupérer toutes les annonces et les formater dans un tableau.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données (ex. {\ttfamily Data\+Access}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classservice_1_1_annonces_checking_a832c542876589414dc239008f68b02af}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}!getAnnoncesTxt@{getAnnoncesTxt}}
+\index{getAnnoncesTxt@{getAnnoncesTxt}!service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection{\texorpdfstring{getAnnoncesTxt()}{getAnnoncesTxt()}}
+{\footnotesize\ttfamily \label{classservice_1_1_annonces_checking_a832c542876589414dc239008f68b02af} 
+service\textbackslash{}\+Annonces\+Checking\+::get\+Annonces\+Txt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère la liste des annonces stockées dans la propriété {\ttfamily \$annonces\+Txt}.
+
+\begin{DoxyReturn}{Renvoie}
+array La liste des annonces. 
+\end{DoxyReturn}
+\Hypertarget{classservice_1_1_annonces_checking_a6702145d223c48e5ffe6b92ceffbc428}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}!getPost@{getPost}}
+\index{getPost@{getPost}!service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection{\texorpdfstring{getPost()}{getPost()}}
+{\footnotesize\ttfamily \label{classservice_1_1_annonces_checking_a6702145d223c48e5ffe6b92ceffbc428} 
+service\textbackslash{}\+Annonces\+Checking\+::get\+Post (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Récupère un post spécifique par son identifiant.
+
+Cette méthode appelle la fonction {\ttfamily get\+Post} de l\textquotesingle{}objet {\ttfamily data} pour récupérer un post spécifique et l\textquotesingle{}ajoute à la liste des annonces sous forme de tableau.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant du post à récupérer. \\
+\hline
+object & {\em \$data} & L\textquotesingle{}objet qui gère l\textquotesingle{}accès aux données (ex. {\ttfamily Data\+Access}). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classservice_1_1_annonces_checking_a373a7a6ace8653c5e03984dc16b0346b}\index{service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}!\$annoncesTxt@{\$annoncesTxt}}
+\index{\$annoncesTxt@{\$annoncesTxt}!service\textbackslash{}AnnoncesChecking@{service\textbackslash{}AnnoncesChecking}}
+\doxysubsubsection{\texorpdfstring{\$annoncesTxt}{\$annoncesTxt}}
+{\footnotesize\ttfamily \label{classservice_1_1_annonces_checking_a373a7a6ace8653c5e03984dc16b0346b} 
+service\textbackslash{}\+Annonces\+Checking\+::\$annonces\+Txt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/service/\mbox{\hyperlink{_annonces_checking_8php}{Annonces\+Checking.\+php}}\end{DoxyCompactItemize}

@@ -1,0 +1,186 @@
+\doxysection{Référence de la classe data\textbackslash{}Data\+Access}
+\hypertarget{classdata_1_1_data_access}{}\label{classdata_1_1_data_access}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+
+
+Graphe d\textquotesingle{}héritage de data\textbackslash{}Data\+Access\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classdata_1_1_data_access__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Graphe de collaboration de data\textbackslash{}Data\+Access\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classdata_1_1_data_access__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_af6454984809abdee34d7d7be32d71420}{\+\_\+\+\_\+construct}} (\$data\+Access)
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_aa79cbb0a93e5bb9e452b468348c4162f}{\+\_\+\+\_\+destruct}} ()
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_aea901f1897ba0a755f88d12187e0d4b8}{get\+User}} (\$login, \$password)
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_a61584c9227370abc5d53c7aaa370e6fb}{get\+All\+Annonces}} ()
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_acbd16c381a74735e0512d8fe86181c52}{get\+Post}} (\$id)
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_a7d48eebfd48e5e3cd756bf0b05ba1198}{get\+Messages\+By\+User\+Id}} (\$user\+Id)
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_acf5d60d4e9e08db3f8f5f4b759c2409e}{set\+Messages\+By\+Post}} (\$id\+Receveur, \$message, \$id\+Auteur)
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions membres publiques hérités de \mbox{\hyperlink{interfaceservice_1_1_data_access_interface}{service\textbackslash{}\+Data\+Access\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a1d9f3bb81dfa9ecdda7e64c75197f2e5}{put\+Message\+Post}} (\$id\+Receveur, \$message, \$data)
+\item 
+\mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a15955f72d2f724cf11735ff2a692ad40}{get\+All\+Messages}} (\$user\+Id, \$data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdata_1_1_data_access_afa1ae99d9b4922533f27b7992e97c1a3}{\$data\+Access}} = null
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe Data\+Access
+
+Cette classe permet d\textquotesingle{}interagir avec la base de données pour récupérer et stocker des utilisateurs, annonces et messages. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classdata_1_1_data_access_af6454984809abdee34d7d7be32d71420}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_af6454984809abdee34d7d7be32d71420} 
+data\textbackslash{}\+Data\+Access\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$data\+Access}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe Data\+Access.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+object & {\em \$data\+Access} & Instance de connexion à la base de données. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classdata_1_1_data_access_aa79cbb0a93e5bb9e452b468348c4162f}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!\_\_destruct@{\_\_destruct}}
+\index{\_\_destruct@{\_\_destruct}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{\_\_destruct()}{\_\_destruct()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_aa79cbb0a93e5bb9e452b468348c4162f} 
+data\textbackslash{}\+Data\+Access\+::\+\_\+\+\_\+destruct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Destructeur de la classe Data\+Access. Ferme la connexion avec la base de données. 
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classdata_1_1_data_access_a61584c9227370abc5d53c7aaa370e6fb}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!getAllAnnonces@{getAllAnnonces}}
+\index{getAllAnnonces@{getAllAnnonces}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{getAllAnnonces()}{getAllAnnonces()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_a61584c9227370abc5d53c7aaa370e6fb} 
+data\textbackslash{}\+Data\+Access\+::get\+All\+Annonces (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère toutes les annonces disponibles.
+
+\begin{DoxyReturn}{Renvoie}
+Post\mbox{[}\mbox{]} Liste des annonces sous forme d\textquotesingle{}objets Post. 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a6f9cad5138033d2627a5c936c5ab9561}{service\textbackslash{}\+Data\+Access\+Interface}}.
+
+\Hypertarget{classdata_1_1_data_access_a7d48eebfd48e5e3cd756bf0b05ba1198}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!getMessagesByUserId@{getMessagesByUserId}}
+\index{getMessagesByUserId@{getMessagesByUserId}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{getMessagesByUserId()}{getMessagesByUserId()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_a7d48eebfd48e5e3cd756bf0b05ba1198} 
+data\textbackslash{}\+Data\+Access\+::get\+Messages\+By\+User\+Id (\begin{DoxyParamCaption}\item[{}]{\$user\+Id}{}\end{DoxyParamCaption})}
+
+Récupère tous les messages reçus par un utilisateur spécifique.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$user\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur receveur des messages. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\textbackslash{}domain\textbackslash{}\+Message\mbox{[}\mbox{]} Liste des messages sous forme d\textquotesingle{}objets Message. 
+\end{DoxyReturn}
+\Hypertarget{classdata_1_1_data_access_acbd16c381a74735e0512d8fe86181c52}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!getPost@{getPost}}
+\index{getPost@{getPost}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{getPost()}{getPost()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_acbd16c381a74735e0512d8fe86181c52} 
+data\textbackslash{}\+Data\+Access\+::get\+Post (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Récupère une annonce spécifique à partir de son identifiant.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L\textquotesingle{}identifiant du post à récupérer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Post\texorpdfstring{$\vert$}{|}null L\textquotesingle{}annonce correspondante sous forme d\textquotesingle{}objet Post ou null si non trouvée. 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a5c492cf8fb9c2b58510a0d922442aba3}{service\textbackslash{}\+Data\+Access\+Interface}}.
+
+\Hypertarget{classdata_1_1_data_access_aea901f1897ba0a755f88d12187e0d4b8}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!getUser@{getUser}}
+\index{getUser@{getUser}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_aea901f1897ba0a755f88d12187e0d4b8} 
+data\textbackslash{}\+Data\+Access\+::get\+User (\begin{DoxyParamCaption}\item[{}]{\$login}{, }\item[{}]{\$password}{}\end{DoxyParamCaption})}
+
+Récupère un utilisateur à partir de son login et de son mot de passe.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$login} & Le nom d\textquotesingle{}utilisateur. \\
+\hline
+string & {\em \$password} & Le mot de passe de l\textquotesingle{}utilisateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+User\texorpdfstring{$\vert$}{|}null L\textquotesingle{}utilisateur correspondant ou null si non trouvé. 
+\end{DoxyReturn}
+
+
+Implémente \mbox{\hyperlink{interfaceservice_1_1_data_access_interface_a91f1fc49ca9d735d9836f867b00798d2}{service\textbackslash{}\+Data\+Access\+Interface}}.
+
+\Hypertarget{classdata_1_1_data_access_acf5d60d4e9e08db3f8f5f4b759c2409e}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!setMessagesByPost@{setMessagesByPost}}
+\index{setMessagesByPost@{setMessagesByPost}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{setMessagesByPost()}{setMessagesByPost()}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_acf5d60d4e9e08db3f8f5f4b759c2409e} 
+data\textbackslash{}\+Data\+Access\+::set\+Messages\+By\+Post (\begin{DoxyParamCaption}\item[{}]{\$id\+Receveur}{, }\item[{}]{\$message}{, }\item[{}]{\$id\+Auteur}{}\end{DoxyParamCaption})}
+
+Enregistre un message envoyé par un utilisateur à un autre.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id\+Receveur} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur destinataire du message. \\
+\hline
+string & {\em \$message} & Le contenu du message. \\
+\hline
+int & {\em \$id\+Auteur} & L\textquotesingle{}identifiant de l\textquotesingle{}utilisateur auteur du message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool Retourne true si l\textquotesingle{}insertion a réussi, false sinon. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classdata_1_1_data_access_afa1ae99d9b4922533f27b7992e97c1a3}\index{data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}!\$dataAccess@{\$dataAccess}}
+\index{\$dataAccess@{\$dataAccess}!data\textbackslash{}DataAccess@{data\textbackslash{}DataAccess}}
+\doxysubsubsection{\texorpdfstring{\$dataAccess}{\$dataAccess}}
+{\footnotesize\ttfamily \label{classdata_1_1_data_access_afa1ae99d9b4922533f27b7992e97c1a3} 
+data\textbackslash{}\+Data\+Access\+::\$data\+Access = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Bureau/\+IUT/\+IUT2/\+Projet/projet\+Gallou\+Loic\+Archi\+Logiciel/annonces/data/\mbox{\hyperlink{_data_access_8php}{Data\+Access.\+php}}\end{DoxyCompactItemize}

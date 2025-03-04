@@ -7,8 +7,10 @@ var hierarchy =
       [ "controllers\\DepartmentController", "classcontrollers_1_1_department_controller.html", null ],
       [ "controllers\\InformationController", "classcontrollers_1_1_information_controller.html", null ],
       [ "controllers\\UserController", "classcontrollers_1_1_user_controller.html", [
+        [ "controllers\\CommuniquantController", "classcontrollers_1_1_communiquant_controller.html", null ],
         [ "controllers\\SecretaryController", "classcontrollers_1_1_secretary_controller.html", null ],
         [ "controllers\\SubadminController", "classcontrollers_1_1_subadmin_controller.html", null ],
+        [ "controllers\\TabletController", "classcontrollers_1_1_tablet_controller.html", null ],
         [ "controllers\\TechnicianController", "classcontrollers_1_1_technician_controller.html", null ],
         [ "controllers\\TelevisionController", "classcontrollers_1_1_television_controller.html", null ]
       ] ]
@@ -40,21 +42,26 @@ var hierarchy =
       [ "models\\User", "classmodels_1_1_user.html", null ]
     ] ],
     [ "controllers\\Schedule", "interfacecontrollers_1_1_schedule.html", [
+      [ "controllers\\TabletController", "classcontrollers_1_1_tablet_controller.html", null ],
       [ "controllers\\TechnicianController", "classcontrollers_1_1_technician_controller.html", null ],
       [ "controllers\\TelevisionController", "classcontrollers_1_1_television_controller.html", null ]
     ] ],
-    [ "models\\Scrapper", "classmodels_1_1_scrapper.html", null ],
+    [ "models\\Scraper", "classmodels_1_1_scraper.html", null ],
     [ "views\\View", "classviews_1_1_view.html", [
       [ "views\\AlertView", "classviews_1_1_alert_view.html", null ],
       [ "views\\CSSView", "classviews_1_1_c_s_s_view.html", null ],
       [ "views\\CodeAdeView", "classviews_1_1_code_ade_view.html", null ],
       [ "views\\DepartmentView", "classviews_1_1_department_view.html", null ],
       [ "views\\HelpMapView", "classviews_1_1_help_map_view.html", null ],
-      [ "views\\ICSView", "classviews_1_1_i_c_s_view.html", null ],
+      [ "views\\ICSView", "classviews_1_1_i_c_s_view.html", [
+        [ "views\\TabletICSView", "classviews_1_1_tablet_i_c_s_view.html", null ]
+      ] ],
       [ "views\\InformationView", "classviews_1_1_information_view.html", null ],
       [ "views\\UserView", "classviews_1_1_user_view.html", [
+        [ "views\\CommuniquantView", "classviews_1_1_communiquant_view.html", null ],
         [ "views\\SecretaryView", "classviews_1_1_secretary_view.html", null ],
         [ "views\\SubadminView", "classviews_1_1_subadmin_view.html", null ],
+        [ "views\\TabletView", "classviews_1_1_tablet_view.html", null ],
         [ "views\\TechnicianView", "classviews_1_1_technician_view.html", null ],
         [ "views\\TelevisionView", "classviews_1_1_television_view.html", null ]
       ] ]

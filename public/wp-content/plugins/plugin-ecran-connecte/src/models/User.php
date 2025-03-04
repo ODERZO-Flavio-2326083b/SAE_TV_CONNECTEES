@@ -1,4 +1,26 @@
 <?php
+/**
+ * Fichier User.php
+ *
+ * Ce fichier contient la classe 'User', qui gère la gestion des utilisateurs
+ * dans l'application, en particulier les interactions avec la base de données.
+ * Cette classe permet la création, la modification,
+ * la suppression et la récupération
+ * des informations des utilisateurs.
+ *
+ * Elle implémente l'interface `Entity` et `JsonSerializable`, ce qui lui permet
+ * de suivre les conventions de l'application pour les entités et de faciliter
+ * la sérialisation JSON des objets utilisateur.
+ *
+ * PHP version 8.3
+ *
+ * @category Entity
+ * @package  Models
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.example.com/docs/User Documentation de la classe
+ * @since    2025-01-07
+ */
 
 namespace models;
 
@@ -97,7 +119,8 @@ class User extends Model implements Entity, JsonSerializable
     /**
      * Metadata des utiisateurs
      *
-     * Ce tableau contient les différentes métadonnées, notamment la vitesse de défilement
+     * Ce tableau contient les différentes métadonnées,
+     * notamment la vitesse de défilement
      * en cas d'utilisateur Television.
      *
      * @var array
@@ -138,9 +161,9 @@ class User extends Model implements Entity, JsonSerializable
                 $request->bindValue(':codeAdeId', $code->getId(), PDO::PARAM_INT);
                 $request->execute();
 
-                if(!empty($this->_metadata)) {
+                if (!empty($this->_metadata)) {
                     foreach ( $this->_metadata as $key => $value ) {
-                        add_user_meta( $id, $key, $value, true );
+                        add_user_meta($id, $key, $value, true);
                     }
                 }
             }
@@ -198,9 +221,9 @@ class User extends Model implements Entity, JsonSerializable
                 $request->execute();
             }
         }
-        if(!empty($this->_metadata)) {
+        if (!empty($this->_metadata)) {
             foreach ( $this->_metadata as $key => $value ) {
-                update_user_meta( $this->getId(), $key, $value );
+                update_user_meta($this->getId(), $key, $value);
             }
         }
 
@@ -782,6 +805,7 @@ class User extends Model implements Entity, JsonSerializable
 
     /**
      * Renvoie les métadonnées
+     *
      * @return array
      */
     public function getMetadata()
@@ -790,10 +814,18 @@ class User extends Model implements Entity, JsonSerializable
     }
 
     /**
+     * Définit une valeur de métadonnée pour une clé spécifique.
      *
-     * @param string $key
-     * @param $value
+     * Cette méthode permet d'ajouter ou de mettre à jour une métadonnée
+     * associée à une clé donnée dans le tableau des métadonnées de l'objet.
+     *
+     * @param string $key   Clé de la métadonnée.
+     * @param mixed  $value Valeur associée à la clé.
+     *
      * @return void
+     *
+     * @version 1.0
+     * @date    2024-10-16
      */
     public function setMetadata(string $key, $value): void
     {

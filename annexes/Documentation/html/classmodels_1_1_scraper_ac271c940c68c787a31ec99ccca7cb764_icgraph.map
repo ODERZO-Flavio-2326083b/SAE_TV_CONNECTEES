@@ -1,0 +1,7 @@
+<map id="models\Scraper\getArticle" name="models\Scraper\getArticle">
+<area shape="rect" id="Node000001" title=" " alt="" coords="485,5,656,32"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1_scraper.html#a4517c900d399ac7f1c0a08b30c369adc" title=" " alt="" coords="242,5,437,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="470,21,438,21,438,16,470,16"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1_scraper.html#a729870c8c062da078d91b7d98aa338f9" title=" " alt="" coords="5,5,194,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,21,194,21,194,16,226,16"/>
+</map>

@@ -1,0 +1,274 @@
+\doxysection{Référence de la classe models\textbackslash{}Scraper}
+\hypertarget{classmodels_1_1_scraper}{}\label{classmodels_1_1_scraper}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a6969fcdd7bae8aae7370c5bae26266dd}{\+\_\+\+\_\+construct}} (string \$url, string \$article\+Selector, array \$info\+Selectors)
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a8b49deaa622249d6565e653ca336e2a4}{get\+Html}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a5859c8b11bf799ceb7d6b1b8f776a4e5}{get\+XPath}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a4517c900d399ac7f1c0a08b30c369adc}{get\+One\+Article}} ()
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a658c5f092d5c3dcd8c9da4c3edd6617d}{extract\+First\+Src\+Set}} (string \$srcset)
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_ac271c940c68c787a31ec99ccca7cb764}{get\+Article}} (DOMXPath \$xpath, \textbackslash{}DOMNode \$article)
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_ad1320164519888b99f9c1442b9bbd87f}{encode\+Image\+To\+Base64}} (string \$image\+Url)
+\item 
+\mbox{\hyperlink{classmodels_1_1_scraper_a729870c8c062da078d91b7d98aa338f9}{print\+Website}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classmodels_1_1_scraper_abb250a1b094e32c934febf6e7d8ad122}{\$\+\_\+url}}
+\item 
+string \mbox{\hyperlink{classmodels_1_1_scraper_adeae63874d97696ceff050b46e45417b}{\$\+\_\+article\+Selector}}
+\item 
+array \mbox{\hyperlink{classmodels_1_1_scraper_a2ba87735b1025465e7ba25437844d577}{\$\+\_\+info\+Selectors}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classmodels_1_1_scraper_a6969fcdd7bae8aae7370c5bae26266dd}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a6969fcdd7bae8aae7370c5bae26266dd} 
+models\textbackslash{}\+Scraper\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{string}]{\$url}{, }\item[{string}]{\$article\+Selector}{, }\item[{array}]{\$info\+Selectors}{}\end{DoxyParamCaption})}
+
+Constructeur de la classe Scraper
+
+Initialise la classe avec l\textquotesingle{}URL à scraper, le sélecteur CSS pour l\textquotesingle{}article, et un tableau de sélecteurs CSS pour extraire les informations spécifiques de l\textquotesingle{}article.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L\textquotesingle{}URL de la page à scraper \\
+\hline
+string & {\em \$article\+Selector} & Sélecteur CSS pour l\textquotesingle{}article \\
+\hline
+array & {\em \$info\+Selectors} & Tableau des sélecteurs CSS pour extraire les informations de l\textquotesingle{}article \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classmodels_1_1_scraper_ad1320164519888b99f9c1442b9bbd87f}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!encodeImageToBase64@{encodeImageToBase64}}
+\index{encodeImageToBase64@{encodeImageToBase64}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{encodeImageToBase64()}{encodeImageToBase64()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_ad1320164519888b99f9c1442b9bbd87f} 
+models\textbackslash{}\+Scraper\+::encode\+Image\+To\+Base64 (\begin{DoxyParamCaption}\item[{string}]{\$image\+Url}{}\end{DoxyParamCaption})}
+
+Télécharge et encode l\textquotesingle{}image en base64
+
+Cette méthode prend une URL d\textquotesingle{}image, la télécharge et l\textquotesingle{}encode en base64, permettant ainsi d\textquotesingle{}inclure l\textquotesingle{}image directement dans le HTML.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$image\+Url} & L\textquotesingle{}URL de l\textquotesingle{}image à télécharger\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string\texorpdfstring{$\vert$}{|}null L\textquotesingle{}image encodée en base64 ou null si l\textquotesingle{}image ne peut pas être téléchargée 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_ad1320164519888b99f9c1442b9bbd87f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_a658c5f092d5c3dcd8c9da4c3edd6617d}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!extractFirstSrcSet@{extractFirstSrcSet}}
+\index{extractFirstSrcSet@{extractFirstSrcSet}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{extractFirstSrcSet()}{extractFirstSrcSet()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a658c5f092d5c3dcd8c9da4c3edd6617d} 
+models\textbackslash{}\+Scraper\+::extract\+First\+Src\+Set (\begin{DoxyParamCaption}\item[{string}]{\$srcset}{}\end{DoxyParamCaption})}
+
+Extrait le premier lien "{}srcset"{} d\textquotesingle{}une image
+
+Cette méthode prend un attribut {\ttfamily srcset} d\textquotesingle{}une balise image et en extrait la première URL de l\textquotesingle{}image.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$srcset} & L\textquotesingle{}attribut {\ttfamily srcset} d\textquotesingle{}une balise image\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string L\textquotesingle{}URL de la première image 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a658c5f092d5c3dcd8c9da4c3edd6617d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_ac271c940c68c787a31ec99ccca7cb764}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!getArticle@{getArticle}}
+\index{getArticle@{getArticle}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{getArticle()}{getArticle()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_ac271c940c68c787a31ec99ccca7cb764} 
+models\textbackslash{}\+Scraper\+::get\+Article (\begin{DoxyParamCaption}\item[{DOMXPath}]{\$xpath}{, }\item[{\textbackslash{}DOMNode}]{\$article}{}\end{DoxyParamCaption})}
+
+Récupère les informations d\textquotesingle{}un article en utilisant les sélecteurs définis
+
+Cette méthode utilise les sélecteurs CSS pour récupérer les informations définies dans la page web et les retourne sous forme de tableau associatif. Elle gère les types d\textquotesingle{}éléments comme les images et les liens.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+DOMXPath & {\em \$xpath} & L\textquotesingle{}objet DOMXPath pour analyser le DOM \\
+\hline
+\textbackslash{}\+DOMNode & {\em \$article} & L\textquotesingle{}élément article du DOM\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array Un tableau des informations extraites de l\textquotesingle{}article 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_ac271c940c68c787a31ec99ccca7cb764_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_ac271c940c68c787a31ec99ccca7cb764_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_a8b49deaa622249d6565e653ca336e2a4}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!getHtml@{getHtml}}
+\index{getHtml@{getHtml}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{getHtml()}{getHtml()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a8b49deaa622249d6565e653ca336e2a4} 
+models\textbackslash{}\+Scraper\+::get\+Html (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère le contenu HTML de l\textquotesingle{}URL spécifiée
+
+Cette méthode utilise {\ttfamily file\+\_\+get\+\_\+contents} pour récupérer le contenu HTML de l\textquotesingle{}URL fournie au moment de l\textquotesingle{}instanciation. Si la récupération échoue, une exception est levée.
+
+\begin{DoxyReturn}{Renvoie}
+string Le contenu HTML de l\textquotesingle{}URL 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+Exception Si le contenu ne peut pas être récupéré Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a8b49deaa622249d6565e653ca336e2a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_a4517c900d399ac7f1c0a08b30c369adc}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!getOneArticle@{getOneArticle}}
+\index{getOneArticle@{getOneArticle}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{getOneArticle()}{getOneArticle()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a4517c900d399ac7f1c0a08b30c369adc} 
+models\textbackslash{}\+Scraper\+::get\+One\+Article (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Récupère un article spécifique de la page
+
+Cette méthode utilise le sélecteur CSS spécifié pour localiser l\textquotesingle{}article sur la page et récupérer ses informations à l\textquotesingle{}aide des autres sélecteurs.
+
+\begin{DoxyReturn}{Renvoie}
+array\texorpdfstring{$\vert$}{|}null Un tableau des informations extraites de l\textquotesingle{}article ou null si aucun article n\textquotesingle{}est trouvé 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a4517c900d399ac7f1c0a08b30c369adc_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a4517c900d399ac7f1c0a08b30c369adc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_a5859c8b11bf799ceb7d6b1b8f776a4e5}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!getXPath@{getXPath}}
+\index{getXPath@{getXPath}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{getXPath()}{getXPath()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a5859c8b11bf799ceb7d6b1b8f776a4e5} 
+models\textbackslash{}\+Scraper\+::get\+XPath (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Crée un objet DOMXPath pour analyser le HTML récupéré
+
+Cette méthode récupère le HTML via {\ttfamily get\+Html()}, crée un objet DOMDocument, et génère un objet DOMXPath pour faciliter l\textquotesingle{}analyse du contenu.
+
+\begin{DoxyReturn}{Renvoie}
+DOMXPath L\textquotesingle{}objet DOMXPath pour analyser le DOM 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a5859c8b11bf799ceb7d6b1b8f776a4e5_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a5859c8b11bf799ceb7d6b1b8f776a4e5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classmodels_1_1_scraper_a729870c8c062da078d91b7d98aa338f9}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!printWebsite@{printWebsite}}
+\index{printWebsite@{printWebsite}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{printWebsite()}{printWebsite()}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a729870c8c062da078d91b7d98aa338f9} 
+models\textbackslash{}\+Scraper\+::print\+Website (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retourne l\textquotesingle{}article sous forme HTML
+
+Cette méthode génère un bloc HTML contenant les informations extraites de l\textquotesingle{}article. Si une image est présente, elle est affichée en base64, et les autres informations sont également affichées dans des paragraphes.
+
+\begin{DoxyReturn}{Renvoie}
+string Un bloc HTML contenant l\textquotesingle{}article 
+\end{DoxyReturn}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmodels_1_1_scraper_a729870c8c062da078d91b7d98aa338f9_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classmodels_1_1_scraper_adeae63874d97696ceff050b46e45417b}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!\$\_articleSelector@{\$\_articleSelector}}
+\index{\$\_articleSelector@{\$\_articleSelector}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{\$\_articleSelector}{\$\_articleSelector}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_adeae63874d97696ceff050b46e45417b} 
+string models\textbackslash{}\+Scraper\+::\$\+\_\+article\+Selector\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classmodels_1_1_scraper_a2ba87735b1025465e7ba25437844d577}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!\$\_infoSelectors@{\$\_infoSelectors}}
+\index{\$\_infoSelectors@{\$\_infoSelectors}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{\$\_infoSelectors}{\$\_infoSelectors}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_a2ba87735b1025465e7ba25437844d577} 
+array models\textbackslash{}\+Scraper\+::\$\+\_\+info\+Selectors\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classmodels_1_1_scraper_abb250a1b094e32c934febf6e7d8ad122}\index{models\textbackslash{}Scraper@{models\textbackslash{}Scraper}!\$\_url@{\$\_url}}
+\index{\$\_url@{\$\_url}!models\textbackslash{}Scraper@{models\textbackslash{}Scraper}}
+\doxysubsubsection{\texorpdfstring{\$\_url}{\$\_url}}
+{\footnotesize\ttfamily \label{classmodels_1_1_scraper_abb250a1b094e32c934febf6e7d8ad122} 
+string models\textbackslash{}\+Scraper\+::\$\+\_\+url\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gallo/\+One\+Drive/\+Documents/\+SAé-\/casali/\+SAE\+\_\+\+TV\+\_\+\+CONNECTEES/public/wp-\/content/plugins/plugin-\/ecran-\/connecte/src/models/\mbox{\hyperlink{_scraper_8php}{Scraper.\+php}}\end{DoxyCompactItemize}

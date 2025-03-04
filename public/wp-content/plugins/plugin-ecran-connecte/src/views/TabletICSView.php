@@ -1,4 +1,22 @@
 <?php
+/**
+ * Fichier TabletICSView.php
+ *
+ * Ce fichier contient la classe 'TabletICSView',
+ * qui est responsable de l'affichage de l'emploi du temps
+ * sur une tablette. Il génère le HTML nécessaire
+ * pour afficher les événements programmés sur une semaine,
+ * organisés par heure et jour, de manière claire et structurée.
+ *
+ * PHP version 8.3
+ *
+ * @category View
+ * @package  Views
+ * @author   BUT Informatique, AMU <iut-aix-scol@univ-amu.fr>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     https://www.example.com/docs/TabletICSView Documentation de la classe
+ * @since    2025-01-13
+ */
 
 namespace views;
 
@@ -23,14 +41,15 @@ use IntlDateFormatter;
  * @link     https://www.example.com/docs/TabletICSView Documentation de la classe
  * @since    2025-01-13
  */
-class TabletICSView extends ICSView {
+class TabletICSView extends ICSView
+{
 
     /**
      * Renvoie le contenu d'un évènement formaté en HTML de façon à l'afficher
      * sur l'emploi du temps d'une tablette.
      *
      * @param array $event L'évènement
-     * @param int $day Jour, inutile dans notre cas.
+     * @param int   $day   Jour, inutile dans notre cas.
      *
      * @return string Le code html de l'évènement
      */
@@ -60,8 +79,8 @@ class TabletICSView extends ICSView {
      * de l'emploi du temps de la tablette.
      *
      * @param $ics_data array Données ICS de l'emploi du temps
-     * @param $title string Titre de l'emploi du temps
-     * @param $allDay int Inutile dans ce cas.
+     * @param $title    string Titre de l'emploi du temps
+     * @param $allDay   int Inutile dans ce cas.
      *
      * @throws \DateMalformedStringException
      *
@@ -83,8 +102,8 @@ class TabletICSView extends ICSView {
             $days[] = "<th scope='col'>$dateFormatted</th>";
 
             foreach ($hoursRange as $hour) {
-                $eventsByHour[$hour][$i] =
-                    "<td style='border: 1px solid #ccc; height: 50px;'></td>";
+                $eventsByHour[$hour][$i]
+                    = "<td style='border: 1px solid #ccc; height: 50px;'></td>";
             }
 
             $dayEvents = $ics_data['events'][$day->format('Y')]
@@ -96,8 +115,8 @@ class TabletICSView extends ICSView {
                         $endHour = (int)date("H", strtotime($event['fin']));
                         $duration = max(1, $endHour - $startHour);
 
-                        $eventsByHour[$startHour][$i] =
-                            "<td rowspan='$duration' class='tablet-event-td'>" .
+                        $eventsByHour[$startHour][$i]
+                            = "<td rowspan='$duration' class='tablet-event-td'>" .
                             $this->getContent($event) ?:
                                 "<div>Erreur d'affichage</div>" . "</td>";
 
@@ -136,7 +155,8 @@ class TabletICSView extends ICSView {
      *
      * @return string Le code HTML du thead
      */
-    function theadBuilder(array $days): string {
+    function theadBuilder(array $days): string
+    {
         return '<thead><tr>' . implode('', $days) . '</tr></thead>';
     }
 
@@ -145,12 +165,13 @@ class TabletICSView extends ICSView {
      * Renvoie une date sous forme francophone à partir d'une date numérique
      *
      * @param $dateStr string Chaine de caractères de la date
-     * sous la forme 'YYYY-MM-DD'
+     *                 sous la forme 'YYYY-MM-DD'
      *
      * @return string
      * @throws \DateMalformedStringException
      */
-    function formatDateFr( string $dateStr): string {
+    function formatDateFr( string $dateStr): string
+    {
         $fr = ['Sunday' => 'Dimanche', 'Monday' => 'Lundi', 'Tuesday' => 'Mardi',
                'Wednesday' => 'Mercredi', 'Thursday' => 'Jeudi',
                'Friday' => 'Vendredi', 'Saturday' => 'Samedi',
@@ -161,7 +182,9 @@ class TabletICSView extends ICSView {
                'November' => 'Novembre', 'December' => 'Décembre'];
 
         $date = new DateTime($dateStr);
-        return str_replace(array_keys($fr),
-                    array_values($fr), $date->format('l d F'));
+        return str_replace(
+            array_keys($fr),
+            array_values($fr), $date->format('l d F')
+        );
     }
 }

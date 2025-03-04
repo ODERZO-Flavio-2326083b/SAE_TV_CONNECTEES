@@ -1,0 +1,25 @@
+<map id="controllers\TabletController" name="controllers\TabletController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="360,263,536,289"/>
+<area shape="rect" id="Node000002" href="$classcontrollers_1_1_user_controller.html" title=" " alt="" coords="257,172,426,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="370,207,434,260,431,264,367,211"/>
+<area shape="rect" id="Node000003" href="$classcontrollers_1_1_controller.html" title=" " alt="" coords="271,81,412,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,124,344,171,339,171,339,124"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1_user.html" title=" " alt="" coords="142,81,237,108"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="184,123,181,161,185,180,193,197,220,217,264,234,371,259,370,265,263,239,218,221,189,200,180,182,176,161,179,123"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="225,114,321,169,318,174,223,118"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1_model.html" title=" " alt="" coords="272,5,374,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="288,42,213,83,211,78,285,37"/>
+<area shape="rect" id="Node000006" href="$interfacemodels_1_1_entity.html" title=" " alt="" coords="5,5,107,32"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="93,37,168,78,165,83,91,42"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="131,5,248,32"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="192,47,192,81,187,81,187,47"/>
+<area shape="rect" id="Node000008" href="$classviews_1_1_user_view.html" title=" " alt="" coords="444,81,561,108"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="467,118,366,174,363,169,465,114"/>
+<area shape="rect" id="Node000011" href="$classviews_1_1_tablet_view.html" title=" " alt="" coords="450,172,574,199"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="508,123,513,171,508,172,503,124"/>
+<area shape="rect" id="Node000009" href="$classviews_1_1_view.html" title=" " alt="" coords="458,5,547,32"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="505,47,505,81,500,81,500,47"/>
+<area shape="rect" id="Node000010" href="$interfacecontrollers_1_1_schedule.html" title=" " alt="" coords="598,172,738,199"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="623,207,480,265,478,260,621,202"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="496,213,459,264,455,261,492,210"/>
+</map>

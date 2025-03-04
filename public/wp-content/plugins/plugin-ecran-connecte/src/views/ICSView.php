@@ -261,8 +261,8 @@ class ICSView extends View
      * @param array $event Un tableau associatif représentant
      *                     l'événement, contenant les clés 'deb',
      *                     'fin', 'label', et 'description'.
-     * @param int $day   Le jour du mois (optionnel). Par défaut, il s'agit du
-     *                     jour actuel.
+     * @param int   $day   Le jour du mois (optionnel). Par défaut, il s'agit
+     *                     du jour actuel.
      *
      * @return string|false  Une chaîne formatée représentant l'événement actif
      *                       ou 'false' si l'événement n'est pas actif.
@@ -281,7 +281,7 @@ class ICSView extends View
             . ' - ' . str_replace(':', 'h', date("H:i", strtotime($event['fin'])));
         if ($day == date('j')) {
             if (date("H:i", strtotime($event['deb'])) <= $time
-            && $time < date("H:i", strtotime($event['fin']))
+                && $time < date("H:i", strtotime($event['fin']))
             ) {
                 $active = true;
             } else {
@@ -289,7 +289,7 @@ class ICSView extends View
             }
         }
 
-        if ( str_ends_with( $event['label'], "alt" ) ) {
+        if (str_ends_with($event['label'], "alt") ) {
             $label = substr($event['label'], 0, -3);
         } else {
             $label = $event['label'];

@@ -4,6 +4,7 @@ var classmodels_1_1_code_ade =
     [ "delete", "classmodels_1_1_code_ade.html#a02e46cc554788a2e5e6e404f1ddc3e1e", null ],
     [ "get", "classmodels_1_1_code_ade.html#a0fd4e057c02a3bade0a545287fbd6c56", null ],
     [ "getAllFromType", "classmodels_1_1_code_ade.html#a78ba5043ac1183595679db8fd6a46867", null ],
+    [ "getAllFromTypeAndDept", "classmodels_1_1_code_ade.html#a7ddb4d9b3b9abb241f9539fa35c15a58", null ],
     [ "getByAlert", "classmodels_1_1_code_ade.html#a27e448b8df971a8adf7e60f71ca6a074", null ],
     [ "getByCode", "classmodels_1_1_code_ade.html#a579f904d77db673961726ed0d9200c12", null ],
     [ "getCode", "classmodels_1_1_code_ade.html#a129643c6c2361568390cf766fcf6b418", null ],
