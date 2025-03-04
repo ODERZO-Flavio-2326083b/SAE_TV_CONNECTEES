@@ -148,6 +148,11 @@ function loadScriptsEcran() : void
         . 'public/js/addOrDeleteDepartment.js', array('jquery'), '1.0', true
     );
     wp_enqueue_script(
+        'addTag_script_ecran',
+        TV_PLUG_PATH
+        . 'public/js/addOrDeleteTag.js', array('jquery'), '1.0', true
+    );
+    wp_enqueue_script(
         'addCodeTv_script_ecran',
         TV_PLUG_PATH
         . 'public/js/addOrDeleteTvCode.js', array('jquery'), '1.0', true
@@ -210,9 +215,9 @@ function installDatabaseEcran() : void
     global $wpdb;
     include_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    if (get_option('init_database') == 1) {
+    /*if (get_option('init_database') == 1) {
         return;
-    }
+    }*/
 
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -331,8 +336,20 @@ function installDatabaseEcran() : void
 
     dbDelta($sql);
 
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping (
-            scrapping_id INT(10) NOT NULL AUTO_INCREMENT,
+
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping_tags (
+            id INT(10) NOT NULL AUTO_INCREMENT,
+            id_info INT(10) NOT NULL,
+            content VARCHAR (280) NOT NULL,
+            tag VARCHAR (25) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (id_info) REFERENCES ecran_information(id) ON DELETE CASCADE
+            ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $sql = "CREATE TABLE IF NOT EXISTS ecran_scraping (
+            scraping_id INT(10) NOT NULL AUTO_INCREMENT,
             title VARCHAR (30) NOT NULL,
             content VARCHAR (255) NOT NULL,
             tag VARCHAR (70) NOT NULL,
@@ -344,22 +361,10 @@ function installDatabaseEcran() : void
             administration_id INT(10) DEFAULT NULL,
             duration INT(10) DEFAULT 5000 NOT NULL,
             department_id INT(10),
-            PRIMARY KEY (scrapping_id),
+            PRIMARY KEY (scraping_id),
             FOREIGN KEY (author) REFERENCES wp_users(ID) ON DELETE CASCADE,
             FOREIGN KEY (department_id) 
             REFERENCES ecran_departement(dept_id) ON DELETE CASCADE
-            ) $charset_collate;";
-
-    dbDelta($sql);
-
-    $sql = "CREATE TABLE IF NOT EXISTS ecran_scrapping_departement (
-            id INT(10) NOT NULL AUTO_INCREMENT,
-            dept_id INT(10) NOT NULL,
-            scrapping_id INT(10) NOT NULL,
-            PRIMARY KEY (id, scrapping_id, dept_id),
-            FOREIGN KEY (dept_id)
-            REFERENCES ecran_departement(dept_id) ON DELETE CASCADE,
-            FOREIGN KEY (scrapping_id) REFERENCES ecran_scrapping(scrapping_id) ON DELETE CASCADE
             ) $charset_collate;";
 
     dbDelta($sql);

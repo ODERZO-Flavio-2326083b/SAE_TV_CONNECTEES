@@ -22,7 +22,7 @@ use getID3;
 use models\CodeAde;
 use models\Department;
 use models\Information;
-use models\Scrapper;
+use models\Scraper;
 use models\User;
 use views\InformationView;
 
@@ -58,6 +58,8 @@ class InformationController extends Controller
      * @var InformationView
      */
     private $_view;
+
+    private $_modelScraping;
 
     /**
      * Constructeur de la classe.
@@ -113,6 +115,7 @@ class InformationController extends Controller
         $actionEvent = filter_input(INPUT_POST, 'createEvent');
         $actionVideo = filter_input(INPUT_POST, 'createVideo');
         $actionShort = filter_input(INPUT_POST, 'createShort');
+        $actionScraping = filter_input(INPUT_POST, 'createScraping');
 
         // Variables
         $title = filter_input(INPUT_POST, 'title');
@@ -130,7 +133,6 @@ class InformationController extends Controller
         if ($title == '') {
             $title = 'Sans titre';
         }
-
         $information = $this->_model;
         $information->setContent($content);
         $information->setTitle($title);
@@ -138,7 +140,8 @@ class InformationController extends Controller
         $information->setCreationDate($creationDate);
         $information->setExpirationDate($endDate);
         $information->setAdminId(null);
-        $information->setDuration(5000);
+        $information->setDuration(10000);   // Durée par défaut
+                                                    // d'une information
 
         $codeAde = new CodeAde();
 
@@ -246,6 +249,22 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                         );
                     }
                 }
+                if (isset($actionScraping)) {
+                    $information->setType("scraping");
+                    $tags = filter_input(INPUT_POST, 'tag',
+                        FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+                    $contentsScraper = filter_input(INPUT_POST, 'contentScraper',
+                        FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+                    if ($id = $information->insert()) {
+                        $information->setId($id);
+                        $information->insertScrapingTags($tags, $contentsScraper);
+                        $this->_view->displayCreateValidate();
+                    } else {
+                        $this->_view->displayErrorInsertionInfo();
+                    }
+                }
+
             } else {
                 $this->_view->buildModal( 'Emplois du temps insuffisants',
                     "Aucun emploi du temps n'a été fourni, 
@@ -254,8 +273,8 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         }
 
         $buildArgs = $this->getAllAvailableCodes();
-        $titles = ['Image', 'PDF', 'Événement', 'Vidéo', 'Short'];
-        $contentTypes = ['image', 'pdf', 'event', 'video', 'short'];
+        $titles = ['Image', 'PDF', 'Événement', 'Vidéo', 'Short', 'Scraping'];
+        $contentTypes = ['image', 'pdf', 'event', 'video', 'short', 'scraping'];
 
 
         // immonde à lire, mais map la fonction displayTitleSelect
@@ -276,7 +295,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                    $this->_view->{"displayForm" . ucfirst($type)}
                    ($allDepts, $buildArgs)),
                    $contentTypes)).
-               '</div>' .
+               '</div></div>' .
                $this->_view->contextCreateInformation();
     }
 
@@ -322,11 +341,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $currentUser = wp_get_current_user();
 
         $isAdmin = current_user_can('admin_perms');
-        // Si l'utilisateur actuel est admin, on envoie null car il n'a aucun
-        // département, sinon on cherche le département.
-        $currDept = $isAdmin ? null : $deptModel->getUserDepartment(
-            $currentUser->ID
-        )->getIdDepartment();
 
         $allDepts = $deptModel->getAllDepts();
 
@@ -347,11 +361,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             $title   = filter_input( INPUT_POST, 'title' );
             $content = filter_input( INPUT_POST, 'content' );
             $endDate = filter_input( INPUT_POST, 'expirationDate' );
-            $deptId  = $isAdmin ? filter_input(
-                INPUT_POST, 'informationDept'
-            ) : $currDept;
-
-            $information->setIdDepartment( $deptId );
             $information->setTitle( $title );
             $information->setExpirationDate( $endDate );
 
@@ -373,7 +382,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
             }
 
             $information->setCodesAde( $codesObjects );
-
 
             if ( $information->getType() == 'text' ) {
                 // On met en place une nouvelle information
@@ -461,6 +469,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $delete = filter_input(INPUT_POST, 'delete');
         if (isset($delete)) {
             $information->delete();
+            $information->deleteScrapingTags();
             $this->_view->displayModifyValidate();
         }
         return $this->_view->displayModifyInformationForm(
@@ -524,7 +533,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         );
         $name = $_SERVER['DOCUMENT_ROOT']
             . TV_UPLOAD_PATH . $id . '.' . $extension_upload;
-        $entity->setDuration(5000);
+        $entity->setDuration(10000); // durée par défaut d'une information
 
         if ($entity->getType() == 'video' || $entity->getType() == 'short') {
             $getID3 = new getID3();
@@ -663,7 +672,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                     $content = '[pdf-embedder url="'
                         . TV_UPLOAD_PATH . $information->getContent() . '"]';
                 } else if (in_array($contentExplode[1], $videoExtension)) {
-                    $content = '<video src="'
+                    $content = '<video style=\'max-height:300px;\' src="'
                         . $content
                         . $information->getContent() . '" autoplay muted loop>';
                 }
@@ -679,6 +688,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 'text' => 'Texte',
                 'video' => 'Video',
                 'short' => 'Short',
+                'scraping' => 'Scraping',
                 default => 'Special',
             };
 
@@ -784,7 +794,6 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
         $informations = array();
         $codeAdeIds = array_map(fn($code) => $code->getId(), $user->getCodes());
         $informations += $this->_model->getInformationsByCodeAdeIds($codeAdeIds);
-        $informations[] = $this->createScrapper();
         $this->_view->displayStartSlideshow();
 
         foreach ($informations as $information) {
@@ -796,11 +805,15 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
                 }
                 // Affiche les informations sauf les vidéos
                 if ($information->getType() !== 'video') {
-                    $this->_view->displaySlide(
-                        $information->getTitle(),
-                        $information->getContent(), $information->getType(), new
-                        Scrapper(), $adminSite
-                    );
+                    if($information->getType() === 'scraping') {
+                        $this->_view->displaySlide('Sans titre',
+                            $this->createScraper($information->getId()), $information->getType());
+                    } else {
+                        $this->_view->displaySlide(
+                            $information->getTitle(),
+                            $information->getContent(), $information->getType(), $adminSite
+                        );
+                    }
                 }
             }
         }
@@ -948,7 +961,7 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
     }
 
     /**
-     * Crée un objet de type "scrapper" avec des informations par défaut.
+     * Crée un objet de type "scraper" avec des informations par défaut.
      *
      * Cette méthode initialise un objet de la classe 'information', définit
      * des valeurs prédéfinies pour ses propriétés, telles que l'identifiant du
@@ -961,16 +974,23 @@ vidéo non valide, veuillez choisir une autre vidéo</p>'
      * @version 1.0
      * @date    2024-10-16
      */
-    public function createScrapper(): Information
-    {
-        $infoScrapper = new information();
-        $infoScrapper->setType("scrapper");
-        $infoScrapper->setTitle("Sans titre");
-        $infoScrapper->setId(1);
-        $infoScrapper->setAdminId(1);
-        $infoScrapper->setContent("content");
-        $infoScrapper->setExpirationDate(date("Y-m-d", strtotime('tomorrow')));
-        return $infoScrapper;
-    }
+    public function createScraper($id): string {
+        $information = $this->_model;
+        list($url, $balises, $types) = $information->getScrapingTags($id);
 
+        $arrayArg = array();
+        for($i=0; $i<count($balises); $i++) {
+                $arrayArg[$types[$i]] = $balises[$i];
+        }
+
+        $article = $arrayArg['article'];
+        unset($arrayArg['article']);
+
+        $scraper1 = new Scraper(
+            $url, // URL du site à scraper
+            $article,  // Sélecteur pour l'article
+            $arrayArg
+        );
+        return $scraper1->printWebsite();
+    }
 }

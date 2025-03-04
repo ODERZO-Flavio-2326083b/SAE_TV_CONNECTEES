@@ -103,13 +103,6 @@ class Information extends Model implements Entity, JsonSerializable
     private ?int $_adminId;
 
     /**
-     * Identifiant du département associé à l'entité.
-     *
-     * @var ?int L'identifiant du département, ou null si non défini.
-     */
-    private ?int $_idDepartment;
-
-    /**
      * Durée associée à l'entité.
      *
      * @var ?int La durée de l'entité en heures, ou null si non définie.
@@ -437,14 +430,10 @@ class Information extends Model implements Entity, JsonSerializable
      *
      * @param array $codeAdeIds        L'identifiant du
      *                           code ade
-     * @param int $begin         Point de départ pour la récupération des
-     *                           informations
-     * @param int $numberElement Le nombre d'informations à récupérer
      *
      * @return array Une liste d'entités correspondant aux informations récupérées
      */
-    public function getInformationsByCodeAdeIds( array $codeAdeIds,
-        int $begin = 0, int $numberElement = 25 ): array {
+    public function getInformationsByCodeAdeIds( array $codeAdeIds ): array {
 
         // pour mettre un ? par id
         $inQuery = str_repeat('?,', count($codeAdeIds) - 1) . '?';
@@ -466,15 +455,7 @@ class Information extends Model implements Entity, JsonSerializable
         JOIN ecran_info_code_ade ic ON ic.info_id = i.id
         JOIN ecran_code_ade c ON c.id = ic.code_ade_id
         WHERE 
-            c.id IN ($inQuery)
-        ORDER BY 
-            expiration_date LIMIT :begin, :numberElement"
-        );
-        $request->bindParam(':dept_id', $deptId, PDO::PARAM_INT);
-        $request->bindValue(':begin', $begin, PDO::PARAM_INT);
-        $request->bindValue(
-            ':numberElement', $numberElement,
-            PDO::PARAM_INT
+            c.id IN ($inQuery)"
         );
         // remplacer les ? par tous les ids
         $request->execute($codeAdeIds);
@@ -532,6 +513,75 @@ class Information extends Model implements Entity, JsonSerializable
         );
         $request->execute();
         return $this->setEntityList($request->fetchAll(PDO::FETCH_ASSOC));
+    }
+
+    public function insertScrapingTags(array $tags, array $contents) {
+
+        $database = $this->getDatabase();
+        for ($i = 0; $i < count($tags); $i++) {
+            $request = $database->prepare(
+                'INSERT INTO ecran_scraping_tags
+                  (id_info,
+                   content,
+                   tag
+                  )
+                   VALUES
+                  (:id_info,
+                   :content,
+                   :tag)
+        ');
+
+            $request->bindValue(':id_info', $this->getId(), PDO::PARAM_INT);
+            $request->bindValue(':content', $contents[$i], PDO::PARAM_STR);
+            $request->bindValue(':tag', $tags[$i], PDO::PARAM_STR);
+            $request->execute();
+        }
+        return $database->lastInsertId();
+    }
+
+    public function deleteScrapingTags() : int
+    {
+        $request = $this->getDatabase()->prepare(
+            'DELETE FROM ecran_information 
+       WHERE id = :id'
+        );
+        $request->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+        $request->execute();
+        return $request->rowCount();
+    }
+
+    public function getScrapingTags(int $id) : array {
+        $database = $this->getDatabase();
+
+        $request = $database->prepare(
+            'SELECT content
+                   FROM ecran_information
+                   WHERE id = :id'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_STR);
+        $request->execute();
+
+        $url = $request->fetch()['content'];
+
+        $request = $database->prepare(
+            'SELECT sc.content, sc.tag
+                   FROM ecran_information i
+                   JOIN ecran_scraping_tags sc 
+                   ON i.id = sc.id_info
+                   WHERE i.id = :id'
+        );
+        $request->bindValue(':id', $id, PDO::PARAM_INT);
+        $request->execute();
+
+        $balises = array();
+        $tags = array();
+
+        foreach($request->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $balises[] = $row['content'];
+            $tags[] = $row['tag'];
+        }
+
+        return array($url, $balises, $tags);
     }
 
     /**
@@ -937,29 +987,6 @@ FROM ecran_information WHERE administration_id IS NOT NULL LIMIT 500'
     public function setAdminId( ?int $_adminId ): void
     {
         $this->_adminId = $_adminId;
-    }
-
-    /**
-     * Retourne l'identifiant du département associé à l'entité.
-     *
-     * @return int|null L'identifiant du département, ou null si non défini.
-     */
-    public function getIdDepartment(): ?int
-    {
-        return $this->_idDepartment;
-    }
-
-    /**
-     * Définit l'identifiant du département associé à l'entité.
-     *
-     * @param int|null $_idDepartment L'identifiant du département à définir,
-     *                                ou null si non défini.
-     *
-     * @return void
-     */
-    public function setIdDepartment(?int $_idDepartment): void
-    {
-        $this->_idDepartment = $_idDepartment;
     }
 
     public function getCodesAde() : array

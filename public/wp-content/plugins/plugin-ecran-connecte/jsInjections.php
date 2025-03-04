@@ -6,6 +6,7 @@ use models\Department;
 use models\Information;
 use models\Localisation;
 use models\User;
+use models\Scraping;
 use views\AlertView;
 use views\InformationView;
 use views\TelevisionView;
@@ -244,6 +245,15 @@ function injectAllCodesOnAlertEdit(): void
 add_action('wp_enqueue_scripts', 'injectAllCodesOnAlertEdit');
 
 
+function injectTagOnScrapingEdit() {
+    wp_localize_script(
+        'addTag_script_ecran', 'codeHTML', array(
+            'tagg' => '<br>' . InformationView::buildTagOption()
+        )
+    );
+}
+
+add_action('wp_enqueue_scripts', 'injectTagOnScrapingEdit');
 
 /**
  * Récupère la vitesse de défilement de l'utilisateur connecté
@@ -270,3 +280,4 @@ function loadScrollSpeed(): void
 }
 
 add_action('wp_enqueue_scripts', 'loadScrollSpeed');
+

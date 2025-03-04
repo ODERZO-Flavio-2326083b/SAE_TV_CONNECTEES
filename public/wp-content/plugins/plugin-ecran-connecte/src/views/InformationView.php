@@ -28,7 +28,7 @@ use controllers\InformationController;
 use models\CodeAde;
 use models\Department;
 use models\Information;
-use models\Scrapper;
+use models\Scraper;
 
 /**
  * Classe InformationView
@@ -84,7 +84,7 @@ class InformationView extends View
         $content = null, $endDate = null, $type = "createText"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        
+
 
         list($years, $groups, $halfGroups) = $buildArgs;
         $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
@@ -166,7 +166,7 @@ name="delete" onclick="return confirm(
         $content = null, $endDate = null, $type = "createImg"
     ) {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        
+
 
         list($years, $groups, $halfGroups) = $buildArgs;
         $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
@@ -444,7 +444,7 @@ Supprimer</button>';
         $content = null, $endDate = null, $type = "createPDF"
     ) : string {
         $dateMin = date('Y-m-d', strtotime("+1 day"));
-        
+
 
         list($years, $groups, $halfGroups) = $buildArgs;
         $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
@@ -453,7 +453,7 @@ Supprimer</button>';
                     <div class="form-group">
                         <label for="title">Titre <span class="text-muted">(Optionnel)
                         </span></label>
-                        <input id="title" class="form-control" type="text" 
+                        <input id="title" class="form-control$title" type="text" 
                         name="title" placeholder="Inserer un titre" maxlength="60" 
                         value="' . $title . '">
                     </div>';
@@ -564,6 +564,75 @@ name="delete" onclick="return confirm(
         return $form;
     }
 
+    public function displayFormScraping (array $allDepts, array $buildArgs,
+                             $endDate = null, $title = null, $url = null,
+    $type = "createScraping") {
+
+        list($years, $groups, $halfGroups) = $buildArgs;
+        $codeSelect = $this->buildSelectCode($years, $groups, $halfGroups, $allDepts);
+
+        $dateMin = date('Y-m-d', strtotime("+1 day"));
+        $form = '
+    <form method="post" enctype="multipart/form-data" id="registerScrapingForm">
+        <div class="form-group">
+            <label for="title">Titre du scraping</label>
+            <input id="title" class="form-control" type="text"
+                   name="title" placeholder="Insérer un titre" maxlength="60"
+                   value="' . $title . '">
+        </div>
+        <div class="form-group">
+            <label for="url">Lien du site</label>
+            <input id="url" class="form-control" type="url"
+                   name="content" placeholder="Insérer un lien" maxlength="255"
+                   value="' . $url . '">
+        </div>
+        <div class="form-group">
+            <label for="tag">Tag</label>
+            <div id="tagContainer">
+                ' . $this->buildTagOption() . '
+                <input type="button" class="btn button_ecran" onclick="addButtonTag()" 
+               value="Ajouter des tags">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="expirationDate">Date d\'expiration</label>
+            <input id="expirationDate" class="form-control" type="date" 
+                   name="expirationDate" min="' . $dateMin . '" value="' . $endDate . '" required>
+        </div>
+        <div class="form-group">
+            <label>Emploi(s) du temps</label>
+            <br>    
+            <div id="codeContainerscraping">' . $codeSelect . '</div>
+            <input type="button" class="btn button_ecran" onclick="codeAddRow(\'scraping\')" 
+                   value="Ajouter un emploi du temps">
+        </div>
+        <button class="btn button_ecran" type="submit" name="' . $type . '">
+            Valider
+        </button>
+    </form>';
+        if ($type == 'submit') {
+            $form .= '<button type="submit" class="btn delete_button_ecran" 
+name="delete" onclick="return confirm(
+    \' Voulez-vous supprimer cette information ?\');">Supprimer</button>';
+        }
+        $form .= '</form>';
+        return $form;
+    }
+
+    public static function buildTagOption() {
+        return '  <div id="tagListDiv">
+                       <input id="content" class="form-control" type="text" name="contentScraper[]" placeholder="Inserer le tag" maxlength="255" required>
+                       <select class="form-control firstSelect" id="tag" name="tag[]" required="">
+                            <option value="default">Défault</option>
+                            <option value="image">Image</option>
+                            <option value="lien">Lien</option>
+                            <option value="url">URL</option>
+                            <option value="article">Article</option> 
+                     </div></div>
+                          ';
+    }
+
     /**
      * Génère le contenu HTML décrivant le processus de création d'informations
      * à afficher sur les téléviseurs connectés.
@@ -637,8 +706,8 @@ name="delete" onclick="return confirm(
     public function displayModifyInformationForm( string $title, string $content,
         string $endDate, string $type,
         array $allDepts, array $buildArgs,
-       
-        
+
+
     ): string {
 
         switch ($type) {
@@ -697,6 +766,16 @@ name="delete" onclick="return confirm(
                         $allDepts, $buildArgs, $title,
                         $content, $endDate, 'submit'
                     );
+        case "scraping":
+            return '<a href="'
+                . esc_url(
+                    get_permalink(
+                        get_page_by_title_custom('Gestion des informations')
+                    )
+                ) . '">< Retour</a>' .
+                $this->displayFormScraping(
+                    $allDepts, $buildArgs, $title, $endDate, 'submit'
+                );
         case "event":
             $extension = explode('.', $content);
             $extension = $extension[1];
@@ -870,10 +949,7 @@ name="delete" onclick="return confirm(
      * @param string $title     Le titre de la diapositive, affiché en tant que
      *                          en-tête si non vide.
      * @param string $content   Le contenu à afficher dans la diapositive
-     *                          (texte, image ou PDF).
-     * @param string $type      Le type de contenu à afficher
-     *                          ('text', 'img', 'video', 'short', 'pdf', 'event').
-     * @param bool   $adminSite Indique si la diapositive est affichée sur le site
+0      * @param bool   $adminSite Indique si la diapositive est affichée sur le site
      *                          d'administration.
      *
      * @return void
@@ -881,7 +957,7 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displaySlideVideo($title, $content, $type, $adminSite = false)
+    public function displaySlideVideo($title, $content, $adminSite = false)
     {
         echo '<div class="myVideoSlides text-center" style="display: block;">';
 
@@ -893,7 +969,7 @@ name="delete" onclick="return confirm(
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
         echo '<video class="video_container" src="' . $url . $content . '
-              " autoplay loop muted></video>';
+              " autoplay loop muted style="max-height: 70vh;"></video>';
 
 
 
@@ -914,9 +990,7 @@ name="delete" onclick="return confirm(
      * @param string   $content   Le contenu à afficher dans la diapositive
      *                            (texte, image ou PDF).
      * @param string   $type      Le type de contenu à afficher ('text',
-     *                            'img', 'video', 'short', 'pdf', 'event').
-     * @param Scrapper $scrapper  Un objet 'Scrapper' permettant de scraper du
-     *                            contenu depuis un site web.
+     *                            'img', 'video', 'short', 'pdf', 'event', 'scraper')
      * @param bool     $adminSite Indique si la diapositive est affichée sur le
      *                            site d'administration.
      *
@@ -925,7 +999,7 @@ name="delete" onclick="return confirm(
      * @version 1.0
      * @date    2024-10-15
      */
-    public function displaySlide($title, $content, $type, $scrapper,
+    public function displaySlide($title, $content, $type,
         $adminSite = false
     ) {
         echo '<div class="myInfoSlides text-center">';
@@ -936,7 +1010,7 @@ name="delete" onclick="return confirm(
 
         $url = $adminSite ? URL_WEBSITE_VIEWER . TV_UPLOAD_PATH : TV_UPLOAD_PATH;
 
-        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video'])) {
+        if (in_array($type, ['pdf', 'event', 'img', 'short', 'video', 'scraping'])) {
             $extension = explode('.', $content);
             $extension = $extension[1];
         }
@@ -965,11 +1039,7 @@ name="delete" onclick="return confirm(
             echo '<p class="lead">' . $content . '</p>';
             break;
 
-        case 'scrapper':
-            $scrapper->printWebsite();
-            break;
-
-        case 'special':
+            case 'special':
             $func = explode('(Do this(function:', $content);
             $text = explode('.', $func[0]);
             foreach ($text as $value) {
@@ -1020,7 +1090,7 @@ name="delete" onclick="return confirm(
                 "Modifier" à la ligne correspondante à l\'information.</p>
                 <p class="lead">Vous souhaitez supprimer une / plusieurs 
                 information(s) ? Cochez les cases des informations puis cliquez sur 
-                "Supprimer" le bouton ce situe en bas du tableau.</p>
+                "Supprimer" le bouton se situant en bas du tableau.</p>
                 <p class="lead">Il faut également penser à créer un département avant
                  afin d\'associer cette information à ce département.</p>
             </div>
